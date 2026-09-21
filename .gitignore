@@ -1,0 +1,27 @@
+# Dependencies
+node_modules/
+
+# Build
+dist/
+storybook-static/
+tsconfig.tsbuildinfo
+
+# Static mirror reference (huge, not source code)
+scienceatrisk.org/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Editor / OS
+.DS_Store
+*.local
+.vscode/*
+!.vscode/extensions.json
+
+# Env
+.env
+.env.*
+!.env.example
+
+*storybook.log

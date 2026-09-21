@@ -1,0 +1,41 @@
+---
+description: Work strictly within the existing Science At Risk design system
+alwaysApply: true
+---
+
+# Stay inside the design system
+
+Every UI change reuses what already exists. Do not invent parallel styling.
+
+## Tokens only
+
+Colors, type and spacing come from `src/styles/globals.css` (`@theme`) and `src/tokens/`.
+
+- Colors: `brand-black`, `brand-white`, `brand-muted`, `brand-accent-blue`, `brand-accent-yellow`, `brand-line`, `brand-link`. No new hex values.
+- Type: `text-h1|h2|h3-{desktop,mobile}`, `text-text1|text2-{desktop,mobile}`, `text-breadcrumbs`. No arbitrary `text-[20px]`.
+- Fonts: `font-serif` headings, `font-mono` labels/meta/UI, `font-ukraine` body copy.
+
+```tsx
+// ❌ BAD — off-system color and size
+<h2 className="text-[28px] text-[#333]">Title</h2>
+
+// ✅ GOOD
+<h2 className="font-serif text-h2-mobile md:text-h2-desktop text-brand-black">Title</h2>
+```
+
+## Components before markup
+
+Reuse `Button`, `Tag`, `Link`, `TextField`, `Select`, `Pagination`, `Breadcrumbs`, card
+components, `SiteHeader`, `Footer`. Shared behaviours live in `.satr-*` classes
+(`satr-squircle`, `satr-tag`, `satr-link`, `satr-hover-underline`) — use them, don't reimplement.
+
+Need something new? First extend an existing component with an optional prop that keeps the
+current default appearance. Only add a component when no existing one fits, and give it
+`index.ts` plus `*.stories.tsx` like its neighbours.
+
+## Non-negotiables
+
+- No new runtime dependencies or CSS frameworks.
+- WCAG 2.2 AA holds: contrast, visible focus, ≥44×44 targets, correct heading order,
+  links vs buttons, keyboard support.
+- Every component change is verifiable in Storybook (`npm run storybook`).

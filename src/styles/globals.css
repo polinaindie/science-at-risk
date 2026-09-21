@@ -1,0 +1,382 @@
+@import './fonts.css';
+@import 'tailwindcss';
+
+@theme {
+  --font-serif: 'Noto Serif', serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+  --font-ukraine: 'e-Ukraine', sans-serif;
+
+  --color-brand-black: #000000;
+  --color-brand-white: #ffffff;
+  /* WCAG AA normal text on white ≈ 7:1 (Figma 50% black fails AA) */
+  --color-brand-muted: #595959;
+  /* Accents — Figma node 292:1481 */
+  --color-brand-accent-blue: #b5c6cd;
+  --color-brand-accent-yellow: #f0eebe;
+  /* Input / disabled states */
+  --color-brand-disabled: #c8c8c8;
+  --color-brand-line: #000000;
+  --color-brand-line-muted: rgba(0, 0, 0, 0.25);
+  /* Paragraph links in article body (mirror) */
+  --color-brand-link: #fdbe0d;
+
+  --text-h1-desktop: 72px;
+  --text-h1-desktop--line-height: 76px;
+  --text-h1-desktop--letter-spacing: -0.02em;
+
+  --text-h1-mobile: 32px;
+  --text-h1-mobile--line-height: 38px;
+  --text-h1-mobile--letter-spacing: -0.02em;
+
+  --text-h2-desktop: 36px;
+  --text-h2-desktop--line-height: 42px;
+  --text-h2-desktop--letter-spacing: -0.02em;
+
+  --text-h2-mobile: 20px;
+  --text-h2-mobile--line-height: 28px;
+  --text-h2-mobile--letter-spacing: -0.02em;
+
+  --text-h3-desktop: 22px;
+  --text-h3-desktop--line-height: 28px;
+  --text-h3-desktop--letter-spacing: -0.03em;
+
+  --text-h3-mobile: 15px;
+  --text-h3-mobile--line-height: 20px;
+  --text-h3-mobile--letter-spacing: -0.03em;
+
+  --text-text1-desktop: 18px;
+  --text-text1-desktop--line-height: 28px;
+  --text-text1-desktop--letter-spacing: -0.03em;
+
+  --text-text1-mobile: 13px;
+  --text-text1-mobile--line-height: 18px;
+  --text-text1-mobile--letter-spacing: -0.03em;
+
+  --text-text2-desktop: 18px;
+  --text-text2-desktop--line-height: 26px;
+  --text-text2-desktop--letter-spacing: 0;
+
+  --text-text2-mobile: 14px;
+  --text-text2-mobile--line-height: 22px;
+  --text-text2-mobile--letter-spacing: 0;
+
+  --text-breadcrumbs: 12px;
+  --text-breadcrumbs--line-height: 16px;
+  --text-breadcrumbs--letter-spacing: -0.03em;
+
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1440px;
+}
+
+@layer base {
+  html,
+  body {
+    font-family: var(--font-mono);
+    font-weight: 400;
+    font-size: 18px;
+    color: var(--color-brand-black);
+    background-color: var(--color-brand-white);
+    line-height: 1;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 0;
+    font-family: var(--font-serif);
+    font-weight: 400;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  button {
+    font: inherit;
+  }
+}
+
+/* Squircle buttons — Figma: not rounded rectangles (node 292:1540) */
+@layer components {
+  .satr-squircle {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 47px;
+    padding: 0.5rem 1.25rem;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-family: var(--font-mono);
+    font-size: 18px;
+    line-height: 28px;
+    letter-spacing: -0.03em;
+    color: inherit;
+    isolation: isolate;
+  }
+
+  .satr-squircle::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background-color: currentColor;
+    -webkit-mask-image: url('/assets/ui/squircle-btn.svg');
+    mask-image: url('/assets/ui/squircle-btn.svg');
+    -webkit-mask-size: 100% 100%;
+    mask-size: 100% 100%;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    mask-position: center;
+  }
+
+  .satr-squircle--black {
+    color: #fff;
+  }
+
+  .satr-squircle--black::before {
+    background-color: #000;
+  }
+
+  .satr-squircle--black:hover:not(:disabled)::before {
+    background-color: #333;
+  }
+
+  .satr-squircle--white {
+    color: #000;
+  }
+
+  .satr-squircle--white::before {
+    background-color: #fff;
+  }
+
+  .satr-squircle--white:hover:not(:disabled)::before {
+    background-color: #e8e8e8;
+  }
+
+  .satr-squircle--bordered {
+    color: #000;
+  }
+
+  .satr-squircle--bordered::before {
+    background-color: transparent;
+    -webkit-mask-image: none;
+    mask-image: none;
+    background-image: url('/assets/ui/squircle-outline.svg');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+  }
+
+  .satr-squircle--bordered:hover:not(:disabled) {
+    color: #fff;
+  }
+
+  .satr-squircle--bordered:hover:not(:disabled)::before {
+    background-color: #000;
+    background-image: none;
+    -webkit-mask-image: url('/assets/ui/squircle-btn.svg');
+    mask-image: url('/assets/ui/squircle-btn.svg');
+    -webkit-mask-size: 100% 100%;
+    mask-size: 100% 100%;
+  }
+
+  .satr-squircle:disabled {
+    cursor: not-allowed;
+    opacity: 0.4;
+  }
+
+  .satr-link {
+    display: inline;
+    font-family: var(--font-mono);
+    font-size: 18px;
+    line-height: 28px;
+    letter-spacing: -0.03em;
+    color: #000;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+  }
+
+  .satr-link:hover {
+    opacity: 0.7;
+  }
+
+  .satr-link:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+
+  .satr-link--uppercase {
+    text-transform: uppercase;
+  }
+
+  /* Mirror: tags (squircle chips) — button or link */
+  .satr-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    min-height: 44px;
+    padding: 7px 12px 6px;
+    border: none;
+    cursor: pointer;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    line-height: 18px;
+    letter-spacing: -0.03em;
+    color: #000;
+    text-decoration: none;
+    white-space: nowrap;
+    background-color: #fff;
+    /* Full-height corner radius — true pill/squircle regardless of chip
+       width (mirror uses `paint(squircle)`, radius 60px clamped to half
+       height; a stretched SVG mask distorted corners on wide chips). */
+    border-radius: 9999px;
+  }
+
+  .satr-tag:focus-visible {
+    outline: 2px solid #000;
+    outline-offset: 2px;
+  }
+
+  @media (min-width: 768px) {
+    .satr-tag {
+      padding: 8px 12px;
+      font-size: 18px;
+      line-height: 28px;
+    }
+  }
+
+  .satr-tag--accent {
+    background-color: #b5c6cd;
+  }
+
+  /* Editorial rubric — plain mono label, not a chip */
+  .satr-tag-label {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: var(--text-breadcrumbs);
+    line-height: var(--text-breadcrumbs--line-height);
+    letter-spacing: var(--text-breadcrumbs--letter-spacing);
+    color: #000;
+  }
+
+  .satr-tag__number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 28px;
+    min-height: 28px;
+    margin-left: 2px;
+    padding: 2px 6px;
+    border-radius: 50%;
+    background: #000;
+    color: #fff;
+    font-size: 14px;
+    line-height: 1;
+    letter-spacing: -0.03em;
+  }
+
+  .satr-tag__circle {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: #000;
+    flex-shrink: 0;
+  }
+
+  @media (min-width: 1280px) {
+    .satr-tag__circle {
+      width: 31px;
+      height: 31px;
+    }
+  }
+
+  .satr-hover-underline {
+    text-decoration: none;
+    background-image: linear-gradient(#000, #000);
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    background-size: 0% 1px;
+    transition: background-size 0.3s;
+  }
+
+  .satr-hover-underline:hover {
+    background-size: 100% 1px;
+  }
+
+  .satr-hover-underline--white {
+    background-image: linear-gradient(#fff, #fff);
+  }
+
+  /* Mirror: hero__text */
+  .satr-hero-context {
+    margin-bottom: 0.88889rem;
+    color: var(--color-brand-black);
+  }
+
+  @media (min-width: 768px) {
+    .satr-hero-context {
+      margin-bottom: 1rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .satr-hero-context {
+      margin-bottom: 1.33333rem;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .satr-hero-context {
+      margin-bottom: 1.55556rem;
+    }
+  }
+
+  /* Mirror: hero__list-links — gap between wordmark and first 2px rule */
+  .satr-hero-section-rule {
+    margin-top: 1.33333rem;
+    border-top: 2px solid var(--color-brand-black);
+  }
+
+  @media (min-width: 768px) {
+    .satr-hero-section-rule {
+      margin-top: 1.11111rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .satr-hero-section-rule {
+      margin-top: 1.33333rem;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .satr-hero-section-rule {
+      margin-top: 1.77778rem;
+    }
+  }
+
+  @keyframes satr-hero-story-progress {
+    from {
+      width: 0%;
+    }
+
+    to {
+      width: 100%;
+    }
+  }
+
+  .satr-hero-story-progress {
+    animation: satr-hero-story-progress var(--satr-hero-progress-duration, 7000ms) linear forwards;
+  }
+}
