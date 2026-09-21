@@ -119,33 +119,45 @@
     letter-spacing: -0.03em;
     color: inherit;
     isolation: isolate;
+    /* Fallback box shape before useSquircleClipPath's ResizeObserver has
+       measured the element (first paint, or no-JS) — the true squircle
+       (superellipse corners) is applied as an inline `clip-path` computed
+       in JS from src/styles/squirclePath.ts. A CSS Paint API worklet
+       (`paint(squircle)`, matching the mirror exactly) was tried first but
+       measurably failed to paint for elements already in the React tree
+       at registration time in this environment. */
+    border-radius: 15px;
   }
 
-  .satr-squircle::before {
-    content: '';
+  /* Select trigger uses a visibly smaller, non-pill radius (mirror:
+     `.riskCustom-select__wrap-squircle`), unlike buttons/tags which clamp
+     to a full pill at these heights. Passed to useSquircleClipPath's
+     `radius` — this class only covers the pre-measurement fallback. */
+  .satr-squircle--select {
+    border-radius: 12px;
+  }
+
+  /* Decorative shape layer — a real element (not ::before), so
+     useSquircleClipPath can attach a ref to it. Kept separate from the
+     button's own box so the bordered variant's ring `clip-path` clips
+     only this layer, never the label text. */
+  .satr-squircle__bg {
     position: absolute;
     inset: 0;
     z-index: -1;
     background-color: currentColor;
-    -webkit-mask-image: url('/assets/ui/squircle-btn.svg');
-    mask-image: url('/assets/ui/squircle-btn.svg');
-    -webkit-mask-size: 100% 100%;
-    mask-size: 100% 100%;
-    -webkit-mask-repeat: no-repeat;
-    mask-repeat: no-repeat;
-    -webkit-mask-position: center;
-    mask-position: center;
+    border-radius: inherit;
   }
 
   .satr-squircle--black {
     color: #fff;
   }
 
-  .satr-squircle--black::before {
+  .satr-squircle--black .satr-squircle__bg {
     background-color: #000;
   }
 
-  .satr-squircle--black:hover:not(:disabled)::before {
+  .satr-squircle--black:hover:not(:disabled) .satr-squircle__bg {
     background-color: #333;
   }
 
@@ -153,38 +165,30 @@
     color: #000;
   }
 
-  .satr-squircle--white::before {
+  .satr-squircle--white .satr-squircle__bg {
     background-color: #fff;
   }
 
-  .satr-squircle--white:hover:not(:disabled)::before {
+  .satr-squircle--white:hover:not(:disabled) .satr-squircle__bg {
     background-color: #e8e8e8;
   }
 
+  /* Bordered/outline variant — the ring is `clip-path` (evenodd,
+     outer-minus-inner) carved out of a solid fill via useSquircleClipPath's
+     `strokeWidth`, not a CSS `border` (a border can't follow the squircle's
+     curved corners — clipping a straight-edged border to a curved path
+     just notches the corners instead of rounding them). Hover sets
+     strokeWidth to 0, filling the whole shape. */
   .satr-squircle--bordered {
     color: #000;
   }
 
-  .satr-squircle--bordered::before {
-    background-color: transparent;
-    -webkit-mask-image: none;
-    mask-image: none;
-    background-image: url('/assets/ui/squircle-outline.svg');
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
+  .satr-squircle--bordered .satr-squircle__bg {
+    background-color: #000;
   }
 
   .satr-squircle--bordered:hover:not(:disabled) {
     color: #fff;
-  }
-
-  .satr-squircle--bordered:hover:not(:disabled)::before {
-    background-color: #000;
-    background-image: none;
-    -webkit-mask-image: url('/assets/ui/squircle-btn.svg');
-    mask-image: url('/assets/ui/squircle-btn.svg');
-    -webkit-mask-size: 100% 100%;
-    mask-size: 100% 100%;
   }
 
   .satr-squircle:disabled {
@@ -237,9 +241,8 @@
     text-decoration: none;
     white-space: nowrap;
     background-color: #fff;
-    /* Full-height corner radius — true pill/squircle regardless of chip
-       width (mirror uses `paint(squircle)`, radius 60px clamped to half
-       height; a stretched SVG mask distorted corners on wide chips). */
+    /* Fallback before useSquircleClipPath measures the element (see
+       .satr-squircle above for why this isn't a CSS Paint API worklet). */
     border-radius: 9999px;
   }
 

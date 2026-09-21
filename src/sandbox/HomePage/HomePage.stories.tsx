@@ -10,7 +10,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'Full homepage draft — hero (search variant, matching /experts), then Stories, White Papers, Damaged Infrastructure, and the contact/partners footer, in that order.',
+          'Full homepage — Figma node 21:4755. Hero (search variant), then Stories, Researches, Damaged Infrastructure, and the contact/partners footer, in that order.',
       },
     },
   },

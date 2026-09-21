@@ -1,4 +1,5 @@
 import { forwardRef, type Ref } from 'react';
+import { Link } from '@/components/Link';
 
 export interface HeaderProps {
   locale?: string;
@@ -20,8 +21,8 @@ export interface HeaderProps {
 }
 
 /**
- * Site header — live mirror layout.
- * Language link left, !!! center mark, hamburger right.
+ * Site header — Figma node 46:3202.
+ * "ENG/УКР" locale switch left (active underlined), !!! center mark, hamburger right.
  */
 export const Header = forwardRef<HTMLElement, HeaderProps>(function Header(
   {
@@ -53,39 +54,31 @@ export const Header = forwardRef<HTMLElement, HeaderProps>(function Header(
   const closeLabel = isUa ? 'Закрити меню' : 'Close menu';
 
   const langOptionClass =
-    'inline-flex min-h-11 items-center font-mono text-h3-mobile tracking-[-0.03em] no-underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-current md:text-h3-desktop';
+    'inline-flex min-h-11 items-center font-mono text-h3-mobile uppercase tracking-[-0.03em] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-current md:text-h3-desktop';
 
-  const renderLocaleOption = (
-    label: string,
-    lang: string,
-    href: string,
-    active: boolean,
-  ) => {
+  const renderLocaleOption = (label: string, lang: string, href: string, active: boolean) => {
     if (active) {
       return (
-        <span className={`${langOptionClass} ${text}`} aria-current="true" lang={lang}>
+        <span
+          className={`${langOptionClass} underline decoration-solid underline-offset-[3px] ${text}`}
+          aria-current="true"
+          lang={lang}
+        >
           {label}
         </span>
       );
     }
 
-    if (onLocaleClick) {
-      return (
-        <button
-          type="button"
-          className={`${langOptionClass} satr-hover-underline border-0 bg-transparent p-0 ${muted}`}
-          onClick={onLocaleClick}
-          lang={lang}
-        >
-          {label}
-        </button>
-      );
-    }
-
     return (
-      <a href={href} className={`${langOptionClass} satr-hover-underline ${muted}`} lang={lang}>
+      <Link
+        {...(onLocaleClick
+          ? { as: 'button' as const, onClick: onLocaleClick }
+          : { as: 'a' as const, href })}
+        className={`${langOptionClass} satr-hover-underline no-underline ${muted}`}
+        lang={lang}
+      >
         {label}
-      </a>
+      </Link>
     );
   };
 
@@ -94,8 +87,12 @@ export const Header = forwardRef<HTMLElement, HeaderProps>(function Header(
       ref={ref}
       className={`relative grid h-[42px] w-full max-w-[1360px] grid-cols-3 items-center ${text} ${className}`.trim()}
     >
-      <div className="z-[1] justify-self-start">
-        {renderLocaleOption(isUa ? 'EN' : 'UA', isUa ? 'en' : 'uk', isUa ? enHref : ukHref, false)}
+      <div className={`z-[1] flex items-center justify-self-start ${text}`}>
+        {renderLocaleOption('ENG', 'en', enHref, !isUa)}
+        <span className="font-mono text-h3-mobile tracking-[-0.03em] md:text-h3-desktop" aria-hidden>
+          /
+        </span>
+        {renderLocaleOption('УКР', 'uk', ukHref, isUa)}
       </div>
 
       <div className="pointer-events-none justify-self-center text-center leading-none">

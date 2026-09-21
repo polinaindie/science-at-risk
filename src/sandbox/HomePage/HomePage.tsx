@@ -4,8 +4,10 @@ import { HomeHeroSearch, type HomeHeroSearchProps } from '@/sandbox/HomeHeroSear
 import { SearchHero, type SearchHeroProps } from '@/components/SearchHero';
 import {
   InfoSection,
+  ResearchSection,
   InfrastructuresSection,
   type InfoSectionProps,
+  type ResearchSectionProps,
   type InfrastructuresSectionProps,
 } from '@/components/InfoSection';
 import { StoriesSlide, type StoriesSlideProps } from '@/components/StoriesSlide';
@@ -15,7 +17,7 @@ export interface HomePageProps {
   /**
    * 'carousel' (default): story-carousel hero, then Search, White Papers, Footer.
    * 'search': hero+search combined variant (HomeHeroSearch), followed by
-   * Stories, White Papers, Damaged Infrastructure, then Footer.
+   * Stories, Researches, Damaged Infrastructure, then Footer (Figma node 21:4755).
    */
   heroVariant?: 'carousel' | 'search';
   hero?: HomeHeroSandboxProps;
@@ -23,6 +25,7 @@ export interface HomePageProps {
   search?: SearchHeroProps;
   stories?: StoriesSlideProps[];
   whitepapers?: InfoSectionProps;
+  researches?: ResearchSectionProps;
   infrastructure?: InfrastructuresSectionProps;
   footer?: FooterProps;
   className?: string;
@@ -84,6 +87,42 @@ const defaultWhitepapers: InfoSectionProps = {
   linkHref: '/whitepapers',
 };
 
+/** Figma node 21:4854 — yellow "Researches" band, 3 repeated papers. */
+const defaultResearches: ResearchSectionProps = {
+  info: {
+    title: 'Researches',
+    text: 'Formalized and organized experience of Ukrainian scientists in the preservation of scientific works, collections and institutions',
+    linkLabel: 'Show all researches',
+    linkHref: '/research',
+  },
+  papers: [
+    {
+      title: 'Preserving science during the war',
+      description:
+        'The results of the study formed recommendations for preserving Ukrainian science under wartime conditions',
+      href: '/research/preserving-science-during-the-war',
+      downloadHref: '/research/preserving-science-during-the-war.pdf',
+      downloadLabel: 'Download',
+    },
+    {
+      title: 'Preserving science during the war',
+      description:
+        'The results of the study formed recommendations for preserving Ukrainian science under wartime conditions',
+      href: '/research/preserving-science-during-the-war-2',
+      downloadHref: '/research/preserving-science-during-the-war-2.pdf',
+      downloadLabel: 'Download',
+    },
+    {
+      title: 'Preserving science during the war',
+      description:
+        'The results of the study formed recommendations for preserving Ukrainian science under wartime conditions',
+      href: '/research/preserving-science-during-the-war-3',
+      downloadHref: '/research/preserving-science-during-the-war-3.pdf',
+      downloadLabel: 'Download',
+    },
+  ],
+};
+
 const defaultInfrastructure: InfrastructuresSectionProps = {
   cards: [
     {
@@ -123,7 +162,8 @@ function HomeStoriesSection({ stories = defaultStories }: { stories?: StoriesSli
 /**
  * Homepage draft. Two orderings depending on `heroVariant`:
  * - 'carousel': hero (with its own story carousel), Search, White Papers, Footer.
- * - 'search': hero+search combined, Stories, White Papers, Damaged Infrastructure, Footer.
+ * - 'search': hero+search combined, Stories, Researches, Damaged Infrastructure, Footer
+ *   (Figma node 21:4755).
  *
  * Sections are `position: sticky` at `top: 0` with increasing z-index and
  * an opaque background, so each one pins to the top of the viewport and the
@@ -138,6 +178,7 @@ export function HomePage({
   search = defaultSearch,
   stories = defaultStories,
   whitepapers = defaultWhitepapers,
+  researches = defaultResearches,
   infrastructure = defaultInfrastructure,
   footer,
   className = '',
@@ -162,8 +203,12 @@ export function HomePage({
         </div>
       )}
 
-      <div className="sticky top-0 z-30 flex min-h-[100svh] snap-start flex-col justify-center bg-brand-white">
-        <InfoSection {...whitepapers} />
+      <div
+        className={`sticky top-0 z-30 flex min-h-[100svh] snap-start flex-col justify-center ${
+          isSearchHero ? 'bg-brand-accent-yellow' : 'bg-brand-white'
+        }`}
+      >
+        {isSearchHero ? <ResearchSection {...researches} /> : <InfoSection {...whitepapers} />}
       </div>
 
       {isSearchHero ? (

@@ -3,6 +3,8 @@ import type {
   ButtonHTMLAttributes,
   ReactNode,
 } from 'react';
+import { useSquircleClipPath } from '@/styles/useSquircleClipPath';
+import { SquircleDefs } from '@/styles/SquircleDefs';
 
 type TagBaseProps = {
   children: ReactNode;
@@ -46,6 +48,8 @@ export function Tag(props: TagProps) {
     as = 'button',
   } = props;
 
+  const squircle = useSquircleClipPath({ radius: 16, smoothing: 0.9 });
+
   const classes =
     appearance === 'label'
       ? `satr-tag-label ${className}`.trim()
@@ -58,24 +62,47 @@ export function Tag(props: TagProps) {
     </>
   );
 
-  if (as === 'span') {
+  if (appearance === 'label') {
     return <span className={classes}>{content}</span>;
+  }
+
+  if (as === 'span') {
+    return (
+      <>
+        <span ref={squircle.ref} className={classes} style={squircle.style}>
+          {content}
+        </span>
+        <SquircleDefs clipId={squircle.clipId} pathD={squircle.pathD} />
+      </>
+    );
   }
 
   if (as === 'a') {
     const { href, ...linkProps } = props as TagAsLink;
     return (
-      <a href={href} className={classes} {...linkProps}>
-        {content}
-      </a>
+      <>
+        <a ref={squircle.ref} href={href} className={classes} style={squircle.style} {...linkProps}>
+          {content}
+        </a>
+        <SquircleDefs clipId={squircle.clipId} pathD={squircle.pathD} />
+      </>
     );
   }
 
   const { type = 'button', ...buttonProps } = props as TagAsButton;
   return (
-    <button type={type} className={classes} {...buttonProps}>
-      {content}
-    </button>
+    <>
+      <button
+        ref={squircle.ref}
+        type={type}
+        className={classes}
+        style={squircle.style}
+        {...buttonProps}
+      >
+        {content}
+      </button>
+      <SquircleDefs clipId={squircle.clipId} pathD={squircle.pathD} />
+    </>
   );
 }
 

@@ -1,4 +1,6 @@
 import { useId, useState, type ButtonHTMLAttributes } from 'react';
+import { useSquircleClipPath } from '@/styles/useSquircleClipPath';
+import { SquircleDefs } from '@/styles/SquircleDefs';
 
 export interface SelectOption {
   value: string;
@@ -34,6 +36,7 @@ export function Select({
   const [uncontrolled, setUncontrolled] = useState(defaultValue ?? '');
   const value = controlled ?? uncontrolled;
   const selected = options.find((o) => o.value === value);
+  const squircle = useSquircleClipPath({ radius: 16, smoothing: 0.9, strokeWidth: 2 });
 
   const setValue = (next: string) => {
     if (controlled === undefined) setUncontrolled(next);
@@ -52,9 +55,11 @@ export function Select({
         aria-haspopup="listbox"
         aria-expanded={open}
         aria-controls={listId}
-        className="satr-squircle satr-squircle--bordered min-w-[192px] justify-between gap-3 pr-4 pl-4 disabled:opacity-40"
+        className="satr-squircle satr-squircle--bordered satr-squircle--select min-w-[192px] justify-between gap-3 pr-4 pl-4 disabled:opacity-40"
         onClick={() => setOpen((v) => !v)}
       >
+        <span ref={squircle.ref} className="satr-squircle__bg" style={squircle.style} aria-hidden />
+        <SquircleDefs clipId={squircle.clipId} pathD={squircle.pathD} />
         <span className="font-mono text-text1-desktop">{selected?.label ?? placeholder}</span>
         <img
           src="/assets/ui/chevron.svg"
