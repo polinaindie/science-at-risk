@@ -75,7 +75,7 @@ select panel, smoothing 0.9 throughout.
 | Atoms | Button, Tag, TextField, Loader |
 | Molecules | Breadcrumbs, Pagination, Select, PopularRequests, EmptyState, Quote, FullImage, SectionIntro |
 | Cards | StoryCard, ExpertCard, ListCard, SocietyCard, PublicationCard |
-| Sections | SiteHeader, SiteFooter, SearchHero, ExpertAside, ContactModal, Gallery |
+| Sections | SiteHeader, SiteFooter, HomeHero, SearchHero, ExpertAside, ContactModal, Gallery |
 
 Everything is re-exported from `src/index.ts`.
 
@@ -83,6 +83,25 @@ Component names describe what the thing shows rather than the class it carries,
 where the two had drifted apart on the site: `SocietyCard` renders
 `.infrastructures-card`, `PublicationCard` renders `.project-card`,
 `EmptyState` renders `.nothing`, `ContactModal` renders `.help-form`.
+
+## Two heroes
+
+`HomeHero` is the current first screen: the mono strapline, the `SC!ENCE AT
+R!SK!` wordmark, the search on one line, popular requests, and the three
+counted entry points along the bottom. Its field colour is exported as
+`HOME_HERO_BG` so a header sitting over it can match.
+
+`SearchHero` is the hero the live site still ships — one headline, the search
+field, and the popular requests beside a supporting note. It is untouched and
+stays exported, so pages that want the old layout keep it.
+
+`SiteHeader` grew three props for sitting on a hero: `languages` (both
+languages side by side with the active one marked, as in the design, against
+the site's own single "other language" link), `background` (the site paints the
+bar white; over a hero, pass the hero's colour) and `divider` (the site rules
+the bar off with a 1px black line, which reads as a seam across a coloured
+field). The wordmark default is now `!!!`, which is what the site actually
+renders — the earlier "Science at risk" text was wrong.
 
 ## Known gaps
 

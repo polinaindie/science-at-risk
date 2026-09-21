@@ -36,6 +36,8 @@ export { SiteHeader } from './components/SiteHeader/SiteHeader';
 export type { SiteHeaderProps, NavItem } from './components/SiteHeader/SiteHeader';
 export { SiteFooter } from './components/SiteFooter/SiteFooter';
 export type { SiteFooterProps, SupportGroup } from './components/SiteFooter/SiteFooter';
+export { HomeHero } from './components/HomeHero/HomeHero';
+export type { HomeHeroProps, HeroLink } from './components/HomeHero/HomeHero';
 export { SearchHero } from './components/SearchHero/SearchHero';
 export type { SearchHeroProps } from './components/SearchHero/SearchHero';
 export { ExpertAside } from './components/ExpertAside/ExpertAside';

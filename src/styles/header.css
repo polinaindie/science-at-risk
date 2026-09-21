@@ -1,0 +1,18 @@
+/* The bar shows both languages with the current one marked; the site itself
+   only ever renders the other language, so it has no styling for this. */
+
+.header__lang-divider {
+  margin: 0 0.15em;
+  color: #000;
+}
+
+.header__lang-btn--active {
+  text-decoration: underline;
+  text-underline-offset: 0.25em;
+}
+
+/* The site rules off the header bar. Over a hero that carries its own colour
+   the rule reads as a seam across the field, so it can be turned off. */
+.header--flush {
+  border-bottom: 0;
+}

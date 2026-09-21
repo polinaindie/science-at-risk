@@ -14,7 +14,13 @@ export interface SearchHeroProps {
   onSearch?: (query: string) => void;
 }
 
-/** The `.search-hero` section that opens the home page. */
+/**
+ * The `.search-hero` section as the live site ships it: one headline, the
+ * search field, and the popular requests beside a supporting note.
+ *
+ * Kept as-is. `HomeHero` is the newer first screen; this one stays available
+ * for pages that still want the shipped layout.
+ */
 export function SearchHero({
   title,
   fieldLabel,

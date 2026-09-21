@@ -1,6 +1,7 @@
 import type { Preview } from '@storybook/react-vite';
 import '../src/styles/site.css';
 import '../src/styles/squircle.css';
+import '../src/styles/header.css';
 
 const preview: Preview = {
   parameters: {

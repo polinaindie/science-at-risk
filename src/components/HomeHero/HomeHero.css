@@ -1,0 +1,130 @@
+/* The first screen. Built on the site's own type and colour, but its own
+   layout: a wordmark headline, the search on one line, and a row of counted
+   entry points along the bottom. */
+
+.home-hero {
+  background-color: #b5c6cd;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  /* The site's header sits absolutely over the hero, so the content has to
+     start below it rather than under it. */
+  padding: 7rem 0 1.5rem;
+}
+
+.home-hero__wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.home-hero__suptitle {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 1rem;
+  letter-spacing: -0.03em;
+  color: #000;
+  margin: 0 0 0.5rem;
+}
+
+/* The wordmark. `clamp` keeps it filling the line from phone to desktop the
+   way it does in the design, where it spans the full measure. */
+.home-hero__title {
+  font-family: 'Noto Serif', serif;
+  font-weight: 400;
+  font-size: clamp(2.5rem, 9.3vw, 9.5rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: #000;
+  margin: 0;
+  white-space: nowrap;
+}
+
+.home-hero__search {
+  margin-top: auto;
+  padding-top: 3rem;
+}
+
+.home-hero__search-row {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #000;
+}
+
+.home-hero__input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  background: transparent;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: clamp(1.1rem, 2.2vw, 1.8rem);
+  letter-spacing: -0.03em;
+  color: #000;
+  padding: 0;
+}
+
+.home-hero__input::placeholder {
+  color: rgba(0, 0, 0, 0.45);
+}
+
+.home-hero__input:focus {
+  outline: none;
+}
+
+.home-hero__requests {
+  padding-top: 1.75rem;
+}
+
+.home-hero__links {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.25);
+}
+
+.home-hero__link {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 1rem;
+  letter-spacing: -0.03em;
+  color: #000;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.home-hero__link-arrow {
+  margin-right: 0.4em;
+}
+
+.home-hero__link-label {
+  text-decoration: underline;
+  text-underline-offset: 0.25em;
+}
+
+.home-hero__link-count {
+  margin-left: 0.4em;
+  color: rgba(0, 0, 0, 0.45);
+}
+
+@media (max-width: 767px) {
+  .home-hero {
+    padding-top: 5rem;
+  }
+
+  .home-hero__title {
+    white-space: normal;
+  }
+
+  .home-hero__search-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+  }
+
+  .home-hero__links {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+}
