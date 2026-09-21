@@ -1,3 +1,6 @@
+export { HomePage } from './pages/HomePage/HomePage';
+export type { HomePageProps } from './pages/HomePage/HomePage';
+export { homePageContent } from './pages/HomePage/homePageContent';
 export { Button } from './components/Button/Button';
 export type { ButtonProps, ButtonVariant } from './components/Button/Button';
 export { Tag } from './components/Tag/Tag';

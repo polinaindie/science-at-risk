@@ -9,10 +9,9 @@ The mirror the components were read from lives next to this project, in
 ## Running
 
 ```bash
-npm run storybook
+npm run storybook   # component library, port 6016
+npm run dev         # the home page as a real page, port 5183
 ```
-
-Storybook serves on port 6016.
 
 ## How this is put together
 
@@ -75,6 +74,7 @@ select panel, smoothing 0.9 throughout.
 | Atoms | Button, Tag, TextField, Loader |
 | Molecules | Breadcrumbs, Pagination, Select, PopularRequests, EmptyState, Quote, FullImage, SectionIntro |
 | Cards | StoryCard, ExpertCard, ListCard, SocietyCard, PublicationCard |
+| Pages | HomePage |
 | Sections | SiteHeader, SiteFooter, HomeHero, SearchHero, ExpertAside, ContactModal, Gallery |
 
 Everything is re-exported from `src/index.ts`.
@@ -83,6 +83,20 @@ Component names describe what the thing shows rather than the class it carries,
 where the two had drifted apart on the site: `SocietyCard` renders
 `.infrastructures-card`, `PublicationCard` renders `.project-card`,
 `EmptyState` renders `.nothing`, `ContactModal` renders `.help-form`.
+
+## The home page
+
+`src/pages/HomePage` assembles the page from the components above and is what
+`npm run dev` serves; `homePageContent.ts` holds sample content taken from the
+live site. There is a `Pages/HomePage` story too.
+
+The live site splits its top in two — a `hero` section carrying the wordmark,
+and a `search-hero` further down holding the search field and the popular
+requests. The new design folds both into the first screen, so `HomeHero` stands
+in for the pair and `SearchHero` does not appear on this page.
+
+The stories row uses `StoryCard` in a grid. The site runs a Swiper slider
+there; this package has no slider dependency, as noted under Known gaps.
 
 ## Two heroes
 
