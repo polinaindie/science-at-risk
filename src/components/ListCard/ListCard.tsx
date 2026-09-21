@@ -1,3 +1,5 @@
+import { Button } from '../Button/Button';
+
 export interface ListCardProps {
   title: string;
   text?: string;
@@ -28,9 +30,9 @@ export function ListCard({
         </header>
         <footer className="list-card__footer">
           {text && <p className="list-card__text">{text}</p>}
-          <div className="list-card__btn btn btn--black">
-            <a href={href}>{buttonLabel}</a>
-          </div>
+          <Button className="list-card__btn" href={href}>
+            {buttonLabel}
+          </Button>
           {price && (
             <div className="list-card__summ d-md-none d-block">
               <p className="help__text">{priceLabel}</p>

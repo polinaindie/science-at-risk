@@ -1,9 +1,0 @@
-/* Small corrections on top of the site's own stylesheet (src/styles/site.css).
-   Keep this file short and say why each rule is here. */
-
-/* The site fills the open select button with the Houdini squircle paint, which
-   it never registers; only its Safari branch sets a real background. Without
-   one, the button's active white label sits on white. */
-.riskCustom-select.active .riskCustom-select__btn {
-  background-color: #000000;
-}

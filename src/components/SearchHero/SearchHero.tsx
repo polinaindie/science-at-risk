@@ -1,5 +1,6 @@
 import type { FormEvent } from 'react';
 import { PopularRequests, type PopularRequest } from '../PopularRequests/PopularRequests';
+import { Button } from '../Button/Button';
 
 export interface SearchHeroProps {
   title: string;
@@ -42,9 +43,9 @@ export function SearchHero({
               <input className="_risk-label" type="text" name="search" id="search" defaultValue="" />
               <label htmlFor="search">{fieldLabel}</label>
             </div>
-            <button className="search-hero__btn btn btn--black" type="submit">
+            <Button className="search-hero__btn" type="submit">
               {submitLabel}
-            </button>
+            </Button>
           </form>
           <div className="row align-items-end flex-md-row flex-column-reverse search__bottom">
             <div className="col-md-4 col-12">

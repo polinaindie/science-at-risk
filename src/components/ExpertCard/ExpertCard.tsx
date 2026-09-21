@@ -1,3 +1,6 @@
+import { Button } from '../Button/Button';
+import { Tag } from '../Tag/Tag';
+
 export interface ExpertCardProps {
   name: string;
   /** Degree and rank, e.g. "Ph.D., professor". */
@@ -36,9 +39,9 @@ export function ExpertCard({
             <h2 className="expert-card__title">
               <span>{name}</span>
             </h2>
-            <div className="expert-card__btn btn btn--black">
-              <a href={href}>{buttonLabel}</a>
-            </div>
+            <Button className="expert-card__btn" href={href}>
+              {buttonLabel}
+            </Button>
           </header>
           {degree && <p className="expert-card__subtitle">{degree}</p>}
           {affiliation && <p className="expert-card__text">{affiliation}</p>}
@@ -51,9 +54,8 @@ export function ExpertCard({
             <ul className="expert-card__list">
               {tags.map((tag) => (
                 <li className="expert-card__item" key={tag}>
-                  <button type="button" className="expert-card__tag tag" onClick={() => onTagClick?.(tag)}>
-                    {tag}
-                  </button>
+                  {/* The site tints the tags inside an expert card. */}
+                  <Tag className="expert-card__tag" label={tag} fill="#B5C6CD" onClick={onTagClick} />
                 </li>
               ))}
             </ul>

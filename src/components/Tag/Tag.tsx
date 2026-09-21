@@ -1,17 +1,25 @@
+import { SquircleShape } from '../../styles/SquircleShape';
+
 export interface TagProps {
   label: string;
   /** Result count shown to the right of the label, as on the home page. */
   count?: number;
   href?: string;
+  /** The expert cards tint their tags; the site's `--squircle-fill` there is #B5C6CD. */
+  fill?: string;
   className?: string;
   onClick?: (label: string) => void;
 }
 
-/** The site's `.tag` block — a pill used for scientific fields and queries. */
-export function Tag({ label, count, href, className = '', onClick }: TagProps) {
-  const classes = `tag ${className}`.trim();
+/**
+ * The site's `.tag` pill — a squircle of radius 60 at smoothing 0.9, the same
+ * shape as the buttons.
+ */
+export function Tag({ label, count, href, fill = '#FFFFFF', className = '', onClick }: TagProps) {
+  const classes = `tag sartr-squircle ${className}`.trim();
   const body = (
     <>
+      <SquircleShape radius={60} smoothing={0.9} fill={fill} />
       {label}
       {count !== undefined && <span className="tag__number">{count}</span>}
     </>

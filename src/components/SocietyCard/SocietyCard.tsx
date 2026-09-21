@@ -1,3 +1,5 @@
+import { Button } from '../Button/Button';
+
 export interface SocietyCardProps {
   title: string;
   text?: string;
@@ -42,9 +44,9 @@ export function SocietyCard({
           </div>
         </div>
         <div className="d-md-flex d-none justify-content-end">
-          <div className="infrastructures-card__btn btn btn--black">
-            <a href={href}>{buttonLabel}</a>
-          </div>
+          <Button className="infrastructures-card__btn" href={href}>
+            {buttonLabel}
+          </Button>
         </div>
       </article>
       <a className="absoluteLink" href={href} aria-label={title} />

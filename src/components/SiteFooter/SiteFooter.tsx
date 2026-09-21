@@ -1,5 +1,6 @@
 import type { FormEvent } from 'react';
 import { TextField } from '../TextField/TextField';
+import { Button } from '../Button/Button';
 
 export interface SupportGroup {
   title: string;
@@ -57,9 +58,9 @@ export function SiteFooter({
               </div>
               <TextField className="footer__input" label={labels.topic} name="subject" required />
               <TextField className="footer__input" label={labels.text} name="description" multiline required />
-              <button className="footer__btn btn btn--white" type="submit">
+              <Button className="footer__btn" variant="white" type="submit">
                 {submitLabel}
-              </button>
+              </Button>
             </form>
           </div>
           <div className="footer__right-wrap">

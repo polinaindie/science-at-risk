@@ -1,3 +1,5 @@
+import { Button } from '../Button/Button';
+
 export interface PublicationCardProps {
   title: string;
   /** Free-form citation line: authors, journal, year, pages. */
@@ -22,11 +24,13 @@ export function PublicationCard({
           <h2 className="project-card__title">
             <span>{title}</span>
           </h2>
-          <div className="project-card__btn btn btn--black d-b1400-inline-flex d-none">
-            <a target="_blank" href={href} rel="nofollow">
-              {buttonLabel}
-            </a>
-          </div>
+          <Button
+            className="project-card__btn d-b1400-inline-flex d-none"
+            href={href}
+            target="_blank"
+          >
+            {buttonLabel}
+          </Button>
         </header>
         {meta && <p className="project-card__text">{meta}</p>}
         {role && <p className="project-card__text">{role}</p>}

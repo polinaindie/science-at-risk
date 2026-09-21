@@ -1,3 +1,5 @@
+import { Button } from '../Button/Button';
+
 export interface ExpertAsideProps {
   photo?: string;
   name?: string;
@@ -26,9 +28,9 @@ export function ExpertAside({
           <img src={photo} alt={name} loading="lazy" />
         </picture>
       )}
-      <button className="aside__contact btn btn--black" type="button" onClick={onContact}>
+      <Button className="aside__contact" onClick={onContact}>
         {contactLabel}
-      </button>
+      </Button>
       {languagesTitle && <h4 className="aside__title">{languagesTitle}</h4>}
       {languages && <p className="aside__lang-text">{languages}</p>}
       {links.length > 0 && (

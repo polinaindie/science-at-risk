@@ -23,16 +23,49 @@ the site ships, with props where the site had template variables.
 
 - `src/styles/site.css` — the site's stylesheet, copied with two changes:
   - font URLs point at `public/fonts/e-ukraine`;
-  - every `paint(squircle)` declaration is dropped. The site asks for a Houdini
-    paint worklet that it never registers, so its own
-    `@supports not (...)` fallback (plain `border-radius`) is what actually
-    renders — those blocks are unwrapped so they always apply.
-- `src/styles/overrides.css` — the few rules that the squircle removal left
-  without a background. Each one says why it is there.
+  - every `paint(squircle)` declaration is dropped, and the corner shape is
+    rebuilt properly instead (see below).
+- `src/styles/squirclePath.ts`, `useSquircle.ts`, `SquircleShape.tsx` — the
+  squircle itself.
+- `src/styles/squircle.css` — clears the site's background and border on the
+  elements that carry a squircle, so the shape layer is what paints them.
 - `.storybook/preview-head.html` — Noto Serif and IBM Plex Mono from Google
   Fonts, exactly as the site loads them. e-Ukraine is self-hosted.
 - `.storybook/preview.tsx` wraps every story in `.isDefault`, the class the site
   puts on `<html>` and scopes a number of rules under.
+
+## Corners are squircles, not rounded rectangles
+
+The buttons, tags and the select panel are squircles: the corner is a single
+cubic bezier whose control points sit **0.1765·r** from the corner, where a
+circular arc would put them at 0.4477·r. That is what keeps the curvature
+continuous instead of snapping from straight edge to arc.
+
+The ratio is not a guess. It is read off the design system's own vector
+(Figma node `58:3485`, "Squircle", 150×47, r = 23.5), which exports as:
+
+```
+M0 23.5 C0 4.14775 4.14775 0 23.5 0 H126.5 C145.852 0 150 4.14775 150 23.5 …
+```
+
+`4.14775 / 23.5 = 0.1765`. `buildSquirclePath` reproduces that path to four
+decimal places; rasterised at 8× and compared against the Figma vector, 2 of
+451,200 samples differ, all of it antialiasing.
+
+Against a plain `border-radius: 23.5px` rounded rect at the same size, the
+squircle differs by ~236px² — 3.5% of the shape's area, concentrated entirely
+in the four corners. That difference is the whole point.
+
+The site tried to do this with `mask-image: paint(squircle)`, a CSS Paint API
+worklet it never registers, so nothing drew the real shape there. Here the
+path is computed in JS and applied as a `clip-path` on a layer behind the
+content — no worklet, and the ring variants (`--squircle-outline`) come out of
+the same path as an evenodd outer-minus-inner contour, which a CSS `border`
+could never follow around these corners.
+
+Radii and fills come straight from the site's custom properties: 60 on pills
+and tags (clamped to half the height, so they read as full pills), 25 on the
+select panel, smoothing 0.9 throughout.
 
 ## What is here
 

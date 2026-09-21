@@ -1,0 +1,19 @@
+/* Real squircle corners, replacing the site's unregistered paint worklet.
+
+   The shape is painted by `.sartr-squircle__bg`, a clipped layer behind the
+   content, so the site's own background and rounded-rect fallback have to get
+   out of the way on the elements that carry one. */
+
+.sartr-squircle {
+  position: relative;
+  isolation: isolate;
+  background: none !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+}
+
+.sartr-squircle__bg {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+}

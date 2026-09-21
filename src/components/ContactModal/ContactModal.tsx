@@ -1,5 +1,6 @@
 import type { FormEvent } from 'react';
 import { TextField } from '../TextField/TextField';
+import { Button } from '../Button/Button';
 
 export interface ContactModalProps {
   title?: string;
@@ -37,10 +38,10 @@ export function ContactModal({
     <div className="help-form active">
       <div className="help-form__bg" onClick={onClose} />
       <div className="wrapper position-relative">
-        <button className="help-form__btn-close btn btn--white" type="button" onClick={onClose}>
+        <Button className="help-form__btn-close" variant="white" onClick={onClose}>
           {closeLabel}
           <CloseIcon />
-        </button>
+        </Button>
         <h2 className="help-form__title">{title}</h2>
         <p className="help-form__text">{text}</p>
         <form
@@ -67,9 +68,9 @@ export function ContactModal({
               />
             </div>
             <div className="col-md-5 d-flex align-items-end order-md-0 order-2 mt-5">
-              <button className="help-form__submit btn btn--white" type="submit">
+              <Button className="help-form__submit" variant="white" type="submit">
                 {submitLabel}
-              </button>
+              </Button>
             </div>
           </div>
         </form>
