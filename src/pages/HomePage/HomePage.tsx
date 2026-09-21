@@ -1,7 +1,7 @@
 import { SiteHeader, type NavItem } from '../../components/SiteHeader/SiteHeader';
 import { HomeHero, HOME_HERO_BG, type HeroLink } from '../../components/HomeHero/HomeHero';
 import { SectionIntro } from '../../components/SectionIntro/SectionIntro';
-import { StoryCard, type StoryCardProps } from '../../components/StoryCard/StoryCard';
+import { StoriesSlider, type StorySlide } from '../../components/StoriesSlider/StoriesSlider';
 import { ListCard, type ListCardProps } from '../../components/ListCard/ListCard';
 import { SiteFooter, type SupportGroup } from '../../components/SiteFooter/SiteFooter';
 import { type PopularRequest } from '../../components/PopularRequests/PopularRequests';
@@ -12,7 +12,7 @@ export interface HomePageProps {
   languages?: { label: string; href: string; active?: boolean }[];
   popular?: PopularRequest[];
   heroLinks?: HeroLink[];
-  stories?: StoryCardProps[];
+  stories?: StorySlide[];
   /** Damaged infrastructure asking for help. */
   reconstruction?: ListCardProps[];
   supporters?: SupportGroup[];
@@ -50,22 +50,7 @@ export function HomePage({
       <HomeHero popular={popular} links={heroLinks} />
 
       {stories.length > 0 && (
-        <section className="fullSection">
-          <div className="wrapper" style={{ paddingTop: '4rem', paddingBottom: '2rem' }}>
-            <SectionIntro
-              title="Stories"
-              text="How Ukrainian science lives through the war"
-              link={{ label: 'All stories', href: '#' }}
-            />
-            <div className="row" style={{ marginTop: '2rem' }}>
-              {stories.map((story) => (
-                <div className="col-md-4 col-12" key={story.title}>
-                  <StoryCard {...story} />
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+        <StoriesSlider slides={stories} otherLink={{ label: 'Other stories', href: '#' }} />
       )}
 
       {reconstruction.length > 0 && (

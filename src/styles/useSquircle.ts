@@ -26,7 +26,17 @@ export function useSquircle({ radius, smoothing = 0.9, strokeWidth = 0 }: UseSqu
     if (!node) return;
     const update = () => {
       const rect = node.getBoundingClientRect();
-      setSize({ width: rect.width, height: rect.height });
+      // Snap to a half pixel, and only commit a genuine change.
+      //
+      // Both halves matter. A fresh object on every callback would re-render on
+      // every observation; and without rounding, a layout that settles on
+      // fractional sizes — a percentage-padding image next to a flex column,
+      // say — jitters in the last decimal, so the comparison never matches and
+      // the ResizeObserver feeds itself forever. Half a pixel is far below
+      // anything the path renders differently.
+      const width = Math.round(rect.width * 2) / 2;
+      const height = Math.round(rect.height * 2) / 2;
+      setSize((prev) => (prev.width === width && prev.height === height ? prev : { width, height }));
     };
     update();
     const observer = new ResizeObserver(update);

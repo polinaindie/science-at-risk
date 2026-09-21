@@ -75,7 +75,7 @@ select panel, smoothing 0.9 throughout.
 | Molecules | Breadcrumbs, Pagination, Select, PopularRequests, EmptyState, Quote, FullImage, SectionIntro |
 | Cards | StoryCard, ExpertCard, ListCard, SocietyCard, PublicationCard |
 | Pages | HomePage |
-| Sections | SiteHeader, SiteFooter, HomeHero, SearchHero, ExpertAside, ContactModal, Gallery |
+| Sections | SiteHeader, SiteFooter, HomeHero, SearchHero, StoriesSlider, ExpertAside, ContactModal, Gallery |
 
 Everything is re-exported from `src/index.ts`.
 
@@ -95,8 +95,7 @@ and a `search-hero` further down holding the search field and the popular
 requests. The new design folds both into the first screen, so `HomeHero` stands
 in for the pair and `SearchHero` does not appear on this page.
 
-The stories row uses `StoryCard` in a grid. The site runs a Swiper slider
-there; this package has no slider dependency, as noted under Known gaps.
+The stories row is `StoriesSlider`, the site's own Swiper section.
 
 ## Two heroes
 
@@ -117,11 +116,35 @@ the bar off with a 1px black line, which reads as a seam across a coloured
 field). The wordmark default is now `!!!`, which is what the site actually
 renders — the earlier "Science at risk" text was wrong.
 
+## The stories slider
+
+`StoriesSlider` is the site's `.stories` section, Swiper and all, configured
+exactly as the site configures it: speed 1500, looping, one slide per view
+until 1280px where it shows 1.05 so the next slide peeks in. Three things are
+deliberately not copied:
+
+- The site pins Swiper 8.4.7, which falls inside a critical prototype-pollution
+  advisory (GHSA-hmx5-qpq5-p643, fixed in 12.1.2). This uses a patched release.
+  The options are identical between the two; only the module import path moved.
+- It also passes `calculateHeight`, which is not a Swiper option and does
+  nothing, so it is left out.
+- Navigation binds to each instance's own buttons by id. The site's global
+  `.prev` / `.next` selectors would break the moment a page had two sliders.
+
+`StoriesSlider.css` carries one rule worth knowing about. `.fullSection` makes
+the section a flex container, which leaves Swiper's root a flex item with the
+default `min-width: auto` — unable to shrink below its content. Swiper then
+measures an unbounded root, sizes the slides from it, and those slide widths
+become the intrinsic width in turn, so it runs away to Chromium's layout
+ceiling of 16,777,216px. With the picture's `padding-top: 64%` on top of that,
+the browser is asked for a box ten million pixels tall and the tab stops
+responding. `min-width: 0` on the root is the fix.
+
 ## Known gaps
 
-- `Gallery` carries the site's `.storySlider` markup but no slider behaviour —
-  the site drives it with Swiper, which is not a dependency here. The track
-  scrolls horizontally instead.
+- `Gallery` carries the site's `.storySlider` markup but no slider behaviour;
+  the attachment strip scrolls horizontally instead. `StoriesSlider` is the
+  one that runs Swiper.
 - The site's forms post to its own backend and use reCAPTCHA. The components
   expose `onSubmit` and render no captcha.
 - Menu, select and modal open/close state is React state here; on the site it is

@@ -24,16 +24,16 @@ export function SquircleShape({ fill, className = '', ...options }: SquircleShap
         className={`sartr-squircle__bg ${className}`.trim()}
         style={{ ...squircle.style, background: fill }}
       />
-      {squircle.pathD && (
-        <svg width="0" height="0" style={{ position: 'absolute' }} aria-hidden focusable="false">
-          <clipPath id={squircle.clipId} clipPathUnits="userSpaceOnUse">
-            {/* `clip-rule`, not `fill-rule`, decides inside/outside for a CSS
-                clip-path — the ring's outer+inner subpaths need it to punch
-                the hole. */}
-            <path d={squircle.pathD} clipRule="evenodd" />
-          </clipPath>
-        </svg>
-      )}
+      {/* Always rendered, so that measuring never adds or removes a node from
+          the tree it is measuring. */}
+      <svg width="0" height="0" style={{ position: 'absolute' }} aria-hidden focusable="false">
+        <clipPath id={squircle.clipId} clipPathUnits="userSpaceOnUse">
+          {/* `clip-rule`, not `fill-rule`, decides inside/outside for a CSS
+              clip-path — the ring's outer+inner subpaths need it to punch
+              the hole. */}
+          <path d={squircle.pathD} clipRule="evenodd" />
+        </clipPath>
+      </svg>
     </>
   );
 }

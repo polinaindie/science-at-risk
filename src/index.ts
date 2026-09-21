@@ -47,6 +47,8 @@ export { ExpertAside } from './components/ExpertAside/ExpertAside';
 export type { ExpertAsideProps } from './components/ExpertAside/ExpertAside';
 export { ContactModal } from './components/ContactModal/ContactModal';
 export type { ContactModalProps } from './components/ContactModal/ContactModal';
+export { StoriesSlider } from './components/StoriesSlider/StoriesSlider';
+export type { StoriesSliderProps, StorySlide } from './components/StoriesSlider/StoriesSlider';
 export { Gallery } from './components/Gallery/Gallery';
 export type { GalleryProps, GalleryImage } from './components/Gallery/Gallery';
 export { SquircleShape } from './styles/SquircleShape';

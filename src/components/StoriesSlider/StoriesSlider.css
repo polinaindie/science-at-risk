@@ -1,0 +1,19 @@
+/* `.fullSection` makes the `.stories` section a flex container, so Swiper's
+   root becomes a flex item with the default `min-width: auto` — it cannot
+   shrink below the intrinsic width of its content. Swiper measures that
+   unbounded root, sizes the slides from it, and the slides' width becomes the
+   intrinsic width in turn, so it runs away to Chromium's layout ceiling
+   (16,777,216px). The picture's `padding-top: 64%` then asks for a box ten
+   million pixels tall and the tab stops responding.
+
+   `min-width: 0` lets the root take the width of the flex line instead.
+
+   The display override is for the same element wearing two hats: the site
+   styles `.stories__top` as the flex row of slides, but here it is Swiper's
+   root and has to stay a block. `overflow-x: hidden` from the site's rule is
+   what we want, so it is left alone. */
+.stories__top.swiper {
+  display: block;
+  min-width: 0;
+  width: 100%;
+}
