@@ -1,0 +1,37 @@
+/* Section snapping, the CSS equivalent of what fullpage.js does on the site:
+   each full-height section settles at the top of the viewport as you scroll.
+
+   Only from 1024px up, because that is where the site's own `.fullSection`
+   becomes `height: 100vh` — below it the sections are content-height and
+   snapping them would fight the reader.
+
+   `mandatory` gives the crisp one-gesture-one-screen feel the site has, but it
+   only works because every snap target here is exactly the viewport height.
+   Every top-level section needs a snap point of its own. Under `mandatory`, a
+   section without one cannot be rested on at all — the scroll is pulled
+   straight past it to the next point. Taller-than-viewport sections get a
+   point at their start and none inside, so the reader lands on them once and
+   then scrolls through them normally. */
+@media (min-width: 1024px) {
+  html.snap-sections {
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+  }
+
+  html.snap-sections .home-hero,
+  html.snap-sections .stories,
+  html.snap-sections .footer,
+  html.snap-sections .snap-section {
+    scroll-snap-align: start;
+    /* Never skip past one of these in a fast scroll. */
+    scroll-snap-stop: always;
+  }
+}
+
+/* Scroll that moves on its own is exactly what this setting asks us not to do. */
+@media (prefers-reduced-motion: reduce) {
+  html.snap-sections {
+    scroll-snap-type: none;
+    scroll-behavior: auto;
+  }
+}

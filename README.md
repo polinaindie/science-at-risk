@@ -84,6 +84,26 @@ where the two had drifted apart on the site: `SocietyCard` renders
 `.infrastructures-card`, `PublicationCard` renders `.project-card`,
 `EmptyState` renders `.nothing`, `ContactModal` renders `.help-form`.
 
+## Section snapping
+
+The site runs on fullpage.js: each screen settles at the top of the viewport
+as you scroll. `src/styles/snap.css` does the same with CSS scroll snapping,
+with no dependency — `HomePage` turns it on through its `snapScroll` prop
+(default on) by putting a class on `<html>`, the scroll container.
+
+It is off below 1024px, because that is where the site's own `.fullSection`
+becomes `height: 100vh`; below it the sections are content-height and snapping
+them would only fight the reader. It is also off under
+`prefers-reduced-motion`, since scrolling that moves on its own is exactly what
+that setting asks us not to do.
+
+Snapping is `mandatory`, which is what gives the site's one-gesture-one-screen
+feel. The catch is that every top-level section then needs a snap point of its
+own: under `mandatory` a section without one cannot be rested on at all — the
+scroll is pulled straight past it. Taller-than-viewport sections get a point at
+their start and none inside, so the reader lands on them once and then scrolls
+through normally.
+
 ## The home page
 
 `src/pages/HomePage` assembles the page from the components above and is what

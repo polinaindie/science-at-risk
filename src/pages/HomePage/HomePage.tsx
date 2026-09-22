@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { SiteHeader, type NavItem } from '../../components/SiteHeader/SiteHeader';
 import { HomeHero, HOME_HERO_BG, type HeroLink } from '../../components/HomeHero/HomeHero';
 import { SectionIntro } from '../../components/SectionIntro/SectionIntro';
@@ -5,6 +6,7 @@ import { StoriesSlider, type StorySlide } from '../../components/StoriesSlider/S
 import { ListCard, type ListCardProps } from '../../components/ListCard/ListCard';
 import { SiteFooter, type SupportGroup } from '../../components/SiteFooter/SiteFooter';
 import { type PopularRequest } from '../../components/PopularRequests/PopularRequests';
+import '../../styles/snap.css';
 
 export interface HomePageProps {
   nav: NavItem[];
@@ -16,6 +18,12 @@ export interface HomePageProps {
   /** Damaged infrastructure asking for help. */
   reconstruction?: ListCardProps[];
   supporters?: SupportGroup[];
+  /**
+   * Settle the full-height sections at the top of the viewport as you scroll,
+   * the way the site's fullpage.js does. Off below 1024px and whenever the
+   * reader asks for reduced motion — see `src/styles/snap.css`.
+   */
+  snapScroll?: boolean;
 }
 
 /**
@@ -35,7 +43,16 @@ export function HomePage({
   stories = [],
   reconstruction = [],
   supporters = [],
+  snapScroll = true,
 }: HomePageProps) {
+  // The scroll container is the document, so the class goes on <html>.
+  useEffect(() => {
+    if (!snapScroll) return;
+    const root = document.documentElement;
+    root.classList.add('snap-sections');
+    return () => root.classList.remove('snap-sections');
+  }, [snapScroll]);
+
   return (
     <>
       <SiteHeader
@@ -54,7 +71,7 @@ export function HomePage({
       )}
 
       {reconstruction.length > 0 && (
-        <section className="fullSection">
+        <section className="fullSection snap-section">
           <div className="wrapper" style={{ paddingTop: '2rem', paddingBottom: '4rem' }}>
             <SectionIntro
               title="Assistance in reconstruction"
