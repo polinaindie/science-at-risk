@@ -8,6 +8,17 @@ export interface ButtonProps {
   variant?: ButtonVariant;
   /** Renders an anchor inside the button wrapper, the way the site links cards. */
   href?: string;
+  /**
+   * Render the anchor as an empty overlay covering the button, with the label
+   * as a direct child of `.btn`.
+   *
+   * The site writes its link buttons both ways. Most blocks put the label
+   * inside the anchor, which is the default here. The stories slider does not:
+   * `.stories__btn a` is `position: absolute; inset: 0`, so a label inside it
+   * would be lifted out of flow and the button would collapse to whatever
+   * width the CSS gives it.
+   */
+  overlayLink?: boolean;
   target?: string;
   disabled?: boolean;
   type?: 'button' | 'submit' | 'reset';
@@ -43,6 +54,7 @@ export function Button({
   type = 'button',
   className = '',
   onClick,
+  overlayLink = false,
   ...aria
 }: ButtonProps) {
   const [hovered, setHovered] = useState(false);
@@ -55,12 +67,25 @@ export function Button({
   const shape = <SquircleShape radius={60} smoothing={0.9} strokeWidth={strokeWidth} fill={fills[variant]} />;
 
   if (href) {
+    const anchor = (
+      <a
+        href={href}
+        target={target}
+        rel={target === '_blank' ? 'nofollow' : undefined}
+        // An overlay anchor has no text of its own, so it needs a name.
+        aria-label={
+          overlayLink ? (aria['aria-label'] ?? (typeof children === 'string' ? children : undefined)) : undefined
+        }
+      >
+        {overlayLink ? null : children}
+      </a>
+    );
+
     return (
       <div className={classes} {...aria} {...hoverProps}>
         {shape}
-        <a href={href} target={target} rel={target === '_blank' ? 'nofollow' : undefined}>
-          {children}
-        </a>
+        {overlayLink && children}
+        {anchor}
       </div>
     );
   }

@@ -84,6 +84,17 @@ where the two had drifted apart on the site: `SocietyCard` renders
 `.infrastructures-card`, `PublicationCard` renders `.project-card`,
 `EmptyState` renders `.nothing`, `ContactModal` renders `.help-form`.
 
+## Two shapes of link button
+
+The site writes its link buttons two ways, and `Button` supports both. Most
+blocks put the label inside the anchor, which is the default. The stories
+slider does not: `.stories__btn a` is `position: absolute; inset: 0`, an
+invisible overlay covering the button, with the label a direct child of
+`.btn`. Passing `overlayLink` renders that shape — a label left inside the
+anchor there would be lifted out of flow with it, and the button collapses to
+whatever width the CSS gives it. The overlay anchor takes its accessible name
+from the label.
+
 ## Section snapping
 
 The site runs on fullpage.js: each screen settles at the top of the viewport

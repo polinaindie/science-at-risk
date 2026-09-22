@@ -93,7 +93,7 @@ export function StoriesSlider({
                   <span className="hover hover--white">{slide.title}</span>
                 </h2>
                 {slide.text && <p className="stories__text">{slide.text}</p>}
-                <Button className="stories__btn" variant="white" href={slide.href}>
+                <Button className="stories__btn" variant="white" href={slide.href} overlayLink>
                   {readLabel}
                 </Button>
               </div>

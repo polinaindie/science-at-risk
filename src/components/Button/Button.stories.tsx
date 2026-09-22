@@ -33,6 +33,22 @@ export const AsLink: Story = {
   args: { href: '#', children: 'Read' },
 };
 
+/**
+ * Some of the site's blocks style `.btn a` as a full-size overlay — the stories
+ * slider does. There the label has to sit outside the anchor, or it would be
+ * lifted out of flow with it.
+ */
+export const OverlayLink: Story = {
+  args: { href: '#', overlayLink: true, variant: 'white', children: 'Read' },
+  decorators: [
+    (Story) => (
+      <div style={{ background: '#000', padding: 40 }}>
+        <Story />
+      </div>
+    ),
+  ],
+};
+
 export const Disabled: Story = {
   args: { disabled: true },
 };
