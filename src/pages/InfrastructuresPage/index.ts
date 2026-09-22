@@ -1,0 +1,1 @@
+export { InfrastructuresPage } from './InfrastructuresPage';

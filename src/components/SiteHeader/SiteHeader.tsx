@@ -1,4 +1,8 @@
-import { useState, type ReactNode } from 'react';
+import { useState, type CSSProperties, type ReactNode } from 'react';
+import './SiteHeader.css';
+
+/** Which way the bar is painted over the section behind it. */
+export type HeaderTone = 'black' | 'white';
 
 export interface NavItem {
   label: string;
@@ -17,13 +21,27 @@ export interface SiteHeaderProps {
   homeHref?: string;
   /** The site inverts the header over dark heroes. */
   dark?: boolean;
+  /**
+   * Paints the wordmark, language switch and burger — the site's own
+   * `data-color`: `black` over a light section, `white` over a dark one. Takes
+   * precedence over `dark`, and changing it crossfades, so a page can hand the
+   * header the tone of whatever section is on screen.
+   */
+  tone?: HeaderTone;
+  /** Pins the bar to the top of the viewport, as `.header-fixed` does. */
+  fixed?: boolean;
+  /**
+   * A quiet mono link beside the burger — the way in for a scientist who came
+   * to add themselves rather than to search. Without it, self-submission is
+   * only reachable from inside the menu.
+   */
+  action?: { label: string; href: string };
   /** The site rules off the bar; drop it when the header sits on a hero. */
   divider?: boolean;
   /**
-   * Paints the header bar. The site's default is white; over a coloured hero,
-   * pass that hero's colour. Note that `transparent` is not a good choice
-   * here — the bar is positioned over the section below it, and leaving it
-   * see-through leaves the compositor free to back the layer with white.
+   * Paints the header bar below 1024px, where the site gives it a solid
+   * background of its own. From 1024px up the bar is see-through and simply
+   * shows the section behind it, the way the site has it.
    */
   background?: string;
   defaultMenuOpen?: boolean;
@@ -38,6 +56,9 @@ export function SiteHeader({
   wordmark = '!!!',
   homeHref = '#',
   dark = true,
+  tone,
+  fixed = false,
+  action,
   divider = true,
   background,
   defaultMenuOpen = false,
@@ -46,8 +67,10 @@ export function SiteHeader({
 
   return (
     <header
-      className={`header${dark ? ' black' : ''}${divider ? '' : ' header--flush'}`}
-      style={background ? { background } : undefined}
+      className={`header${tone ? ` ${tone}` : dark ? ' black' : ''}${
+        divider ? '' : ' header--flush'
+      }${fixed ? ' header--fixed' : ''}`}
+      style={background ? ({ '--header-bg': background } as CSSProperties) : undefined}
     >
       <div className={`header__bg${open ? ' active' : ''}`}>
         <div className="wrapper">
@@ -78,6 +101,11 @@ export function SiteHeader({
               <a href={homeHref}>{wordmark}</a>
             </div>
             <div className="header__menu">
+              {action && (
+                <a className="header__action hover hover--underline" href={action.href}>
+                  {action.label}
+                </a>
+              )}
               <button
                 className="header__burger"
                 type="button"

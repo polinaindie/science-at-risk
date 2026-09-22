@@ -19,6 +19,10 @@ export function ListCard({
   buttonLabel = 'More details',
   priceLabel = 'Required amount',
 }: ListCardProps) {
+  // Entries whose description repeats their own name say nothing twice; the
+  // card prints the name and leaves it at that.
+  const description = text && text.trim() !== title.trim() ? text : undefined;
+
   return (
     <article className="list-card">
       <div className="list-card__wrapper">
@@ -29,7 +33,7 @@ export function ListCard({
           {price && <p className="list-card__price d-md-block d-none">{price}</p>}
         </header>
         <footer className="list-card__footer">
-          {text && <p className="list-card__text">{text}</p>}
+          {description && <p className="list-card__text">{description}</p>}
           <Button className="list-card__btn" href={href}>
             {buttonLabel}
           </Button>

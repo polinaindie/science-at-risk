@@ -1,0 +1,11 @@
+/* The document's kind, set as a label rather than as part of the byline: the
+   section is called Research, and each entry says which kind of research it
+   is. Small mono, so the authors' names below it carry the line. */
+.paper-card__kind {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.83333rem;
+  line-height: 1.22222rem;
+  letter-spacing: -0.03em;
+  color: rgba(0, 0, 0, 0.55);
+  margin-bottom: 0.22222rem;
+}

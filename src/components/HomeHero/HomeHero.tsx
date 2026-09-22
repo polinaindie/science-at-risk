@@ -59,13 +59,21 @@ export function HomeHero({
 
         <div className="home-hero__search">
           <form className="home-hero__search-row" onSubmit={handleSubmit}>
-            <input
-              className="home-hero__input"
-              type="text"
-              name="search"
-              aria-label={placeholder}
-              placeholder={placeholder}
-            />
+            <div className="home-hero__field">
+              <input
+                className="home-hero__input"
+                id="home-hero-search"
+                type="text"
+                name="search"
+                /* A blank placeholder is what `:placeholder-shown` needs to
+                   tell an empty field from a filled one; the label below is
+                   what the reader actually sees. */
+                placeholder=" "
+              />
+              <label className="home-hero__label" htmlFor="home-hero-search">
+                {placeholder}
+              </label>
+            </div>
             <Button type="submit">{submitLabel}</Button>
           </form>
 
@@ -74,26 +82,27 @@ export function HomeHero({
               className="home-hero__requests"
               title={popularTitle}
               items={popular}
+              showCounts={false}
               onSelect={onTagSelect}
             />
           )}
-
-          {links.length > 0 && (
-            <nav className="home-hero__links">
-              {links.map((link) => (
-                <a className="home-hero__link" href={link.href} key={link.label}>
-                  <span className="home-hero__link-arrow" aria-hidden>
-                    &gt;&gt;
-                  </span>
-                  <span className="home-hero__link-label">{link.label}</span>
-                  {link.count !== undefined && (
-                    <span className="home-hero__link-count">({link.count})</span>
-                  )}
-                </a>
-              ))}
-            </nav>
-          )}
         </div>
+
+        {links.length > 0 && (
+          <nav className="home-hero__links">
+            {links.map((link) => (
+              <a className="home-hero__link" href={link.href} key={link.label}>
+                <span className="home-hero__link-arrow" aria-hidden>
+                  &gt;&gt;
+                </span>
+                <span className="home-hero__link-label">{link.label}</span>
+                {link.count !== undefined && (
+                  <span className="home-hero__link-count">({link.count})</span>
+                )}
+              </a>
+            ))}
+          </nav>
+        )}
       </div>
     </section>
   );

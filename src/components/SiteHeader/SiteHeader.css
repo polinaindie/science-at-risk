@@ -1,0 +1,120 @@
+/* The bar shows both languages with the current one marked; the site itself
+   only ever renders the other language, so it has no styling for this — and
+   its tone rules only reach `.header__lang-btn`, which would leave the slash
+   black over a dark section. */
+
+.header__lang-divider {
+  margin: 0 0.15em;
+}
+
+.header.black .header__lang-divider {
+  color: #000000;
+}
+
+.header.white .header__lang-divider {
+  color: #fff;
+}
+
+/* The site draws its underlines as a gradient the `.hover` classes wipe in
+   from 0 to 100%. The current language simply keeps that bar drawn; the other
+   one picks it up under the pointer. */
+.header__lang-btn--active {
+  background-size: 100% 2px;
+}
+
+/* The site rules off the header bar. Over a hero that carries its own colour
+   the rule reads as a seam across the field, so it can be turned off. */
+.header--flush {
+  border-bottom: 0;
+}
+
+/* Pinned, so the bar stays put while the sections move underneath it. */
+.header--fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+}
+
+/* A colour handed to the bar only paints it where the site paints it too —
+   below 1024px. Above that the bar is see-through over the section. */
+@media (max-width: 1023px) {
+  .header {
+    background-color: var(--header-bg, #fff);
+  }
+}
+
+/* The tone follows the section underneath, so it crossfades rather than
+   snapping — the site's own rules set `transition: all 0s` on the burger. */
+.header__center a,
+.header__lang-btn,
+.header__lang-divider,
+.header.black .hamburger-menu,
+.header.black .hamburger-menu::after,
+.header.black .hamburger-menu::before,
+.header.white .hamburger-menu,
+.header.white .hamburger-menu::after,
+.header.white .hamburger-menu::before {
+  transition: color 400ms ease, background-color 400ms ease, background-size 300ms ease;
+}
+
+/* The bar is a space-between row, so the wordmark lands wherever the language
+   switch and the burger leave it — a little right of centre. Taking it out of
+   the flow puts it on the middle of the bar whatever sits beside it. */
+.header__wrapper {
+  position: relative;
+}
+
+.header__center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* The bar holds one size from 768px all the way up, so on a 1000px window it
+   wears a 1440px header: a 36px wordmark and a 32px burger over content that
+   has shrunk around them. Everything in it now scales with the window between
+   768px and 1440px and then stops, the way the buttons in the page do.
+
+   The burger's glyph is three bars pinned to the middle one, so its spacing is
+   derived from the height rather than repeated as a number. */
+@media (min-width: 768px) {
+  .header {
+    padding-top: clamp(1.11111rem, 0.48rem + 1.49vw, 1.66667rem);
+    padding-bottom: clamp(1.11111rem, 0.48rem + 1.49vw, 1.66667rem);
+  }
+
+  .header__lang-btn {
+    font-size: clamp(1rem, 0.74rem + 0.6vw, 1.22222rem);
+  }
+
+  .header__center {
+    font-size: clamp(1.44444rem, 0.81rem + 1.49vw, 2rem);
+  }
+
+  .header__burger {
+    --burger-height: clamp(0.88889rem, 0.7rem + 0.45vw, 1.05556rem);
+
+    height: var(--burger-height);
+    align-items: center;
+  }
+
+  .hamburger-menu,
+  .hamburger-menu::after,
+  .hamburger-menu::before {
+    width: clamp(1.44444rem, 1.06rem + 0.89vw, 1.77778rem);
+    height: 3px;
+  }
+
+  .hamburger-menu {
+    transform: none;
+  }
+
+  .hamburger-menu::before {
+    bottom: calc((var(--burger-height) - 3px) / 2);
+  }
+
+  .hamburger-menu::after {
+    top: calc((var(--burger-height) - 3px) / 2);
+  }
+}

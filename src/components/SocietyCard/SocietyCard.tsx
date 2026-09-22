@@ -6,6 +6,12 @@ export interface SocietyCardProps {
   /** Right-hand column, labelled "Science Domain" on mobile. */
   domain?: string;
   domainLabel?: string;
+  /**
+   * Funding still needed, already formatted. Damaged-infrastructure entries
+   * carry it in a second right-hand column; societies have none.
+   */
+  amount?: string;
+  amountLabel?: string;
   href: string;
   buttonLabel?: string;
 }
@@ -19,9 +25,15 @@ export function SocietyCard({
   text,
   domain,
   domainLabel = 'Science Domain',
+  amount,
+  amountLabel = 'Required amount',
   href,
   buttonLabel = 'More details',
 }: SocietyCardProps) {
+  // Entries whose description repeats their own name say nothing twice; the
+  // card prints the name and leaves it at that.
+  const description = text && text.trim() !== title.trim() ? text : undefined;
+
   return (
     <div className="infrastructures-card position-relative">
       <article className="infrastructures-card__wrap">
@@ -31,7 +43,7 @@ export function SocietyCard({
               <h2 className="infrastructures-card__title">
                 <span>{title}</span>
               </h2>
-              {text && <p className="infrastructures-card__text">{text}</p>}
+              {description && <p className="infrastructures-card__text">{description}</p>}
             </div>
           </div>
           <div className="col-md-5 col-12">
@@ -40,6 +52,12 @@ export function SocietyCard({
                 <p className="d-md-none infrastructures__text-left">{domainLabel}</p>
                 <p>{domain}</p>
               </div>
+              {amount && (
+                <div className="infrastructures-card__text-right">
+                  <p className="d-md-none infrastructures__text-left">{amountLabel}</p>
+                  <p>{amount}</p>
+                </div>
+              )}
             </div>
           </div>
         </div>

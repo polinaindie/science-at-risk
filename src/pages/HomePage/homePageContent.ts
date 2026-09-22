@@ -1,25 +1,17 @@
 /** Sample content for the home page, taken from the live site. */
 import type { HomePageProps } from './HomePage';
+import { ROUTES, nav, social, languages, supporters } from '../../content/site';
+import { pickFeaturedStories } from '../StoriesPage/storiesContent';
+import { pickReconstruction } from '../InfrastructuresPage/infrastructuresContent';
+import { experts } from '../ExpertsPage/expertsContent';
+import { societies } from '../SocietiesPage/societiesContent';
+import { stories } from '../StoriesPage/storiesContent';
+import { researchPapers } from '../ResearchPage/researchContent';
 
 export const homePageContent: HomePageProps = {
-  languages: [
-    { label: 'ENG', href: '#', active: true },
-    { label: 'УКР', href: '#' },
-  ],
-  nav: [
-    { label: 'Experts', href: '#' },
-    { label: 'Damaged infrastructure', href: '#' },
-    { label: 'Scientific societies', href: '#' },
-    { label: 'About the project', href: '#' },
-    { label: 'Stories', href: '#' },
-    { label: 'Policies', href: '#' },
-    { label: 'Contacts', href: '#' },
-  ],
-  social: [
-    { label: 'Twitter', href: '#' },
-    { label: 'Linkedin', href: '#' },
-    { label: 'Facebook', href: '#' },
-  ],
+  languages,
+  nav,
+  social,
   popular: [
     { label: 'Physical sciences', count: 12 },
     { label: 'Social sciences', count: 5 },
@@ -27,61 +19,32 @@ export const homePageContent: HomePageProps = {
     { label: 'Arts & humanities', count: 1 },
     { label: 'Life sciences & biomedicine', count: 22 },
   ],
+  /**
+   * One entry point per section, each counted the same way: how many records
+   * that section holds. The societies sit next to the experts, as the second
+   * way into the same community.
+   */
   heroLinks: [
-    { label: 'Scientists', href: '#', count: 367 },
-    { label: 'Stories', href: '#', count: 28 },
-    { label: 'Researches', href: '#', count: 300 },
+    { label: 'To all scientists', href: ROUTES.experts, count: experts.length },
+    { label: 'Scientific societies', href: ROUTES.societies, count: societies.length },
+    { label: 'Read stories', href: ROUTES.stories, count: stories.length },
+    { label: 'Browse research', href: ROUTES.research, count: researchPapers.length },
   ],
-  stories: [
+  // Drawn from the archive on `/stories`, and redrawn on every visit.
+  stories: pickFeaturedStories(3),
+  research: [
     {
-      suptitle: 'Stories',
-      title: 'Stolen museum. Kherson',
-      text: 'What did the Russians steal from the Kherson Local History Museum during the retreat from the city and how did the director-collaborator contribute to this?',
-      image: '/img/story-2.png',
-      href: '#',
+      title: 'Impact of the War on Different Categories of Ukrainian Scholars',
+      text: 'Olena Kozak, Lidia Kuzemska, Yevheniia Polishchuk, Kateryna Chuyeva',
+      href: '/research/impact-of-the-war-on-different-categories-of-ukrainian-scholars',
     },
     {
-      suptitle: 'Stories',
-      title: 'Test Tubes in the Count’s Estate',
-      text: 'The main building of the Institute of Agricultural Microbiology sits in Count Glebov’s "castle". Read how the institute has kept working since the outbreak of full-scale war.',
-      image: '/img/story-3.png',
-      href: '#',
-    },
-    {
-      suptitle: 'Stories',
-      title: 'Uncovered Graves. How Lviv restores its memory about the school of mathematics',
-      text: 'A Map of Burial Sites Revives the Memory of Lviv’s Forgotten Mathematicians.',
-      image: '/img/story-1.jpg',
-      href: '#',
+      title: 'Scientific diaspora — a unique asset for post-war recovery of Ukraine',
+      text: 'Oleksandr Skorokhod',
+      href: '/research/scientific-diaspora-a-unique-asset-for-post-war-recovery-of-ukraine',
     },
   ],
-  reconstruction: [
-    {
-      title: 'Institute for Problems of Cryobiology and Cryomedicine',
-      text: 'Institute for Problems of Cryobiology and Cryomedicine',
-      price: '~ 500000 UAH',
-      href: '#',
-    },
-    {
-      title: 'Berdiansk State Pedagogical University',
-      text: 'Berdiansk State Pedagogical University',
-      price: '~ 1200000 UAH',
-      href: '#',
-    },
-  ],
-  supporters: [
-    {
-      title: 'The project is supported by:',
-      links: [
-        { label: 'Press, Education and Culture Department of the US Embassy in Ukraine', href: '#' },
-        { label: 'Alfred P. Sloan Foundation', href: '#' },
-        { label: 'Ministry of Education and Science of Ukraine', href: '#' },
-        { label: 'National research fund', href: '#' },
-      ],
-    },
-    {
-      title: 'Responsible for project implementation:',
-      links: [{ label: 'NGO "Kunsht"', href: '#' }],
-    },
-  ],
+  // The first entries from `/infrastructures`, so the two never disagree.
+  reconstruction: pickReconstruction(2),
+  supporters,
 };

@@ -17,3 +17,138 @@
   min-width: 0;
   width: 100%;
 }
+
+/* A story's themes, set the way a paper lists its keywords: a dim label, then
+   the terms in a run, each underlined as a term of art rather than boxed up
+   as a control. */
+.stories__tags {
+  margin: 0.88889rem 0;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.83333rem;
+  line-height: 1.44444rem;
+  letter-spacing: -0.03em;
+  color: #fff;
+}
+
+.stories__tags-label {
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.stories__tag {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.25em;
+}
+
+/* The rule under the controls doubles as the slider's timer: the site's own
+   2px line becomes the track, and a white bar fills it as the slide's time
+   runs out. Only from 768px up, which is where that rule exists at all. */
+@media (min-width: 768px) {
+  .stories__navigation--timed {
+    position: relative;
+    border-bottom-color: rgba(255, 255, 255, 0.3);
+  }
+
+  .stories__progress {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -2px;
+    height: 2px;
+    background: #fff;
+    transform: scaleX(0);
+    transform-origin: left center;
+  }
+}
+
+/* The slide is one photograph beside one column of text, and both have to
+   hold up from a 1024px laptop to a 2000px display.
+
+   The text column is given a fixed measure per breakpoint and told not to
+   shrink, so the headline never ends up eight lines deep in a squeezed column.
+   The photograph is then sized by the height of the screen and takes whatever
+   width its own ratio asks for, down to the space the text leaves it. So it
+   grows with the screen, sits at a steady distance from the text, and is
+   never cropped or squeezed.
+
+   The slide also starts where the grid starts. The site indents it a flat 40px
+   from the window edge, but the wrapper the header and the controls sit in
+   stops growing at 1744px and centres itself, so past that width the picture
+   would hang left of everything else. */
+@media (min-width: 768px) {
+  .stories__slide {
+    /* The grid's own gutter: 16px until the wrapper widens at 1280px. */
+    margin-left: 16px;
+    gap: 2.22222rem;
+  }
+
+  /* Every card gets the same frame: a 3:2 box whose height follows the screen
+     and whose width follows from the ratio. Letting each photograph set its
+     own box is what made the row read as chaos — one picture letterboxed, the
+     next tall, the next a stamp. `cover` then fills that frame from the middle
+     of the image, so the crop is the same small, predictable one on every
+     card rather than a different accident each time. */
+  .stories__img {
+    flex: 0 1 auto;
+    min-width: 0;
+    width: auto;
+    max-width: none;
+    padding-top: 0;
+    height: min(52vh, 620px);
+    aspect-ratio: 3 / 2;
+  }
+
+  .stories__img img {
+    position: static;
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .stories__info {
+    flex: 0 0 auto;
+    margin-left: 0;
+    width: 22.22222rem;
+    max-width: none;
+  }
+
+  .stories__title {
+    font-size: 1.44444rem;
+    line-height: 1.77778rem;
+    margin-bottom: 1.11111rem;
+  }
+
+  .stories__text {
+    color: rgba(255, 255, 255, 0.75);
+  }
+}
+
+@media (min-width: 1280px) {
+  /* Past 1744px the wrapper stops growing and centres, so the slide has to
+     follow it rather than hug the window edge. */
+  .stories__slide {
+    margin-left: max(40px, calc((100vw - 1744px) / 2 + 40px));
+  }
+
+  .stories__info {
+    width: 26.11111rem;
+  }
+
+  .stories__title {
+    font-size: 1.55556rem;
+    line-height: 1.88889rem;
+  }
+}
+
+@media (min-width: 1920px) {
+  .stories__info {
+    width: 30rem;
+  }
+
+  .stories__title {
+    font-size: 1.77778rem;
+    line-height: 2.11111rem;
+  }
+}

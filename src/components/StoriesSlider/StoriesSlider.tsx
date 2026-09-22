@@ -1,9 +1,11 @@
-import { useId, useMemo } from 'react';
+import { useEffect, useId, useMemo, useRef } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation } from 'swiper/modules';
+import { Autoplay, Navigation } from 'swiper/modules';
+import type { Swiper as SwiperInstance } from 'swiper';
 import 'swiper/css';
 import './StoriesSlider.css';
 import { Button } from '../Button/Button';
+import type { StoryTag } from './storyTags';
 
 /** One slide per view, and 1.05 from 1280px so the next one peeks in — the
  *  site's own breakpoints. Hoisted: `swiper/react` compares props by identity
@@ -13,7 +15,10 @@ const BREAKPOINTS = {
   1280: { slidesPerView: 1.05 },
 };
 
-const MODULES = [Navigation];
+const MODULES = [Navigation, Autoplay];
+
+/** How long a slide holds before the slider moves on, in milliseconds. */
+const AUTOPLAY_DELAY = 6000;
 
 export interface StorySlide {
   title: string;
@@ -22,14 +27,26 @@ export interface StorySlide {
   href: string;
   /** Kicker above the title; the site prints "Stories" on every slide. */
   suptitle?: string;
+  /** Themes this story is filed under — see `STORY_TAGS`. */
+  tags?: StoryTag[];
 }
 
 export interface StoriesSliderProps {
   slides: StorySlide[];
   readLabel?: string;
+  /** Prefix in front of a story's themes, the way a paper labels its keywords. */
+  tagsLabel?: string;
   prevLabel?: string;
   nextLabel?: string;
   otherLink?: { label: string; href: string };
+  /**
+   * Advance on a timer, with the rule under the controls filling up as the
+   * slide's time runs out. Off for a reader who asks for reduced motion, and
+   * paused whenever the slider is off screen or under the pointer.
+   */
+  autoplay?: boolean;
+  /** Milliseconds a slide holds before the slider moves on. */
+  autoplayDelay?: number;
 }
 
 /**
@@ -57,9 +74,12 @@ export interface StoriesSliderProps {
 export function StoriesSlider({
   slides,
   readLabel = 'Read',
+  tagsLabel = 'Keywords',
   prevLabel = 'Back',
   nextLabel = 'Next',
   otherLink,
+  autoplay = true,
+  autoplayDelay = AUTOPLAY_DELAY,
 }: StoriesSliderProps) {
   // Swiper resolves these selectors itself, at init and on every update. Refs
   // would be null on the first render, and feeding Swiper a null navigation
@@ -69,8 +89,43 @@ export function StoriesSlider({
   const nextId = `stories-next-${id}`;
   const navigation = useMemo(() => ({ prevEl: `#${prevId}`, nextEl: `#${nextId}` }), [prevId, nextId]);
 
+  const sectionRef = useRef<HTMLElement>(null);
+  const progressRef = useRef<HTMLSpanElement>(null);
+  const swiperRef = useRef<SwiperInstance | null>(null);
+
+  const calm =
+    typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const running = autoplay && !calm;
+
+  const autoplayOptions = useMemo(
+    () =>
+      running
+        ? { delay: autoplayDelay, disableOnInteraction: false, pauseOnMouseEnter: true }
+        : (false as const),
+    [running, autoplayDelay],
+  );
+
+  // On the home page the slider spends most of its life parked off screen in
+  // the section deck. Running the timer there would mean coming back to a
+  // slide the reader never saw, so it only counts while the section is in view.
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!running || !section) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        const swiper = swiperRef.current?.autoplay;
+        if (!swiper) return;
+        if (entry.isIntersecting) swiper.start();
+        else swiper.stop();
+      },
+      { threshold: 0.2 },
+    );
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, [running]);
+
   return (
-    <section className="stories fullSection">
+    <section className="stories fullSection" ref={sectionRef}>
       <Swiper
         className="stories__top my-slider"
         wrapperClass="swiper-wrapper"
@@ -79,6 +134,18 @@ export function StoriesSlider({
         loop
         breakpoints={BREAKPOINTS}
         navigation={navigation}
+        autoplay={autoplayOptions}
+        onSwiper={(swiper) => {
+          swiperRef.current = swiper;
+        }}
+        // Swiper counts down, so the rule fills as `progress` falls to 0. The
+        // width is written straight to the element: this fires every frame,
+        // and a re-render per frame is a re-render of every slide.
+        onAutoplayTimeLeft={(_swiper, _time, progress) => {
+          if (progressRef.current) {
+            progressRef.current.style.transform = `scaleX(${1 - progress})`;
+          }
+        }}
       >
         {slides.map((slide) => (
           <SwiperSlide key={slide.href + slide.title}>
@@ -93,6 +160,17 @@ export function StoriesSlider({
                   <span className="hover hover--white">{slide.title}</span>
                 </h2>
                 {slide.text && <p className="stories__text">{slide.text}</p>}
+                {slide.tags && slide.tags.length > 0 && (
+                  <p className="stories__tags">
+                    <span className="stories__tags-label">{tagsLabel}:</span>{' '}
+                    {slide.tags.map((tag, i) => (
+                      <span key={tag}>
+                        {i > 0 && ', '}
+                        <span className="stories__tag">{tag}</span>
+                      </span>
+                    ))}
+                  </p>
+                )}
                 <Button className="stories__btn" variant="white" href={slide.href} overlayLink>
                   {readLabel}
                 </Button>
@@ -104,7 +182,7 @@ export function StoriesSlider({
 
       <div className="wrapper">
         <div className="stories__wrapper">
-          <div className="stories__navigation">
+          <div className={`stories__navigation${running ? ' stories__navigation--timed' : ''}`}>
             <button id={prevId} className="prev stories__nav-btn stories__nav-btn--left" type="button">
               &lt;<span className="hover hover--white">{prevLabel}</span>
             </button>
@@ -118,6 +196,7 @@ export function StoriesSlider({
                 </a>
               </span>
             )}
+            {running && <span className="stories__progress" ref={progressRef} aria-hidden="true" />}
           </div>
         </div>
       </div>

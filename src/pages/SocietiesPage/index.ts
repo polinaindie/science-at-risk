@@ -1,0 +1,1 @@
+export { SocietiesPage } from './SocietiesPage';

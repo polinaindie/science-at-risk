@@ -12,6 +12,14 @@ export interface SearchHeroProps {
   popular?: PopularRequest[];
   popularTitle?: string;
   onSearch?: (query: string) => void;
+  /** A popular request is a query of its own — the site runs the search on it. */
+  onTagSelect?: (label: string) => void;
+  /**
+   * Hold the full screen, as the home page's first section does. The site's
+   * own search pages let the hero take only the height it needs, with the
+   * results beginning right under it.
+   */
+  full?: boolean;
 }
 
 /**
@@ -30,6 +38,8 @@ export function SearchHero({
   popular = [],
   popularTitle,
   onSearch,
+  onTagSelect,
+  full = true,
 }: SearchHeroProps) {
   const handle = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -38,7 +48,7 @@ export function SearchHero({
   };
 
   return (
-    <section className="search search-hero fullSection">
+    <section className={`search search-hero${full ? ' fullSection' : ''}`}>
       <div className="wrapper">
         <div className="search__wrapper">
           <div className="search-hero__info-wrap">
@@ -64,7 +74,12 @@ export function SearchHero({
             </div>
             <div className="offset-md-1 col-md-7 col-12">
               {popular.length > 0 && (
-                <PopularRequests className="search-hero__requests" title={popularTitle} items={popular} />
+                <PopularRequests
+                  className="search-hero__requests"
+                  title={popularTitle}
+                  items={popular}
+                  onSelect={onTagSelect}
+                />
               )}
             </div>
           </div>
