@@ -1,0 +1,5 @@
+import{n as e}from"./rolldown-runtime-DkW27tQK.js";import{n as t}from"./iframe-ChdStsxg.js";import{n,t as r}from"./EmptyState-B9OCIUZk.js";var i,a,o,s,c;function l(){return(l=e((()=>{n(),i=t(),a={title:`Molecules/EmptyState`,component:r,args:{suggestions:[`Teaching`,`Science popularization`,`Biology`,`Natural sciences`,`Biochemistry`]},decorators:[e=>(0,i.jsx)(`div`,{className:`wrapper`,style:{padding:32},children:(0,i.jsx)(e,{})})]},o={},s={args:{suggestions:[]}},c=[`WithSuggestions`,`Bare`],o.parameters={...o.parameters,docs:{...o.parameters?.docs,source:{originalSource:`{}`,...o.parameters?.docs?.source}}},s.parameters={...s.parameters,docs:{...s.parameters?.docs,source:{originalSource:`{
+  args: {
+    suggestions: []
+  }
+}`,...s.parameters?.docs?.source}}}})))()}l();export{s as Bare,o as WithSuggestions,c as __namedExportsOrder,a as default};

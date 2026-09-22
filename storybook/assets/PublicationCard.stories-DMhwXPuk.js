@@ -1,6 +1,0 @@
-import{n as e}from"./rolldown-runtime-DkW27tQK.js";import{n as t}from"./iframe-DRjtymdW.js";import{n,t as r}from"./PublicationCard-a_mTyAgF.js";var i,a,o,s,c;function l(){return(l=e((()=>{n(),i=t(),a={title:`Cards/PublicationCard`,component:r,args:{title:`Occasionalism as a Mean for Creating Comic Effect in Ukrainian Humorous and Satirical Poetry of the 1950s–1980s`,meta:`Author: Sofiia Fedzhora, Journal: Studia Linguistica, Year: 2020, Vol. 16, Pages: 129–142`,role:`Role: Author`,href:`#`},decorators:[e=>(0,i.jsx)(`div`,{className:`wrapper`,style:{padding:32},children:(0,i.jsx)(e,{})})]},o={},s={args:{meta:void 0,role:void 0}},c=[`Default`,`TitleOnly`],o.parameters={...o.parameters,docs:{...o.parameters?.docs,source:{originalSource:`{}`,...o.parameters?.docs?.source}}},s.parameters={...s.parameters,docs:{...s.parameters?.docs,source:{originalSource:`{
-  args: {
-    meta: undefined,
-    role: undefined
-  }
-}`,...s.parameters?.docs?.source}}}})))()}l();export{o as Default,s as TitleOnly,c as __namedExportsOrder,a as default};
