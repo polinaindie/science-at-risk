@@ -1,0 +1,5749 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Components Manifest</title>
+  <style>
+      :root {
+          --bg: #0b0c10;
+          --panel: #121318;
+          --muted: #9aa0a6;
+          --fg: #e8eaed;
+          --ok: #22c55e;
+          --info: #1e88e5;
+          --err: #c62828;
+          --ok-bg: #0c1a13;
+          --info-bg: #0c1624;
+          --err-bg: #1a0e0e;
+          --chip: #1f2330;
+          --border: #2b2f3a;
+          --link: #8ab4f8;
+          --active-ring: 1px; /* 1px active ring for pills and toggles */
+      }
+
+      * {
+          box-sizing: border-box;
+      }
+
+      html,
+      body {
+          margin: 0;
+          background: var(--bg);
+          color: var(--fg);
+          font: 14px/1.5 system-ui,
+          -apple-system,
+          Segoe UI,
+          Roboto,
+          Ubuntu,
+          Cantarell,
+          'Helvetica Neue',
+          Arial,
+          'Noto Sans';
+      }
+
+      .wrap {
+          max-width: 1100px;
+          margin: 0 auto;
+          padding: 16px 20px;
+      }
+
+      header {
+          position: sticky;
+          top: 0;
+          backdrop-filter: blur(6px);
+          background: color-mix(in srgb, var(--bg) 84%, transparent);
+          border-bottom: 1px solid var(--border);
+          z-index: 10;
+      }
+
+      h1 {
+          font-size: 20px;
+          margin: 0 0 6px;
+      }
+
+      .summary {
+          display: flex;
+          gap: 12px;
+          flex-wrap: wrap;
+          align-items: center;
+      }
+
+      /* Top filter pills */
+      .filter-pill {
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          padding: 6px 12px;
+          border: 1px solid var(--border);
+          border-radius: 999px;
+          background: var(--panel);
+          text-decoration: none;
+          cursor: pointer;
+          user-select: none;
+          color: var(--fg);
+      }
+
+      .filter-pill.ok {
+          color: #b9f6ca;
+          border-color: color-mix(in srgb, var(--ok) 55%, var(--border));
+          background: color-mix(in srgb, var(--ok) 18%, #000);
+      }
+
+      .filter-pill.info {
+          color: #b3d9ff;
+          border-color: color-mix(in srgb, var(--info) 55%, var(--border));
+          background: var(--info-bg);
+      }
+
+      .filter-pill.err {
+          color: #ff9aa0;
+          border-color: color-mix(in srgb, var(--err) 55%, var(--border));
+          background: var(--err-bg);
+      }
+
+      .filter-pill.all {
+          color: #d7dbe0;
+          border-color: var(--border);
+          background: var(--panel);
+      }
+
+      .filter-pill[aria-disabled='true'] {
+          cursor: default;
+          text-decoration: none;
+      }
+
+      .filter-pill:focus,
+      .filter-pill:active {
+          outline: none;
+          box-shadow: none;
+      }
+
+      /* Selected top pill ring via :target */
+      #filter-all:target ~ header .filter-pill[data-k='all'],
+      #filter-errors:target ~ header .filter-pill[data-k='errors'],
+      #filter-infos:target ~ header .filter-pill[data-k='infos'],
+      #filter-story-errors:target ~ header .filter-pill[data-k='story-errors'],
+      #filter-story-warnings:target ~ header .filter-pill[data-k='story-warnings'],
+      #filter-no-api:target ~ header .filter-pill[data-k='no-api'],
+      #filter-doc-errors:target ~ header .filter-pill[data-k='docs'],
+      #filter-docs:target ~ header .filter-pill[data-k='docs'] {
+          box-shadow: 0 0 0 var(--active-ring) currentColor;
+          border-color: currentColor;
+      }
+
+      /* Hidden targets for filtering */
+      #filter-all,
+      #filter-errors,
+      #filter-infos,
+      #filter-story-errors,
+      #filter-story-warnings,
+      #filter-no-api,
+      #filter-doc-errors,
+      #filter-docs {
+          display: none;
+      }
+
+      main {
+          padding: 36px 0 40px;
+      }
+
+      .grid {
+          display: grid;
+          grid-template-columns: 1fr;
+          gap: 18px;
+      }
+
+      /* one card per row */
+
+      .card {
+          border: 1px solid var(--border);
+          background: var(--panel);
+          border-radius: 14px;
+          padding: 14px;
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          /* Keep a deep-linked card clear of the sticky header when scrolled into view */
+          scroll-margin-top: 110px;
+      }
+
+      /* Highlight the card deep-linked via components.html#<manifest-id> */
+      .card:target {
+          box-shadow: 0 0 0 2px var(--info);
+          border-color: var(--info);
+      }
+
+      .head {
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+      }
+
+      .title {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 10px;
+      }
+
+      .title h2 {
+          font-size: 16px;
+          margin: 0;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+      }
+
+      .meta {
+          font-size: 12px;
+          color: var(--muted);
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+      }
+
+      .kv {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 6px;
+      }
+
+      .chip {
+          font-size: 12px;
+          padding: 4px 8px;
+          border-radius: 999px;
+          background: var(--chip);
+          border: 1px solid var(--border);
+      }
+
+      .hint {
+          color: var(--muted);
+          font-size: 12px;
+      }
+
+      .badges {
+          display: flex;
+          gap: 8px;
+          flex-wrap: wrap;
+      }
+
+      /* Per-card badges: labels become toggles when clickable */
+      .badge {
+          font-size: 12px;
+          padding: 3px 8px;
+          border-radius: 999px;
+          border: 1px solid var(--border);
+          background: var(--chip);
+          color: #d7dbe0;
+      }
+
+      .badge.ok {
+          color: #b9f6ca;
+          border-color: color-mix(in srgb, var(--ok) 55%, var(--border));
+      }
+
+      .badge.info {
+          color: #b3d9ff;
+          border-color: color-mix(in srgb, var(--info) 55%, var(--border));
+      }
+
+      .badge.err {
+          color: #ff9aa0;
+          border-color: color-mix(in srgb, var(--err) 55%, var(--border));
+      }
+
+      .snippet-warning {
+          margin-top: 8px;
+          padding: 8px 10px;
+          border-radius: 8px;
+          border: 1px solid color-mix(in srgb, var(--info) 45%, var(--border));
+          background: var(--info-bg);
+          color: #b3d9ff;
+          font-size: 12px;
+      }
+
+      .as-toggle {
+          cursor: pointer;
+      }
+
+      /* 1px ring on active toggle */
+      .tg-err:checked + label.as-toggle,
+      .tg-info:checked + label.as-toggle,
+      .tg-stories:checked + label.as-toggle,
+      .tg-docs:checked + label.as-toggle,
+      .tg-subcomponents:checked + label.as-toggle,
+      .tg-content:checked + label.as-toggle,
+      .tg-props:checked + label.as-toggle {
+          box-shadow: 0 0 0 var(--active-ring) currentColor;
+          border-color: currentColor;
+      }
+
+      /* Panels: hidden by default, shown when respective toggle checked */
+      .panels {
+          display: grid;
+          gap: 10px;
+      }
+
+      .panel {
+          display: none;
+      }
+
+      .tg-err:checked ~ .panels .panel-err {
+          display: grid;
+      }
+
+      .tg-info:checked ~ .panels .panel-info {
+          display: grid;
+          gap: 8px;
+      }
+
+      .tg-stories:checked ~ .panels .panel-stories {
+          display: grid;
+          gap: 8px;
+      }
+
+      .tg-docs:checked ~ .panels .panel-docs {
+          display: grid;
+          gap: 8px;
+      }
+
+      .tg-subcomponents:checked ~ .panels .panel-subcomponents {
+          display: grid;
+          gap: 8px;
+      }
+
+      .tg-content:checked ~ .panels .panel-content {
+          display: grid;
+          gap: 8px;
+      }
+
+      .tg-props:checked ~ .panels .panel-props {
+          display: grid;
+      }
+
+      /* Colored notes for API error + info */
+      .note {
+          padding: 12px;
+          border: 1px solid var(--border);
+          border-radius: 10px;
+      }
+
+      .note.err {
+          border-color: color-mix(in srgb, var(--err) 55%, var(--border));
+          background: var(--err-bg);
+          color: #ffd1d4;
+      }
+
+      .note.info {
+          border-color: color-mix(in srgb, var(--info) 55%, var(--border));
+          background: var(--info-bg);
+          color: #d6e8ff;
+      }
+
+      .note.ok {
+          border-color: color-mix(in srgb, var(--ok) 55%, var(--border));
+          background: var(--ok-bg);
+          color: var(--fg);
+      }
+
+      .note-title {
+          font-weight: 600;
+          margin-bottom: 6px;
+      }
+
+      .note-body {
+          white-space: normal;
+      }
+
+      /* Story error cards */
+      .ex {
+          padding: 10px;
+          border: 1px solid var(--border);
+          border-radius: 10px;
+          background: #0f131b;
+      }
+
+      .ex.err {
+          border-color: color-mix(in srgb, var(--err) 55%, var(--border));
+      }
+
+      .row {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          flex-wrap: wrap;
+      }
+
+      .status-dot {
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+          display: inline-block;
+      }
+
+      .dot-ok {
+          background: var(--ok);
+      }
+
+      .dot-err {
+          background: var(--err);
+      }
+
+      .ex-name {
+          font-weight: 600;
+      }
+
+      /* Error groups (visible in errors filter) */
+      .error-groups {
+          display: none;
+          margin-bottom: 16px;
+      }
+
+      .group {
+          border: 1px solid var(--border);
+          background: var(--panel);
+          border-radius: 14px;
+          overflow: hidden;
+      }
+
+      .group + .group {
+          margin-top: 12px;
+      }
+
+      .group-header {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          padding: 12px 14px;
+          cursor: pointer;
+          border-bottom: 1px solid var(--border);
+      }
+
+      .group-header:hover {
+          background: #141722;
+      }
+
+      .group-title {
+          font-weight: 600;
+          flex: 1;
+      }
+
+      .group-count {
+          font-size: 12px;
+          color: var(--muted);
+      }
+
+      .group-cards {
+          display: none;
+          padding: 12px;
+      }
+
+      .group .card {
+          margin: 12px 0;
+      }
+
+      .group .card:first-child {
+          margin-top: 0;
+      }
+
+      .group .card:last-child {
+          margin-bottom: 0;
+      }
+
+      /* caret rotation */
+      .group-tg:checked + label .caret {
+          transform: rotate(90deg);
+      }
+
+      .caret {
+          transition: transform 0.15s ease;
+      }
+
+      /* toggle body */
+      .group-tg:checked ~ .group-cards {
+          display: block;
+      }
+
+      /* CSS-only filtering of cards via top pills */
+      #filter-errors:target ~ main .card:not(.has-error):not(.has-story-error) {
+          display: none;
+      }
+
+      #filter-infos:target ~ main .card:not(.has-info) {
+          display: none;
+      }
+
+      #filter-story-errors:target ~ main .card:not(.has-story-error) {
+          display: none;
+      }
+
+      #filter-story-warnings:target ~ main .card:not(.has-story-warning) {
+          display: none;
+      }
+
+      #filter-no-api:target ~ main .card:not(.missing-api) {
+          display: none;
+      }
+
+      #filter-doc-errors:target ~ main .card:not(.has-doc-error) {
+          display: none;
+      }
+
+      #filter-docs:target ~ main .card:has(> .tg-docs),
+      #filter-docs:target ~ main .card.is-doc {
+          display: block;
+      }
+
+      #filter-docs:target ~ main .card:not(:has(> .tg-docs)):not(.is-doc) {
+          display: none;
+      }
+
+      #filter-all:target ~ main .card {
+          display: block;
+      }
+
+      /* In errors view, hide standalone component-error cards in the regular grid (they will appear in groups) */
+      #filter-errors:target ~ main .grid .card.has-error {
+          display: none;
+      }
+
+      /* Show grouped section only in errors view */
+      #filter-errors:target ~ main .error-groups {
+          display: block;
+      }
+
+      /* Section titles */
+      .section-title {
+          font-size: 16px;
+          font-weight: 600;
+          color: var(--muted);
+          margin: 24px 0 12px;
+          padding-bottom: 8px;
+          border-bottom: 1px solid var(--border);
+      }
+      .section-title:first-child {
+          margin-top: 0;
+      }
+
+      /* When a toggle is checked, show the corresponding panel */
+      .card > .tg-err:checked ~ .panels .panel-err {
+          display: grid;
+      }
+      
+      .card > .tg-info:checked ~ .panels .panel-info {
+          display: grid;
+      }
+      
+      .card > .tg-stories:checked ~ .panels .panel-stories {
+          display: grid;
+      }
+
+      .card > .tg-docs:checked ~ .panels .panel-docs {
+          display: grid;
+      }
+
+      .card > .tg-subcomponents:checked ~ .panels .panel-subcomponents {
+          display: grid;
+      }
+
+      .card > .tg-content:checked ~ .panels .panel-content {
+          display: grid;
+      }
+
+      /* Add vertical spacing around panels only when any panel is visible */
+      .card > .tg-err:checked ~ .panels,
+      .card > .tg-info:checked ~ .panels,
+      .card > .tg-stories:checked ~ .panels,
+      .card > .tg-docs:checked ~ .panels,
+      .card > .tg-subcomponents:checked ~ .panels,
+      .card > .tg-content:checked ~ .panels,
+      .card > .tg-props:checked ~ .panels {
+          margin: 10px 0;
+      }
+
+      /* Optional: a subtle 1px ring on the active badge, using :has() if available */
+      @supports selector(.card:has(.tg-err:checked)) {
+          .card:has(.tg-err:checked) label[for$='-err'],
+          .card:has(.tg-info:checked) label[for$='-info'],
+          .card:has(.tg-stories:checked) label[for$='-stories'],
+          .card:has(.tg-docs:checked) label[for$='-docs'],
+          .card:has(.tg-subcomponents:checked) label[for$='-subcomponents'],
+          .card:has(.tg-content:checked) label[for$='-content'],
+          .card:has(.tg-props:checked) label[for$='-props'] {
+              box-shadow: 0 0 0 1px currentColor;
+              border-color: currentColor;
+          }
+      }
+
+      /* Wrap long lines in code blocks at ~120 characters */
+      pre, code {
+          font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      }
+      pre {
+          white-space: pre-wrap;
+          overflow-wrap: anywhere;
+          word-break: break-word;
+          overflow-x: auto; /* fallback for extremely long tokens */
+          margin: 8px 0 0;
+      }
+      pre > code {
+          display: block;
+          white-space: inherit;
+          overflow-wrap: inherit;
+          word-break: inherit;
+          inline-size: min(100%, 120ch);
+      }
+
+      /* MDX content container for docs */
+      .mdx-content {
+          background: #0f131b;
+          border: 1px solid var(--border);
+          border-radius: 10px;
+          padding: 12px;
+          max-height: 400px;
+          overflow-y: auto;
+          margin-top: 8px;
+      }
+  </style>
+</head>
+<body>
+<!-- Hidden targets for the top-level filters -->
+<span id="filter-all"></span>
+<span id="filter-errors"></span>
+<span id="filter-infos"></span>
+<span id="filter-story-errors"></span>
+<span id="filter-story-warnings"></span>
+<span id="filter-no-api"></span>
+<span id="filter-doc-errors"></span>
+<span id="filter-docs"></span>
+<header>
+  <div class="wrap">
+    <h1>Manifest Debugger</h1>
+    <div class="summary"><a class="filter-pill all" data-k="all" href="#filter-all">All</a><a class="filter-pill err" data-k="errors" href="#filter-errors">2/42 API errors</a><a class="filter-pill info" data-k="infos" href="#filter-infos">2/42 infos</a><a class="filter-pill" data-k="no-api" href="#filter-no-api">13/42 without API description</a><span class="filter-pill ok" aria-disabled="true">91 stories ok</span><a class="filter-pill info" data-k="story-warnings" href="#filter-story-warnings">7/91 incomplete snippets</a></div>
+  </div>
+</header>
+<main>
+  <div class="wrap">
+    <div class="note info" style="margin-bottom: 16px;">
+            <strong>Tip:</strong> You are using <code>react-docgen</code> (the default). Generation took <strong>0.3s</strong>. For higher quality prop types, consider switching to <code>react-docgen-typescript</code> in your <code>main.ts</code>:
+            <pre><code>typescript: {
+  reactDocgen: 'react-docgen-typescript',
+}</code></pre>
+            Note: <code>react-docgen-typescript</code> can be slower. If performance is acceptable for your project, it generally produces better results.
+            <a href="https://storybook.js.org/docs/api/main-config/main-config-typescript#reactdocgen" target="_blank">Learn more</a>
+          </div>
+    <h2 class="section-title">Components</h2>
+    <div class="grid" role="list">
+      
+<article
+  id="pages-aboutpage"
+  class="card 
+  no-error
+  no-info
+  no-story-error
+  no-story-warning
+  missing-api
+  no-doc-error"
+  role="listitem"
+  aria-label="AboutPage">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> AboutPage</h2>
+      <div class="badges">
+        <span class="badge">no API description</span>
+        
+        <label for="c-0-pages-aboutpage-stories" class="badge ok as-toggle">1 story</label>
+        
+        
+      </div>
+    </div>
+    <div class="meta" title="./src/pages/AboutPage/AboutPage.stories.tsx">pages-aboutpage · ./src/pages/AboutPage/AboutPage.stories.tsx</div>
+    
+    <div class="hint">`/about` — the project&#39;s own page, set in the site&#39;s story template.</div>
+    
+  </div>
+
+  <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
+  
+  
+  <input id="c-0-pages-aboutpage-stories" class="tg tg-stories" type="checkbox" hidden />
+  
+  
+  
+
+  <div class="panels">
+    
+    
+    
+    
+        <div class="panel panel-stories">
+          
+          
+          
+          <div class="note ok">
+                <div class="row">
+                  <span class="ex-name">Imports</span>
+                </div>
+                <pre><code>import { AboutPage } from 'sartr-ui';</code></pre>
+              </div>
+          
+          
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Default</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Default = () =&gt; &lt;AboutPage /&gt;;</code></pre>
+              
+            </div>
+        </div>
+    
+    
+  </div>
+</article>
+<article
+  id="molecules-breadcrumbs"
+  class="card 
+  no-error
+  no-info
+  no-story-error
+  no-story-warning
+  
+  no-doc-error"
+  role="listitem"
+  aria-label="Breadcrumbs">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> Breadcrumbs</h2>
+      <div class="badges">
+        <label for="c-1-molecules-breadcrumbs-props" class="badge ok as-toggle">1 prop type</label>
+        
+        <label for="c-1-molecules-breadcrumbs-stories" class="badge ok as-toggle">2 stories</label>
+        
+        
+      </div>
+    </div>
+    <div class="meta" title="./src/components/Breadcrumbs/Breadcrumbs.stories.tsx">molecules-breadcrumbs · ./src/components/Breadcrumbs/Breadcrumbs.stories.tsx</div>
+    
+    <div class="hint">The site&#39;s `.breadcrumbs`, including its schema.org BreadcrumbList markup.</div>
+    
+  </div>
+
+  <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
+  
+  
+  <input id="c-1-molecules-breadcrumbs-stories" class="tg tg-stories" type="checkbox" hidden />
+  
+  
+  <input id="c-1-molecules-breadcrumbs-props" class="tg tg-props" type="checkbox" hidden />
+
+  <div class="panels">
+    
+    
+    
+        <div class="panel panel-props">
+          <div class="note ok">
+            <div class="row">
+              <span class="ex-name">Prop types <small>(react-docgen)</small></span>
+              <span class="badge ok">1 prop type</span>
+            </div>
+            <pre><code>Component: src/components/Breadcrumbs/Breadcrumbs.tsx::Breadcrumbs</code></pre>
+            <pre><code>Props:</code></pre>
+            <pre><code>items: Crumb[]</code></pre>
+          </div>
+        </div>
+    
+        <div class="panel panel-stories">
+          
+          
+          
+          <div class="note ok">
+                <div class="row">
+                  <span class="ex-name">Imports</span>
+                </div>
+                <pre><code>import { Breadcrumbs } from 'sartr-ui';</code></pre>
+              </div>
+          
+          
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Two Levels</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const TwoLevels = () =&gt; &lt;Breadcrumbs items={[{ label: &#39;Main&#39;, href: &#39;#&#39; }, { label: &#39;Experts&#39; }]} /&gt;;</code></pre>
+              
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Three Levels</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const ThreeLevels = () =&gt; &lt;Breadcrumbs
+    items={[
+      { label: &#39;Main&#39;, href: &#39;#&#39; },
+      { label: &#39;Experts&#39;, href: &#39;#&#39; },
+      { label: &#39;Igor Komarov&#39; },
+    ]} /&gt;;</code></pre>
+              
+            </div>
+        </div>
+    
+    
+  </div>
+</article>
+<article
+  id="atoms-button"
+  class="card 
+  no-error
+  no-info
+  no-story-error
+  no-story-warning
+  
+  no-doc-error"
+  role="listitem"
+  aria-label="Button">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> Button</h2>
+      <div class="badges">
+        <label for="c-2-atoms-button-props" class="badge ok as-toggle">11 prop types</label>
+        
+        <label for="c-2-atoms-button-stories" class="badge ok as-toggle">7 stories</label>
+        
+        
+      </div>
+    </div>
+    <div class="meta" title="./src/components/Button/Button.stories.tsx">atoms-button · ./src/components/Button/Button.stories.tsx</div>
+    
+    <div class="hint">The site&#39;s `.btn` block, drawn as a real squircle (radius 60, smoothing 0.9
+— the site&#39;s own `--squircle-radius` / `--squircle-smooth`).
+
+A link button is a `div.btn` wrapping an `&lt;a&gt;`, because that is how the
+markup is written across the cards and the styles depend on it.
+
+The bordered variant is a 1px ring, and on hover the site sets
+`--squircle-outline: 0` — the ring fills in rather than changing colour.</div>
+    
+  </div>
+
+  <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
+  
+  
+  <input id="c-2-atoms-button-stories" class="tg tg-stories" type="checkbox" hidden />
+  
+  
+  <input id="c-2-atoms-button-props" class="tg tg-props" type="checkbox" hidden />
+
+  <div class="panels">
+    
+    
+    
+        <div class="panel panel-props">
+          <div class="note ok">
+            <div class="row">
+              <span class="ex-name">Prop types <small>(react-docgen)</small></span>
+              <span class="badge ok">11 prop types</span>
+            </div>
+            <pre><code>Component: src/components/Button/Button.tsx::Button</code></pre>
+            <pre><code>Props:</code></pre>
+            <pre><code>aria-expanded?: boolean
+
+aria-label?: string
+
+children: ReactNode
+
+className?: string = &#39;&#39;
+
+disabled?: boolean
+
+/**
+ * Renders an anchor inside the button wrapper, the way the site links cards.
+ */
+href?: string
+
+onClick?: () =&gt; void
+
+/**
+ * Render the anchor as an empty overlay covering the button, with the label
+ * as a direct child of `.btn`.
+ * 
+ * The site writes its link buttons both ways. Most blocks put the label
+ * inside the anchor, which is the default here. The stories slider does not:
+ * `.stories__btn a` is `position: absolute; inset: 0`, so a label inside it
+ * would be lifted out of flow and the button would collapse to whatever
+ * width the CSS gives it.
+ */
+overlayLink?: boolean = false
+
+target?: string
+
+type?: &#39;button&#39; | &#39;submit&#39; | &#39;reset&#39; = &#39;button&#39;
+
+variant?: &#39;black&#39; | &#39;white&#39; | &#39;bordered&#39; = &#39;black&#39;</code></pre>
+          </div>
+        </div>
+    
+        <div class="panel panel-stories">
+          
+          
+          
+          <div class="note ok">
+                <div class="row">
+                  <span class="ex-name">Imports</span>
+                </div>
+                <pre><code>import { Button } from 'sartr-ui';</code></pre>
+              </div>
+          
+          
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Black</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Black = () =&gt; &lt;Button variant=&quot;black&quot;&gt;More details&lt;/Button&gt;;</code></pre>
+              
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Bordered</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Bordered = () =&gt; &lt;Button variant=&quot;bordered&quot;&gt;More details&lt;/Button&gt;;</code></pre>
+              
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">White</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const White = () =&gt; &lt;Button variant=&quot;white&quot;&gt;Send&lt;/Button&gt;;</code></pre>
+              
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">As Link</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const AsLink = () =&gt; &lt;Button variant=&quot;black&quot; href=&quot;#&quot;&gt;Read&lt;/Button&gt;;</code></pre>
+              
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Overlay Link</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              <div class="hint">Some of the site&#39;s blocks style `.btn a` as a full-size overlay — the stories
+slider does. There the label has to sit outside the anchor, or it would be
+lifted out of flow with it.</div>
+              <pre><code>const OverlayLink = () =&gt; &lt;Button variant=&quot;white&quot; href=&quot;#&quot; overlayLink&gt;Read&lt;/Button&gt;;</code></pre>
+              
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Disabled</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Disabled = () =&gt; &lt;Button variant=&quot;black&quot; disabled&gt;More details&lt;/Button&gt;;</code></pre>
+              
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">All Variants</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const AllVariants = () =&gt; (
+  &lt;div style={{ display: &#39;flex&#39;, gap: 16, alignItems: &#39;center&#39;, flexWrap: &#39;wrap&#39; }}&gt;
+    &lt;Button variant=&quot;black&quot;&gt;Black&lt;/Button&gt;
+    &lt;Button variant=&quot;bordered&quot;&gt;Bordered&lt;/Button&gt;
+    &lt;Button variant=&quot;black&quot; disabled&gt;
+      Disabled
+    &lt;/Button&gt;
+  &lt;/div&gt;
+);</code></pre>
+              
+            </div>
+        </div>
+    
+    
+  </div>
+</article>
+<article
+  id="foundations-colors"
+  class="card 
+  has-error
+  has-info
+  no-story-error
+  no-story-warning
+  
+  no-doc-error"
+  role="listitem"
+  aria-label="Colors">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-err"></span> Colors</h2>
+      <div class="badges">
+        <label for="c-3-foundations-colors-err" class="badge err as-toggle">API error</label>
+        <label for="c-3-foundations-colors-info" class="badge info as-toggle">2 infos</label>
+        <label for="c-3-foundations-colors-stories" class="badge ok as-toggle">1 story</label>
+        
+        
+      </div>
+    </div>
+    <div class="meta" title="./src/foundations/Colors.stories.tsx">foundations-colors · ./src/foundations/Colors.stories.tsx</div>
+    
+    
+    
+  </div>
+
+  <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
+  <input id="c-3-foundations-colors-err" class="tg tg-err" type="checkbox" hidden />
+  <input id="c-3-foundations-colors-info" class="tg tg-info" type="checkbox" hidden />
+  <input id="c-3-foundations-colors-stories" class="tg tg-stories" type="checkbox" hidden />
+  
+  
+  
+
+  <div class="panels">
+    
+        <div class="panel panel-err">
+          
+    <div class="note err">
+      <div class="note-title">API error</div>
+      <div class="note-body"><pre><code>We could not detect the component from your story file. Specify meta.component.
+  39 | }
+  40 |
+&gt; 41 | const meta = {
+     | ^
+  42 |   title: &#39;Foundations/Colors&#39;,
+  43 |   parameters: { layout: &#39;padded&#39; },
+  44 | } satisfies Meta;
+
+./src/foundations/Colors.stories.tsx:
+import type { Meta, StoryObj } from &#39;@storybook/react-vite&#39;;
+
+/**
+ * The palette the site actually paints with, counted from its stylesheet:
+ * black and white carry the layout, `#B5C6CD` marks tags and the loader,
+ * `#F0EEBE` and `#FF5114` are the two accents.
+ */
+const palette = [
+  { name: &#39;Black&#39;, value: &#39;#000000&#39;, usage: &#39;Text, dark sections, primary button&#39; },
+  { name: &#39;White&#39;, value: &#39;#FFFFFF&#39;, usage: &#39;Page background, inverted button&#39; },
+  { name: &#39;Mist&#39;, value: &#39;#B5C6CD&#39;, usage: &#39;Tags, loader, muted surfaces&#39; },
+  { name: &#39;Sand&#39;, value: &#39;#F0EEBE&#39;, usage: &#39;Accent background&#39; },
+  { name: &#39;Signal&#39;, value: &#39;#FF5114&#39;, usage: &#39;Accent / highlight&#39; },
+  { name: &#39;Ink&#39;, value: &#39;#121416&#39;, usage: &#39;Deep surface&#39; },
+];
+
+function Swatch({ name, value, usage }: (typeof palette)[number]) {
+  return (
+    &lt;div style={{ width: 200 }}&gt;
+      &lt;div
+        style={{
+          height: 96,
+          background: value,
+          border: &#39;1px solid rgba(0,0,0,.12)&#39;,
+          borderRadius: 12,
+        }}
+      /&gt;
+      &lt;p className=&quot;main-text main-text--mono&quot; style={{ margin: &#39;8px 0 0&#39; }}&gt;
+        {name}
+      &lt;/p&gt;
+      &lt;p className=&quot;main-text main-text--mono&quot; style={{ margin: 0, opacity: 0.6 }}&gt;
+        {value}
+      &lt;/p&gt;
+      &lt;p className=&quot;main-text&quot; style={{ margin: &#39;4px 0 0&#39;, fontSize: 13, opacity: 0.7 }}&gt;
+        {usage}
+      &lt;/p&gt;
+    &lt;/div&gt;
+  );
+}
+
+const meta = {
+  title: &#39;Foundations/Colors&#39;,
+  parameters: { layout: &#39;padded&#39; },
+} satisfies Meta;
+
+export default meta;
+type Story = StoryObj&lt;typeof meta&gt;;
+
+export const Palette: Story = {
+  render: () =&gt; (
+    &lt;div style={{ display: &#39;flex&#39;, flexWrap: &#39;wrap&#39;, gap: 24, padding: 24 }}&gt;
+      {palette.map((c) =&gt; (
+        &lt;Swatch key={c.name} {...c} /&gt;
+      ))}
+    &lt;/div&gt;
+  ),
+};
+</code></pre></div>
+    </div>
+        </div>
+    
+        <div class="panel panel-info">
+          
+    <div class="note info">
+      <div class="note-title">Info</div>
+      <div class="note-body">No description found. Write a jsdoc comment such as /** Component description */.</div>
+    </div>
+    <div class="note info">
+      <div class="note-title">Info</div>
+      <div class="note-body">Specify an @import jsdoc tag on your component or your stories meta such as @import import { Colors } from &#39;my-design-system&#39;;</div>
+    </div>
+        </div>
+    
+    
+        <div class="panel panel-stories">
+          
+          
+          
+          
+          
+          
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Palette</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Palette = () =&gt; (
+  &lt;div style={{ display: &#39;flex&#39;, flexWrap: &#39;wrap&#39;, gap: 24, padding: 24 }}&gt;
+    {palette.map((c) =&gt; (
+      &lt;Swatch key={c.name} {...c} /&gt;
+    ))}
+  &lt;/div&gt;
+);</code></pre>
+              
+            </div>
+        </div>
+    
+    
+  </div>
+</article>
+<article
+  id="sections-contactmodal"
+  class="card 
+  no-error
+  no-info
+  no-story-error
+  no-story-warning
+  
+  no-doc-error"
+  role="listitem"
+  aria-label="ContactModal">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> ContactModal</h2>
+      <div class="badges">
+        <label for="c-4-sections-contactmodal-props" class="badge ok as-toggle">8 prop types</label>
+        
+        <label for="c-4-sections-contactmodal-stories" class="badge ok as-toggle">2 stories</label>
+        
+        
+      </div>
+    </div>
+    <div class="meta" title="./src/components/ContactModal/ContactModal.stories.tsx">sections-contactmodal · ./src/components/ContactModal/ContactModal.stories.tsx</div>
+    
+    <div class="hint">The `.help-form` popup used to write to a scientist directly.</div>
+    
+  </div>
+
+  <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
+  
+  
+  <input id="c-4-sections-contactmodal-stories" class="tg tg-stories" type="checkbox" hidden />
+  
+  
+  <input id="c-4-sections-contactmodal-props" class="tg tg-props" type="checkbox" hidden />
+
+  <div class="panels">
+    
+    
+    
+        <div class="panel panel-props">
+          <div class="note ok">
+            <div class="row">
+              <span class="ex-name">Prop types <small>(react-docgen)</small></span>
+              <span class="badge ok">8 prop types</span>
+            </div>
+            <pre><code>Component: src/components/ContactModal/ContactModal.tsx::ContactModal</code></pre>
+            <pre><code>Props:</code></pre>
+            <pre><code>closeLabel?: string = &#39;Close&#39;
+
+labels?: { name: string; email: string; text: string } = { name: &#39;Name&#39;, email: &#39;Email&#39;, text: &#39;Text&#39; }
+
+onClose?: () =&gt; void
+
+onSubmit?: (event: FormEvent&lt;HTMLFormElement&gt;) =&gt; void
+
+/**
+ * The site renders the popup only while it is open.
+ */
+open?: boolean = true
+
+submitLabel?: string = &#39;Send&#39;
+
+text?: string = &#39;Fill out this form to contact the scientist directly&#39;
+
+title?: string = &#39;Contact a scientist&#39;</code></pre>
+          </div>
+        </div>
+    
+        <div class="panel panel-stories">
+          
+          
+          
+          <div class="note ok">
+                <div class="row">
+                  <span class="ex-name">Imports</span>
+                </div>
+                <pre><code>import { ContactModal } from 'sartr-ui';</code></pre>
+              </div>
+          
+          
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Default</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Default = () =&gt; &lt;ContactModal /&gt;;</code></pre>
+              
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Ukrainian</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Ukrainian = () =&gt; &lt;ContactModal
+    title=&quot;Зв’яжіться з експертом/експерткою&quot;
+    text=&quot;Заповніть цю форму, щоб надіслати повідомлення науковцю/науковиці&quot;
+    labels={{ name: &#39;Ім’я&#39;, email: &#39;Електронна пошта&#39;, text: &#39;Текст&#39; }}
+    submitLabel=&quot;Відправити&quot;
+    closeLabel=&quot;Закрити&quot; /&gt;;</code></pre>
+              
+            </div>
+        </div>
+    
+    
+  </div>
+</article>
+<article
+  id="pages-contactspage"
+  class="card 
+  no-error
+  no-info
+  no-story-error
+  no-story-warning
+  missing-api
+  no-doc-error"
+  role="listitem"
+  aria-label="ContactsPage">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> ContactsPage</h2>
+      <div class="badges">
+        <span class="badge">no API description</span>
+        
+        <label for="c-5-pages-contactspage-stories" class="badge ok as-toggle">1 story</label>
+        
+        
+      </div>
+    </div>
+    <div class="meta" title="./src/pages/ContactsPage/ContactsPage.stories.tsx">pages-contactspage · ./src/pages/ContactsPage/ContactsPage.stories.tsx</div>
+    
+    <div class="hint">`/contacts` — how to reach the project.</div>
+    
+  </div>
+
+  <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
+  
+  
+  <input id="c-5-pages-contactspage-stories" class="tg tg-stories" type="checkbox" hidden />
+  
+  
+  
+
+  <div class="panels">
+    
+    
+    
+    
+        <div class="panel panel-stories">
+          
+          
+          
+          <div class="note ok">
+                <div class="row">
+                  <span class="ex-name">Imports</span>
+                </div>
+                <pre><code>import { ContactsPage } from 'sartr-ui';</code></pre>
+              </div>
+          
+          
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Default</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Default = () =&gt; &lt;ContactsPage /&gt;;</code></pre>
+              
+            </div>
+        </div>
+    
+    
+  </div>
+</article>
+<article
+  id="molecules-emptystate"
+  class="card 
+  no-error
+  no-info
+  no-story-error
+  no-story-warning
+  
+  no-doc-error"
+  role="listitem"
+  aria-label="EmptyState">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> EmptyState</h2>
+      <div class="badges">
+        <label for="c-6-molecules-emptystate-props" class="badge ok as-toggle">4 prop types</label>
+        
+        <label for="c-6-molecules-emptystate-stories" class="badge ok as-toggle">2 stories</label>
+        
+        
+      </div>
+    </div>
+    <div class="meta" title="./src/components/EmptyState/EmptyState.stories.tsx">molecules-emptystate · ./src/components/EmptyState/EmptyState.stories.tsx</div>
+    
+    <div class="hint">The site&#39;s `.nothing` block — the &quot;no results&quot; state on the list pages,
+offering popular queries as a way out.</div>
+    
+  </div>
+
+  <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
+  
+  
+  <input id="c-6-molecules-emptystate-stories" class="tg tg-stories" type="checkbox" hidden />
+  
+  
+  <input id="c-6-molecules-emptystate-props" class="tg tg-props" type="checkbox" hidden />
+
+  <div class="panels">
+    
+    
+    
+        <div class="panel panel-props">
+          <div class="note ok">
+            <div class="row">
+              <span class="ex-name">Prop types <small>(react-docgen)</small></span>
+              <span class="badge ok">4 prop types</span>
+            </div>
+            <pre><code>Component: src/components/EmptyState/EmptyState.tsx::EmptyState</code></pre>
+            <pre><code>Props:</code></pre>
+            <pre><code>onSelect?: (label: string) =&gt; void
+
+/**
+ * Suggested queries, rendered as bordered buttons.
+ */
+suggestions?: string[] = []
+
+text?: string = &#39;Try another keyword, or see popular queries.&#39;
+
+title?: string = &#39;We didn’t find anything for your query&#39;</code></pre>
+          </div>
+        </div>
+    
+        <div class="panel panel-stories">
+          
+          
+          
+          <div class="note ok">
+                <div class="row">
+                  <span class="ex-name">Imports</span>
+                </div>
+                <pre><code>import { EmptyState } from 'sartr-ui';</code></pre>
+              </div>
+          
+          
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">With Suggestions</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const WithSuggestions = () =&gt; &lt;EmptyState
+    suggestions={[&#39;Teaching&#39;, &#39;Science popularization&#39;, &#39;Biology&#39;, &#39;Natural sciences&#39;, &#39;Biochemistry&#39;]} /&gt;;</code></pre>
+              
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Bare</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Bare = () =&gt; &lt;EmptyState suggestions={[]} /&gt;;</code></pre>
+              
+            </div>
+        </div>
+    
+    
+  </div>
+</article>
+<article
+  id="sections-expertaside"
+  class="card 
+  no-error
+  no-info
+  no-story-error
+  no-story-warning
+  
+  no-doc-error"
+  role="listitem"
+  aria-label="ExpertAside">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> ExpertAside</h2>
+      <div class="badges">
+        <label for="c-7-sections-expertaside-props" class="badge ok as-toggle">7 prop types</label>
+        
+        <label for="c-7-sections-expertaside-stories" class="badge ok as-toggle">3 stories</label>
+        
+        
+      </div>
+    </div>
+    <div class="meta" title="./src/components/ExpertAside/ExpertAside.stories.tsx">sections-expertaside · ./src/components/ExpertAside/ExpertAside.stories.tsx</div>
+    
+    <div class="hint">The `.aside` column on an expert profile: photo, contact button, links.</div>
+    
+  </div>
+
+  <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
+  
+  
+  <input id="c-7-sections-expertaside-stories" class="tg tg-stories" type="checkbox" hidden />
+  
+  
+  <input id="c-7-sections-expertaside-props" class="tg tg-props" type="checkbox" hidden />
+
+  <div class="panels">
+    
+    
+    
+        <div class="panel panel-props">
+          <div class="note ok">
+            <div class="row">
+              <span class="ex-name">Prop types <small>(react-docgen)</small></span>
+              <span class="badge ok">7 prop types</span>
+            </div>
+            <pre><code>Component: src/components/ExpertAside/ExpertAside.tsx::ExpertAside</code></pre>
+            <pre><code>Props:</code></pre>
+            <pre><code>contactLabel?: string = &#39;Get in touch&#39;
+
+languages?: string
+
+/**
+ * Languages the scientist works in, already joined into one line.
+ */
+languagesTitle?: string
+
+links?: { label: string; href: string }[] = []
+
+name?: string = &#39;&#39;
+
+onContact?: () =&gt; void
+
+photo?: string</code></pre>
+          </div>
+        </div>
+    
+        <div class="panel panel-stories">
+          
+          
+          
+          <div class="note ok">
+                <div class="row">
+                  <span class="ex-name">Imports</span>
+                </div>
+                <pre><code>import { ExpertAside } from 'sartr-ui';</code></pre>
+              </div>
+          
+          
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Default</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Default = () =&gt; &lt;ExpertAside
+    photo=&quot;/img/person-2.jpg&quot;
+    name=&quot;Sofiia Fedzhora&quot;
+    languagesTitle=&quot;Languages for professional communication:&quot;
+    languages=&quot;English, Polish, Spanish, German&quot;
+    links={[
+      { label: &#39;Facebook&#39;, href: &#39;#&#39; },
+      { label: &#39;Linkedin&#39;, href: &#39;#&#39; },
+    ]} /&gt;;</code></pre>
+              
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Ukrainian</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Ukrainian = () =&gt; &lt;ExpertAside
+    photo=&quot;/img/person-2.jpg&quot;
+    name=&quot;Sofiia Fedzhora&quot;
+    languagesTitle=&quot;Мови для професійного спілкування:&quot;
+    languages=&quot;Англійська, польська, іспанська, німецька&quot;
+    links={[
+      { label: &#39;Facebook&#39;, href: &#39;#&#39; },
+      { label: &#39;Linkedin&#39;, href: &#39;#&#39; },
+    ]}
+    contactLabel=&quot;Зв’язатися&quot; /&gt;;</code></pre>
+              
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Without Links</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const WithoutLinks = () =&gt; &lt;ExpertAside
+    photo=&quot;/img/person-2.jpg&quot;
+    name=&quot;Sofiia Fedzhora&quot;
+    languagesTitle=&quot;Languages for professional communication:&quot;
+    languages=&quot;English, Polish, Spanish, German&quot;
+    links={[]} /&gt;;</code></pre>
+              
+            </div>
+        </div>
+    
+    
+  </div>
+</article>
+<article
+  id="cards-expertcard"
+  class="card 
+  no-error
+  no-info
+  no-story-error
+  no-story-warning
+  
+  no-doc-error"
+  role="listitem"
+  aria-label="ExpertCard">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> ExpertCard</h2>
+      <div class="badges">
+        <label for="c-8-cards-expertcard-props" class="badge ok as-toggle">9 prop types</label>
+        
+        <label for="c-8-cards-expertcard-stories" class="badge ok as-toggle">3 stories</label>
+        
+        
+      </div>
+    </div>
+    <div class="meta" title="./src/components/ExpertCard/ExpertCard.stories.tsx">cards-expertcard · ./src/components/ExpertCard/ExpertCard.stories.tsx</div>
+    
+    <div class="hint">The `.expert-card` from the experts directory.</div>
+    
+  </div>
+
+  <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
+  
+  
+  <input id="c-8-cards-expertcard-stories" class="tg tg-stories" type="checkbox" hidden />
+  
+  
+  <input id="c-8-cards-expertcard-props" class="tg tg-props" type="checkbox" hidden />
+
+  <div class="panels">
+    
+    
+    
+        <div class="panel panel-props">
+          <div class="note ok">
+            <div class="row">
+              <span class="ex-name">Prop types <small>(react-docgen)</small></span>
+              <span class="badge ok">9 prop types</span>
+            </div>
+            <pre><code>Component: src/components/ExpertCard/ExpertCard.tsx::ExpertCard</code></pre>
+            <pre><code>Props:</code></pre>
+            <pre><code>affiliation?: string
+
+buttonLabel?: string = &#39;More details&#39;
+
+/**
+ * Degree and rank, e.g. &quot;Ph.D., professor&quot;.
+ */
+degree?: string
+
+href: string
+
+name: string
+
+onTagClick?: (tag: string) =&gt; void
+
+photo?: string
+
+summary?: string
+
+tags?: string[] = []</code></pre>
+          </div>
+        </div>
+    
+        <div class="panel panel-stories">
+          
+          
+          
+          <div class="note ok">
+                <div class="row">
+                  <span class="ex-name">Imports</span>
+                </div>
+                <pre><code>import { ExpertCard } from 'sartr-ui';</code></pre>
+              </div>
+          
+          
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Default</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Default = () =&gt; &lt;ExpertCard
+    name=&quot;Igor Komarov&quot;
+    degree=&quot;Ph.D., professor&quot;
+    affiliation=&quot;Educational and Scientific Institute of High Technologies, Taras Shevchenko National University of Kyiv&quot;
+    summary=&quot;Igor leads the Institute of High Technologies of Taras Shevchenko Kyiv National University and participates in forming the university’s scientific policy.&quot;
+    tags={[&#39;Chemistry&#39;, &#39;Biochemistry&#39;, &#39;Natural sciences&#39;, &#39;Science popularization&#39;, &#39;Expert consulting&#39;]}
+    photo=&quot;/img/person-1.jpg&quot;
+    href=&quot;#&quot; /&gt;;</code></pre>
+              
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Without Photo</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const WithoutPhoto = () =&gt; &lt;ExpertCard
+    name=&quot;Igor Komarov&quot;
+    degree=&quot;Ph.D., professor&quot;
+    affiliation=&quot;Educational and Scientific Institute of High Technologies, Taras Shevchenko National University of Kyiv&quot;
+    summary=&quot;Igor leads the Institute of High Technologies of Taras Shevchenko Kyiv National University and participates in forming the university’s scientific policy.&quot;
+    tags={[&#39;Chemistry&#39;, &#39;Biochemistry&#39;, &#39;Natural sciences&#39;, &#39;Science popularization&#39;, &#39;Expert consulting&#39;]}
+    photo={undefined}
+    href=&quot;#&quot; /&gt;;</code></pre>
+              
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Minimal</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Minimal = () =&gt; &lt;ExpertCard
+    name=&quot;Igor Komarov&quot;
+    degree={undefined}
+    affiliation=&quot;Educational and Scientific Institute of High Technologies, Taras Shevchenko National University of Kyiv&quot;
+    summary={undefined}
+    tags={[]}
+    photo=&quot;/img/person-1.jpg&quot;
+    href=&quot;#&quot; /&gt;;</code></pre>
+              
+            </div>
+        </div>
+    
+    
+  </div>
+</article>
+<article
+  id="pages-expertpage"
+  class="card 
+  no-error
+  no-info
+  no-story-error
+  no-story-warning
+  missing-api
+  no-doc-error"
+  role="listitem"
+  aria-label="ExpertPage">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> ExpertPage</h2>
+      <div class="badges">
+        <span class="badge">no API description</span>
+        
+        <label for="c-9-pages-expertpage-stories" class="badge ok as-toggle">1 story</label>
+        
+        
+      </div>
+    </div>
+    <div class="meta" title="./src/pages/ExpertPage/ExpertPage.stories.tsx">pages-expertpage · ./src/pages/ExpertPage/ExpertPage.stories.tsx</div>
+    
+    <div class="hint">`/experts/:slug` — a scientist&#39;s profile: the aside with the photo and the
+ways to reach them, the research description, and the publications.</div>
+    
+  </div>
+
+  <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
+  
+  
+  <input id="c-9-pages-expertpage-stories" class="tg tg-stories" type="checkbox" hidden />
+  
+  
+  
+
+  <div class="panels">
+    
+    
+    
+    
+        <div class="panel panel-stories">
+          
+          
+          
+          <div class="note ok">
+                <div class="row">
+                  <span class="ex-name">Imports</span>
+                </div>
+                <pre><code>import { ExpertPage } from 'sartr-ui';</code></pre>
+              </div>
+          
+          
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Default</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Default = () =&gt; &lt;ExpertPage /&gt;;</code></pre>
+              
+            </div>
+        </div>
+    
+    
+  </div>
+</article>
+<article
+  id="pages-expertspage"
+  class="card 
+  no-error
+  no-info
+  no-story-error
+  no-story-warning
+  missing-api
+  no-doc-error"
+  role="listitem"
+  aria-label="ExpertsPage">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> ExpertsPage</h2>
+      <div class="badges">
+        <span class="badge">no API description</span>
+        
+        <label for="c-10-pages-expertspage-stories" class="badge ok as-toggle">1 story</label>
+        
+        
+      </div>
+    </div>
+    <div class="meta" title="./src/pages/ExpertsPage/ExpertsPage.stories.tsx">pages-expertspage · ./src/pages/ExpertsPage/ExpertsPage.stories.tsx</div>
+    
+    <div class="hint">`/experts` — the site&#39;s search page for scientists: the search hero, the
+popular queries, and the list of matching cards.
+
+The filtering is done here over the sample list, the way the site&#39;s own
+`_searchScientists` form does it over its API, so the empty state and the
+tag shortcuts are real rather than decorative.</div>
+    
+  </div>
+
+  <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
+  
+  
+  <input id="c-10-pages-expertspage-stories" class="tg tg-stories" type="checkbox" hidden />
+  
+  
+  
+
+  <div class="panels">
+    
+    
+    
+    
+        <div class="panel panel-stories">
+          
+          
+          
+          <div class="note ok">
+                <div class="row">
+                  <span class="ex-name">Imports</span>
+                </div>
+                <pre><code>import { ExpertsPage } from 'sartr-ui';</code></pre>
+              </div>
+          
+          
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Default</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Default = () =&gt; &lt;ExpertsPage /&gt;;</code></pre>
+              
+            </div>
+        </div>
+    
+    
+  </div>
+</article>
+<article
+  id="molecules-fullimage"
+  class="card 
+  no-error
+  no-info
+  no-story-error
+  no-story-warning
+  
+  no-doc-error"
+  role="listitem"
+  aria-label="FullImage">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> FullImage</h2>
+      <div class="badges">
+        <label for="c-11-molecules-fullimage-props" class="badge ok as-toggle">3 prop types</label>
+        
+        <label for="c-11-molecules-fullimage-stories" class="badge ok as-toggle">2 stories</label>
+        
+        
+      </div>
+    </div>
+    <div class="meta" title="./src/components/FullImage/FullImage.stories.tsx">molecules-fullimage · ./src/components/FullImage/FullImage.stories.tsx</div>
+    
+    <div class="hint">The `.full-image` hero picture at the top of a story.</div>
+    
+  </div>
+
+  <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
+  
+  
+  <input id="c-11-molecules-fullimage-stories" class="tg tg-stories" type="checkbox" hidden />
+  
+  
+  <input id="c-11-molecules-fullimage-props" class="tg tg-props" type="checkbox" hidden />
+
+  <div class="panels">
+    
+    
+    
+        <div class="panel panel-props">
+          <div class="note ok">
+            <div class="row">
+              <span class="ex-name">Prop types <small>(react-docgen)</small></span>
+              <span class="badge ok">3 prop types</span>
+            </div>
+            <pre><code>Component: src/components/FullImage/FullImage.tsx::FullImage</code></pre>
+            <pre><code>Props:</code></pre>
+            <pre><code>alt: string
+
+caption?: string
+
+src: string</code></pre>
+          </div>
+        </div>
+    
+        <div class="panel panel-stories">
+          
+          
+          
+          <div class="note ok">
+                <div class="row">
+                  <span class="ex-name">Imports</span>
+                </div>
+                <pre><code>import { FullImage } from 'sartr-ui';</code></pre>
+              </div>
+          
+          
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Default</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Default = () =&gt; &lt;FullImage src=&quot;/img/story-2.png&quot; alt=&quot;Stolen museum. Kherson&quot; /&gt;;</code></pre>
+              
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">With Caption</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const WithCaption = () =&gt; &lt;FullImage
+    src=&quot;/img/story-2.png&quot;
+    alt=&quot;Stolen museum. Kherson&quot;
+    caption=&quot;Kherson Local History Museum, 2022&quot; /&gt;;</code></pre>
+              
+            </div>
+        </div>
+    
+    
+  </div>
+</article>
+<article
+  id="sections-gallery"
+  class="card 
+  no-error
+  no-info
+  no-story-error
+  no-story-warning
+  
+  no-doc-error"
+  role="listitem"
+  aria-label="Gallery">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> Gallery</h2>
+      <div class="badges">
+        <label for="c-12-sections-gallery-props" class="badge ok as-toggle">1 prop type</label>
+        
+        <label for="c-12-sections-gallery-stories" class="badge ok as-toggle">2 stories</label>
+        
+        
+      </div>
+    </div>
+    <div class="meta" title="./src/components/Gallery/Gallery.stories.tsx">sections-gallery · ./src/components/Gallery/Gallery.stories.tsx</div>
+    
+    <div class="hint">The `.storySlider` strip of attachments inside a story.
+
+The site drives this with Swiper; this package has no slider dependency, so
+the track is a plain horizontally scrollable row. The markup and styling are
+the site&#39;s, so dropping a slider library on top of it needs no changes here.</div>
+    
+  </div>
+
+  <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
+  
+  
+  <input id="c-12-sections-gallery-stories" class="tg tg-stories" type="checkbox" hidden />
+  
+  
+  <input id="c-12-sections-gallery-props" class="tg tg-props" type="checkbox" hidden />
+
+  <div class="panels">
+    
+    
+    
+        <div class="panel panel-props">
+          <div class="note ok">
+            <div class="row">
+              <span class="ex-name">Prop types <small>(react-docgen)</small></span>
+              <span class="badge ok">1 prop type</span>
+            </div>
+            <pre><code>Component: src/components/Gallery/Gallery.tsx::Gallery</code></pre>
+            <pre><code>Props:</code></pre>
+            <pre><code>images: GalleryImage[]</code></pre>
+          </div>
+        </div>
+    
+        <div class="panel panel-stories">
+          
+          
+          
+          <div class="note ok">
+                <div class="row">
+                  <span class="ex-name">Imports</span>
+                </div>
+                <pre><code>import { Gallery } from 'sartr-ui';</code></pre>
+              </div>
+          
+          
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Default</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Default = () =&gt; &lt;Gallery
+    images={[
+      { src: &#39;/img/story-1.jpg&#39;, alt: &#39;Lviv mathematicians&#39;, caption: &#39;Lviv, 2024&#39; },
+      { src: &#39;/img/story-2.png&#39;, alt: &#39;Kherson museum&#39; },
+      { src: &#39;/img/story-3.png&#39;, alt: &#39;Institute of Agricultural Microbiology&#39; },
+    ]} /&gt;;</code></pre>
+              
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Single Image</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const SingleImage = () =&gt; &lt;Gallery images={[{ src: &#39;/img/story-1.jpg&#39;, alt: &#39;Lviv mathematicians&#39; }]} /&gt;;</code></pre>
+              
+            </div>
+        </div>
+    
+    
+  </div>
+</article>
+<article
+  id="sections-homehero"
+  class="card 
+  no-error
+  no-info
+  no-story-error
+  no-story-warning
+  
+  no-doc-error"
+  role="listitem"
+  aria-label="HomeHero">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> HomeHero</h2>
+      <div class="badges">
+        <label for="c-13-sections-homehero-props" class="badge ok as-toggle">9 prop types</label>
+        
+        <label for="c-13-sections-homehero-stories" class="badge ok as-toggle">4 stories</label>
+        
+        
+      </div>
+    </div>
+    <div class="meta" title="./src/components/HomeHero/HomeHero.stories.tsx">sections-homehero · ./src/components/HomeHero/HomeHero.stories.tsx</div>
+    
+    <div class="hint">The home page&#39;s first screen: wordmark, search, popular requests and the
+counted links into the three collections.
+
+`SearchHero` is the layout the live site still ships; this is the newer one.</div>
+    
+  </div>
+
+  <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
+  
+  
+  <input id="c-13-sections-homehero-stories" class="tg tg-stories" type="checkbox" hidden />
+  
+  
+  <input id="c-13-sections-homehero-props" class="tg tg-props" type="checkbox" hidden />
+
+  <div class="panels">
+    
+    
+    
+        <div class="panel panel-props">
+          <div class="note ok">
+            <div class="row">
+              <span class="ex-name">Prop types <small>(react-docgen)</small></span>
+              <span class="badge ok">9 prop types</span>
+            </div>
+            <pre><code>Component: src/components/HomeHero/HomeHero.tsx::HomeHero</code></pre>
+            <pre><code>Props:</code></pre>
+            <pre><code>/**
+ * The counted entry points along the bottom.
+ */
+links?: HeroLink[] = []
+
+onSearch?: (query: string) =&gt; void
+
+onTagSelect?: (label: string) =&gt; void
+
+placeholder?: string = &#39;Scientific field or name&#39;
+
+popular?: PopularRequest[] = []
+
+popularTitle?: string = &#39;Popular requests&#39;
+
+submitLabel?: string = &#39;Find a scientist&#39;
+
+/**
+ * Mono line above the wordmark.
+ */
+suptitle?: string = &quot;Research &amp; expertise from Ukraine&#39;s scientific frontline&quot;
+
+/**
+ * The wordmark. A node, so the `!` swaps can be marked up if needed.
+ */
+title?: ReactNode = &#39;SC!ENCE AT R!SK!&#39;</code></pre>
+          </div>
+        </div>
+    
+        <div class="panel panel-stories">
+          
+          
+          
+          <div class="note ok">
+                <div class="row">
+                  <span class="ex-name">Imports</span>
+                </div>
+                <pre><code>import { HomeHero, SiteHeader } from 'sartr-ui';</code></pre>
+              </div>
+          
+          
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Default</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Default = () =&gt; &lt;HomeHero
+    popular={[
+      { label: &#39;Physical sciences&#39;, count: 12 },
+      { label: &#39;Social sciences&#39;, count: 5 },
+      { label: &#39;Technology&#39;, count: 8 },
+      { label: &#39;Arts &amp; humanities&#39;, count: 1 },
+      { label: &#39;Life sciences &amp; biomedicine&#39;, count: 22 },
+    ]}
+    links={[
+      { label: &#39;Scientists&#39;, href: &#39;#&#39;, count: 367 },
+      { label: &#39;Stories&#39;, href: &#39;#&#39;, count: 28 },
+      { label: &#39;Researches&#39;, href: &#39;#&#39;, count: 300 },
+    ]} /&gt;;</code></pre>
+              
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">With Header</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              <div class="hint">The whole first screen, header included — what the design shows.</div>
+              <pre><code>const WithHeader = () =&gt; &lt;&gt;
+    &lt;SiteHeader
+        dark={false}
+        divider={false}
+        background={HOME_HERO_BG}
+        languages={[
+          { label: &#39;ENG&#39;, href: &#39;#&#39;, active: true },
+          { label: &#39;УКР&#39;, href: &#39;#&#39; },
+        ]}
+        nav={[
+          { label: &#39;Experts&#39;, href: &#39;#&#39; },
+          { label: &#39;Damaged infrastructure&#39;, href: &#39;#&#39; },
+          { label: &#39;Scientific societies&#39;, href: &#39;#&#39; },
+          { label: &#39;About the project&#39;, href: &#39;#&#39; },
+          { label: &#39;Stories&#39;, href: &#39;#&#39; },
+          { label: &#39;Policies&#39;, href: &#39;#&#39; },
+          { label: &#39;Contacts&#39;, href: &#39;#&#39; },
+        ]}
+        social={[
+          { label: &#39;Twitter&#39;, href: &#39;#&#39; },
+          { label: &#39;Linkedin&#39;, href: &#39;#&#39; },
+          { label: &#39;Facebook&#39;, href: &#39;#&#39; },
+        ]} /&gt;
+    &lt;HomeHero
+        popular={[
+          { label: &#39;Physical sciences&#39;, count: 12 },
+          { label: &#39;Social sciences&#39;, count: 5 },
+          { label: &#39;Technology&#39;, count: 8 },
+          { label: &#39;Arts &amp; humanities&#39;, count: 1 },
+          { label: &#39;Life sciences &amp; biomedicine&#39;, count: 22 },
+        ]}
+        links={[
+          { label: &#39;Scientists&#39;, href: &#39;#&#39;, count: 367 },
+          { label: &#39;Stories&#39;, href: &#39;#&#39;, count: 28 },
+          { label: &#39;Researches&#39;, href: &#39;#&#39;, count: 300 },
+        ]} /&gt;
+&lt;/&gt;;</code></pre>
+              
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Without Popular</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const WithoutPopular = () =&gt; &lt;HomeHero
+    popular={[]}
+    links={[
+      { label: &#39;Scientists&#39;, href: &#39;#&#39;, count: 367 },
+      { label: &#39;Stories&#39;, href: &#39;#&#39;, count: 28 },
+      { label: &#39;Researches&#39;, href: &#39;#&#39;, count: 300 },
+    ]} /&gt;;</code></pre>
+              
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Search Only</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const SearchOnly = () =&gt; &lt;HomeHero popular={[]} links={[]} /&gt;;</code></pre>
+              
+            </div>
+        </div>
+    
+    
+  </div>
+</article>
+<article
+  id="pages-homepage"
+  class="card 
+  no-error
+  no-info
+  no-story-error
+  has-story-warning
+  
+  no-doc-error"
+  role="listitem"
+  aria-label="HomePage">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> HomePage</h2>
+      <div class="badges">
+        <label for="c-14-pages-homepage-props" class="badge ok as-toggle">10 prop types</label>
+        
+        <label for="c-14-pages-homepage-stories" class="badge ok as-toggle">2 stories · 2 incomplete</label>
+        
+        
+      </div>
+    </div>
+    <div class="meta" title="./src/pages/HomePage/HomePage.stories.tsx">pages-homepage · ./src/pages/HomePage/HomePage.stories.tsx</div>
+    
+    <div class="hint">The home page, opening with `HomeHero`.
+
+The live site splits the top in two: a `hero` section carrying the wordmark,
+and a `search-hero` further down the page holding the search field and the
+popular requests. The new design folds both into the first screen, so
+`HomeHero` stands in for the pair and `SearchHero` no longer appears here.
+
+The header is pinned above the deck and takes its colour from the section on
+screen — the site&#39;s own `data-color`, black over a light field and white
+over a dark one.</div>
+    
+  </div>
+
+  <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
+  
+  
+  <input id="c-14-pages-homepage-stories" class="tg tg-stories" type="checkbox" hidden />
+  
+  
+  <input id="c-14-pages-homepage-props" class="tg tg-props" type="checkbox" hidden />
+
+  <div class="panels">
+    
+    
+    
+        <div class="panel panel-props">
+          <div class="note ok">
+            <div class="row">
+              <span class="ex-name">Prop types <small>(react-docgen)</small></span>
+              <span class="badge ok">10 prop types</span>
+            </div>
+            <pre><code>Component: src/pages/HomePage/HomePage.tsx::HomePage</code></pre>
+            <pre><code>Props:</code></pre>
+            <pre><code>/**
+ * Read the page one screen at a time, the way the site&#39;s fullpage.js does:
+ * the next section slides up over the one you are leaving. Off below
+ * 1024px, on short windows and whenever the reader asks for reduced motion
+ * — see `SectionDeck`.
+ */
+deckScroll?: boolean = true
+
+heroLinks?: HeroLink[] = []
+
+languages?: { label: string; href: string; active?: boolean }[]
+
+nav: NavItem[]
+
+popular?: PopularRequest[] = []
+
+/**
+ * Damaged infrastructure asking for help.
+ */
+reconstruction?: ListCardProps[] = []
+
+/**
+ * The studies the project publishes.
+ */
+research?: ListCardProps[] = []
+
+social?: NavItem[]
+
+stories?: StorySlide[] = []
+
+supporters?: SupportGroup[] = []</code></pre>
+          </div>
+        </div>
+    
+        <div class="panel panel-stories">
+          
+          
+          
+          <div class="note ok">
+                <div class="row">
+                  <span class="ex-name">Imports</span>
+                </div>
+                <pre><code>import { HomePage } from 'sartr-ui';</code></pre>
+              </div>
+          
+          
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Default</span>
+                <span class="badge info">incomplete example</span>
+              </div>
+              
+              
+              <pre><code>const Default = () =&gt; &lt;HomePage /&gt;;</code></pre>
+              <div class="snippet-warning">Incomplete snippet: `args: homePageContent` could not be resolved statically.</div>
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Hero Only</span>
+                <span class="badge info">incomplete example</span>
+              </div>
+              
+              <div class="hint">Just the first screen, as the page loads.</div>
+              <pre><code>const HeroOnly = () =&gt; &lt;HomePage stories={[]} reconstruction={[]} /&gt;;</code></pre>
+              <div class="snippet-warning">Incomplete snippet: `args: homePageContent` could not be resolved statically.</div>
+            </div>
+        </div>
+    
+    
+  </div>
+</article>
+<article
+  id="pages-infrastructurepage"
+  class="card 
+  no-error
+  no-info
+  no-story-error
+  no-story-warning
+  missing-api
+  no-doc-error"
+  role="listitem"
+  aria-label="InfrastructurePage">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> InfrastructurePage</h2>
+      <div class="badges">
+        <span class="badge">no API description</span>
+        
+        <label for="c-15-pages-infrastructurepage-stories" class="badge ok as-toggle">1 story</label>
+        
+        
+      </div>
+    </div>
+    <div class="meta" title="./src/pages/InfrastructurePage/InfrastructurePage.stories.tsx">pages-infrastructurepage · ./src/pages/InfrastructurePage/InfrastructurePage.stories.tsx</div>
+    
+    <div class="hint">`/infrastructures/:slug` — one damaged institution: what it is, what it
+needs, a gallery of the damage and who to talk to.</div>
+    
+  </div>
+
+  <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
+  
+  
+  <input id="c-15-pages-infrastructurepage-stories" class="tg tg-stories" type="checkbox" hidden />
+  
+  
+  
+
+  <div class="panels">
+    
+    
+    
+    
+        <div class="panel panel-stories">
+          
+          
+          
+          <div class="note ok">
+                <div class="row">
+                  <span class="ex-name">Imports</span>
+                </div>
+                <pre><code>import { InfrastructurePage } from 'sartr-ui';</code></pre>
+              </div>
+          
+          
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Default</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Default = () =&gt; &lt;InfrastructurePage /&gt;;</code></pre>
+              
+            </div>
+        </div>
+    
+    
+  </div>
+</article>
+<article
+  id="pages-infrastructurespage"
+  class="card 
+  no-error
+  no-info
+  no-story-error
+  no-story-warning
+  missing-api
+  no-doc-error"
+  role="listitem"
+  aria-label="InfrastructuresPage">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> InfrastructuresPage</h2>
+      <div class="badges">
+        <span class="badge">no API description</span>
+        
+        <label for="c-16-pages-infrastructurespage-stories" class="badge ok as-toggle">1 story</label>
+        
+        
+      </div>
+    </div>
+    <div class="meta" title="./src/pages/InfrastructuresPage/InfrastructuresPage.stories.tsx">pages-infrastructurespage · ./src/pages/InfrastructuresPage/InfrastructuresPage.stories.tsx</div>
+    
+    <div class="hint">`/infrastructures` — damaged research infrastructure. The site&#39;s own
+`.infrastructures-card` carries a science domain and the amount still
+needed, with a column header naming both.</div>
+    
+  </div>
+
+  <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
+  
+  
+  <input id="c-16-pages-infrastructurespage-stories" class="tg tg-stories" type="checkbox" hidden />
+  
+  
+  
+
+  <div class="panels">
+    
+    
+    
+    
+        <div class="panel panel-stories">
+          
+          
+          
+          <div class="note ok">
+                <div class="row">
+                  <span class="ex-name">Imports</span>
+                </div>
+                <pre><code>import { InfrastructuresPage } from 'sartr-ui';</code></pre>
+              </div>
+          
+          
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Default</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Default = () =&gt; &lt;InfrastructuresPage /&gt;;</code></pre>
+              
+            </div>
+        </div>
+    
+    
+  </div>
+</article>
+<article
+  id="cards-listcard"
+  class="card 
+  no-error
+  no-info
+  no-story-error
+  no-story-warning
+  
+  no-doc-error"
+  role="listitem"
+  aria-label="ListCard">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> ListCard</h2>
+      <div class="badges">
+        <label for="c-17-cards-listcard-props" class="badge ok as-toggle">6 prop types</label>
+        
+        <label for="c-17-cards-listcard-stories" class="badge ok as-toggle">3 stories</label>
+        
+        
+      </div>
+    </div>
+    <div class="meta" title="./src/components/ListCard/ListCard.stories.tsx">cards-listcard · ./src/components/ListCard/ListCard.stories.tsx</div>
+    
+    <div class="hint">The `.list-card` used for damaged-infrastructure entries.</div>
+    
+  </div>
+
+  <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
+  
+  
+  <input id="c-17-cards-listcard-stories" class="tg tg-stories" type="checkbox" hidden />
+  
+  
+  <input id="c-17-cards-listcard-props" class="tg tg-props" type="checkbox" hidden />
+
+  <div class="panels">
+    
+    
+    
+        <div class="panel panel-props">
+          <div class="note ok">
+            <div class="row">
+              <span class="ex-name">Prop types <small>(react-docgen)</small></span>
+              <span class="badge ok">6 prop types</span>
+            </div>
+            <pre><code>Component: src/components/ListCard/ListCard.tsx::ListCard</code></pre>
+            <pre><code>Props:</code></pre>
+            <pre><code>buttonLabel?: string = &#39;More details&#39;
+
+href: string
+
+/**
+ * Funding needed, already formatted, e.g. &quot;~ 500000 UAH&quot;.
+ */
+price?: string
+
+priceLabel?: string = &#39;Required amount&#39;
+
+text?: string
+
+title: string</code></pre>
+          </div>
+        </div>
+    
+        <div class="panel panel-stories">
+          
+          
+          
+          <div class="note ok">
+                <div class="row">
+                  <span class="ex-name">Imports</span>
+                </div>
+                <pre><code>import { ListCard } from 'sartr-ui';</code></pre>
+              </div>
+          
+          
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Default</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Default = () =&gt; &lt;ListCard
+    title=&quot;Institute for Problems of Cryobiology and Cryomedicine&quot;
+    text=&quot;Institute for Problems of Cryobiology and Cryomedicine&quot;
+    price=&quot;~ 500000 UAH&quot;
+    href=&quot;#&quot; /&gt;;</code></pre>
+              
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Without Price</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const WithoutPrice = () =&gt; &lt;ListCard
+    title=&quot;Institute for Problems of Cryobiology and Cryomedicine&quot;
+    text=&quot;Institute for Problems of Cryobiology and Cryomedicine&quot;
+    price={undefined}
+    href=&quot;#&quot; /&gt;;</code></pre>
+              
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Stacked</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Stacked = () =&gt; &lt;div className=&quot;list-cards&quot;&gt;
+    &lt;ListCard
+        title=&quot;Institute for Problems of Cryobiology and Cryomedicine&quot;
+        text=&quot;Institute for Problems of Cryobiology and Cryomedicine&quot;
+        price=&quot;~ 500000 UAH&quot;
+        href=&quot;#&quot; /&gt;
+    &lt;ListCard
+        text=&quot;Institute for Problems of Cryobiology and Cryomedicine&quot;
+        href=&quot;#&quot;
+        title=&quot;Berdiansk State Pedagogical University&quot;
+        price=&quot;~ 1200000 UAH&quot; /&gt;
+&lt;/div&gt;;</code></pre>
+              
+            </div>
+        </div>
+    
+    
+  </div>
+</article>
+<article
+  id="atoms-loader"
+  class="card 
+  no-error
+  no-info
+  no-story-error
+  no-story-warning
+  
+  no-doc-error"
+  role="listitem"
+  aria-label="Loader">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> Loader</h2>
+      <div class="badges">
+        <label for="c-18-atoms-loader-props" class="badge ok as-toggle">1 prop type</label>
+        
+        <label for="c-18-atoms-loader-stories" class="badge ok as-toggle">2 stories</label>
+        
+        
+      </div>
+    </div>
+    <div class="meta" title="./src/components/Loader/Loader.stories.tsx">atoms-loader · ./src/components/Loader/Loader.stories.tsx</div>
+    
+    <div class="hint">The site&#39;s `.loader` spinner, shown while a list page fetches more items.</div>
+    
+  </div>
+
+  <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
+  
+  
+  <input id="c-18-atoms-loader-stories" class="tg tg-stories" type="checkbox" hidden />
+  
+  
+  <input id="c-18-atoms-loader-props" class="tg tg-props" type="checkbox" hidden />
+
+  <div class="panels">
+    
+    
+    
+        <div class="panel panel-props">
+          <div class="note ok">
+            <div class="row">
+              <span class="ex-name">Prop types <small>(react-docgen)</small></span>
+              <span class="badge ok">1 prop type</span>
+            </div>
+            <pre><code>Component: src/components/Loader/Loader.tsx::Loader</code></pre>
+            <pre><code>Props:</code></pre>
+            <pre><code>text?: string</code></pre>
+          </div>
+        </div>
+    
+        <div class="panel panel-stories">
+          
+          
+          
+          <div class="note ok">
+                <div class="row">
+                  <span class="ex-name">Imports</span>
+                </div>
+                <pre><code>import { Loader } from 'sartr-ui';</code></pre>
+              </div>
+          
+          
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Default</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Default = () =&gt; &lt;Loader /&gt;;</code></pre>
+              
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">With Text</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const WithText = () =&gt; &lt;Loader text=&quot;Loading&quot; /&gt;;</code></pre>
+              
+            </div>
+        </div>
+    
+    
+  </div>
+</article>
+<article
+  id="pages-notfoundpage"
+  class="card 
+  no-error
+  no-info
+  no-story-error
+  no-story-warning
+  missing-api
+  no-doc-error"
+  role="listitem"
+  aria-label="NotFoundPage">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> NotFoundPage</h2>
+      <div class="badges">
+        <span class="badge">no API description</span>
+        
+        <label for="c-19-pages-notfoundpage-stories" class="badge ok as-toggle">1 story</label>
+        
+        
+      </div>
+    </div>
+    <div class="meta" title="./src/pages/NotFoundPage/NotFoundPage.stories.tsx">pages-notfoundpage · ./src/pages/NotFoundPage/NotFoundPage.stories.tsx</div>
+    
+    <div class="hint">Anything the router cannot place, in the site&#39;s own `.errors` template.</div>
+    
+  </div>
+
+  <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
+  
+  
+  <input id="c-19-pages-notfoundpage-stories" class="tg tg-stories" type="checkbox" hidden />
+  
+  
+  
+
+  <div class="panels">
+    
+    
+    
+    
+        <div class="panel panel-stories">
+          
+          
+          
+          <div class="note ok">
+                <div class="row">
+                  <span class="ex-name">Imports</span>
+                </div>
+                <pre><code>import { NotFoundPage } from 'sartr-ui';</code></pre>
+              </div>
+          
+          
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Default</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Default = () =&gt; &lt;NotFoundPage /&gt;;</code></pre>
+              
+            </div>
+        </div>
+    
+    
+  </div>
+</article>
+<article
+  id="molecules-pagination"
+  class="card 
+  no-error
+  no-info
+  no-story-error
+  no-story-warning
+  
+  no-doc-error"
+  role="listitem"
+  aria-label="Pagination">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> Pagination</h2>
+      <div class="badges">
+        <label for="c-20-molecules-pagination-props" class="badge ok as-toggle">5 prop types</label>
+        
+        <label for="c-20-molecules-pagination-stories" class="badge ok as-toggle">3 stories</label>
+        
+        
+      </div>
+    </div>
+    <div class="meta" title="./src/components/Pagination/Pagination.stories.tsx">molecules-pagination · ./src/components/Pagination/Pagination.stories.tsx</div>
+    
+    <div class="hint">The site&#39;s `.pagination` block.</div>
+    
+  </div>
+
+  <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
+  
+  
+  <input id="c-20-molecules-pagination-stories" class="tg tg-stories" type="checkbox" hidden />
+  
+  
+  <input id="c-20-molecules-pagination-props" class="tg tg-props" type="checkbox" hidden />
+
+  <div class="panels">
+    
+    
+    
+        <div class="panel panel-props">
+          <div class="note ok">
+            <div class="row">
+              <span class="ex-name">Prop types <small>(react-docgen)</small></span>
+              <span class="badge ok">5 prop types</span>
+            </div>
+            <pre><code>Component: src/components/Pagination/Pagination.tsx::Pagination</code></pre>
+            <pre><code>Props:</code></pre>
+            <pre><code>current: number
+
+/**
+ * Builds the href for a page number. Omit to render buttons instead.
+ */
+hrefFor?: (page: number) =&gt; string
+
+labels?: { prev: string; next: string } = { prev: &#39;Previous&#39;, next: &#39;Next&#39; }
+
+onChange?: (page: number) =&gt; void
+
+total: number</code></pre>
+          </div>
+        </div>
+    
+        <div class="panel panel-stories">
+          
+          
+          
+          <div class="note ok">
+                <div class="row">
+                  <span class="ex-name">Imports</span>
+                </div>
+                <pre><code>import { Pagination } from 'sartr-ui';</code></pre>
+              </div>
+          
+          
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">First Page</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const FirstPage = () =&gt; &lt;Pagination current={1} total={7} /&gt;;</code></pre>
+              
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Middle Page</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const MiddlePage = () =&gt; &lt;Pagination current={4} total={7} /&gt;;</code></pre>
+              
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Last Page</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const LastPage = () =&gt; &lt;Pagination current={7} total={7} /&gt;;</code></pre>
+              
+            </div>
+        </div>
+    
+    
+  </div>
+</article>
+<article
+  id="molecules-popularrequests"
+  class="card 
+  no-error
+  no-info
+  no-story-error
+  no-story-warning
+  
+  no-doc-error"
+  role="listitem"
+  aria-label="PopularRequests">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> PopularRequests</h2>
+      <div class="badges">
+        <label for="c-21-molecules-popularrequests-props" class="badge ok as-toggle">6 prop types</label>
+        
+        <label for="c-21-molecules-popularrequests-stories" class="badge ok as-toggle">2 stories</label>
+        
+        
+      </div>
+    </div>
+    <div class="meta" title="./src/components/PopularRequests/PopularRequests.stories.tsx">molecules-popularrequests · ./src/components/PopularRequests/PopularRequests.stories.tsx</div>
+    
+    <div class="hint">The `.popular-requests` cluster under the home-page search field.</div>
+    
+  </div>
+
+  <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
+  
+  
+  <input id="c-21-molecules-popularrequests-stories" class="tg tg-stories" type="checkbox" hidden />
+  
+  
+  <input id="c-21-molecules-popularrequests-props" class="tg tg-props" type="checkbox" hidden />
+
+  <div class="panels">
+    
+    
+    
+        <div class="panel panel-props">
+          <div class="note ok">
+            <div class="row">
+              <span class="ex-name">Prop types <small>(react-docgen)</small></span>
+              <span class="badge ok">6 prop types</span>
+            </div>
+            <pre><code>Component: src/components/PopularRequests/PopularRequests.tsx::PopularRequests</code></pre>
+            <pre><code>Props:</code></pre>
+            <pre><code>className?: string = &#39;&#39;
+
+items: PopularRequest[]
+
+/**
+ * Counts below this are left off the pill. A visible `1` on the first screen
+ * says &quot;this database is empty&quot; louder than the rest of the page says the
+ * opposite, and the tag is still worth offering as a query.
+ */
+minCount?: number = 10
+
+onSelect?: (label: string) =&gt; void
+
+/**
+ * Drop the counts altogether. The home page does: on the first screen the
+ * black discs read as data about the database rather than as a way in.
+ */
+showCounts?: boolean = true
+
+title?: string = &#39;Popular requests&#39;</code></pre>
+          </div>
+        </div>
+    
+        <div class="panel panel-stories">
+          
+          
+          
+          <div class="note ok">
+                <div class="row">
+                  <span class="ex-name">Imports</span>
+                </div>
+                <pre><code>import { PopularRequests } from 'sartr-ui';</code></pre>
+              </div>
+          
+          
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Default</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Default = () =&gt; &lt;PopularRequests
+    items={[
+      { label: &#39;Teaching&#39;, count: 101 },
+      { label: &#39;Science popularization&#39;, count: 86 },
+      { label: &#39;Biology&#39;, count: 57 },
+      { label: &#39;Natural sciences&#39;, count: 55 },
+      { label: &#39;Biochemistry&#39;, count: 41 },
+    ]} /&gt;;</code></pre>
+              
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Ukrainian</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Ukrainian = () =&gt; &lt;PopularRequests
+    items={[
+      { label: &#39;Викладання&#39;, count: 101 },
+      { label: &#39;Популяризація науки&#39;, count: 86 },
+      { label: &#39;Біологія&#39;, count: 57 },
+    ]}
+    title=&quot;Популярні запити&quot; /&gt;;</code></pre>
+              
+            </div>
+        </div>
+    
+    
+  </div>
+</article>
+<article
+  id="cards-publicationcard"
+  class="card 
+  no-error
+  no-info
+  no-story-error
+  no-story-warning
+  
+  no-doc-error"
+  role="listitem"
+  aria-label="PublicationCard">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> PublicationCard</h2>
+      <div class="badges">
+        <label for="c-22-cards-publicationcard-props" class="badge ok as-toggle">5 prop types</label>
+        
+        <label for="c-22-cards-publicationcard-stories" class="badge ok as-toggle">2 stories</label>
+        
+        
+      </div>
+    </div>
+    <div class="meta" title="./src/components/PublicationCard/PublicationCard.stories.tsx">cards-publicationcard · ./src/components/PublicationCard/PublicationCard.stories.tsx</div>
+    
+    <div class="hint">The `.project-card` block — a publication on an expert&#39;s profile.</div>
+    
+  </div>
+
+  <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
+  
+  
+  <input id="c-22-cards-publicationcard-stories" class="tg tg-stories" type="checkbox" hidden />
+  
+  
+  <input id="c-22-cards-publicationcard-props" class="tg tg-props" type="checkbox" hidden />
+
+  <div class="panels">
+    
+    
+    
+        <div class="panel panel-props">
+          <div class="note ok">
+            <div class="row">
+              <span class="ex-name">Prop types <small>(react-docgen)</small></span>
+              <span class="badge ok">5 prop types</span>
+            </div>
+            <pre><code>Component: src/components/PublicationCard/PublicationCard.tsx::PublicationCard</code></pre>
+            <pre><code>Props:</code></pre>
+            <pre><code>buttonLabel?: string = &#39;Read&#39;
+
+href: string
+
+/**
+ * Free-form citation line: authors, journal, year, pages.
+ */
+meta?: string
+
+role?: string
+
+title: string</code></pre>
+          </div>
+        </div>
+    
+        <div class="panel panel-stories">
+          
+          
+          
+          <div class="note ok">
+                <div class="row">
+                  <span class="ex-name">Imports</span>
+                </div>
+                <pre><code>import { PublicationCard } from 'sartr-ui';</code></pre>
+              </div>
+          
+          
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Default</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Default = () =&gt; &lt;PublicationCard
+    title=&quot;Occasionalism as a Mean for Creating Comic Effect in Ukrainian Humorous and Satirical Poetry of the 1950s–1980s&quot;
+    meta=&quot;Author: Sofiia Fedzhora, Journal: Studia Linguistica, Year: 2020, Vol. 16, Pages: 129–142&quot;
+    role=&quot;Role: Author&quot;
+    href=&quot;#&quot; /&gt;;</code></pre>
+              
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Title Only</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const TitleOnly = () =&gt; &lt;PublicationCard
+    title=&quot;Occasionalism as a Mean for Creating Comic Effect in Ukrainian Humorous and Satirical Poetry of the 1950s–1980s&quot;
+    meta={undefined}
+    role={undefined}
+    href=&quot;#&quot; /&gt;;</code></pre>
+              
+            </div>
+        </div>
+    
+    
+  </div>
+</article>
+<article
+  id="molecules-quote"
+  class="card 
+  no-error
+  no-info
+  no-story-error
+  no-story-warning
+  
+  no-doc-error"
+  role="listitem"
+  aria-label="Quote">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> Quote</h2>
+      <div class="badges">
+        <label for="c-23-molecules-quote-props" class="badge ok as-toggle">3 prop types</label>
+        
+        <label for="c-23-molecules-quote-stories" class="badge ok as-toggle">2 stories</label>
+        
+        
+      </div>
+    </div>
+    <div class="meta" title="./src/components/Quote/Quote.stories.tsx">molecules-quote · ./src/components/Quote/Quote.stories.tsx</div>
+    
+    <div class="hint">The `.quote` block used inside stories.</div>
+    
+  </div>
+
+  <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
+  
+  
+  <input id="c-23-molecules-quote-stories" class="tg tg-stories" type="checkbox" hidden />
+  
+  
+  <input id="c-23-molecules-quote-props" class="tg tg-props" type="checkbox" hidden />
+
+  <div class="panels">
+    
+    
+    
+        <div class="panel panel-props">
+          <div class="note ok">
+            <div class="row">
+              <span class="ex-name">Prop types <small>(react-docgen)</small></span>
+              <span class="badge ok">3 prop types</span>
+            </div>
+            <pre><code>Component: src/components/Quote/Quote.tsx::Quote</code></pre>
+            <pre><code>Props:</code></pre>
+            <pre><code>/**
+ * Speaker name, printed above the quote on the site.
+ */
+name: string
+
+position?: string
+
+text: string</code></pre>
+          </div>
+        </div>
+    
+        <div class="panel panel-stories">
+          
+          
+          
+          <div class="note ok">
+                <div class="row">
+                  <span class="ex-name">Imports</span>
+                </div>
+                <pre><code>import { Quote } from 'sartr-ui';</code></pre>
+              </div>
+          
+          
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Default</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Default = () =&gt; &lt;Quote
+    name=&quot;Serhii Plokhii&quot;
+    text=&quot;The Ukrainian scientists on the portraits painted by the official artist of the Nobel Prize Committee will never receive a Nobel Prize.&quot;
+    position=&quot;Director of the Ukrainian Research Institute at Harvard&quot; /&gt;;</code></pre>
+              
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Without Position</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const WithoutPosition = () =&gt; &lt;Quote
+    name=&quot;Serhii Plokhii&quot;
+    text=&quot;The Ukrainian scientists on the portraits painted by the official artist of the Nobel Prize Committee will never receive a Nobel Prize.&quot;
+    position={undefined} /&gt;;</code></pre>
+              
+            </div>
+        </div>
+    
+    
+  </div>
+</article>
+<article
+  id="pages-researchpage"
+  class="card 
+  no-error
+  no-info
+  no-story-error
+  no-story-warning
+  missing-api
+  no-doc-error"
+  role="listitem"
+  aria-label="ResearchPage">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> ResearchPage</h2>
+      <div class="badges">
+        <span class="badge">no API description</span>
+        
+        <label for="c-24-pages-researchpage-stories" class="badge ok as-toggle">1 story</label>
+        
+        
+      </div>
+    </div>
+    <div class="meta" title="./src/pages/ResearchPage/ResearchPage.stories.tsx">pages-researchpage · ./src/pages/ResearchPage/ResearchPage.stories.tsx</div>
+    
+    <div class="hint">`/research` — the studies the project publishes, &quot;Policies&quot; on the old site.</div>
+    
+  </div>
+
+  <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
+  
+  
+  <input id="c-24-pages-researchpage-stories" class="tg tg-stories" type="checkbox" hidden />
+  
+  
+  
+
+  <div class="panels">
+    
+    
+    
+    
+        <div class="panel panel-stories">
+          
+          
+          
+          <div class="note ok">
+                <div class="row">
+                  <span class="ex-name">Imports</span>
+                </div>
+                <pre><code>import { ResearchPage } from 'sartr-ui';</code></pre>
+              </div>
+          
+          
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Default</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Default = () =&gt; &lt;ResearchPage /&gt;;</code></pre>
+              
+            </div>
+        </div>
+    
+    
+  </div>
+</article>
+<article
+  id="pages-researchpaperpage"
+  class="card 
+  no-error
+  no-info
+  no-story-error
+  no-story-warning
+  missing-api
+  no-doc-error"
+  role="listitem"
+  aria-label="ResearchPaperPage">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> ResearchPaperPage</h2>
+      <div class="badges">
+        <span class="badge">no API description</span>
+        
+        <label for="c-25-pages-researchpaperpage-stories" class="badge ok as-toggle">1 story</label>
+        
+        
+      </div>
+    </div>
+    <div class="meta" title="./src/pages/ResearchPaperPage/ResearchPaperPage.stories.tsx">pages-researchpaperpage · ./src/pages/ResearchPaperPage/ResearchPaperPage.stories.tsx</div>
+    
+    <div class="hint">`/research/:slug` — one study, with the file in the aside.</div>
+    
+  </div>
+
+  <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
+  
+  
+  <input id="c-25-pages-researchpaperpage-stories" class="tg tg-stories" type="checkbox" hidden />
+  
+  
+  
+
+  <div class="panels">
+    
+    
+    
+    
+        <div class="panel panel-stories">
+          
+          
+          
+          <div class="note ok">
+                <div class="row">
+                  <span class="ex-name">Imports</span>
+                </div>
+                <pre><code>import { ResearchPaperPage } from 'sartr-ui';</code></pre>
+              </div>
+          
+          
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Default</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Default = () =&gt; &lt;ResearchPaperPage /&gt;;</code></pre>
+              
+            </div>
+        </div>
+    
+    
+  </div>
+</article>
+<article
+  id="sections-searchhero"
+  class="card 
+  no-error
+  no-info
+  no-story-error
+  no-story-warning
+  
+  no-doc-error"
+  role="listitem"
+  aria-label="SearchHero">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> SearchHero</h2>
+      <div class="badges">
+        <label for="c-26-sections-searchhero-props" class="badge ok as-toggle">10 prop types</label>
+        
+        <label for="c-26-sections-searchhero-stories" class="badge ok as-toggle">2 stories</label>
+        
+        
+      </div>
+    </div>
+    <div class="meta" title="./src/components/SearchHero/SearchHero.stories.tsx">sections-searchhero · ./src/components/SearchHero/SearchHero.stories.tsx</div>
+    
+    <div class="hint">The `.search-hero` section as the live site ships it: one headline, the
+search field, and the popular requests beside a supporting note.
+
+Kept as-is. `HomeHero` is the newer first screen; this one stays available
+for pages that still want the shipped layout.</div>
+    
+  </div>
+
+  <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
+  
+  
+  <input id="c-26-sections-searchhero-stories" class="tg tg-stories" type="checkbox" hidden />
+  
+  
+  <input id="c-26-sections-searchhero-props" class="tg tg-props" type="checkbox" hidden />
+
+  <div class="panels">
+    
+    
+    
+        <div class="panel panel-props">
+          <div class="note ok">
+            <div class="row">
+              <span class="ex-name">Prop types <small>(react-docgen)</small></span>
+              <span class="badge ok">10 prop types</span>
+            </div>
+            <pre><code>Component: src/components/SearchHero/SearchHero.tsx::SearchHero</code></pre>
+            <pre><code>Props:</code></pre>
+            <pre><code>fieldLabel: string
+
+/**
+ * Hold the full screen, as the home page&#39;s first section does. The site&#39;s
+ * own search pages let the hero take only the height it needs, with the
+ * results beginning right under it.
+ */
+full?: boolean = true
+
+/**
+ * Supporting copy in the bottom-left column.
+ */
+note?: string
+
+noteLink?: { label: string; href: string }
+
+onSearch?: (query: string) =&gt; void
+
+/**
+ * A popular request is a query of its own — the site runs the search on it.
+ */
+onTagSelect?: (label: string) =&gt; void
+
+popular?: PopularRequest[] = []
+
+popularTitle?: string
+
+submitLabel: string
+
+title: string</code></pre>
+          </div>
+        </div>
+    
+        <div class="panel panel-stories">
+          
+          
+          
+          <div class="note ok">
+                <div class="row">
+                  <span class="ex-name">Imports</span>
+                </div>
+                <pre><code>import { SearchHero } from 'sartr-ui';</code></pre>
+              </div>
+          
+          
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Default</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Default = () =&gt; &lt;SearchHero
+    title=&quot;Find Ukrainian scientists for collaboration&quot;
+    fieldLabel=&quot;Scientific field or name&quot;
+    submitLabel=&quot;Find a scientist&quot;
+    note=&quot;Mark the scientific field that interests you — find and involve Ukrainian scientists in your own projects&quot;
+    noteLink={{ label: &#39;To the full database of scientists&#39;, href: &#39;#&#39; }}
+    popular={[
+      { label: &#39;Teaching&#39;, count: 101 },
+      { label: &#39;Science popularization&#39;, count: 86 },
+      { label: &#39;Biology&#39;, count: 57 },
+      { label: &#39;Natural sciences&#39;, count: 55 },
+      { label: &#39;Biochemistry&#39;, count: 41 },
+    ]} /&gt;;</code></pre>
+              
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Without Popular</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const WithoutPopular = () =&gt; &lt;SearchHero
+    title=&quot;Find Ukrainian scientists for collaboration&quot;
+    fieldLabel=&quot;Scientific field or name&quot;
+    submitLabel=&quot;Find a scientist&quot;
+    note=&quot;Mark the scientific field that interests you — find and involve Ukrainian scientists in your own projects&quot;
+    noteLink={{ label: &#39;To the full database of scientists&#39;, href: &#39;#&#39; }}
+    popular={[]} /&gt;;</code></pre>
+              
+            </div>
+        </div>
+    
+    
+  </div>
+</article>
+<article
+  id="layout-sectiondeck"
+  class="card 
+  no-error
+  no-info
+  no-story-error
+  has-story-warning
+  
+  no-doc-error"
+  role="listitem"
+  aria-label="SectionDeck">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> SectionDeck</h2>
+      <div class="badges">
+        <label for="c-27-layout-sectiondeck-props" class="badge ok as-toggle">3 prop types</label>
+        
+        <label for="c-27-layout-sectiondeck-stories" class="badge ok as-toggle">3 stories · 3 incomplete</label>
+        
+        
+      </div>
+    </div>
+    <div class="meta" title="./src/components/SectionDeck/SectionDeck.stories.tsx">layout-sectiondeck · ./src/components/SectionDeck/SectionDeck.stories.tsx</div>
+    
+    <div class="hint">One screen at a time, the way the home page reads on the live site: the
+next section slides up over the one you are leaving, which is then parked
+out of view. A gesture moves exactly one section, and the next gesture is
+ignored until the slide has finished.
+
+Sections taller than the screen scroll inside themselves first; the deck
+only takes over once that inner scroll has reached its end.</div>
+    
+  </div>
+
+  <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
+  
+  
+  <input id="c-27-layout-sectiondeck-stories" class="tg tg-stories" type="checkbox" hidden />
+  
+  
+  <input id="c-27-layout-sectiondeck-props" class="tg tg-props" type="checkbox" hidden />
+
+  <div class="panels">
+    
+    
+    
+        <div class="panel panel-props">
+          <div class="note ok">
+            <div class="row">
+              <span class="ex-name">Prop types <small>(react-docgen)</small></span>
+              <span class="badge ok">3 prop types</span>
+            </div>
+            <pre><code>Component: src/components/SectionDeck/SectionDeck.tsx::SectionDeck</code></pre>
+            <pre><code>Props:</code></pre>
+            <pre><code>/**
+ * Turn the deck off and let the sections stack down the page as usual.
+ */
+enabled?: boolean = true
+
+/**
+ * Called with the tone of the section that has come to the front.
+ */
+onToneChange?: (tone: HeaderTone) =&gt; void
+
+sections: DeckSection[]</code></pre>
+          </div>
+        </div>
+    
+        <div class="panel panel-stories">
+          
+          
+          
+          <div class="note ok">
+                <div class="row">
+                  <span class="ex-name">Imports</span>
+                </div>
+                <pre><code>import { SectionDeck } from 'sartr-ui';</code></pre>
+              </div>
+          
+          
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Default</span>
+                <span class="badge info">incomplete example</span>
+              </div>
+              
+              <div class="hint">A gesture moves one section; the next slides up over the one you leave.</div>
+              <pre><code>const Default = () =&gt; &lt;SectionDeck
+    sections={[
+      { key: &#39;one&#39;, tone: &#39;black&#39; as HeaderTone, node: panel(&#39;One — scroll down&#39;, &#39;#b5c6cd&#39;, &#39;#000&#39;) },
+      { key: &#39;two&#39;, tone: &#39;white&#39; as HeaderTone, node: panel(&#39;Two&#39;, &#39;#000&#39;, &#39;#fff&#39;) },
+      { key: &#39;three&#39;, tone: &#39;black&#39; as HeaderTone, node: panel(&#39;Three&#39;, &#39;#f0eebe&#39;, &#39;#000&#39;) },
+    ]} /&gt;;</code></pre>
+              <div class="snippet-warning">Incomplete snippet: `HeaderTone`, `panel` could not be resolved statically.</div>
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Reports Tone</span>
+                <span class="badge info">incomplete example</span>
+              </div>
+              
+              <div class="hint">The tone each section asks the header for, reported as you move.</div>
+              <pre><code>const ReportsTone = () =&gt; &lt;ToneReadout
+    sections={[
+      { key: &#39;one&#39;, tone: &#39;black&#39; as HeaderTone, node: panel(&#39;One — scroll down&#39;, &#39;#b5c6cd&#39;, &#39;#000&#39;) },
+      { key: &#39;two&#39;, tone: &#39;white&#39; as HeaderTone, node: panel(&#39;Two&#39;, &#39;#000&#39;, &#39;#fff&#39;) },
+      { key: &#39;three&#39;, tone: &#39;black&#39; as HeaderTone, node: panel(&#39;Three&#39;, &#39;#f0eebe&#39;, &#39;#000&#39;) },
+    ]} /&gt;;</code></pre>
+              <div class="snippet-warning">Incomplete snippet: `HeaderTone`, `panel` could not be resolved statically.</div>
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Flow</span>
+                <span class="badge info">incomplete example</span>
+              </div>
+              
+              <div class="hint">Off the deck the sections simply stack down the page.</div>
+              <pre><code>const Flow = () =&gt; &lt;SectionDeck
+    sections={[
+      { key: &#39;one&#39;, tone: &#39;black&#39; as HeaderTone, node: panel(&#39;One — scroll down&#39;, &#39;#b5c6cd&#39;, &#39;#000&#39;) },
+      { key: &#39;two&#39;, tone: &#39;white&#39; as HeaderTone, node: panel(&#39;Two&#39;, &#39;#000&#39;, &#39;#fff&#39;) },
+      { key: &#39;three&#39;, tone: &#39;black&#39; as HeaderTone, node: panel(&#39;Three&#39;, &#39;#f0eebe&#39;, &#39;#000&#39;) },
+    ]}
+    enabled={false} /&gt;;</code></pre>
+              <div class="snippet-warning">Incomplete snippet: `HeaderTone`, `panel` could not be resolved statically.</div>
+            </div>
+        </div>
+    
+    
+  </div>
+</article>
+<article
+  id="molecules-sectionintro"
+  class="card 
+  no-error
+  no-info
+  no-story-error
+  no-story-warning
+  
+  no-doc-error"
+  role="listitem"
+  aria-label="SectionIntro">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> SectionIntro</h2>
+      <div class="badges">
+        <label for="c-28-molecules-sectionintro-props" class="badge ok as-toggle">4 prop types</label>
+        
+        <label for="c-28-molecules-sectionintro-stories" class="badge ok as-toggle">3 stories</label>
+        
+        
+      </div>
+    </div>
+    <div class="meta" title="./src/components/SectionIntro/SectionIntro.stories.tsx">molecules-sectionintro · ./src/components/SectionIntro/SectionIntro.stories.tsx</div>
+    
+    <div class="hint">The `.info` block that introduces a section and links to its full list.</div>
+    
+  </div>
+
+  <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
+  
+  
+  <input id="c-28-molecules-sectionintro-stories" class="tg tg-stories" type="checkbox" hidden />
+  
+  
+  <input id="c-28-molecules-sectionintro-props" class="tg tg-props" type="checkbox" hidden />
+
+  <div class="panels">
+    
+    
+    
+        <div class="panel panel-props">
+          <div class="note ok">
+            <div class="row">
+              <span class="ex-name">Prop types <small>(react-docgen)</small></span>
+              <span class="badge ok">4 prop types</span>
+            </div>
+            <pre><code>Component: src/components/SectionIntro/SectionIntro.tsx::SectionIntro</code></pre>
+            <pre><code>Props:</code></pre>
+            <pre><code>/**
+ * Renders an `h1` instead of the default `h2` when this is the page title.
+ */
+as?: &#39;h1&#39; | &#39;h2&#39; = &#39;h2&#39;
+
+link?: { label: string; href: string }
+
+text?: string
+
+title: string</code></pre>
+          </div>
+        </div>
+    
+        <div class="panel panel-stories">
+          
+          
+          
+          <div class="note ok">
+                <div class="row">
+                  <span class="ex-name">Imports</span>
+                </div>
+                <pre><code>import { SectionIntro } from 'sartr-ui';</code></pre>
+              </div>
+          
+          
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Default</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Default = () =&gt; &lt;SectionIntro
+    title=&quot;Assistance in reconstruction&quot;
+    text=&quot;Scientific infrastructure damaged during the war&quot;
+    link={{ label: &#39;All projects&#39;, href: &#39;#&#39; }} /&gt;;</code></pre>
+              
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">As Page Title</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const AsPageTitle = () =&gt; &lt;SectionIntro
+    title=&quot;Assistance in reconstruction&quot;
+    text=&quot;Scientific infrastructure damaged during the war&quot;
+    link={{ label: &#39;All projects&#39;, href: &#39;#&#39; }}
+    as=&quot;h1&quot; /&gt;;</code></pre>
+              
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Title Only</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const TitleOnly = () =&gt; &lt;SectionIntro title=&quot;Assistance in reconstruction&quot; text={undefined} link={undefined} /&gt;;</code></pre>
+              
+            </div>
+        </div>
+    
+    
+  </div>
+</article>
+<article
+  id="molecules-select"
+  class="card 
+  no-error
+  no-info
+  no-story-error
+  no-story-warning
+  
+  no-doc-error"
+  role="listitem"
+  aria-label="Select">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> Select</h2>
+      <div class="badges">
+        <label for="c-29-molecules-select-props" class="badge ok as-toggle">5 prop types</label>
+        
+        <label for="c-29-molecules-select-stories" class="badge ok as-toggle">3 stories</label>
+        
+        
+      </div>
+    </div>
+    <div class="meta" title="./src/components/Select/Select.stories.tsx">molecules-select · ./src/components/Select/Select.stories.tsx</div>
+    
+    <div class="hint">The site&#39;s `.riskCustom-select` — a bordered button that expands a panel.
+Open state is the `active` class on the root, matching the site&#39;s own JS.
+
+Both parts are squircles: the trigger is the button pill, and the panel is
+a 1px ring at radius 25 (the site&#39;s `--squircle-radius` there). When the
+select opens, the site drops the trigger&#39;s outline to 0 — the ring fills in
+solid black, which is what turns its label white.</div>
+    
+  </div>
+
+  <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
+  
+  
+  <input id="c-29-molecules-select-stories" class="tg tg-stories" type="checkbox" hidden />
+  
+  
+  <input id="c-29-molecules-select-props" class="tg tg-props" type="checkbox" hidden />
+
+  <div class="panels">
+    
+    
+    
+        <div class="panel panel-props">
+          <div class="note ok">
+            <div class="row">
+              <span class="ex-name">Prop types <small>(react-docgen)</small></span>
+              <span class="badge ok">5 prop types</span>
+            </div>
+            <pre><code>Component: src/components/Select/Select.tsx::Select</code></pre>
+            <pre><code>Props:</code></pre>
+            <pre><code>className?: string = &#39;&#39;
+
+defaultOpen?: boolean = false
+
+onSelect?: (label: string) =&gt; void
+
+options: SelectOption[]
+
+/**
+ * Label on the closed button — the site shows the active option here.
+ */
+value: string</code></pre>
+          </div>
+        </div>
+    
+        <div class="panel panel-stories">
+          
+          
+          
+          <div class="note ok">
+                <div class="row">
+                  <span class="ex-name">Imports</span>
+                </div>
+                <pre><code>import { Select } from 'sartr-ui';</code></pre>
+              </div>
+          
+          
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Closed</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Closed = () =&gt; &lt;Select value=&quot;Stories&quot; options={[{ label: &#39;Stories&#39; }, { label: &#39;Blogs&#39; }]} /&gt;;</code></pre>
+              
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Open</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Open = () =&gt; &lt;Select
+    value=&quot;Stories&quot;
+    options={[{ label: &#39;Stories&#39; }, { label: &#39;Blogs&#39; }]}
+    defaultOpen /&gt;;</code></pre>
+              
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Many Options</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const ManyOptions = () =&gt; &lt;Select
+    value=&quot;All fields&quot;
+    options={[
+      { label: &#39;All fields&#39; },
+      { label: &#39;Biochemistry&#39; },
+      { label: &#39;Biology&#39; },
+      { label: &#39;Natural sciences&#39; },
+      { label: &#39;Teaching&#39; },
+    ]}
+    defaultOpen /&gt;;</code></pre>
+              
+            </div>
+        </div>
+    
+    
+  </div>
+</article>
+<article
+  id="sections-sitefooter"
+  class="card 
+  no-error
+  no-info
+  no-story-error
+  no-story-warning
+  
+  no-doc-error"
+  role="listitem"
+  aria-label="SiteFooter">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> SiteFooter</h2>
+      <div class="badges">
+        <label for="c-30-sections-sitefooter-props" class="badge ok as-toggle">6 prop types</label>
+        
+        <label for="c-30-sections-sitefooter-stories" class="badge ok as-toggle">2 stories</label>
+        
+        
+      </div>
+    </div>
+    <div class="meta" title="./src/components/SiteFooter/SiteFooter.stories.tsx">sections-sitefooter · ./src/components/SiteFooter/SiteFooter.stories.tsx</div>
+    
+    <div class="hint">The site&#39;s `.footer` — the &quot;Want to help?&quot; contact section.</div>
+    
+  </div>
+
+  <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
+  
+  
+  <input id="c-30-sections-sitefooter-stories" class="tg tg-stories" type="checkbox" hidden />
+  
+  
+  <input id="c-30-sections-sitefooter-props" class="tg tg-props" type="checkbox" hidden />
+
+  <div class="panels">
+    
+    
+    
+        <div class="panel panel-props">
+          <div class="note ok">
+            <div class="row">
+              <span class="ex-name">Prop types <small>(react-docgen)</small></span>
+              <span class="badge ok">6 prop types</span>
+            </div>
+            <pre><code>Component: src/components/SiteFooter/SiteFooter.tsx::SiteFooter</code></pre>
+            <pre><code>Props:</code></pre>
+            <pre><code>formTitle?: string = &#39;Fill out the form or contact us&#39;
+
+/**
+ * Sponsor and implementer columns on the right.
+ */
+groups?: SupportGroup[] = []
+
+labels?: { name: string; email: string; topic: string; text: string } = { name: &#39;Name&#39;, email: &#39;Email&#39;, topic: &#39;Topic&#39;, text: &#39;Text&#39; }
+
+onSubmit?: (event: FormEvent&lt;HTMLFormElement&gt;) =&gt; void
+
+submitLabel?: string = &#39;Send&#39;
+
+title?: string = &#39;Want to help?&#39;</code></pre>
+          </div>
+        </div>
+    
+        <div class="panel panel-stories">
+          
+          
+          
+          <div class="note ok">
+                <div class="row">
+                  <span class="ex-name">Imports</span>
+                </div>
+                <pre><code>import { SiteFooter } from 'sartr-ui';</code></pre>
+              </div>
+          
+          
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Default</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Default = () =&gt; &lt;SiteFooter
+    groups={[
+      {
+        title: &#39;The project is supported by:&#39;,
+        links: [
+          { label: &#39;Press, Education and Culture Department of the US Embassy in Ukraine&#39;, href: &#39;#&#39; },
+          { label: &#39;Alfred P. Sloan Foundation&#39;, href: &#39;#&#39; },
+          { label: &#39;Ministry of Education and Science of Ukraine&#39;, href: &#39;#&#39; },
+          { label: &#39;National research fund&#39;, href: &#39;#&#39; },
+        ],
+      },
+      {
+        title: &#39;Responsible for project implementation:&#39;,
+        links: [{ label: &#39;NGO &quot;Kunsht&quot;&#39;, href: &#39;#&#39; }],
+      },
+    ]} /&gt;;</code></pre>
+              
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Ukrainian</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Ukrainian = () =&gt; &lt;SiteFooter
+    groups={[
+      {
+        title: &#39;The project is supported by:&#39;,
+        links: [
+          { label: &#39;Press, Education and Culture Department of the US Embassy in Ukraine&#39;, href: &#39;#&#39; },
+          { label: &#39;Alfred P. Sloan Foundation&#39;, href: &#39;#&#39; },
+          { label: &#39;Ministry of Education and Science of Ukraine&#39;, href: &#39;#&#39; },
+          { label: &#39;National research fund&#39;, href: &#39;#&#39; },
+        ],
+      },
+      {
+        title: &#39;Responsible for project implementation:&#39;,
+        links: [{ label: &#39;NGO &quot;Kunsht&quot;&#39;, href: &#39;#&#39; }],
+      },
+    ]}
+    title=&quot;Хочете допомогти?&quot;
+    formTitle=&quot;Заповніть форму або зв’яжіться з нами&quot;
+    submitLabel=&quot;Відправити&quot;
+    labels={{ name: &#39;Ім’я&#39;, email: &#39;Електронна пошта&#39;, topic: &#39;Тема&#39;, text: &#39;Текст&#39; }} /&gt;;</code></pre>
+              
+            </div>
+        </div>
+    
+    
+  </div>
+</article>
+<article
+  id="sections-siteheader"
+  class="card 
+  no-error
+  no-info
+  no-story-error
+  no-story-warning
+  
+  no-doc-error"
+  role="listitem"
+  aria-label="SiteHeader">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> SiteHeader</h2>
+      <div class="badges">
+        <label for="c-31-sections-siteheader-props" class="badge ok as-toggle">13 prop types</label>
+        
+        <label for="c-31-sections-siteheader-stories" class="badge ok as-toggle">3 stories</label>
+        
+        
+      </div>
+    </div>
+    <div class="meta" title="./src/components/SiteHeader/SiteHeader.stories.tsx">sections-siteheader · ./src/components/SiteHeader/SiteHeader.stories.tsx</div>
+    
+    <div class="hint">The site&#39;s `.header` — logo, language switch and the slide-in menu.</div>
+    
+  </div>
+
+  <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
+  
+  
+  <input id="c-31-sections-siteheader-stories" class="tg tg-stories" type="checkbox" hidden />
+  
+  
+  <input id="c-31-sections-siteheader-props" class="tg tg-props" type="checkbox" hidden />
+
+  <div class="panels">
+    
+    
+    
+        <div class="panel panel-props">
+          <div class="note ok">
+            <div class="row">
+              <span class="ex-name">Prop types <small>(react-docgen)</small></span>
+              <span class="badge ok">13 prop types</span>
+            </div>
+            <pre><code>Component: src/components/SiteHeader/SiteHeader.tsx::SiteHeader</code></pre>
+            <pre><code>Props:</code></pre>
+            <pre><code>/**
+ * A quiet mono link beside the burger — the way in for a scientist who came
+ * to add themselves rather than to search. Without it, self-submission is
+ * only reachable from inside the menu.
+ */
+action?: { label: string; href: string }
+
+/**
+ * Paints the header bar below 1024px, where the site gives it a solid
+ * background of its own. From 1024px up the bar is see-through and simply
+ * shows the section behind it, the way the site has it.
+ */
+background?: string
+
+/**
+ * The site inverts the header over dark heroes.
+ */
+dark?: boolean = true
+
+defaultMenuOpen?: boolean = false
+
+/**
+ * The site rules off the bar; drop it when the header sits on a hero.
+ */
+divider?: boolean = true
+
+/**
+ * Pins the bar to the top of the viewport, as `.header-fixed` does.
+ */
+fixed?: boolean = false
+
+homeHref?: string = &#39;#&#39;
+
+/**
+ * Language toggle shown on the left, e.g. &quot;UA&quot;.
+ */
+lang?: { label: string; href: string }
+
+/**
+ * Both languages side by side, the active one marked — takes precedence over `lang`.
+ */
+languages?: { label: string; href: string; active?: boolean }[]
+
+nav: NavItem[]
+
+social?: NavItem[] = []
+
+/**
+ * Paints the wordmark, language switch and burger — the site&#39;s own
+ * `data-color`: `black` over a light section, `white` over a dark one. Takes
+ * precedence over `dark`, and changing it crossfades, so a page can hand the
+ * header the tone of whatever section is on screen.
+ */
+tone?: &#39;black&#39; | &#39;white&#39;
+
+/**
+ * The site&#39;s wordmark is literally &quot;!!!&quot;.
+ */
+wordmark?: ReactNode = &#39;!!!&#39;</code></pre>
+          </div>
+        </div>
+    
+        <div class="panel panel-stories">
+          
+          
+          
+          <div class="note ok">
+                <div class="row">
+                  <span class="ex-name">Imports</span>
+                </div>
+                <pre><code>import { SiteHeader } from 'sartr-ui';</code></pre>
+              </div>
+          
+          
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Closed</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Closed = () =&gt; &lt;SiteHeader
+    nav={[
+      { label: &#39;Experts&#39;, href: &#39;#&#39; },
+      { label: &#39;Damaged infrastructure&#39;, href: &#39;#&#39; },
+      { label: &#39;Scientific societies&#39;, href: &#39;#&#39; },
+      { label: &#39;About the project&#39;, href: &#39;#&#39; },
+      { label: &#39;Stories&#39;, href: &#39;#&#39; },
+      { label: &#39;Policies&#39;, href: &#39;#&#39; },
+      { label: &#39;Contacts&#39;, href: &#39;#&#39; },
+    ]}
+    social={[
+      { label: &#39;Twitter&#39;, href: &#39;#&#39; },
+      { label: &#39;Linkedin&#39;, href: &#39;#&#39; },
+      { label: &#39;Facebook&#39;, href: &#39;#&#39; },
+    ]}
+    lang={{ label: &#39;UA&#39;, href: &#39;#&#39; }} /&gt;;</code></pre>
+              
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Menu Open</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const MenuOpen = () =&gt; &lt;SiteHeader
+    nav={[
+      { label: &#39;Experts&#39;, href: &#39;#&#39; },
+      { label: &#39;Damaged infrastructure&#39;, href: &#39;#&#39; },
+      { label: &#39;Scientific societies&#39;, href: &#39;#&#39; },
+      { label: &#39;About the project&#39;, href: &#39;#&#39; },
+      { label: &#39;Stories&#39;, href: &#39;#&#39; },
+      { label: &#39;Policies&#39;, href: &#39;#&#39; },
+      { label: &#39;Contacts&#39;, href: &#39;#&#39; },
+    ]}
+    social={[
+      { label: &#39;Twitter&#39;, href: &#39;#&#39; },
+      { label: &#39;Linkedin&#39;, href: &#39;#&#39; },
+      { label: &#39;Facebook&#39;, href: &#39;#&#39; },
+    ]}
+    lang={{ label: &#39;UA&#39;, href: &#39;#&#39; }}
+    defaultMenuOpen /&gt;;</code></pre>
+              
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">On Light Background</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const OnLightBackground = () =&gt; &lt;SiteHeader
+    nav={[
+      { label: &#39;Experts&#39;, href: &#39;#&#39; },
+      { label: &#39;Damaged infrastructure&#39;, href: &#39;#&#39; },
+      { label: &#39;Scientific societies&#39;, href: &#39;#&#39; },
+      { label: &#39;About the project&#39;, href: &#39;#&#39; },
+      { label: &#39;Stories&#39;, href: &#39;#&#39; },
+      { label: &#39;Policies&#39;, href: &#39;#&#39; },
+      { label: &#39;Contacts&#39;, href: &#39;#&#39; },
+    ]}
+    social={[
+      { label: &#39;Twitter&#39;, href: &#39;#&#39; },
+      { label: &#39;Linkedin&#39;, href: &#39;#&#39; },
+      { label: &#39;Facebook&#39;, href: &#39;#&#39; },
+    ]}
+    lang={{ label: &#39;UA&#39;, href: &#39;#&#39; }}
+    dark={false} /&gt;;</code></pre>
+              
+            </div>
+        </div>
+    
+    
+  </div>
+</article>
+<article
+  id="pages-societiespage"
+  class="card 
+  no-error
+  no-info
+  no-story-error
+  no-story-warning
+  missing-api
+  no-doc-error"
+  role="listitem"
+  aria-label="SocietiesPage">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> SocietiesPage</h2>
+      <div class="badges">
+        <span class="badge">no API description</span>
+        
+        <label for="c-32-pages-societiespage-stories" class="badge ok as-toggle">1 story</label>
+        
+        
+      </div>
+    </div>
+    <div class="meta" title="./src/pages/SocietiesPage/SocietiesPage.stories.tsx">pages-societiespage · ./src/pages/SocietiesPage/SocietiesPage.stories.tsx</div>
+    
+    <div class="hint">`/societies` — scientific societies. The same `.infrastructures-card` list
+as the damaged-infrastructure page, without the funding column.</div>
+    
+  </div>
+
+  <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
+  
+  
+  <input id="c-32-pages-societiespage-stories" class="tg tg-stories" type="checkbox" hidden />
+  
+  
+  
+
+  <div class="panels">
+    
+    
+    
+    
+        <div class="panel panel-stories">
+          
+          
+          
+          <div class="note ok">
+                <div class="row">
+                  <span class="ex-name">Imports</span>
+                </div>
+                <pre><code>import { SocietiesPage } from 'sartr-ui';</code></pre>
+              </div>
+          
+          
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Default</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Default = () =&gt; &lt;SocietiesPage /&gt;;</code></pre>
+              
+            </div>
+        </div>
+    
+    
+  </div>
+</article>
+<article
+  id="cards-societycard"
+  class="card 
+  no-error
+  no-info
+  no-story-error
+  no-story-warning
+  
+  no-doc-error"
+  role="listitem"
+  aria-label="SocietyCard">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> SocietyCard</h2>
+      <div class="badges">
+        <label for="c-33-cards-societycard-props" class="badge ok as-toggle">8 prop types</label>
+        
+        <label for="c-33-cards-societycard-stories" class="badge ok as-toggle">2 stories</label>
+        
+        
+      </div>
+    </div>
+    <div class="meta" title="./src/components/SocietyCard/SocietyCard.stories.tsx">cards-societycard · ./src/components/SocietyCard/SocietyCard.stories.tsx</div>
+    
+    <div class="hint">The `.infrastructures-card` block. Despite the class name the site uses it
+for scientific societies, so the component is named after what it shows.</div>
+    
+  </div>
+
+  <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
+  
+  
+  <input id="c-33-cards-societycard-stories" class="tg tg-stories" type="checkbox" hidden />
+  
+  
+  <input id="c-33-cards-societycard-props" class="tg tg-props" type="checkbox" hidden />
+
+  <div class="panels">
+    
+    
+    
+        <div class="panel panel-props">
+          <div class="note ok">
+            <div class="row">
+              <span class="ex-name">Prop types <small>(react-docgen)</small></span>
+              <span class="badge ok">8 prop types</span>
+            </div>
+            <pre><code>Component: src/components/SocietyCard/SocietyCard.tsx::SocietyCard</code></pre>
+            <pre><code>Props:</code></pre>
+            <pre><code>/**
+ * Funding still needed, already formatted. Damaged-infrastructure entries
+ * carry it in a second right-hand column; societies have none.
+ */
+amount?: string
+
+amountLabel?: string = &#39;Required amount&#39;
+
+buttonLabel?: string = &#39;More details&#39;
+
+/**
+ * Right-hand column, labelled &quot;Science Domain&quot; on mobile.
+ */
+domain?: string
+
+domainLabel?: string = &#39;Science Domain&#39;
+
+href: string
+
+text?: string
+
+title: string</code></pre>
+          </div>
+        </div>
+    
+        <div class="panel panel-stories">
+          
+          
+          
+          <div class="note ok">
+                <div class="row">
+                  <span class="ex-name">Imports</span>
+                </div>
+                <pre><code>import { SocietyCard } from 'sartr-ui';</code></pre>
+              </div>
+          
+          
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Default</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Default = () =&gt; &lt;SocietyCard
+    title=&quot;International Union of Innovators and Researchers&quot;
+    text=&quot;The organisation carries out educational, scientific, cultural, and outreach activities aimed at supporting and developing education and research at the local, regional, and international levels.&quot;
+    domain=&quot;Natural sciences&quot;
+    href=&quot;#&quot; /&gt;;</code></pre>
+              
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Without Domain</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const WithoutDomain = () =&gt; &lt;SocietyCard
+    title=&quot;International Union of Innovators and Researchers&quot;
+    text=&quot;The organisation carries out educational, scientific, cultural, and outreach activities aimed at supporting and developing education and research at the local, regional, and international levels.&quot;
+    domain={undefined}
+    href=&quot;#&quot; /&gt;;</code></pre>
+              
+            </div>
+        </div>
+    
+    
+  </div>
+</article>
+<article
+  id="pages-societypage"
+  class="card 
+  no-error
+  no-info
+  no-story-error
+  no-story-warning
+  missing-api
+  no-doc-error"
+  role="listitem"
+  aria-label="SocietyPage">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> SocietyPage</h2>
+      <div class="badges">
+        <span class="badge">no API description</span>
+        
+        <label for="c-34-pages-societypage-stories" class="badge ok as-toggle">1 story</label>
+        
+        
+      </div>
+    </div>
+    <div class="meta" title="./src/pages/SocietyPage/SocietyPage.stories.tsx">pages-societypage · ./src/pages/SocietyPage/SocietyPage.stories.tsx</div>
+    
+    <div class="hint">`/societies/:slug` — one scientific society: what it does and where to find it.</div>
+    
+  </div>
+
+  <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
+  
+  
+  <input id="c-34-pages-societypage-stories" class="tg tg-stories" type="checkbox" hidden />
+  
+  
+  
+
+  <div class="panels">
+    
+    
+    
+    
+        <div class="panel panel-stories">
+          
+          
+          
+          <div class="note ok">
+                <div class="row">
+                  <span class="ex-name">Imports</span>
+                </div>
+                <pre><code>import { SocietyPage } from 'sartr-ui';</code></pre>
+              </div>
+          
+          
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Default</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Default = () =&gt; &lt;SocietyPage /&gt;;</code></pre>
+              
+            </div>
+        </div>
+    
+    
+  </div>
+</article>
+<article
+  id="pages-storiespage"
+  class="card 
+  no-error
+  no-info
+  no-story-error
+  no-story-warning
+  missing-api
+  no-doc-error"
+  role="listitem"
+  aria-label="StoriesPage">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> StoriesPage</h2>
+      <div class="badges">
+        <span class="badge">no API description</span>
+        
+        <label for="c-35-pages-storiespage-stories" class="badge ok as-toggle">1 story</label>
+        
+        
+      </div>
+    </div>
+    <div class="meta" title="./src/pages/StoriesPage/StoriesPage.stories.tsx">pages-storiespage · ./src/pages/StoriesPage/StoriesPage.stories.tsx</div>
+    
+    <div class="hint">`/stories` — the archive. The site splits it into two streams behind a
+select, `?theme=stories` and `?theme=blogs`.</div>
+    
+  </div>
+
+  <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
+  
+  
+  <input id="c-35-pages-storiespage-stories" class="tg tg-stories" type="checkbox" hidden />
+  
+  
+  
+
+  <div class="panels">
+    
+    
+    
+    
+        <div class="panel panel-stories">
+          
+          
+          
+          <div class="note ok">
+                <div class="row">
+                  <span class="ex-name">Imports</span>
+                </div>
+                <pre><code>import { StoriesPage } from 'sartr-ui';</code></pre>
+              </div>
+          
+          
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Default</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Default = () =&gt; &lt;StoriesPage /&gt;;</code></pre>
+              
+            </div>
+        </div>
+    
+    
+  </div>
+</article>
+<article
+  id="sections-storiesslider"
+  class="card 
+  no-error
+  no-info
+  no-story-error
+  has-story-warning
+  
+  no-doc-error"
+  role="listitem"
+  aria-label="StoriesSlider">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> StoriesSlider</h2>
+      <div class="badges">
+        <label for="c-36-sections-storiesslider-props" class="badge ok as-toggle">8 prop types</label>
+        
+        <label for="c-36-sections-storiesslider-stories" class="badge ok as-toggle">3 stories · 2 incomplete</label>
+        
+        
+      </div>
+    </div>
+    <div class="meta" title="./src/components/StoriesSlider/StoriesSlider.stories.tsx">sections-storiesslider · ./src/components/StoriesSlider/StoriesSlider.stories.tsx</div>
+    
+    <div class="hint">The `.stories` section from the home page — a full-bleed Swiper of story
+slides on black, with Back / Next and a link to the full list.
+
+Configured exactly as the site configures it: speed 1500, looping, and one
+slide per view until 1280px, where it shows 1.05 so the next slide peeks in.
+The site also passes `calculateHeight`, which is not a Swiper option and does
+nothing, so it is left out rather than copied.
+
+Two deliberate departures from the site:
+
+- The site runs Swiper 8.4.7, which falls inside a critical
+  prototype-pollution advisory (GHSA-hmx5-qpq5-p643, fixed in 12.1.2). This
+  uses a patched release; the options above are identical between them.
+- It uses `swiper/react` rather than driving the core API from an effect.
+  From Swiper 9 on, loop mode reorders the real slide nodes instead of
+  cloning them, so the core API and React end up fighting over the same DOM
+  and the page locks up. The React build is built to cooperate.
+
+Navigation is bound to this instance&#39;s own buttons by id, so several sliders
+can share a page — the site&#39;s global `.prev` / `.next` selectors could not.</div>
+    
+  </div>
+
+  <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
+  
+  
+  <input id="c-36-sections-storiesslider-stories" class="tg tg-stories" type="checkbox" hidden />
+  
+  
+  <input id="c-36-sections-storiesslider-props" class="tg tg-props" type="checkbox" hidden />
+
+  <div class="panels">
+    
+    
+    
+        <div class="panel panel-props">
+          <div class="note ok">
+            <div class="row">
+              <span class="ex-name">Prop types <small>(react-docgen)</small></span>
+              <span class="badge ok">8 prop types</span>
+            </div>
+            <pre><code>Component: src/components/StoriesSlider/StoriesSlider.tsx::StoriesSlider</code></pre>
+            <pre><code>Props:</code></pre>
+            <pre><code>/**
+ * Advance on a timer, with the rule under the controls filling up as the
+ * slide&#39;s time runs out. Off for a reader who asks for reduced motion, and
+ * paused whenever the slider is off screen or under the pointer.
+ */
+autoplay?: boolean = true
+
+/**
+ * Milliseconds a slide holds before the slider moves on.
+ */
+autoplayDelay?: number = 6000
+
+nextLabel?: string = &#39;Next&#39;
+
+otherLink?: { label: string; href: string }
+
+prevLabel?: string = &#39;Back&#39;
+
+readLabel?: string = &#39;Read&#39;
+
+slides: StorySlide[]
+
+/**
+ * Prefix in front of a story&#39;s themes, the way a paper labels its keywords.
+ */
+tagsLabel?: string = &#39;Keywords&#39;</code></pre>
+          </div>
+        </div>
+    
+        <div class="panel panel-stories">
+          
+          
+          
+          <div class="note ok">
+                <div class="row">
+                  <span class="ex-name">Imports</span>
+                </div>
+                <pre><code>import { StoriesSlider } from 'sartr-ui';</code></pre>
+              </div>
+          
+          
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Default</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Default = () =&gt; &lt;StoriesSlider
+    slides={[
+      {
+        suptitle: &#39;Stories&#39;,
+        title: &#39;Stolen museum. Kherson&#39;,
+        text: &#39;What did the Russians steal from the Kherson Local History Museum during the retreat from the city and how did the director-collaborator contribute to this?&#39;,
+        image: &#39;/img/story-2.png&#39;,
+        href: &#39;#&#39;,
+      },
+      {
+        suptitle: &#39;Stories&#39;,
+        title: &#39;Test Tubes in the Count’s Estate&#39;,
+        text: &#39;The main building of the Institute of Agricultural Microbiology sits in Count Glebov’s &quot;castle&quot;. Read how the institute has kept working since the outbreak of full-scale war.&#39;,
+        image: &#39;/img/story-3.png&#39;,
+        href: &#39;#&#39;,
+      },
+      {
+        suptitle: &#39;Stories&#39;,
+        title: &#39;Uncovered Graves. How Lviv restores its memory about the school of mathematics&#39;,
+        text: &#39;A Map of Burial Sites Revives the Memory of Lviv’s Forgotten Mathematicians.&#39;,
+        image: &#39;/img/story-1.jpg&#39;,
+        href: &#39;#&#39;,
+      },
+    ]}
+    otherLink={{ label: &#39;Other stories&#39;, href: &#39;#&#39; }} /&gt;;</code></pre>
+              
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Single Slide</span>
+                <span class="badge info">incomplete example</span>
+              </div>
+              
+              
+              <pre><code>const SingleSlide = () =&gt; &lt;StoriesSlider slides={[slides[0]]} otherLink={{ label: &#39;Other stories&#39;, href: &#39;#&#39; }} /&gt;;</code></pre>
+              <div class="snippet-warning">Incomplete snippet: `slides` could not be resolved statically.</div>
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Ukrainian</span>
+                <span class="badge info">incomplete example</span>
+              </div>
+              
+              
+              <pre><code>const Ukrainian = () =&gt; &lt;StoriesSlider
+    slides={slides.map((s) =&gt; ({ ...s, suptitle: &#39;Історії&#39; }))}
+    otherLink={{ label: &#39;Інші історії&#39;, href: &#39;#&#39; }}
+    readLabel=&quot;Читати&quot;
+    prevLabel=&quot;Назад&quot;
+    nextLabel=&quot;Далі&quot; /&gt;;</code></pre>
+              <div class="snippet-warning">Incomplete snippet: `slides` could not be resolved statically.</div>
+            </div>
+        </div>
+    
+    
+  </div>
+</article>
+<article
+  id="cards-storycard"
+  class="card 
+  no-error
+  no-info
+  no-story-error
+  no-story-warning
+  
+  no-doc-error"
+  role="listitem"
+  aria-label="StoryCard">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> StoryCard</h2>
+      <div class="badges">
+        <label for="c-37-cards-storycard-props" class="badge ok as-toggle">5 prop types</label>
+        
+        <label for="c-37-cards-storycard-stories" class="badge ok as-toggle">3 stories</label>
+        
+        
+      </div>
+    </div>
+    <div class="meta" title="./src/components/StoryCard/StoryCard.stories.tsx">cards-storycard · ./src/components/StoryCard/StoryCard.stories.tsx</div>
+    
+    <div class="hint">The `.story-card` used on the stories list and the home page.</div>
+    
+  </div>
+
+  <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
+  
+  
+  <input id="c-37-cards-storycard-stories" class="tg tg-stories" type="checkbox" hidden />
+  
+  
+  <input id="c-37-cards-storycard-props" class="tg tg-props" type="checkbox" hidden />
+
+  <div class="panels">
+    
+    
+    
+        <div class="panel panel-props">
+          <div class="note ok">
+            <div class="row">
+              <span class="ex-name">Prop types <small>(react-docgen)</small></span>
+              <span class="badge ok">5 prop types</span>
+            </div>
+            <pre><code>Component: src/components/StoryCard/StoryCard.tsx::StoryCard</code></pre>
+            <pre><code>Props:</code></pre>
+            <pre><code>/**
+ * Rendered as-is; the site prints a short `dd.mm.yy` date.
+ */
+date?: string
+
+href: string
+
+image?: string
+
+text?: string
+
+title: string</code></pre>
+          </div>
+        </div>
+    
+        <div class="panel panel-stories">
+          
+          
+          
+          <div class="note ok">
+                <div class="row">
+                  <span class="ex-name">Imports</span>
+                </div>
+                <pre><code>import { StoryCard } from 'sartr-ui';</code></pre>
+              </div>
+          
+          
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Default</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Default = () =&gt; &lt;StoryCard
+    title=&quot;Uncovered Graves. How Lviv restores its memory about the school of mathematics&quot;
+    text=&quot;A Map of Burial Sites Revives the Memory of Lviv’s Forgotten Mathematicians&quot;
+    date=&quot;12.08.26&quot;
+    image=&quot;/img/story-1.jpg&quot;
+    href=&quot;#&quot; /&gt;;</code></pre>
+              
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Without Image</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const WithoutImage = () =&gt; &lt;StoryCard
+    title=&quot;Uncovered Graves. How Lviv restores its memory about the school of mathematics&quot;
+    text=&quot;A Map of Burial Sites Revives the Memory of Lviv’s Forgotten Mathematicians&quot;
+    date=&quot;12.08.26&quot;
+    image={undefined}
+    href=&quot;#&quot; /&gt;;</code></pre>
+              
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Grid</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Grid = (args) =&gt; (
+  &lt;div className=&quot;row&quot;&gt;
+    {[
+      { ...args, image: &#39;/img/story-1.jpg&#39; },
+      { ...args, title: &#39;Stolen museum. Kherson&#39;, image: &#39;/img/story-2.png&#39;, date: &#39;03.02.26&#39; },
+      { ...args, title: &#39;Test Tubes in the Count’s Estate&#39;, image: &#39;/img/story-3.png&#39;, date: &#39;19.11.25&#39; },
+    ].map((s, i) =&gt; (
+      &lt;div className=&quot;col-md-4 col-12&quot; key={i}&gt;
+        &lt;StoryCard {...s} /&gt;
+      &lt;/div&gt;
+    ))}
+  &lt;/div&gt;
+);</code></pre>
+              
+            </div>
+        </div>
+    
+    
+  </div>
+</article>
+<article
+  id="pages-storypage"
+  class="card 
+  no-error
+  no-info
+  no-story-error
+  no-story-warning
+  missing-api
+  no-doc-error"
+  role="listitem"
+  aria-label="StoryPage">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> StoryPage</h2>
+      <div class="badges">
+        <span class="badge">no API description</span>
+        
+        <label for="c-38-pages-storypage-stories" class="badge ok as-toggle">1 story</label>
+        
+        
+      </div>
+    </div>
+    <div class="meta" title="./src/pages/StoryPage/StoryPage.stories.tsx">pages-storypage · ./src/pages/StoryPage/StoryPage.stories.tsx</div>
+    
+    <div class="hint">`/stories/:slug` — one story: cover, body, sharing, and what to read next.</div>
+    
+  </div>
+
+  <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
+  
+  
+  <input id="c-38-pages-storypage-stories" class="tg tg-stories" type="checkbox" hidden />
+  
+  
+  
+
+  <div class="panels">
+    
+    
+    
+    
+        <div class="panel panel-stories">
+          
+          
+          
+          <div class="note ok">
+                <div class="row">
+                  <span class="ex-name">Imports</span>
+                </div>
+                <pre><code>import { StoryPage } from 'sartr-ui';</code></pre>
+              </div>
+          
+          
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Default</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Default = () =&gt; &lt;StoryPage /&gt;;</code></pre>
+              
+            </div>
+        </div>
+    
+    
+  </div>
+</article>
+<article
+  id="atoms-tag"
+  class="card 
+  no-error
+  no-info
+  no-story-error
+  no-story-warning
+  
+  no-doc-error"
+  role="listitem"
+  aria-label="Tag">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> Tag</h2>
+      <div class="badges">
+        <label for="c-39-atoms-tag-props" class="badge ok as-toggle">7 prop types</label>
+        
+        <label for="c-39-atoms-tag-stories" class="badge ok as-toggle">4 stories</label>
+        
+        
+      </div>
+    </div>
+    <div class="meta" title="./src/components/Tag/Tag.stories.tsx">atoms-tag · ./src/components/Tag/Tag.stories.tsx</div>
+    
+    <div class="hint">The site&#39;s `.tag` pill — a squircle of radius 60 at smoothing 0.9, the same
+shape as the buttons.</div>
+    
+  </div>
+
+  <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
+  
+  
+  <input id="c-39-atoms-tag-stories" class="tg tg-stories" type="checkbox" hidden />
+  
+  
+  <input id="c-39-atoms-tag-props" class="tg tg-props" type="checkbox" hidden />
+
+  <div class="panels">
+    
+    
+    
+        <div class="panel panel-props">
+          <div class="note ok">
+            <div class="row">
+              <span class="ex-name">Prop types <small>(react-docgen)</small></span>
+              <span class="badge ok">7 prop types</span>
+            </div>
+            <pre><code>Component: src/components/Tag/Tag.tsx::Tag</code></pre>
+            <pre><code>Props:</code></pre>
+            <pre><code>/**
+ * `span` for a tag that only labels something — a story&#39;s themes, say —
+ * rather than filtering a list. Keeps a dead button out of the tab order.
+ */
+as?: &#39;button&#39; | &#39;span&#39; = &#39;button&#39;
+
+className?: string = &#39;&#39;
+
+/**
+ * Result count shown to the right of the label, as on the home page.
+ */
+count?: number
+
+/**
+ * The expert cards tint their tags; the site&#39;s `--squircle-fill` there is #B5C6CD.
+ */
+fill?: string = &#39;#FFFFFF&#39;
+
+href?: string
+
+label: string
+
+onClick?: (label: string) =&gt; void</code></pre>
+          </div>
+        </div>
+    
+        <div class="panel panel-stories">
+          
+          
+          
+          <div class="note ok">
+                <div class="row">
+                  <span class="ex-name">Imports</span>
+                </div>
+                <pre><code>import { Tag } from 'sartr-ui';</code></pre>
+              </div>
+          
+          
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Default</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Default = () =&gt; &lt;Tag label=&quot;Biochemistry&quot; /&gt;;</code></pre>
+              
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">With Count</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const WithCount = () =&gt; &lt;Tag label=&quot;Teaching&quot; count={101} /&gt;;</code></pre>
+              
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">As Link</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const AsLink = () =&gt; &lt;Tag label=&quot;Biology&quot; count={57} href=&quot;#&quot; /&gt;;</code></pre>
+              
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">List</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const List = () =&gt; (
+  &lt;div style={{ display: &#39;flex&#39;, gap: 12, flexWrap: &#39;wrap&#39; }}&gt;
+    {[
+      [&#39;Teaching&#39;, 101],
+      [&#39;Science popularization&#39;, 86],
+      [&#39;Biology&#39;, 57],
+      [&#39;Natural sciences&#39;, 55],
+      [&#39;Biochemistry&#39;, 41],
+    ].map(([label, count]) =&gt; (
+      &lt;Tag key={label as string} label={label as string} count={count as number} /&gt;
+    ))}
+  &lt;/div&gt;
+);</code></pre>
+              
+            </div>
+        </div>
+    
+    
+  </div>
+</article>
+<article
+  id="atoms-textfield"
+  class="card 
+  no-error
+  no-info
+  no-story-error
+  no-story-warning
+  
+  no-doc-error"
+  role="listitem"
+  aria-label="TextField">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> TextField</h2>
+      <div class="badges">
+        <label for="c-40-atoms-textfield-props" class="badge ok as-toggle">8 prop types</label>
+        
+        <label for="c-40-atoms-textfield-stories" class="badge ok as-toggle">5 stories</label>
+        
+        
+      </div>
+    </div>
+    <div class="meta" title="./src/components/TextField/TextField.stories.tsx">atoms-textfield · ./src/components/TextField/TextField.stories.tsx</div>
+    
+    <div class="hint">The site&#39;s floating-label field (`.column` + `._risk-label`). The label sits
+after the control in the DOM — the float is driven by `:focus`/`:valid`
+sibling selectors, so the order matters.</div>
+    
+  </div>
+
+  <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
+  
+  
+  <input id="c-40-atoms-textfield-stories" class="tg tg-stories" type="checkbox" hidden />
+  
+  
+  <input id="c-40-atoms-textfield-props" class="tg tg-props" type="checkbox" hidden />
+
+  <div class="panels">
+    
+    
+    
+        <div class="panel panel-props">
+          <div class="note ok">
+            <div class="row">
+              <span class="ex-name">Prop types <small>(react-docgen)</small></span>
+              <span class="badge ok">8 prop types</span>
+            </div>
+            <pre><code>Component: src/components/TextField/TextField.tsx::TextField</code></pre>
+            <pre><code>Props:</code></pre>
+            <pre><code>className?: string = &#39;&#39;
+
+defaultValue?: string = &#39;&#39;
+
+label: string
+
+maxLength?: number = 7000
+
+/**
+ * Renders a textarea with the site&#39;s character counter.
+ */
+multiline?: boolean = false
+
+name?: string
+
+required?: boolean = false
+
+type?: &#39;text&#39; | &#39;email&#39; = &#39;text&#39;</code></pre>
+          </div>
+        </div>
+    
+        <div class="panel panel-stories">
+          
+          
+          
+          <div class="note ok">
+                <div class="row">
+                  <span class="ex-name">Imports</span>
+                </div>
+                <pre><code>import { TextField } from 'sartr-ui';</code></pre>
+              </div>
+          
+          
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Empty</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Empty = () =&gt; &lt;TextField label=&quot;Name&quot; /&gt;;</code></pre>
+              
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Filled</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Filled = () =&gt; &lt;TextField label=&quot;Name&quot; defaultValue=&quot;Sofiia Fedzhora&quot; /&gt;;</code></pre>
+              
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Email</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Email = () =&gt; &lt;TextField label=&quot;Email&quot; type=&quot;email&quot; /&gt;;</code></pre>
+              
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Multiline</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Multiline = () =&gt; &lt;TextField label=&quot;Text&quot; multiline /&gt;;</code></pre>
+              
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Over Limit</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const OverLimit = () =&gt; &lt;TextField
+    label=&quot;Text&quot;
+    multiline
+    maxLength={20}
+    defaultValue=&quot;A request far longer than the limit allows.&quot; /&gt;;</code></pre>
+              
+            </div>
+        </div>
+    
+    
+  </div>
+</article>
+<article
+  id="foundations-typography"
+  class="card 
+  has-error
+  has-info
+  no-story-error
+  no-story-warning
+  
+  no-doc-error"
+  role="listitem"
+  aria-label="Typography">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-err"></span> Typography</h2>
+      <div class="badges">
+        <label for="c-41-foundations-typography-err" class="badge err as-toggle">API error</label>
+        <label for="c-41-foundations-typography-info" class="badge info as-toggle">2 infos</label>
+        <label for="c-41-foundations-typography-stories" class="badge ok as-toggle">1 story</label>
+        
+        
+      </div>
+    </div>
+    <div class="meta" title="./src/foundations/Typography.stories.tsx">foundations-typography · ./src/foundations/Typography.stories.tsx</div>
+    
+    
+    
+  </div>
+
+  <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
+  <input id="c-41-foundations-typography-err" class="tg tg-err" type="checkbox" hidden />
+  <input id="c-41-foundations-typography-info" class="tg tg-info" type="checkbox" hidden />
+  <input id="c-41-foundations-typography-stories" class="tg tg-stories" type="checkbox" hidden />
+  
+  
+  
+
+  <div class="panels">
+    
+        <div class="panel panel-err">
+          
+    <div class="note err">
+      <div class="note-title">API error</div>
+      <div class="note-body"><pre><code>We could not detect the component from your story file. Specify meta.component.
+   5 |  * body copy, IBM Plex Mono for labels, dates and tags.
+   6 |  */
+&gt;  7 | const meta = {
+     | ^
+   8 |   title: &#39;Foundations/Typography&#39;,
+   9 |   parameters: { layout: &#39;padded&#39; },
+  10 | } satisfies Meta;
+
+./src/foundations/Typography.stories.tsx:
+import type { Meta, StoryObj } from &#39;@storybook/react-vite&#39;;
+
+/**
+ * Three families carry the whole site: Noto Serif for titles, e-Ukraine for
+ * body copy, IBM Plex Mono for labels, dates and tags.
+ */
+const meta = {
+  title: &#39;Foundations/Typography&#39;,
+  parameters: { layout: &#39;padded&#39; },
+} satisfies Meta;
+
+export default meta;
+type Story = StoryObj&lt;typeof meta&gt;;
+
+export const Scale: Story = {
+  render: () =&gt; (
+    &lt;div className=&quot;wrapper&quot; style={{ padding: 32, display: &#39;grid&#39;, gap: 32 }}&gt;
+      &lt;div&gt;
+        &lt;p className=&quot;main-text main-text--mono&quot; style={{ opacity: 0.6 }}&gt;
+          main-title — Noto Serif
+        &lt;/p&gt;
+        &lt;h1 className=&quot;main-title&quot;&gt;Find Ukrainian scientists for collaboration&lt;/h1&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+        &lt;p className=&quot;main-text main-text--mono&quot; style={{ opacity: 0.6 }}&gt;
+          main-title--h2
+        &lt;/p&gt;
+        &lt;h2 className=&quot;main-title main-title--h2&quot;&gt;Assistance in reconstruction&lt;/h2&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+        &lt;p className=&quot;main-text main-text--mono&quot; style={{ opacity: 0.6 }}&gt;
+          main-text — e-Ukraine
+        &lt;/p&gt;
+        &lt;p className=&quot;main-text&quot;&gt;
+          Scientific infrastructure damaged during the war. Mark the scientific field that interests you and
+          involve Ukrainian scientists in your own projects.
+        &lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+        &lt;p className=&quot;main-text main-text--mono&quot; style={{ opacity: 0.6 }}&gt;
+          main-text--mono — IBM Plex Mono
+        &lt;/p&gt;
+        &lt;p className=&quot;main-text main-text--mono&quot;&gt;12.08.26 · Popular requests · Science Domain&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+        &lt;p className=&quot;main-text main-text--mono&quot; style={{ opacity: 0.6 }}&gt;
+          paragraph — long-form body inside a story
+        &lt;/p&gt;
+        &lt;div className=&quot;story&quot;&gt;
+          &lt;p className=&quot;paragraph&quot;&gt;
+            At the time of the invasion, a unique herbarium was kept at Kherson University — one of the largest
+            in Ukraine. It began to be collected in 1945, because the original specimens were lost during the
+            Second World War.
+          &lt;/p&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  ),
+};
+</code></pre></div>
+    </div>
+        </div>
+    
+        <div class="panel panel-info">
+          
+    <div class="note info">
+      <div class="note-title">Info</div>
+      <div class="note-body">No description found. Write a jsdoc comment such as /** Component description */.</div>
+    </div>
+    <div class="note info">
+      <div class="note-title">Info</div>
+      <div class="note-body">Specify an @import jsdoc tag on your component or your stories meta such as @import import { Typography } from &#39;my-design-system&#39;;</div>
+    </div>
+        </div>
+    
+    
+        <div class="panel panel-stories">
+          
+          
+          
+          
+          
+          
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Scale</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Scale = () =&gt; (
+  &lt;div className=&quot;wrapper&quot; style={{ padding: 32, display: &#39;grid&#39;, gap: 32 }}&gt;
+    &lt;div&gt;
+      &lt;p className=&quot;main-text main-text--mono&quot; style={{ opacity: 0.6 }}&gt;
+        main-title — Noto Serif
+      &lt;/p&gt;
+      &lt;h1 className=&quot;main-title&quot;&gt;Find Ukrainian scientists for collaboration&lt;/h1&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+      &lt;p className=&quot;main-text main-text--mono&quot; style={{ opacity: 0.6 }}&gt;
+        main-title--h2
+      &lt;/p&gt;
+      &lt;h2 className=&quot;main-title main-title--h2&quot;&gt;Assistance in reconstruction&lt;/h2&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+      &lt;p className=&quot;main-text main-text--mono&quot; style={{ opacity: 0.6 }}&gt;
+        main-text — e-Ukraine
+      &lt;/p&gt;
+      &lt;p className=&quot;main-text&quot;&gt;
+        Scientific infrastructure damaged during the war. Mark the scientific field that interests you and
+        involve Ukrainian scientists in your own projects.
+      &lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+      &lt;p className=&quot;main-text main-text--mono&quot; style={{ opacity: 0.6 }}&gt;
+        main-text--mono — IBM Plex Mono
+      &lt;/p&gt;
+      &lt;p className=&quot;main-text main-text--mono&quot;&gt;12.08.26 · Popular requests · Science Domain&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+      &lt;p className=&quot;main-text main-text--mono&quot; style={{ opacity: 0.6 }}&gt;
+        paragraph — long-form body inside a story
+      &lt;/p&gt;
+      &lt;div className=&quot;story&quot;&gt;
+        &lt;p className=&quot;paragraph&quot;&gt;
+          At the time of the invasion, a unique herbarium was kept at Kherson University — one of the largest
+          in Ukraine. It began to be collected in 1945, because the original specimens were lost during the
+          Second World War.
+        &lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+);</code></pre>
+              
+            </div>
+        </div>
+    
+    
+  </div>
+</article>
+    </div>
+    <div class="error-groups" role="region" aria-label="API error groups">
+        <section class="group">
+          <input id="no-component-found-toggle" class="group-tg" type="checkbox" hidden />
+          <label for="no-component-found-toggle" class="group-header">
+            <span class="caret">▸</span>
+            <span class="group-title">No component found</span>
+            <span class="group-count">2</span>
+          </label>
+          <div class="group-cards">
+<article
+  
+  class="card 
+  has-error
+  has-info
+  no-story-error
+  no-story-warning
+  
+  no-doc-error"
+  role="listitem"
+  aria-label="Colors">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-err"></span> Colors</h2>
+      <div class="badges">
+        <label for="c-error-0-foundations-colors-err" class="badge err as-toggle">API error</label>
+        <label for="c-error-0-foundations-colors-info" class="badge info as-toggle">2 infos</label>
+        <label for="c-error-0-foundations-colors-stories" class="badge ok as-toggle">1 story</label>
+        
+        
+      </div>
+    </div>
+    <div class="meta" title="./src/foundations/Colors.stories.tsx">foundations-colors · ./src/foundations/Colors.stories.tsx</div>
+    
+    
+    
+  </div>
+
+  <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
+  <input id="c-error-0-foundations-colors-err" class="tg tg-err" type="checkbox" hidden />
+  <input id="c-error-0-foundations-colors-info" class="tg tg-info" type="checkbox" hidden />
+  <input id="c-error-0-foundations-colors-stories" class="tg tg-stories" type="checkbox" hidden />
+  
+  
+  
+
+  <div class="panels">
+    
+        <div class="panel panel-err">
+          
+    <div class="note err">
+      <div class="note-title">API error</div>
+      <div class="note-body"><pre><code>We could not detect the component from your story file. Specify meta.component.
+  39 | }
+  40 |
+&gt; 41 | const meta = {
+     | ^
+  42 |   title: &#39;Foundations/Colors&#39;,
+  43 |   parameters: { layout: &#39;padded&#39; },
+  44 | } satisfies Meta;
+
+./src/foundations/Colors.stories.tsx:
+import type { Meta, StoryObj } from &#39;@storybook/react-vite&#39;;
+
+/**
+ * The palette the site actually paints with, counted from its stylesheet:
+ * black and white carry the layout, `#B5C6CD` marks tags and the loader,
+ * `#F0EEBE` and `#FF5114` are the two accents.
+ */
+const palette = [
+  { name: &#39;Black&#39;, value: &#39;#000000&#39;, usage: &#39;Text, dark sections, primary button&#39; },
+  { name: &#39;White&#39;, value: &#39;#FFFFFF&#39;, usage: &#39;Page background, inverted button&#39; },
+  { name: &#39;Mist&#39;, value: &#39;#B5C6CD&#39;, usage: &#39;Tags, loader, muted surfaces&#39; },
+  { name: &#39;Sand&#39;, value: &#39;#F0EEBE&#39;, usage: &#39;Accent background&#39; },
+  { name: &#39;Signal&#39;, value: &#39;#FF5114&#39;, usage: &#39;Accent / highlight&#39; },
+  { name: &#39;Ink&#39;, value: &#39;#121416&#39;, usage: &#39;Deep surface&#39; },
+];
+
+function Swatch({ name, value, usage }: (typeof palette)[number]) {
+  return (
+    &lt;div style={{ width: 200 }}&gt;
+      &lt;div
+        style={{
+          height: 96,
+          background: value,
+          border: &#39;1px solid rgba(0,0,0,.12)&#39;,
+          borderRadius: 12,
+        }}
+      /&gt;
+      &lt;p className=&quot;main-text main-text--mono&quot; style={{ margin: &#39;8px 0 0&#39; }}&gt;
+        {name}
+      &lt;/p&gt;
+      &lt;p className=&quot;main-text main-text--mono&quot; style={{ margin: 0, opacity: 0.6 }}&gt;
+        {value}
+      &lt;/p&gt;
+      &lt;p className=&quot;main-text&quot; style={{ margin: &#39;4px 0 0&#39;, fontSize: 13, opacity: 0.7 }}&gt;
+        {usage}
+      &lt;/p&gt;
+    &lt;/div&gt;
+  );
+}
+
+const meta = {
+  title: &#39;Foundations/Colors&#39;,
+  parameters: { layout: &#39;padded&#39; },
+} satisfies Meta;
+
+export default meta;
+type Story = StoryObj&lt;typeof meta&gt;;
+
+export const Palette: Story = {
+  render: () =&gt; (
+    &lt;div style={{ display: &#39;flex&#39;, flexWrap: &#39;wrap&#39;, gap: 24, padding: 24 }}&gt;
+      {palette.map((c) =&gt; (
+        &lt;Swatch key={c.name} {...c} /&gt;
+      ))}
+    &lt;/div&gt;
+  ),
+};
+</code></pre></div>
+    </div>
+        </div>
+    
+        <div class="panel panel-info">
+          
+    <div class="note info">
+      <div class="note-title">Info</div>
+      <div class="note-body">No description found. Write a jsdoc comment such as /** Component description */.</div>
+    </div>
+    <div class="note info">
+      <div class="note-title">Info</div>
+      <div class="note-body">Specify an @import jsdoc tag on your component or your stories meta such as @import import { Colors } from &#39;my-design-system&#39;;</div>
+    </div>
+        </div>
+    
+    
+        <div class="panel panel-stories">
+          
+          
+          
+          
+          
+          
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Palette</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Palette = () =&gt; (
+  &lt;div style={{ display: &#39;flex&#39;, flexWrap: &#39;wrap&#39;, gap: 24, padding: 24 }}&gt;
+    {palette.map((c) =&gt; (
+      &lt;Swatch key={c.name} {...c} /&gt;
+    ))}
+  &lt;/div&gt;
+);</code></pre>
+              
+            </div>
+        </div>
+    
+    
+  </div>
+</article>
+<article
+  
+  class="card 
+  has-error
+  has-info
+  no-story-error
+  no-story-warning
+  
+  no-doc-error"
+  role="listitem"
+  aria-label="Typography">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-err"></span> Typography</h2>
+      <div class="badges">
+        <label for="c-error-1-foundations-typography-err" class="badge err as-toggle">API error</label>
+        <label for="c-error-1-foundations-typography-info" class="badge info as-toggle">2 infos</label>
+        <label for="c-error-1-foundations-typography-stories" class="badge ok as-toggle">1 story</label>
+        
+        
+      </div>
+    </div>
+    <div class="meta" title="./src/foundations/Typography.stories.tsx">foundations-typography · ./src/foundations/Typography.stories.tsx</div>
+    
+    
+    
+  </div>
+
+  <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
+  <input id="c-error-1-foundations-typography-err" class="tg tg-err" type="checkbox" hidden />
+  <input id="c-error-1-foundations-typography-info" class="tg tg-info" type="checkbox" hidden />
+  <input id="c-error-1-foundations-typography-stories" class="tg tg-stories" type="checkbox" hidden />
+  
+  
+  
+
+  <div class="panels">
+    
+        <div class="panel panel-err">
+          
+    <div class="note err">
+      <div class="note-title">API error</div>
+      <div class="note-body"><pre><code>We could not detect the component from your story file. Specify meta.component.
+   5 |  * body copy, IBM Plex Mono for labels, dates and tags.
+   6 |  */
+&gt;  7 | const meta = {
+     | ^
+   8 |   title: &#39;Foundations/Typography&#39;,
+   9 |   parameters: { layout: &#39;padded&#39; },
+  10 | } satisfies Meta;
+
+./src/foundations/Typography.stories.tsx:
+import type { Meta, StoryObj } from &#39;@storybook/react-vite&#39;;
+
+/**
+ * Three families carry the whole site: Noto Serif for titles, e-Ukraine for
+ * body copy, IBM Plex Mono for labels, dates and tags.
+ */
+const meta = {
+  title: &#39;Foundations/Typography&#39;,
+  parameters: { layout: &#39;padded&#39; },
+} satisfies Meta;
+
+export default meta;
+type Story = StoryObj&lt;typeof meta&gt;;
+
+export const Scale: Story = {
+  render: () =&gt; (
+    &lt;div className=&quot;wrapper&quot; style={{ padding: 32, display: &#39;grid&#39;, gap: 32 }}&gt;
+      &lt;div&gt;
+        &lt;p className=&quot;main-text main-text--mono&quot; style={{ opacity: 0.6 }}&gt;
+          main-title — Noto Serif
+        &lt;/p&gt;
+        &lt;h1 className=&quot;main-title&quot;&gt;Find Ukrainian scientists for collaboration&lt;/h1&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+        &lt;p className=&quot;main-text main-text--mono&quot; style={{ opacity: 0.6 }}&gt;
+          main-title--h2
+        &lt;/p&gt;
+        &lt;h2 className=&quot;main-title main-title--h2&quot;&gt;Assistance in reconstruction&lt;/h2&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+        &lt;p className=&quot;main-text main-text--mono&quot; style={{ opacity: 0.6 }}&gt;
+          main-text — e-Ukraine
+        &lt;/p&gt;
+        &lt;p className=&quot;main-text&quot;&gt;
+          Scientific infrastructure damaged during the war. Mark the scientific field that interests you and
+          involve Ukrainian scientists in your own projects.
+        &lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+        &lt;p className=&quot;main-text main-text--mono&quot; style={{ opacity: 0.6 }}&gt;
+          main-text--mono — IBM Plex Mono
+        &lt;/p&gt;
+        &lt;p className=&quot;main-text main-text--mono&quot;&gt;12.08.26 · Popular requests · Science Domain&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+        &lt;p className=&quot;main-text main-text--mono&quot; style={{ opacity: 0.6 }}&gt;
+          paragraph — long-form body inside a story
+        &lt;/p&gt;
+        &lt;div className=&quot;story&quot;&gt;
+          &lt;p className=&quot;paragraph&quot;&gt;
+            At the time of the invasion, a unique herbarium was kept at Kherson University — one of the largest
+            in Ukraine. It began to be collected in 1945, because the original specimens were lost during the
+            Second World War.
+          &lt;/p&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  ),
+};
+</code></pre></div>
+    </div>
+        </div>
+    
+        <div class="panel panel-info">
+          
+    <div class="note info">
+      <div class="note-title">Info</div>
+      <div class="note-body">No description found. Write a jsdoc comment such as /** Component description */.</div>
+    </div>
+    <div class="note info">
+      <div class="note-title">Info</div>
+      <div class="note-body">Specify an @import jsdoc tag on your component or your stories meta such as @import import { Typography } from &#39;my-design-system&#39;;</div>
+    </div>
+        </div>
+    
+    
+        <div class="panel panel-stories">
+          
+          
+          
+          
+          
+          
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Scale</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Scale = () =&gt; (
+  &lt;div className=&quot;wrapper&quot; style={{ padding: 32, display: &#39;grid&#39;, gap: 32 }}&gt;
+    &lt;div&gt;
+      &lt;p className=&quot;main-text main-text--mono&quot; style={{ opacity: 0.6 }}&gt;
+        main-title — Noto Serif
+      &lt;/p&gt;
+      &lt;h1 className=&quot;main-title&quot;&gt;Find Ukrainian scientists for collaboration&lt;/h1&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+      &lt;p className=&quot;main-text main-text--mono&quot; style={{ opacity: 0.6 }}&gt;
+        main-title--h2
+      &lt;/p&gt;
+      &lt;h2 className=&quot;main-title main-title--h2&quot;&gt;Assistance in reconstruction&lt;/h2&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+      &lt;p className=&quot;main-text main-text--mono&quot; style={{ opacity: 0.6 }}&gt;
+        main-text — e-Ukraine
+      &lt;/p&gt;
+      &lt;p className=&quot;main-text&quot;&gt;
+        Scientific infrastructure damaged during the war. Mark the scientific field that interests you and
+        involve Ukrainian scientists in your own projects.
+      &lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+      &lt;p className=&quot;main-text main-text--mono&quot; style={{ opacity: 0.6 }}&gt;
+        main-text--mono — IBM Plex Mono
+      &lt;/p&gt;
+      &lt;p className=&quot;main-text main-text--mono&quot;&gt;12.08.26 · Popular requests · Science Domain&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+      &lt;p className=&quot;main-text main-text--mono&quot; style={{ opacity: 0.6 }}&gt;
+        paragraph — long-form body inside a story
+      &lt;/p&gt;
+      &lt;div className=&quot;story&quot;&gt;
+        &lt;p className=&quot;paragraph&quot;&gt;
+          At the time of the invasion, a unique herbarium was kept at Kherson University — one of the largest
+          in Ukraine. It began to be collected in 1945, because the original specimens were lost during the
+          Second World War.
+        &lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+);</code></pre>
+              
+            </div>
+        </div>
+    
+    
+  </div>
+</article></div>
+        </section>
+      </div>
+    
+    
+  </div>
+</main>
+</body>
+</html>  

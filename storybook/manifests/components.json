@@ -1,0 +1,3477 @@
+{
+  "v": 0,
+  "components": {
+    "foundations-colors": {
+      "id": "foundations-colors",
+      "name": "Colors",
+      "path": "./src/foundations/Colors.stories.tsx",
+      "jsDocTags": {},
+      "error": {
+        "name": "No component found",
+        "message": "We could not detect the component from your story file. Specify meta.component.\n  39 | }\n  40 |\n> 41 | const meta = {\n     | ^\n  42 |   title: 'Foundations/Colors',\n  43 |   parameters: { layout: 'padded' },\n  44 | } satisfies Meta;\n\n./src/foundations/Colors.stories.tsx:\nimport type { Meta, StoryObj } from '@storybook/react-vite';\n\n/**\n * The palette the site actually paints with, counted from its stylesheet:\n * black and white carry the layout, `#B5C6CD` marks tags and the loader,\n * `#F0EEBE` and `#FF5114` are the two accents.\n */\nconst palette = [\n  { name: 'Black', value: '#000000', usage: 'Text, dark sections, primary button' },\n  { name: 'White', value: '#FFFFFF', usage: 'Page background, inverted button' },\n  { name: 'Mist', value: '#B5C6CD', usage: 'Tags, loader, muted surfaces' },\n  { name: 'Sand', value: '#F0EEBE', usage: 'Accent background' },\n  { name: 'Signal', value: '#FF5114', usage: 'Accent / highlight' },\n  { name: 'Ink', value: '#121416', usage: 'Deep surface' },\n];\n\nfunction Swatch({ name, value, usage }: (typeof palette)[number]) {\n  return (\n    <div style={{ width: 200 }}>\n      <div\n        style={{\n          height: 96,\n          background: value,\n          border: '1px solid rgba(0,0,0,.12)',\n          borderRadius: 12,\n        }}\n      />\n      <p className=\"main-text main-text--mono\" style={{ margin: '8px 0 0' }}>\n        {name}\n      </p>\n      <p className=\"main-text main-text--mono\" style={{ margin: 0, opacity: 0.6 }}>\n        {value}\n      </p>\n      <p className=\"main-text\" style={{ margin: '4px 0 0', fontSize: 13, opacity: 0.7 }}>\n        {usage}\n      </p>\n    </div>\n  );\n}\n\nconst meta = {\n  title: 'Foundations/Colors',\n  parameters: { layout: 'padded' },\n} satisfies Meta;\n\nexport default meta;\ntype Story = StoryObj<typeof meta>;\n\nexport const Palette: Story = {\n  render: () => (\n    <div style={{ display: 'flex', flexWrap: 'wrap', gap: 24, padding: 24 }}>\n      {palette.map((c) => (\n        <Swatch key={c.name} {...c} />\n      ))}\n    </div>\n  ),\n};\n"
+      },
+      "stories": [
+        {
+          "id": "foundations-colors--palette",
+          "name": "Palette",
+          "snippet": "const Palette = () => (\n  <div style={{ display: 'flex', flexWrap: 'wrap', gap: 24, padding: 24 }}>\n    {palette.map((c) => (\n      <Swatch key={c.name} {...c} />\n    ))}\n  </div>\n);"
+        }
+      ]
+    },
+    "foundations-typography": {
+      "id": "foundations-typography",
+      "name": "Typography",
+      "path": "./src/foundations/Typography.stories.tsx",
+      "jsDocTags": {},
+      "error": {
+        "name": "No component found",
+        "message": "We could not detect the component from your story file. Specify meta.component.\n   5 |  * body copy, IBM Plex Mono for labels, dates and tags.\n   6 |  */\n>  7 | const meta = {\n     | ^\n   8 |   title: 'Foundations/Typography',\n   9 |   parameters: { layout: 'padded' },\n  10 | } satisfies Meta;\n\n./src/foundations/Typography.stories.tsx:\nimport type { Meta, StoryObj } from '@storybook/react-vite';\n\n/**\n * Three families carry the whole site: Noto Serif for titles, e-Ukraine for\n * body copy, IBM Plex Mono for labels, dates and tags.\n */\nconst meta = {\n  title: 'Foundations/Typography',\n  parameters: { layout: 'padded' },\n} satisfies Meta;\n\nexport default meta;\ntype Story = StoryObj<typeof meta>;\n\nexport const Scale: Story = {\n  render: () => (\n    <div className=\"wrapper\" style={{ padding: 32, display: 'grid', gap: 32 }}>\n      <div>\n        <p className=\"main-text main-text--mono\" style={{ opacity: 0.6 }}>\n          main-title — Noto Serif\n        </p>\n        <h1 className=\"main-title\">Find Ukrainian scientists for collaboration</h1>\n      </div>\n      <div>\n        <p className=\"main-text main-text--mono\" style={{ opacity: 0.6 }}>\n          main-title--h2\n        </p>\n        <h2 className=\"main-title main-title--h2\">Assistance in reconstruction</h2>\n      </div>\n      <div>\n        <p className=\"main-text main-text--mono\" style={{ opacity: 0.6 }}>\n          main-text — e-Ukraine\n        </p>\n        <p className=\"main-text\">\n          Scientific infrastructure damaged during the war. Mark the scientific field that interests you and\n          involve Ukrainian scientists in your own projects.\n        </p>\n      </div>\n      <div>\n        <p className=\"main-text main-text--mono\" style={{ opacity: 0.6 }}>\n          main-text--mono — IBM Plex Mono\n        </p>\n        <p className=\"main-text main-text--mono\">12.08.26 · Popular requests · Science Domain</p>\n      </div>\n      <div>\n        <p className=\"main-text main-text--mono\" style={{ opacity: 0.6 }}>\n          paragraph — long-form body inside a story\n        </p>\n        <div className=\"story\">\n          <p className=\"paragraph\">\n            At the time of the invasion, a unique herbarium was kept at Kherson University — one of the largest\n            in Ukraine. It began to be collected in 1945, because the original specimens were lost during the\n            Second World War.\n          </p>\n        </div>\n      </div>\n    </div>\n  ),\n};\n"
+      },
+      "stories": [
+        {
+          "id": "foundations-typography--scale",
+          "name": "Scale",
+          "snippet": "const Scale = () => (\n  <div className=\"wrapper\" style={{ padding: 32, display: 'grid', gap: 32 }}>\n    <div>\n      <p className=\"main-text main-text--mono\" style={{ opacity: 0.6 }}>\n        main-title — Noto Serif\n      </p>\n      <h1 className=\"main-title\">Find Ukrainian scientists for collaboration</h1>\n    </div>\n    <div>\n      <p className=\"main-text main-text--mono\" style={{ opacity: 0.6 }}>\n        main-title--h2\n      </p>\n      <h2 className=\"main-title main-title--h2\">Assistance in reconstruction</h2>\n    </div>\n    <div>\n      <p className=\"main-text main-text--mono\" style={{ opacity: 0.6 }}>\n        main-text — e-Ukraine\n      </p>\n      <p className=\"main-text\">\n        Scientific infrastructure damaged during the war. Mark the scientific field that interests you and\n        involve Ukrainian scientists in your own projects.\n      </p>\n    </div>\n    <div>\n      <p className=\"main-text main-text--mono\" style={{ opacity: 0.6 }}>\n        main-text--mono — IBM Plex Mono\n      </p>\n      <p className=\"main-text main-text--mono\">12.08.26 · Popular requests · Science Domain</p>\n    </div>\n    <div>\n      <p className=\"main-text main-text--mono\" style={{ opacity: 0.6 }}>\n        paragraph — long-form body inside a story\n      </p>\n      <div className=\"story\">\n        <p className=\"paragraph\">\n          At the time of the invasion, a unique herbarium was kept at Kherson University — one of the largest\n          in Ukraine. It began to be collected in 1945, because the original specimens were lost during the\n          Second World War.\n        </p>\n      </div>\n    </div>\n  </div>\n);"
+        }
+      ]
+    },
+    "atoms-button": {
+      "id": "atoms-button",
+      "name": "Button",
+      "path": "./src/components/Button/Button.stories.tsx",
+      "jsDocTags": {},
+      "description": "The site's `.btn` block, drawn as a real squircle (radius 60, smoothing 0.9\n— the site's own `--squircle-radius` / `--squircle-smooth`).\n\nA link button is a `div.btn` wrapping an `<a>`, because that is how the\nmarkup is written across the cards and the styles depend on it.\n\nThe bordered variant is a 1px ring, and on hover the site sets\n`--squircle-outline: 0` — the ring fills in rather than changing colour.",
+      "reactDocgen": {
+        "description": "The site's `.btn` block, drawn as a real squircle (radius 60, smoothing 0.9\n— the site's own `--squircle-radius` / `--squircle-smooth`).\n\nA link button is a `div.btn` wrapping an `<a>`, because that is how the\nmarkup is written across the cards and the styles depend on it.\n\nThe bordered variant is a 1px ring, and on hover the site sets\n`--squircle-outline: 0` — the ring fills in rather than changing colour.",
+        "methods": [],
+        "displayName": "Button",
+        "definedInFile": "/Users/ppetri/Sartr/sartr-ui/src/components/Button/Button.tsx",
+        "actualName": "Button",
+        "exportName": "Button",
+        "props": {
+          "children": {
+            "required": true,
+            "tsType": {
+              "name": "ReactNode"
+            },
+            "description": ""
+          },
+          "variant": {
+            "required": false,
+            "tsType": {
+              "name": "union",
+              "raw": "'black' | 'white' | 'bordered'",
+              "elements": [
+                {
+                  "name": "literal",
+                  "value": "'black'"
+                },
+                {
+                  "name": "literal",
+                  "value": "'white'"
+                },
+                {
+                  "name": "literal",
+                  "value": "'bordered'"
+                }
+              ]
+            },
+            "description": "",
+            "defaultValue": {
+              "value": "'black'",
+              "computed": false
+            }
+          },
+          "href": {
+            "required": false,
+            "tsType": {
+              "name": "string"
+            },
+            "description": "Renders an anchor inside the button wrapper, the way the site links cards."
+          },
+          "overlayLink": {
+            "required": false,
+            "tsType": {
+              "name": "boolean"
+            },
+            "description": "Render the anchor as an empty overlay covering the button, with the label\nas a direct child of `.btn`.\n\nThe site writes its link buttons both ways. Most blocks put the label\ninside the anchor, which is the default here. The stories slider does not:\n`.stories__btn a` is `position: absolute; inset: 0`, so a label inside it\nwould be lifted out of flow and the button would collapse to whatever\nwidth the CSS gives it.",
+            "defaultValue": {
+              "value": "false",
+              "computed": false
+            }
+          },
+          "target": {
+            "required": false,
+            "tsType": {
+              "name": "string"
+            },
+            "description": ""
+          },
+          "disabled": {
+            "required": false,
+            "tsType": {
+              "name": "boolean"
+            },
+            "description": ""
+          },
+          "type": {
+            "required": false,
+            "tsType": {
+              "name": "union",
+              "raw": "'button' | 'submit' | 'reset'",
+              "elements": [
+                {
+                  "name": "literal",
+                  "value": "'button'"
+                },
+                {
+                  "name": "literal",
+                  "value": "'submit'"
+                },
+                {
+                  "name": "literal",
+                  "value": "'reset'"
+                }
+              ]
+            },
+            "description": "",
+            "defaultValue": {
+              "value": "'button'",
+              "computed": false
+            }
+          },
+          "className": {
+            "required": false,
+            "tsType": {
+              "name": "string"
+            },
+            "description": "",
+            "defaultValue": {
+              "value": "''",
+              "computed": false
+            }
+          },
+          "onClick": {
+            "required": false,
+            "tsType": {
+              "name": "signature",
+              "type": "function",
+              "raw": "() => void",
+              "signature": {
+                "arguments": [],
+                "return": {
+                  "name": "void"
+                }
+              }
+            },
+            "description": ""
+          },
+          "aria-expanded": {
+            "required": false,
+            "tsType": {
+              "name": "boolean"
+            },
+            "description": ""
+          },
+          "aria-label": {
+            "required": false,
+            "tsType": {
+              "name": "string"
+            },
+            "description": ""
+          }
+        }
+      },
+      "stories": [
+        {
+          "id": "atoms-button--black",
+          "name": "Black",
+          "snippet": "const Black = () => <Button variant=\"black\">More details</Button>;"
+        },
+        {
+          "id": "atoms-button--bordered",
+          "name": "Bordered",
+          "snippet": "const Bordered = () => <Button variant=\"bordered\">More details</Button>;"
+        },
+        {
+          "id": "atoms-button--white",
+          "name": "White",
+          "snippet": "const White = () => <Button variant=\"white\">Send</Button>;"
+        },
+        {
+          "id": "atoms-button--as-link",
+          "name": "As Link",
+          "snippet": "const AsLink = () => <Button variant=\"black\" href=\"#\">Read</Button>;"
+        },
+        {
+          "id": "atoms-button--overlay-link",
+          "name": "Overlay Link",
+          "snippet": "const OverlayLink = () => <Button variant=\"white\" href=\"#\" overlayLink>Read</Button>;",
+          "description": "Some of the site's blocks style `.btn a` as a full-size overlay — the stories\nslider does. There the label has to sit outside the anchor, or it would be\nlifted out of flow with it."
+        },
+        {
+          "id": "atoms-button--disabled",
+          "name": "Disabled",
+          "snippet": "const Disabled = () => <Button variant=\"black\" disabled>More details</Button>;"
+        },
+        {
+          "id": "atoms-button--all-variants",
+          "name": "All Variants",
+          "snippet": "const AllVariants = () => (\n  <div style={{ display: 'flex', gap: 16, alignItems: 'center', flexWrap: 'wrap' }}>\n    <Button variant=\"black\">Black</Button>\n    <Button variant=\"bordered\">Bordered</Button>\n    <Button variant=\"black\" disabled>\n      Disabled\n    </Button>\n  </div>\n);"
+        }
+      ],
+      "import": "import { Button } from 'sartr-ui';"
+    },
+    "atoms-loader": {
+      "id": "atoms-loader",
+      "name": "Loader",
+      "path": "./src/components/Loader/Loader.stories.tsx",
+      "jsDocTags": {},
+      "description": "The site's `.loader` spinner, shown while a list page fetches more items.",
+      "reactDocgen": {
+        "description": "The site's `.loader` spinner, shown while a list page fetches more items.",
+        "methods": [],
+        "displayName": "Loader",
+        "definedInFile": "/Users/ppetri/Sartr/sartr-ui/src/components/Loader/Loader.tsx",
+        "actualName": "Loader",
+        "exportName": "Loader",
+        "props": {
+          "text": {
+            "required": false,
+            "tsType": {
+              "name": "string"
+            },
+            "description": ""
+          }
+        }
+      },
+      "stories": [
+        {
+          "id": "atoms-loader--default",
+          "name": "Default",
+          "snippet": "const Default = () => <Loader />;"
+        },
+        {
+          "id": "atoms-loader--with-text",
+          "name": "With Text",
+          "snippet": "const WithText = () => <Loader text=\"Loading\" />;"
+        }
+      ],
+      "import": "import { Loader } from 'sartr-ui';"
+    },
+    "atoms-tag": {
+      "id": "atoms-tag",
+      "name": "Tag",
+      "path": "./src/components/Tag/Tag.stories.tsx",
+      "jsDocTags": {},
+      "description": "The site's `.tag` pill — a squircle of radius 60 at smoothing 0.9, the same\nshape as the buttons.",
+      "reactDocgen": {
+        "description": "The site's `.tag` pill — a squircle of radius 60 at smoothing 0.9, the same\nshape as the buttons.",
+        "methods": [],
+        "displayName": "Tag",
+        "definedInFile": "/Users/ppetri/Sartr/sartr-ui/src/components/Tag/Tag.tsx",
+        "actualName": "Tag",
+        "exportName": "Tag",
+        "props": {
+          "label": {
+            "required": true,
+            "tsType": {
+              "name": "string"
+            },
+            "description": ""
+          },
+          "count": {
+            "required": false,
+            "tsType": {
+              "name": "number"
+            },
+            "description": "Result count shown to the right of the label, as on the home page."
+          },
+          "href": {
+            "required": false,
+            "tsType": {
+              "name": "string"
+            },
+            "description": ""
+          },
+          "fill": {
+            "required": false,
+            "tsType": {
+              "name": "string"
+            },
+            "description": "The expert cards tint their tags; the site's `--squircle-fill` there is #B5C6CD.",
+            "defaultValue": {
+              "value": "'#FFFFFF'",
+              "computed": false
+            }
+          },
+          "as": {
+            "required": false,
+            "tsType": {
+              "name": "union",
+              "raw": "'button' | 'span'",
+              "elements": [
+                {
+                  "name": "literal",
+                  "value": "'button'"
+                },
+                {
+                  "name": "literal",
+                  "value": "'span'"
+                }
+              ]
+            },
+            "description": "`span` for a tag that only labels something — a story's themes, say —\nrather than filtering a list. Keeps a dead button out of the tab order.",
+            "defaultValue": {
+              "value": "'button'",
+              "computed": false
+            }
+          },
+          "className": {
+            "required": false,
+            "tsType": {
+              "name": "string"
+            },
+            "description": "",
+            "defaultValue": {
+              "value": "''",
+              "computed": false
+            }
+          },
+          "onClick": {
+            "required": false,
+            "tsType": {
+              "name": "signature",
+              "type": "function",
+              "raw": "(label: string) => void",
+              "signature": {
+                "arguments": [
+                  {
+                    "type": {
+                      "name": "string"
+                    },
+                    "name": "label"
+                  }
+                ],
+                "return": {
+                  "name": "void"
+                }
+              }
+            },
+            "description": ""
+          }
+        }
+      },
+      "stories": [
+        {
+          "id": "atoms-tag--default",
+          "name": "Default",
+          "snippet": "const Default = () => <Tag label=\"Biochemistry\" />;"
+        },
+        {
+          "id": "atoms-tag--with-count",
+          "name": "With Count",
+          "snippet": "const WithCount = () => <Tag label=\"Teaching\" count={101} />;"
+        },
+        {
+          "id": "atoms-tag--as-link",
+          "name": "As Link",
+          "snippet": "const AsLink = () => <Tag label=\"Biology\" count={57} href=\"#\" />;"
+        },
+        {
+          "id": "atoms-tag--list",
+          "name": "List",
+          "snippet": "const List = () => (\n  <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>\n    {[\n      ['Teaching', 101],\n      ['Science popularization', 86],\n      ['Biology', 57],\n      ['Natural sciences', 55],\n      ['Biochemistry', 41],\n    ].map(([label, count]) => (\n      <Tag key={label as string} label={label as string} count={count as number} />\n    ))}\n  </div>\n);"
+        }
+      ],
+      "import": "import { Tag } from 'sartr-ui';"
+    },
+    "atoms-textfield": {
+      "id": "atoms-textfield",
+      "name": "TextField",
+      "path": "./src/components/TextField/TextField.stories.tsx",
+      "jsDocTags": {},
+      "description": "The site's floating-label field (`.column` + `._risk-label`). The label sits\nafter the control in the DOM — the float is driven by `:focus`/`:valid`\nsibling selectors, so the order matters.",
+      "reactDocgen": {
+        "description": "The site's floating-label field (`.column` + `._risk-label`). The label sits\nafter the control in the DOM — the float is driven by `:focus`/`:valid`\nsibling selectors, so the order matters.",
+        "methods": [],
+        "displayName": "TextField",
+        "definedInFile": "/Users/ppetri/Sartr/sartr-ui/src/components/TextField/TextField.tsx",
+        "actualName": "TextField",
+        "exportName": "TextField",
+        "props": {
+          "label": {
+            "required": true,
+            "tsType": {
+              "name": "string"
+            },
+            "description": ""
+          },
+          "name": {
+            "required": false,
+            "tsType": {
+              "name": "string"
+            },
+            "description": ""
+          },
+          "type": {
+            "required": false,
+            "tsType": {
+              "name": "union",
+              "raw": "'text' | 'email'",
+              "elements": [
+                {
+                  "name": "literal",
+                  "value": "'text'"
+                },
+                {
+                  "name": "literal",
+                  "value": "'email'"
+                }
+              ]
+            },
+            "description": "",
+            "defaultValue": {
+              "value": "'text'",
+              "computed": false
+            }
+          },
+          "multiline": {
+            "required": false,
+            "tsType": {
+              "name": "boolean"
+            },
+            "description": "Renders a textarea with the site's character counter.",
+            "defaultValue": {
+              "value": "false",
+              "computed": false
+            }
+          },
+          "maxLength": {
+            "required": false,
+            "tsType": {
+              "name": "number"
+            },
+            "description": "",
+            "defaultValue": {
+              "value": "7000",
+              "computed": false
+            }
+          },
+          "required": {
+            "required": false,
+            "tsType": {
+              "name": "boolean"
+            },
+            "description": "",
+            "defaultValue": {
+              "value": "false",
+              "computed": false
+            }
+          },
+          "defaultValue": {
+            "required": false,
+            "tsType": {
+              "name": "string"
+            },
+            "description": "",
+            "defaultValue": {
+              "value": "''",
+              "computed": false
+            }
+          },
+          "className": {
+            "required": false,
+            "tsType": {
+              "name": "string"
+            },
+            "description": "",
+            "defaultValue": {
+              "value": "''",
+              "computed": false
+            }
+          }
+        }
+      },
+      "stories": [
+        {
+          "id": "atoms-textfield--empty",
+          "name": "Empty",
+          "snippet": "const Empty = () => <TextField label=\"Name\" />;"
+        },
+        {
+          "id": "atoms-textfield--filled",
+          "name": "Filled",
+          "snippet": "const Filled = () => <TextField label=\"Name\" defaultValue=\"Sofiia Fedzhora\" />;"
+        },
+        {
+          "id": "atoms-textfield--email",
+          "name": "Email",
+          "snippet": "const Email = () => <TextField label=\"Email\" type=\"email\" />;"
+        },
+        {
+          "id": "atoms-textfield--multiline",
+          "name": "Multiline",
+          "snippet": "const Multiline = () => <TextField label=\"Text\" multiline />;"
+        },
+        {
+          "id": "atoms-textfield--over-limit",
+          "name": "Over Limit",
+          "snippet": "const OverLimit = () => <TextField\n    label=\"Text\"\n    multiline\n    maxLength={20}\n    defaultValue=\"A request far longer than the limit allows.\" />;"
+        }
+      ],
+      "import": "import { TextField } from 'sartr-ui';"
+    },
+    "molecules-breadcrumbs": {
+      "id": "molecules-breadcrumbs",
+      "name": "Breadcrumbs",
+      "path": "./src/components/Breadcrumbs/Breadcrumbs.stories.tsx",
+      "jsDocTags": {},
+      "description": "The site's `.breadcrumbs`, including its schema.org BreadcrumbList markup.",
+      "reactDocgen": {
+        "description": "The site's `.breadcrumbs`, including its schema.org BreadcrumbList markup.",
+        "methods": [],
+        "displayName": "Breadcrumbs",
+        "definedInFile": "/Users/ppetri/Sartr/sartr-ui/src/components/Breadcrumbs/Breadcrumbs.tsx",
+        "actualName": "Breadcrumbs",
+        "exportName": "Breadcrumbs",
+        "props": {
+          "items": {
+            "required": true,
+            "tsType": {
+              "name": "Array",
+              "elements": [
+                {
+                  "name": "Crumb"
+                }
+              ],
+              "raw": "Crumb[]"
+            },
+            "description": ""
+          }
+        }
+      },
+      "stories": [
+        {
+          "id": "molecules-breadcrumbs--two-levels",
+          "name": "Two Levels",
+          "snippet": "const TwoLevels = () => <Breadcrumbs items={[{ label: 'Main', href: '#' }, { label: 'Experts' }]} />;"
+        },
+        {
+          "id": "molecules-breadcrumbs--three-levels",
+          "name": "Three Levels",
+          "snippet": "const ThreeLevels = () => <Breadcrumbs\n    items={[\n      { label: 'Main', href: '#' },\n      { label: 'Experts', href: '#' },\n      { label: 'Igor Komarov' },\n    ]} />;"
+        }
+      ],
+      "import": "import { Breadcrumbs } from 'sartr-ui';"
+    },
+    "molecules-emptystate": {
+      "id": "molecules-emptystate",
+      "name": "EmptyState",
+      "path": "./src/components/EmptyState/EmptyState.stories.tsx",
+      "jsDocTags": {},
+      "description": "The site's `.nothing` block — the \"no results\" state on the list pages,\noffering popular queries as a way out.",
+      "reactDocgen": {
+        "description": "The site's `.nothing` block — the \"no results\" state on the list pages,\noffering popular queries as a way out.",
+        "methods": [],
+        "displayName": "EmptyState",
+        "definedInFile": "/Users/ppetri/Sartr/sartr-ui/src/components/EmptyState/EmptyState.tsx",
+        "actualName": "EmptyState",
+        "exportName": "EmptyState",
+        "props": {
+          "title": {
+            "required": false,
+            "tsType": {
+              "name": "string"
+            },
+            "description": "",
+            "defaultValue": {
+              "value": "'We didn’t find anything for your query'",
+              "computed": false
+            }
+          },
+          "text": {
+            "required": false,
+            "tsType": {
+              "name": "string"
+            },
+            "description": "",
+            "defaultValue": {
+              "value": "'Try another keyword, or see popular queries.'",
+              "computed": false
+            }
+          },
+          "suggestions": {
+            "required": false,
+            "tsType": {
+              "name": "Array",
+              "elements": [
+                {
+                  "name": "string"
+                }
+              ],
+              "raw": "string[]"
+            },
+            "description": "Suggested queries, rendered as bordered buttons.",
+            "defaultValue": {
+              "value": "[]",
+              "computed": false
+            }
+          },
+          "onSelect": {
+            "required": false,
+            "tsType": {
+              "name": "signature",
+              "type": "function",
+              "raw": "(label: string) => void",
+              "signature": {
+                "arguments": [
+                  {
+                    "type": {
+                      "name": "string"
+                    },
+                    "name": "label"
+                  }
+                ],
+                "return": {
+                  "name": "void"
+                }
+              }
+            },
+            "description": ""
+          }
+        }
+      },
+      "stories": [
+        {
+          "id": "molecules-emptystate--with-suggestions",
+          "name": "With Suggestions",
+          "snippet": "const WithSuggestions = () => <EmptyState\n    suggestions={['Teaching', 'Science popularization', 'Biology', 'Natural sciences', 'Biochemistry']} />;"
+        },
+        {
+          "id": "molecules-emptystate--bare",
+          "name": "Bare",
+          "snippet": "const Bare = () => <EmptyState suggestions={[]} />;"
+        }
+      ],
+      "import": "import { EmptyState } from 'sartr-ui';"
+    },
+    "molecules-fullimage": {
+      "id": "molecules-fullimage",
+      "name": "FullImage",
+      "path": "./src/components/FullImage/FullImage.stories.tsx",
+      "jsDocTags": {},
+      "description": "The `.full-image` hero picture at the top of a story.",
+      "reactDocgen": {
+        "description": "The `.full-image` hero picture at the top of a story.",
+        "methods": [],
+        "displayName": "FullImage",
+        "definedInFile": "/Users/ppetri/Sartr/sartr-ui/src/components/FullImage/FullImage.tsx",
+        "actualName": "FullImage",
+        "exportName": "FullImage",
+        "props": {
+          "src": {
+            "required": true,
+            "tsType": {
+              "name": "string"
+            },
+            "description": ""
+          },
+          "alt": {
+            "required": true,
+            "tsType": {
+              "name": "string"
+            },
+            "description": ""
+          },
+          "caption": {
+            "required": false,
+            "tsType": {
+              "name": "string"
+            },
+            "description": ""
+          }
+        }
+      },
+      "stories": [
+        {
+          "id": "molecules-fullimage--default",
+          "name": "Default",
+          "snippet": "const Default = () => <FullImage src=\"/img/story-2.png\" alt=\"Stolen museum. Kherson\" />;"
+        },
+        {
+          "id": "molecules-fullimage--with-caption",
+          "name": "With Caption",
+          "snippet": "const WithCaption = () => <FullImage\n    src=\"/img/story-2.png\"\n    alt=\"Stolen museum. Kherson\"\n    caption=\"Kherson Local History Museum, 2022\" />;"
+        }
+      ],
+      "import": "import { FullImage } from 'sartr-ui';"
+    },
+    "molecules-pagination": {
+      "id": "molecules-pagination",
+      "name": "Pagination",
+      "path": "./src/components/Pagination/Pagination.stories.tsx",
+      "jsDocTags": {},
+      "description": "The site's `.pagination` block.",
+      "reactDocgen": {
+        "description": "The site's `.pagination` block.",
+        "methods": [],
+        "displayName": "Pagination",
+        "definedInFile": "/Users/ppetri/Sartr/sartr-ui/src/components/Pagination/Pagination.tsx",
+        "actualName": "Pagination",
+        "exportName": "Pagination",
+        "props": {
+          "current": {
+            "required": true,
+            "tsType": {
+              "name": "number"
+            },
+            "description": ""
+          },
+          "total": {
+            "required": true,
+            "tsType": {
+              "name": "number"
+            },
+            "description": ""
+          },
+          "hrefFor": {
+            "required": false,
+            "tsType": {
+              "name": "signature",
+              "type": "function",
+              "raw": "(page: number) => string",
+              "signature": {
+                "arguments": [
+                  {
+                    "type": {
+                      "name": "number"
+                    },
+                    "name": "page"
+                  }
+                ],
+                "return": {
+                  "name": "string"
+                }
+              }
+            },
+            "description": "Builds the href for a page number. Omit to render buttons instead."
+          },
+          "labels": {
+            "required": false,
+            "tsType": {
+              "name": "signature",
+              "type": "object",
+              "raw": "{ prev: string; next: string }",
+              "signature": {
+                "properties": [
+                  {
+                    "key": "prev",
+                    "value": {
+                      "name": "string",
+                      "required": true
+                    }
+                  },
+                  {
+                    "key": "next",
+                    "value": {
+                      "name": "string",
+                      "required": true
+                    }
+                  }
+                ]
+              }
+            },
+            "description": "",
+            "defaultValue": {
+              "value": "{ prev: 'Previous', next: 'Next' }",
+              "computed": false
+            }
+          },
+          "onChange": {
+            "required": false,
+            "tsType": {
+              "name": "signature",
+              "type": "function",
+              "raw": "(page: number) => void",
+              "signature": {
+                "arguments": [
+                  {
+                    "type": {
+                      "name": "number"
+                    },
+                    "name": "page"
+                  }
+                ],
+                "return": {
+                  "name": "void"
+                }
+              }
+            },
+            "description": ""
+          }
+        }
+      },
+      "stories": [
+        {
+          "id": "molecules-pagination--first-page",
+          "name": "First Page",
+          "snippet": "const FirstPage = () => <Pagination current={1} total={7} />;"
+        },
+        {
+          "id": "molecules-pagination--middle-page",
+          "name": "Middle Page",
+          "snippet": "const MiddlePage = () => <Pagination current={4} total={7} />;"
+        },
+        {
+          "id": "molecules-pagination--last-page",
+          "name": "Last Page",
+          "snippet": "const LastPage = () => <Pagination current={7} total={7} />;"
+        }
+      ],
+      "import": "import { Pagination } from 'sartr-ui';"
+    },
+    "molecules-popularrequests": {
+      "id": "molecules-popularrequests",
+      "name": "PopularRequests",
+      "path": "./src/components/PopularRequests/PopularRequests.stories.tsx",
+      "jsDocTags": {},
+      "description": "The `.popular-requests` cluster under the home-page search field.",
+      "reactDocgen": {
+        "description": "The `.popular-requests` cluster under the home-page search field.",
+        "methods": [],
+        "displayName": "PopularRequests",
+        "definedInFile": "/Users/ppetri/Sartr/sartr-ui/src/components/PopularRequests/PopularRequests.tsx",
+        "actualName": "PopularRequests",
+        "exportName": "PopularRequests",
+        "props": {
+          "title": {
+            "required": false,
+            "tsType": {
+              "name": "string"
+            },
+            "description": "",
+            "defaultValue": {
+              "value": "'Popular requests'",
+              "computed": false
+            }
+          },
+          "items": {
+            "required": true,
+            "tsType": {
+              "name": "Array",
+              "elements": [
+                {
+                  "name": "PopularRequest"
+                }
+              ],
+              "raw": "PopularRequest[]"
+            },
+            "description": ""
+          },
+          "minCount": {
+            "required": false,
+            "tsType": {
+              "name": "number"
+            },
+            "description": "Counts below this are left off the pill. A visible `1` on the first screen\nsays \"this database is empty\" louder than the rest of the page says the\nopposite, and the tag is still worth offering as a query.",
+            "defaultValue": {
+              "value": "10",
+              "computed": false
+            }
+          },
+          "showCounts": {
+            "required": false,
+            "tsType": {
+              "name": "boolean"
+            },
+            "description": "Drop the counts altogether. The home page does: on the first screen the\nblack discs read as data about the database rather than as a way in.",
+            "defaultValue": {
+              "value": "true",
+              "computed": false
+            }
+          },
+          "className": {
+            "required": false,
+            "tsType": {
+              "name": "string"
+            },
+            "description": "",
+            "defaultValue": {
+              "value": "''",
+              "computed": false
+            }
+          },
+          "onSelect": {
+            "required": false,
+            "tsType": {
+              "name": "signature",
+              "type": "function",
+              "raw": "(label: string) => void",
+              "signature": {
+                "arguments": [
+                  {
+                    "type": {
+                      "name": "string"
+                    },
+                    "name": "label"
+                  }
+                ],
+                "return": {
+                  "name": "void"
+                }
+              }
+            },
+            "description": ""
+          }
+        }
+      },
+      "stories": [
+        {
+          "id": "molecules-popularrequests--default",
+          "name": "Default",
+          "snippet": "const Default = () => <PopularRequests\n    items={[\n      { label: 'Teaching', count: 101 },\n      { label: 'Science popularization', count: 86 },\n      { label: 'Biology', count: 57 },\n      { label: 'Natural sciences', count: 55 },\n      { label: 'Biochemistry', count: 41 },\n    ]} />;"
+        },
+        {
+          "id": "molecules-popularrequests--ukrainian",
+          "name": "Ukrainian",
+          "snippet": "const Ukrainian = () => <PopularRequests\n    items={[\n      { label: 'Викладання', count: 101 },\n      { label: 'Популяризація науки', count: 86 },\n      { label: 'Біологія', count: 57 },\n    ]}\n    title=\"Популярні запити\" />;"
+        }
+      ],
+      "import": "import { PopularRequests } from 'sartr-ui';"
+    },
+    "molecules-quote": {
+      "id": "molecules-quote",
+      "name": "Quote",
+      "path": "./src/components/Quote/Quote.stories.tsx",
+      "jsDocTags": {},
+      "description": "The `.quote` block used inside stories.",
+      "reactDocgen": {
+        "description": "The `.quote` block used inside stories.",
+        "methods": [],
+        "displayName": "Quote",
+        "definedInFile": "/Users/ppetri/Sartr/sartr-ui/src/components/Quote/Quote.tsx",
+        "actualName": "Quote",
+        "exportName": "Quote",
+        "props": {
+          "name": {
+            "required": true,
+            "tsType": {
+              "name": "string"
+            },
+            "description": "Speaker name, printed above the quote on the site."
+          },
+          "text": {
+            "required": true,
+            "tsType": {
+              "name": "string"
+            },
+            "description": ""
+          },
+          "position": {
+            "required": false,
+            "tsType": {
+              "name": "string"
+            },
+            "description": ""
+          }
+        }
+      },
+      "stories": [
+        {
+          "id": "molecules-quote--default",
+          "name": "Default",
+          "snippet": "const Default = () => <Quote\n    name=\"Serhii Plokhii\"\n    text=\"The Ukrainian scientists on the portraits painted by the official artist of the Nobel Prize Committee will never receive a Nobel Prize.\"\n    position=\"Director of the Ukrainian Research Institute at Harvard\" />;"
+        },
+        {
+          "id": "molecules-quote--without-position",
+          "name": "Without Position",
+          "snippet": "const WithoutPosition = () => <Quote\n    name=\"Serhii Plokhii\"\n    text=\"The Ukrainian scientists on the portraits painted by the official artist of the Nobel Prize Committee will never receive a Nobel Prize.\"\n    position={undefined} />;"
+        }
+      ],
+      "import": "import { Quote } from 'sartr-ui';"
+    },
+    "molecules-sectionintro": {
+      "id": "molecules-sectionintro",
+      "name": "SectionIntro",
+      "path": "./src/components/SectionIntro/SectionIntro.stories.tsx",
+      "jsDocTags": {},
+      "description": "The `.info` block that introduces a section and links to its full list.",
+      "reactDocgen": {
+        "description": "The `.info` block that introduces a section and links to its full list.",
+        "methods": [],
+        "displayName": "SectionIntro",
+        "definedInFile": "/Users/ppetri/Sartr/sartr-ui/src/components/SectionIntro/SectionIntro.tsx",
+        "actualName": "SectionIntro",
+        "exportName": "SectionIntro",
+        "props": {
+          "title": {
+            "required": true,
+            "tsType": {
+              "name": "string"
+            },
+            "description": ""
+          },
+          "text": {
+            "required": false,
+            "tsType": {
+              "name": "string"
+            },
+            "description": ""
+          },
+          "link": {
+            "required": false,
+            "tsType": {
+              "name": "signature",
+              "type": "object",
+              "raw": "{ label: string; href: string }",
+              "signature": {
+                "properties": [
+                  {
+                    "key": "label",
+                    "value": {
+                      "name": "string",
+                      "required": true
+                    }
+                  },
+                  {
+                    "key": "href",
+                    "value": {
+                      "name": "string",
+                      "required": true
+                    }
+                  }
+                ]
+              }
+            },
+            "description": ""
+          },
+          "as": {
+            "required": false,
+            "tsType": {
+              "name": "union",
+              "raw": "'h1' | 'h2'",
+              "elements": [
+                {
+                  "name": "literal",
+                  "value": "'h1'"
+                },
+                {
+                  "name": "literal",
+                  "value": "'h2'"
+                }
+              ]
+            },
+            "description": "Renders an `h1` instead of the default `h2` when this is the page title.",
+            "defaultValue": {
+              "value": "'h2'",
+              "computed": false
+            }
+          }
+        }
+      },
+      "stories": [
+        {
+          "id": "molecules-sectionintro--default",
+          "name": "Default",
+          "snippet": "const Default = () => <SectionIntro\n    title=\"Assistance in reconstruction\"\n    text=\"Scientific infrastructure damaged during the war\"\n    link={{ label: 'All projects', href: '#' }} />;"
+        },
+        {
+          "id": "molecules-sectionintro--as-page-title",
+          "name": "As Page Title",
+          "snippet": "const AsPageTitle = () => <SectionIntro\n    title=\"Assistance in reconstruction\"\n    text=\"Scientific infrastructure damaged during the war\"\n    link={{ label: 'All projects', href: '#' }}\n    as=\"h1\" />;"
+        },
+        {
+          "id": "molecules-sectionintro--title-only",
+          "name": "Title Only",
+          "snippet": "const TitleOnly = () => <SectionIntro title=\"Assistance in reconstruction\" text={undefined} link={undefined} />;"
+        }
+      ],
+      "import": "import { SectionIntro } from 'sartr-ui';"
+    },
+    "molecules-select": {
+      "id": "molecules-select",
+      "name": "Select",
+      "path": "./src/components/Select/Select.stories.tsx",
+      "jsDocTags": {},
+      "description": "The site's `.riskCustom-select` — a bordered button that expands a panel.\nOpen state is the `active` class on the root, matching the site's own JS.\n\nBoth parts are squircles: the trigger is the button pill, and the panel is\na 1px ring at radius 25 (the site's `--squircle-radius` there). When the\nselect opens, the site drops the trigger's outline to 0 — the ring fills in\nsolid black, which is what turns its label white.",
+      "reactDocgen": {
+        "description": "The site's `.riskCustom-select` — a bordered button that expands a panel.\nOpen state is the `active` class on the root, matching the site's own JS.\n\nBoth parts are squircles: the trigger is the button pill, and the panel is\na 1px ring at radius 25 (the site's `--squircle-radius` there). When the\nselect opens, the site drops the trigger's outline to 0 — the ring fills in\nsolid black, which is what turns its label white.",
+        "methods": [],
+        "displayName": "Select",
+        "definedInFile": "/Users/ppetri/Sartr/sartr-ui/src/components/Select/Select.tsx",
+        "actualName": "Select",
+        "exportName": "Select",
+        "props": {
+          "value": {
+            "required": true,
+            "tsType": {
+              "name": "string"
+            },
+            "description": "Label on the closed button — the site shows the active option here."
+          },
+          "options": {
+            "required": true,
+            "tsType": {
+              "name": "Array",
+              "elements": [
+                {
+                  "name": "SelectOption"
+                }
+              ],
+              "raw": "SelectOption[]"
+            },
+            "description": ""
+          },
+          "defaultOpen": {
+            "required": false,
+            "tsType": {
+              "name": "boolean"
+            },
+            "description": "",
+            "defaultValue": {
+              "value": "false",
+              "computed": false
+            }
+          },
+          "className": {
+            "required": false,
+            "tsType": {
+              "name": "string"
+            },
+            "description": "",
+            "defaultValue": {
+              "value": "''",
+              "computed": false
+            }
+          },
+          "onSelect": {
+            "required": false,
+            "tsType": {
+              "name": "signature",
+              "type": "function",
+              "raw": "(label: string) => void",
+              "signature": {
+                "arguments": [
+                  {
+                    "type": {
+                      "name": "string"
+                    },
+                    "name": "label"
+                  }
+                ],
+                "return": {
+                  "name": "void"
+                }
+              }
+            },
+            "description": ""
+          }
+        }
+      },
+      "stories": [
+        {
+          "id": "molecules-select--closed",
+          "name": "Closed",
+          "snippet": "const Closed = () => <Select value=\"Stories\" options={[{ label: 'Stories' }, { label: 'Blogs' }]} />;"
+        },
+        {
+          "id": "molecules-select--open",
+          "name": "Open",
+          "snippet": "const Open = () => <Select\n    value=\"Stories\"\n    options={[{ label: 'Stories' }, { label: 'Blogs' }]}\n    defaultOpen />;"
+        },
+        {
+          "id": "molecules-select--many-options",
+          "name": "Many Options",
+          "snippet": "const ManyOptions = () => <Select\n    value=\"All fields\"\n    options={[\n      { label: 'All fields' },\n      { label: 'Biochemistry' },\n      { label: 'Biology' },\n      { label: 'Natural sciences' },\n      { label: 'Teaching' },\n    ]}\n    defaultOpen />;"
+        }
+      ],
+      "import": "import { Select } from 'sartr-ui';"
+    },
+    "cards-expertcard": {
+      "id": "cards-expertcard",
+      "name": "ExpertCard",
+      "path": "./src/components/ExpertCard/ExpertCard.stories.tsx",
+      "jsDocTags": {},
+      "description": "The `.expert-card` from the experts directory.",
+      "reactDocgen": {
+        "description": "The `.expert-card` from the experts directory.",
+        "methods": [],
+        "displayName": "ExpertCard",
+        "definedInFile": "/Users/ppetri/Sartr/sartr-ui/src/components/ExpertCard/ExpertCard.tsx",
+        "actualName": "ExpertCard",
+        "exportName": "ExpertCard",
+        "props": {
+          "name": {
+            "required": true,
+            "tsType": {
+              "name": "string"
+            },
+            "description": ""
+          },
+          "degree": {
+            "required": false,
+            "tsType": {
+              "name": "string"
+            },
+            "description": "Degree and rank, e.g. \"Ph.D., professor\"."
+          },
+          "affiliation": {
+            "required": false,
+            "tsType": {
+              "name": "string"
+            },
+            "description": ""
+          },
+          "summary": {
+            "required": false,
+            "tsType": {
+              "name": "string"
+            },
+            "description": ""
+          },
+          "tags": {
+            "required": false,
+            "tsType": {
+              "name": "Array",
+              "elements": [
+                {
+                  "name": "string"
+                }
+              ],
+              "raw": "string[]"
+            },
+            "description": "",
+            "defaultValue": {
+              "value": "[]",
+              "computed": false
+            }
+          },
+          "photo": {
+            "required": false,
+            "tsType": {
+              "name": "string"
+            },
+            "description": ""
+          },
+          "href": {
+            "required": true,
+            "tsType": {
+              "name": "string"
+            },
+            "description": ""
+          },
+          "buttonLabel": {
+            "required": false,
+            "tsType": {
+              "name": "string"
+            },
+            "description": "",
+            "defaultValue": {
+              "value": "'More details'",
+              "computed": false
+            }
+          },
+          "onTagClick": {
+            "required": false,
+            "tsType": {
+              "name": "signature",
+              "type": "function",
+              "raw": "(tag: string) => void",
+              "signature": {
+                "arguments": [
+                  {
+                    "type": {
+                      "name": "string"
+                    },
+                    "name": "tag"
+                  }
+                ],
+                "return": {
+                  "name": "void"
+                }
+              }
+            },
+            "description": ""
+          }
+        }
+      },
+      "stories": [
+        {
+          "id": "cards-expertcard--default",
+          "name": "Default",
+          "snippet": "const Default = () => <ExpertCard\n    name=\"Igor Komarov\"\n    degree=\"Ph.D., professor\"\n    affiliation=\"Educational and Scientific Institute of High Technologies, Taras Shevchenko National University of Kyiv\"\n    summary=\"Igor leads the Institute of High Technologies of Taras Shevchenko Kyiv National University and participates in forming the university’s scientific policy.\"\n    tags={['Chemistry', 'Biochemistry', 'Natural sciences', 'Science popularization', 'Expert consulting']}\n    photo=\"/img/person-1.jpg\"\n    href=\"#\" />;"
+        },
+        {
+          "id": "cards-expertcard--without-photo",
+          "name": "Without Photo",
+          "snippet": "const WithoutPhoto = () => <ExpertCard\n    name=\"Igor Komarov\"\n    degree=\"Ph.D., professor\"\n    affiliation=\"Educational and Scientific Institute of High Technologies, Taras Shevchenko National University of Kyiv\"\n    summary=\"Igor leads the Institute of High Technologies of Taras Shevchenko Kyiv National University and participates in forming the university’s scientific policy.\"\n    tags={['Chemistry', 'Biochemistry', 'Natural sciences', 'Science popularization', 'Expert consulting']}\n    photo={undefined}\n    href=\"#\" />;"
+        },
+        {
+          "id": "cards-expertcard--minimal",
+          "name": "Minimal",
+          "snippet": "const Minimal = () => <ExpertCard\n    name=\"Igor Komarov\"\n    degree={undefined}\n    affiliation=\"Educational and Scientific Institute of High Technologies, Taras Shevchenko National University of Kyiv\"\n    summary={undefined}\n    tags={[]}\n    photo=\"/img/person-1.jpg\"\n    href=\"#\" />;"
+        }
+      ],
+      "import": "import { ExpertCard } from 'sartr-ui';"
+    },
+    "cards-listcard": {
+      "id": "cards-listcard",
+      "name": "ListCard",
+      "path": "./src/components/ListCard/ListCard.stories.tsx",
+      "jsDocTags": {},
+      "description": "The `.list-card` used for damaged-infrastructure entries.",
+      "reactDocgen": {
+        "description": "The `.list-card` used for damaged-infrastructure entries.",
+        "methods": [],
+        "displayName": "ListCard",
+        "definedInFile": "/Users/ppetri/Sartr/sartr-ui/src/components/ListCard/ListCard.tsx",
+        "actualName": "ListCard",
+        "exportName": "ListCard",
+        "props": {
+          "title": {
+            "required": true,
+            "tsType": {
+              "name": "string"
+            },
+            "description": ""
+          },
+          "text": {
+            "required": false,
+            "tsType": {
+              "name": "string"
+            },
+            "description": ""
+          },
+          "price": {
+            "required": false,
+            "tsType": {
+              "name": "string"
+            },
+            "description": "Funding needed, already formatted, e.g. \"~ 500000 UAH\"."
+          },
+          "href": {
+            "required": true,
+            "tsType": {
+              "name": "string"
+            },
+            "description": ""
+          },
+          "buttonLabel": {
+            "required": false,
+            "tsType": {
+              "name": "string"
+            },
+            "description": "",
+            "defaultValue": {
+              "value": "'More details'",
+              "computed": false
+            }
+          },
+          "priceLabel": {
+            "required": false,
+            "tsType": {
+              "name": "string"
+            },
+            "description": "",
+            "defaultValue": {
+              "value": "'Required amount'",
+              "computed": false
+            }
+          }
+        }
+      },
+      "stories": [
+        {
+          "id": "cards-listcard--default",
+          "name": "Default",
+          "snippet": "const Default = () => <ListCard\n    title=\"Institute for Problems of Cryobiology and Cryomedicine\"\n    text=\"Institute for Problems of Cryobiology and Cryomedicine\"\n    price=\"~ 500000 UAH\"\n    href=\"#\" />;"
+        },
+        {
+          "id": "cards-listcard--without-price",
+          "name": "Without Price",
+          "snippet": "const WithoutPrice = () => <ListCard\n    title=\"Institute for Problems of Cryobiology and Cryomedicine\"\n    text=\"Institute for Problems of Cryobiology and Cryomedicine\"\n    price={undefined}\n    href=\"#\" />;"
+        },
+        {
+          "id": "cards-listcard--stacked",
+          "name": "Stacked",
+          "snippet": "const Stacked = () => <div className=\"list-cards\">\n    <ListCard\n        title=\"Institute for Problems of Cryobiology and Cryomedicine\"\n        text=\"Institute for Problems of Cryobiology and Cryomedicine\"\n        price=\"~ 500000 UAH\"\n        href=\"#\" />\n    <ListCard\n        text=\"Institute for Problems of Cryobiology and Cryomedicine\"\n        href=\"#\"\n        title=\"Berdiansk State Pedagogical University\"\n        price=\"~ 1200000 UAH\" />\n</div>;"
+        }
+      ],
+      "import": "import { ListCard } from 'sartr-ui';"
+    },
+    "cards-publicationcard": {
+      "id": "cards-publicationcard",
+      "name": "PublicationCard",
+      "path": "./src/components/PublicationCard/PublicationCard.stories.tsx",
+      "jsDocTags": {},
+      "description": "The `.project-card` block — a publication on an expert's profile.",
+      "reactDocgen": {
+        "description": "The `.project-card` block — a publication on an expert's profile.",
+        "methods": [],
+        "displayName": "PublicationCard",
+        "definedInFile": "/Users/ppetri/Sartr/sartr-ui/src/components/PublicationCard/PublicationCard.tsx",
+        "actualName": "PublicationCard",
+        "exportName": "PublicationCard",
+        "props": {
+          "title": {
+            "required": true,
+            "tsType": {
+              "name": "string"
+            },
+            "description": ""
+          },
+          "meta": {
+            "required": false,
+            "tsType": {
+              "name": "string"
+            },
+            "description": "Free-form citation line: authors, journal, year, pages."
+          },
+          "role": {
+            "required": false,
+            "tsType": {
+              "name": "string"
+            },
+            "description": ""
+          },
+          "href": {
+            "required": true,
+            "tsType": {
+              "name": "string"
+            },
+            "description": ""
+          },
+          "buttonLabel": {
+            "required": false,
+            "tsType": {
+              "name": "string"
+            },
+            "description": "",
+            "defaultValue": {
+              "value": "'Read'",
+              "computed": false
+            }
+          }
+        }
+      },
+      "stories": [
+        {
+          "id": "cards-publicationcard--default",
+          "name": "Default",
+          "snippet": "const Default = () => <PublicationCard\n    title=\"Occasionalism as a Mean for Creating Comic Effect in Ukrainian Humorous and Satirical Poetry of the 1950s–1980s\"\n    meta=\"Author: Sofiia Fedzhora, Journal: Studia Linguistica, Year: 2020, Vol. 16, Pages: 129–142\"\n    role=\"Role: Author\"\n    href=\"#\" />;"
+        },
+        {
+          "id": "cards-publicationcard--title-only",
+          "name": "Title Only",
+          "snippet": "const TitleOnly = () => <PublicationCard\n    title=\"Occasionalism as a Mean for Creating Comic Effect in Ukrainian Humorous and Satirical Poetry of the 1950s–1980s\"\n    meta={undefined}\n    role={undefined}\n    href=\"#\" />;"
+        }
+      ],
+      "import": "import { PublicationCard } from 'sartr-ui';"
+    },
+    "cards-societycard": {
+      "id": "cards-societycard",
+      "name": "SocietyCard",
+      "path": "./src/components/SocietyCard/SocietyCard.stories.tsx",
+      "jsDocTags": {},
+      "description": "The `.infrastructures-card` block. Despite the class name the site uses it\nfor scientific societies, so the component is named after what it shows.",
+      "reactDocgen": {
+        "description": "The `.infrastructures-card` block. Despite the class name the site uses it\nfor scientific societies, so the component is named after what it shows.",
+        "methods": [],
+        "displayName": "SocietyCard",
+        "definedInFile": "/Users/ppetri/Sartr/sartr-ui/src/components/SocietyCard/SocietyCard.tsx",
+        "actualName": "SocietyCard",
+        "exportName": "SocietyCard",
+        "props": {
+          "title": {
+            "required": true,
+            "tsType": {
+              "name": "string"
+            },
+            "description": ""
+          },
+          "text": {
+            "required": false,
+            "tsType": {
+              "name": "string"
+            },
+            "description": ""
+          },
+          "domain": {
+            "required": false,
+            "tsType": {
+              "name": "string"
+            },
+            "description": "Right-hand column, labelled \"Science Domain\" on mobile."
+          },
+          "domainLabel": {
+            "required": false,
+            "tsType": {
+              "name": "string"
+            },
+            "description": "",
+            "defaultValue": {
+              "value": "'Science Domain'",
+              "computed": false
+            }
+          },
+          "amount": {
+            "required": false,
+            "tsType": {
+              "name": "string"
+            },
+            "description": "Funding still needed, already formatted. Damaged-infrastructure entries\ncarry it in a second right-hand column; societies have none."
+          },
+          "amountLabel": {
+            "required": false,
+            "tsType": {
+              "name": "string"
+            },
+            "description": "",
+            "defaultValue": {
+              "value": "'Required amount'",
+              "computed": false
+            }
+          },
+          "href": {
+            "required": true,
+            "tsType": {
+              "name": "string"
+            },
+            "description": ""
+          },
+          "buttonLabel": {
+            "required": false,
+            "tsType": {
+              "name": "string"
+            },
+            "description": "",
+            "defaultValue": {
+              "value": "'More details'",
+              "computed": false
+            }
+          }
+        }
+      },
+      "stories": [
+        {
+          "id": "cards-societycard--default",
+          "name": "Default",
+          "snippet": "const Default = () => <SocietyCard\n    title=\"International Union of Innovators and Researchers\"\n    text=\"The organisation carries out educational, scientific, cultural, and outreach activities aimed at supporting and developing education and research at the local, regional, and international levels.\"\n    domain=\"Natural sciences\"\n    href=\"#\" />;"
+        },
+        {
+          "id": "cards-societycard--without-domain",
+          "name": "Without Domain",
+          "snippet": "const WithoutDomain = () => <SocietyCard\n    title=\"International Union of Innovators and Researchers\"\n    text=\"The organisation carries out educational, scientific, cultural, and outreach activities aimed at supporting and developing education and research at the local, regional, and international levels.\"\n    domain={undefined}\n    href=\"#\" />;"
+        }
+      ],
+      "import": "import { SocietyCard } from 'sartr-ui';"
+    },
+    "cards-storycard": {
+      "id": "cards-storycard",
+      "name": "StoryCard",
+      "path": "./src/components/StoryCard/StoryCard.stories.tsx",
+      "jsDocTags": {},
+      "description": "The `.story-card` used on the stories list and the home page.",
+      "reactDocgen": {
+        "description": "The `.story-card` used on the stories list and the home page.",
+        "methods": [],
+        "displayName": "StoryCard",
+        "definedInFile": "/Users/ppetri/Sartr/sartr-ui/src/components/StoryCard/StoryCard.tsx",
+        "actualName": "StoryCard",
+        "exportName": "StoryCard",
+        "props": {
+          "title": {
+            "required": true,
+            "tsType": {
+              "name": "string"
+            },
+            "description": ""
+          },
+          "text": {
+            "required": false,
+            "tsType": {
+              "name": "string"
+            },
+            "description": ""
+          },
+          "date": {
+            "required": false,
+            "tsType": {
+              "name": "string"
+            },
+            "description": "Rendered as-is; the site prints a short `dd.mm.yy` date."
+          },
+          "image": {
+            "required": false,
+            "tsType": {
+              "name": "string"
+            },
+            "description": ""
+          },
+          "href": {
+            "required": true,
+            "tsType": {
+              "name": "string"
+            },
+            "description": ""
+          }
+        }
+      },
+      "stories": [
+        {
+          "id": "cards-storycard--default",
+          "name": "Default",
+          "snippet": "const Default = () => <StoryCard\n    title=\"Uncovered Graves. How Lviv restores its memory about the school of mathematics\"\n    text=\"A Map of Burial Sites Revives the Memory of Lviv’s Forgotten Mathematicians\"\n    date=\"12.08.26\"\n    image=\"/img/story-1.jpg\"\n    href=\"#\" />;"
+        },
+        {
+          "id": "cards-storycard--without-image",
+          "name": "Without Image",
+          "snippet": "const WithoutImage = () => <StoryCard\n    title=\"Uncovered Graves. How Lviv restores its memory about the school of mathematics\"\n    text=\"A Map of Burial Sites Revives the Memory of Lviv’s Forgotten Mathematicians\"\n    date=\"12.08.26\"\n    image={undefined}\n    href=\"#\" />;"
+        },
+        {
+          "id": "cards-storycard--grid",
+          "name": "Grid",
+          "snippet": "const Grid = (args) => (\n  <div className=\"row\">\n    {[\n      { ...args, image: '/img/story-1.jpg' },\n      { ...args, title: 'Stolen museum. Kherson', image: '/img/story-2.png', date: '03.02.26' },\n      { ...args, title: 'Test Tubes in the Count’s Estate', image: '/img/story-3.png', date: '19.11.25' },\n    ].map((s, i) => (\n      <div className=\"col-md-4 col-12\" key={i}>\n        <StoryCard {...s} />\n      </div>\n    ))}\n  </div>\n);"
+        }
+      ],
+      "import": "import { StoryCard } from 'sartr-ui';"
+    },
+    "sections-contactmodal": {
+      "id": "sections-contactmodal",
+      "name": "ContactModal",
+      "path": "./src/components/ContactModal/ContactModal.stories.tsx",
+      "jsDocTags": {},
+      "description": "The `.help-form` popup used to write to a scientist directly.",
+      "reactDocgen": {
+        "description": "The `.help-form` popup used to write to a scientist directly.",
+        "methods": [],
+        "displayName": "ContactModal",
+        "definedInFile": "/Users/ppetri/Sartr/sartr-ui/src/components/ContactModal/ContactModal.tsx",
+        "actualName": "ContactModal",
+        "exportName": "ContactModal",
+        "props": {
+          "title": {
+            "required": false,
+            "tsType": {
+              "name": "string"
+            },
+            "description": "",
+            "defaultValue": {
+              "value": "'Contact a scientist'",
+              "computed": false
+            }
+          },
+          "text": {
+            "required": false,
+            "tsType": {
+              "name": "string"
+            },
+            "description": "",
+            "defaultValue": {
+              "value": "'Fill out this form to contact the scientist directly'",
+              "computed": false
+            }
+          },
+          "labels": {
+            "required": false,
+            "tsType": {
+              "name": "signature",
+              "type": "object",
+              "raw": "{ name: string; email: string; text: string }",
+              "signature": {
+                "properties": [
+                  {
+                    "key": "name",
+                    "value": {
+                      "name": "string",
+                      "required": true
+                    }
+                  },
+                  {
+                    "key": "email",
+                    "value": {
+                      "name": "string",
+                      "required": true
+                    }
+                  },
+                  {
+                    "key": "text",
+                    "value": {
+                      "name": "string",
+                      "required": true
+                    }
+                  }
+                ]
+              }
+            },
+            "description": "",
+            "defaultValue": {
+              "value": "{ name: 'Name', email: 'Email', text: 'Text' }",
+              "computed": false
+            }
+          },
+          "submitLabel": {
+            "required": false,
+            "tsType": {
+              "name": "string"
+            },
+            "description": "",
+            "defaultValue": {
+              "value": "'Send'",
+              "computed": false
+            }
+          },
+          "closeLabel": {
+            "required": false,
+            "tsType": {
+              "name": "string"
+            },
+            "description": "",
+            "defaultValue": {
+              "value": "'Close'",
+              "computed": false
+            }
+          },
+          "open": {
+            "required": false,
+            "tsType": {
+              "name": "boolean"
+            },
+            "description": "The site renders the popup only while it is open.",
+            "defaultValue": {
+              "value": "true",
+              "computed": false
+            }
+          },
+          "onClose": {
+            "required": false,
+            "tsType": {
+              "name": "signature",
+              "type": "function",
+              "raw": "() => void",
+              "signature": {
+                "arguments": [],
+                "return": {
+                  "name": "void"
+                }
+              }
+            },
+            "description": ""
+          },
+          "onSubmit": {
+            "required": false,
+            "tsType": {
+              "name": "signature",
+              "type": "function",
+              "raw": "(event: FormEvent<HTMLFormElement>) => void",
+              "signature": {
+                "arguments": [
+                  {
+                    "type": {
+                      "name": "FormEvent",
+                      "elements": [
+                        {
+                          "name": "HTMLFormElement"
+                        }
+                      ],
+                      "raw": "FormEvent<HTMLFormElement>"
+                    },
+                    "name": "event"
+                  }
+                ],
+                "return": {
+                  "name": "void"
+                }
+              }
+            },
+            "description": ""
+          }
+        }
+      },
+      "stories": [
+        {
+          "id": "sections-contactmodal--default",
+          "name": "Default",
+          "snippet": "const Default = () => <ContactModal />;"
+        },
+        {
+          "id": "sections-contactmodal--ukrainian",
+          "name": "Ukrainian",
+          "snippet": "const Ukrainian = () => <ContactModal\n    title=\"Зв’яжіться з експертом/експерткою\"\n    text=\"Заповніть цю форму, щоб надіслати повідомлення науковцю/науковиці\"\n    labels={{ name: 'Ім’я', email: 'Електронна пошта', text: 'Текст' }}\n    submitLabel=\"Відправити\"\n    closeLabel=\"Закрити\" />;"
+        }
+      ],
+      "import": "import { ContactModal } from 'sartr-ui';"
+    },
+    "sections-expertaside": {
+      "id": "sections-expertaside",
+      "name": "ExpertAside",
+      "path": "./src/components/ExpertAside/ExpertAside.stories.tsx",
+      "jsDocTags": {},
+      "description": "The `.aside` column on an expert profile: photo, contact button, links.",
+      "reactDocgen": {
+        "description": "The `.aside` column on an expert profile: photo, contact button, links.",
+        "methods": [],
+        "displayName": "ExpertAside",
+        "definedInFile": "/Users/ppetri/Sartr/sartr-ui/src/components/ExpertAside/ExpertAside.tsx",
+        "actualName": "ExpertAside",
+        "exportName": "ExpertAside",
+        "props": {
+          "photo": {
+            "required": false,
+            "tsType": {
+              "name": "string"
+            },
+            "description": ""
+          },
+          "name": {
+            "required": false,
+            "tsType": {
+              "name": "string"
+            },
+            "description": "",
+            "defaultValue": {
+              "value": "''",
+              "computed": false
+            }
+          },
+          "contactLabel": {
+            "required": false,
+            "tsType": {
+              "name": "string"
+            },
+            "description": "",
+            "defaultValue": {
+              "value": "'Get in touch'",
+              "computed": false
+            }
+          },
+          "languagesTitle": {
+            "required": false,
+            "tsType": {
+              "name": "string"
+            },
+            "description": "Languages the scientist works in, already joined into one line."
+          },
+          "languages": {
+            "required": false,
+            "tsType": {
+              "name": "string"
+            },
+            "description": ""
+          },
+          "links": {
+            "required": false,
+            "tsType": {
+              "name": "Array",
+              "elements": [
+                {
+                  "name": "signature",
+                  "type": "object",
+                  "raw": "{ label: string; href: string }",
+                  "signature": {
+                    "properties": [
+                      {
+                        "key": "label",
+                        "value": {
+                          "name": "string",
+                          "required": true
+                        }
+                      },
+                      {
+                        "key": "href",
+                        "value": {
+                          "name": "string",
+                          "required": true
+                        }
+                      }
+                    ]
+                  }
+                }
+              ],
+              "raw": "{ label: string; href: string }[]"
+            },
+            "description": "",
+            "defaultValue": {
+              "value": "[]",
+              "computed": false
+            }
+          },
+          "onContact": {
+            "required": false,
+            "tsType": {
+              "name": "signature",
+              "type": "function",
+              "raw": "() => void",
+              "signature": {
+                "arguments": [],
+                "return": {
+                  "name": "void"
+                }
+              }
+            },
+            "description": ""
+          }
+        }
+      },
+      "stories": [
+        {
+          "id": "sections-expertaside--default",
+          "name": "Default",
+          "snippet": "const Default = () => <ExpertAside\n    photo=\"/img/person-2.jpg\"\n    name=\"Sofiia Fedzhora\"\n    languagesTitle=\"Languages for professional communication:\"\n    languages=\"English, Polish, Spanish, German\"\n    links={[\n      { label: 'Facebook', href: '#' },\n      { label: 'Linkedin', href: '#' },\n    ]} />;"
+        },
+        {
+          "id": "sections-expertaside--ukrainian",
+          "name": "Ukrainian",
+          "snippet": "const Ukrainian = () => <ExpertAside\n    photo=\"/img/person-2.jpg\"\n    name=\"Sofiia Fedzhora\"\n    languagesTitle=\"Мови для професійного спілкування:\"\n    languages=\"Англійська, польська, іспанська, німецька\"\n    links={[\n      { label: 'Facebook', href: '#' },\n      { label: 'Linkedin', href: '#' },\n    ]}\n    contactLabel=\"Зв’язатися\" />;"
+        },
+        {
+          "id": "sections-expertaside--without-links",
+          "name": "Without Links",
+          "snippet": "const WithoutLinks = () => <ExpertAside\n    photo=\"/img/person-2.jpg\"\n    name=\"Sofiia Fedzhora\"\n    languagesTitle=\"Languages for professional communication:\"\n    languages=\"English, Polish, Spanish, German\"\n    links={[]} />;"
+        }
+      ],
+      "import": "import { ExpertAside } from 'sartr-ui';"
+    },
+    "sections-gallery": {
+      "id": "sections-gallery",
+      "name": "Gallery",
+      "path": "./src/components/Gallery/Gallery.stories.tsx",
+      "jsDocTags": {},
+      "description": "The `.storySlider` strip of attachments inside a story.\n\nThe site drives this with Swiper; this package has no slider dependency, so\nthe track is a plain horizontally scrollable row. The markup and styling are\nthe site's, so dropping a slider library on top of it needs no changes here.",
+      "reactDocgen": {
+        "description": "The `.storySlider` strip of attachments inside a story.\n\nThe site drives this with Swiper; this package has no slider dependency, so\nthe track is a plain horizontally scrollable row. The markup and styling are\nthe site's, so dropping a slider library on top of it needs no changes here.",
+        "methods": [],
+        "displayName": "Gallery",
+        "definedInFile": "/Users/ppetri/Sartr/sartr-ui/src/components/Gallery/Gallery.tsx",
+        "actualName": "Gallery",
+        "exportName": "Gallery",
+        "props": {
+          "images": {
+            "required": true,
+            "tsType": {
+              "name": "Array",
+              "elements": [
+                {
+                  "name": "GalleryImage"
+                }
+              ],
+              "raw": "GalleryImage[]"
+            },
+            "description": ""
+          }
+        }
+      },
+      "stories": [
+        {
+          "id": "sections-gallery--default",
+          "name": "Default",
+          "snippet": "const Default = () => <Gallery\n    images={[\n      { src: '/img/story-1.jpg', alt: 'Lviv mathematicians', caption: 'Lviv, 2024' },\n      { src: '/img/story-2.png', alt: 'Kherson museum' },\n      { src: '/img/story-3.png', alt: 'Institute of Agricultural Microbiology' },\n    ]} />;"
+        },
+        {
+          "id": "sections-gallery--single-image",
+          "name": "Single Image",
+          "snippet": "const SingleImage = () => <Gallery images={[{ src: '/img/story-1.jpg', alt: 'Lviv mathematicians' }]} />;"
+        }
+      ],
+      "import": "import { Gallery } from 'sartr-ui';"
+    },
+    "sections-homehero": {
+      "id": "sections-homehero",
+      "name": "HomeHero",
+      "path": "./src/components/HomeHero/HomeHero.stories.tsx",
+      "jsDocTags": {},
+      "description": "The home page's first screen: wordmark, search, popular requests and the\ncounted links into the three collections.\n\n`SearchHero` is the layout the live site still ships; this is the newer one.",
+      "reactDocgen": {
+        "description": "The home page's first screen: wordmark, search, popular requests and the\ncounted links into the three collections.\n\n`SearchHero` is the layout the live site still ships; this is the newer one.",
+        "methods": [],
+        "displayName": "HomeHero",
+        "definedInFile": "/Users/ppetri/Sartr/sartr-ui/src/components/HomeHero/HomeHero.tsx",
+        "actualName": "HomeHero",
+        "exportName": "HomeHero",
+        "props": {
+          "suptitle": {
+            "required": false,
+            "tsType": {
+              "name": "string"
+            },
+            "description": "Mono line above the wordmark.",
+            "defaultValue": {
+              "value": "\"Research & expertise from Ukraine's scientific frontline\"",
+              "computed": false
+            }
+          },
+          "title": {
+            "required": false,
+            "tsType": {
+              "name": "ReactNode"
+            },
+            "description": "The wordmark. A node, so the `!` swaps can be marked up if needed.",
+            "defaultValue": {
+              "value": "'SC!ENCE AT R!SK!'",
+              "computed": false
+            }
+          },
+          "placeholder": {
+            "required": false,
+            "tsType": {
+              "name": "string"
+            },
+            "description": "",
+            "defaultValue": {
+              "value": "'Scientific field or name'",
+              "computed": false
+            }
+          },
+          "submitLabel": {
+            "required": false,
+            "tsType": {
+              "name": "string"
+            },
+            "description": "",
+            "defaultValue": {
+              "value": "'Find a scientist'",
+              "computed": false
+            }
+          },
+          "popularTitle": {
+            "required": false,
+            "tsType": {
+              "name": "string"
+            },
+            "description": "",
+            "defaultValue": {
+              "value": "'Popular requests'",
+              "computed": false
+            }
+          },
+          "popular": {
+            "required": false,
+            "tsType": {
+              "name": "Array",
+              "elements": [
+                {
+                  "name": "PopularRequest"
+                }
+              ],
+              "raw": "PopularRequest[]"
+            },
+            "description": "",
+            "defaultValue": {
+              "value": "[]",
+              "computed": false
+            }
+          },
+          "links": {
+            "required": false,
+            "tsType": {
+              "name": "Array",
+              "elements": [
+                {
+                  "name": "HeroLink"
+                }
+              ],
+              "raw": "HeroLink[]"
+            },
+            "description": "The counted entry points along the bottom.",
+            "defaultValue": {
+              "value": "[]",
+              "computed": false
+            }
+          },
+          "onSearch": {
+            "required": false,
+            "tsType": {
+              "name": "signature",
+              "type": "function",
+              "raw": "(query: string) => void",
+              "signature": {
+                "arguments": [
+                  {
+                    "type": {
+                      "name": "string"
+                    },
+                    "name": "query"
+                  }
+                ],
+                "return": {
+                  "name": "void"
+                }
+              }
+            },
+            "description": ""
+          },
+          "onTagSelect": {
+            "required": false,
+            "tsType": {
+              "name": "signature",
+              "type": "function",
+              "raw": "(label: string) => void",
+              "signature": {
+                "arguments": [
+                  {
+                    "type": {
+                      "name": "string"
+                    },
+                    "name": "label"
+                  }
+                ],
+                "return": {
+                  "name": "void"
+                }
+              }
+            },
+            "description": ""
+          }
+        }
+      },
+      "stories": [
+        {
+          "id": "sections-homehero--default",
+          "name": "Default",
+          "snippet": "const Default = () => <HomeHero\n    popular={[\n      { label: 'Physical sciences', count: 12 },\n      { label: 'Social sciences', count: 5 },\n      { label: 'Technology', count: 8 },\n      { label: 'Arts & humanities', count: 1 },\n      { label: 'Life sciences & biomedicine', count: 22 },\n    ]}\n    links={[\n      { label: 'Scientists', href: '#', count: 367 },\n      { label: 'Stories', href: '#', count: 28 },\n      { label: 'Researches', href: '#', count: 300 },\n    ]} />;"
+        },
+        {
+          "id": "sections-homehero--with-header",
+          "name": "With Header",
+          "snippet": "const WithHeader = () => <>\n    <SiteHeader\n        dark={false}\n        divider={false}\n        background={HOME_HERO_BG}\n        languages={[\n          { label: 'ENG', href: '#', active: true },\n          { label: 'УКР', href: '#' },\n        ]}\n        nav={[\n          { label: 'Experts', href: '#' },\n          { label: 'Damaged infrastructure', href: '#' },\n          { label: 'Scientific societies', href: '#' },\n          { label: 'About the project', href: '#' },\n          { label: 'Stories', href: '#' },\n          { label: 'Policies', href: '#' },\n          { label: 'Contacts', href: '#' },\n        ]}\n        social={[\n          { label: 'Twitter', href: '#' },\n          { label: 'Linkedin', href: '#' },\n          { label: 'Facebook', href: '#' },\n        ]} />\n    <HomeHero\n        popular={[\n          { label: 'Physical sciences', count: 12 },\n          { label: 'Social sciences', count: 5 },\n          { label: 'Technology', count: 8 },\n          { label: 'Arts & humanities', count: 1 },\n          { label: 'Life sciences & biomedicine', count: 22 },\n        ]}\n        links={[\n          { label: 'Scientists', href: '#', count: 367 },\n          { label: 'Stories', href: '#', count: 28 },\n          { label: 'Researches', href: '#', count: 300 },\n        ]} />\n</>;",
+          "description": "The whole first screen, header included — what the design shows."
+        },
+        {
+          "id": "sections-homehero--without-popular",
+          "name": "Without Popular",
+          "snippet": "const WithoutPopular = () => <HomeHero\n    popular={[]}\n    links={[\n      { label: 'Scientists', href: '#', count: 367 },\n      { label: 'Stories', href: '#', count: 28 },\n      { label: 'Researches', href: '#', count: 300 },\n    ]} />;"
+        },
+        {
+          "id": "sections-homehero--search-only",
+          "name": "Search Only",
+          "snippet": "const SearchOnly = () => <HomeHero popular={[]} links={[]} />;"
+        }
+      ],
+      "import": "import { HomeHero, SiteHeader } from 'sartr-ui';"
+    },
+    "sections-searchhero": {
+      "id": "sections-searchhero",
+      "name": "SearchHero",
+      "path": "./src/components/SearchHero/SearchHero.stories.tsx",
+      "jsDocTags": {},
+      "description": "The `.search-hero` section as the live site ships it: one headline, the\nsearch field, and the popular requests beside a supporting note.\n\nKept as-is. `HomeHero` is the newer first screen; this one stays available\nfor pages that still want the shipped layout.",
+      "reactDocgen": {
+        "description": "The `.search-hero` section as the live site ships it: one headline, the\nsearch field, and the popular requests beside a supporting note.\n\nKept as-is. `HomeHero` is the newer first screen; this one stays available\nfor pages that still want the shipped layout.",
+        "methods": [],
+        "displayName": "SearchHero",
+        "definedInFile": "/Users/ppetri/Sartr/sartr-ui/src/components/SearchHero/SearchHero.tsx",
+        "actualName": "SearchHero",
+        "exportName": "SearchHero",
+        "props": {
+          "title": {
+            "required": true,
+            "tsType": {
+              "name": "string"
+            },
+            "description": ""
+          },
+          "fieldLabel": {
+            "required": true,
+            "tsType": {
+              "name": "string"
+            },
+            "description": ""
+          },
+          "submitLabel": {
+            "required": true,
+            "tsType": {
+              "name": "string"
+            },
+            "description": ""
+          },
+          "note": {
+            "required": false,
+            "tsType": {
+              "name": "string"
+            },
+            "description": "Supporting copy in the bottom-left column."
+          },
+          "noteLink": {
+            "required": false,
+            "tsType": {
+              "name": "signature",
+              "type": "object",
+              "raw": "{ label: string; href: string }",
+              "signature": {
+                "properties": [
+                  {
+                    "key": "label",
+                    "value": {
+                      "name": "string",
+                      "required": true
+                    }
+                  },
+                  {
+                    "key": "href",
+                    "value": {
+                      "name": "string",
+                      "required": true
+                    }
+                  }
+                ]
+              }
+            },
+            "description": ""
+          },
+          "popular": {
+            "required": false,
+            "tsType": {
+              "name": "Array",
+              "elements": [
+                {
+                  "name": "PopularRequest"
+                }
+              ],
+              "raw": "PopularRequest[]"
+            },
+            "description": "",
+            "defaultValue": {
+              "value": "[]",
+              "computed": false
+            }
+          },
+          "popularTitle": {
+            "required": false,
+            "tsType": {
+              "name": "string"
+            },
+            "description": ""
+          },
+          "onSearch": {
+            "required": false,
+            "tsType": {
+              "name": "signature",
+              "type": "function",
+              "raw": "(query: string) => void",
+              "signature": {
+                "arguments": [
+                  {
+                    "type": {
+                      "name": "string"
+                    },
+                    "name": "query"
+                  }
+                ],
+                "return": {
+                  "name": "void"
+                }
+              }
+            },
+            "description": ""
+          },
+          "onTagSelect": {
+            "required": false,
+            "tsType": {
+              "name": "signature",
+              "type": "function",
+              "raw": "(label: string) => void",
+              "signature": {
+                "arguments": [
+                  {
+                    "type": {
+                      "name": "string"
+                    },
+                    "name": "label"
+                  }
+                ],
+                "return": {
+                  "name": "void"
+                }
+              }
+            },
+            "description": "A popular request is a query of its own — the site runs the search on it."
+          },
+          "full": {
+            "required": false,
+            "tsType": {
+              "name": "boolean"
+            },
+            "description": "Hold the full screen, as the home page's first section does. The site's\nown search pages let the hero take only the height it needs, with the\nresults beginning right under it.",
+            "defaultValue": {
+              "value": "true",
+              "computed": false
+            }
+          }
+        }
+      },
+      "stories": [
+        {
+          "id": "sections-searchhero--default",
+          "name": "Default",
+          "snippet": "const Default = () => <SearchHero\n    title=\"Find Ukrainian scientists for collaboration\"\n    fieldLabel=\"Scientific field or name\"\n    submitLabel=\"Find a scientist\"\n    note=\"Mark the scientific field that interests you — find and involve Ukrainian scientists in your own projects\"\n    noteLink={{ label: 'To the full database of scientists', href: '#' }}\n    popular={[\n      { label: 'Teaching', count: 101 },\n      { label: 'Science popularization', count: 86 },\n      { label: 'Biology', count: 57 },\n      { label: 'Natural sciences', count: 55 },\n      { label: 'Biochemistry', count: 41 },\n    ]} />;"
+        },
+        {
+          "id": "sections-searchhero--without-popular",
+          "name": "Without Popular",
+          "snippet": "const WithoutPopular = () => <SearchHero\n    title=\"Find Ukrainian scientists for collaboration\"\n    fieldLabel=\"Scientific field or name\"\n    submitLabel=\"Find a scientist\"\n    note=\"Mark the scientific field that interests you — find and involve Ukrainian scientists in your own projects\"\n    noteLink={{ label: 'To the full database of scientists', href: '#' }}\n    popular={[]} />;"
+        }
+      ],
+      "import": "import { SearchHero } from 'sartr-ui';"
+    },
+    "sections-sitefooter": {
+      "id": "sections-sitefooter",
+      "name": "SiteFooter",
+      "path": "./src/components/SiteFooter/SiteFooter.stories.tsx",
+      "jsDocTags": {},
+      "description": "The site's `.footer` — the \"Want to help?\" contact section.",
+      "reactDocgen": {
+        "description": "The site's `.footer` — the \"Want to help?\" contact section.",
+        "methods": [],
+        "displayName": "SiteFooter",
+        "definedInFile": "/Users/ppetri/Sartr/sartr-ui/src/components/SiteFooter/SiteFooter.tsx",
+        "actualName": "SiteFooter",
+        "exportName": "SiteFooter",
+        "props": {
+          "title": {
+            "required": false,
+            "tsType": {
+              "name": "string"
+            },
+            "description": "",
+            "defaultValue": {
+              "value": "'Want to help?'",
+              "computed": false
+            }
+          },
+          "formTitle": {
+            "required": false,
+            "tsType": {
+              "name": "string"
+            },
+            "description": "",
+            "defaultValue": {
+              "value": "'Fill out the form or contact us'",
+              "computed": false
+            }
+          },
+          "submitLabel": {
+            "required": false,
+            "tsType": {
+              "name": "string"
+            },
+            "description": "",
+            "defaultValue": {
+              "value": "'Send'",
+              "computed": false
+            }
+          },
+          "labels": {
+            "required": false,
+            "tsType": {
+              "name": "signature",
+              "type": "object",
+              "raw": "{ name: string; email: string; topic: string; text: string }",
+              "signature": {
+                "properties": [
+                  {
+                    "key": "name",
+                    "value": {
+                      "name": "string",
+                      "required": true
+                    }
+                  },
+                  {
+                    "key": "email",
+                    "value": {
+                      "name": "string",
+                      "required": true
+                    }
+                  },
+                  {
+                    "key": "topic",
+                    "value": {
+                      "name": "string",
+                      "required": true
+                    }
+                  },
+                  {
+                    "key": "text",
+                    "value": {
+                      "name": "string",
+                      "required": true
+                    }
+                  }
+                ]
+              }
+            },
+            "description": "",
+            "defaultValue": {
+              "value": "{ name: 'Name', email: 'Email', topic: 'Topic', text: 'Text' }",
+              "computed": false
+            }
+          },
+          "groups": {
+            "required": false,
+            "tsType": {
+              "name": "Array",
+              "elements": [
+                {
+                  "name": "SupportGroup"
+                }
+              ],
+              "raw": "SupportGroup[]"
+            },
+            "description": "Sponsor and implementer columns on the right.",
+            "defaultValue": {
+              "value": "[]",
+              "computed": false
+            }
+          },
+          "onSubmit": {
+            "required": false,
+            "tsType": {
+              "name": "signature",
+              "type": "function",
+              "raw": "(event: FormEvent<HTMLFormElement>) => void",
+              "signature": {
+                "arguments": [
+                  {
+                    "type": {
+                      "name": "FormEvent",
+                      "elements": [
+                        {
+                          "name": "HTMLFormElement"
+                        }
+                      ],
+                      "raw": "FormEvent<HTMLFormElement>"
+                    },
+                    "name": "event"
+                  }
+                ],
+                "return": {
+                  "name": "void"
+                }
+              }
+            },
+            "description": ""
+          }
+        }
+      },
+      "stories": [
+        {
+          "id": "sections-sitefooter--default",
+          "name": "Default",
+          "snippet": "const Default = () => <SiteFooter\n    groups={[\n      {\n        title: 'The project is supported by:',\n        links: [\n          { label: 'Press, Education and Culture Department of the US Embassy in Ukraine', href: '#' },\n          { label: 'Alfred P. Sloan Foundation', href: '#' },\n          { label: 'Ministry of Education and Science of Ukraine', href: '#' },\n          { label: 'National research fund', href: '#' },\n        ],\n      },\n      {\n        title: 'Responsible for project implementation:',\n        links: [{ label: 'NGO \"Kunsht\"', href: '#' }],\n      },\n    ]} />;"
+        },
+        {
+          "id": "sections-sitefooter--ukrainian",
+          "name": "Ukrainian",
+          "snippet": "const Ukrainian = () => <SiteFooter\n    groups={[\n      {\n        title: 'The project is supported by:',\n        links: [\n          { label: 'Press, Education and Culture Department of the US Embassy in Ukraine', href: '#' },\n          { label: 'Alfred P. Sloan Foundation', href: '#' },\n          { label: 'Ministry of Education and Science of Ukraine', href: '#' },\n          { label: 'National research fund', href: '#' },\n        ],\n      },\n      {\n        title: 'Responsible for project implementation:',\n        links: [{ label: 'NGO \"Kunsht\"', href: '#' }],\n      },\n    ]}\n    title=\"Хочете допомогти?\"\n    formTitle=\"Заповніть форму або зв’яжіться з нами\"\n    submitLabel=\"Відправити\"\n    labels={{ name: 'Ім’я', email: 'Електронна пошта', topic: 'Тема', text: 'Текст' }} />;"
+        }
+      ],
+      "import": "import { SiteFooter } from 'sartr-ui';"
+    },
+    "sections-siteheader": {
+      "id": "sections-siteheader",
+      "name": "SiteHeader",
+      "path": "./src/components/SiteHeader/SiteHeader.stories.tsx",
+      "jsDocTags": {},
+      "description": "The site's `.header` — logo, language switch and the slide-in menu.",
+      "reactDocgen": {
+        "description": "The site's `.header` — logo, language switch and the slide-in menu.",
+        "methods": [],
+        "displayName": "SiteHeader",
+        "definedInFile": "/Users/ppetri/Sartr/sartr-ui/src/components/SiteHeader/SiteHeader.tsx",
+        "actualName": "SiteHeader",
+        "exportName": "SiteHeader",
+        "props": {
+          "nav": {
+            "required": true,
+            "tsType": {
+              "name": "Array",
+              "elements": [
+                {
+                  "name": "NavItem"
+                }
+              ],
+              "raw": "NavItem[]"
+            },
+            "description": ""
+          },
+          "social": {
+            "required": false,
+            "tsType": {
+              "name": "Array",
+              "elements": [
+                {
+                  "name": "NavItem"
+                }
+              ],
+              "raw": "NavItem[]"
+            },
+            "description": "",
+            "defaultValue": {
+              "value": "[]",
+              "computed": false
+            }
+          },
+          "lang": {
+            "required": false,
+            "tsType": {
+              "name": "signature",
+              "type": "object",
+              "raw": "{ label: string; href: string }",
+              "signature": {
+                "properties": [
+                  {
+                    "key": "label",
+                    "value": {
+                      "name": "string",
+                      "required": true
+                    }
+                  },
+                  {
+                    "key": "href",
+                    "value": {
+                      "name": "string",
+                      "required": true
+                    }
+                  }
+                ]
+              }
+            },
+            "description": "Language toggle shown on the left, e.g. \"UA\"."
+          },
+          "languages": {
+            "required": false,
+            "tsType": {
+              "name": "Array",
+              "elements": [
+                {
+                  "name": "signature",
+                  "type": "object",
+                  "raw": "{ label: string; href: string; active?: boolean }",
+                  "signature": {
+                    "properties": [
+                      {
+                        "key": "label",
+                        "value": {
+                          "name": "string",
+                          "required": true
+                        }
+                      },
+                      {
+                        "key": "href",
+                        "value": {
+                          "name": "string",
+                          "required": true
+                        }
+                      },
+                      {
+                        "key": "active",
+                        "value": {
+                          "name": "boolean",
+                          "required": false
+                        }
+                      }
+                    ]
+                  }
+                }
+              ],
+              "raw": "{ label: string; href: string; active?: boolean }[]"
+            },
+            "description": "Both languages side by side, the active one marked — takes precedence over `lang`."
+          },
+          "wordmark": {
+            "required": false,
+            "tsType": {
+              "name": "ReactNode"
+            },
+            "description": "The site's wordmark is literally \"!!!\".",
+            "defaultValue": {
+              "value": "'!!!'",
+              "computed": false
+            }
+          },
+          "homeHref": {
+            "required": false,
+            "tsType": {
+              "name": "string"
+            },
+            "description": "",
+            "defaultValue": {
+              "value": "'#'",
+              "computed": false
+            }
+          },
+          "dark": {
+            "required": false,
+            "tsType": {
+              "name": "boolean"
+            },
+            "description": "The site inverts the header over dark heroes.",
+            "defaultValue": {
+              "value": "true",
+              "computed": false
+            }
+          },
+          "tone": {
+            "required": false,
+            "tsType": {
+              "name": "union",
+              "raw": "'black' | 'white'",
+              "elements": [
+                {
+                  "name": "literal",
+                  "value": "'black'"
+                },
+                {
+                  "name": "literal",
+                  "value": "'white'"
+                }
+              ]
+            },
+            "description": "Paints the wordmark, language switch and burger — the site's own\n`data-color`: `black` over a light section, `white` over a dark one. Takes\nprecedence over `dark`, and changing it crossfades, so a page can hand the\nheader the tone of whatever section is on screen."
+          },
+          "fixed": {
+            "required": false,
+            "tsType": {
+              "name": "boolean"
+            },
+            "description": "Pins the bar to the top of the viewport, as `.header-fixed` does.",
+            "defaultValue": {
+              "value": "false",
+              "computed": false
+            }
+          },
+          "action": {
+            "required": false,
+            "tsType": {
+              "name": "signature",
+              "type": "object",
+              "raw": "{ label: string; href: string }",
+              "signature": {
+                "properties": [
+                  {
+                    "key": "label",
+                    "value": {
+                      "name": "string",
+                      "required": true
+                    }
+                  },
+                  {
+                    "key": "href",
+                    "value": {
+                      "name": "string",
+                      "required": true
+                    }
+                  }
+                ]
+              }
+            },
+            "description": "A quiet mono link beside the burger — the way in for a scientist who came\nto add themselves rather than to search. Without it, self-submission is\nonly reachable from inside the menu."
+          },
+          "divider": {
+            "required": false,
+            "tsType": {
+              "name": "boolean"
+            },
+            "description": "The site rules off the bar; drop it when the header sits on a hero.",
+            "defaultValue": {
+              "value": "true",
+              "computed": false
+            }
+          },
+          "background": {
+            "required": false,
+            "tsType": {
+              "name": "string"
+            },
+            "description": "Paints the header bar below 1024px, where the site gives it a solid\nbackground of its own. From 1024px up the bar is see-through and simply\nshows the section behind it, the way the site has it."
+          },
+          "defaultMenuOpen": {
+            "required": false,
+            "tsType": {
+              "name": "boolean"
+            },
+            "description": "",
+            "defaultValue": {
+              "value": "false",
+              "computed": false
+            }
+          }
+        }
+      },
+      "stories": [
+        {
+          "id": "sections-siteheader--closed",
+          "name": "Closed",
+          "snippet": "const Closed = () => <SiteHeader\n    nav={[\n      { label: 'Experts', href: '#' },\n      { label: 'Damaged infrastructure', href: '#' },\n      { label: 'Scientific societies', href: '#' },\n      { label: 'About the project', href: '#' },\n      { label: 'Stories', href: '#' },\n      { label: 'Policies', href: '#' },\n      { label: 'Contacts', href: '#' },\n    ]}\n    social={[\n      { label: 'Twitter', href: '#' },\n      { label: 'Linkedin', href: '#' },\n      { label: 'Facebook', href: '#' },\n    ]}\n    lang={{ label: 'UA', href: '#' }} />;"
+        },
+        {
+          "id": "sections-siteheader--menu-open",
+          "name": "Menu Open",
+          "snippet": "const MenuOpen = () => <SiteHeader\n    nav={[\n      { label: 'Experts', href: '#' },\n      { label: 'Damaged infrastructure', href: '#' },\n      { label: 'Scientific societies', href: '#' },\n      { label: 'About the project', href: '#' },\n      { label: 'Stories', href: '#' },\n      { label: 'Policies', href: '#' },\n      { label: 'Contacts', href: '#' },\n    ]}\n    social={[\n      { label: 'Twitter', href: '#' },\n      { label: 'Linkedin', href: '#' },\n      { label: 'Facebook', href: '#' },\n    ]}\n    lang={{ label: 'UA', href: '#' }}\n    defaultMenuOpen />;"
+        },
+        {
+          "id": "sections-siteheader--on-light-background",
+          "name": "On Light Background",
+          "snippet": "const OnLightBackground = () => <SiteHeader\n    nav={[\n      { label: 'Experts', href: '#' },\n      { label: 'Damaged infrastructure', href: '#' },\n      { label: 'Scientific societies', href: '#' },\n      { label: 'About the project', href: '#' },\n      { label: 'Stories', href: '#' },\n      { label: 'Policies', href: '#' },\n      { label: 'Contacts', href: '#' },\n    ]}\n    social={[\n      { label: 'Twitter', href: '#' },\n      { label: 'Linkedin', href: '#' },\n      { label: 'Facebook', href: '#' },\n    ]}\n    lang={{ label: 'UA', href: '#' }}\n    dark={false} />;"
+        }
+      ],
+      "import": "import { SiteHeader } from 'sartr-ui';"
+    },
+    "sections-storiesslider": {
+      "id": "sections-storiesslider",
+      "name": "StoriesSlider",
+      "path": "./src/components/StoriesSlider/StoriesSlider.stories.tsx",
+      "jsDocTags": {},
+      "description": "The `.stories` section from the home page — a full-bleed Swiper of story\nslides on black, with Back / Next and a link to the full list.\n\nConfigured exactly as the site configures it: speed 1500, looping, and one\nslide per view until 1280px, where it shows 1.05 so the next slide peeks in.\nThe site also passes `calculateHeight`, which is not a Swiper option and does\nnothing, so it is left out rather than copied.\n\nTwo deliberate departures from the site:\n\n- The site runs Swiper 8.4.7, which falls inside a critical\n  prototype-pollution advisory (GHSA-hmx5-qpq5-p643, fixed in 12.1.2). This\n  uses a patched release; the options above are identical between them.\n- It uses `swiper/react` rather than driving the core API from an effect.\n  From Swiper 9 on, loop mode reorders the real slide nodes instead of\n  cloning them, so the core API and React end up fighting over the same DOM\n  and the page locks up. The React build is built to cooperate.\n\nNavigation is bound to this instance's own buttons by id, so several sliders\ncan share a page — the site's global `.prev` / `.next` selectors could not.",
+      "reactDocgen": {
+        "description": "The `.stories` section from the home page — a full-bleed Swiper of story\nslides on black, with Back / Next and a link to the full list.\n\nConfigured exactly as the site configures it: speed 1500, looping, and one\nslide per view until 1280px, where it shows 1.05 so the next slide peeks in.\nThe site also passes `calculateHeight`, which is not a Swiper option and does\nnothing, so it is left out rather than copied.\n\nTwo deliberate departures from the site:\n\n- The site runs Swiper 8.4.7, which falls inside a critical\n  prototype-pollution advisory (GHSA-hmx5-qpq5-p643, fixed in 12.1.2). This\n  uses a patched release; the options above are identical between them.\n- It uses `swiper/react` rather than driving the core API from an effect.\n  From Swiper 9 on, loop mode reorders the real slide nodes instead of\n  cloning them, so the core API and React end up fighting over the same DOM\n  and the page locks up. The React build is built to cooperate.\n\nNavigation is bound to this instance's own buttons by id, so several sliders\ncan share a page — the site's global `.prev` / `.next` selectors could not.",
+        "methods": [],
+        "displayName": "StoriesSlider",
+        "definedInFile": "/Users/ppetri/Sartr/sartr-ui/src/components/StoriesSlider/StoriesSlider.tsx",
+        "actualName": "StoriesSlider",
+        "exportName": "StoriesSlider",
+        "props": {
+          "slides": {
+            "required": true,
+            "tsType": {
+              "name": "Array",
+              "elements": [
+                {
+                  "name": "StorySlide"
+                }
+              ],
+              "raw": "StorySlide[]"
+            },
+            "description": ""
+          },
+          "readLabel": {
+            "required": false,
+            "tsType": {
+              "name": "string"
+            },
+            "description": "",
+            "defaultValue": {
+              "value": "'Read'",
+              "computed": false
+            }
+          },
+          "tagsLabel": {
+            "required": false,
+            "tsType": {
+              "name": "string"
+            },
+            "description": "Prefix in front of a story's themes, the way a paper labels its keywords.",
+            "defaultValue": {
+              "value": "'Keywords'",
+              "computed": false
+            }
+          },
+          "prevLabel": {
+            "required": false,
+            "tsType": {
+              "name": "string"
+            },
+            "description": "",
+            "defaultValue": {
+              "value": "'Back'",
+              "computed": false
+            }
+          },
+          "nextLabel": {
+            "required": false,
+            "tsType": {
+              "name": "string"
+            },
+            "description": "",
+            "defaultValue": {
+              "value": "'Next'",
+              "computed": false
+            }
+          },
+          "otherLink": {
+            "required": false,
+            "tsType": {
+              "name": "signature",
+              "type": "object",
+              "raw": "{ label: string; href: string }",
+              "signature": {
+                "properties": [
+                  {
+                    "key": "label",
+                    "value": {
+                      "name": "string",
+                      "required": true
+                    }
+                  },
+                  {
+                    "key": "href",
+                    "value": {
+                      "name": "string",
+                      "required": true
+                    }
+                  }
+                ]
+              }
+            },
+            "description": ""
+          },
+          "autoplay": {
+            "required": false,
+            "tsType": {
+              "name": "boolean"
+            },
+            "description": "Advance on a timer, with the rule under the controls filling up as the\nslide's time runs out. Off for a reader who asks for reduced motion, and\npaused whenever the slider is off screen or under the pointer.",
+            "defaultValue": {
+              "value": "true",
+              "computed": false
+            }
+          },
+          "autoplayDelay": {
+            "required": false,
+            "tsType": {
+              "name": "number"
+            },
+            "description": "Milliseconds a slide holds before the slider moves on.",
+            "defaultValue": {
+              "value": "6000",
+              "computed": false
+            }
+          }
+        }
+      },
+      "stories": [
+        {
+          "id": "sections-storiesslider--default",
+          "name": "Default",
+          "snippet": "const Default = () => <StoriesSlider\n    slides={[\n      {\n        suptitle: 'Stories',\n        title: 'Stolen museum. Kherson',\n        text: 'What did the Russians steal from the Kherson Local History Museum during the retreat from the city and how did the director-collaborator contribute to this?',\n        image: '/img/story-2.png',\n        href: '#',\n      },\n      {\n        suptitle: 'Stories',\n        title: 'Test Tubes in the Count’s Estate',\n        text: 'The main building of the Institute of Agricultural Microbiology sits in Count Glebov’s \"castle\". Read how the institute has kept working since the outbreak of full-scale war.',\n        image: '/img/story-3.png',\n        href: '#',\n      },\n      {\n        suptitle: 'Stories',\n        title: 'Uncovered Graves. How Lviv restores its memory about the school of mathematics',\n        text: 'A Map of Burial Sites Revives the Memory of Lviv’s Forgotten Mathematicians.',\n        image: '/img/story-1.jpg',\n        href: '#',\n      },\n    ]}\n    otherLink={{ label: 'Other stories', href: '#' }} />;"
+        },
+        {
+          "id": "sections-storiesslider--single-slide",
+          "name": "Single Slide",
+          "snippet": "const SingleSlide = () => <StoriesSlider slides={[slides[0]]} otherLink={{ label: 'Other stories', href: '#' }} />;",
+          "warning": "Incomplete snippet: `slides` could not be resolved statically."
+        },
+        {
+          "id": "sections-storiesslider--ukrainian",
+          "name": "Ukrainian",
+          "snippet": "const Ukrainian = () => <StoriesSlider\n    slides={slides.map((s) => ({ ...s, suptitle: 'Історії' }))}\n    otherLink={{ label: 'Інші історії', href: '#' }}\n    readLabel=\"Читати\"\n    prevLabel=\"Назад\"\n    nextLabel=\"Далі\" />;",
+          "warning": "Incomplete snippet: `slides` could not be resolved statically."
+        }
+      ],
+      "import": "import { StoriesSlider } from 'sartr-ui';"
+    },
+    "layout-sectiondeck": {
+      "id": "layout-sectiondeck",
+      "name": "SectionDeck",
+      "path": "./src/components/SectionDeck/SectionDeck.stories.tsx",
+      "jsDocTags": {},
+      "description": "One screen at a time, the way the home page reads on the live site: the\nnext section slides up over the one you are leaving, which is then parked\nout of view. A gesture moves exactly one section, and the next gesture is\nignored until the slide has finished.\n\nSections taller than the screen scroll inside themselves first; the deck\nonly takes over once that inner scroll has reached its end.",
+      "reactDocgen": {
+        "description": "One screen at a time, the way the home page reads on the live site: the\nnext section slides up over the one you are leaving, which is then parked\nout of view. A gesture moves exactly one section, and the next gesture is\nignored until the slide has finished.\n\nSections taller than the screen scroll inside themselves first; the deck\nonly takes over once that inner scroll has reached its end.",
+        "methods": [],
+        "displayName": "SectionDeck",
+        "definedInFile": "/Users/ppetri/Sartr/sartr-ui/src/components/SectionDeck/SectionDeck.tsx",
+        "actualName": "SectionDeck",
+        "exportName": "SectionDeck",
+        "props": {
+          "sections": {
+            "required": true,
+            "tsType": {
+              "name": "Array",
+              "elements": [
+                {
+                  "name": "DeckSection"
+                }
+              ],
+              "raw": "DeckSection[]"
+            },
+            "description": ""
+          },
+          "onToneChange": {
+            "required": false,
+            "tsType": {
+              "name": "signature",
+              "type": "function",
+              "raw": "(tone: HeaderTone) => void",
+              "signature": {
+                "arguments": [
+                  {
+                    "type": {
+                      "name": "union",
+                      "raw": "'black' | 'white'",
+                      "elements": [
+                        {
+                          "name": "literal",
+                          "value": "'black'"
+                        },
+                        {
+                          "name": "literal",
+                          "value": "'white'"
+                        }
+                      ]
+                    },
+                    "name": "tone"
+                  }
+                ],
+                "return": {
+                  "name": "void"
+                }
+              }
+            },
+            "description": "Called with the tone of the section that has come to the front."
+          },
+          "enabled": {
+            "required": false,
+            "tsType": {
+              "name": "boolean"
+            },
+            "description": "Turn the deck off and let the sections stack down the page as usual.",
+            "defaultValue": {
+              "value": "true",
+              "computed": false
+            }
+          }
+        }
+      },
+      "stories": [
+        {
+          "id": "layout-sectiondeck--default",
+          "name": "Default",
+          "snippet": "const Default = () => <SectionDeck\n    sections={[\n      { key: 'one', tone: 'black' as HeaderTone, node: panel('One — scroll down', '#b5c6cd', '#000') },\n      { key: 'two', tone: 'white' as HeaderTone, node: panel('Two', '#000', '#fff') },\n      { key: 'three', tone: 'black' as HeaderTone, node: panel('Three', '#f0eebe', '#000') },\n    ]} />;",
+          "description": "A gesture moves one section; the next slides up over the one you leave.",
+          "warning": "Incomplete snippet: `HeaderTone`, `panel` could not be resolved statically."
+        },
+        {
+          "id": "layout-sectiondeck--reports-tone",
+          "name": "Reports Tone",
+          "snippet": "const ReportsTone = () => <ToneReadout\n    sections={[\n      { key: 'one', tone: 'black' as HeaderTone, node: panel('One — scroll down', '#b5c6cd', '#000') },\n      { key: 'two', tone: 'white' as HeaderTone, node: panel('Two', '#000', '#fff') },\n      { key: 'three', tone: 'black' as HeaderTone, node: panel('Three', '#f0eebe', '#000') },\n    ]} />;",
+          "description": "The tone each section asks the header for, reported as you move.",
+          "warning": "Incomplete snippet: `HeaderTone`, `panel` could not be resolved statically."
+        },
+        {
+          "id": "layout-sectiondeck--flow",
+          "name": "Flow",
+          "snippet": "const Flow = () => <SectionDeck\n    sections={[\n      { key: 'one', tone: 'black' as HeaderTone, node: panel('One — scroll down', '#b5c6cd', '#000') },\n      { key: 'two', tone: 'white' as HeaderTone, node: panel('Two', '#000', '#fff') },\n      { key: 'three', tone: 'black' as HeaderTone, node: panel('Three', '#f0eebe', '#000') },\n    ]}\n    enabled={false} />;",
+          "description": "Off the deck the sections simply stack down the page.",
+          "warning": "Incomplete snippet: `HeaderTone`, `panel` could not be resolved statically."
+        }
+      ],
+      "import": "import { SectionDeck } from 'sartr-ui';"
+    },
+    "pages-aboutpage": {
+      "id": "pages-aboutpage",
+      "name": "AboutPage",
+      "path": "./src/pages/AboutPage/AboutPage.stories.tsx",
+      "jsDocTags": {},
+      "description": "`/about` — the project's own page, set in the site's story template.",
+      "reactDocgen": {
+        "description": "`/about` — the project's own page, set in the site's story template.",
+        "methods": [],
+        "displayName": "AboutPage",
+        "definedInFile": "/Users/ppetri/Sartr/sartr-ui/src/pages/AboutPage/AboutPage.tsx",
+        "actualName": "AboutPage",
+        "exportName": "AboutPage"
+      },
+      "stories": [
+        {
+          "id": "pages-aboutpage--default",
+          "name": "Default",
+          "snippet": "const Default = () => <AboutPage />;"
+        }
+      ],
+      "import": "import { AboutPage } from 'sartr-ui';"
+    },
+    "pages-contactspage": {
+      "id": "pages-contactspage",
+      "name": "ContactsPage",
+      "path": "./src/pages/ContactsPage/ContactsPage.stories.tsx",
+      "jsDocTags": {},
+      "description": "`/contacts` — how to reach the project.",
+      "reactDocgen": {
+        "description": "`/contacts` — how to reach the project.",
+        "methods": [],
+        "displayName": "ContactsPage",
+        "definedInFile": "/Users/ppetri/Sartr/sartr-ui/src/pages/ContactsPage/ContactsPage.tsx",
+        "actualName": "ContactsPage",
+        "exportName": "ContactsPage"
+      },
+      "stories": [
+        {
+          "id": "pages-contactspage--default",
+          "name": "Default",
+          "snippet": "const Default = () => <ContactsPage />;"
+        }
+      ],
+      "import": "import { ContactsPage } from 'sartr-ui';"
+    },
+    "pages-expertpage": {
+      "id": "pages-expertpage",
+      "name": "ExpertPage",
+      "path": "./src/pages/ExpertPage/ExpertPage.stories.tsx",
+      "jsDocTags": {},
+      "description": "`/experts/:slug` — a scientist's profile: the aside with the photo and the\nways to reach them, the research description, and the publications.",
+      "reactDocgen": {
+        "description": "`/experts/:slug` — a scientist's profile: the aside with the photo and the\nways to reach them, the research description, and the publications.",
+        "methods": [],
+        "displayName": "ExpertPage",
+        "definedInFile": "/Users/ppetri/Sartr/sartr-ui/src/pages/ExpertPage/ExpertPage.tsx",
+        "actualName": "ExpertPage",
+        "exportName": "ExpertPage"
+      },
+      "stories": [
+        {
+          "id": "pages-expertpage--default",
+          "name": "Default",
+          "snippet": "const Default = () => <ExpertPage />;"
+        }
+      ],
+      "import": "import { ExpertPage } from 'sartr-ui';"
+    },
+    "pages-expertspage": {
+      "id": "pages-expertspage",
+      "name": "ExpertsPage",
+      "path": "./src/pages/ExpertsPage/ExpertsPage.stories.tsx",
+      "jsDocTags": {},
+      "description": "`/experts` — the site's search page for scientists: the search hero, the\npopular queries, and the list of matching cards.\n\nThe filtering is done here over the sample list, the way the site's own\n`_searchScientists` form does it over its API, so the empty state and the\ntag shortcuts are real rather than decorative.",
+      "reactDocgen": {
+        "description": "`/experts` — the site's search page for scientists: the search hero, the\npopular queries, and the list of matching cards.\n\nThe filtering is done here over the sample list, the way the site's own\n`_searchScientists` form does it over its API, so the empty state and the\ntag shortcuts are real rather than decorative.",
+        "methods": [],
+        "displayName": "ExpertsPage",
+        "definedInFile": "/Users/ppetri/Sartr/sartr-ui/src/pages/ExpertsPage/ExpertsPage.tsx",
+        "actualName": "ExpertsPage",
+        "exportName": "ExpertsPage"
+      },
+      "stories": [
+        {
+          "id": "pages-expertspage--default",
+          "name": "Default",
+          "snippet": "const Default = () => <ExpertsPage />;"
+        }
+      ],
+      "import": "import { ExpertsPage } from 'sartr-ui';"
+    },
+    "pages-homepage": {
+      "id": "pages-homepage",
+      "name": "HomePage",
+      "path": "./src/pages/HomePage/HomePage.stories.tsx",
+      "jsDocTags": {},
+      "description": "The home page, opening with `HomeHero`.\n\nThe live site splits the top in two: a `hero` section carrying the wordmark,\nand a `search-hero` further down the page holding the search field and the\npopular requests. The new design folds both into the first screen, so\n`HomeHero` stands in for the pair and `SearchHero` no longer appears here.\n\nThe header is pinned above the deck and takes its colour from the section on\nscreen — the site's own `data-color`, black over a light field and white\nover a dark one.",
+      "reactDocgen": {
+        "description": "The home page, opening with `HomeHero`.\n\nThe live site splits the top in two: a `hero` section carrying the wordmark,\nand a `search-hero` further down the page holding the search field and the\npopular requests. The new design folds both into the first screen, so\n`HomeHero` stands in for the pair and `SearchHero` no longer appears here.\n\nThe header is pinned above the deck and takes its colour from the section on\nscreen — the site's own `data-color`, black over a light field and white\nover a dark one.",
+        "methods": [],
+        "displayName": "HomePage",
+        "definedInFile": "/Users/ppetri/Sartr/sartr-ui/src/pages/HomePage/HomePage.tsx",
+        "actualName": "HomePage",
+        "exportName": "HomePage",
+        "props": {
+          "nav": {
+            "required": true,
+            "tsType": {
+              "name": "Array",
+              "elements": [
+                {
+                  "name": "NavItem"
+                }
+              ],
+              "raw": "NavItem[]"
+            },
+            "description": ""
+          },
+          "social": {
+            "required": false,
+            "tsType": {
+              "name": "Array",
+              "elements": [
+                {
+                  "name": "NavItem"
+                }
+              ],
+              "raw": "NavItem[]"
+            },
+            "description": ""
+          },
+          "languages": {
+            "required": false,
+            "tsType": {
+              "name": "Array",
+              "elements": [
+                {
+                  "name": "signature",
+                  "type": "object",
+                  "raw": "{ label: string; href: string; active?: boolean }",
+                  "signature": {
+                    "properties": [
+                      {
+                        "key": "label",
+                        "value": {
+                          "name": "string",
+                          "required": true
+                        }
+                      },
+                      {
+                        "key": "href",
+                        "value": {
+                          "name": "string",
+                          "required": true
+                        }
+                      },
+                      {
+                        "key": "active",
+                        "value": {
+                          "name": "boolean",
+                          "required": false
+                        }
+                      }
+                    ]
+                  }
+                }
+              ],
+              "raw": "{ label: string; href: string; active?: boolean }[]"
+            },
+            "description": ""
+          },
+          "popular": {
+            "required": false,
+            "tsType": {
+              "name": "Array",
+              "elements": [
+                {
+                  "name": "PopularRequest"
+                }
+              ],
+              "raw": "PopularRequest[]"
+            },
+            "description": "",
+            "defaultValue": {
+              "value": "[]",
+              "computed": false
+            }
+          },
+          "heroLinks": {
+            "required": false,
+            "tsType": {
+              "name": "Array",
+              "elements": [
+                {
+                  "name": "HeroLink"
+                }
+              ],
+              "raw": "HeroLink[]"
+            },
+            "description": "",
+            "defaultValue": {
+              "value": "[]",
+              "computed": false
+            }
+          },
+          "stories": {
+            "required": false,
+            "tsType": {
+              "name": "Array",
+              "elements": [
+                {
+                  "name": "StorySlide"
+                }
+              ],
+              "raw": "StorySlide[]"
+            },
+            "description": "",
+            "defaultValue": {
+              "value": "[]",
+              "computed": false
+            }
+          },
+          "reconstruction": {
+            "required": false,
+            "tsType": {
+              "name": "Array",
+              "elements": [
+                {
+                  "name": "ListCardProps"
+                }
+              ],
+              "raw": "ListCardProps[]"
+            },
+            "description": "Damaged infrastructure asking for help.",
+            "defaultValue": {
+              "value": "[]",
+              "computed": false
+            }
+          },
+          "research": {
+            "required": false,
+            "tsType": {
+              "name": "Array",
+              "elements": [
+                {
+                  "name": "ListCardProps"
+                }
+              ],
+              "raw": "ListCardProps[]"
+            },
+            "description": "The studies the project publishes.",
+            "defaultValue": {
+              "value": "[]",
+              "computed": false
+            }
+          },
+          "supporters": {
+            "required": false,
+            "tsType": {
+              "name": "Array",
+              "elements": [
+                {
+                  "name": "SupportGroup"
+                }
+              ],
+              "raw": "SupportGroup[]"
+            },
+            "description": "",
+            "defaultValue": {
+              "value": "[]",
+              "computed": false
+            }
+          },
+          "deckScroll": {
+            "required": false,
+            "tsType": {
+              "name": "boolean"
+            },
+            "description": "Read the page one screen at a time, the way the site's fullpage.js does:\nthe next section slides up over the one you are leaving. Off below\n1024px, on short windows and whenever the reader asks for reduced motion\n— see `SectionDeck`.",
+            "defaultValue": {
+              "value": "true",
+              "computed": false
+            }
+          }
+        }
+      },
+      "stories": [
+        {
+          "id": "pages-homepage--default",
+          "name": "Default",
+          "snippet": "const Default = () => <HomePage />;",
+          "warning": "Incomplete snippet: `args: homePageContent` could not be resolved statically."
+        },
+        {
+          "id": "pages-homepage--hero-only",
+          "name": "Hero Only",
+          "snippet": "const HeroOnly = () => <HomePage stories={[]} reconstruction={[]} />;",
+          "description": "Just the first screen, as the page loads.",
+          "warning": "Incomplete snippet: `args: homePageContent` could not be resolved statically."
+        }
+      ],
+      "import": "import { HomePage } from 'sartr-ui';"
+    },
+    "pages-infrastructurepage": {
+      "id": "pages-infrastructurepage",
+      "name": "InfrastructurePage",
+      "path": "./src/pages/InfrastructurePage/InfrastructurePage.stories.tsx",
+      "jsDocTags": {},
+      "description": "`/infrastructures/:slug` — one damaged institution: what it is, what it\nneeds, a gallery of the damage and who to talk to.",
+      "reactDocgen": {
+        "description": "`/infrastructures/:slug` — one damaged institution: what it is, what it\nneeds, a gallery of the damage and who to talk to.",
+        "methods": [],
+        "displayName": "InfrastructurePage",
+        "definedInFile": "/Users/ppetri/Sartr/sartr-ui/src/pages/InfrastructurePage/InfrastructurePage.tsx",
+        "actualName": "InfrastructurePage",
+        "exportName": "InfrastructurePage"
+      },
+      "stories": [
+        {
+          "id": "pages-infrastructurepage--default",
+          "name": "Default",
+          "snippet": "const Default = () => <InfrastructurePage />;"
+        }
+      ],
+      "import": "import { InfrastructurePage } from 'sartr-ui';"
+    },
+    "pages-infrastructurespage": {
+      "id": "pages-infrastructurespage",
+      "name": "InfrastructuresPage",
+      "path": "./src/pages/InfrastructuresPage/InfrastructuresPage.stories.tsx",
+      "jsDocTags": {},
+      "description": "`/infrastructures` — damaged research infrastructure. The site's own\n`.infrastructures-card` carries a science domain and the amount still\nneeded, with a column header naming both.",
+      "reactDocgen": {
+        "description": "`/infrastructures` — damaged research infrastructure. The site's own\n`.infrastructures-card` carries a science domain and the amount still\nneeded, with a column header naming both.",
+        "methods": [],
+        "displayName": "InfrastructuresPage",
+        "definedInFile": "/Users/ppetri/Sartr/sartr-ui/src/pages/InfrastructuresPage/InfrastructuresPage.tsx",
+        "actualName": "InfrastructuresPage",
+        "exportName": "InfrastructuresPage"
+      },
+      "stories": [
+        {
+          "id": "pages-infrastructurespage--default",
+          "name": "Default",
+          "snippet": "const Default = () => <InfrastructuresPage />;"
+        }
+      ],
+      "import": "import { InfrastructuresPage } from 'sartr-ui';"
+    },
+    "pages-notfoundpage": {
+      "id": "pages-notfoundpage",
+      "name": "NotFoundPage",
+      "path": "./src/pages/NotFoundPage/NotFoundPage.stories.tsx",
+      "jsDocTags": {},
+      "description": "Anything the router cannot place, in the site's own `.errors` template.",
+      "reactDocgen": {
+        "description": "Anything the router cannot place, in the site's own `.errors` template.",
+        "methods": [],
+        "displayName": "NotFoundPage",
+        "definedInFile": "/Users/ppetri/Sartr/sartr-ui/src/pages/NotFoundPage/NotFoundPage.tsx",
+        "actualName": "NotFoundPage",
+        "exportName": "NotFoundPage"
+      },
+      "stories": [
+        {
+          "id": "pages-notfoundpage--default",
+          "name": "Default",
+          "snippet": "const Default = () => <NotFoundPage />;"
+        }
+      ],
+      "import": "import { NotFoundPage } from 'sartr-ui';"
+    },
+    "pages-researchpage": {
+      "id": "pages-researchpage",
+      "name": "ResearchPage",
+      "path": "./src/pages/ResearchPage/ResearchPage.stories.tsx",
+      "jsDocTags": {},
+      "description": "`/research` — the studies the project publishes, \"Policies\" on the old site.",
+      "reactDocgen": {
+        "description": "`/research` — the studies the project publishes, \"Policies\" on the old site.",
+        "methods": [],
+        "displayName": "ResearchPage",
+        "definedInFile": "/Users/ppetri/Sartr/sartr-ui/src/pages/ResearchPage/ResearchPage.tsx",
+        "actualName": "ResearchPage",
+        "exportName": "ResearchPage"
+      },
+      "stories": [
+        {
+          "id": "pages-researchpage--default",
+          "name": "Default",
+          "snippet": "const Default = () => <ResearchPage />;"
+        }
+      ],
+      "import": "import { ResearchPage } from 'sartr-ui';"
+    },
+    "pages-researchpaperpage": {
+      "id": "pages-researchpaperpage",
+      "name": "ResearchPaperPage",
+      "path": "./src/pages/ResearchPaperPage/ResearchPaperPage.stories.tsx",
+      "jsDocTags": {},
+      "description": "`/research/:slug` — one study, with the file in the aside.",
+      "reactDocgen": {
+        "description": "`/research/:slug` — one study, with the file in the aside.",
+        "methods": [],
+        "displayName": "ResearchPaperPage",
+        "definedInFile": "/Users/ppetri/Sartr/sartr-ui/src/pages/ResearchPaperPage/ResearchPaperPage.tsx",
+        "actualName": "ResearchPaperPage",
+        "exportName": "ResearchPaperPage"
+      },
+      "stories": [
+        {
+          "id": "pages-researchpaperpage--default",
+          "name": "Default",
+          "snippet": "const Default = () => <ResearchPaperPage />;"
+        }
+      ],
+      "import": "import { ResearchPaperPage } from 'sartr-ui';"
+    },
+    "pages-societiespage": {
+      "id": "pages-societiespage",
+      "name": "SocietiesPage",
+      "path": "./src/pages/SocietiesPage/SocietiesPage.stories.tsx",
+      "jsDocTags": {},
+      "description": "`/societies` — scientific societies. The same `.infrastructures-card` list\nas the damaged-infrastructure page, without the funding column.",
+      "reactDocgen": {
+        "description": "`/societies` — scientific societies. The same `.infrastructures-card` list\nas the damaged-infrastructure page, without the funding column.",
+        "methods": [],
+        "displayName": "SocietiesPage",
+        "definedInFile": "/Users/ppetri/Sartr/sartr-ui/src/pages/SocietiesPage/SocietiesPage.tsx",
+        "actualName": "SocietiesPage",
+        "exportName": "SocietiesPage"
+      },
+      "stories": [
+        {
+          "id": "pages-societiespage--default",
+          "name": "Default",
+          "snippet": "const Default = () => <SocietiesPage />;"
+        }
+      ],
+      "import": "import { SocietiesPage } from 'sartr-ui';"
+    },
+    "pages-societypage": {
+      "id": "pages-societypage",
+      "name": "SocietyPage",
+      "path": "./src/pages/SocietyPage/SocietyPage.stories.tsx",
+      "jsDocTags": {},
+      "description": "`/societies/:slug` — one scientific society: what it does and where to find it.",
+      "reactDocgen": {
+        "description": "`/societies/:slug` — one scientific society: what it does and where to find it.",
+        "methods": [],
+        "displayName": "SocietyPage",
+        "definedInFile": "/Users/ppetri/Sartr/sartr-ui/src/pages/SocietyPage/SocietyPage.tsx",
+        "actualName": "SocietyPage",
+        "exportName": "SocietyPage"
+      },
+      "stories": [
+        {
+          "id": "pages-societypage--default",
+          "name": "Default",
+          "snippet": "const Default = () => <SocietyPage />;"
+        }
+      ],
+      "import": "import { SocietyPage } from 'sartr-ui';"
+    },
+    "pages-storiespage": {
+      "id": "pages-storiespage",
+      "name": "StoriesPage",
+      "path": "./src/pages/StoriesPage/StoriesPage.stories.tsx",
+      "jsDocTags": {},
+      "description": "`/stories` — the archive. The site splits it into two streams behind a\nselect, `?theme=stories` and `?theme=blogs`.",
+      "reactDocgen": {
+        "description": "`/stories` — the archive. The site splits it into two streams behind a\nselect, `?theme=stories` and `?theme=blogs`.",
+        "methods": [],
+        "displayName": "StoriesPage",
+        "definedInFile": "/Users/ppetri/Sartr/sartr-ui/src/pages/StoriesPage/StoriesPage.tsx",
+        "actualName": "StoriesPage",
+        "exportName": "StoriesPage"
+      },
+      "stories": [
+        {
+          "id": "pages-storiespage--default",
+          "name": "Default",
+          "snippet": "const Default = () => <StoriesPage />;"
+        }
+      ],
+      "import": "import { StoriesPage } from 'sartr-ui';"
+    },
+    "pages-storypage": {
+      "id": "pages-storypage",
+      "name": "StoryPage",
+      "path": "./src/pages/StoryPage/StoryPage.stories.tsx",
+      "jsDocTags": {},
+      "description": "`/stories/:slug` — one story: cover, body, sharing, and what to read next.",
+      "reactDocgen": {
+        "description": "`/stories/:slug` — one story: cover, body, sharing, and what to read next.",
+        "methods": [],
+        "displayName": "StoryPage",
+        "definedInFile": "/Users/ppetri/Sartr/sartr-ui/src/pages/StoryPage/StoryPage.tsx",
+        "actualName": "StoryPage",
+        "exportName": "StoryPage"
+      },
+      "stories": [
+        {
+          "id": "pages-storypage--default",
+          "name": "Default",
+          "snippet": "const Default = () => <StoryPage />;"
+        }
+      ],
+      "import": "import { StoryPage } from 'sartr-ui';"
+    }
+  },
+  "meta": {
+    "docgen": "react-docgen",
+    "durationMs": 326
+  }
+}

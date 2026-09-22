@@ -1,0 +1,1 @@
+.deck{height:100vh;position:relative;overflow:hidden}.deck__section{overscroll-behavior:contain;position:absolute;inset:0;overflow-y:auto}.deck__section--active{z-index:2;transition:transform .8s cubic-bezier(.58,-.31,.32,.6)}.deck--flow,.deck--flow .deck__section{height:auto;position:static;overflow:visible;transform:none}

@@ -1,0 +1,5 @@
+import{n as e}from"./rolldown-runtime-DkW27tQK.js";import{n as t,t as n}from"./SearchHero-BvSdQ76O.js";var r,i,a,o;function s(){return(s=e((()=>{t(),r={title:`Sections/SearchHero`,component:n,parameters:{layout:`fullscreen`},args:{title:`Find Ukrainian scientists for collaboration`,fieldLabel:`Scientific field or name`,submitLabel:`Find a scientist`,note:`Mark the scientific field that interests you — find and involve Ukrainian scientists in your own projects`,noteLink:{label:`To the full database of scientists`,href:`#`},popular:[{label:`Teaching`,count:101},{label:`Science popularization`,count:86},{label:`Biology`,count:57},{label:`Natural sciences`,count:55},{label:`Biochemistry`,count:41}]}},i={},a={args:{popular:[]}},o=[`Default`,`WithoutPopular`],i.parameters={...i.parameters,docs:{...i.parameters?.docs,source:{originalSource:`{}`,...i.parameters?.docs?.source}}},a.parameters={...a.parameters,docs:{...a.parameters?.docs,source:{originalSource:`{
+  args: {
+    popular: []
+  }
+}`,...a.parameters?.docs?.source}}}})))()}s();export{i as Default,a as WithoutPopular,o as __namedExportsOrder,r as default};
