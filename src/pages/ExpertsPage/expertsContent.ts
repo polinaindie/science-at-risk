@@ -1,4 +1,5 @@
 import type { ExpertCardProps } from '../../components/ExpertCard/ExpertCard';
+import { asset } from '../../content/assets';
 import type { PopularRequest } from '../../components/PopularRequests/PopularRequests';
 
 /** The tag cloud under the search field, with the site's own counts. */
@@ -19,7 +20,7 @@ export const experts: ExpertCardProps[] = [
     summary:
       "Igor leads the Institute of High Technologies of Taras Shevchenko Kyiv National University and participates in forming the university's scientific policy. He is a member of the expert council of the Ministry of Education and Science of Ukraine.",
     tags: ['Chemistry', 'Biochemistry', 'Natural sciences', 'Science popularization'],
-    photo: '/img/experts/expert-1.jpg',
+    photo: asset('img/experts/expert-1.jpg'),
     href: '/experts/komarov-ihor-volodymyrovych',
   },
   {
@@ -29,7 +30,7 @@ export const experts: ExpertCardProps[] = [
     summary:
       'Igor is the deputy general director for scientific work of the National Scientific Center «Kharkiv Physical and Technical Institute».',
     tags: ['Natural sciences', 'Physics', 'Plasma physics'],
-    photo: '/img/experts/expert-2.jpg',
+    photo: asset('img/experts/expert-2.jpg'),
     href: '/experts/harkusha-ihor-yevhenovych',
   },
   {
@@ -39,7 +40,7 @@ export const experts: ExpertCardProps[] = [
     summary:
       "Hryhoriy is the dean of the Chemistry faculty of Ivan Franko National University of Lviv and a member of the University's Academic Council. He represents Ukraine in the European Crystallographic Association.",
     tags: ['Chemistry', 'Natural sciences', 'Science popularization'],
-    photo: '/img/experts/expert-5.jpg',
+    photo: asset('img/experts/expert-5.jpg'),
     href: '/experts/dmytriv-hryhorii-stepanovych',
   },
   {
@@ -49,7 +50,7 @@ export const experts: ExpertCardProps[] = [
     summary:
       'Alongside teaching, Oleksandr researches anti-cancer nanotechnologies and drugs for immuno-, chemoimmunotherapy and photodynamic therapy.',
     tags: ['Chemistry', 'Physical chemistry', 'Natural sciences', 'Surface science'],
-    photo: '/img/experts/expert-7.jpg',
+    photo: asset('img/experts/expert-7.jpg'),
     href: '/experts/holub-oleksandr-andriiovych',
   },
 ];

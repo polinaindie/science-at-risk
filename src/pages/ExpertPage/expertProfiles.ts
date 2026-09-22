@@ -1,4 +1,5 @@
 import type { PublicationCardProps } from '../../components/PublicationCard/PublicationCard';
+import { asset } from '../../content/assets';
 
 export interface ExpertProfile {
   slug: string;
@@ -18,7 +19,7 @@ export const expertProfiles: ExpertProfile[] = [
     slug: 'komarov-ihor-volodymyrovych',
     name: 'Igor Komarov',
     degree: 'Ph.D., professor',
-    photo: '/img/experts/expert-1.jpg',
+    photo: asset('img/experts/expert-1.jpg'),
     languages: 'English',
     links: [
       { label: 'Orcid', href: '#' },
@@ -48,7 +49,7 @@ export const expertProfiles: ExpertProfile[] = [
     slug: 'harkusha-ihor-yevhenovych',
     name: 'Igor Garkusha',
     degree: 'Ph.D., professor',
-    photo: '/img/experts/expert-2.jpg',
+    photo: asset('img/experts/expert-2.jpg'),
     languages: 'English',
     links: [{ label: 'Orcid', href: '#' }],
     sections: [

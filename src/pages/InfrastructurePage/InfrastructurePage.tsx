@@ -1,12 +1,13 @@
 import { useParams } from 'react-router';
+import { asset } from '../../content/assets';
 import { PageLayout } from '../../components/PageLayout/PageLayout';
 import { Gallery } from '../../components/Gallery/Gallery';
 import { Button } from '../../components/Button/Button';
 import { infrastructures } from '../InfrastructuresPage/infrastructuresContent';
 
 const GALLERY = [
-  { src: '/img/story-lp-233.jpg', alt: 'Damaged building' },
-  { src: '/img/story-lp-226.jpg', alt: 'Damaged interior' },
+  { src: asset('img/story-lp-233.jpg'), alt: 'Damaged building' },
+  { src: asset('img/story-lp-226.jpg'), alt: 'Damaged interior' },
 ];
 
 /**

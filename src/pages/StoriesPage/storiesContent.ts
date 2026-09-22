@@ -1,4 +1,5 @@
 import type { StoryCardProps } from '../../components/StoryCard/StoryCard';
+import { asset } from '../../content/assets';
 import type { StorySlide } from '../../components/StoriesSlider/StoriesSlider';
 import type { StoryTag } from '../../components/StoriesSlider/storyTags';
 
@@ -15,7 +16,7 @@ export const stories: StoryEntry[] = [
     title: 'Uncovered Graves. How Lviv restores its memory about the school of mathematics',
     text: "A Map of Burial Sites Revives the Memory of Lviv's Forgotten Mathematicians",
     date: '12.08.26',
-    image: '/img/story-lp-235.jpg',
+    image: asset('img/story-lp-235.jpg'),
     href: '/stories/uncovered-graves-how-lviv-restores-its-memory-about-the-school-of-mathematics',
     tags: ['Memory', 'Communities'],
     stream: 'Stories',
@@ -25,7 +26,7 @@ export const stories: StoryEntry[] = [
     title: 'A Hit Too Close To Home. What happened to the Institute of Biochemistry after a drone strike',
     text: 'How is the Institute of Biochemistry recovering from the attack?',
     date: '12.08.26',
-    image: '/img/story-lp-233.jpg',
+    image: asset('img/story-lp-233.jpg'),
     href: '/stories/a-hit-too-close-to-home-what-happened-to-the-institute-of-biochemistry-after-a-drone-strike',
     tags: ['Infrastructure', 'Medicine'],
     stream: 'Stories',
@@ -35,7 +36,7 @@ export const stories: StoryEntry[] = [
     title: '"Lost Worlds." How the Russian strike ruined the Chornobyl Museum in Kyiv',
     text: 'We visited the Chornobyl Museum after a Russian strike to see how artifacts and memory are being preserved',
     date: '21.07.26',
-    image: '/img/story-lp-226.jpg',
+    image: asset('img/story-lp-226.jpg'),
     href: '/stories/lost-worlds-how-the-russian-strike-ruined-the-chornobyl-museum-in-kyiv',
     tags: ['Heritage', 'Memory'],
     stream: 'Stories',
@@ -45,7 +46,7 @@ export const stories: StoryEntry[] = [
     title: '"We will sow wheat and grow bread": pitfalls of humanitarian demining in Ukraine',
     text: 'How humanitarian demining works in Ukraine',
     date: '15.07.26',
-    image: '/img/story-lp-224.jpg',
+    image: asset('img/story-lp-224.jpg'),
     href: '/stories/we-will-sow-wheat-and-grow-bread-pitfalls-of-humanitarian-demining-in-ukraine',
     tags: ['Environment', 'Technology'],
     stream: 'Blogs',
@@ -55,7 +56,7 @@ export const stories: StoryEntry[] = [
     title: "Explosion Residues on Our Tables. How the war impacts the environment and why it's difficult to study",
     text: 'How Ukraine is documenting the environmental impact of Russian aggression',
     date: '10.07.26',
-    image: '/img/story-lp-222.jpg',
+    image: asset('img/story-lp-222.jpg'),
     href: '/stories/explosion-residues-on-our-tables-how-the-war-impacts-the-environment',
     tags: ['Environment', 'Voices'],
     stream: 'Stories',
