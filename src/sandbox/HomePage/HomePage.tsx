@@ -88,7 +88,7 @@ const defaultWhitepapers: InfoSectionProps = {
 };
 
 /** Figma node 21:4854 — yellow "Researches" band, 3 repeated papers. */
-const defaultResearches: ResearchSectionProps = {
+export const defaultResearches: ResearchSectionProps = {
   info: {
     title: 'Researches',
     text: 'Formalized and organized experience of Ukrainian scientists in the preservation of scientific works, collections and institutions',
@@ -123,7 +123,7 @@ const defaultResearches: ResearchSectionProps = {
   ],
 };
 
-const defaultInfrastructure: InfrastructuresSectionProps = {
+export const defaultInfrastructure: InfrastructuresSectionProps = {
   cards: [
     {
       title: 'Institute for Problems of Cryobiology and Cryomedicine',

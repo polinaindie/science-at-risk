@@ -14,8 +14,31 @@
     {
       "name": "storybook",
       "runtimeExecutable": "npm",
-      "runtimeArgs": ["run", "storybook"],
+      "runtimeArgs": [
+        "run",
+        "storybook"
+      ],
       "port": 6006
+    },
+    {
+      "name": "preview",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": [
+        "run",
+        "dev"
+      ],
+      "port": 5173,
+      "autoPort": true
+    },
+    {
+      "name": "static",
+      "runtimeExecutable": "sh",
+      "runtimeArgs": [
+        "-c",
+        "npx --yes serve dist --single --no-clipboard -l \"$PORT\""
+      ],
+      "port": 4173,
+      "autoPort": true
     }
   ]
 }

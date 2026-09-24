@@ -144,7 +144,7 @@ export function SearchHero({
     >
       {breadcrumbs?.length ? <Breadcrumbs items={breadcrumbs} /> : null}
       <div className="max-w-[420px]">
-        <Heading className="font-serif text-h1-mobile md:text-h1-desktop" id={id}>
+        <Heading className="font-serif text-h1" id={id}>
           {title}
         </Heading>
       </div>

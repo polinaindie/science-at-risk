@@ -1,13 +1,7 @@
-import { useId, useState, type FormEvent } from 'react';
+import { useState, type FormEvent } from 'react';
+import { wrapperClass } from '@/components/Layout';
 import { Button } from '@/components/Button';
-import { Header } from '@/components/Header';
 import { TextField } from '@/components/TextField';
-
-export type HelpFormat =
-  | 'expertise'
-  | 'funding'
-  | 'equipment'
-  | 'institutional';
 
 export interface FooterPartner {
   label: string;
@@ -17,9 +11,8 @@ export interface FooterPartner {
 export interface FooterSubmitData {
   name: string;
   email: string;
-  organization: string;
-  format: HelpFormat;
-  message: string;
+  subject: string;
+  description: string;
 }
 
 export interface FooterProps {
@@ -31,8 +24,9 @@ export interface FooterProps {
   implementerLabel?: string;
   implementerHref?: string;
   partners?: FooterPartner[];
-  formatLabel?: string;
-  formatOptions?: { value: HelpFormat; label: string }[];
+  /** The reference counts the message down from 7000 and refuses a longer one. */
+  maxLength?: number;
+  overLimitMessage?: string;
   onSubmit?: (data: FooterSubmitData) => void;
   className?: string;
 }
@@ -47,182 +41,165 @@ const DEFAULT_PARTNERS: FooterPartner[] = [
     label: 'Ministry of Education and Science of Ukraine',
     href: 'https://mon.gov.ua/ua',
   },
-  { label: 'National Research Foundation of Ukraine', href: 'https://nrfu.org.ua/' },
+  { label: 'National research fund', href: 'https://nrfu.org.ua/' },
 ];
 
-const DEFAULT_FORMATS: { value: HelpFormat; label: string }[] = [
-  { value: 'expertise', label: 'Expertise' },
-  { value: 'funding', label: 'Funding' },
-  { value: 'equipment', label: 'Equipment' },
-  { value: 'institutional', label: 'Institutional partnership' },
-];
+/** The two headings on the right, and their links. Mono, held to a narrow
+ *  measure — the reference caps them at 280px so a supporter's full legal name
+ *  breaks into a stack rather than running the width of the screen. */
+const RIGHT_TITLE =
+  'mb-4 max-w-[280px] font-mono text-h3-mobile text-white xl:max-w-[383px] xl:text-h3-desktop min-[1440px]:max-w-[280px]';
+const RIGHT_LINK =
+  'satr-hover-underline satr-hover-underline--white mt-4 block font-mono text-h3-mobile text-white no-underline xl:text-h3-desktop';
 
 /**
- * Help / contact footer — capability ask last, partners as social proof.
+ * The foot of the page, as scienceatrisk.org has it: the ask across the top,
+ * the form on the left, and who stands behind the project on the right.
+ *
+ * The widths, the paddings and the ramp are the reference's own — the form well
+ * steps 360 / 460 / 486 / 530px, and from 1440 up the two right-hand columns
+ * stop stacking and stand side by side on one baseline.
  */
 export function Footer({
   title = 'Want\nto help?',
-  subtitle = 'Choose how you can collaborate — then tell us who you are.',
+  subtitle = 'Fill out the form or contact us',
   submitLabel = 'Send',
   partnersTitle = 'The project is supported by:',
   implementerTitle = 'Responsible for project implementation:',
   implementerLabel = 'NGO "Kunsht"',
   implementerHref = 'https://kunsht.com.ua/',
   partners = DEFAULT_PARTNERS,
-  formatLabel = 'How you can help',
-  formatOptions = DEFAULT_FORMATS,
+  maxLength = 7000,
+  overLimitMessage = 'Please shorten your inquiry.',
   onSubmit,
   className = '',
 }: FooterProps) {
-  const formatGroupId = useId();
-  const [format, setFormat] = useState<HelpFormat>('expertise');
+  const [count, setCount] = useState(0);
   const [status, setStatus] = useState<string | null>(null);
+  const over = count > maxLength;
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (over) return;
     const fd = new FormData(e.currentTarget);
-    const data: FooterSubmitData = {
+    onSubmit?.({
       name: String(fd.get('name') ?? ''),
       email: String(fd.get('email') ?? ''),
-      organization: String(fd.get('organization') ?? ''),
-      format,
-      message: String(fd.get('message') ?? ''),
-    };
-    onSubmit?.(data);
+      subject: String(fd.get('subject') ?? ''),
+      description: String(fd.get('description') ?? ''),
+    });
     setStatus('Thanks — we received your message.');
   };
 
   return (
     <footer
-      className={`bg-brand-black text-white ${className}`.trim()}
+      className={`satr-on-dark bg-brand-black text-white ${className}`.trim()}
       data-node-id="292:1578"
     >
-      <div className="mx-auto max-w-[1440px] px-6 py-8 md:px-10">
-        <Header tone="dark" className="mb-10 max-w-none md:mb-16" />
+      {/* The site's one container, and the reference's own steps down from 60px
+          of air to 30px as the screen gets wider and shorter on its hands. */}
+      <div
+        className={`${wrapperClass} py-[60px] md:py-[50px] lg:py-[40px] xl:py-[30px] min-[1440px]:py-[40px]`}
+      >
+        <h2 className="mb-4 font-serif text-h1 whitespace-pre-line text-white">{title}</h2>
 
-        <div className="grid gap-16 lg:grid-cols-2">
-          <form className="flex max-w-[530px] flex-col gap-6" onSubmit={handleSubmit} noValidate>
-            <div>
-              <h2 className="whitespace-pre-line font-serif text-h1-mobile text-white md:text-h1-desktop">
-                {title}
-              </h2>
-              <p className="mt-4 font-mono text-h3-mobile text-white md:text-h3-desktop">
-                {subtitle}
-              </p>
-            </div>
+        <div className="md:flex md:justify-between">
+          {/* The form well. Its width is the reference's ladder, not a share of
+              the grid — the fields stay a readable measure however wide the
+              screen gets. */}
+          <div className="w-full md:max-w-[360px] lg:max-w-[460px] xl:max-w-[486px] min-[1440px]:max-w-[530px]">
+            <h2 className="font-mono text-h3-mobile text-white md:text-h3-desktop">{subtitle}</h2>
 
-            <fieldset className="m-0 border-0 p-0">
-              <legend className="mb-3 font-mono text-breadcrumbs text-white/85" id={formatGroupId}>
-                {formatLabel}
-              </legend>
-              <div className="flex flex-wrap gap-2.5" role="radiogroup" aria-labelledby={formatGroupId}>
-                {formatOptions.map((opt) => {
-                  const selected = format === opt.value;
-                  return (
-                    <label
-                      key={opt.value}
-                      className={`satr-tag inline-flex min-h-11 cursor-pointer items-center px-3 ${
-                        selected ? 'satr-tag--accent ring-2 ring-white ring-offset-2 ring-offset-brand-black' : ''
-                      }`}
-                    >
-                      <input
-                        type="radio"
-                        name="format"
-                        value={opt.value}
-                        checked={selected}
-                        onChange={() => setFormat(opt.value)}
-                        className="sr-only"
-                      />
-                      <span className="font-mono text-text1-mobile text-brand-black md:text-text1-desktop">
-                        {opt.label}
-                      </span>
-                    </label>
-                  );
-                })}
+            <form className="mt-8" onSubmit={handleSubmit} noValidate>
+              {/* Name and email share a line from `lg` up, as they do there. */}
+              <div className="grid gap-6 lg:grid-cols-2">
+                <TextField label="Name" name="name" tone="dark" autoComplete="name" required />
+                <TextField
+                  label="Email"
+                  name="email"
+                  type="email"
+                  tone="dark"
+                  autoComplete="email"
+                  required
+                />
               </div>
-            </fieldset>
 
-            <TextField
-              label="Name"
-              name="name"
-              placeholder="Your name"
-              tone="dark"
-              autoComplete="name"
-              required
-            />
-            <TextField
-              label="Email"
-              name="email"
-              type="email"
-              placeholder="you@institution.edu"
-              tone="dark"
-              autoComplete="email"
-              required
-            />
-            <TextField
-              label="Organization"
-              name="organization"
-              placeholder="University, lab, foundation…"
-              tone="dark"
-              autoComplete="organization"
-            />
-            <TextField
-              label="Message"
-              name="message"
-              multiline
-              placeholder="What are you looking to build together?"
-              tone="dark"
-              required
-            />
+              <TextField
+                label="Topic"
+                name="subject"
+                tone="dark"
+                className="mt-6 max-w-none"
+                required
+              />
 
-            <div className="pt-2">
-              <Button type="submit" variant="white">
+              <TextField
+                label="Text"
+                name="description"
+                multiline
+                rows={3}
+                tone="dark"
+                className="mt-6 max-w-none"
+                onChange={(e) => setCount(e.currentTarget.value.length)}
+                required
+              />
+
+              {/* The count, and the one thing that can be wrong with it, on the
+                  same line — the reference puts the warning on the left and the
+                  tally on the right under the field. */}
+              <div className="mt-2 flex items-baseline justify-between gap-4 font-mono text-breadcrumbs">
+                <p
+                  className={over ? 'text-brand-accent-yellow' : 'sr-only'}
+                  role={over ? 'alert' : undefined}
+                >
+                  {overLimitMessage}
+                </p>
+                <span className="ml-auto text-white/85">
+                  ({count} / {maxLength})
+                </span>
+              </div>
+
+              <Button type="submit" variant="white" className="mt-[42px] w-full md:w-auto">
                 {submitLabel}
               </Button>
-            </div>
-            {status ? (
-              <p role="status" className="font-mono text-breadcrumbs text-white/85">
-                {status}
-              </p>
-            ) : null}
-          </form>
 
-          <aside className="flex flex-col gap-10 lg:pt-24">
-            <div>
-              <p className="font-mono text-h3-mobile text-white md:text-h3-desktop">
-                {implementerTitle}
-              </p>
-              <p className="mt-4 font-ukraine text-text2-desktop font-light">
-                <a
-                  className="satr-hover-underline satr-hover-underline--white text-white"
-                  href={implementerHref}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {implementerLabel}
-                </a>
-              </p>
-            </div>
-          </aside>
-        </div>
+              {status ? (
+                <p role="status" className="mt-4 font-mono text-breadcrumbs text-white/85">
+                  {status}
+                </p>
+              ) : null}
+            </form>
+          </div>
 
-        {/* Partners as a full-width social-proof row — typographic, no invented logos. */}
-        <div className="mt-16 border-t border-white/25 pt-10">
-          <p className="font-mono text-h3-mobile text-white md:text-h3-desktop">{partnersTitle}</p>
-          <ul className="mt-6 m-0 grid list-none gap-4 p-0 sm:grid-cols-2 lg:grid-cols-4">
-            {partners.map((partner) => (
-              <li key={partner.href}>
+          {/* Who stands behind it. A stack under `1440`, two columns standing on
+              one baseline above it. */}
+          <div className="mt-[55px] md:mt-0 md:max-w-[260px] lg:max-w-[390px] xl:max-w-[424px] min-[1440px]:flex min-[1440px]:max-w-none min-[1440px]:items-end min-[1440px]:gap-[60px]">
+            <div className="w-full min-[1440px]:max-w-[424px]">
+              <p className={RIGHT_TITLE}>{partnersTitle}</p>
+              {partners.map((partner) => (
                 <a
+                  key={partner.href}
                   href={partner.href}
                   target="_blank"
-                  rel="noopener noreferrer"
-                  className="satr-hover-underline satr-hover-underline--white inline-block min-h-11 font-ukraine text-text2-mobile font-light text-white md:text-text2-desktop"
+                  rel="nofollow noopener noreferrer"
+                  className={RIGHT_LINK}
                 >
                   {partner.label}
                 </a>
-              </li>
-            ))}
-          </ul>
+              ))}
+            </div>
+
+            <div className="mt-8 min-[1440px]:mt-0">
+              <p className={RIGHT_TITLE}>{implementerTitle}</p>
+              <a
+                href={implementerHref}
+                target="_blank"
+                rel="nofollow noopener noreferrer"
+                className={RIGHT_LINK}
+              >
+                {implementerLabel}
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </footer>

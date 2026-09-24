@@ -64,10 +64,30 @@
   --text-breadcrumbs--line-height: 16px;
   --text-breadcrumbs--letter-spacing: -0.03em;
 
+  /* The live site's ladder, read off scienceatrisk.org's own stylesheet.
+     Tailwind's `sm` stays at its default 640 because two components already
+     lean on it; the site's own steps that Tailwind has no name for are
+     carried under their pixel value instead. */
+  --breakpoint-b375: 375px;
+  --breakpoint-b480: 480px;
+  --breakpoint-b680: 680px;
   --breakpoint-md: 768px;
   --breakpoint-lg: 1024px;
   --breakpoint-xl: 1280px;
+  --breakpoint-b1366: 1366px;
+  --breakpoint-b1400: 1400px;
   --breakpoint-2xl: 1440px;
+  --breakpoint-b1920: 1920px;
+
+  /* The container: 16px gutters until `xl`, 40px and a ceiling from there
+     (site rule `.wrapper`). The row gutter is 16px on phones and 24px from
+     `md` up — the site splits it as 8/12px of padding either side of a
+     column, which comes out the same as a grid gap of twice that. */
+  --satr-wrapper-pad: 16px;
+  --satr-wrapper-pad-xl: 40px;
+  --satr-wrapper-max: 1744px;
+  --satr-gutter: 16px;
+  --satr-gutter-md: 24px;
 }
 
 @layer base {
@@ -103,6 +123,140 @@
 
 /* Squircle buttons — Figma: not rounded rectangles (node 292:1540) */
 @layer components {
+  /*
+   * The site's own h1 ramp, four steps rather than two. scienceatrisk.org sets
+   * it in rem off an 18px root — 1.77778 / 2.66667 / 3.55556 / 4 — which is
+   * 32, 48, 64 and 72px at 0, 1024, 1280 and 1440. Our tokens only held the
+   * two ends and jumped from 32 straight to 72 at 768, which is what made a
+   * block title read as gigantic on an ordinary laptop: 72px where the site
+   * gives 64.
+   */
+  .text-h1 {
+    font-size: 32px;
+    line-height: 38px;
+    letter-spacing: -0.02em;
+  }
+
+  @media (min-width: 1024px) {
+    .text-h1 {
+      font-size: 48px;
+      line-height: 54px;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .text-h1 {
+      font-size: 64px;
+      line-height: 72px;
+    }
+  }
+
+  @media (min-width: 1440px) {
+    .text-h1 {
+      font-size: 72px;
+      line-height: 76px;
+    }
+  }
+
+  /*
+   * Floating label, as scienceatrisk.org has it. The label sits on the text
+   * line of an empty field and, once the field is focused or has something in
+   * it, rises clear of it and shrinks. The field reserves that height from the
+   * start, so nothing below it moves when the label travels.
+   *
+   * The two sets of numbers are the reference's own: the hero's search line
+   * (`.search-hero__column`) carries a 22px label that drops to 18px over
+   * 0.5s and rises 25px; the form fields (`.column`) carry theirs 22px up in
+   * 0.3s and drop to 12px. `:placeholder-shown` is what tells an empty field
+   * from a filled one, so every field using this needs a placeholder — a
+   * single space is enough, and shows nothing.
+   */
+  /*
+   * Light type on a dark ground, rendered the same way whatever the compositor
+   * is doing underneath it.
+   *
+   * Chrome drops subpixel antialiasing for anything it has put on a layer of
+   * its own, and it makes and destroys those layers around transforms and
+   * transitions. So the white type on the stories panel was rendered one way
+   * at rest and another while the panel moved, and changed weight at both ends
+   * of every move — which is the shimmer. Asking for grayscale antialiasing
+   * outright takes the compositor out of it: the type is rendered identically
+   * either way. It also suits light-on-dark on its own merits, where subpixel
+   * rendering makes glyphs bloom.
+   */
+  .satr-on-dark {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  .satr-float {
+    position: relative;
+    display: block;
+  }
+
+  .satr-float > input,
+  .satr-float > textarea {
+    padding-top: 22px;
+  }
+
+  .satr-float > .satr-float__label {
+    position: absolute;
+    top: 22px;
+    left: 0;
+    pointer-events: none;
+    font-weight: 300;
+    /* The resting size belongs here and not to a utility class: a utility
+       would win over the rule below it and the label would rise without ever
+       shrinking. */
+    font-size: 18px;
+    line-height: 26px;
+    /* One transform, and nothing else. Shrinking the label by animating
+       `font-size` re-lays the text out on every frame and the browser snaps it
+       between whole pixel sizes, which is the stutter you see on the way up.
+       A `translate` and a `scale` are one property the compositor can carry on
+       its own, so the label travels and shrinks in a single smooth move. The
+       origin is the corner it stays anchored to. */
+    transform-origin: left top;
+    transition:
+      transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+      color 0.3s;
+  }
+
+  .satr-float > input:focus + .satr-float__label,
+  .satr-float > textarea:focus + .satr-float__label,
+  .satr-float > input:not(:placeholder-shown) + .satr-float__label,
+  .satr-float > textarea:not(:placeholder-shown) + .satr-float__label {
+    /* 12px out of 18 — the size the reference lands these labels on. */
+    transform: translateY(-22px) scale(0.6667);
+  }
+
+  .satr-float--hero > input {
+    padding-top: 25px;
+  }
+
+  .satr-float--hero > .satr-float__label {
+    top: 25px;
+    font-size: 22px;
+    line-height: 28px;
+    transition:
+      transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+      color 0.3s;
+  }
+
+  .satr-float--hero > input:focus + .satr-float__label,
+  .satr-float--hero > input:not(:placeholder-shown) + .satr-float__label {
+    /* 18px out of 22, and 25px clear of the line. */
+    transform: translateY(-25px) scale(0.8182);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .satr-float > .satr-float__label,
+    .satr-float--hero > .satr-float__label {
+      transition: none;
+    }
+  }
+
   .satr-squircle {
     position: relative;
     display: inline-flex;
@@ -381,5 +535,31 @@
 
   .satr-hero-story-progress {
     animation: satr-hero-story-progress var(--satr-hero-progress-duration, 7000ms) linear forwards;
+  }
+}
+
+@layer components {
+  /* Countdown rule under the hero's active story header (V2 sandbox). */
+  .satr-hero-timer {
+    width: 0;
+    animation-name: satr-hero-timer;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+  }
+
+  @keyframes satr-hero-timer {
+    from {
+      width: 0;
+    }
+    to {
+      width: 100%;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .satr-hero-timer {
+      width: 100%;
+      animation: none;
+    }
   }
 }

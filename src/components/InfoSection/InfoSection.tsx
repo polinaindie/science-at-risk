@@ -1,3 +1,4 @@
+import { Wrapper, Row, Col } from '@/components/Layout';
 import { ListCard, type ListCardProps } from '@/components/ListCard';
 import { PaperCard, type PaperCardProps } from '@/components/PaperCard';
 import {
@@ -23,9 +24,17 @@ export function InfoSection({
 }: InfoSectionProps) {
   return (
     <section className={`px-6 py-14 md:px-10 ${className}`.trim()}>
-      <h2 className="font-serif text-h1-mobile md:text-h1-desktop">{title}</h2>
+      {/* A title set at 72px in a four-column well runs out of room on one
+          word — "reconstruction" wants 485px of a 399px column — and an
+          overflowing word lies across the list beside it. Hyphenated rather
+          than broken: the document declares its language, so the break lands
+          where the language says it may. */}
+      <h2 className="font-serif text-h1 hyphens-auto">{title}</h2>
       <p className="mt-4 max-w-2xl font-mono text-h3-mobile md:text-h3-desktop">{text}</p>
-      <a href={linkHref} className="satr-hover-underline mt-6 inline-block font-mono text-h3-mobile md:text-h3-desktop">
+      <a
+        href={linkHref}
+        className="satr-hover-underline mt-6 inline-block font-mono text-h3-mobile md:text-h3-desktop"
+      >
         {linkLabel}
       </a>
     </section>
@@ -34,6 +43,8 @@ export function InfoSection({
 
 export interface ResearchSectionProps {
   info?: InfoSectionProps;
+  /** Sets the title block on the foot of the row rather than its head. */
+  infoAtBottom?: boolean;
   /** Prefer PaperCard-shaped items for Research & policy. */
   papers?: PaperCardProps[];
   /** @deprecated Prefer `papers` — kept for older Storybook demos. */
@@ -49,6 +60,7 @@ export function ResearchSection({
     linkLabel: 'Show all studies',
     linkHref: '/research',
   },
+  infoAtBottom = false,
   papers = [],
   cards = [],
   className = '',
@@ -57,46 +69,56 @@ export function ResearchSection({
 
   return (
     <section className={`bg-brand-accent-yellow py-14 ${className}`.trim()}>
-      <div className="mx-auto flex w-full max-w-[1360px] flex-col gap-10 lg:flex-row lg:items-start lg:gap-12">
-        <div className="lg:w-4/12">
-          {info ? <InfoSection {...info} className="!px-6 !py-0 md:!px-10" /> : null}
-        </div>
-        {usePapers ? (
-          <div className="px-6 md:px-10 lg:w-8/12">
-            <ul className="m-0 list-none p-0">
-              {papers.map((paper, index) => (
-                <li key={paper.href ?? paper.title}>
-                  <PaperCard
-                    {...paper}
-                    borderedTop={index === 0}
-                    headingLevel={paper.headingLevel ?? 3}
-                  />
-                </li>
-              ))}
-            </ul>
-          </div>
-        ) : cards.length ? (
-          <div className="px-6 md:px-10 lg:w-8/12">
-            <ul className="m-0 list-none p-0">
-              {cards.map((card) => (
-                <li key={card.title}>
-                  <ListCard
-                    {...card}
-                    ctaLabel={card.ctaLabel ?? 'More details'}
-                    headingLevel={card.headingLevel ?? 3}
-                  />
-                </li>
-              ))}
-            </ul>
-          </div>
-        ) : null}
-      </div>
+      {/* The site's one container and its twelve columns, the same ones the
+          header bar and the story grid stand on — the title column and the
+          list start and stop on the same lines as everything else on the
+          page. */}
+      <Wrapper>
+        {/* `row align-items-end` on the reference: the title column and the list
+            finish on the same line rather than starting on it. */}
+        <Row className={`gap-y-10 ${infoAtBottom ? 'items-end' : 'items-start'}`}>
+          <Col lg={4}>
+            {info ? <InfoSection {...info} className="!p-0" /> : null}
+          </Col>
+          {usePapers ? (
+            <Col lg={7} className="lg:col-start-6">
+              <ul className="m-0 list-none p-0">
+                {papers.map((paper, index) => (
+                  <li key={paper.href ?? paper.title}>
+                    <PaperCard
+                      {...paper}
+                      borderedTop={index === 0}
+                      headingLevel={paper.headingLevel ?? 3}
+                    />
+                  </li>
+                ))}
+              </ul>
+            </Col>
+          ) : cards.length ? (
+            <Col lg={7} className="lg:col-start-6">
+              <ul className="m-0 list-none p-0">
+                {cards.map((card) => (
+                  <li key={card.title}>
+                    <ListCard
+                      {...card}
+                      ctaLabel={card.ctaLabel ?? 'More details'}
+                      headingLevel={card.headingLevel ?? 3}
+                    />
+                  </li>
+                ))}
+              </ul>
+            </Col>
+          ) : null}
+        </Row>
+      </Wrapper>
     </section>
   );
 }
 
 export interface InfrastructuresSectionProps {
   info?: InfoSectionProps;
+  /** Sets the title block on the foot of the row rather than its head. */
+  infoAtBottom?: boolean;
   cards?: InfrastructuresCardProps[];
   className?: string;
 }
@@ -109,29 +131,38 @@ export function InfrastructuresSection({
     linkLabel: 'All projects',
     linkHref: '/infrastructures',
   },
+  infoAtBottom = false,
   cards = [],
   className = '',
 }: InfrastructuresSectionProps) {
   return (
     <section className={`bg-brand-white py-14 ${className}`.trim()}>
-      <div className="mx-auto flex w-full max-w-[1360px] flex-col gap-10 lg:flex-row lg:items-start lg:gap-12">
-        <div className="lg:w-4/12">
-          {info ? <InfoSection {...info} className="!px-6 !py-0 md:!px-10" /> : null}
-        </div>
-        <div className="px-6 md:px-10 lg:w-8/12">
-          <ul className="m-0 list-none p-0">
-            {cards.map((card, index) => (
-              <li key={card.href ?? card.title}>
-                <InfrastructuresCard
-                  {...card}
-                  borderedTop={index === 0}
-                  headingLevel={card.headingLevel ?? 3}
-                />
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
+      {/* The site's one container and its twelve columns, the same ones the
+          header bar and the story grid stand on — the title column and the
+          list start and stop on the same lines as everything else on the
+          page. */}
+      <Wrapper>
+        {/* `row align-items-end` on the reference: the title column and the list
+            finish on the same line rather than starting on it. */}
+        <Row className={`gap-y-10 ${infoAtBottom ? 'items-end' : 'items-start'}`}>
+          <Col lg={4}>
+            {info ? <InfoSection {...info} className="!p-0" /> : null}
+          </Col>
+          <Col lg={7} className="lg:col-start-6">
+            <ul className="m-0 list-none p-0">
+              {cards.map((card, index) => (
+                <li key={card.href ?? card.title}>
+                  <InfrastructuresCard
+                    {...card}
+                    borderedTop={index === 0}
+                    headingLevel={card.headingLevel ?? 3}
+                  />
+                </li>
+              ))}
+            </ul>
+          </Col>
+        </Row>
+      </Wrapper>
     </section>
   );
 }

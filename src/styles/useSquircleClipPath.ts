@@ -37,8 +37,13 @@ export function useSquircleClipPath({
     if (!node) return;
 
     const update = () => {
-      const rect = node.getBoundingClientRect();
-      setSize({ width: rect.width, height: rect.height });
+      // offsetWidth/Height, not getBoundingClientRect: the rect is the
+      // *rendered* box, so it carries any ancestor transform. The V5 hero
+      // scales its search field down as it flies into the header, and
+      // measuring through that scale baked a shrunken squircle into the
+      // path — which never recovered, because ResizeObserver watches the
+      // border box and a transform never changes it.
+      setSize({ width: node.offsetWidth, height: node.offsetHeight });
     };
 
     update();
@@ -53,6 +58,11 @@ export function useSquircleClipPath({
     ref: setNode,
     clipId,
     pathD,
-    style: pathD ? { clipPath: `url(#${clipId})` } : undefined,
+    // `borderRadius: 0` retires the CSS fallback radius once the real path is
+    // in place. The two shapes intersect, and the fallback is the tighter of
+    // the pair at the corners (a tag's pill radius is half its height, well
+    // past the squircle's 16px), so leaving it on would hide the squircle
+    // behind a plain rounded rect.
+    style: pathD ? { clipPath: `url(#${clipId})`, borderRadius: 0 } : undefined,
   };
 }
