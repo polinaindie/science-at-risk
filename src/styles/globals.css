@@ -250,6 +250,25 @@
     transform: translateY(-25px) scale(0.8182);
   }
 
+  /* Beside the wordmark from `lg` up the field reads at body size, 18px, on
+     the button's own centre line (Figma node 225:8812), and lifts to 12px
+     into the open space above the row rather than reserving room for it. */
+  @media (min-width: 64rem) {
+    .satr-float--hero > input {
+      padding-top: 0;
+    }
+
+    .satr-float--hero > .satr-float__label {
+      top: 0;
+      font-size: 18px;
+    }
+
+    .satr-float--hero > input:focus + .satr-float__label,
+    .satr-float--hero > input:not(:placeholder-shown) + .satr-float__label {
+      transform: translateY(-24px) scale(0.6667);
+    }
+  }
+
   @media (prefers-reduced-motion: reduce) {
     .satr-float > .satr-float__label,
     .satr-float--hero > .satr-float__label {

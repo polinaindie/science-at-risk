@@ -1,8 +1,10 @@
-import { Fragment, useState, type CSSProperties } from 'react';
+import { useState, type CSSProperties } from 'react';
 import { Wrapper, Row, Col } from '@/components/Layout';
 
 export interface StoryCardV5 {
   id: string;
+  /** The line over the headline (Figma node 225:8822). */
+  kind?: string;
   /** Topics the story sits under. A story usually carries more than one. */
   tags?: string[];
   title: string;
@@ -43,6 +45,16 @@ export interface StoryGridV5Props {
    * the grid changes ground in step with the bar above it.
    */
   dark?: boolean;
+  /**
+   * Whether the grid has a height to fill. Left alone, a card is as tall as its
+   * 3:2 photograph makes it and the grid is as tall as that — which is what any
+   * page that scrolls wants. Set, the card takes the height it is given and the
+   * photograph takes what the type beneath it does not, so a block pinned to a
+   * screen fits that screen instead of being cut off at the foot of it. The
+   * crop moves with it: `object-cover` means a shorter card shows a wider band
+   * of the same picture, never a squashed one.
+   */
+  fill?: boolean;
   back?: PagerLinkV5;
   other?: PagerLinkV5;
   forward?: PagerLinkV5;
@@ -58,6 +70,23 @@ const SLIDE = 'motion-safe:duration-[900ms] motion-safe:ease-[cubic-bezier(0.22,
 
 /** How far a set trails the track it rides on, as a share of its own width. */
 const PARALLAX = 10;
+
+/** `fill` has to be handed down every box between the section and the
+ *  photograph — a flex child stops at its content unless it is told both that
+ *  it may grow and that it may shrink past that content, which is what
+ *  `min-h-0` says. Miss one link and the chain goes slack: the card keeps the
+ *  height its picture asks for and the foot of the block is cut off again. */
+const FILL_COLUMN = 'flex min-h-0 flex-1 flex-col';
+
+/** Under `fill`, the three cards share one set of rows — photograph, rubric,
+ *  headline, topics — through `subgrid`. Left to flex, each card gave its
+ *  photograph whatever its own headline left over, so a two-line headline
+ *  got a taller picture than a three-line one beside it. On shared rows the
+ *  headline row is as deep as the deepest of the three and every photograph
+ *  takes the same height. Three across only exists from `md`; stacked, each
+ *  card keeps its own flex column. */
+const FILL_ROWS = 'md:grid-rows-[minmax(0,1fr)_auto_auto_auto] md:gap-y-0';
+const FILL_CARD = 'md:row-span-4 md:grid md:grid-rows-subgrid';
 
 const focusRingFor = (dark: boolean) =>
   `focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ${
@@ -156,7 +185,7 @@ function PagerStep({
     <button
       type="button"
       onClick={onClick}
-      className={`inline-flex items-center gap-2 border-0 bg-transparent p-0 font-mono text-h3-desktop ${
+      className={`inline-flex items-center gap-[1ch] border-0 bg-transparent p-0 font-mono text-text1-desktop ${
         dark ? 'text-white' : 'text-brand-black'
       } ${focusRingFor(dark)}`}
     >
@@ -168,13 +197,14 @@ function PagerStep({
 }
 
 /**
- * The stories, three across on black (Figma node 94:10484). The change of
- * ground under the white hero is what makes them read as the page's subject
- * rather than a strip of teasers.
+ * The stories, three across (Figma node 94:10484), on black where they are a
+ * listing of their own and on the hero's own accent where they share its
+ * screen — which is what V5 does with them: no change of ground, no second
+ * title, just the stories standing under the search line as the page's subject.
  *
  * Photographs keep their colour and sit inset in the card, with a serif
- * headline beneath and the story's topics under that — no borders, the black
- * gaps do the separating.
+ * headline beneath and the story's topics under that — no borders, the gaps
+ * between the cards do the separating.
  */
 export function StoryGridV5({
   showHeading = true,
@@ -187,9 +217,10 @@ export function StoryGridV5({
   showPager = true,
   pagerReveal = 1,
   dark = true,
+  fill = false,
   back = { label: 'Back' },
   other = { label: 'Other Stories', href: '/stories' },
-  forward = { label: 'Next' },
+  forward = { label: 'Forward' },
   className = '',
   style,
 }: StoryGridV5Props) {
@@ -234,7 +265,7 @@ export function StoryGridV5({
           `py-10` would come out at 45. The grid owns the gap above it, which
           is why neither the heading block nor the hero before it carries a
           bottom padding of its own. */}
-      <Wrapper className="pt-[36px] pb-[32px]">
+      <Wrapper className={`pt-[36px] ${fill ? FILL_COLUMN : ''}`.trim()}>
         {/* 36px between the cards, not the 24px the site's rows carry: both
             reference frames measure 429px columns in a 1360px content width,
             which only comes out with a 36px gutter. The twelve-column frame
@@ -244,9 +275,9 @@ export function StoryGridV5({
             than three pictures being replaced where they stand. The track is
             clipped to the content box, which is where the cards' own column
             begins and ends. */}
-        <div className="overflow-hidden">
+        <div className={`overflow-hidden ${fill ? 'min-h-0 flex-1' : ''}`.trim()}>
           <div
-            className={`flex motion-safe:transition-transform ${SLIDE}`}
+            className={`flex motion-safe:transition-transform ${SLIDE} ${fill ? 'h-full' : ''}`}
             style={{ transform: `translateX(-${page * 100}%)` }}
           >
             {sets.map((set, setIndex) => (
@@ -258,7 +289,9 @@ export function StoryGridV5({
                  pushed, however long you give it. */
               <div
                 key={setIndex}
-                className={`w-full shrink-0 motion-safe:transition-[transform,opacity] ${SLIDE}`}
+                className={`w-full shrink-0 motion-safe:transition-[transform,opacity] ${SLIDE} ${
+                  fill ? 'h-full' : ''
+                }`}
                 style={{
                   transform: `translateX(${(setIndex - page) * PARALLAX}%)`,
                   opacity: setIndex === page ? 1 : 0.3,
@@ -266,34 +299,59 @@ export function StoryGridV5({
                 aria-hidden={setIndex === page ? undefined : true}
                 inert={setIndex !== page}
               >
-                <Row as="ul" className="m-0 list-none gap-y-10 p-0 md:gap-x-[36px]">
+                <Row
+                  as="ul"
+                  /* `!` because the row's own 24px gutter is the same utility
+                     at the same breakpoint and was winning on source order. */
+                  className={`m-0 list-none gap-y-10 p-0 md:gap-x-[36px]! ${fill ? `h-full ${FILL_ROWS}` : ''}`.trim()}
+                >
                   {set.map((story) => (
                     /* The card fills the row's height and the topics are pushed to
                its foot, so they sit on one line across the three whatever the
                headlines above them do — one, two or three lines deep. */
-                    <Col as="li" key={story.id} md={4} className="flex flex-col">
+                    <Col
+                      as="li"
+                      key={story.id}
+                      md={4}
+                      className={`flex flex-col ${fill ? `min-h-0 ${FILL_CARD}` : ''}`.trim()}
+                    >
                       <a
                         href={story.href}
-                        className={`group flex flex-1 flex-col no-underline ${ink} ${focusRing}`}
+                        className={`group flex flex-1 flex-col no-underline ${ink} ${focusRing} ${
+                          fill ? `min-h-0 ${FILL_CARD}` : ''
+                        }`}
                       >
                         {/* 3:2, the frame the hero's own story images use
                     (HomeHeroSandbox, HomeHeroStoriesIndexV4). The clip is on
                     the wrapper so the hover magnification stays inside the
                     card instead of reaching over the one beside it. */}
-                        <span className="block overflow-hidden">
+                        <span
+                          className={`block overflow-hidden ${fill ? 'min-h-0 flex-1' : ''}`.trim()}
+                        >
+                          {/* 429 by 235, the frame's crop (Figma node 225:8820). */}
                           <img
                             src={story.imageSrc}
                             alt={story.imageAlt ?? ''}
                             loading="lazy"
-                            className="block aspect-[3/2] w-full object-cover motion-safe:transition-transform motion-safe:duration-500 group-hover:scale-[1.02]"
+                            className={`block w-full object-cover motion-safe:transition-transform motion-safe:duration-500 group-hover:scale-[1.02] ${
+                              fill ? 'h-full' : 'aspect-[429/235]'
+                            }`}
                           />
                         </span>
 
-                        {/* 26px/30px — the h2 step (36px) ran the headline to six
+                        <span
+                          className={`mt-[20px] block font-mono text-text1-desktop ${
+                            dark ? 'text-white/60' : 'text-brand-muted'
+                          }`}
+                        >
+                          {story.kind ?? 'Stories'}
+                        </span>
+
+                        {/* 26px/32px — the h2 step (36px) ran the headline to six
                     lines in a third-width column. Noto Serif regular; the
                     weight is the only one loaded for this family. */}
                         <span
-                          className={`mt-[20px] block font-serif text-[22px] leading-[28px] md:text-[26px] md:leading-[30px] md:tracking-[-0.02em] ${ink}`}
+                          className={`mt-[20px] block font-serif text-[22px] leading-[28px] md:text-[26px] md:leading-[32px] md:tracking-[-0.02em] ${ink}`}
                         >
                           <span
                             className={`satr-hover-underline ${dark ? 'satr-hover-underline--white' : ''}`.trim()}
@@ -308,31 +366,17 @@ export function StoryGridV5({
                     Plain mono labels, the same ink the single rubric had —
                     they sit with the headline, they are not chips. */}
                         {story.tags?.length ? (
-                          /* A step back from the headline's ink, with a slash between
-                     them — the same divider the locale switch in the bar uses,
-                     so a run of topics reads as one line rather than as words
-                     that happen to sit near each other. The divider is lighter
-                     again than the topics, so it separates without counting as
-                     a third thing to read. */
-                          <span className="mt-auto flex flex-wrap items-baseline gap-x-[10px] gap-y-1 pt-[20px]">
-                            {story.tags.map((tag, index) => (
-                              <Fragment key={tag}>
-                                {index > 0 ? (
-                                  <span
-                                    aria-hidden
-                                    className={dark ? 'text-white/30' : 'text-black/30'}
-                                  >
-                                    /
-                                  </span>
-                                ) : null}
-                                <span
-                                  className={`font-mono text-text1-desktop ${
-                                    dark ? 'text-white/60' : 'text-brand-muted'
-                                  }`}
-                                >
-                                  {tag}
-                                </span>
-                              </Fragment>
+                          /* In the ink, each topic underlined on its own and the
+                     slashes between them left bare, so they read as separate
+                     tags rather than as one underlined phrase. */
+                          <span
+                            className={`mt-auto block pt-[20px] font-mono text-text1-desktop ${ink}`}
+                          >
+                            {story.tags.map((tag, i) => (
+                              <span key={tag}>
+                                {i > 0 ? ' / ' : null}
+                                <span className="underline underline-offset-4">{tag}</span>
+                              </span>
                             ))}
                           </span>
                         ) : null}
@@ -359,19 +403,28 @@ export function StoryGridV5({
           }}
           aria-hidden={pagerReveal < 1 ? true : undefined}
         >
-          {/* The rule runs the width of the content, not of the screen, so it
-              starts and stops on the same lines as the cards above it. */}
-          <Wrapper>
+          {/* Figma node 225:8837: 60 under the cards, a 2px rule the full
+              width of the content, and the row 36 under that. A pinned screen
+              keeps its own gap at the foot, so the row's closing 36 is only
+              drawn where the page scrolls. */}
+          <Wrapper className={`pt-[60px] ${fill ? '' : 'pb-[36px]'}`.trim()}>
             <div
-              className={`flex items-center justify-between gap-6 border-t-2 pt-[32px] pb-[24px] font-mono text-h3-desktop ${
+              className={`grid grid-cols-3 items-center gap-6 border-t-2 pt-[36px] font-mono text-text1-desktop ${ink} ${
                 dark ? 'border-white' : 'border-brand-line'
-              } ${ink}`}
+              }`}
             >
-              <PagerStep label={back.label} arrow="prev" dark={dark} onClick={() => step(-1)} />
-              <a href={other.href ?? '/stories'} className={`no-underline ${ink} ${focusRing}`}>
+              <span className="justify-self-start">
+                <PagerStep label={back.label} arrow="prev" dark={dark} onClick={() => step(-1)} />
+              </span>
+              <a
+                href={other.href ?? '/stories'}
+                className={`justify-self-center no-underline ${ink} ${focusRing}`}
+              >
                 <span className="underline underline-offset-4">{other.label}</span>
               </a>
-              <PagerStep label={forward.label} arrow="next" dark={dark} onClick={() => step(1)} />
+              <span className="justify-self-end">
+                <PagerStep label={forward.label} arrow="next" dark={dark} onClick={() => step(1)} />
+              </span>
             </div>
           </Wrapper>
         </div>

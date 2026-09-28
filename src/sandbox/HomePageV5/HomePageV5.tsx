@@ -2,7 +2,6 @@ import { useCallback, useEffect, useRef, useState, type ReactNode } from 'react'
 import { SiteHeaderV5, BAR_WORDMARK_H, type SiteHeaderV5Props } from '@/sandbox/SiteHeaderV5';
 import { HomeHeroV5, type HomeHeroV5Props } from '@/sandbox/HomeHeroV5';
 import { StoryGridV5, type StoryGridV5Props } from '@/sandbox/StoryGridV5';
-import { Wrapper } from '@/components/Layout';
 import {
   ResearchSection,
   InfrastructuresSection,
@@ -42,12 +41,29 @@ const INK_HANDOVER = 0.75;
 const WHEEL_DISTANCE = 150;
 
 /** Below either of these the deck is off and the page is an ordinary scrolling
- *  document — the same two thresholds the reference uses. A screen too short
- *  for a block cannot hold one still. */
+ *  document. A screen too short for a block cannot hold one still.
+ *
+ *  The width is the reference's. The height is not: the reference's 500 was
+ *  measured against a first screen that was the hero and nothing else. This one
+ *  carries the search, its fields, the stories and their pager, and the card
+ *  gives the photograph whatever the rest does not need. Measured with the
+ *  fields in, that is 237px at 916, 213px at 900, 124px at 800 and nothing at
+ *  all below about 820. A card whose photograph has been squeezed out of
+ *  existence is not a card, so the deck stops while the photograph is still
+ *  one and the page falls back to scrolling — where the search, its fields and
+ *  a full 3:2 crop all have as much room as they want, and the question of
+ *  which of them outweighs the other does not arise.
+ *
+ *  The cost is deliberate and worth naming: 1440x800 and 1366x768 are a great
+ *  many laptops, and none of them see the deck any more. */
 const DECK_MIN_WIDTH = 1024;
-const DECK_MIN_HEIGHT = 500;
+const DECK_MIN_HEIGHT = 850;
 
-const clamp01 = (v: number) => Math.min(1, Math.max(0, v));
+/** The gap every block keeps clear at the foot of the screen, so a card's
+ *  last line or a section's last rule never sits flush against the browser
+ *  chrome. 34 is what the hero frame leaves under its pager (Figma node
+ *  225:8792, 871 of 905). */
+const DECK_BOTTOM_GAP = 34;
 
 /** The wordmark's own curve — ease-in-out cubic, and nothing more. The blocks
  *  ride in on the reference's `cubic-bezier(0.58, -0.31, 0.32, 0.6)`, which
@@ -59,19 +75,17 @@ const easeTurn = (t: number) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t +
 
 /**
  * The blocks, in order, each with the ground it stands on and whether the bar
- * has to turn its ink over while standing on it. The first has neither: it is
- * the screen that turns from the hero to the stories listing in place, and both
- * its ground and its ink are driven by that turn.
+ * has to turn its ink over while standing on it.
  *
  * The bar carries no ground of its own here — the blocks run the full height of
  * the screen and the bar is transparent over them, so there is never a band of
  * one block's colour sitting over another's.
  */
 const SECTIONS = [
-  { ground: null, inverted: null },
+  { ground: 'bg-brand-accent-blue', inverted: false },
   { ground: 'bg-brand-accent-yellow', inverted: false },
   { ground: 'bg-brand-white', inverted: false },
-  { ground: 'bg-brand-black', inverted: true },
+  { ground: 'satr-on-dark bg-brand-black', inverted: true },
 ] as const;
 
 /** Reaches the one call to action in each info block's title column, so it is
@@ -128,13 +142,12 @@ const scrollableUnder = (from: EventTarget | null, within: HTMLElement, deltaY: 
  * is only moved out of the way once it is safely covered. Nothing scrolls — the
  * reader's wheel fills a bucket, and each bucketful moves the page on once.
  *
- * The first screen is the exception, and deliberately so: the hero and the
- * stories share it, and the first gesture turns that screen over in place
- * rather than sliding a new one up. The stories do not move — it is the copy
- * above them that changes. The wordmark and the search line do not fade out
- * while copies fade in somewhere else: the page measures where the wordmark
- * ends up in the bar and flies it there on the same curve and in the same time
- * a block takes to arrive, scaling it from 141px down to the bar's 20px.
+ * The first screen holds the hero and the stories together, and goes on
+ * holding them: the story sets are paged in place by the grid's own pager, so
+ * the reader can walk through them without the search line above ever leaving.
+ * What does travel is the wordmark, and only on the way out — the page measures
+ * where it ends up in the bar and flies it there on the same curve and in the
+ * same time a block takes to arrive, scaling it down to the bar's 20px.
  *
  * Under 1024px wide or 500px tall the deck is off and this is an ordinary
  * scrolling page, which is also what the reference does.
@@ -159,27 +172,19 @@ export function HomePageV5({
   const [transforms, setTransforms] = useState<string[]>(() =>
     SECTIONS.map((_, i) => (i === 0 ? 'translateY(0)' : 'translateY(100%)')),
   );
-  /** 0 with the hero on the first screen, 1 once that screen has turned over to
-   *  the stories listing and the bar has taken the wordmark. Everything that
-   *  changes between those two states reads from this. */
+  /** 0 with the hero on screen, 1 once the reader has left it and the bar has
+   *  taken the wordmark. Everything that changes between those two states —
+   *  the hero's own pieces fading out, the copy in flight — reads from this. */
   const [progress, setProgress] = useState(0);
   const [flying, setFlying] = useState(false);
-  // Which set of stories the grid is showing. The page rests on the first set,
-  // under the hero; when the screen turns over to the listing it opens on the
-  // second, so the reader is not handed the three they have just been looking
-  // at. Back walks them from there to the first set, in place — which is the
-  // whole point of the pager sitting in this block.
+  // Which set of stories the grid is showing. It is the pager's to move and
+  // nothing else touches it, so a reader who steps down the deck and comes back
+  // finds the set they left rather than the one the page opened on.
   const [storiesPage, setStoriesPage] = useState(0);
   // Measured, not assumed: the bar is 64px until the search field is in the
   // row, and from `xl` up the collapsed field still carries its button's 47px
   // even at zero width, which makes the bar 83.
   const [barHeight, setBarHeight] = useState(64);
-  // The first screen holds the hero at rest and the listing's title by the end.
-  // The box between them is held at the hero's height and taken down to the
-  // title's, so the stories below rise by exactly the difference — and by
-  // nothing at all while the hero is still there.
-  const [heroHeight, setHeroHeight] = useState<number>();
-  const [headingHeight, setHeadingHeight] = useState<number>();
   /** Which block the bar is standing on in the scrolling fallback, where no
    *  one block owns the screen. There the bar is opaque — the page scrolls
    *  under it — so it has to take that block's ground as well as its ink. */
@@ -191,18 +196,11 @@ export function HomePageV5({
    *  fit is not given a scrollbar — it is laid out in a taller box and taken
    *  down to the screen's height, so all of it is on show at once. */
   const fitRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const heroContentRef = useRef<HTMLDivElement>(null);
-  const headingRef = useRef<HTMLDivElement>(null);
   const wordmarkRef = useRef<HTMLHeadingElement>(null);
   const barInnerRef = useRef<HTMLDivElement>(null);
-  const heroInputRef = useRef<HTMLInputElement>(null);
   const flierRef = useRef<HTMLImageElement>(null);
 
   const indexRef = useRef(0);
-  /** Whether the first screen has been turned over. It is a state of that one
-   *  screen, not a block of its own, so it sits beside the index rather than
-   *  in it. */
-  const turnedRef = useRef(false);
   const busyRef = useRef(false);
   const progressRef = useRef(0);
   const transformsRef = useRef(transforms);
@@ -225,8 +223,6 @@ export function HomePageV5({
       // The header, not just its row — the collapsed state adds a rule along
       // the foot, and a block's content has to clear that too.
       if (barNode) setBarHeight(barNode.closest('header')?.offsetHeight ?? barNode.offsetHeight);
-      if (heroContentRef.current) setHeroHeight(heroContentRef.current.offsetHeight);
-      if (headingRef.current) setHeadingHeight(headingRef.current.offsetHeight);
       setDeck(
         !reduceMotion.matches &&
           window.innerWidth >= DECK_MIN_WIDTH &&
@@ -237,8 +233,6 @@ export function HomePageV5({
 
     const ro = new ResizeObserver(measure);
     if (barNode) ro.observe(barNode);
-    if (heroContentRef.current) ro.observe(heroContentRef.current);
-    if (headingRef.current) ro.observe(headingRef.current);
     window.addEventListener('resize', measure);
     reduceMotion.addEventListener('change', measure);
     return () => {
@@ -256,6 +250,16 @@ export function HomePageV5({
     if (!img || !barNode) return null;
 
     const rect = img.getBoundingClientRect();
+    // Where the wordmark stands *at rest*, which on the way back is not where
+    // it is standing now. The flight out is captured with the hero on screen,
+    // but the flight home is captured while the hero is still parked a screen
+    // above, and a rect read through that transform aims the wordmark at a
+    // point off the top of the window — it left the bar and flew out of the
+    // page. The hero's block is `absolute inset-0`, so whatever its own box
+    // reads is exactly the parking it has to be measured back out of.
+    const parked = sectionRefs.current[0]?.getBoundingClientRect();
+    const restLeft = rect.left - (parked?.left ?? 0);
+    const restTop = rect.top - (parked?.top ?? 0);
     const bar = barNode.getBoundingClientRect();
     const barStyle = getComputedStyle(barNode);
     const padLeft = parseFloat(barStyle.paddingLeft) || 0;
@@ -267,7 +271,7 @@ export function HomePageV5({
     const midY = bar.top + padTop + (bar.height - padTop - padBottom) / 2;
 
     return {
-      from: { left: rect.left, top: rect.top, height: rect.height },
+      from: { left: restLeft, top: restTop, height: rect.height },
       to: {
         left: bar.left + padLeft,
         top: midY - BAR_WORDMARK_H / 2,
@@ -292,20 +296,14 @@ export function HomePageV5({
     }px) scale(${1 + (to.scale - 1) * p})`;
   }, []);
 
-  /** Turns the first screen over: the hero's copy leaves, the listing's title
-   *  arrives in its place, and the wordmark flies between the two homes it has
-   *  — on the block's own curve and in its own time, so the screen changing and
-   *  the wordmark travelling are one movement. */
-  const turn = useCallback(
+  /** Sends the wordmark between the two homes it has — the hero's own line and
+   *  the slot in the bar — while the rest of the hero fades, on the block's own
+   *  curve and in its own time, so the screen changing and the wordmark
+   *  travelling are one movement. */
+  const fly = useCallback(
     (to: number) => {
       const from = progressRef.current;
       if (from === to) return;
-      turnedRef.current = to === 1;
-      // Set here and not at the end of the flight: the grid slides between its
-      // sets, and that slide belongs inside the turn rather than after it —
-      // one gesture, one movement, with the new set arriving under the new
-      // title instead of a beat behind it.
-      setStoriesPage(to === 1 ? 1 : 0);
       const geom = captureFlight();
       const run = (p: number) => {
         progressRef.current = p;
@@ -340,45 +338,46 @@ export function HomePageV5({
   /** Brings a block up over the one on screen. The incoming block comes to zero
    *  straight away; the outgoing one is only sent out of the way afterwards,
    *  once it is safely covered. */
-  const slide = useCallback((to: number) => {
-    const from = indexRef.current;
-    if (to < 0 || to >= SECTIONS.length || to === from) return;
-    const down = to > from;
+  const slide = useCallback(
+    (to: number) => {
+      const from = indexRef.current;
+      if (to < 0 || to >= SECTIONS.length || to === from) return;
+      const down = to > from;
 
-    indexRef.current = to;
-    setIndex(to);
-    setTransforms((current) => current.map((t, i) => (i === to ? 'translateY(0)' : t)));
-    window.setTimeout(() => setInkIndex(to), TRANSITION_MS * INK_HANDOVER);
-    window.setTimeout(() => {
-      setTransforms((current) =>
-        current.map((t, i) => (i === from ? `translateY(${down ? '-100%' : '100%'})` : t)),
-      );
-    }, TRANSITION_MS);
-  }, []);
+      // Leaving the first screen — or coming back to it — is the move where the
+      // wordmark changes hands: it flies into the bar while the next block rides
+      // up over the hero, on the same clock and for the same 800ms, so what the
+      // reader sees is one movement rather than two that happen to coincide.
+      // `fly` takes the flight's own 0..1 and not a block index: the two only
+      // happened to be the same number while the hero had a screen to itself.
+      if (from === 0 || to === 0) fly(to === 0 ? 0 : 1);
 
-  /** One gesture, one move — and on the first screen the turn is that move, so
-   *  the reader gets the hero, then the listing, then the blocks below it, one
-   *  push at a time in either direction. */
+      indexRef.current = to;
+      setIndex(to);
+      setTransforms((current) => current.map((t, i) => (i === to ? 'translateY(0)' : t)));
+      window.setTimeout(() => setInkIndex(to), TRANSITION_MS * INK_HANDOVER);
+      window.setTimeout(() => {
+        setTransforms((current) =>
+          current.map((t, i) => (i === from ? `translateY(${down ? '-100%' : '100%'})` : t)),
+        );
+      }, TRANSITION_MS);
+    },
+    [fly],
+  );
+
+  /** One gesture, one block, in either direction. */
   const step = useCallback(
     (dir: number) => {
       if (busyRef.current || !dir) return;
-      const at = indexRef.current;
-      if (dir > 0) {
-        if (at === 0 && !turnedRef.current) turn(1);
-        else if (at + 1 < SECTIONS.length) slide(at + 1);
-        else return;
-      } else if (at === 0) {
-        if (!turnedRef.current) return;
-        turn(0);
-      } else {
-        slide(at - 1);
-      }
+      const to = indexRef.current + dir;
+      if (to < 0 || to >= SECTIONS.length) return;
+      slide(to);
       busyRef.current = true;
       window.setTimeout(() => {
         busyRef.current = false;
       }, TRANSITION_MS);
     },
-    [slide, turn],
+    [slide],
   );
 
   // The wheel, the keyboard, and nothing else: below the deck's thresholds the
@@ -411,9 +410,18 @@ export function HomePageV5({
     };
 
     const onKey = (e: KeyboardEvent) => {
-      const target = e.target as HTMLElement | null;
+      // Checked rather than cast: a keydown's target is not always an element
+      // — it is `window` for one raised in script — and `closest` on that
+      // throws out of the listener and takes the keystroke with it. The same
+      // guard `scrollableUnder` makes for the wheel.
+      const target = e.target instanceof HTMLElement ? e.target : null;
       // Not while someone is typing in the hero's search field.
       if (target?.closest('input, textarea, select, [contenteditable="true"]')) return;
+      // Space belongs to whatever the reader has actually tabbed to. The
+      // pager's buttons stand on the first screen now, and a Space that moved
+      // the deck on instead of pressing the button under the cursor would be
+      // the deck taking a key that was never aimed at it.
+      if (e.key === ' ' && target?.closest('button, a[href], summary')) return;
       if (e.key === 'ArrowDown' || e.key === 'PageDown' || e.key === ' ') step(1);
       else if (e.key === 'ArrowUp' || e.key === 'PageUp') step(-1);
       else return;
@@ -434,7 +442,6 @@ export function HomePageV5({
   // out end to end in the flow, where the document can reach every block.
   useEffect(() => {
     indexRef.current = 0;
-    turnedRef.current = false;
     busyRef.current = false;
     progressRef.current = 0;
     setIndex(0);
@@ -506,8 +513,9 @@ export function HomePageV5({
       frame = 0;
       const deckNode = deckRef.current;
       if (!deckNode) return;
-      // What is left of the screen once the bar has had its band.
-      const room = deckNode.clientHeight - barHeight;
+      // What is left of the screen once the bar has had its band and the
+      // foot has kept its gap.
+      const room = deckNode.clientHeight - barHeight - DECK_BOTTOM_GAP;
       if (room <= 0) return;
 
       fitRefs.current.forEach((node, i) => {
@@ -597,111 +605,60 @@ export function HomePageV5({
     node.style.opacity = progress > 0 ? '0' : '1';
   }, [progress]);
 
-  /** The same threshold the bar and the hero turn on, so the first screen
-   *  changes ground in one move rather than in pieces. */
-  const isDark = progress > 0.5;
-  /** The title arrives once the hero's own pieces are well clear of the space
-   *  it takes over, so the two are never both legible. */
-  const headingReveal = clamp01((progress - 0.45) / 0.45);
-  /** The pager comes last, with the turn all but done. */
-  const pagerReveal = clamp01((progress - 0.75) / 0.25);
-
   // Which block the bar is dressed as. In the deck that is the one it stands
   // on, a beat behind the move; in the flow it is whichever the scroll has put
-  // under its foot. The first block has no fixed colours of its own — it is the
-  // screen that turns over, and the turn drives both.
+  // under its foot.
   const barOn = deck ? inkIndex : flowIndex;
-  const inverted =
-    barOn === null ? undefined : barOn === 0 ? isDark : (SECTIONS[barOn].inverted ?? undefined);
-  const barGround =
-    deck || barOn === null
-      ? // In the deck the blocks run the full height of the screen and the bar
-        // stands on them rather than above them, so it has no ground of its
-        // own — that band was showing the colour of whichever block the bar had
-        // already changed to while the screen still held the old one.
-        deck
-        ? 'bg-transparent'
-        : undefined
-      : (SECTIONS[barOn].ground ?? (isDark ? 'bg-brand-black' : 'bg-brand-accent-blue'));
+  const inverted = barOn === null ? undefined : SECTIONS[barOn].inverted;
+  const barGround = deck
+    ? // In the deck the blocks run the full height of the screen and the bar
+      // stands on them rather than above them, so it has no ground of its own —
+      // that band was showing the colour of whichever block the bar had already
+      // changed to while the screen still held the old one.
+      'bg-transparent'
+    : barOn === null
+      ? undefined
+      : SECTIONS[barOn].ground;
 
   const blocks: { ground: string; className: string; content: ReactNode }[] = [
     {
-      // The first screen's ground is the turn's, not a fixed one: it darkens
-      // under the listing that takes it over.
-      ground: isDark ? 'satr-on-dark bg-brand-black' : 'bg-brand-accent-blue',
+      ground: SECTIONS[0].ground,
       className: 'flex flex-col',
       content: (
         <>
-          {/* Holds the hero's height at rest and the title block's by the end,
-              so the stories below rise by exactly the difference between them —
-              continuously, in step with everything else. */}
-          <div
-            className="relative shrink-0"
-            style={{
-              height:
-                heroHeight === undefined
-                  ? undefined
-                  : heroHeight + ((headingHeight ?? heroHeight) - heroHeight) * progress,
-            }}
-          >
-            {/* Once its pieces have gone the block is still there, hanging over
-                the stories below — invisible, but a search field lying across a
-                photograph still swallows the click meant for the story. It
-                stops taking any past the half way mark, which is where the last
-                of it has faded out. */}
-            <div
-              ref={heroContentRef}
-              className="absolute inset-x-0 top-0"
-              style={{ pointerEvents: progress > 0.5 ? 'none' : undefined }}
-            >
-              <HomeHeroV5
-                ground={false}
-                progress={progress}
-                wordmarkRef={wordmarkRef}
-                inputRef={heroInputRef}
-                {...hero}
-              />
-            </div>
+          <HomeHeroV5
+            ground={false}
+            progress={progress}
+            wordmarkRef={wordmarkRef}
+            className="shrink-0"
+            {...hero}
+          />
 
-            {/* Takes the top of the box — the ground the tagline and wordmark
-                were standing on — rather than the foot, which would leave the
-                title stranded under a screen's worth of empty accent. 102px off
-                the bar is what puts its baseline where the reference has it. */}
-            <div
-              ref={headingRef}
-              className="absolute inset-x-0 top-0 pt-[102px]"
-              style={{ opacity: headingReveal }}
-              aria-hidden={headingReveal < 1 ? true : undefined}
-            >
-              <Wrapper>
-                <h2
-                  className={`font-serif text-h1 ${
-                    isDark ? 'text-white' : 'text-brand-black'
-                  }`}
-                >
-                  {stories?.heading ?? 'Stories'}
-                </h2>
-                <p
-                  className={`mt-4 font-mono text-h3-desktop ${
-                    isDark ? 'text-white/60' : 'text-brand-muted'
-                  }`}
-                >
-                  {stories?.eyebrow ?? 'Documenting the impact of the war'}
-                </p>
-              </Wrapper>
-            </div>
-          </div>
+          {/* The stories are on the home page from the first frame, under the
+              hero and on the hero's own ground — and they are walked through
+              here rather than on a screen of their own. The grid fills the rest
+              of the block, which puts its pager on the foot of the screen, and
+              the set under the search line changes without the search line
+              itself going anywhere.
 
-          {/* Fills the rest of the screen, which puts its pager on the bottom
-              edge without anything having to be sticky. */}
+              `fill` only in the deck: there the block's height is given, so the
+              cards can hand the photograph whatever the type does not need. In
+              the flow nothing dictates a height and the 3:2 crop stands. */}
+          {/* The stories are the one region on this screen with nothing
+              standing over them — the page's own h1 is the wordmark, and the
+              grid's section has no name of its own. The heading is read but not
+              drawn: the reference frame has no title here, and the cards carry
+              their topics themselves. */}
+          <h2 className="sr-only">{stories?.heading ?? 'Stories'}</h2>
+
           <StoryGridV5
+            {...stories}
             page={storiesPage}
             onPageChange={setStoriesPage}
             showHeading={false}
-            pagerReveal={deck ? pagerReveal : 1}
-            dark={isDark}
-            className="flex-1"
-            {...stories}
+            dark={false}
+            fill={deck}
+            className="min-h-0 flex-1"
           />
         </>
       ),
@@ -730,17 +687,21 @@ export function HomePageV5({
         ground={barGround}
         inverted={inverted}
         innerRef={barInnerRef}
-        onSearchClick={() => {
-          if (!deck) window.scrollTo({ top: 0, behavior: 'smooth' });
-          else if (indexRef.current > 0 || turnedRef.current) return;
-          heroInputRef.current?.focus({ preventScroll: true });
-        }}
         {...header}
       />
 
       <div
         ref={deckRef}
-        className={deck ? 'relative overflow-hidden' : ''}
+        // `clip`, not `hidden`. The blocks parked a screen below are still part
+        // of this box's scrollable overflow — 1800px of it against a 900px
+        // screen — and `overflow: hidden` is a scroll container that only the
+        // reader cannot scroll: the browser still can, and does, the moment
+        // something inside it takes focus. Tabbing to the pager scrolled the
+        // whole deck 412px and left it there, with no gesture able to put it
+        // back, because `scrollableUnder` rightly ignores a box like this.
+        // `clip` is not a scroll container at all, so there is nothing to
+        // scroll and focus simply lands where it stands.
+        className={deck ? 'relative overflow-clip' : ''}
         // Pulled back up under the bar, which is sticky and would otherwise
         // take a band of the screen for itself; each block pads its own content
         // clear of it instead.
@@ -762,8 +723,11 @@ export function HomePageV5({
                     // to what scrolls inside it: padding on a scroll container
                     // travels with its content, which sent a block's own
                     // headings up under the transparent bar the moment it was
-                    // scrolled. The ground still paints behind it either way.
+                    // scrolled. The ground still paints behind it either way —
+                    // here and at the foot, where the same padding keeps the
+                    // block's content off the bottom edge of the screen.
                     paddingTop: barHeight,
+                    paddingBottom: DECK_BOTTOM_GAP,
                     transform: transforms[i],
                     zIndex: i === index ? 2 : 1,
                     // Only the block arriving moves in view of anyone: the
@@ -808,7 +772,7 @@ export function HomePageV5({
         alt=""
         aria-hidden
         className={`pointer-events-none fixed z-[60] w-auto max-w-none transition-[filter] duration-300 ${
-          isDark ? 'brightness-0 invert' : ''
+          inverted ? 'brightness-0 invert' : ''
         }`}
         style={{
           display: flying ? 'block' : 'none',

@@ -10,7 +10,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'One header in two states: at rest the wordmark is 141px in the content with a full-width search line; scrolled, both fold into the sticky bar (wordmark 22px, search 300px). All five sections and their counts stay on screen the whole way down — there is no burger. Scroll the preview to see the change.',
+          'One header in two states, over a deck of four screens. At rest the wordmark stands in the content with a full-width search line under it; leaving the first screen flies the wordmark into the sticky bar at 20px and folds the search line in with it. The first screen keeps the hero and the stories together: the sets are paged in place, so the search line never leaves while the stories change under it. Wider than 1024 and taller than 750 the screens are stacked and a gesture moves one at a time; below either the page is an ordinary scrolling document.',
       },
     },
   },
