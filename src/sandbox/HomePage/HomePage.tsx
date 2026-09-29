@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { HomeHeroSandbox, type HomeHeroSandboxProps } from '@/sandbox/HomeHeroSandbox';
 import { HomeHeroSearch, type HomeHeroSearchProps } from '@/sandbox/HomeHeroSearch';
 import { SearchHero, type SearchHeroProps } from '@/components/SearchHero';
@@ -10,7 +9,11 @@ import {
   type ResearchSectionProps,
   type InfrastructuresSectionProps,
 } from '@/components/InfoSection';
-import { StoriesSlide, type StoriesSlideProps } from '@/components/StoriesSlide';
+import {
+  HomeStoriesFinal,
+  defaultHomeStoriesFinal,
+  type HomeStoriesFinalStory,
+} from '@/sandbox/HomeStoriesFinal';
 import { Footer, type FooterProps } from '@/components/Footer';
 
 export interface HomePageProps {
@@ -23,7 +26,8 @@ export interface HomePageProps {
   hero?: HomeHeroSandboxProps;
   heroSearch?: HomeHeroSearchProps;
   search?: SearchHeroProps;
-  stories?: StoriesSlideProps[];
+  /** Stories for the search variant's second block, paged three at a time. */
+  stories?: HomeStoriesFinalStory[];
   whitepapers?: InfoSectionProps;
   researches?: ResearchSectionProps;
   infrastructure?: InfrastructuresSectionProps;
@@ -58,27 +62,9 @@ const defaultSearch: SearchHeroProps = {
   ],
 };
 
-const defaultStories: StoriesSlideProps[] = [
-  {
-    title: 'Science in Chernobyl: occupation, recovery, and future challenges',
-    text: 'How Ukrainian researchers continue field work in the Exclusion Zone despite occupation, infrastructure loss, and the long shadow of the 1986 disaster.',
-    href: '/story/science-in-chernobyl',
-    imageSrc:
-      'https://scienceatrisk.org/storage/lp/138/35bad048a94c9d66ebfeffe80817af579e4a2290.png',
-  },
-  {
-    title: 'Stolen museum. Kherson',
-    text: 'What did the Russians steal from the Kherson Local History Museum during the retreat from the city and how did the director-collaborator contribute to this?',
-    href: '/story/stolen-museum-kherson',
-    imageSrc: 'https://scienceatrisk.org/storage/lp/13/1c9d9f1dc389e5e2561ede474b210a5b32d7ec01.png',
-  },
-  {
-    title: "Test Tubes in the Count's Estate",
-    text: 'The main building of the Institute of Agricultural Microbiology and Industrial Production is located in Count Glebov’s “castle.” Read how the institute has been functioning since the outbreak of full-scale war.',
-    href: '/story/test-tubes-in-the-counts-estate',
-    imageSrc: 'https://scienceatrisk.org/storage/lp/131/9463255b2210d4cbe1c460b411ada8ec0bca54cd.png',
-  },
-];
+/** The three featured stories from the live site, then three more so the
+ *  pager has a second set to turn to. */
+const defaultStories: HomeStoriesFinalStory[] = defaultHomeStoriesFinal;
 
 const defaultWhitepapers: InfoSectionProps = {
   title: 'White Papers',
@@ -147,18 +133,6 @@ export const defaultInfrastructure: InfrastructuresSectionProps = {
   ],
 };
 
-/** Homepage stories section — cycles a small set of featured stories. */
-function HomeStoriesSection({ stories = defaultStories }: { stories?: StoriesSlideProps[] }) {
-  const [index, setIndex] = useState(0);
-  const total = stories.length;
-  if (!total) return null;
-  const goTo = (delta: number) => setIndex((i) => (i + delta + total) % total);
-
-  return (
-    <StoriesSlide {...stories[index]} onPrev={() => goTo(-1)} onNext={() => goTo(1)} />
-  );
-}
-
 /**
  * Homepage draft. Two orderings depending on `heroVariant`:
  * - 'carousel': hero (with its own story carousel), Search, White Papers, Footer.
@@ -195,7 +169,8 @@ export function HomePage({
 
       {isSearchHero ? (
         <div className="sticky top-0 z-20 flex min-h-[100svh] snap-start flex-col bg-brand-black">
-          <HomeStoriesSection stories={stories} />
+          {/* Figma frame "Stories-final" (node 94:10608). */}
+          <HomeStoriesFinal stories={stories} className="flex-1" />
         </div>
       ) : (
         <div className="sticky top-0 z-20 flex min-h-[100svh] snap-start flex-col justify-center bg-brand-accent-blue">
