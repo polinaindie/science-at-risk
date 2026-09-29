@@ -15,6 +15,8 @@ export interface HomeHeroSearchQuickLink {
 }
 
 export interface HomeHeroSearchProps {
+  /** Not drawn by default — the hero frame (Figma node 240:5647, "Lol") has
+   *  the wordmark straight under the bar with nothing over it. */
   tagline?: string;
   placeholder?: string;
   buttonLabel?: string;
@@ -46,11 +48,16 @@ const focusRing =
 
 /**
  * Homepage hero variant — search bar and stat links instead of the story
- * carousel (Figma node 46:3286). Tagline, wordmark, inline search, popular
+ * carousel (Figma node 240:5647, "Lol"). Wordmark, inline search, popular
  * tags, then a row of section links (Scientists / Societies / Infrastructure).
+ *
+ * The wordmark stands 29px under the bar and takes 1094 of the frame's 1360.
+ * What height the screen has left over is shared out the way the frame shares
+ * its own — 160 over the search, 60 over the links along the foot — so the
+ * search keeps its place in the middle of the screen at any height.
  */
 export function HomeHeroSearch({
-  tagline = "Research & expertise from Ukraine's scientific frontline",
+  tagline,
   placeholder = 'Scientific field or name',
   buttonLabel = 'Find a scientist',
   popularLabel = 'Popular searches',
@@ -76,8 +83,10 @@ export function HomeHeroSearch({
       className={`flex min-h-[100svh] flex-col bg-brand-accent-blue pt-[86px] ${className}`.trim()}
     >
       <div className="flex flex-1 flex-col px-6 pb-8 md:px-10 md:pb-10">
-        <div className="mt-14 flex flex-col gap-7">
-          <p className="font-mono text-h3-mobile text-brand-black md:text-h3-desktop">{tagline}</p>
+        <div className="mt-6 flex flex-col gap-7 md:mt-[29px]">
+          {tagline ? (
+            <p className="font-mono text-h3-mobile text-brand-black md:text-h3-desktop">{tagline}</p>
+          ) : null}
 
           <h1 ref={wordmarkRef} className="w-full font-serif leading-none" data-hero-wordmark>
             <span className="sr-only">Science At Risk</span>
@@ -86,12 +95,14 @@ export function HomeHeroSearch({
               alt=""
               width={1360}
               height={130}
-              className="block h-auto w-full max-w-[1360px]"
+              className="block h-auto w-full md:w-[80.44%]"
             />
           </h1>
         </div>
 
-        <form className="mt-12 flex flex-col gap-7" onSubmit={handleSubmit} aria-label={placeholder}>
+        <div aria-hidden className="min-h-12 grow-[160]" />
+
+        <form className="flex flex-col gap-7" onSubmit={handleSubmit} aria-label={placeholder}>
           <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between md:gap-6">
             <label className="flex-1 font-mono text-breadcrumbs text-brand-black" htmlFor={id}>
               <span className="sr-only">{placeholder}</span>
@@ -131,7 +142,9 @@ export function HomeHeroSearch({
           </div>
         </div>
 
-        <div className="mt-auto border-t-2 border-brand-black pt-9">
+        <div aria-hidden className="min-h-10 grow-[60]" />
+
+        <div className="border-t-2 border-brand-black pt-9">
           <div className="flex flex-wrap items-center justify-between gap-6">
             {quickLinks.map((link) => (
               <a

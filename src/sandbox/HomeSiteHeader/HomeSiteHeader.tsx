@@ -85,7 +85,10 @@ export function HomeSiteHeader({
   const focusRing = `focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ${
     inverted ? 'focus-visible:outline-brand-white' : 'focus-visible:outline-brand-black'
   }`;
-  const linkType = `font-mono text-text1-desktop whitespace-nowrap ${ink}`;
+  // Between `lg` and `xl` the wordmark, all six sections and the switch only
+  // share a row at a size down — 16px type, 16px apart — so the menu stays whole
+  // there rather than going back behind the button.
+  const linkType = `font-mono text-[16px] leading-[28px] tracking-[-0.03em] xl:text-text1-desktop whitespace-nowrap ${ink}`;
   const switchType = `font-mono text-text1-mobile md:text-text1-desktop whitespace-nowrap ${ink}`;
   const current = (
     <span className="underline underline-offset-4">{isUa ? 'UKR' : 'ENG'}</span>
@@ -132,10 +135,10 @@ export function HomeSiteHeader({
 
         {/* Grows with the wordmark, so the sections start at the left edge and
             end up in the middle of what is left of the row. */}
-        <span aria-hidden className="min-w-0" style={{ flexGrow: p }} />
+        <span aria-hidden className="min-w-0" style={{ flexGrow: p, minWidth: 16 * p }} />
 
         <nav aria-label="Main" className="hidden lg:block">
-          <ul className="m-0 flex list-none items-center gap-7 p-0">
+          <ul className="m-0 flex list-none items-center gap-4 p-0 xl:gap-7">
             {navItems.map((item) => (
               <li key={item.href}>
                 <a href={item.href} className={`satr-hover-underline ${linkType} ${focusRing}`}>
