@@ -16,7 +16,7 @@ const EN_ORDER = [
   'Experts',
   'Stories',
   'Research',
-  'Damaged infrastructure',
+  'Infrastructure recovery',
   'Scientific societies',
 ] as const;
 
@@ -24,7 +24,7 @@ const UK_ORDER = [
   'Експерти',
   'Історії',
   'Дослідження',
-  'Постраждала інфраструктура',
+  'Відновлення інфраструктури',
   'Наукові товариства',
 ] as const;
 

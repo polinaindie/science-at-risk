@@ -35,7 +35,7 @@ const defaultNavItems: HomeSiteHeaderNavItem[] = [
   { label: 'Researches', href: '/research' },
   { label: 'Societies', href: '/societies' },
   { label: 'Stories', href: '/stories' },
-  { label: 'Infrastructure', href: '/infrastructures' },
+  { label: 'Infrastructure recovery', href: '/infrastructures' },
   { label: 'About', href: '/about' },
 ];
 

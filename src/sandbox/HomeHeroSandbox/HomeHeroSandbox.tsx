@@ -84,7 +84,7 @@ const defaultStories: HomeHeroSandboxStory[] = [
 
 const heroNavItemsEn: HomeHeroSandboxNavItem[] = [
   { label: 'Experts', href: '/experts' },
-  { label: 'Infrastructure', href: '/infrastructures' },
+  { label: 'Infrastructure recovery', href: '/infrastructures' },
   { label: 'About the project', href: '/about' },
   { label: 'Stories', href: '/stories' },
   { label: 'Policies', href: '/research' },
@@ -93,7 +93,7 @@ const heroNavItemsEn: HomeHeroSandboxNavItem[] = [
 
 const heroNavItemsUk: HomeHeroSandboxNavItem[] = [
   { label: 'Експерти', href: '/uk/experts' },
-  { label: 'Інфраструктура', href: '/uk/infrastructures' },
+  { label: 'Відновлення інфраструктури', href: '/uk/infrastructures' },
   { label: 'Про проєкт', href: '/uk/about' },
   { label: 'Історії', href: '/uk/stories' },
   { label: 'Політики', href: '/uk/research' },

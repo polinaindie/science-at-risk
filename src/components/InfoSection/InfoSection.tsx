@@ -1,4 +1,5 @@
-import { Wrapper, Row, Col } from '@/components/Layout';
+import { Link } from '@/components/Link';
+import { Wrapper, Row, Col, fitTextClass } from '@/components/Layout';
 import { ListCard, type ListCardProps } from '@/components/ListCard';
 import { PaperCard, type PaperCardProps } from '@/components/PaperCard';
 import {
@@ -30,13 +31,10 @@ export function InfoSection({
           than broken: the document declares its language, so the break lands
           where the language says it may. */}
       <h2 className="font-serif text-h1 hyphens-auto">{title}</h2>
-      <p className="mt-4 max-w-2xl font-mono text-h3-mobile md:text-h3-desktop">{text}</p>
-      <a
-        href={linkHref}
-        className="satr-hover-underline mt-6 inline-block font-mono text-h3-mobile md:text-h3-desktop"
-      >
+      <p className={`mt-4 max-w-2xl font-mono ${fitTextClass}`}>{text}</p>
+      <Link href={linkHref} className="mt-6">
         {linkLabel}
-      </a>
+      </Link>
     </section>
   );
 }
@@ -123,10 +121,10 @@ export interface InfrastructuresSectionProps {
   className?: string;
 }
 
-/** Homepage "damaged infrastructure" list (`.infrastructures`). */
+/** Homepage "infrastructure recovery" list (`.infrastructures`). */
 export function InfrastructuresSection({
   info = {
-    title: 'Assistance in reconstruction',
+    title: 'Infrastructure recovery',
     text: 'Scientific infrastructure damaged during the war',
     linkLabel: 'All projects',
     linkHref: '/infrastructures',

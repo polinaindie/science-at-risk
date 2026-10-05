@@ -18,7 +18,7 @@ export interface MobileNavProps {
 /** UA nav labels (canonical short IA). */
 export const navItemsUk: NavItem[] = [
   { label: 'Експерти', href: '/uk/experts' },
-  { label: 'Постраждала інфраструктура', href: '/uk/infrastructures' },
+  { label: 'Відновлення інфраструктури', href: '/uk/infrastructures' },
   { label: 'Наукові товариства', href: '/uk/societies' },
   { label: 'Про проєкт', href: '/uk/about' },
   { label: 'Історії', href: '/uk/stories' },
@@ -29,7 +29,7 @@ export const navItemsUk: NavItem[] = [
 /** EN nav labels. */
 export const navItemsEn: NavItem[] = [
   { label: 'Experts', href: '/experts' },
-  { label: 'Damaged infrastructure', href: '/infrastructures' },
+  { label: 'Infrastructure recovery', href: '/infrastructures' },
   { label: 'Scientific societies', href: '/societies' },
   { label: 'About the project', href: '/about' },
   { label: 'Stories', href: '/stories' },

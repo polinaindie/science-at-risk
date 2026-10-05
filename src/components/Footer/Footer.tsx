@@ -146,7 +146,7 @@ export function Footer({
               {/* The count, and the one thing that can be wrong with it, on the
                   same line — the reference puts the warning on the left and the
                   tally on the right under the field. */}
-              <div className="mt-2 flex items-baseline justify-between gap-4 font-mono text-breadcrumbs">
+              <div className="mt-2 flex items-baseline justify-between gap-4 font-mono text-text1-mobile">
                 <p
                   className={over ? 'text-brand-accent-yellow' : 'sr-only'}
                   role={over ? 'alert' : undefined}
@@ -163,7 +163,7 @@ export function Footer({
               </Button>
 
               {status ? (
-                <p role="status" className="mt-4 font-mono text-breadcrumbs text-white/85">
+                <p role="status" className="mt-4 font-mono text-text1-mobile text-white/85">
                   {status}
                 </p>
               ) : null}

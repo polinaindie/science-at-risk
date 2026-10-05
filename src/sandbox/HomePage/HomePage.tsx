@@ -22,7 +22,7 @@ export interface HomePageProps {
   /**
    * 'carousel' (default): story-carousel hero, then Search, White Papers, Footer.
    * 'search': hero+search combined variant (HomeHeroSearch), followed by
-   * Stories, Researches, Damaged Infrastructure, then Footer (Figma node 21:4755).
+   * Stories, Researches, Infrastructure recovery, then Footer (Figma node 21:4755).
    */
   heroVariant?: 'carousel' | 'search';
   hero?: HomeHeroSandboxProps;
@@ -140,7 +140,7 @@ export const defaultInfrastructure: InfrastructuresSectionProps = {
 /**
  * Homepage draft. Two orderings depending on `heroVariant`:
  * - 'carousel': hero (with its own story carousel), Search, White Papers, Footer.
- * - 'search': hero+search combined, Stories, Researches, Damaged Infrastructure, Footer
+ * - 'search': hero+search combined, Stories, Researches, Infrastructure recovery, Footer
  *   (Figma node 21:4755).
  *
  * Sections are `position: sticky` at `top: 0` with increasing z-index and

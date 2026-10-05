@@ -21,7 +21,7 @@ const config: Config = {
         'h3-desktop': ['22px', { lineHeight: '28px', letterSpacing: '-0.03em' }],
         'h3-mobile': ['15px', { lineHeight: '20px', letterSpacing: '-0.03em' }],
         'text1-desktop': ['18px', { lineHeight: '28px', letterSpacing: '-0.03em' }],
-        'text1-mobile': ['13px', { lineHeight: '18px', letterSpacing: '-0.03em' }],
+        'text1-mobile': ['14px', { lineHeight: '20px', letterSpacing: '-0.03em' }],
         'text2-desktop': ['18px', { lineHeight: '26px', letterSpacing: '0' }],
         'text2-mobile': ['14px', { lineHeight: '22px', letterSpacing: '0' }],
         breadcrumbs: ['12px', { lineHeight: '16px', letterSpacing: '-0.03em' }],
@@ -30,7 +30,7 @@ const config: Config = {
         brand: {
           black: '#000000',
           white: '#ffffff',
-          muted: '#595959',
+          muted: '#4d4d4d',
           'accent-blue': '#b5c6cd',
           'accent-yellow': '#f0eebe',
         },

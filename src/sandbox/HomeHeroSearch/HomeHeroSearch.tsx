@@ -40,7 +40,7 @@ const defaultTags: HomeHeroSearchTag[] = [
 const defaultQuickLinks: HomeHeroSearchQuickLink[] = [
   { label: 'Scientists', href: '/experts' },
   { label: 'Societies', href: '/societies' },
-  { label: 'Infrastructure', href: '/infrastructures' },
+  { label: 'Infrastructure recovery', href: '/infrastructures' },
 ];
 
 const focusRing =

@@ -219,3 +219,10 @@ export function Col({
     </Tag>
   );
 }
+
+/** The h3 body size (15px, 22px from `md`) held constant on screen whatever
+ *  scale a home-page block has been shrunk by to fit — divided by the same
+ *  `--satr-fit` as the gutters. Text and links that sit side by side in
+ *  different blocks use this so they measure the same. */
+export const fitTextClass =
+  'text-[length:calc(15px/var(--satr-fit,1))] leading-[calc(20px/var(--satr-fit,1))] tracking-[-0.03em] md:text-[length:calc(22px/var(--satr-fit,1))] md:leading-[calc(28px/var(--satr-fit,1))]';

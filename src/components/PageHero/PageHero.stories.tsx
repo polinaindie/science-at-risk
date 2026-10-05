@@ -13,7 +13,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Infrastructures: Story = {
   args: {
-    title: 'Damaged infrastructure',
+    title: 'Infrastructure recovery',
     text: 'Scientific infrastructure damaged during the war',
     variant: 'blue',
     breadcrumbs: [

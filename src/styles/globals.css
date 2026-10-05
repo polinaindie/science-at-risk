@@ -9,7 +9,9 @@
   --color-brand-black: #000000;
   --color-brand-white: #ffffff;
   /* WCAG AA normal text on white ≈ 7:1 (Figma 50% black fails AA) */
-  --color-brand-muted: #595959;
+  /* #595959 was 3.98:1 on the accent blue — under AA's 4.5. This is the
+     lightest grey that clears it there (4.8:1); on white it is 8.4:1. */
+  --color-brand-muted: #4d4d4d;
   /* Accents — Figma node 292:1481 */
   --color-brand-accent-blue: #b5c6cd;
   --color-brand-accent-yellow: #f0eebe;
@@ -48,8 +50,9 @@
   --text-text1-desktop--line-height: 28px;
   --text-text1-desktop--letter-spacing: -0.03em;
 
-  --text-text1-mobile: 13px;
-  --text-text1-mobile--line-height: 18px;
+  /* 14px is the floor for anything meant to be read on a phone. */
+  --text-text1-mobile: 14px;
+  --text-text1-mobile--line-height: 20px;
   --text-text1-mobile--letter-spacing: -0.03em;
 
   --text-text2-desktop: 18px;
@@ -237,7 +240,10 @@
 
   .satr-float--hero > .satr-float__label {
     top: 25px;
-    font-size: 22px;
+    /* 22px, down to 16px on the narrowest phones so a thirty-character label
+       still fits on its line. Never under 16: below it iOS zooms the page in
+       on focus. */
+    font-size: clamp(16px, 4.8vw, 22px);
     line-height: 28px;
     transition:
       transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
@@ -407,8 +413,8 @@
     border: none;
     cursor: pointer;
     font-family: var(--font-mono);
-    font-size: 13px;
-    line-height: 18px;
+    font-size: 14px;
+    line-height: 20px;
     letter-spacing: -0.03em;
     color: #000;
     text-decoration: none;
@@ -430,6 +436,59 @@
       font-size: 18px;
       line-height: 28px;
     }
+  }
+
+  /* Chips that go somewhere turn over on hover: black ground, white type, the
+     count flips with them. A chip that is only a label (`span`) stays put.
+     Squircle controls get no underline — theirs is the change of ground. */
+  a.satr-tag,
+  button.satr-tag {
+    transition:
+      background-color 0.2s,
+      color 0.2s;
+  }
+
+  a.satr-tag:hover,
+  button.satr-tag:hover {
+    background-color: #000;
+    color: #fff;
+  }
+
+  a.satr-tag:hover .satr-tag__number,
+  button.satr-tag:hover .satr-tag__number {
+    background-color: #fff;
+    color: #000;
+  }
+
+  /* A link that is underlined at rest: the 1px line stays, and a thicker one
+     runs over it from left to right on hover. */
+  .satr-underlined {
+    text-decoration: none;
+    background-image: linear-gradient(currentColor, currentColor),
+      linear-gradient(currentColor, currentColor);
+    background-position:
+      0 100%,
+      0 100%;
+    background-repeat: no-repeat;
+    background-size:
+      100% 1px,
+      0% 3px;
+    transition: background-size 0.3s;
+  }
+
+  .satr-underlined:hover {
+    background-size:
+      100% 1px,
+      100% 3px;
+  }
+
+  /* An icon or a mark on its own: dims on hover, like .satr-link. */
+  .satr-dim {
+    transition: opacity 0.2s;
+  }
+
+  .satr-dim:hover {
+    opacity: 0.6;
   }
 
   .satr-tag--accent {

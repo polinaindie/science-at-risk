@@ -1,8 +1,10 @@
+import { HomeHeroV4Final } from '@/sandbox/HomeHeroV4Final';
 import { HomePage } from '@/sandbox/HomePage';
 import { HomePageV2 } from '@/sandbox/HomePageV2';
 import { HomePageV3 } from '@/sandbox/HomePageV3';
 import { HomePageV4 } from '@/sandbox/HomePageV4';
 import { HomePageV5 } from '@/sandbox/HomePageV5';
+import { HomePageV6 } from '@/sandbox/HomePageV6';
 
 /**
  * Standalone preview of the homepage drafts, outside Storybook. One draft per
@@ -16,11 +18,15 @@ export function App() {
   const base = import.meta.env.BASE_URL.replace(/\/+$/, '');
   const path = window.location.pathname.replace(/\/+$/, '').slice(base.length) || '/';
 
+  if (path === '/v6') return <HomePageV6 />;
+  if (path === '/v1') return <HomePage heroVariant="search" />;
+  if (path === '/v4-final') return <HomeHeroV4Final />;
   if (path === '/v5') return <HomePageV5 />;
   if (path === '/v4') return <HomePageV4 />;
   if (path === '/v3') return <HomePageV3 />;
   if (path === '/v2') return <HomePageV2 />;
-  return <HomePage heroVariant="search" />;
+  // The newest draft is the one the published site opens on.
+  return <HomePageV6 />;
 }
 
 export default App;
