@@ -137,11 +137,10 @@ const SECTIONS = [
   { ground: 'satr-on-dark bg-brand-black', inverted: true },
 ] as const;
 
-/** Reaches the one call to action in each info block's title column, so it is
- *  underlined here without the shared component changing under the older page
- *  that also uses it. */
-const INFO_LINK =
-  '[&_section>a]:no-underline [&_section>a]:[background-image:linear-gradient(#000,#000),linear-gradient(#000,#000)] [&_section>a]:[background-size:100%_1px,0%_3px] [&_section>a:hover]:[background-size:100%_1px,100%_3px] [&_h2]:hyphens-none [&_h2]:text-[clamp(32px,4.2vw,60px)]';
+/** Sets the info blocks' titles whole and at the deck's size. Their call to
+ *  action needs nothing here: the shared link underlines itself, line by
+ *  line. */
+const INFO_LINK = '[&_h2]:hyphens-none [&_h2]:text-[clamp(32px,4.2vw,60px)]';
 
 /** The deck shrinks a block that is taller than the screen, and its type with
  *  it: at 1024x820 Research comes out at 0.63, which put the papers' authors

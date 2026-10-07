@@ -20,7 +20,7 @@ export type LinkProps = Common &
  *  so the link measures the same in every block. Every "All projects" /
  *  "Show all studies" style link uses this so the size cannot drift. */
 export const linkClass =
-  `satr-underlined inline-block font-mono text-brand-black ${fitTextClass} disabled:cursor-not-allowed disabled:opacity-40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-black`;
+  `satr-underlined-box inline-block font-mono text-brand-black ${fitTextClass} disabled:cursor-not-allowed disabled:opacity-40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-black`;
 
 export function Link({
   as = 'a',
@@ -40,7 +40,7 @@ export function Link({
         disabled={disabled}
         {...(props as ButtonHTMLAttributes<HTMLButtonElement>)}
       >
-        {children}
+        <span className="satr-underlined">{children}</span>
       </button>
     );
   }
@@ -52,7 +52,7 @@ export function Link({
       tabIndex={disabled ? -1 : undefined}
       {...(props as AnchorHTMLAttributes<HTMLAnchorElement>)}
     >
-      {children}
+      <span className="satr-underlined">{children}</span>
     </a>
   );
 }

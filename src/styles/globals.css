@@ -476,7 +476,13 @@
     transition: background-size 0.3s;
   }
 
-  .satr-underlined:hover {
+  /* A link laid out as a block (inline-block, for its margins) carries the
+     line on the text inside it rather than on its own box: drawn on the box,
+     a link that wraps is underlined once, under its last line and across the
+     whole box. On the inline text every line gets its own stretch, and the
+     hover line runs through them in reading order. */
+  .satr-underlined:hover,
+  .satr-underlined-box:hover > .satr-underlined {
     background-size:
       100% 1px,
       100% 3px;

@@ -1,4 +1,4 @@
-import { useId, useState, type FormEvent } from 'react';
+import { useId, useState, type FormEvent, type ReactNode } from 'react';
 import { Button } from '@/components/Button';
 import { Wrapper, Row, Col, fitTextClass } from '@/components/Layout';
 import { Link } from '@/components/Link';
@@ -63,7 +63,7 @@ export const defaultSocietiesMode: HomeScientistsMode = {
   placeholder: 'Enter field or society name',
   buttonLabel: 'Find a society',
   note: 'Reach a whole community at once - scientific societies bring together the scientists of one field',
-  noteLinkLabel: 'To all 38 scientific societies',
+  noteLinkLabel: 'To all scientific societies',
   noteHref: '/societies',
   tags: [
     { label: 'Medicine', count: 4, href: '/societies?tag=medicine' },
@@ -81,6 +81,39 @@ const defaultModes: Record<HomeScientistsScope, HomeScientistsMode> = {
 };
 
 const SCOPES: HomeScientistsScope[] = ['scientists', 'societies'];
+
+/** Lays every scope's version of a piece in one grid cell, the inactive ones
+ *  hidden but still taking their room, so the piece measures the same
+ *  whichever scope is on. The block sits on the foot of its screen, so a note
+ *  a line longer or tags a row taller would otherwise shift everything above
+ *  them at the switch. `visibility: hidden` also keeps the hidden versions out
+ *  of the tab order and away from screen readers. */
+function ScopeStack({
+  scope,
+  modes,
+  render,
+  as: Tag = 'div',
+  className = '',
+}: {
+  scope: HomeScientistsScope;
+  modes: Record<HomeScientistsScope, HomeScientistsMode>;
+  render: (mode: HomeScientistsMode) => ReactNode;
+  as?: 'div' | 'span';
+  className?: string;
+}) {
+  return (
+    <Tag className={`grid ${className}`.trim()}>
+      {SCOPES.map((value) => (
+        <Tag
+          key={value}
+          className={`col-start-1 row-start-1 ${value === scope ? '' : 'invisible'}`.trim()}
+        >
+          {render(modes[value])}
+        </Tag>
+      ))}
+    </Tag>
+  );
+}
 
 /**
  * The home page's Scientists block, laid out the way scienceatrisk.org has it:
@@ -174,34 +207,59 @@ export function HomeScientistsBlock({
               {mode.placeholder}
             </span>
           </label>
+          {/* As wide as the longer label, so the field's end stays put. */}
           <Button type="submit" variant="black" className="shrink-0">
-            {mode.buttonLabel}
+            <ScopeStack
+              as="span"
+              scope={scope}
+              modes={modes}
+              render={(m) => m.buttonLabel}
+              className="justify-items-center"
+            />
           </Button>
         </form>
 
         <Row className="mt-14 items-end gap-y-8 md:mt-24">
-          {/* Side by side from `md`, halves until `lg` and then five columns:
-              any narrower and the note runs to seven lines and its link breaks
-              in two. */}
-          <Col md={6} lg={5}>
-            <p className={`m-0 font-mono text-brand-black ${fitTextClass}`}>{mode.note}</p>
-            <Link href={mode.noteHref} className="mt-6">
-              {mode.noteLinkLabel}
-            </Link>
+          {/* Side by side from `md`, halves until `lg`, then the four columns
+              the Research block gives its text, with the tags from the same
+              sixth column as its stories. */}
+          <Col md={6} lg={4}>
+            <ScopeStack
+              scope={scope}
+              modes={modes}
+              className="items-end"
+              render={(m) => (
+                <>
+                  <p className={`m-0 font-mono text-brand-black ${fitTextClass}`}>{m.note}</p>
+                  <Link href={m.noteHref} className="mt-6">
+                    {m.noteLinkLabel}
+                  </Link>
+                </>
+              )}
+            />
           </Col>
           <Col md={6} lg={7} offsetLg={5}>
-            <p className="mb-3 font-mono text-text1-mobile text-brand-black md:text-[16px] md:leading-[24px]">
-              {popularLabel}
-            </p>
-            <div className="flex flex-wrap gap-2.5" role="list">
-              {mode.tags.map((tag) => (
-                <span role="listitem" key={tag.href}>
-                  <Tag as="a" href={tag.href} count={tag.count}>
-                    {tag.label}
-                  </Tag>
-                </span>
-              ))}
-            </div>
+            <ScopeStack
+              scope={scope}
+              modes={modes}
+              className="items-end"
+              render={(m) => (
+                <>
+                  <p className="mb-3 font-mono text-text1-mobile text-brand-black md:text-[16px] md:leading-[24px]">
+                    {popularLabel}
+                  </p>
+                  <div className="flex flex-wrap gap-2.5" role="list">
+                    {m.tags.map((tag) => (
+                      <span role="listitem" key={tag.href}>
+                        <Tag as="a" href={tag.href} count={tag.count}>
+                          {tag.label}
+                        </Tag>
+                      </span>
+                    ))}
+                  </div>
+                </>
+              )}
+            />
           </Col>
         </Row>
       </Wrapper>

@@ -58,30 +58,71 @@ const defaultNavItems: HomeHeroV4FinalNavItem[] = [
   { label: 'Contacts', href: '/contacts' },
 ];
 
-/* The first is the frame's own; the rest are stand-ins from the mirror so
-   Back / Next have somewhere to go. */
+/* The nine stories on scienceatrisk.org/stories, in the site's order, as of
+   2026-10-07; the covers are the ones its list shows. */
 export const defaultHomeHeroV4FinalStories: HomeHeroV4FinalStory[] = [
   {
     title: 'Uncovered Graves. How Lviv restores its memory about the school of mathematics',
     description: 'A Map of Burial Sites Revives the Memory of Lviv’s Forgotten Mathematicians',
-    href: '/story/uncovered-graves',
-    imageSrc: '/assets/mirror/deminer.jpg',
-    imageAlt: 'A deminer sweeps a field with a metal detector between marker tapes',
+    href: '/story/uncovered-graves-how-lviv-restores-its-memory-about-the-school-of-mathematics',
+    imageSrc: '/assets/stories/uncovered-graves.jpg',
+    imageAlt: 'Gravestone of Professor Volodymyr Levytskyi and Sofiia Levytska with grave candles',
   },
   {
-    title: 'National heritage in test tubes',
-    description:
-      'A drone strike hit the Palladin Institute of Biochemistry a week after Denys Kolybo became its director',
-    href: '/story/national-heritage-in-test-tubes',
-    imageSrc: '/assets/mirror/test-tubes.png',
-    imageAlt: 'Test tubes with cell collections',
+    title: 'A Hit Too Close To Home. What happened to the Institute of Biochemistry after a drone strike',
+    description: 'How is the Institute of Biochemistry recovering from the attack?',
+    href: '/story/a-hit-too-close-to-home-what-happened-to-the-institute-of-biochemistry-after-a-drone-strike',
+    imageSrc: '/assets/stories/institute-of-biochemistry.jpg',
+    imageAlt: 'A man stands in a doorway of a damaged room with torn-out wiring',
   },
   {
-    title: 'An observatory at 2,028 m',
-    description: 'The Chornohora Observatory on Pip Ivan is getting a telescope that can be run remotely',
-    href: '/story/observatory-at-2028-m',
-    imageSrc: '/assets/mirror/story.jpg',
-    imageAlt: 'Chornohora Observatory on Pip Ivan',
+    title: '“Lost Worlds.” How the Russian strike ruined the Chornobyl Museum in Kyiv',
+    description: 'We visited the Chornobyl Museum after a Russian strike to see how artifacts and memory are being preserved',
+    href: '/story/lost-worlds-how-the-russian-strike-ruined-the-chornobyl-museum-in-kyiv',
+    imageSrc: '/assets/stories/chornobyl-museum.jpg',
+    imageAlt: 'A museum hall with a shattered ceiling and debris on the floor',
+  },
+  {
+    title: '“We will sow wheat and grow bread”: pitfalls of humanitarian demining in Ukraine',
+    description: 'How Humanitarian Demining Works in Ukraine',
+    href: '/story/we-will-sow-wheat-and-grow-bread-pitfalls-of-humanitarian-demining-in-ukraine',
+    imageSrc: '/assets/stories/humanitarian-demining.jpg',
+    imageAlt: 'A deminer sweeps a field with a metal detector',
+  },
+  {
+    title: 'Explosion Residues on Our Tables. How the war impacts the environment and why it’s difficult to study',
+    description: 'How Ukraine Is Documenting the Environmental Impact of Russian Aggression',
+    href: '/story/explosion-residues-on-our-tables-how-the-war-impacts-the-environment-and-why-its-difficult-to-study',
+    imageSrc: '/assets/stories/explosion-residues.jpg',
+    imageAlt: 'Two researchers stand side by side in an office',
+  },
+  {
+    title: 'Race Against the War: How Leonid Marushchak and volunteers are rescuing Ukrainian cultural heritage',
+    description: 'How to save museum collections during Russia\'s full-scale invasion and who does that',
+    href: '/story/race-against-the-war-how-leonid-marushchak-and-volunteers-are-rescuing-ukrainian-cultural-heritage',
+    imageSrc: '/assets/stories/race-against-the-war.jpg',
+    imageAlt: 'Leonid Marushchak in a cap under a chestnut tree',
+  },
+  {
+    title: 'Closer to Space: How the Chornohora Observatory restarts its operation',
+    description: 'Reviving the Observatory on Mount Pip Ivan',
+    href: '/story/closer-to-space-how-the-chornohora-observatory-restarts-its-operation',
+    imageSrc: '/assets/stories/chornohora-observatory.jpg',
+    imageAlt: 'The observatory on the snowy summit of Pip Ivan at sunset',
+  },
+  {
+    title: 'Remembering the Oblivion. How the Odesa National Fine Arts Museum rescued its collection from the Russian attack',
+    description: 'How the Odesa National Fine Arts Museum survived a Russian attack',
+    href: '/story/remembering-the-oblivion-how-the-odesa-national-fine-arts-museum-rescued-its-collection-from-the-russian-attack',
+    imageSrc: '/assets/stories/odesa-fine-arts-museum.jpg',
+    imageAlt: 'A museum hall with empty frames on the walls and fragments laid out in display cases',
+  },
+  {
+    title: 'Psychedelic-Assisted Therapy: who it helps and how to do it right',
+    description: 'What research shows about psychedelics for treating PTSD and depression',
+    href: '/story/psychedelic-assisted-therapy-who-it-helps-and-how-to-do-it-right',
+    imageSrc: '/assets/stories/psychedelic-assisted-therapy.jpg',
+    imageAlt: 'Illustration of a soldier whose head is a pot of orange trees',
   },
 ];
 
@@ -105,7 +146,7 @@ export function HomeHeroV4Final({
   navItems = defaultNavItems,
   locale = 'en',
   localeHref = '/uk',
-  tagline = 'Innovation Hub for Progress: A Center for Imagination and Teamwork',
+  tagline = 'Centre of Excellence on Science at Risk, Ukraine',
   stories = defaultHomeHeroV4FinalStories,
   storiesLabel = 'Stories',
   readLabel = 'Read Story',
@@ -235,36 +276,68 @@ export function HomeHeroV4Final({
 
         <div aria-hidden className="mt-[44px] h-0.5 w-full bg-brand-black" />
 
-        {/* The story (299:7419): copy 597 wide, photograph 666×428. */}
+        {/* The story (299:7419): copy 597 wide, photograph 666×428. Filling,
+            the one row is held to the height it is given — an auto row would
+            grow with a long story's copy and take the photograph down over
+            the pager — and that height is a container the title is sized
+            against, below. */}
         <article
           className={`mt-6 flex flex-col-reverse gap-8 md:mt-[34px] lg:grid lg:grid-cols-12 lg:items-center lg:gap-x-6 ${
-            fill ? 'lg:min-h-0 lg:flex-1' : ''
+            fill ? 'lg:min-h-0 lg:flex-1 lg:grid-rows-[minmax(0,1fr)] lg:[container-type:size]' : ''
           }`}
           aria-live="polite"
         >
-          <div className="flex flex-col gap-8 lg:col-span-5 lg:gap-10">
-            <div className="flex flex-col gap-3 lg:gap-4">
-              <p className="m-0 font-mono text-text1-mobile text-brand-black md:text-text1-desktop">
-                {storiesLabel}
-              </p>
-              <div className="flex flex-col gap-4">
-                <h2 className="m-0 font-serif text-[clamp(1.75rem,1.1rem+2.6vw,2.75rem)] font-normal leading-[1.15] tracking-[-0.02em] text-brand-black">
-                  <a href={story.href} className={`satr-hover-underline text-brand-black ${focusRing}`}>
-                    {story.title}
-                  </a>
-                </h2>
-                {story.description ? (
-                  <p className="m-0 max-w-[395px] font-ukraine text-[16px] font-light leading-[normal] text-[#717171]">
-                    {story.description}
+          {/* Every story's copy is laid in the one cell and only the current
+              one shown, so the column is always as tall as the longest and
+              the pager stays put as Back / Next step through them. The
+              hidden ones are `visibility: hidden`: out of the tab order and
+              unread. The title and its line sit at the top, the button at
+              the foot, whatever the length between. */}
+          <div className="grid lg:col-span-5">
+            {stories.map((item) => (
+              <div
+                key={item.href}
+                className={`col-start-1 row-start-1 flex flex-col justify-between gap-8 lg:gap-10 ${
+                  item === story ? '' : 'invisible'
+                }`}
+              >
+                <div className="flex flex-col gap-3 lg:gap-4">
+                  <p className="m-0 font-mono text-text1-mobile text-brand-black md:text-text1-desktop">
+                    {storiesLabel}
                   </p>
-                ) : null}
+                  <div className="flex flex-col gap-4">
+                    {/* The site's titles run to a hundred-odd characters; beside
+                        the photograph they stop at four lines, the whole title
+                        still in the link for anyone reading it out. Filling,
+                        four lines and everything else in the copy (215px:
+                        the label, a three-line standfirst, the button and the
+                        gaps) have to fit the row, so the title comes down
+                        from its size on a screen too short for it. */}
+                    <h2
+                      className={`m-0 font-serif text-[clamp(1.75rem,1.1rem+2.6vw,2.75rem)] font-normal leading-[1.15] tracking-[-0.02em] text-brand-black lg:line-clamp-4 ${
+                        fill
+                          ? 'lg:text-[length:min(clamp(1.75rem,1.1rem+2.6vw,2.75rem),calc((100cqh-215px)/4.6))]'
+                          : ''
+                      }`}
+                    >
+                      <a href={item.href} className={`satr-hover-underline text-brand-black ${focusRing}`}>
+                        {item.title}
+                      </a>
+                    </h2>
+                    {item.description ? (
+                      <p className="m-0 max-w-[395px] font-ukraine text-[16px] font-light leading-[normal] text-[#717171]">
+                        {item.description}
+                      </p>
+                    ) : null}
+                  </div>
+                </div>
+                <a href={item.href} aria-label={`${readLabel}: ${item.title}`} className={`self-start ${focusRing}`}>
+                  <Button variant="black" tabIndex={-1}>
+                    {readLabel}
+                  </Button>
+                </a>
               </div>
-            </div>
-            <a href={story.href} aria-label={`${readLabel}: ${story.title}`} className={`self-start ${focusRing}`}>
-              <Button variant="black" tabIndex={-1}>
-                {readLabel}
-              </Button>
-            </a>
+            ))}
           </div>
 
           <div
