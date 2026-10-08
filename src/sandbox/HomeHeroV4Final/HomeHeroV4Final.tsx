@@ -1,6 +1,6 @@
 import { useEffect, useId, useRef, useState, type Ref } from 'react';
 import { Button } from '@/components/Button';
-import { Wrapper } from '@/components/Layout';
+import { Wrapper, rowClass } from '@/components/Layout';
 import { MobileNav } from '@/components/MobileNav';
 
 export interface HomeHeroV4FinalNavItem {
@@ -45,6 +45,14 @@ export interface HomeHeroV4FinalProps {
    * beside it. Without it the photograph keeps its 666:428 crop.
    */
   fill?: boolean;
+  /**
+   * `v4` is the v4_Final frame (299:7226): Read Story under the copy, and
+   * Back / Other stories / Next across the foot. `museum` is "Stolen museum
+   * story" (341:696): the copy on six columns and the photograph on the other
+   * six, "Stories" as the link to the list, and Back / Next over a rule at
+   * the foot of the copy.
+   */
+  layout?: 'v4' | 'museum';
   className?: string;
 }
 
@@ -157,8 +165,10 @@ export function HomeHeroV4Final({
   masthead = true,
   wordmarkRef,
   fill = false,
+  layout = 'v4',
   className = '',
 }: HomeHeroV4FinalProps) {
+  const museum = layout === 'museum';
   const id = useId();
   const menuId = `${id}-menu`;
   const [menuOpen, setMenuOpen] = useState(false);
@@ -253,10 +263,13 @@ export function HomeHeroV4Final({
           </>
         ) : null}
 
-        {/* Wordmark and tagline, 35px apart and 35px under the masthead. */}
+        {/* Wordmark and tagline, 35px apart and 35px under the masthead.
+            "Stolen museum story" stands them lower, the wordmark's caps 139px
+            from the top of its 810px frame; on a shorter screen that gap
+            gives first. */}
         <div
           className={`flex flex-col gap-[22px] ${
-            masthead ? 'mt-[44px]' : 'mt-[29px]'
+            masthead ? 'mt-[44px]' : museum ? 'mt-[29px] lg:mt-[clamp(29px,8.3vh,67px)]' : 'mt-[29px]'
           }`}
         >
           <h1 ref={wordmarkRef} className="m-0 leading-none" data-hero-wordmark>
@@ -274,7 +287,109 @@ export function HomeHeroV4Final({
           </p>
         </div>
 
-        <div aria-hidden className="mt-[44px] h-0.5 w-full bg-brand-black" />
+        <div aria-hidden className={`${museum ? 'mt-[37px]' : 'mt-[44px]'} h-0.5 w-full shrink-0 bg-brand-black`} />
+
+        {museum ? (
+          /* "Stolen museum story" (341:696), 41px under the rule. From `lg`
+             the two columns are hung off the wordmark above them rather than
+             the twelve: the photograph runs from the S to the end of
+             "SC!ENCE", the copy from the A of "AT" to the last "!" — 0–667.8,
+             706.9–1360 in the wordmark's own 1360 units, so they hold at any
+             width the wordmark is drawn at. On a phone the photograph comes
+             first, on the twelve columns. The photograph keeps the frame's 643:355 crop, and from
+             `lg` stretches with the copy beside it when that runs taller, so
+             its foot and Back / Next are always one line. */
+          <article
+            className={`${rowClass} mt-[24px] gap-y-[32px] md:mt-[34px] lg:mt-[41px] lg:grid-cols-[minmax(0,667.8fr)_minmax(0,39.1fr)_minmax(0,653.1fr)] lg:gap-0 ${
+              fill ? 'lg:min-h-0 lg:flex-1 lg:grid-rows-[minmax(0,1fr)] lg:[container-type:size]' : ''
+            }`}
+          >
+            {/* The label, the title and the standfirst at the top, Back /
+                Other Stories / Next at the foot (341:768). */}
+            <div className="col-span-12 flex flex-col justify-between gap-[24px] lg:col-span-1 lg:col-start-3 lg:row-start-1 lg:min-h-0">
+              <div className="flex flex-col gap-[16px]">
+                <p className="m-0 font-mono text-text1-mobile text-brand-black md:text-text1-desktop">
+                  {storiesLabel}
+                </p>
+                {/* Every story's copy in the one cell, only the current one
+                    shown, so Back / Next stay put whatever the length of the
+                    title. The story stops at 489px, its width in the frame,
+                    so on a big screen its lines don't run the whole column.
+                    At that width the longest of the site's titles runs to
+                    five lines. Filling, five lines of title and the rest of
+                    the column (185px: the label, a three-line standfirst,
+                    the pager and the gaps) have to fit the row, so the title
+                    comes down from 36px on a screen too short for it. */}
+                <div className="grid" aria-live="polite">
+                  {stories.map((item) => (
+                    <div
+                      key={item.href}
+                      className={`col-start-1 row-start-1 flex flex-col gap-[16px] lg:max-w-[489px] ${item === story ? '' : 'invisible'}`}
+                    >
+                      <h2
+                        className={`m-0 font-serif text-[28px] font-normal leading-[1.1667] tracking-[-0.02em] text-brand-black md:text-[32px] lg:line-clamp-5 lg:text-[36px] ${
+                          fill ? 'lg:text-[length:min(36px,calc((100cqh-185px)/5.83))]' : ''
+                        }`}
+                      >
+                        <a href={item.href} className={`satr-hover-underline text-brand-black ${focusRing}`}>
+                          {item.title}
+                        </a>
+                      </h2>
+                      {item.description ? (
+                        <p className="m-0 font-mono text-[15px] leading-[22px] text-[#6b6b6b] md:text-[18px] md:leading-[23px]">
+                          {item.description}
+                        </p>
+                      ) : null}
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Pager (341:788), level with the foot of the photograph:
+                  Other Stories in the middle of the column whatever the
+                  width of Back and Next either side. */}
+              <nav
+                aria-label={storiesLabel}
+                className="grid shrink-0 grid-cols-[1fr_auto_1fr] items-center gap-[12px]"
+              >
+                <button
+                  type="button"
+                  className={`cursor-pointer justify-self-start border-0 bg-transparent p-0 font-mono text-text1-mobile text-brand-black md:text-text1-desktop ${focusRing}`}
+                  onClick={() => step(-1)}
+                >
+                  <span className="satr-hover-underline">{backLabel}</span>
+                </button>
+                <a
+                  href={otherHref}
+                  className={`satr-underlined whitespace-nowrap font-mono text-text1-mobile text-brand-black md:text-text1-desktop ${focusRing}`}
+                >
+                  {otherLabel}
+                </a>
+                <button
+                  type="button"
+                  className={`cursor-pointer justify-self-end border-0 bg-transparent p-0 font-mono text-text1-mobile text-brand-black md:text-text1-desktop ${focusRing}`}
+                  onClick={() => step(1)}
+                >
+                  <span className="satr-hover-underline">{nextLabel}</span>
+                </button>
+              </nav>
+            </div>
+
+            <div
+              className={`relative order-first col-span-12 aspect-[643/355] w-full overflow-hidden bg-brand-line-muted lg:col-span-1 lg:col-start-1 lg:row-start-1 lg:self-stretch ${
+                fill ? 'lg:aspect-auto lg:h-full' : ''
+              }`}
+            >
+              <img
+                key={story.imageSrc}
+                src={story.imageSrc}
+                alt={story.imageAlt ?? ''}
+                className="absolute inset-0 size-full object-cover"
+              />
+            </div>
+          </article>
+        ) : (
+          <>
 
         {/* The story (299:7419): copy 597 wide, photograph 666×428. Filling,
             the one row is held to the height it is given — an auto row would
@@ -372,6 +487,8 @@ export function HomeHeroV4Final({
             <span className="satr-hover-underline">{nextLabel}</span>
           </button>
         </nav>
+          </>
+        )}
       </Wrapper>
 
       {masthead && menuOpen ? (

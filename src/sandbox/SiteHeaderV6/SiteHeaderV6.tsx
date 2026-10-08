@@ -33,13 +33,13 @@ export const BAR_WORDMARK_H_V6 = 18.84;
 const PAD_TOP = 26;
 const ROW_H = 42;
 
-/** The sections of v4_Final (299:7390). */
+/** The sections of "Stolen museum story" (341:756), in one row. */
 export const navItemsV6: NavEntryV6[] = [
   { label: 'Scientists', href: '/experts' },
-  { label: 'Scientific societies', href: '/societies' },
+  { label: 'Societies', href: '/societies' },
   { label: 'Research', href: '/research' },
   { label: 'Stories', href: '/stories' },
-  { label: 'Infrastructure recovery', href: '/infrastructures' },
+  { label: 'Infrastructure', href: '/infrastructures' },
   { label: 'About', href: '/about' },
   { label: 'Contacts', href: '/contacts' },
 ];
@@ -47,11 +47,11 @@ export const navItemsV6: NavEntryV6[] = [
 /**
  * The bar of scienceatrisk.org's home page, with this site's sections: it
  * stands over every block, takes that block's ground and ink, and has the same
- * row in every state — a mark or the wordmark on the left, the sections, the
- * language switch on the right.
+ * row in every state — a mark or the wordmark on the left, the seven
+ * sections in the middle, the language switch on the right.
  *
- * The seven sections and the wordmark only share a row from 1400px; below
- * that they sit behind the menu button.
+ * The sections and the wordmark only share a row from 1280px; below that
+ * they sit behind the menu button.
  */
 export function SiteHeaderV6({
   items = navItemsV6,
@@ -116,7 +116,7 @@ export function SiteHeaderV6({
           <a
             href={homeHref}
             aria-label="Science At Risk"
-            className={`satr-dim absolute left-0 top-1/2 -translate-y-1/2 font-serif text-[26px] leading-[42px] tracking-[-0.02em] no-underline transition-opacity duration-200 ${ink} ${focusRing}`}
+            className={`satr-dim absolute left-0 top-1/2 -translate-y-1/2 font-serif text-[28px] leading-[42px] tracking-[-0.02em] no-underline transition-opacity duration-200 ${ink} ${focusRing}`}
             style={{ opacity: landed ? 0 : 1, pointerEvents: landed ? 'none' : undefined }}
             tabIndex={landed ? -1 : undefined}
             aria-hidden={landed ? true : undefined}
@@ -142,13 +142,13 @@ export function SiteHeaderV6({
           </a>
         </div>
 
-        <nav aria-label={isUa ? 'Розділи' : 'Sections'} className="absolute left-1/2 hidden -translate-x-1/2 -translate-y-1/2 min-[1400px]:block" style={{ top: PAD_TOP + ROW_H / 2 }}>
-          <ul className="m-0 flex list-none items-center gap-8 p-0">
+        <nav aria-label={isUa ? 'Розділи' : 'Sections'} className="absolute left-1/2 hidden -translate-x-1/2 -translate-y-1/2 xl:block" style={{ top: PAD_TOP + ROW_H / 2 }}>
+          <ul className="m-0 flex list-none items-center gap-[32px] p-0">
             {items.map((item) => (
               <li key={item.href}>
                 <a
                   href={item.href}
-                  className={`satr-hover-underline whitespace-nowrap font-mono text-[16px] leading-[26px] tracking-[-0.005em] no-underline ${ink} ${focusRing}`}
+                  className={`satr-hover-underline whitespace-nowrap font-mono text-[16px] leading-[26px] no-underline ${ink} ${focusRing}`}
                 >
                   {item.label}
                 </a>
@@ -158,7 +158,7 @@ export function SiteHeaderV6({
         </nav>
 
         <div className="flex shrink-0 items-center gap-4">
-          <p className="m-0 whitespace-nowrap font-mono text-text1-mobile md:text-[20px] md:leading-[24px]">
+          <p className="m-0 whitespace-nowrap font-mono text-text1-mobile md:text-[18px] md:leading-[24px] md:tracking-normal">
             {isUa ? other : current}
             <span aria-hidden>/</span>
             {isUa ? current : other}
@@ -170,7 +170,7 @@ export function SiteHeaderV6({
             aria-label={menuOpen ? 'Close menu' : 'Open menu'}
             aria-expanded={menuOpen}
             aria-controls={menuId}
-            className={`satr-dim flex min-h-11 min-w-11 items-center justify-center border-0 bg-transparent p-0 min-[1400px]:hidden ${focusRing}`}
+            className={`satr-dim flex min-h-11 min-w-11 items-center justify-center border-0 bg-transparent p-0 xl:hidden ${focusRing}`}
           >
             <img
               src="/assets/ui/hamburger-dark.svg"
@@ -184,7 +184,7 @@ export function SiteHeaderV6({
       </div>
 
       {menuOpen ? (
-        <div id={menuId} className="fixed inset-0 z-[60] flex justify-end min-[1400px]:hidden">
+        <div id={menuId} className="fixed inset-0 z-[60] flex justify-end xl:hidden">
           <div className="absolute inset-0 bg-black/40" aria-hidden onClick={() => setMenuOpen(false)} />
           <div className="relative h-full">
             <MobileNav
