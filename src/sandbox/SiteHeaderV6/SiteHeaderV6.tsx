@@ -91,8 +91,16 @@ export function SiteHeaderV6({
   }, [menuOpen]);
 
   const current = <span className="underline underline-offset-4">{isUa ? 'УКР' : 'ENG'}</span>;
+  // The language not in use is greyed, as in "Stolen museum story" (341:765),
+  // and comes up to full ink on hover. #4d4d4d rather than the frame's #6e6e6e:
+  // the bar also stands on the blue blocks, where #6e6e6e falls under AA.
   const other = (
-    <a href={localeHref} className={`satr-hover-underline no-underline ${ink} ${focusRing}`}>
+    <a
+      href={localeHref}
+      className={`satr-hover-underline no-underline transition-colors ${
+        inverted ? 'text-white/70 hover:text-white' : 'text-brand-muted hover:text-brand-black'
+      } ${focusRing}`}
+    >
       {isUa ? 'ENG' : 'УКР'}
     </a>
   );

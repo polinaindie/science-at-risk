@@ -1,5 +1,7 @@
-import { useEffect, useId, useRef, useState, type Ref } from 'react';
+import { useEffect, useId, useRef, useState, type AnchorHTMLAttributes, type Ref } from 'react';
 import { Button } from '@/components/Button';
+import { SquircleDefs } from '@/styles/SquircleDefs';
+import { useSquircleClipPath } from '@/styles/useSquircleClipPath';
 import { Wrapper, rowClass } from '@/components/Layout';
 import { MobileNav } from '@/components/MobileNav';
 
@@ -136,6 +138,20 @@ export const defaultHomeHeroV4FinalStories: HomeHeroV4FinalStory[] = [
 
 const focusRing =
   'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-black';
+
+/** The black squircle `Button`, drawn on a link: it goes somewhere, and a
+ *  button inside a link is not something a keyboard or a screen reader can
+ *  make sense of. */
+function SquircleLink({ className = '', children, ...props }: AnchorHTMLAttributes<HTMLAnchorElement>) {
+  const squircle = useSquircleClipPath({ radius: 16, smoothing: 0.9 });
+  return (
+    <a className={`satr-squircle satr-squircle--black no-underline ${className}`.trim()} {...props}>
+      <span ref={squircle.ref} className="satr-squircle__bg" style={squircle.style} aria-hidden />
+      <SquircleDefs clipId={squircle.clipId} pathD={squircle.pathD} />
+      {children}
+    </a>
+  );
+}
 
 /**
  * Homepage hero, Figma frame "v4_Final" (299:7226) — the whole first screen
@@ -296,11 +312,12 @@ export function HomeHeroV4Final({
              "SC!ENCE", the copy from the A of "AT" to the last "!" — 0–667.8,
              706.9–1360 in the wordmark's own 1360 units, so they hold at any
              width the wordmark is drawn at. On a phone the photograph comes
-             first, on the twelve columns. The photograph keeps the frame's 643:355 crop, and from
-             `lg` stretches with the copy beside it when that runs taller, so
-             its foot and Back / Next are always one line. */
+             first, on the twelve columns. The photograph keeps the frame's
+             654:355 crop, and from `lg` stretches with the copy beside it
+             when that runs taller, so its foot and Back / Next are always
+             one line. */
           <article
-            className={`${rowClass} mt-[24px] gap-y-[32px] md:mt-[34px] lg:mt-[41px] lg:grid-cols-[minmax(0,667.8fr)_minmax(0,39.1fr)_minmax(0,653.1fr)] lg:gap-0 ${
+            className={`group/story ${rowClass} mt-[24px] gap-y-[32px] md:mt-[34px] lg:mt-[41px] lg:grid-cols-[minmax(0,667.8fr)_minmax(0,39.1fr)_minmax(0,653.1fr)] lg:gap-0 ${
               fill ? 'lg:min-h-0 lg:flex-1 lg:grid-rows-[minmax(0,1fr)] lg:[container-type:size]' : ''
             }`}
           >
@@ -317,9 +334,18 @@ export function HomeHeroV4Final({
                     so on a big screen its lines don't run the whole column.
                     At that width the longest of the site's titles runs to
                     five lines. Filling, five lines of title and the rest of
-                    the column (185px: the label, a three-line standfirst,
+                    the column (264px: the label, a three-line standfirst, Read Story,
                     the pager and the gaps) have to fit the row, so the title
-                    comes down from 36px on a screen too short for it. */}
+                    comes down from 36px on a screen too short for it.
+                    32px under the standfirst, Read Story comes up while the
+                    pointer is anywhere on the story, or the keyboard is in
+                    it; its room is kept the rest of the time, so nothing
+                    moves when it shows. Only the story on show carries it:
+                    kept under every story, it would hold the room under the
+                    longest title too, and on a 1440×810 screen take the
+                    pager off the foot of it for every story. This way the
+                    pager only moves for a title long enough to need it. A
+                    touch screen has no hover, so there it is always shown. */}
                 <div className="grid" aria-live="polite">
                   {stories.map((item) => (
                     <div
@@ -328,7 +354,7 @@ export function HomeHeroV4Final({
                     >
                       <h2
                         className={`m-0 font-serif text-[28px] font-normal leading-[1.1667] tracking-[-0.02em] text-brand-black md:text-[32px] lg:line-clamp-5 lg:text-[36px] ${
-                          fill ? 'lg:text-[length:min(36px,calc((100cqh-185px)/5.83))]' : ''
+                          fill ? 'lg:text-[length:min(36px,calc((100cqh-264px)/5.83))]' : ''
                         }`}
                       >
                         <a href={item.href} className={`satr-hover-underline text-brand-black ${focusRing}`}>
@@ -336,9 +362,18 @@ export function HomeHeroV4Final({
                         </a>
                       </h2>
                       {item.description ? (
-                        <p className="m-0 font-mono text-[15px] leading-[22px] text-[#6b6b6b] md:text-[18px] md:leading-[23px]">
+                        <p className="m-0 font-mono text-[15px] leading-[22px] text-brand-black md:text-[18px] md:leading-[23px]">
                           {item.description}
                         </p>
+                      ) : null}
+                      {item === story ? (
+                        <SquircleLink
+                          href={item.href}
+                          aria-label={`${readLabel}: ${item.title}`}
+                          className={`mt-[16px] self-start opacity-0 transition-opacity duration-200 group-focus-within/story:opacity-100 group-hover/story:opacity-100 [@media(hover:none)]:opacity-100 ${focusRing}`}
+                        >
+                          {readLabel}
+                        </SquircleLink>
                       ) : null}
                     </div>
                   ))}
@@ -376,7 +411,7 @@ export function HomeHeroV4Final({
             </div>
 
             <div
-              className={`relative order-first col-span-12 aspect-[643/355] w-full overflow-hidden bg-brand-line-muted lg:col-span-1 lg:col-start-1 lg:row-start-1 lg:self-stretch ${
+              className={`relative order-first col-span-12 aspect-[654/355] w-full overflow-hidden bg-brand-line-muted lg:col-span-1 lg:col-start-1 lg:row-start-1 lg:self-stretch ${
                 fill ? 'lg:aspect-auto lg:h-full' : ''
               }`}
             >

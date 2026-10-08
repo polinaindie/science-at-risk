@@ -576,7 +576,7 @@ export function HomePageV6({
       // `fill` only in the deck: there the block's height is given, so the
       // photograph takes whatever the type does not need. In the flow nothing
       // dictates a height and the 666:428 crop stands.
-      content: <HomeHeroV4Final masthead={false} layout="museum" otherLabel="Other Stories" fill={deck} wordmarkRef={wordmarkRef} className="min-h-0 flex-1" {...hero} />,
+      content: <HomeHeroV4Final masthead={false} layout="museum" backLabel="< Previous" otherLabel="Other Stories" fill={deck} wordmarkRef={wordmarkRef} className="min-h-0 flex-1" {...hero} />,
     },
     {
       ground: SECTIONS[1].ground,
