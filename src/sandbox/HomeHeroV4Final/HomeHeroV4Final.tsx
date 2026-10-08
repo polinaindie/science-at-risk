@@ -1,4 +1,4 @@
-import { useEffect, useId, useRef, useState, type AnchorHTMLAttributes, type Ref } from 'react';
+import { useEffect, useId, useLayoutEffect, useRef, useState, type AnchorHTMLAttributes, type Ref } from 'react';
 import { Button } from '@/components/Button';
 import { SquircleDefs } from '@/styles/SquircleDefs';
 import { useSquircleClipPath } from '@/styles/useSquircleClipPath';
@@ -190,7 +190,46 @@ export function HomeHeroV4Final({
   const [menuOpen, setMenuOpen] = useState(false);
   const [index, setIndex] = useState(0);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const copyRef = useRef<HTMLDivElement>(null);
   const isUk = locale === 'uk';
+
+  // Filling the screen, the museum story's column is as tall as the row and
+  // no taller, so the title comes down from 36px only as far as the story on
+  // show needs to fit it, Read Story and the pager included. Sized for the
+  // story in hand rather than for the longest one, a three-line title keeps
+  // its 36px on a screen where a five-line one has to give.
+  useLayoutEffect(() => {
+    const column = copyRef.current;
+    if (!fill || !museum || !column) return;
+    const title = column.querySelector<HTMLElement>('[data-story-title]');
+    if (!title) return;
+    const wide = window.matchMedia('(min-width: 1024px)');
+
+    const fit = () => {
+      title.style.fontSize = '';
+      if (!wide.matches) return;
+      let size = 36;
+      title.style.fontSize = `${size}px`;
+      // Lines change as the size does, so a few passes rather than one sum.
+      for (let pass = 0; pass < 4; pass += 1) {
+        const over = column.scrollHeight - column.clientHeight;
+        if (over <= 0) break;
+        const lines = Math.max(1, Math.round(title.offsetHeight / (size * 1.1667)));
+        size = Math.max(20, size - over / (lines * 1.1667) - 0.5);
+        title.style.fontSize = `${size}px`;
+      }
+    };
+
+    fit();
+    const observer = new ResizeObserver(fit);
+    observer.observe(column);
+    wide.addEventListener('change', fit);
+    void document.fonts?.ready.then(fit);
+    return () => {
+      observer.disconnect();
+      wide.removeEventListener('change', fit);
+    };
+  }, [fill, museum, index, stories]);
 
   // Escape closes the menu and hands focus back to the button that opened it.
   useEffect(() => {
@@ -315,28 +354,32 @@ export function HomeHeroV4Final({
              first, on the twelve columns. The photograph keeps the frame's
              654:355 crop, and from `lg` stretches with the copy beside it
              when that runs taller, so its foot and Back / Next are always
-             one line. */
+             one line. Filling the screen, it stands as far off the foot
+             as off the rule: the 34px every block keeps clear under it,
+             and 7 more to make the 41 above. */
           <article
             className={`group/story ${rowClass} mt-[24px] gap-y-[32px] md:mt-[34px] lg:mt-[41px] lg:grid-cols-[minmax(0,667.8fr)_minmax(0,39.1fr)_minmax(0,653.1fr)] lg:gap-0 ${
-              fill ? 'lg:min-h-0 lg:flex-1 lg:grid-rows-[minmax(0,1fr)] lg:[container-type:size]' : ''
+              fill ? 'lg:mb-[7px] lg:min-h-0 lg:flex-1 lg:grid-rows-[minmax(0,1fr)] lg:[container-type:size]' : ''
             }`}
           >
             {/* The label, the title and the standfirst at the top, Back /
                 Other Stories / Next at the foot (341:768). */}
-            <div className="col-span-12 flex flex-col justify-between gap-[24px] lg:col-span-1 lg:col-start-3 lg:row-start-1 lg:min-h-0">
+            <div
+              ref={copyRef}
+              className="col-span-12 flex flex-col justify-between gap-[24px] lg:col-span-1 lg:col-start-3 lg:row-start-1 lg:min-h-0"
+            >
               <div className="flex flex-col gap-[16px]">
                 <p className="m-0 font-mono text-text1-mobile text-brand-black md:text-text1-desktop">
                   {storiesLabel}
                 </p>
                 {/* Every story's copy in the one cell, only the current one
                     shown, so Back / Next stay put whatever the length of the
-                    title. The story stops at 489px, its width in the frame,
-                    so on a big screen its lines don't run the whole column.
-                    At that width the longest of the site's titles runs to
-                    five lines. Filling, five lines of title and the rest of
-                    the column (264px: the label, a three-line standfirst, Read Story,
-                    the pager and the gaps) have to fit the row, so the title
-                    comes down from 36px on a screen too short for it.
+                    title. Filling the screen the row's height is set and the
+                    pager stands at its foot anyway, so there only the story
+                    on show is drawn, and its title is fitted to the row
+                    (above). The story stops at 489px, its width in the
+                    frame, so on a big screen its lines don't run the whole
+                    column.
                     32px under the standfirst, Read Story comes up while the
                     pointer is anywhere on the story, or the keyboard is in
                     it; its room is kept the rest of the time, so nothing
@@ -347,15 +390,14 @@ export function HomeHeroV4Final({
                     pager only moves for a title long enough to need it. A
                     touch screen has no hover, so there it is always shown. */}
                 <div className="grid" aria-live="polite">
-                  {stories.map((item) => (
+                  {(fill ? [story] : stories).map((item) => (
                     <div
                       key={item.href}
                       className={`col-start-1 row-start-1 flex flex-col gap-[16px] lg:max-w-[489px] ${item === story ? '' : 'invisible'}`}
                     >
                       <h2
-                        className={`m-0 font-serif text-[28px] font-normal leading-[1.1667] tracking-[-0.02em] text-brand-black md:text-[32px] lg:line-clamp-5 lg:text-[36px] ${
-                          fill ? 'lg:text-[length:min(36px,calc((100cqh-264px)/5.83))]' : ''
-                        }`}
+                        data-story-title={item === story ? '' : undefined}
+                        className="m-0 font-serif text-[28px] font-normal leading-[1.1667] tracking-[-0.02em] text-brand-black md:text-[32px] lg:line-clamp-5 lg:text-[36px]"
                       >
                         <a href={item.href} className={`satr-hover-underline text-brand-black ${focusRing}`}>
                           {item.title}
