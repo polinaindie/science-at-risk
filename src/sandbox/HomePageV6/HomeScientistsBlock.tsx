@@ -1,4 +1,4 @@
-import { useId, useState, type FormEvent, type ReactNode } from 'react';
+import { useId, useLayoutEffect, useRef, useState, type FormEvent, type ReactNode } from 'react';
 import { Button } from '@/components/Button';
 import { Wrapper, Row, Col, fitTextClass } from '@/components/Layout';
 import { Link } from '@/components/Link';
@@ -42,7 +42,7 @@ export interface HomeScientistsBlockProps {
 export const defaultScientistsMode: HomeScientistsMode = {
   label: 'Scientists',
   placeholder: 'Enter scientific field or name',
-  buttonLabel: 'Find a scientist',
+  buttonLabel: 'Find scientists',
   note: 'Mark the scientific field that interests you - find and involve Ukrainian scientists in your own projects',
   noteLinkLabel: 'To the full database of scientists',
   noteHref: '/experts',
@@ -61,7 +61,7 @@ export const defaultScientistsMode: HomeScientistsMode = {
 export const defaultSocietiesMode: HomeScientistsMode = {
   label: 'Societies',
   placeholder: 'Enter field or society name',
-  buttonLabel: 'Find a society',
+  buttonLabel: 'Find societies',
   note: 'Reach a whole community at once - scientific societies bring together the scientists of one field',
   noteLinkLabel: 'To all scientific societies',
   noteHref: '/societies',
@@ -115,6 +115,68 @@ function ScopeStack({
   );
 }
 
+/** The popular requests, set flush left inside a box that hugs the widest row
+ *  of tags and sits against the column's right edge (from `md`), so the rows
+ *  end on the search line's end without being ragged on the right. CSS sizes
+ *  a wrapping row box to its container, not to its widest line, so the width
+ *  is worked out here: the tags are laid in rows the way `flex-wrap` lays
+ *  them, and the box takes the widest. Until that runs, and without script,
+ *  it is simply full width and left-aligned. */
+function PopularTags({ label, tags }: { label: string; tags: HomeScientistsTag[] }) {
+  const boxRef = useRef<HTMLDivElement>(null);
+  const listRef = useRef<HTMLDivElement>(null);
+  const [width, setWidth] = useState<number>();
+
+  useLayoutEffect(() => {
+    const box = boxRef.current;
+    const list = listRef.current;
+    const room = box?.parentElement;
+    if (!box || !list || !room) return;
+
+    const measure = () => {
+      const available = room.clientWidth;
+      const gap = parseFloat(getComputedStyle(list).columnGap) || 0;
+      let row = 0;
+      let widest = 0;
+      for (const item of Array.from(list.children)) {
+        const w = item.getBoundingClientRect().width;
+        if (row > 0 && row + gap + w <= available + 0.5) {
+          row += gap + w;
+        } else {
+          widest = Math.max(widest, row);
+          row = w;
+        }
+      }
+      widest = Math.max(widest, row);
+      setWidth(Math.min(available, Math.ceil(widest)));
+    };
+
+    measure();
+    // The room changes with the window; the tags change as the fonts land.
+    const observer = new ResizeObserver(measure);
+    observer.observe(room);
+    Array.from(list.children).forEach((item) => observer.observe(item));
+    return () => observer.disconnect();
+  }, [tags]);
+
+  return (
+    <div ref={boxRef} className="max-w-full md:ml-auto" style={{ width }}>
+      <p className="mb-3 font-mono text-text1-mobile text-brand-black md:text-[16px] md:leading-[24px]">
+        {label}
+      </p>
+      <div ref={listRef} className="flex flex-wrap gap-2.5" role="list">
+        {tags.map((tag) => (
+          <span role="listitem" key={tag.href}>
+            <Tag as="a" href={tag.href} count={tag.count}>
+              {tag.label}
+            </Tag>
+          </span>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 /**
  * The home page's Scientists block, laid out the way scienceatrisk.org has it:
  * the ask in large serif, the search line with its button under it, and along
@@ -156,9 +218,12 @@ export function HomeScientistsBlock({
         {/* Native radios, drawn as two words: the arrow keys, the focus and
             what a screen reader says all come with them. They sit outside the
             form so the scope never rides along in the query — the form's
-            action already says where it goes. Each label is padded to a
-            44px target; the padding comes out of the gap above it. */}
-        <fieldset className="m-0 mt-8 flex gap-6 border-0 p-0 md:mt-12">
+            action already says where it goes. Words, not buttons: set larger
+            and heavier than the text around them, the chosen one underlined
+            thick, so the choice reads without competing with the search
+            button. Each label is padded to a 44px target; the padding comes
+            out of the gap above it. */}
+        <fieldset className="m-0 mt-8 flex gap-8 border-0 p-0 md:mt-12">
           <legend className="sr-only">{scopeLabel}</legend>
           {SCOPES.map((value) => (
             <label key={value} className="group cursor-pointer py-2">
@@ -170,7 +235,7 @@ export function HomeScientistsBlock({
                 onChange={() => setScope(value)}
                 className="peer sr-only"
               />
-              <span className="block border-b-2 border-transparent pb-1 font-mono text-[18px] font-light leading-[26px] text-brand-muted transition-colors group-hover:text-brand-black peer-checked:border-brand-black peer-checked:text-brand-black peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-4 peer-focus-visible:outline-brand-black">
+              <span className="block border-b-[3px] border-transparent pb-1 font-mono text-[20px] font-medium leading-[28px] text-brand-muted transition-colors group-hover:border-brand-line-muted group-hover:text-brand-black md:text-[24px] md:leading-[32px] peer-checked:border-brand-black peer-checked:text-brand-black peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-4 peer-focus-visible:outline-brand-black">
                 {modes[value].label}
               </span>
             </label>
@@ -244,20 +309,7 @@ export function HomeScientistsBlock({
               modes={modes}
               className="items-end"
               render={(m) => (
-                <>
-                  <p className="mb-3 font-mono text-text1-mobile text-brand-black md:text-[16px] md:leading-[24px]">
-                    {popularLabel}
-                  </p>
-                  <div className="flex flex-wrap gap-2.5" role="list">
-                    {m.tags.map((tag) => (
-                      <span role="listitem" key={tag.href}>
-                        <Tag as="a" href={tag.href} count={tag.count}>
-                          {tag.label}
-                        </Tag>
-                      </span>
-                    ))}
-                  </div>
-                </>
+                <PopularTags label={popularLabel} tags={m.tags} />
               )}
             />
           </Col>
