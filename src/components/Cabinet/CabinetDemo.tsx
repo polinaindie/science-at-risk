@@ -191,14 +191,14 @@ export function CabinetDemo({
   );
 
   return (
-    <div className="bg-white">
+    <div className={onProfilePage ? 'bg-brand-accent-blue' : 'bg-white'}>
       {chrome ? (
         <>
           {/* No wrapper around the header: a sticky element only sticks inside its parent. */}
           <SiteHeader
             account="member"
             progress={1}
-            ground="bg-white"
+            ground={onProfilePage ? 'bg-brand-accent-blue' : 'bg-white'}
             locale={locale === 'uk' ? 'UA' : 'EN'}
             cabinetHref={`${base}cabinet`}
             avatarSrc={profile.imageSrc}
