@@ -28,6 +28,14 @@ export interface FooterProps {
   maxLength?: number;
   overLimitMessage?: string;
   onSubmit?: (data: FooterSubmitData) => void;
+  /** The bottom row: the way into the cabinet, repeated from the header. */
+  account?: 'guest' | 'member';
+  loginLabel?: string;
+  loginHref?: string;
+  cabinetLabel?: string;
+  cabinetHref?: string;
+  logoutLabel?: string;
+  logoutHref?: string;
   className?: string;
 }
 
@@ -52,6 +60,9 @@ const RIGHT_TITLE =
 const RIGHT_LINK =
   'satr-hover-underline satr-hover-underline--white mt-4 block font-mono text-h3-mobile text-white no-underline xl:text-h3-desktop';
 
+const ACCOUNT_LINK =
+  'satr-hover-underline satr-hover-underline--white font-mono text-h3-mobile text-white no-underline xl:text-h3-desktop';
+
 /**
  * The foot of the page, as scienceatrisk.org has it: the ask across the top,
  * the form on the left, and who stands behind the project on the right.
@@ -72,6 +83,13 @@ export function Footer({
   maxLength = 7000,
   overLimitMessage = 'Please shorten your inquiry.',
   onSubmit,
+  account = 'guest',
+  loginLabel = 'Log in',
+  loginHref = `${import.meta.env.BASE_URL}login.html`,
+  cabinetLabel = 'My cabinet',
+  cabinetHref = '/cabinet',
+  logoutLabel = 'Log out',
+  logoutHref = '/logout',
   className = '',
 }: FooterProps) {
   const [count, setCount] = useState(0);
@@ -150,10 +168,11 @@ export function Footer({
                 <p
                   className={over ? 'text-brand-accent-yellow' : 'sr-only'}
                   role={over ? 'alert' : undefined}
+                  data-satr-over=""
                 >
                   {overLimitMessage}
                 </p>
-                <span className="ml-auto text-white/85">
+                <span className="ml-auto text-white/85" data-satr-count="">
                   ({count} / {maxLength})
                 </span>
               </div>
@@ -200,6 +219,27 @@ export function Footer({
               </a>
             </div>
           </div>
+        </div>
+
+        {/* The bottom row. */}
+        <div
+          className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-3 border-t border-white/25 pt-6"
+          data-satr-account={account}
+        >
+          {account === 'member' ? (
+            <>
+              <a href={cabinetHref} className={ACCOUNT_LINK}>
+                {cabinetLabel}
+              </a>
+              <a href={logoutHref} className={ACCOUNT_LINK}>
+                {logoutLabel}
+              </a>
+            </>
+          ) : (
+            <a href={loginHref} className={ACCOUNT_LINK}>
+              {loginLabel}
+            </a>
+          )}
         </div>
       </div>
     </footer>

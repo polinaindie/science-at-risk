@@ -4,6 +4,11 @@ export interface NavItem {
 }
 
 export interface MobileNavProps {
+  /** `guest` ends the list with Log in; `member` with My cabinet and Log out. */
+  account?: 'guest' | 'member';
+  loginHref?: string;
+  cabinetHref?: string;
+  logoutHref?: string;
   open?: boolean;
   onClose?: () => void;
   items?: NavItem[];
@@ -56,6 +61,10 @@ export function MobileNav({
   social = defaultSocial,
   tone = 'light',
   locale = 'UA',
+  account = 'guest',
+  loginHref = `${import.meta.env.BASE_URL}login.html`,
+  cabinetHref = '/cabinet',
+  logoutHref = '/logout',
   className = '',
 }: MobileNavProps) {
   if (!open) return null;
@@ -75,17 +84,18 @@ export function MobileNav({
 
   return (
     <div
-      className={`flex h-full w-full max-w-[330px] flex-col ${surface} px-8 py-7 ${className}`.trim()}
+      className={`flex h-full w-full max-w-[330px] flex-col overflow-y-auto ${surface} px-8 py-7 ${className}`.trim()}
       role="dialog"
       aria-modal="true"
       aria-label={menuLabel}
     >
-      <div className="mb-6 flex justify-end">
+      <div className="mb-4 flex justify-end">
         <button
           type="button"
           className={`flex min-h-11 min-w-11 items-center justify-center border-0 bg-transparent p-0 ${focusRing}`}
           aria-label={closeLabel}
           onClick={onClose}
+          data-satr-menu-close=""
         >
           <svg width="22" height="22" viewBox="0 0 22 22" aria-hidden focusable="false">
             <path
@@ -98,7 +108,7 @@ export function MobileNav({
         </button>
       </div>
       <nav aria-label={navLabel}>
-        <ul className="m-0 flex list-none flex-col gap-6 p-0">
+        <ul className="m-0 flex list-none flex-col gap-5 p-0">
           {items.map((item) => (
             <li key={item.label}>
               <a href={item.href} className={linkClass}>
@@ -108,8 +118,8 @@ export function MobileNav({
           ))}
         </ul>
       </nav>
-      <hr className={`my-6 border-0 border-t ${divider}`} />
-      <ul className="m-0 flex list-none flex-col gap-6 p-0">
+      <hr className={`my-5 border-0 border-t ${divider}`} />
+      <ul className="m-0 flex list-none flex-col gap-5 p-0">
         {social.map((item) => (
           <li key={item.label}>
             <a href={item.href} className={linkClass}>
@@ -118,6 +128,32 @@ export function MobileNav({
           </li>
         ))}
       </ul>
+      {/* The way into the cabinet: last in the list, under its own rule. */}
+      <div className={`sticky bottom-0 mt-auto -mb-7 pb-7 pt-5 ${surface}`}>
+      <hr className={`mb-5 border-0 border-t ${divider}`} />
+      <ul className="m-0 flex list-none flex-col gap-5 p-0" data-satr-account={account}>
+        {account === 'member' ? (
+          <>
+            <li>
+              <a href={cabinetHref} className={linkClass}>
+                {isUa ? 'Мій кабінет' : 'My cabinet'}
+              </a>
+            </li>
+            <li>
+              <a href={logoutHref} className={linkClass}>
+                {isUa ? 'Вийти' : 'Log out'}
+              </a>
+            </li>
+          </>
+        ) : (
+          <li>
+            <a href={loginHref} className={linkClass}>
+              {isUa ? 'Увійти' : 'Log in'}
+            </a>
+          </li>
+        )}
+      </ul>
+      </div>
     </div>
   );
 }

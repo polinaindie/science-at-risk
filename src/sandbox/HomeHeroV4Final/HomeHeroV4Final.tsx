@@ -5,6 +5,11 @@ import { useSquircleClipPath } from '@/styles/useSquircleClipPath';
 import { Wrapper, rowClass } from '@/components/Layout';
 import { MobileNav } from '@/components/MobileNav';
 
+/** The live site's pages are copied under `public/`, so they sit beside this app
+ *  wherever it is served from — `BASE_URL` is `/` locally and `/science-at-risk/`
+ *  when published. */
+const live = (path: string) => `${import.meta.env.BASE_URL}${path}`;
+
 export interface HomeHeroV4FinalNavItem {
   label: string;
   href: string;
@@ -59,13 +64,13 @@ export interface HomeHeroV4FinalProps {
 }
 
 const defaultNavItems: HomeHeroV4FinalNavItem[] = [
-  { label: 'Scientists', href: '/experts' },
-  { label: 'Scientific societies', href: '/societies' },
-  { label: 'Research', href: '/research' },
-  { label: 'Stories', href: '/stories' },
-  { label: 'Infrastructure recovery', href: '/infrastructures' },
-  { label: 'About', href: '/about' },
-  { label: 'Contacts', href: '/contacts' },
+  { label: 'Scientists', href: live('experts.html') },
+  { label: 'Scientific societies', href: live('societies.html') },
+  { label: 'Research', href: live('whitepapers.html') },
+  { label: 'Stories', href: live('stories.html') },
+  { label: 'Infrastructure recovery', href: live('infrastructures.html') },
+  { label: 'About', href: live('about.html') },
+  { label: 'Contacts', href: live('contacts.html') },
 ];
 
 /* The nine stories on scienceatrisk.org/stories, in the site's order, as of
@@ -74,63 +79,63 @@ export const defaultHomeHeroV4FinalStories: HomeHeroV4FinalStory[] = [
   {
     title: 'Uncovered Graves. How Lviv restores its memory about the school of mathematics',
     description: 'A Map of Burial Sites Revives the Memory of Lviv’s Forgotten Mathematicians',
-    href: '/story/uncovered-graves-how-lviv-restores-its-memory-about-the-school-of-mathematics',
+    href: live('story/uncovered-graves-how-lviv-restores-its-memory-about-the-school-of-mathematics.html'),
     imageSrc: '/assets/stories/uncovered-graves.jpg',
     imageAlt: 'Gravestone of Professor Volodymyr Levytskyi and Sofiia Levytska with grave candles',
   },
   {
     title: 'A Hit Too Close To Home. What happened to the Institute of Biochemistry after a drone strike',
     description: 'How is the Institute of Biochemistry recovering from the attack?',
-    href: '/story/a-hit-too-close-to-home-what-happened-to-the-institute-of-biochemistry-after-a-drone-strike',
+    href: live('story/a-hit-too-close-to-home-what-happened-to-the-institute-of-biochemistry-after-a-drone-strike.html'),
     imageSrc: '/assets/stories/institute-of-biochemistry.jpg',
     imageAlt: 'A man stands in a doorway of a damaged room with torn-out wiring',
   },
   {
     title: '“Lost Worlds.” How the Russian strike ruined the Chornobyl Museum in Kyiv',
     description: 'We visited the Chornobyl Museum after a Russian strike to see how artifacts and memory are being preserved',
-    href: '/story/lost-worlds-how-the-russian-strike-ruined-the-chornobyl-museum-in-kyiv',
+    href: live('story/lost-worlds-how-the-russian-strike-ruined-the-chornobyl-museum-in-kyiv.html'),
     imageSrc: '/assets/stories/chornobyl-museum.jpg',
     imageAlt: 'A museum hall with a shattered ceiling and debris on the floor',
   },
   {
     title: '“We will sow wheat and grow bread”: pitfalls of humanitarian demining in Ukraine',
     description: 'How Humanitarian Demining Works in Ukraine',
-    href: '/story/we-will-sow-wheat-and-grow-bread-pitfalls-of-humanitarian-demining-in-ukraine',
+    href: live('story/we-will-sow-wheat-and-grow-bread-pitfalls-of-humanitarian-demining-in-ukraine.html'),
     imageSrc: '/assets/stories/humanitarian-demining.jpg',
     imageAlt: 'A deminer sweeps a field with a metal detector',
   },
   {
     title: 'Explosion Residues on Our Tables. How the war impacts the environment and why it’s difficult to study',
     description: 'How Ukraine Is Documenting the Environmental Impact of Russian Aggression',
-    href: '/story/explosion-residues-on-our-tables-how-the-war-impacts-the-environment-and-why-its-difficult-to-study',
+    href: live('story/explosion-residues-on-our-tables-how-the-war-impacts-the-environment-and-why-its-difficult-to-study.html'),
     imageSrc: '/assets/stories/explosion-residues.jpg',
     imageAlt: 'Two researchers stand side by side in an office',
   },
   {
     title: 'Race Against the War: How Leonid Marushchak and volunteers are rescuing Ukrainian cultural heritage',
     description: 'How to save museum collections during Russia\'s full-scale invasion and who does that',
-    href: '/story/race-against-the-war-how-leonid-marushchak-and-volunteers-are-rescuing-ukrainian-cultural-heritage',
+    href: live('story/race-against-the-war-how-leonid-marushchak-and-volunteers-are-rescuing-ukrainian-cultural-heritage.html'),
     imageSrc: '/assets/stories/race-against-the-war.jpg',
     imageAlt: 'Leonid Marushchak in a cap under a chestnut tree',
   },
   {
     title: 'Closer to Space: How the Chornohora Observatory restarts its operation',
     description: 'Reviving the Observatory on Mount Pip Ivan',
-    href: '/story/closer-to-space-how-the-chornohora-observatory-restarts-its-operation',
+    href: live('story/closer-to-space-how-the-chornohora-observatory-restarts-its-operation.html'),
     imageSrc: '/assets/stories/chornohora-observatory.jpg',
     imageAlt: 'The observatory on the snowy summit of Pip Ivan at sunset',
   },
   {
     title: 'Remembering the Oblivion. How the Odesa National Fine Arts Museum rescued its collection from the Russian attack',
     description: 'How the Odesa National Fine Arts Museum survived a Russian attack',
-    href: '/story/remembering-the-oblivion-how-the-odesa-national-fine-arts-museum-rescued-its-collection-from-the-russian-attack',
+    href: live('story/remembering-the-oblivion-how-the-odesa-national-fine-arts-museum-rescued-its-collection-from-the-russian-attack.html'),
     imageSrc: '/assets/stories/odesa-fine-arts-museum.jpg',
     imageAlt: 'A museum hall with empty frames on the walls and fragments laid out in display cases',
   },
   {
     title: 'Psychedelic-Assisted Therapy: who it helps and how to do it right',
     description: 'What research shows about psychedelics for treating PTSD and depression',
-    href: '/story/psychedelic-assisted-therapy-who-it-helps-and-how-to-do-it-right',
+    href: live('story/psychedelic-assisted-therapy-who-it-helps-and-how-to-do-it-right.html'),
     imageSrc: '/assets/stories/psychedelic-assisted-therapy.jpg',
     imageAlt: 'Illustration of a soldier whose head is a pot of orange trees',
   },
@@ -169,13 +174,13 @@ function SquircleLink({ className = '', children, ...props }: AnchorHTMLAttribut
 export function HomeHeroV4Final({
   navItems = defaultNavItems,
   locale = 'en',
-  localeHref = '/uk',
+  localeHref = live('uk.html'),
   tagline = 'Centre of Excellence on Science at Risk, Ukraine',
   stories = defaultHomeHeroV4FinalStories,
   storiesLabel = 'Stories',
   readLabel = 'Read Story',
   otherLabel = 'Other stories',
-  otherHref = '/stories',
+  otherHref = live('stories.html'),
   backLabel = '< Back',
   nextLabel = 'Next >',
   masthead = true,
@@ -271,7 +276,7 @@ export function HomeHeroV4Final({
             whatever the width of the mark and the switch either side. */}
         <header className="relative flex min-h-[42px] items-center justify-between">
           <a
-            href="/"
+            href={live('')}
             aria-label="Science At Risk"
             className={`satr-dim font-serif text-[26px] leading-[42px] tracking-[-0.02em] text-brand-black no-underline ${focusRing}`}
           >

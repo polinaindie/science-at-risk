@@ -1,209 +1,399 @@
-import {
-  useCallback,
-  useEffect,
-  useId,
-  useRef,
-  useState,
-  type KeyboardEvent as ReactKeyboardEvent,
-} from 'react';
-import { Header } from '@/components/Header';
-import { MobileNav, navItemsEn, navItemsUk, type NavItem } from '@/components/MobileNav';
+import { useEffect, useId, useRef, useState, type Ref } from 'react';
+import { MobileNav } from '@/components/MobileNav';
+import { SquircleLink } from '@/components/SquircleLink';
+import { wrapperClass } from '@/components/Layout';
 
-const HERO_WORDMARK_SELECTOR = '[data-hero-wordmark]';
-/** Matches fixed header spacer in this component. */
-const HEADER_CHROME_HEIGHT_PX = 66;
+/** Where the site's pages are served from. The live site's pages are copied
+ *  under `public/`, so they sit beside this app: `BASE_URL` is `/` locally and
+ *  `/science-at-risk/` when published. The static pages pass their own prefix
+ *  (`''`, `'../'`) so the same header works from any depth. */
+const APP_BASE = import.meta.env.BASE_URL;
 
-export interface SiteHeaderProps {
+export interface NavEntry {
+  label: string;
+  href: string;
+}
+
+/** The same seven sections in Ukrainian. */
+export const siteNavItemsUk = (base: string = APP_BASE): NavEntry[] => [
+  { label: 'Науковці', href: `${base}experts.html` },
+  { label: 'Товариства', href: `${base}societies.html` },
+  { label: 'Дослідження', href: `${base}whitepapers.html` },
+  { label: 'Історії', href: `${base}stories.html` },
+  { label: 'Інфраструктура', href: `${base}infrastructures.html` },
+  { label: 'Про нас', href: `${base}about.html` },
+  { label: 'Контакти', href: `${base}contacts.html` },
+];
+
+/** Where the cabinet lives. Placeholders: the backend owns these routes. */
+export interface AccountLinks {
+  loginHref?: string;
+  cabinetHref?: string;
+  logoutHref?: string;
+}
+
+export interface SiteHeaderProps extends AccountLinks {
+  /** `guest` shows Log in; `member` shows the account menu: photo, My cabinet, Log out. */
+  account?: 'guest' | 'member';
+  /** The member's photo and name, for the account menu. */
+  avatarSrc?: string;
+  accountName?: string;
+  /** Prefix for every link and asset: the path from the page to the site's root. */
+  base?: string;
+  /** Overrides the sections, which are otherwise `siteNavItems(base)`. */
+  items?: NavEntry[];
+  /** Stable id for the menu panel — the static pages need it in their markup. */
+  menuId?: string;
+  /**
+   * 0 on the hero, 1 once the reader has left it. The "!!!" on the left gives
+   * way to the wordmark as it lands; nothing else in the row moves.
+   */
+  progress?: number;
+  /** The ground and ink of the block the bar is standing on. */
+  ground?: string;
+  inverted?: boolean;
   locale?: string;
-  onLocaleClick?: () => void;
-  tone?: 'light' | 'dark';
-  items?: NavItem[];
-  social?: NavItem[];
+  localeHref?: string;
+  homeHref?: string;
+  /** The page measures this row to know where the wordmark must land. */
+  innerRef?: Ref<HTMLDivElement>;
   className?: string;
 }
 
 /**
- * Site chrome pinned to the viewport for the whole scroll
- * (position:fixed — sticky would unstick at the end of its containing block).
- * Close via close button, Escape, or backdrop — not on scroll.
+ * A member's way into the cabinet, kept to one small control: the photo and a
+ * caret open a short list. It replaces two items that took more room than the
+ * sections and the language switch could spare.
  */
-export function SiteHeader({
-  locale = 'EN',
-  onLocaleClick,
-  tone = 'light',
-  items,
-  social,
-  className = '',
-}: SiteHeaderProps) {
+function AccountMenu({
+  isUa,
+  avatarSrc,
+  name,
+  cabinetHref,
+  logoutHref,
+  ink,
+  focusRing,
+}: {
+  isUa: boolean;
+  avatarSrc?: string;
+  name?: string;
+  cabinetHref: string;
+  logoutHref: string;
+  ink: string;
+  focusRing: string;
+}) {
   const [open, setOpen] = useState(false);
-  const [brandMode, setBrandMode] = useState<'mark' | 'wordmark'>('wordmark');
-  const menuId = useId();
-  const burgerRef = useRef<HTMLButtonElement>(null);
-  const dialogRef = useRef<HTMLDivElement>(null);
-  const previouslyFocused = useRef<HTMLElement | null>(null);
-  const isUa = locale.toUpperCase() === 'UA' || locale.toUpperCase() === 'UK';
-  const navItems = items ?? (isUa ? navItemsUk : navItemsEn);
-  const closeMenuLabel = isUa ? 'Закрити меню' : 'Close menu';
+  const root = useRef<HTMLDivElement>(null);
+  const button = useRef<HTMLButtonElement>(null);
+  const panelId = useId();
 
-  const close = useCallback(() => {
-    setOpen(false);
-  }, []);
-
-  const openMenu = useCallback(() => {
-    previouslyFocused.current = document.activeElement as HTMLElement | null;
-    setOpen(true);
-  }, []);
-
-  // Escape closes; restore focus to burger.
-  useEffect(() => {
-    if (!open) {
-      previouslyFocused.current?.focus?.();
-      return;
-    }
-
-    const onKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        e.preventDefault();
-        close();
-      }
-    };
-    document.addEventListener('keydown', onKeyDown);
-
-    // Focus first focusable in dialog.
-    const root = dialogRef.current;
-    const focusable = root?.querySelectorAll<HTMLElement>(
-      'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
-    );
-    focusable?.[0]?.focus();
-
-    return () => document.removeEventListener('keydown', onKeyDown);
-  }, [open, close]);
-
-  // Focus trap inside dialog.
-  const onDialogKeyDown = (e: ReactKeyboardEvent<HTMLDivElement>) => {
-    if (e.key !== 'Tab' || !dialogRef.current) return;
-    const focusable = Array.from(
-      dialogRef.current.querySelectorAll<HTMLElement>(
-        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
-      ),
-    ).filter((el) => !el.hasAttribute('disabled'));
-    if (!focusable.length) return;
-    const first = focusable[0];
-    const last = focusable[focusable.length - 1];
-    if (e.shiftKey && document.activeElement === first) {
-      e.preventDefault();
-      last.focus();
-    } else if (!e.shiftKey && document.activeElement === last) {
-      e.preventDefault();
-      first.focus();
-    }
-  };
-
-  // Lock body scroll while open (does not close on scroll).
   useEffect(() => {
     if (!open) return;
-    const prev = document.body.style.overflow;
-    document.body.style.overflow = 'hidden';
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key !== 'Escape') return;
+      setOpen(false);
+      button.current?.focus();
+    };
+    const onDown = (e: MouseEvent) => {
+      if (!root.current?.contains(e.target as Node)) setOpen(false);
+    };
+    document.addEventListener('keydown', onKey);
+    document.addEventListener('mousedown', onDown);
     return () => {
-      document.body.style.overflow = prev;
+      document.removeEventListener('keydown', onKey);
+      document.removeEventListener('mousedown', onDown);
     };
   }, [open]);
 
-  // Homepage: !!! while hero wordmark sits below the header; wordmark once it scrolls past.
-  // Inner pages without `[data-hero-wordmark]` always use the wordmark.
-  useEffect(() => {
-    let mutationObserver: MutationObserver | undefined;
-    let heroTarget: Element | null = null;
-
-    const syncBrandMode = () => {
-      if (!heroTarget) {
-        setBrandMode('wordmark');
-        return;
-      }
-      const { top } = heroTarget.getBoundingClientRect();
-      setBrandMode(top >= HEADER_CHROME_HEIGHT_PX ? 'mark' : 'wordmark');
-    };
-
-    const connect = () => {
-      heroTarget = document.querySelector(HERO_WORDMARK_SELECTOR);
-      if (!heroTarget) {
-        setBrandMode('wordmark');
-        return false;
-      }
-      syncBrandMode();
-      return true;
-    };
-
-    const onScroll = () => syncBrandMode();
-
-    if (!connect()) {
-      mutationObserver = new MutationObserver(() => {
-        if (connect()) mutationObserver?.disconnect();
-      });
-      mutationObserver.observe(document.body, { childList: true, subtree: true });
-    }
-
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', onScroll);
-
-    return () => {
-      mutationObserver?.disconnect();
-      window.removeEventListener('scroll', onScroll);
-      window.removeEventListener('resize', onScroll);
-    };
-  }, []);
-
-  const bg = tone === 'dark' ? 'bg-brand-black' : 'bg-brand-white';
+  const label = isUa ? 'Мій кабінет' : 'My cabinet';
+  const row = `block px-4 py-3 font-mono text-[16px] leading-[24px] text-brand-black no-underline hover:bg-brand-accent-yellow/40 ${focusRing}`;
 
   return (
-    <>
-      {/* In-flow spacer so fixed chrome does not cover page content */}
-      <div className="h-[66px] w-full shrink-0" aria-hidden />
-      <div className={`fixed inset-x-0 top-0 z-50 ${bg} ${className}`.trim()}>
-        <div className="mx-auto flex max-w-[1360px] items-center px-6 py-3 md:px-10">
-          <Header
-            locale={locale}
-            onLocaleClick={onLocaleClick}
-            tone={tone}
-            brandMode={brandMode}
-            onMenuClick={open ? close : openMenu}
-            menuButtonRef={burgerRef}
-            menuExpanded={open}
-            menuControls={menuId}
-            className="w-full"
-          />
+    <div ref={root} className="relative">
+      <button
+        ref={button}
+        type="button"
+        onClick={() => setOpen((v) => !v)}
+        aria-expanded={open}
+        aria-haspopup="true"
+        aria-controls={panelId}
+        aria-label={name ? `${label}: ${name}` : label}
+        className={`satr-dim flex min-h-11 items-center gap-2 border-0 bg-transparent p-0 ${ink} ${focusRing}`}
+      >
+        {avatarSrc ? (
+          <img src={avatarSrc} alt="" className="size-10 border-2 border-current object-cover" />
+        ) : (
+          <span
+            aria-hidden
+            className="flex size-10 items-center justify-center border-2 border-current font-mono text-[16px]"
+          >
+            {(name ?? '?').trim().charAt(0).toUpperCase()}
+          </span>
+        )}
+        <svg
+          aria-hidden
+          width="12"
+          height="8"
+          viewBox="0 0 12 8"
+          fill="none"
+          className={`transition-transform duration-150 ${open ? 'rotate-180' : ''}`}
+        >
+          <path d="M1 1.5 6 6.5 11 1.5" stroke="currentColor" strokeWidth="2" />
+        </svg>
+      </button>
+      {open ? (
+        <div
+          id={panelId}
+          className="absolute right-0 top-full z-[80] mt-2 w-[240px] border-2 border-brand-black bg-white shadow-none"
+        >
+          {name ? (
+            <p className="m-0 border-b-2 border-brand-black px-4 py-3 font-mono text-breadcrumbs text-brand-muted">
+              {name}
+            </p>
+          ) : null}
+          <a href={cabinetHref} className={row}>
+            {label}
+          </a>
+          <a href={logoutHref} className={`${row} border-t border-brand-black/20`}>
+            {isUa ? 'Вийти' : 'Log out'}
+          </a>
+        </div>
+      ) : null}
+    </div>
+  );
+}
+
+/** The wordmark in the bar: 197px wide like the reference (Noto Serif 24px), 18.84 tall at the asset's aspect. */
+export const BAR_WORDMARK_H = 18.84;
+
+/** Figma v4_Final (299:7388): the masthead stands 26px off the top and is 42
+ *  tall, the same in both states. */
+const PAD_TOP = 26;
+const ROW_H = 42;
+
+/** The sections of "Stolen museum story" (341:756), in one row — the site's
+ *  one menu, for every page. */
+export const siteNavItems = (base: string = APP_BASE): NavEntry[] => [
+  { label: 'Scientists', href: `${base}experts.html` },
+  { label: 'Societies', href: `${base}societies.html` },
+  { label: 'Research', href: `${base}whitepapers.html` },
+  { label: 'Stories', href: `${base}stories.html` },
+  { label: 'Infrastructure', href: `${base}infrastructures.html` },
+  { label: 'About', href: `${base}about.html` },
+  { label: 'Contacts', href: `${base}contacts.html` },
+];
+
+/**
+ * The bar of scienceatrisk.org's home page, with this site's sections: it
+ * stands over every block, takes that block's ground and ink, and has the same
+ * row in every state — a mark or the wordmark on the left, the seven
+ * sections in the middle, the language switch on the right.
+ *
+ * The sections and the wordmark only share a row from 1280px; below that
+ * they sit behind the menu button.
+ */
+export function SiteHeader({
+  base = APP_BASE,
+  items: itemsProp,
+  account = 'guest',
+  avatarSrc,
+  accountName,
+  loginHref: loginHrefProp,
+  cabinetHref = `${base}cabinet`,
+  logoutHref = `${base}logout`,
+  menuId: menuIdProp,
+  progress = 0,
+  ground = 'bg-transparent',
+  inverted = false,
+  locale = 'EN',
+  localeHref = `${base}uk.html`,
+  homeHref = base || './',
+  innerRef,
+  className = '',
+}: SiteHeaderProps) {
+  const id = useId();
+  const menuId = menuIdProp ?? `${id}-menu`;
+  const [menuOpen, setMenuOpen] = useState(false);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const isUa = locale.toUpperCase() === 'UA' || locale.toUpperCase() === 'UK';
+  const items = itemsProp ?? (isUa ? siteNavItemsUk(base) : siteNavItems(base));
+  const member = account === 'member';
+  const loginHref = loginHrefProp ?? (isUa ? `${base}uk/login.html` : `${base}login.html`);
+
+  const p = Math.min(1, Math.max(0, progress));
+  // The hero's own wordmark flies the whole way and is swapped for this copy
+  // in one frame at the end, where the two are the same picture in the same
+  // place.
+  const landed = p >= 1;
+  const ink = inverted ? 'text-white' : 'text-brand-black';
+  const focusRing =
+    'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-current';
+
+  useEffect(() => {
+    if (!menuOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key !== 'Escape') return;
+      setMenuOpen(false);
+      menuButtonRef.current?.focus();
+    };
+    document.addEventListener('keydown', onKey);
+    return () => document.removeEventListener('keydown', onKey);
+  }, [menuOpen]);
+
+  const current = <span className="underline underline-offset-4">{isUa ? 'УКР' : 'ENG'}</span>;
+  // The language not in use is greyed, as in "Stolen museum story" (341:765),
+  // and comes up to full ink on hover. #4d4d4d rather than the frame's #6e6e6e:
+  // the bar also stands on the blue blocks, where #6e6e6e falls under AA.
+  const other = (
+    <a
+      href={localeHref}
+      className={`satr-hover-underline no-underline transition-colors ${
+        inverted ? 'text-white/70 hover:text-white' : 'text-brand-muted hover:text-brand-black'
+      } ${focusRing}`}
+    >
+      {isUa ? 'ENG' : 'УКР'}
+    </a>
+  );
+
+  return (
+    <header
+      className={`sticky top-0 transition-colors duration-300 ${
+        menuOpen ? 'z-[70]' : 'z-50'
+      } ${ground} ${ink} ${className}`.trim()}
+    >
+      <div
+        ref={innerRef}
+        className={`${wrapperClass} relative flex items-center justify-between gap-3 md:gap-6`}
+        style={{ paddingTop: PAD_TOP, height: PAD_TOP + ROW_H }}
+      >
+        {/* The mark and the wordmark share one slot, so the sections never
+            move when one gives way to the other. The slot is as wide as the
+            wordmark at every size — left at nothing below `lg`, the wordmark
+            ran on over the language switch on a phone. */}
+        <div className="relative w-[148px] shrink-0 md:w-[197px]" style={{ height: ROW_H }}>
+          <a
+            href={homeHref}
+            aria-label="Science At Risk"
+            className={`satr-dim absolute left-0 top-1/2 -translate-y-1/2 font-serif text-[28px] leading-[42px] tracking-[-0.02em] no-underline transition-opacity duration-200 ${ink} ${focusRing}`}
+            style={{ opacity: landed ? 0 : 1, pointerEvents: landed ? 'none' : undefined }}
+            tabIndex={landed ? -1 : undefined}
+            aria-hidden={landed ? true : undefined}
+          >
+            !!!
+          </a>
+          <a
+            href={homeHref}
+            aria-label="Science At Risk"
+            className={`satr-dim absolute left-0 top-1/2 block -translate-y-1/2 overflow-hidden no-underline transition-opacity duration-200 ${focusRing}`}
+            style={{ opacity: landed ? 1 : 0 }}
+            tabIndex={landed ? undefined : -1}
+            aria-hidden={landed ? undefined : true}
+          >
+            {/* Set in type, as the reference does: Noto Serif 24px, -0.36px —
+                18px on a phone, which is what leaves room on a 320px screen
+                for the language switch and the menu beside it. */}
+            <span
+              className={`block whitespace-nowrap font-serif text-[18px] font-normal leading-[18px] tracking-[-0.27px] md:text-[24px] md:leading-[24px] md:tracking-[-0.36px] ${ink}`}
+            >
+              SC!ENCE AT R!SK!
+            </span>
+          </a>
         </div>
 
-        {open ? (
-          <div
-            className="fixed inset-0 z-[60] flex justify-end"
-            role="presentation"
-          >
-            <button
-              type="button"
-              className="absolute inset-0 border-0 bg-black/40"
-              aria-label={closeMenuLabel}
-              onClick={close}
-            />
-            <div
-              ref={dialogRef}
-              id={menuId}
-              onKeyDown={onDialogKeyDown}
-              className="relative z-[61] h-full"
-            >
-              <MobileNav
-                open
-                tone={tone}
-                locale={locale}
-                items={navItems}
-                social={social}
-                onClose={close}
+        <nav aria-label={isUa ? 'Розділи' : 'Sections'} className="absolute left-1/2 hidden -translate-x-1/2 -translate-y-1/2 xl:block" style={{ top: PAD_TOP + ROW_H / 2 }}>
+          <ul className="m-0 flex list-none items-center gap-[20px] p-0 min-[1440px]:gap-[32px]">
+            {items.map((item) => (
+              <li key={item.href}>
+                <a
+                  href={item.href}
+                  className={`satr-hover-underline whitespace-nowrap font-mono text-[16px] leading-[26px] no-underline ${ink} ${focusRing}`}
+                >
+                  {item.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+
+        <div className="flex shrink-0 items-center gap-4 xl:gap-5">
+          <p className="m-0 whitespace-nowrap font-mono text-text1-mobile md:text-[18px] md:leading-[24px] md:tracking-normal">
+            {isUa ? other : current}
+            <span aria-hidden>/</span>
+            {isUa ? current : other}
+          </p>
+          {/* The way in, from `md` up. Outlined squircle, not filled: it must be easy
+              to find without outranking the sections. Below `md` it lives at
+              the foot of the menu. */}
+          <div className="hidden items-center gap-4 md:flex" data-satr-account={account}>
+            {member ? (
+              <AccountMenu
+                isUa={isUa}
+                avatarSrc={avatarSrc}
+                name={accountName}
+                cabinetHref={cabinetHref}
+                logoutHref={logoutHref}
+                ink={ink}
+                focusRing={focusRing}
               />
-            </div>
+            ) : (
+              <SquircleLink href={loginHref} inverted={inverted}>
+                {isUa ? 'Увійти' : 'Log in'}
+              </SquircleLink>
+            )}
           </div>
-        ) : null}
+          <button
+            ref={menuButtonRef}
+            type="button"
+            onClick={() => setMenuOpen((open) => !open)}
+            aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={menuOpen}
+            aria-controls={menuId}
+            data-satr-menu-button=""
+            className={`satr-dim flex min-h-11 min-w-11 items-center justify-center border-0 bg-transparent p-0 xl:hidden ${focusRing}`}
+          >
+            <img
+              src={`${base}assets/ui/hamburger-dark.svg`}
+              alt=""
+              width={30}
+              height={22}
+              className={`h-[22px] w-[30px] ${inverted ? 'brightness-0 invert' : ''}`}
+            />
+          </button>
+        </div>
       </div>
-    </>
+
+      {/* Always in the markup, hidden until opened: the static pages are this
+          component rendered to HTML, and their script finds the menu by these
+          hooks. */}
+      <div
+        id={menuId}
+        data-satr-menu=""
+        hidden={!menuOpen}
+        className="fixed inset-0 z-[60] flex justify-end xl:hidden"
+      >
+        <div
+          data-satr-menu-backdrop=""
+          className="absolute inset-0 bg-black/40"
+          aria-hidden
+          onClick={() => setMenuOpen(false)}
+        />
+        <div className="relative h-full">
+          <MobileNav
+            items={items}
+            tone={inverted ? 'dark' : 'light'}
+            locale={isUa ? 'UA' : 'EN'}
+            account={account}
+            loginHref={loginHref}
+            cabinetHref={cabinetHref}
+            logoutHref={logoutHref}
+            onClose={() => {
+              setMenuOpen(false);
+              menuButtonRef.current?.focus();
+            }}
+          />
+        </div>
+      </div>
+    </header>
   );
 }
 

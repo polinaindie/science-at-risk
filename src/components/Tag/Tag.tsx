@@ -78,7 +78,17 @@ export function Tag(props: TagProps) {
   }
 
   if (as === 'a') {
-    const { href, ...linkProps } = props as TagAsLink;
+    const {
+      href,
+      children: _c,
+      count: _n,
+      circle: _o,
+      variant: _v,
+      appearance: _a,
+      className: _cl,
+      as: _as,
+      ...linkProps
+    } = props as TagAsLink;
     return (
       <>
         <a ref={squircle.ref} href={href} className={classes} style={squircle.style} {...linkProps}>
@@ -89,7 +99,17 @@ export function Tag(props: TagProps) {
     );
   }
 
-  const { type = 'button', ...buttonProps } = props as TagAsButton;
+  const {
+    type = 'button',
+    children: _c,
+    count: _n,
+    circle: _o,
+    variant: _v,
+    appearance: _a,
+    className: _cl,
+    as: _as,
+    ...buttonProps
+  } = props as TagAsButton;
   return (
     <>
       <button

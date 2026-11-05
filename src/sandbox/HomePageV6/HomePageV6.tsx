@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState, type ReactNode } from 'react';
-import { SiteHeaderV6, type SiteHeaderV6Props } from '@/sandbox/SiteHeaderV6';
+import { SiteHeader, type SiteHeaderProps } from '@/components/SiteHeader';
 import { HomeHeroV4Final, type HomeHeroV4FinalProps } from '@/sandbox/HomeHeroV4Final';
 import { HomeScientistsBlock, type HomeScientistsBlockProps } from './HomeScientistsBlock';
 import {
@@ -11,7 +11,7 @@ import {
 import { Footer, type FooterProps } from '@/components/Footer';
 
 export interface HomePageV6Props {
-  header?: SiteHeaderV6Props;
+  header?: SiteHeaderProps;
   hero?: HomeHeroV4FinalProps;
   scientists?: HomeScientistsBlockProps;
   research?: ResearchSectionProps;
@@ -20,6 +20,11 @@ export interface HomePageV6Props {
   className?: string;
 }
 
+/** The live site's pages are copied under `public/`, so they sit beside this app
+ *  wherever it is served from — `BASE_URL` is `/` locally and `/science-at-risk/`
+ *  when published. */
+const live = (path: string) => `${import.meta.env.BASE_URL}${path}`;
+
 /** The research list of scienceatrisk.org's home page, under the name the
  *  whole site now uses for it. */
 export const defaultResearchV6: ResearchSectionProps = {
@@ -27,20 +32,20 @@ export const defaultResearchV6: ResearchSectionProps = {
     title: 'Research',
     text: 'Formalized and organized experience of Ukrainian scientists in the preservation of scientific works, collections and institutions',
     linkLabel: 'Show all studies',
-    linkHref: '/research',
+    linkHref: live('whitepapers.html'),
   },
   papers: [
     {
       title: 'Impact of the War on Different Categories of Ukrainian Scholars',
       description: 'Research: Olena Kozak, Lidia Kuzemska, Yevheniia Polishchuk, Kateryna Chuyeva',
-      href: '/research/impact-of-the-war-on-different-categories-of-ukrainian-scholars',
+      href: live('whitepaper/impact-of-the-war-on-different-categories-of-ukrainian-scholars.html'),
       downloadHref: '/research/impact-of-the-war-on-different-categories-of-ukrainian-scholars.pdf',
     },
     {
       title:
         'Support Mechanisms for Researchers at Risk: Historical Development, Survey Evidence, and Policy Lessons from Wartime Ukraine',
       description: 'Research: Ilona Sviezhentseva, Igor Lyman',
-      href: '/research/support-mechanisms-for-researchers-at-risk',
+      href: live('whitepaper/support-mechanisms-for-researchers-at-risk-historical-development-survey-evidence-and-policy-lessons-from-wartimeukraine.html'),
       downloadHref: '/research/support-mechanisms-for-researchers-at-risk.pdf',
     },
     {
@@ -48,7 +53,7 @@ export const defaultResearchV6: ResearchSectionProps = {
         'Strategic priority-setting in research in times of crisis: how to optimise decision-making for societal resilience',
       description:
         'Research: Pavel Gol’din, Oleksiy Kolezhuk, Vitaliy Omelyanenko, Anna Vorontsova, Svitlana Tarasenko',
-      href: '/research/strategic-priority-setting-in-research',
+      href: live('whitepaper/strategic-priority-setting-in-research-in-times-of-crisis-how-to-optimise-decision-making-for-societal-resilience.html'),
       downloadHref: '/research/strategic-priority-setting-in-research.pdf',
     },
   ],
@@ -59,20 +64,20 @@ export const defaultInfrastructureV6: InfrastructuresSectionProps = {
     {
       title: 'Institute for Problems of Cryobiology and Cryomedicine',
       amount: '~ 500 000 UAH',
-      href: '/infrastructures/cryobiology-cryomedicine',
+      href: live('infrastructure/instytut-problem-kriobiolohii-i-kriomedytsyny.html'),
       showMetaLabels: true,
     },
     {
       title:
         'Danilevsky Institute for Endocrine Pathology Problems of the National Academy of Medical Sciences of Ukraine',
       amount: '~ 3 478 972 UAH',
-      href: '/infrastructures/danilevsky-institute',
+      href: live('infrastructure/instytut-problem-endokrynnoi-patolohii-im-vya-danylevskoho-namn-ukrainy.html'),
       showMetaLabels: true,
     },
     {
       title: 'Institute for Safety Problems of Nuclear Power Plants',
       amount: '~ 366 627 780 UAH',
-      href: '/infrastructures/nuclear-safety-institute',
+      href: live('infrastructure/instytut-problem-bezpeky-atomnykh-elektrostantsii.html'),
       showMetaLabels: true,
     },
   ],
@@ -602,7 +607,7 @@ export function HomePageV6({
 
   return (
     <div className={`bg-brand-white ${className}`.trim()}>
-      <SiteHeaderV6
+      <SiteHeader
         progress={deck ? progress : barOn ? 1 : 0}
         ground={barGround}
         inverted={inverted}

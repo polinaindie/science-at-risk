@@ -127,7 +127,7 @@ export function InfrastructuresSection({
     title: 'Infrastructure recovery',
     text: 'Scientific infrastructure damaged during the war',
     linkLabel: 'All projects',
-    linkHref: '/infrastructures',
+    linkHref: `${import.meta.env.BASE_URL}infrastructures.html`,
   },
   infoAtBottom = false,
   cards = [],

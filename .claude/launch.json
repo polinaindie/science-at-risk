@@ -39,6 +39,16 @@
       ],
       "port": 4173,
       "autoPort": true
+    },
+    {
+      "name": "live-site",
+      "runtimeExecutable": "sh",
+      "runtimeArgs": [
+        "-c",
+        "python3 -m http.server \"$PORT\" --directory live-site"
+      ],
+      "port": 8124,
+      "autoPort": true
     }
   ]
 }

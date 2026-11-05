@@ -6,41 +6,24 @@ const meta = {
   component: SiteHeader,
   tags: ['autodocs'],
   parameters: { layout: 'fullscreen' },
+  args: { progress: 1 },
 } satisfies Meta<typeof SiteHeader>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const StickyOnLongPage: Story = {
-  args: { locale: 'UA', tone: 'light' },
-  render: (args) => (
-    <div className="min-h-[200vh] bg-brand-white">
-      <SiteHeader {...args} />
-      <main className="mx-auto max-w-[1360px] px-6 py-10 md:px-10">
-        <h1 className="font-serif text-h1-desktop">Довга сторінка</h1>
-        <p className="mt-4 font-ukraine text-text2-desktop font-light">
-          Прокрутіть вниз — хедер лишається зверху на всьому скролі (fixed, не sticky).
-          Бургер відкриває меню; воно не закривається від скролу.
-        </p>
-        {Array.from({ length: 12 }).map((_, i) => (
-          <p key={i} className="mt-6 font-ukraine text-text2-desktop font-light">
-            Абзац {i + 1}. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          </p>
-        ))}
-      </main>
-    </div>
-  ),
-};
+/** The one menu: the same bar on every page, English or Ukrainian. */
+export const English: Story = { args: { locale: 'EN' } };
 
-export const Dark: Story = {
-  args: { locale: 'EN', tone: 'dark' },
-  render: (args) => (
-    <div className="min-h-[120vh] bg-brand-black text-white">
-      <SiteHeader {...args} />
-      <p className="p-10 font-mono">
-        Dark sticky header — open the menu (Escape closes). Panel inverts to white on dark.
-      </p>
-    </div>
-  ),
+export const Ukrainian: Story = { args: { locale: 'UA' } };
+
+/** Signed in: My cabinet and Log out take the place of Log in (see #14). */
+export const SignedInEnglish: Story = { args: { locale: 'EN', account: 'member' } };
+
+export const SignedInUkrainian: Story = { args: { locale: 'UA', account: 'member' } };
+
+/** On a dark block the bar takes white ink. */
+export const OnDark: Story = {
+  args: { ground: 'bg-brand-black', inverted: true },
+  decorators: [(Story) => <div className="bg-brand-black"><Story /></div>],
 };

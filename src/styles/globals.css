@@ -1,5 +1,7 @@
 @import './fonts.css';
 @import 'tailwindcss';
+@import '../../public/css/satr-auth.css';
+@import '../../public/css/satr-squircle.css';
 
 @theme {
   --font-serif: 'Noto Serif', serif;
@@ -63,8 +65,8 @@
   --text-text2-mobile--line-height: 22px;
   --text-text2-mobile--letter-spacing: 0;
 
-  --text-breadcrumbs: 12px;
-  --text-breadcrumbs--line-height: 16px;
+  --text-breadcrumbs: 14px;
+  --text-breadcrumbs--line-height: 20px;
   --text-breadcrumbs--letter-spacing: -0.03em;
 
   /* The live site's ladder, read off scienceatrisk.org's own stylesheet.
@@ -230,8 +232,8 @@
   .satr-float > textarea:focus + .satr-float__label,
   .satr-float > input:not(:placeholder-shown) + .satr-float__label,
   .satr-float > textarea:not(:placeholder-shown) + .satr-float__label {
-    /* 12px out of 18 — the size the reference lands these labels on. */
-    transform: translateY(-22px) scale(0.6667);
+    /* 14px out of 18 — not smaller, so the raised label stays legible (WCAG). */
+    transform: translateY(-22px) scale(0.7778);
   }
 
   .satr-float--hero > input {
@@ -271,7 +273,7 @@
 
     .satr-float--hero > input:focus + .satr-float__label,
     .satr-float--hero > input:not(:placeholder-shown) + .satr-float__label {
-      transform: translateY(-24px) scale(0.6667);
+      transform: translateY(-24px) scale(0.7778);
     }
   }
 
@@ -647,3 +649,11 @@
     }
   }
 }
+
+/* Long profile fields: the editor and the printed text share one look. */
+.rich-text p { margin: 0 0 8px; }
+.rich-text ul { margin: 0 0 8px; padding-left: 1.4em; list-style: disc; }
+.rich-text li { margin: 0 0 4px; }
+.rich-text a { text-decoration: underline; text-underline-offset: 3px; }
+.rich-text strong { font-weight: 700; }
+.rich-text > :first-child { margin-top: 8px; }

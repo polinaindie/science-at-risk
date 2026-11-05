@@ -15,7 +15,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   render: (args) => (
     <div className="bg-brand-white">
-      <SiteHeader tone="light" locale="EN" />
+      <SiteHeader progress={1} locale="EN" />
       <HomeHero {...args} />
     </div>
   ),
@@ -38,7 +38,7 @@ export const Ukrainian: Story = {
   },
   render: (args) => (
     <div className="bg-brand-white">
-      <SiteHeader tone="light" locale="UA" />
+      <SiteHeader progress={1} locale="UA" />
       <HomeHero {...args} />
     </div>
   ),

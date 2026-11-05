@@ -8,7 +8,9 @@
     "build": "vite build",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "typecheck": "tsc -b"
+    "typecheck": "tsc -b",
+    "chrome": "node scripts/build-chrome.mjs",
+    "auth": "node scripts/build-auth.mjs && node scripts/build-chrome-css.mjs && node scripts/build-chrome.mjs"
   },
   "dependencies": {
     "react": "^19.3.0",

@@ -4,6 +4,11 @@ import { Wrapper, Row, Col, fitTextClass } from '@/components/Layout';
 import { Link } from '@/components/Link';
 import { Tag } from '@/components/Tag';
 
+/** The live site's pages are copied under `public/`, so they sit beside this app
+ *  wherever it is served from — `BASE_URL` is `/` locally and `/science-at-risk/`
+ *  when published. */
+const live = (path: string) => `${import.meta.env.BASE_URL}${path}`;
+
 export interface HomeScientistsTag {
   label: string;
   count: number;
@@ -45,15 +50,15 @@ export const defaultScientistsMode: HomeScientistsMode = {
   buttonLabel: 'Find scientists',
   note: 'Mark the scientific field that interests you - find and involve Ukrainian scientists in your own projects',
   noteLinkLabel: 'To the full database of scientists',
-  noteHref: '/experts',
+  noteHref: live('experts.html'),
   tags: [
-    { label: 'Teaching', count: 101, href: '/experts?tag=teaching' },
-    { label: 'Science popularization', count: 86, href: '/experts?tag=science-popularization' },
-    { label: 'Biology', count: 57, href: '/experts?tag=biology' },
-    { label: 'Natural sciences', count: 55, href: '/experts?tag=natural-sciences' },
-    { label: 'Biochemistry', count: 41, href: '/experts?tag=biochemistry' },
+    { label: 'Teaching', count: 101, href: live('experts-tag-teaching.html') },
+    { label: 'Science popularization', count: 86, href: live('experts-tag-science-popularization.html') },
+    { label: 'Biology', count: 57, href: live('experts-tag-biology.html') },
+    { label: 'Natural sciences', count: 55, href: live('experts-tag-natural-sciences.html') },
+    { label: 'Biochemistry', count: 41, href: live('experts-tag-biochemistry.html') },
   ],
-  action: '/experts',
+  action: live('experts.html'),
 };
 
 /** The societies' fields as sartr-ui's `societiesContent` tags them, counted
@@ -64,7 +69,7 @@ export const defaultSocietiesMode: HomeScientistsMode = {
   buttonLabel: 'Find societies',
   note: 'Reach a whole community at once - scientific societies bring together the scientists of one field',
   noteLinkLabel: 'To all scientific societies',
-  noteHref: '/societies',
+  noteHref: live('societies.html'),
   tags: [
     { label: 'Medicine', count: 4, href: '/societies?tag=medicine' },
     { label: 'Ecology', count: 2, href: '/societies?tag=ecology' },
@@ -72,7 +77,7 @@ export const defaultSocietiesMode: HomeScientistsMode = {
     { label: 'Psychology', count: 2, href: '/societies?tag=psychology' },
     { label: 'Microbiology', count: 2, href: '/societies?tag=microbiology' },
   ],
-  action: '/societies',
+  action: live('societies.html'),
 };
 
 const defaultModes: Record<HomeScientistsScope, HomeScientistsMode> = {

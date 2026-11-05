@@ -1,31 +1,27 @@
-import { HomeHeroV4Final } from '@/sandbox/HomeHeroV4Final';
-import { HomePage } from '@/sandbox/HomePage';
-import { HomePageV2 } from '@/sandbox/HomePageV2';
-import { HomePageV3 } from '@/sandbox/HomePageV3';
-import { HomePageV4 } from '@/sandbox/HomePageV4';
-import { HomePageV5 } from '@/sandbox/HomePageV5';
 import { HomePageV6 } from '@/sandbox/HomePageV6';
+import { CabinetDemo, type CabinetSection } from '@/components/Cabinet';
+
+const SECTIONS: CabinetSection[] = ['profile', 'notifications', 'collaboration', 'opportunities'];
 
 /**
- * Standalone preview of the homepage drafts, outside Storybook. One draft per
- * path so they can be compared side by side; no router — this is a preview app.
+ * Standalone preview, outside Storybook. No router: the home page is what
+ * every address shows, except `/cabinet[/section]`, which opens the cabinet
+ * (the sign-in screens send people there).
  */
 export function App() {
-  // Read against the base the site is served from: on a project page every
-  // address carries a `/<repo>/` prefix, and a draft would never be found by
-  // its own name. `BASE_URL` is `/` everywhere else, so this changes nothing
-  // locally.
-  const base = import.meta.env.BASE_URL.replace(/\/+$/, '');
-  const path = window.location.pathname.replace(/\/+$/, '').slice(base.length) || '/';
-
-  if (path === '/v6') return <HomePageV6 />;
-  if (path === '/v1') return <HomePage heroVariant="search" />;
-  if (path === '/v4-final') return <HomeHeroV4Final />;
-  if (path === '/v5') return <HomePageV5 />;
-  if (path === '/v4') return <HomePageV4 />;
-  if (path === '/v3') return <HomePageV3 />;
-  if (path === '/v2') return <HomePageV2 />;
-  // The newest draft is the one the published site opens on.
+  const path = window.location.pathname.replace(import.meta.env.BASE_URL, '/');
+  const match = path.match(/^\/cabinet(?:\/([a-z]+))?\/?$/);
+  if (match) {
+    const section = SECTIONS.find((s) => s === match[1]) ?? 'profile';
+    return (
+      <CabinetDemo
+        section={section}
+        onSectionChange={(s) =>
+          window.history.pushState(null, '', `${import.meta.env.BASE_URL}cabinet/${s}`)
+        }
+      />
+    );
+  }
   return <HomePageV6 />;
 }
 

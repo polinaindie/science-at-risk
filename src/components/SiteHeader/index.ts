@@ -1,2 +1,2 @@
-export { SiteHeader } from './SiteHeader';
-export type { SiteHeaderProps } from './SiteHeader';
+export { SiteHeader, siteNavItems, BAR_WORDMARK_H } from './SiteHeader';
+export type { SiteHeaderProps, NavEntry } from './SiteHeader';
