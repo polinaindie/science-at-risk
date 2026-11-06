@@ -188,7 +188,7 @@ const en: CabinetCopy = {
     aside: { languages: 'Languages for professional communication:' },
     empty: 'Not filled in yet',
     unsent: {
-      send: 'Send for approval',
+      send: 'Send changes',
       discard: 'Discard changes',
       bar: 'Unsent changes',
       discardTitle: 'Discard unsent changes?',
@@ -381,7 +381,7 @@ const uk: CabinetCopy = {
     aside: { languages: 'Мови для професійного спілкування:' },
     empty: 'Ще не заповнено',
     unsent: {
-      send: 'Надіслати на затвердження',
+      send: 'Надіслати зміни',
       discard: 'Відкинути зміни',
       bar: 'Є ненадіслані зміни',
       discardTitle: 'Відкинути ненадіслані зміни?',
