@@ -32,6 +32,7 @@ export interface CabinetCopy {
     unsent: {
       send: string;
       discard: string;
+      bar: string;
       discardTitle: string;
       discardText: string;
       discardKeep: string;
@@ -189,6 +190,7 @@ const en: CabinetCopy = {
     unsent: {
       send: 'Send for approval',
       discard: 'Discard changes',
+      bar: 'Unsent changes',
       discardTitle: 'Discard unsent changes?',
       discardText: 'Every change you saved but did not send will be lost. The site keeps the previous version.',
       discardKeep: 'Keep them',
@@ -381,6 +383,7 @@ const uk: CabinetCopy = {
     unsent: {
       send: 'Надіслати на затвердження',
       discard: 'Відкинути зміни',
+      bar: 'Є ненадіслані зміни',
       discardTitle: 'Відкинути ненадіслані зміни?',
       discardText: 'Усі зміни, які ви зберегли, але не надіслали, буде втрачено. На сайті залишиться попередня версія.',
       discardKeep: 'Залишити',

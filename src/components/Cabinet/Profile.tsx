@@ -184,25 +184,8 @@ export function ProfileView({
     .filter((k, i, all) => k && all.indexOf(k) === i);
 
   return (
-    <div>
+    <div className={unsentNow ? 'pb-28' : undefined}>
       <StatusStrip status={unsentNow ? 'draft' : status} locale={locale} outlined>
-        {unsentNow && onSend ? (
-          <Button
-            variant="black"
-            type="button"
-            onClick={onSend}
-            disabled={sending}
-            aria-busy={sending || undefined}
-            className="self-center disabled:opacity-60"
-          >
-            {sending ? `${cabinetCopy[locale].edit.bar.sending}…` : t.unsent.send}
-          </Button>
-        ) : null}
-        {unsentNow && onDiscard ? (
-          <Link as="button" onClick={() => setDiscardOpen(true)} className="self-center text-[16px]! leading-[24px]!">
-            {t.unsent.discard}
-          </Link>
-        ) : null}
         {status === 'approved' ? (
           <Link href={siteHref} className="self-center text-[16px]! leading-[24px]!">
             {t.openOnSite}
@@ -238,6 +221,37 @@ export function ProfileView({
         >
           {t.unsent.discardText}
         </Modal>
+      ) : null}
+
+      {/* Fixed to the bottom, as on the edit page: the unsent changes and the two answers. */}
+      {unsentNow ? (
+        <div className="fixed inset-x-0 bottom-0 z-40 border-t-2 border-brand-black bg-white">
+          <div className="mx-auto flex max-w-[1744px] flex-wrap items-center justify-between gap-3 px-4 py-3 xl:px-10">
+            <p className="font-mono text-text1-mobile" aria-live="polite">
+              <span aria-hidden className="mr-2 inline-block size-3 border-2 border-brand-black bg-brand-accent-yellow align-middle" />
+              {t.unsent.bar}
+            </p>
+            <div className="flex gap-3">
+              {onDiscard ? (
+                <Button variant="bordered" type="button" onClick={() => setDiscardOpen(true)}>
+                  {t.unsent.discard}
+                </Button>
+              ) : null}
+              {onSend ? (
+                <Button
+                  variant="black"
+                  type="button"
+                  onClick={onSend}
+                  disabled={sending}
+                  aria-busy={sending || undefined}
+                  className="disabled:opacity-60"
+                >
+                  {sending ? `${cabinetCopy[locale].edit.bar.sending}…` : t.unsent.send}
+                </Button>
+              ) : null}
+            </div>
+          </div>
+        </div>
       ) : null}
 
       {/* The page of an expert on the site, piece for piece; what is added is the way to change it. */}
