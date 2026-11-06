@@ -18,6 +18,8 @@ export interface CabinetLayoutProps {
   marked?: CabinetSection[];
   /** The status chip under the menu, so it is visible from every screen. */
   status?: ProfileStatus;
+  /** Stands above the menu in the side column (on narrow screens, above the tabs): the person. */
+  aside?: ReactNode;
   hrefFor?: (section: CabinetSection) => string;
   onNavigate?: (section: CabinetSection) => void;
   children: ReactNode;
@@ -34,6 +36,7 @@ export function CabinetLayout({
   section,
   unread = 0,
   marked = [],
+  aside,
   hrefFor = (s) => `#${s}`,
   onNavigate,
   children,
@@ -47,7 +50,9 @@ export function CabinetLayout({
         <p className="m-0 font-serif text-h2-mobile md:text-h2-desktop">{name}</p>
       ) : null}
       <div className={`${name ? 'mt-6' : ''} lg:mt-10 lg:grid lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-12`}>
-      <nav aria-label={t.nav.label} className="lg:sticky lg:top-28 lg:self-start">
+      <div className={`min-w-0 lg:self-start ${aside ? '' : 'lg:sticky lg:top-28'}`}>
+      {aside ? <div className="mb-8">{aside}</div> : null}
+      <nav aria-label={t.nav.label}>
         <ul className="m-0 flex list-none gap-6 overflow-x-auto border-b-2 border-brand-line-muted p-0 md:gap-10 lg:flex-col lg:gap-1 lg:overflow-visible lg:border-b-0">
           {ORDER.map((key) => {
             const current = key === section;
@@ -89,6 +94,7 @@ export function CabinetLayout({
           })}
         </ul>
       </nav>
+      </div>
       <main className="mt-8 min-w-0 lg:mt-0">{children}</main>
       </div>
     </div>

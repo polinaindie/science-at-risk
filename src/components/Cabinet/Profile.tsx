@@ -56,6 +56,8 @@ export interface ProfileViewProps {
   sending?: boolean;
   onSend?: () => void;
   onDiscard?: () => void;
+  /** Show the photo and the name here; false when they stand elsewhere, above the menu. */
+  identity?: boolean;
   siteHref?: string;
 }
 
@@ -116,6 +118,152 @@ const ExperienceList = ({ items }: { items: ExperienceItem[] }) => (
   </ul>
 );
 
+/** "Change" beside a piece of the profile; "Add" when that piece is still empty. */
+function changeButton(
+  locale: CabinetLocale,
+  locked: boolean,
+  onEdit: ProfileViewProps['onEdit'],
+  id: SectionId,
+  part: string,
+  filled = true,
+) {
+  const t = cabinetCopy[locale].profile;
+  if (locked || !onEdit) return null;
+  return (
+    <button
+      type="button"
+      onClick={() => onEdit(id)}
+      aria-label={`${filled ? t.change : t.add}: ${part}`}
+      className="inline-flex items-center gap-1.5 border-2 border-brand-black bg-white px-2.5 py-0.5 font-mono text-[14px] leading-[20px] tracking-[-0.03em] hover:bg-brand-black hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-black"
+    >
+      <svg aria-hidden width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.6">
+        <path d="M2 14l.8-3.4L11.4 2l2.6 2.6-8.6 8.6L2 14zM9.6 3.8l2.6 2.6" />
+      </svg>
+      {filled ? t.change : t.add}
+    </button>
+  );
+}
+
+/** The photo; when it can be changed, the whole picture is the button that opens the dialog. */
+function ProfilePhoto({
+  locale,
+  profile,
+  locked,
+  onPhoto,
+}: {
+  locale: CabinetLocale;
+  profile: ProfileData;
+  locked: boolean;
+  onPhoto?: (src: string) => void;
+}) {
+  const [photoOpen, setPhotoOpen] = useState(false);
+  const photo = profile.imageSrc ? (
+    <img src={profile.imageSrc} alt="" className="aspect-square w-full object-cover" />
+  ) : (
+    <div aria-hidden className="aspect-square w-full bg-white/60" />
+  );
+  return (
+    <>
+      {locked || !onPhoto ? (
+        photo
+      ) : (
+        <button
+          type="button"
+          onClick={() => setPhotoOpen(true)}
+          className="group relative block w-full cursor-pointer p-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-black"
+        >
+          {photo}
+          <span className="absolute inset-0 flex items-end justify-center bg-brand-black/45 p-4 font-mono text-[16px] leading-[24px] text-white opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100 [@media(hover:none)]:bg-transparent [@media(hover:none)]:opacity-100">
+            <span className="[@media(hover:none)]:bg-brand-black/70 [@media(hover:none)]:px-2">
+              {cabinetCopy[locale].photoDialog.title}
+            </span>
+          </span>
+        </button>
+      )}
+      {photoOpen ? (
+        <PhotoDialog
+          locale={locale}
+          current={profile.imageSrc}
+          onClose={() => setPhotoOpen(false)}
+          onSave={(src) => {
+            setPhotoOpen(false);
+            onPhoto?.(src);
+          }}
+        />
+      ) : null}
+    </>
+  );
+}
+
+/** Name, degree and rank, institution, and the way to change them. */
+function ProfileName({
+  locale,
+  profile,
+  action,
+  compact = false,
+}: {
+  locale: CabinetLocale;
+  profile: ProfileData;
+  action: ReactNode;
+  /** Narrow column: a smaller name. */
+  compact?: boolean;
+}) {
+  const copy = cabinetCopy[locale];
+  const name = locale === 'uk' ? profile.nameUk : profile.nameEn;
+  const otherDegree = profile.degree === copy.edit.options.degree.at(-1);
+  const position = [otherDegree && profile.degreeOther ? profile.degreeOther : profile.degree, profile.rank]
+    .filter((x) => x && x !== copy.edit.options.rank[0])
+    .join(', ');
+  return (
+    <div>
+      <h1
+        className={`m-0 mb-4 font-serif tracking-[-0.02em] ${
+          compact
+            ? 'text-[28px] leading-[34px]'
+            : 'text-[32px] leading-[38px] md:text-[48px] md:leading-[54px]'
+        }`}
+      >
+        {name}
+      </h1>
+      {position ? (
+        <p className="m-0 font-ukraine text-[16px] font-medium leading-[24px] md:text-[18px] md:leading-[26px]">
+          {position.charAt(0).toUpperCase() + position.slice(1)}
+        </p>
+      ) : null}
+      {profile.institution ? (
+        <p className="m-0 mt-1 font-mono text-[14px] leading-[22px] md:text-[15px]">{profile.institution}</p>
+      ) : null}
+      <div className="mt-4">{action}</div>
+    </div>
+  );
+}
+
+/** Photo, name and position: the person, to stand above the cabinet menu. */
+export function ProfileIdentity({
+  locale,
+  profile,
+  status,
+  onEdit,
+  onPhoto,
+}: Pick<ProfileViewProps, 'locale' | 'profile' | 'status' | 'onEdit' | 'onPhoto'>) {
+  const locked = status === 'pending';
+  return (
+    <div>
+      <div className="max-w-[200px] lg:max-w-none">
+        <ProfilePhoto locale={locale} profile={profile} locked={locked} onPhoto={onPhoto} />
+      </div>
+      <div className="mt-6">
+        <ProfileName
+          locale={locale}
+          profile={profile}
+          compact
+          action={changeButton(locale, locked, onEdit, 'name', cabinetCopy[locale].profile.parts.name)}
+        />
+      </div>
+    </div>
+  );
+}
+
 /**
  * The profile as the site shows it — the same aside, the same headings, the
  * same tags — with the status on top and one button: Edit. Saved changes wait
@@ -133,38 +281,20 @@ export function ProfileView({
   sending = false,
   onSend,
   onDiscard,
+  identity = true,
   siteHref = '#',
 }: ProfileViewProps) {
-  const [photoOpen, setPhotoOpen] = useState(false);
   const [discardOpen, setDiscardOpen] = useState(false);
   const t = cabinetCopy[locale].profile;
   const pub = cabinetCopy[locale].edit.publication;
   const locked = status === 'pending';
   /** Unsent changes show in the strip as a draft, with the send and discard beside it. */
   const unsentNow = unsent && !locked;
-  /** "Change" beside a piece of the profile; "Add" when that piece is still empty. */
   const change = (id: SectionId, part: string, filled = true) =>
-    locked || !onEdit ? null : (
-      <button
-        type="button"
-        onClick={() => onEdit(id)}
-        aria-label={`${filled ? t.change : t.add}: ${part}`}
-        className="inline-flex items-center gap-1.5 border-2 border-brand-black bg-white px-2.5 py-0.5 font-mono text-[14px] leading-[20px] tracking-[-0.03em] hover:bg-brand-black hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-black"
-      >
-        <svg aria-hidden width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.6">
-          <path d="M2 14l.8-3.4L11.4 2l2.6 2.6-8.6 8.6L2 14zM9.6 3.8l2.6 2.6" />
-        </svg>
-        {filled ? t.change : t.add}
-      </button>
-    );
+    changeButton(locale, locked, onEdit, id, part, filled);
   const sec = (id: SectionId) => t.sections[
     ({ activity: 'activity', area: 'area', experience: 'experience', expert: 'expert', publications: 'publications', keywords: 'keywords', societies: 'societies', scienceProjects: 'projects', otherProjects: 'otherProjects' } as Record<string, keyof typeof t.sections>)[id]
   ].replace(/:$/, '').toLowerCase();
-  const name = locale === 'uk' ? profile.nameUk : profile.nameEn;
-  const otherDegree = profile.degree === cabinetCopy[locale].edit.options.degree.at(-1);
-  const position = [otherDegree && profile.degreeOther ? profile.degreeOther : profile.degree, profile.rank]
-    .filter((x) => x && x !== cabinetCopy[locale].edit.options.rank[0])
-    .join(', ');
   const links = [
     profile.orcid && { label: 'Orcid', href: profile.orcid },
     profile.linkedin && { label: 'LinkedIn', href: profile.linkedin },
@@ -255,45 +385,13 @@ export function ProfileView({
       ) : null}
 
       {/* The page of an expert on the site, piece for piece; what is added is the way to change it. */}
-      <div className="mt-8 grid gap-6 md:grid-cols-[5fr_7fr] lg:grid-cols-[4fr_8fr]">
+      <div className={`mt-8 grid gap-6 ${identity ? 'md:grid-cols-[5fr_7fr] lg:grid-cols-[4fr_8fr]' : ''}`}>
         <aside>
-          {(() => {
-            const photo = profile.imageSrc ? (
-              <img src={profile.imageSrc} alt="" className="aspect-square w-full object-cover" />
-            ) : (
-              <div aria-hidden className="aspect-square w-full bg-white/60" />
-            );
-            if (locked || !onPhoto) return photo;
-            return (
-              <button
-                type="button"
-                onClick={() => setPhotoOpen(true)}
-                className="group relative block w-full cursor-pointer p-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-black"
-              >
-                {photo}
-                <span className="absolute inset-0 flex items-end justify-center bg-brand-black/45 p-4 font-mono text-[16px] leading-[24px] text-white opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100 [@media(hover:none)]:bg-transparent [@media(hover:none)]:opacity-100">
-                  <span className="[@media(hover:none)]:bg-brand-black/70 [@media(hover:none)]:px-2">
-                    {cabinetCopy[locale].photoDialog.title}
-                  </span>
-                </span>
-              </button>
-            );
-          })()}
-          {photoOpen ? (
-            <PhotoDialog
-              locale={locale}
-              current={profile.imageSrc}
-              onClose={() => setPhotoOpen(false)}
-              onSave={(src) => {
-                setPhotoOpen(false);
-                onPhoto?.(src);
-              }}
-            />
-          ) : null}
+          {identity ? <ProfilePhoto locale={locale} profile={profile} locked={locked} onPhoto={onPhoto} /> : null}
 
           {profile.languages ? (
             <>
-              <h4 className="mt-8 mb-1 font-mono text-[14px] leading-[20px] tracking-[-0.03em]">
+              <h4 className={`${identity ? 'mt-8' : 'mt-0'} mb-1 font-mono text-[14px] leading-[20px] tracking-[-0.03em]`}>
                 {t.aside.languages}
               </h4>
               <p className={`m-0 ${SITE_SMALL}`}>{profile.languages}</p>
@@ -321,18 +419,7 @@ export function ProfileView({
         </aside>
 
         <div className="min-w-0">
-          <h1 className="m-0 mb-4 font-serif text-[32px] leading-[38px] tracking-[-0.02em] md:text-[48px] md:leading-[54px]">
-            {name}
-          </h1>
-          {position ? (
-            <p className="m-0 font-ukraine text-[16px] font-medium leading-[24px] md:text-[18px] md:leading-[26px]">
-              {position.charAt(0).toUpperCase() + position.slice(1)}
-            </p>
-          ) : null}
-          {profile.institution ? (
-            <p className="m-0 mt-1 font-mono text-[14px] leading-[22px] md:text-[15px]">{profile.institution}</p>
-          ) : null}
-          <div className="mt-4">{change('name', t.parts.name)}</div>
+          {identity ? <ProfileName locale={locale} profile={profile} action={change('name', t.parts.name)} /> : null}
 
           <Section title={t.sections.activity} empty={isRichEmpty(profile.activity)} action={change('activity', sec('activity'))}>
             <FormattedText text={profile.activity} className={SITE_P} />

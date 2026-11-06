@@ -2,7 +2,7 @@ export { CabinetLayout } from './CabinetLayout';
 export type { CabinetLayoutProps } from './CabinetLayout';
 export { CabinetDemo } from './CabinetDemo';
 export type { CabinetDemoProps } from './CabinetDemo';
-export { ProfileView, ProfileEditForm, SubmitConfirmModal } from './Profile';
+export { ProfileView, ProfileIdentity, ProfileEditForm, SubmitConfirmModal } from './Profile';
 export { PhotoDialog } from "./PhotoDialog";
 export type { ProfileViewProps, ProfileEditFormProps, SectionId } from './Profile';
 export { CollaborationScreen, MatchCard } from './Collaboration';

@@ -13,7 +13,7 @@ import {
 import { CabinetLayout } from './CabinetLayout';
 import { CollaborationScreen } from './Collaboration';
 import { OpportunitiesScreen } from './Opportunities';
-import { ProfileEditForm, ProfileView, SubmitConfirmModal, type SectionId } from './Profile';
+import { ProfileEditForm, ProfileIdentity, ProfileView, SubmitConfirmModal, type SectionId } from './Profile';
 import { ApprovedBanner, EmptyState, PageTitle } from './parts';
 
 export interface CabinetDemoProps {
@@ -106,6 +106,12 @@ export function CabinetDemo({
 
   const discard = () => setUnsent(null);
 
+  const editPart = (p?: SectionId) => {
+    setPart(p);
+    setEditing(true);
+  };
+  const changePhoto = (src: string) => save({ ...(unsent ?? profile), imageSrc: src });
+
   const notifications = [
     banner || status === 'approved'
       ? { id: 'a', text: t.approved.title + '. ' + t.approved.text }
@@ -137,12 +143,9 @@ export function CabinetDemo({
             locale={locale}
             profile={unsent ?? profile}
             status={status}
-            onEdit={(p) => {
-              setPart(p);
-              setEditing(true);
-            }}
+            identity={false}
+            onEdit={editPart}
             onWithdraw={() => setStatus('draft')}
-            onPhoto={(src) => save({ ...(unsent ?? profile), imageSrc: src })}
             unsent={!!unsent}
             sending={sending}
             onSend={sendAll}
@@ -258,6 +261,17 @@ export function CabinetDemo({
         section={section}
         unread={status === 'approved' ? 3 : 2}
         marked={['collaboration', 'opportunities']}
+        aside={
+          onProfilePage ? (
+            <ProfileIdentity
+              locale={locale}
+              profile={unsent ?? profile}
+              status={status}
+              onEdit={editPart}
+              onPhoto={changePhoto}
+            />
+          ) : undefined
+        }
         status={status}
         hrefFor={(s) => `${base}cabinet/${s}`}
         onNavigate={go}
