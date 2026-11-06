@@ -256,20 +256,18 @@ export function CabinetDemo({
 
       <CabinetLayout
         locale={locale}
-        name={onProfilePage ? undefined : locale === 'uk' ? profile.nameUk : profile.nameEn}
         ground={onProfilePage ? 'blue' : 'white'}
         section={section}
         unread={status === 'approved' ? 3 : 2}
         marked={['collaboration', 'opportunities']}
         aside={
-          onProfilePage ? (
-            <ProfileIdentity
-              locale={locale}
-              profile={unsent ?? profile}
-              status={status}
-              onPhoto={changePhoto}
-            />
-          ) : undefined
+          <ProfileIdentity
+            locale={locale}
+            profile={unsent ?? profile}
+            status={status}
+            // The photo is changed from the profile itself, where the unsent bar shows.
+            onPhoto={onProfilePage ? changePhoto : undefined}
+          />
         }
         status={status}
         hrefFor={(s) => `${base}cabinet/${s}`}
