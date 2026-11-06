@@ -201,12 +201,15 @@ function ProfileName({
   profile,
   action,
   compact = false,
+  show = 'both',
 }: {
   locale: CabinetLocale;
   profile: ProfileData;
-  action: ReactNode;
+  action?: ReactNode;
   /** Narrow column: a smaller name. */
   compact?: boolean;
+  /** The name alone, the position with the institution alone, or both. */
+  show?: 'name' | 'position' | 'both';
 }) {
   const copy = cabinetCopy[locale];
   const name = locale === 'uk' ? profile.nameUk : profile.nameEn;
@@ -216,36 +219,41 @@ function ProfileName({
     .join(', ');
   return (
     <div>
-      <h1
-        className={`m-0 mb-4 font-serif tracking-[-0.02em] ${
-          compact
-            ? 'text-[28px] leading-[34px]'
-            : 'text-[32px] leading-[38px] md:text-[48px] md:leading-[54px]'
-        }`}
-      >
-        {name}
-      </h1>
-      {position ? (
-        <p className="m-0 font-ukraine text-[16px] font-medium leading-[24px] md:text-[18px] md:leading-[26px]">
-          {position.charAt(0).toUpperCase() + position.slice(1)}
-        </p>
+      {show !== 'position' ? (
+        <h1
+          className={`m-0 font-serif tracking-[-0.02em] ${show === 'both' ? 'mb-4' : ''} ${
+            compact
+              ? 'text-[28px] leading-[34px]'
+              : 'text-[32px] leading-[38px] md:text-[48px] md:leading-[54px]'
+          }`}
+        >
+          {name}
+        </h1>
       ) : null}
-      {profile.institution ? (
-        <p className="m-0 mt-1 font-mono text-[14px] leading-[22px] md:text-[15px]">{profile.institution}</p>
+      {show !== 'name' ? (
+        <>
+          {position ? (
+            <p className="m-0 font-ukraine text-[16px] font-medium leading-[24px] md:text-[18px] md:leading-[26px]">
+              {position.charAt(0).toUpperCase() + position.slice(1)}
+            </p>
+          ) : null}
+          {profile.institution ? (
+            <p className="m-0 mt-1 font-mono text-[14px] leading-[22px] md:text-[15px]">{profile.institution}</p>
+          ) : null}
+          <div className="mt-4">{action}</div>
+        </>
       ) : null}
-      <div className="mt-4">{action}</div>
     </div>
   );
 }
 
-/** Photo, name and position: the person, to stand above the cabinet menu. */
+/** Photo and name: the person, to stand above the cabinet menu. Position and institution stay in the profile. */
 export function ProfileIdentity({
   locale,
   profile,
   status,
-  onEdit,
   onPhoto,
-}: Pick<ProfileViewProps, 'locale' | 'profile' | 'status' | 'onEdit' | 'onPhoto'>) {
+}: Pick<ProfileViewProps, 'locale' | 'profile' | 'status' | 'onPhoto'>) {
   const locked = status === 'pending';
   return (
     <div>
@@ -253,12 +261,7 @@ export function ProfileIdentity({
         <ProfilePhoto locale={locale} profile={profile} locked={locked} onPhoto={onPhoto} />
       </div>
       <div className="mt-6">
-        <ProfileName
-          locale={locale}
-          profile={profile}
-          compact
-          action={changeButton(locale, locked, onEdit, 'name', cabinetCopy[locale].profile.parts.name)}
-        />
+        <ProfileName locale={locale} profile={profile} compact show="name" />
       </div>
     </div>
   );
@@ -385,6 +388,11 @@ export function ProfileView({
       ) : null}
 
       {/* The page of an expert on the site, piece for piece; what is added is the way to change it. */}
+      {identity ? null : (
+        <div className="mt-8">
+          <ProfileName locale={locale} profile={profile} show="position" action={change('name', t.parts.name)} />
+        </div>
+      )}
       <div className={`mt-8 grid gap-6 ${identity ? 'md:grid-cols-[5fr_7fr] lg:grid-cols-[4fr_8fr]' : ''}`}>
         <aside>
           {identity ? <ProfilePhoto locale={locale} profile={profile} locked={locked} onPhoto={onPhoto} /> : null}
@@ -419,7 +427,9 @@ export function ProfileView({
         </aside>
 
         <div className="min-w-0">
-          {identity ? <ProfileName locale={locale} profile={profile} action={change('name', t.parts.name)} /> : null}
+          {identity ? (
+            <ProfileName locale={locale} profile={profile} action={change('name', t.parts.name)} />
+          ) : null}
 
           <Section title={t.sections.activity} empty={isRichEmpty(profile.activity)} action={change('activity', sec('activity'))}>
             <FormattedText text={profile.activity} className={SITE_P} />

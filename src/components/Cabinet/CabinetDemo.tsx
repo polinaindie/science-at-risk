@@ -267,7 +267,6 @@ export function CabinetDemo({
               locale={locale}
               profile={unsent ?? profile}
               status={status}
-              onEdit={editPart}
               onPhoto={changePhoto}
             />
           ) : undefined
