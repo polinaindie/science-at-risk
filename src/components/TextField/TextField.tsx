@@ -90,7 +90,7 @@ export function TextField({
           ref={area}
           id={fieldId}
           disabled={disabled}
-          rows={3}
+          rows={autoGrow ? 1 : 3}
           className={`min-h-[71px] pb-2 ${autoGrow ? 'resize-none overflow-hidden' : 'resize-y'} ${controlClass}`}
           {...(rest as TextareaHTMLAttributes<HTMLTextAreaElement>)}
           placeholder={placeholder}

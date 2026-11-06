@@ -6,15 +6,19 @@ import { cabinetCopy, type CabinetLocale, type CabinetSection, type ProfileStatu
 import {
   sampleCourses,
   sampleGrants,
+  sampleManyNotifications,
   sampleMatches,
+  sampleNotifications,
   sampleProfile,
+  type Notification,
   type ProfileData,
 } from './cabinetData';
 import { CabinetLayout } from './CabinetLayout';
 import { CollaborationScreen } from './Collaboration';
+import { NotificationsScreen } from './Notifications';
 import { OpportunitiesScreen } from './Opportunities';
-import { ProfileEditForm, ProfileIdentity, ProfileView, SubmitConfirmModal, type SectionId } from './Profile';
-import { ApprovedBanner, EmptyState, PageTitle } from './parts';
+import { ProfileEditForm, ProfileView, SubmitConfirmModal, type SectionId } from './Profile';
+import { ApprovedBanner } from './parts';
 
 export interface CabinetDemoProps {
   locale?: CabinetLocale;
@@ -59,6 +63,10 @@ export function CabinetDemo({
   const [noMatches, setNoMatches] = useState(false);
   const [noGrants, setNoGrants] = useState(false);
   const [failRequest, setFailRequest] = useState(false);
+  const [accepted, setAccepted] = useState(false);
+  // The copies of requests and team messages; the menu counter and the header count what is unread here.
+  const [noteSet, setNoteSet] = useState<'few' | 'many' | 'none'>('few');
+  const [notes, setNotes] = useState<Notification[]>(sampleNotifications[initialLocale]);
 
   const t = cabinetCopy[locale];
   const base = import.meta.env.BASE_URL;
@@ -67,6 +75,8 @@ export function CabinetDemo({
     setLocaleState(next);
     setProfile(sampleProfile[next]);
     setUnsent(null);
+    setNoteSet('few');
+    setNotes(sampleNotifications[next]);
     onLocaleChange?.(next);
   };
   const go = (next: CabinetSection) => {
@@ -76,6 +86,19 @@ export function CabinetDemo({
   };
 
   const changeStatus = (next: ProfileStatus) => {
+    // When the team approves the changes, a message from them lands in the notifications.
+    if (next === 'approved' && status !== 'approved')
+      setNotes((list) => [
+        {
+          id: `approved-${list.length}`,
+          kind: 'team',
+          read: false,
+          date: new Date().toISOString(),
+          subject: t.approved.title,
+          body: t.approved.text,
+        },
+        ...list,
+      ]);
     setStatus(next);
     setBanner(next === 'approved');
     if (next === 'draft') setProfile((p) => ({ ...p, extraFields: (p.extraFields + '; …').replace(/^; /, '') }));
@@ -112,11 +135,7 @@ export function CabinetDemo({
   };
   const changePhoto = (src: string) => save({ ...(unsent ?? profile), imageSrc: src });
 
-  const notifications = [
-    banner || status === 'approved'
-      ? { id: 'a', text: t.approved.title + '. ' + t.approved.text }
-      : null,
-  ].filter(Boolean) as { id: string; text: string }[];
+  const unread = notes.filter((n) => !n.read).length;
 
   // The profile as it is read is on the blue of the site's expert page; forms stay on white.
   const onProfilePage = section === 'profile' && !editing;
@@ -143,7 +162,7 @@ export function CabinetDemo({
             locale={locale}
             profile={unsent ?? profile}
             status={status}
-            identity={false}
+            onPhoto={changePhoto}
             onEdit={editPart}
             onWithdraw={() => setStatus('draft')}
             unsent={!!unsent}
@@ -156,28 +175,29 @@ export function CabinetDemo({
     }
     if (section === 'notifications')
       return (
-        <div>
-          <PageTitle title={t.notifications.title} />
-          {notifications.length ? (
-            <ul className="m-0 list-none border-t-2 border-brand-black p-0">
-              {notifications.map((n) => (
-                <li key={n.id} className="border-b-2 border-brand-black py-5 font-ukraine text-text2-desktop font-light">
-                  {n.text}
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <EmptyState title={t.notifications.empty} text="" />
-          )}
-        </div>
+        <NotificationsScreen
+          key={`${locale}${noteSet}`}
+          locale={locale}
+          notifications={notes}
+          onChange={setNotes}
+        />
       );
     if (section === 'collaboration')
       return (
         <CollaborationScreen
-          key={`${locale}${noMatches}${failRequest}`}
+          key={`${locale}${noMatches}${failRequest}${notes.length}`}
           locale={locale}
           scientists={noMatches ? [] : sampleMatches[locale]}
+          // A colleague who agreed (see the notifications) shows their email instead of the button.
+          requests={Object.fromEntries(
+            sampleMatches[locale]
+              .filter((m) =>
+                notes.some((n) => n.kind === 'accepted' && n.senderName === m.name),
+              )
+              .map((m) => [m.id, 'accepted' as const]),
+          )}
           failNext={failRequest}
+          accepted={accepted}
           onEditKeywords={() => {
             setSectionState('profile');
             setPart('keywords');
@@ -203,6 +223,7 @@ export function CabinetDemo({
 
   const chip = (on: boolean, label: string, onClick: () => void) => (
     <button
+      key={label}
       type="button"
       onClick={onClick}
       aria-pressed={on}
@@ -225,6 +246,7 @@ export function CabinetDemo({
             cabinetHref={`${base}cabinet`}
             avatarSrc={profile.imageSrc}
             accountName={locale === 'uk' ? profile.nameUk : profile.nameEn}
+            unread={unread}
           />
           <div className="h-[64px]" aria-hidden />
         </>
@@ -245,6 +267,17 @@ export function CabinetDemo({
               {chip(noMatches, locale === 'uk' ? 'Немає збігів' : 'No matches', () => setNoMatches((v) => !v))}
               {chip(noGrants, locale === 'uk' ? 'Немає грантів' : 'No grants', () => setNoGrants((v) => !v))}
               {chip(failRequest, locale === 'uk' ? 'Запит із помилкою' : 'Request fails', () => setFailRequest((v) => !v))}
+              {chip(accepted, t.collab.demoAccepted, () => setAccepted((v) => !v))}
+              {chip(noteSet === 'many', locale === 'uk' ? 'Багато сповіщень' : 'Many notifications', () => {
+                const next = noteSet === 'many' ? 'few' : 'many';
+                setNoteSet(next);
+                setNotes(next === 'many' ? sampleManyNotifications[locale] : sampleNotifications[locale]);
+              })}
+              {chip(noteSet === 'none', locale === 'uk' ? 'Немає сповіщень' : 'No notifications', () => {
+                const next = noteSet === 'none' ? 'few' : 'none';
+                setNoteSet(next);
+                setNotes(next === 'none' ? [] : sampleNotifications[locale]);
+              })}
             </span>
             <span className="flex items-center gap-2">
               {chip(locale === 'uk', 'УКР', () => setLocale('uk'))}
@@ -258,17 +291,7 @@ export function CabinetDemo({
         locale={locale}
         ground={onProfilePage ? 'blue' : 'white'}
         section={section}
-        unread={status === 'approved' ? 3 : 2}
-        marked={['collaboration', 'opportunities']}
-        aside={
-          <ProfileIdentity
-            locale={locale}
-            profile={unsent ?? profile}
-            status={status}
-            // The photo is changed from the profile itself, where the unsent bar shows.
-            onPhoto={onProfilePage ? changePhoto : undefined}
-          />
-        }
+        unread={unread}
         status={status}
         hrefFor={(s) => `${base}cabinet/${s}`}
         onNavigate={go}

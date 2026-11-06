@@ -36,12 +36,10 @@ export function GrantCard({
   locale,
   grant,
   today = new Date(),
-  onToggleSaved,
 }: {
   locale: CabinetLocale;
   grant: Grant;
   today?: Date;
-  onToggleSaved?: (id: string) => void;
 }) {
   const t = cabinetCopy[locale].opp.grants;
   const left = grant.deadline ? daysLeft(grant.deadline, today) : null;
@@ -58,14 +56,8 @@ export function GrantCard({
     <article data-soon={soon || undefined} className="border-b-2 border-brand-black py-6 md:py-8">
       <div className="flex flex-col gap-5 md:flex-row md:items-start md:justify-between">
         <div className="min-w-0 flex-1">
-          {date || grant.saved ? (
+          {date ? (
             <p className="mb-3 flex flex-wrap items-center gap-x-4 gap-y-2 font-mono text-text1-mobile">
-              {grant.saved ? (
-                <span role="status" className="inline-flex items-center gap-2 bg-brand-black px-3 py-1 text-[16px] leading-6 font-bold text-white">
-                  <span aria-hidden>✓</span>
-                  {t.saved}
-                </span>
-              ) : null}
               {date ? (
                 <span>
                   {t.deadline}: <strong className="font-bold">{date}</strong>
@@ -96,14 +88,6 @@ export function GrantCard({
               {t.open}
             </Button>
           </a>
-          <Button
-            variant="bordered"
-            aria-pressed={!!grant.saved}
-            onClick={() => onToggleSaved?.(grant.id)}
-            className="w-full justify-center"
-          >
-            {grant.saved ? t.unsave : t.save}
-          </Button>
         </div>
       </div>
     </article>
@@ -123,19 +107,12 @@ export interface OpportunitiesScreenProps {
 export function OpportunitiesScreen({
   locale,
   courses,
-  grants: initialGrants,
+  grants,
   tab: initialTab = 'courses',
   onEditKeywords,
 }: OpportunitiesScreenProps) {
   const t = cabinetCopy[locale].opp;
   const [tab, setTab] = useState<OpportunityTab>(initialTab);
-  const [grants, setGrants] = useState(initialGrants);
-  const [savedOnly, setSavedOnly] = useState(false);
-  const savedCount = grants.filter((g) => g.saved).length;
-  const shownGrants = savedOnly ? grants.filter((g) => g.saved) : grants;
-
-  const toggleSaved = (id: string) =>
-    setGrants((all) => all.map((g) => (g.id === id ? { ...g, saved: !g.saved } : g)));
 
   return (
     <div>
@@ -176,25 +153,11 @@ export function OpportunitiesScreen({
         ) : (
           <>
             {grants.length ? (
-              <>
-                <button
-                  type="button"
-                  aria-pressed={savedOnly}
-                  onClick={() => setSavedOnly((v) => !v)}
-                  className={`mb-4 border-2 border-brand-black px-3 py-1 font-mono text-text1-mobile ${savedOnly ? 'bg-brand-black text-white' : 'bg-white'}`}
-                >
-                  {t.grants.savedOnly} ({savedCount})
-                </button>
-                {shownGrants.length ? (
-                  <div className="border-t-2 border-brand-black">
-                    {shownGrants.map((g) => (
-                      <GrantCard key={g.id} locale={locale} grant={g} onToggleSaved={toggleSaved} />
-                    ))}
-                  </div>
-                ) : (
-                  <EmptyState title={t.grants.noSavedTitle} text={t.grants.noSavedText} />
-                )}
-              </>
+              <div className="border-t-2 border-brand-black">
+                {grants.map((g) => (
+                  <GrantCard key={g.id} locale={locale} grant={g} />
+                ))}
+              </div>
             ) : (
               <EmptyState
                 title={t.grants.emptyTitle}

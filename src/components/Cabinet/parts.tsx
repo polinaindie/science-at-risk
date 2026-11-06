@@ -57,14 +57,14 @@ export function StatusStrip({
     <div
       role="status"
       data-status={status}
-      className={`flex flex-col gap-3 px-5 py-4 md:flex-row md:items-center md:justify-between md:gap-6 ${STATUS_GROUND[status]} ${outlined ? 'border-2 border-brand-black' : ''}`}
+      className={`flex flex-col gap-3 px-5 py-[10px] md:flex-row md:items-center md:justify-between md:gap-6 ${STATUS_GROUND[status]} ${outlined ? 'border-2 border-brand-black' : ''}`}
     >
       <div className="flex min-w-0 items-start gap-3">
         <span className="mt-1 flex md:mt-2">
           <StatusMark status={status} />
         </span>
         <p className="font-mono text-text1-mobile md:text-text1-desktop">
-          <strong className="font-bold">{t.label}.</strong> {t.text}
+          <strong className="font-bold">{t.text ? `${t.label}.` : t.label}</strong>{t.text ? ` ${t.text}` : null}
         </p>
       </div>
       {children ? <div className="flex shrink-0 flex-wrap gap-3">{children}</div> : null}

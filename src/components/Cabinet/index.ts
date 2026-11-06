@@ -7,6 +7,8 @@ export { PhotoDialog } from "./PhotoDialog";
 export type { ProfileViewProps, ProfileEditFormProps, SectionId } from './Profile';
 export { CollaborationScreen, MatchCard } from './Collaboration';
 export type { CollaborationScreenProps, RequestState } from './Collaboration';
+export { NotificationsScreen, NotificationCard } from './Notifications';
+export type { NotificationsScreenProps } from './Notifications';
 export { OpportunitiesScreen, CourseCard, GrantCard } from './Opportunities';
 export type { OpportunitiesScreenProps, OpportunityTab } from './Opportunities';
 export { StatusBadge, StatusStrip, ApprovedBanner, Modal, EmptyState } from './parts';

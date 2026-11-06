@@ -24,7 +24,7 @@ export interface CabinetCopy {
       'activity' | 'area' | 'experience' | 'expert' | 'publications' | 'keywords' | 'projects' | 'otherProjects' | 'societies',
       string
     >;
-    aside: { languages: string };
+    aside: { languages: string; links: string };
     change: string;
     add: string;
     parts: Record<'photo' | 'links' | 'name', string>;
@@ -121,6 +121,15 @@ export interface CabinetCopy {
     noResultsTitle: string;
     noResultsText: string;
     requestSent: string;
+    accepted: string;
+    acceptedText: string;
+    demoAccepted: string;
+    writeTitle: (name: string) => string;
+    writeLabel: string;
+    writeHint: string;
+    writeEmpty: string;
+    send: string;
+    cancel: string;
     count: (n: number) => string;
   };
   opp: {
@@ -133,19 +142,45 @@ export interface CabinetCopy {
       open: string;
       deadline: string;
       field: string;
-      save: string;
-      saved: string;
-      unsave: string;
       soon: (days: number) => string;
-      savedOnly: string;
-      noSavedTitle: string;
-      noSavedText: string;
       emptyTitle: string;
       emptyText: string;
       emptyAction: string;
     };
   };
-  notifications: { title: string; empty: string };
+  notifications: {
+    title: string;
+    lede: string;
+    listLabel: string;
+    unreadMark: string;
+    unreadCount: (n: number) => string;
+    allRead: string;
+    markAllRead: string;
+    markedAllRead: string;
+    requestTitle: string;
+    requestText: string;
+    teamTitle: string;
+    teamName: string;
+    colleagueTitle: string;
+    from: string;
+    colleague: string;
+    accept: string;
+    decline: string;
+    youAccepted: string;
+    youDeclined: string;
+    writeTo: string;
+    acceptedTitle: string;
+    declinedTitle: string;
+    declinedText: string;
+    declineAsk: { title: string; text: string; keep: string; confirm: string };
+    acceptedSaid: string;
+    declinedSaid: string;
+    subject: string;
+    sender: string;
+    emptyTitle: string;
+    emptyText: string;
+    pager: { label: string; prev: string; next: string };
+  };
   demo: { label: string; status: string; section: string; state: string };
 }
 
@@ -171,7 +206,7 @@ const en: CabinetCopy = {
     },
     approved: {
       label: 'Approved',
-      text: 'The editors prepared the text on your page from this information.',
+      text: '',
     },
   },
   profile: {
@@ -185,7 +220,7 @@ const en: CabinetCopy = {
     parts: { photo: 'photo', links: 'links', name: 'name and position' },
     pendingNote: 'This is the version you sent. It is not on the site yet.',
     sections: { activity: 'Main activity:', area: 'Description of the field of scientific research:', experience: 'Professional experience:', expert: 'Expert experience:', publications: 'Key publications:', keywords: 'Keywords:', projects: 'Scientific projects:', otherProjects: 'Other projects:', societies: 'Scientific societies:' },
-    aside: { languages: 'Languages for professional communication:' },
+    aside: { languages: 'Languages for professional communication:', links: 'Links:' },
     empty: 'Not filled in yet',
     unsent: {
       send: 'Send changes',
@@ -288,22 +323,31 @@ const en: CabinetCopy = {
     close: 'Dismiss',
   },
   collab: {
-    title: 'Scientists with my tags',
-    lede: 'Colleagues who work in the same fields as you. Send a request and they will see it in their cabinet.',
+    title: 'Find a colleague to collaborate with',
+    lede: 'Colleagues who work in the same fields as you. Write first. If the colleague agrees to talk, you will see their email and can continue by email.',
     search: 'Search by name, university or topic',
     find: 'Search',
     shared: 'Fields and topics',
-    request: 'Send a request',
-    requested: 'Request sent',
+    request: 'Start a conversation',
+    requested: 'Message sent',
     retry: 'Try again',
-    errorText: 'The request was not sent. Check the connection and try again.',
+    errorText: 'The message was not sent. Check the connection and try again.',
     emptyTitle: 'No matches yet',
     emptyText:
       'No one shares your tags so far. Add more keywords to your profile, and matches will appear here.',
     emptyAction: 'Edit keywords',
     noResultsTitle: 'Nothing found',
     noResultsText: 'Try a shorter query or clear the search.',
-    requestSent: 'We told them you would like to talk.',
+    requestSent: 'The colleague sees it in their cabinet. If they agree, their email opens up here.',
+    accepted: 'The colleague agreed to talk',
+    acceptedText: 'Write by email:',
+    demoAccepted: 'Colleague accepted',
+    writeTitle: (name) => `Message to ${name}`,
+    writeLabel: 'Your message',
+    writeHint: 'Introduce yourself briefly and say how you could be useful to each other. The colleague sees it in their cabinet. If they agree to talk, their email opens up here.',
+    writeEmpty: 'Write a few words to start the conversation.',
+    send: 'Send',
+    cancel: 'Cancel',
     count: (n) => (n === 1 ? '1 scientist' : `${n} scientists`),
   },
   opp: {
@@ -319,16 +363,10 @@ const en: CabinetCopy = {
     },
     grants: {
       lede: 'Shown only to scientists they fit, and also sent to you by email.',
-      open: 'Learn about the opportunity',
+      open: 'Learn more',
       deadline: 'Deadline',
       field: 'Field',
-      save: 'Save to apply later',
-      saved: 'Saved',
-      unsave: 'Remove from saved',
       soon: (days) => (days <= 0 ? 'Deadline is today' : days === 1 ? '1 day left' : `${days} days left`),
-      savedOnly: 'Saved',
-      noSavedTitle: 'Nothing saved yet',
-      noSavedText: 'Save a call with “Save to apply later” and it will wait for you here.',
       emptyTitle: 'No grants for you yet',
       emptyText:
         'When a call matches your keywords, it appears here and in your email. Keywords are set in your profile.',
@@ -337,7 +375,42 @@ const en: CabinetCopy = {
   },
   notifications: {
     title: 'My notifications',
-    empty: 'Nothing new.',
+    lede: 'Here are requests to talk from colleagues, replies to your messages, copies of letters from visitors to the site and messages from the Science at Risk team. Letters from visitors come to your email, and that is where you answer them.',
+    listLabel: 'Notifications',
+    unreadMark: 'Unread',
+    unreadCount: (n) => `Unread: ${n}`,
+    allRead: 'Everything is read',
+    markAllRead: 'Mark all as read',
+    markedAllRead: 'All notifications are marked as read',
+    requestTitle: 'A letter for you',
+    requestText: 'Check your mailbox: the letter is already there.',
+    teamTitle: 'A message for you',
+    teamName: 'Science at Risk team',
+    colleagueTitle: 'A request to talk',
+    from: 'From',
+    colleague: 'Colleague',
+    accept: 'Accept',
+    decline: 'Decline',
+    youAccepted: 'You agreed to talk.',
+    youDeclined: 'You declined the request.',
+    writeTo: 'Write to:',
+    acceptedTitle: 'A colleague agreed to talk',
+    declinedTitle: 'A reply to your message',
+    declinedText: 'Thank you for writing. This time the conversation will not work out: right now your colleague is not able to take it up. It is nothing to do with you or your work. Other scientists on the site will be glad to talk, so please try writing to them.',
+    declineAsk: {
+      title: 'Decline the request?',
+      text: 'Are you sure you want to decline? The person will get a polite message saying that this time the conversation will not take place.',
+      keep: 'No, keep it',
+      confirm: 'Yes, decline',
+    },
+    acceptedSaid: 'You agreed to talk',
+    declinedSaid: 'The request is declined',
+    subject: 'Subject',
+    sender: 'Sender',
+    emptyTitle: 'No notifications yet',
+    emptyText:
+      'When a visitor writes to you through the site, or the team sends a message, a copy appears here. The letter also comes to your email.',
+    pager: { label: 'Notification pages', prev: 'Previous', next: 'Next' },
   },
   demo: { label: 'Preview controls', status: 'Profile status', section: 'Screen', state: 'State' },
 };
@@ -364,7 +437,7 @@ const uk: CabinetCopy = {
     },
     approved: {
       label: 'Схвалено',
-      text: 'З цієї інформації редактори підготували текст на вашій сторінці.',
+      text: '',
     },
   },
   profile: {
@@ -378,7 +451,7 @@ const uk: CabinetCopy = {
     parts: { photo: 'фото', links: 'посилання', name: 'ім’я та посада' },
     pendingNote: 'Це версія, яку ви надіслали. На сайті її ще немає.',
     sections: { activity: 'Суть основної діяльності:', area: 'Сфера наукових досліджень:', experience: 'Професійний досвід:', expert: 'Досвід експертної діяльності:', publications: 'Основні наукові публікації:', keywords: 'Ключові слова:', projects: 'Наукові проєкти:', otherProjects: 'Інші проєкти:', societies: 'Наукові товариства:' },
-    aside: { languages: 'Мови для професійного спілкування:' },
+    aside: { languages: 'Мови для професійного спілкування:', links: 'Посилання:' },
     empty: 'Ще не заповнено',
     unsent: {
       send: 'Надіслати зміни',
@@ -481,22 +554,31 @@ const uk: CabinetCopy = {
     close: 'Закрити',
   },
   collab: {
-    title: 'Науковці за моїми тегами',
-    lede: 'Колеги, які працюють у тих самих галузях, що й ви. Надішліть запит, і вони побачать його у своєму кабінеті.',
+    title: 'Знайдіть колегу для співпраці',
+    lede: 'Колеги, які працюють у тих самих галузях, що й ви. Напишіть першими. Якщо колега погодиться поспілкуватися, ви побачите пошту колеги й продовжите розмову листами.',
     search: 'Пошук за іменем, університетом або темою',
     find: 'Знайти',
     shared: 'Галузі та теми',
-    request: 'Надіслати запит',
-    requested: 'Запит надіслано',
+    request: 'Почати спілкування',
+    requested: 'Повідомлення надіслано',
     retry: 'Спробувати ще раз',
-    errorText: 'Запит не надіслано. Перевірте з’єднання й спробуйте ще раз.',
+    errorText: 'Повідомлення не надіслано. Перевірте з’єднання й спробуйте ще раз.',
     emptyTitle: 'Збігів поки немає',
     emptyText:
       'Поки ніхто не має спільних із вами тегів. Додайте більше ключових слів у профіль, і збіги з’являться тут.',
     emptyAction: 'Редагувати ключові слова',
     noResultsTitle: 'Нічого не знайдено',
     noResultsText: 'Спробуйте коротший запит або очистьте пошук.',
-    requestSent: 'Ми повідомили, що ви хочете поспілкуватися.',
+    requestSent: 'Колега побачить його у своєму кабінеті. Якщо погодиться, тут відкриється пошта колеги.',
+    accepted: 'Колега погодився поспілкуватися',
+    acceptedText: 'Написати на пошту:',
+    demoAccepted: 'Колега прийняв запит',
+    writeTitle: (name) => `Повідомлення для ${name}`,
+    writeLabel: 'Ваше повідомлення',
+    writeHint: 'Коротко представтеся й напишіть, чим ви можете бути корисні одне одному. Колега побачить його у своєму кабінеті. Якщо погодиться поспілкуватися, тут відкриється пошта колеги.',
+    writeEmpty: 'Напишіть кілька слів, щоб почати розмову.',
+    send: 'Надіслати',
+    cancel: 'Скасувати',
     count: (n) => {
       const last = n % 10;
       const tens = n % 100;
@@ -522,12 +604,9 @@ const uk: CabinetCopy = {
     },
     grants: {
       lede: 'Показуються лише тим науковцям, кому вони підходять, і дублюються розсилкою.',
-      open: 'Дізнатися про можливість',
+      open: 'Дізнатись більше',
       deadline: 'Дедлайн',
       field: 'Галузь',
-      save: 'Зберегти, щоб податися',
-      saved: 'Збережено',
-      unsave: 'Прибрати зі збережених',
       soon: (days) => {
         if (days <= 0) return 'Дедлайн сьогодні';
         const last = days % 10;
@@ -535,9 +614,6 @@ const uk: CabinetCopy = {
         const word = last === 1 && tens !== 11 ? 'день' : last >= 2 && last <= 4 && (tens < 10 || tens >= 20) ? 'дні' : 'днів';
         return `Залишилось ${days} ${word}`;
       },
-      savedOnly: 'Збережені',
-      noSavedTitle: 'Збережених поки немає',
-      noSavedText: 'Збережіть конкурс кнопкою «Зберегти, щоб податися», і він чекатиме на вас тут.',
       emptyTitle: 'Грантів для вас поки немає',
       emptyText:
         'Коли конкурс збігатиметься з вашими ключовими словами, він з’явиться тут і в розсилці. Ключові слова задаються в профілі.',
@@ -546,7 +622,42 @@ const uk: CabinetCopy = {
   },
   notifications: {
     title: 'Мої сповіщення',
-    empty: 'Нового нічого немає.',
+    lede: 'Тут запити на спілкування від колег, відповіді на ваші повідомлення, копії листів від відвідувачів сайту й повідомлення від команди Science at Risk. Листи від відвідувачів приходять на вашу пошту, і відповідати на них потрібно там.',
+    listLabel: 'Сповіщення',
+    unreadMark: 'Непрочитане',
+    unreadCount: (n) => `Непрочитаних: ${n}`,
+    allRead: 'Усе прочитано',
+    markAllRead: 'Позначити всі прочитаними',
+    markedAllRead: 'Усі сповіщення позначено прочитаними',
+    requestTitle: 'Вам лист',
+    requestText: 'Перевірте свою пошту: лист уже там.',
+    teamTitle: 'Вам повідомлення',
+    teamName: 'Команда Science at Risk',
+    colleagueTitle: 'Запит на спілкування',
+    from: 'Від',
+    colleague: 'Колега',
+    accept: 'Прийняти',
+    decline: 'Відхилити',
+    youAccepted: 'Ви погодилися поспілкуватися.',
+    youDeclined: 'Ви відхилили запит.',
+    writeTo: 'Пишіть на пошту:',
+    acceptedTitle: 'Колега погодився поспілкуватися',
+    declinedTitle: 'Відповідь на ваше повідомлення',
+    declinedText: 'Дякуємо, що ви написали. Цього разу поспілкуватися не вийде: зараз колега не має змоги. Це не про вас і не про вашу роботу. Серед інших науковців на сайті є ті, хто з радістю з вами поспілкується, тож спробуйте написати їм.',
+    declineAsk: {
+      title: 'Відхилити запит?',
+      text: 'Ви точно хочете відхилити запит? Людина отримає ввічливе повідомлення, що цього разу спілкування не відбудеться.',
+      keep: 'Ні, залишити',
+      confirm: 'Так, відхилити',
+    },
+    acceptedSaid: 'Ви погодилися поспілкуватися',
+    declinedSaid: 'Запит відхилено',
+    subject: 'Тема листа',
+    sender: 'Відправник',
+    emptyTitle: 'Сповіщень поки немає',
+    emptyText:
+      'Коли вам напише відвідувач сайту або команда, тут з’явиться копія повідомлення. Сам лист також прийде на вашу пошту.',
+    pager: { label: 'Сторінки сповіщень', prev: 'Попередня', next: 'Наступна' },
   },
   demo: { label: 'Керування переглядом', status: 'Статус профілю', section: 'Екран', state: 'Стан' },
 };

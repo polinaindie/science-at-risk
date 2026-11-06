@@ -38,6 +38,8 @@ export interface SiteHeaderProps extends AccountLinks {
   /** The member's photo and name, for the account menu. */
   avatarSrc?: string;
   accountName?: string;
+  /** Unread notifications: a count marker on the photo; hidden at 0. */
+  unread?: number;
   /** Prefix for every link and asset: the path from the page to the site's root. */
   base?: string;
   /** Overrides the sections, which are otherwise `siteNavItems(base)`. */
@@ -69,6 +71,7 @@ function AccountMenu({
   isUa,
   avatarSrc,
   name,
+  unread = 0,
   cabinetHref,
   logoutHref,
   ink,
@@ -77,6 +80,7 @@ function AccountMenu({
   isUa: boolean;
   avatarSrc?: string;
   name?: string;
+  unread?: number;
   cabinetHref: string;
   logoutHref: string;
   ink: string;
@@ -117,9 +121,10 @@ function AccountMenu({
         aria-expanded={open}
         aria-haspopup="true"
         aria-controls={panelId}
-        aria-label={name ? `${label}: ${name}` : label}
+        aria-label={`${name ? `${label}: ${name}` : label}${unread > 0 ? (isUa ? `, нових сповіщень: ${unread}` : `, ${unread} unread`) : ''}`}
         className={`satr-dim flex min-h-11 items-center gap-2 border-0 bg-transparent p-0 ${ink} ${focusRing}`}
       >
+        <span className="relative flex">
         {avatarSrc ? (
           <img src={avatarSrc} alt="" className="size-10 border-2 border-current object-cover" />
         ) : (
@@ -130,6 +135,15 @@ function AccountMenu({
             {(name ?? '?').trim().charAt(0).toUpperCase()}
           </span>
         )}
+          {unread > 0 ? (
+            <span
+              aria-hidden
+              className="absolute -right-2 -top-2 grid h-5 min-w-5 place-items-center rounded-full border border-brand-black bg-brand-accent-yellow px-1 font-mono text-[12px] leading-none text-brand-black"
+            >
+              {unread}
+            </span>
+          ) : null}
+        </span>
         <svg
           aria-hidden
           width="12"
@@ -198,6 +212,7 @@ export function SiteHeader({
   account = 'guest',
   avatarSrc,
   accountName,
+  unread,
   loginHref: loginHrefProp,
   cabinetHref = `${base}cabinet`,
   logoutHref = `${base}logout`,
@@ -330,6 +345,7 @@ export function SiteHeader({
                 isUa={isUa}
                 avatarSrc={avatarSrc}
                 name={accountName}
+                unread={unread}
                 cabinetHref={cabinetHref}
                 logoutHref={logoutHref}
                 ink={ink}

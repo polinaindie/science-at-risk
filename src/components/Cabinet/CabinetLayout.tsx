@@ -45,11 +45,11 @@ export function CabinetLayout({
 
   return (
     <div className={ground === 'blue' ? 'bg-brand-accent-blue' : ''}>
-    <div className={`${wrapperClass} py-8 lg:py-12`}>
+    <div className={`${wrapperClass} pt-8 pb-8 lg:pb-12`}>
       {name ? (
         <p className="m-0 font-serif text-h2-mobile md:text-h2-desktop">{name}</p>
       ) : null}
-      <div className={`${name ? 'mt-6' : ''} lg:mt-10 lg:grid lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-12`}>
+      <div className={`${name ? 'mt-6' : ''} ${name ? 'lg:mt-10' : ''} lg:grid lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-[42px]`}>
       <div className={`min-w-0 lg:self-start ${aside ? '' : 'lg:sticky lg:top-28'}`}>
       {aside ? <div className="mb-8">{aside}</div> : null}
       <nav aria-label={t.nav.label}>
@@ -77,8 +77,8 @@ export function CabinetLayout({
                   <span>{t.nav.items[key]}</span>
                   {count > 0 ? (
                     <span
-                      className="grid min-w-6 place-items-center rounded-full bg-brand-black px-1.5 font-mono text-breadcrumbs text-white"
-                      aria-label={`${count}`}
+                      className="grid min-w-6 place-items-center rounded-full bg-brand-accent-yellow px-1.5 font-mono text-breadcrumbs text-brand-black"
+                      aria-label={t.notifications.unreadCount(count)}
                     >
                       {count}
                     </span>

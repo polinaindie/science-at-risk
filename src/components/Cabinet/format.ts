@@ -72,3 +72,34 @@ export const isExperienceEmpty = (e: ExperienceItem) =>
   !(e.year.trim() || e.position.trim() || e.place.trim());
 
 export const isProjectEmpty = (p: Project) => !(p.title || p.description || p.role || p.url).trim();
+
+/**
+ * When a notification arrived. In the list: the time if it was today, else the
+ * day and month (with the year only when it is not this year). In the opened
+ * message: the whole date and the time.
+ */
+export function formatNotificationDate(
+  iso: string,
+  locale: 'uk' | 'en',
+  style: 'list' | 'full' = 'list',
+  now: Date = new Date(),
+): string {
+  const d = new Date(iso);
+  if (Number.isNaN(d.getTime())) return '';
+  const tag = locale === 'uk' ? 'uk-UA' : 'en-GB';
+  const time = new Intl.DateTimeFormat(tag, { hour: '2-digit', minute: '2-digit' }).format(d);
+  if (style === 'full') {
+    const day = new Intl.DateTimeFormat(tag, { day: 'numeric', month: 'long', year: 'numeric' })
+      .format(d)
+      .replace(/\s?р\.$/, '');
+    return `${day}, ${time}`;
+  }
+  if (d.toDateString() === now.toDateString()) return time;
+  return new Intl.DateTimeFormat(tag, {
+    day: 'numeric',
+    month: 'short',
+    ...(d.getFullYear() !== now.getFullYear() ? { year: 'numeric' } : {}),
+  })
+    .format(d)
+    .replace(/\s?р\.$/, '');
+}

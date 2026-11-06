@@ -4,6 +4,7 @@ import {
   CabinetDemo,
   CabinetLayout,
   CollaborationScreen,
+  NotificationsScreen,
   OpportunitiesScreen,
   ProfileEditForm,
   ProfileView,
@@ -11,7 +12,9 @@ import {
   emptyPublication,
   sampleCourses,
   sampleGrants,
+  sampleManyNotifications,
   sampleMatches,
+  sampleNotifications,
   sampleProfile,
 } from './index';
 
@@ -25,15 +28,16 @@ type Story = StoryObj<typeof meta>;
 
 const frame = (
   node: React.ReactNode,
-  section: 'profile' | 'collaboration' | 'opportunities' = 'profile',
+  section: 'profile' | 'notifications' | 'collaboration' | 'opportunities' = 'profile',
   blue = false,
+  unread = 3,
 ) => (
   <CabinetLayout
     locale="uk"
     name={blue ? undefined : sampleProfile.uk.nameUk}
     ground={blue ? 'blue' : 'white'}
     section={section}
-    unread={3}
+    unread={unread}
     marked={['collaboration', 'opportunities']}
     status="approved"
   >
@@ -155,6 +159,13 @@ export const CollaborationRequestSent: Story = {
       'collaboration',
     ),
 };
+export const CollaborationRequestAccepted: Story = {
+  render: () =>
+    frame(
+      <CollaborationScreen locale="uk" scientists={sampleMatches.uk} requests={{ m1: 'accepted' }} />,
+      'collaboration',
+    ),
+};
 export const CollaborationRequestError: Story = {
   render: () =>
     frame(
@@ -203,4 +214,57 @@ export const GrantsEmpty: Story = {
 export const CoursesEmpty: Story = {
   render: () =>
     frame(<OpportunitiesScreen locale="uk" courses={[]} grants={sampleGrants.uk} />, 'opportunities'),
+};
+
+/* Notifications: copies of visitors' requests and team messages. Reply happens by email. */
+const allRead = (list: typeof sampleNotifications.uk) => list.map((n) => ({ ...n, read: true }));
+
+export const NotificationsList: Story = {
+  render: () =>
+    frame(
+      <NotificationsScreen locale="uk" notifications={sampleNotifications.uk} />,
+      'notifications',
+    ),
+};
+export const NotificationsAllRead: Story = {
+  render: () =>
+    frame(
+      <NotificationsScreen locale="uk" notifications={allRead(sampleNotifications.uk)} />,
+      'notifications',
+      false,
+      0,
+    ),
+};
+export const NotificationsEmpty: Story = {
+  render: () =>
+    frame(<NotificationsScreen locale="uk" notifications={[]} />, 'notifications', false, 0),
+};
+/** Forty-seven: ten to a page. */
+export const NotificationsManyPages: Story = {
+  render: () =>
+    frame(
+      <NotificationsScreen locale="uk" notifications={sampleManyNotifications.uk} />,
+      'notifications',
+      false,
+      5,
+    ),
+};
+export const NotificationsLastPage: Story = {
+  render: () =>
+    frame(
+      <NotificationsScreen locale="uk" notifications={sampleManyNotifications.uk} page={5} />,
+      'notifications',
+      false,
+      5,
+    ),
+};
+export const NotificationsEnglish: Story = {
+  render: () =>
+    frame(
+      <NotificationsScreen
+        locale="en"
+        notifications={sampleNotifications.en}
+      />,
+      'notifications',
+    ),
 };

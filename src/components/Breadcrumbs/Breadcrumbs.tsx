@@ -1,6 +1,8 @@
 export interface BreadcrumbItem {
   label: string;
   href?: string;
+  /** Handled in the page instead of following the link (for example, to ask before leaving a form). */
+  onClick?: () => void;
 }
 
 export interface BreadcrumbsProps {
@@ -25,7 +27,18 @@ export function Breadcrumbs({ items, className = '' }: BreadcrumbsProps) {
               {last || !item.href ? (
                 <span aria-current={last ? 'page' : undefined}>{item.label}</span>
               ) : (
-                <a href={item.href} className="text-brand-black no-underline hover:opacity-70">
+                <a
+                  href={item.href}
+                  onClick={
+                    item.onClick
+                      ? (e) => {
+                          e.preventDefault();
+                          item.onClick?.();
+                        }
+                      : undefined
+                  }
+                  className="text-brand-black no-underline hover:opacity-70"
+                >
                   {item.label}
                 </a>
               )}

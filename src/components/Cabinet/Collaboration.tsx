@@ -5,9 +5,9 @@ import { Tag } from '@/components/Tag';
 import { TextField } from '@/components/TextField';
 import { cabinetCopy, type CabinetLocale } from './cabinetCopy';
 import type { MatchScientist } from './cabinetData';
-import { EmptyState, PageTitle } from './parts';
+import { EmptyState, Modal, PageTitle } from './parts';
 
-export type RequestState = 'idle' | 'sent' | 'error';
+export type RequestState = 'idle' | 'sent' | 'accepted' | 'error';
 
 /**
  * A row of the Scientists list, plus what this screen adds: the tags you share
@@ -68,7 +68,20 @@ export function MatchCard({
 
           {/* The request sits apart from the tags, so a button never reads as one more tag. */}
           <div className="flex shrink-0 flex-col items-start gap-3 xl:w-[240px]">
-            {request === 'sent' ? (
+            {request === 'accepted' ? (
+              /* Once the colleague agrees, the button gives way to their email, in the button's own type. */
+              <p
+                role="status"
+                className="m-0 font-mono text-[16px] leading-[24px] [overflow-wrap:anywhere]"
+              >
+                {t.acceptedText}{' '}
+                {scientist.email ? (
+                  <Link href={`mailto:${scientist.email}`} className="text-[16px]! leading-[24px]!">
+                    {scientist.email}
+                  </Link>
+                ) : null}
+              </p>
+            ) : request === 'sent' ? (
               <>
                 <span
                   role="status"
@@ -114,6 +127,8 @@ export interface CollaborationScreenProps {
   query?: string;
   /** The demo's way to make the next request fail. */
   failNext?: boolean;
+  /** The demo's way to show every sent request as accepted by the colleague. */
+  accepted?: boolean;
   onEditKeywords?: () => void;
 }
 
@@ -123,6 +138,7 @@ export function CollaborationScreen({
   requests: initialRequests = {},
   query: initialQuery = '',
   failNext = false,
+  accepted = false,
   onEditKeywords,
 }: CollaborationScreenProps) {
   const t = cabinetCopy[locale].collab;
@@ -139,9 +155,33 @@ export function CollaborationScreen({
       )
     : scientists;
 
-  const request = (id: string) => {
-    setRequests((r) => ({ ...r, [id]: fail ? 'error' : 'sent' }));
-    setFail(false);
+  // Who is being written to, and what has been typed so far.
+  const [writingTo, setWritingTo] = useState<MatchScientist | null>(null);
+  const [draft, setDraft] = useState('');
+  const [empty, setEmpty] = useState(false);
+  const [failed, setFailed] = useState(false);
+
+  const open = (id: string) => {
+    setWritingTo(scientists.find((s) => s.id === id) ?? null);
+    setDraft('');
+    setEmpty(false);
+    setFailed(false);
+  };
+  const close = () => setWritingTo(null);
+  const submit = () => {
+    if (!writingTo) return;
+    if (!draft.trim()) {
+      setEmpty(true);
+      return;
+    }
+    if (fail) {
+      // The message stays in the box, so nothing typed is lost.
+      setFailed(true);
+      setFail(false);
+      return;
+    }
+    setRequests((r) => ({ ...r, [writingTo.id]: 'sent' }));
+    close();
   };
 
   return (
@@ -194,8 +234,8 @@ export function CollaborationScreen({
                   key={s.id}
                   locale={locale}
                   scientist={s}
-                  request={requests[s.id]}
-                  onRequest={request}
+                  request={accepted && requests[s.id] === 'sent' ? 'accepted' : requests[s.id]}
+                  onRequest={open}
                 />
               ))
             ) : (
@@ -206,6 +246,47 @@ export function CollaborationScreen({
           </div>
         </>
       )}
+      {writingTo ? (
+        <Modal
+          title={t.writeTitle(writingTo.name)}
+          onClose={close}
+          actions={
+            <>
+              <Button variant="black" type="button" onClick={submit}>
+                {failed ? t.retry : t.send}
+              </Button>
+              <Button variant="white" type="button" onClick={close}>
+                {t.cancel}
+              </Button>
+            </>
+          }
+        >
+          <p className="m-0">{t.writeHint}</p>
+          <div className="mt-6">
+            <TextField
+              multiline
+              label={t.writeLabel}
+              value={draft}
+              onChange={(e) => {
+                setDraft(e.currentTarget.value);
+                setEmpty(false);
+              }}
+              aria-invalid={empty || undefined}
+              className="max-w-none"
+            />
+          </div>
+          {empty ? (
+            <p role="alert" className="mt-2 font-mono text-text1-mobile">
+              {t.writeEmpty}
+            </p>
+          ) : null}
+          {failed ? (
+            <p role="alert" className="mt-4 bg-brand-accent-yellow px-3 py-2 font-mono text-text1-mobile">
+              {t.errorText}
+            </p>
+          ) : null}
+        </Modal>
+      ) : null}
     </div>
   );
 }

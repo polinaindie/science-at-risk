@@ -16,6 +16,8 @@ export function App() {
     return (
       <CabinetDemo
         section={section}
+        // `?controls` shows the review strip: statuses, empty and many-record states, language.
+        controls={new URLSearchParams(window.location.search).has('controls')}
         onSectionChange={(s) =>
           window.history.pushState(null, '', `${import.meta.env.BASE_URL}cabinet/${s}`)
         }

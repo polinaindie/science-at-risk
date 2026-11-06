@@ -17,6 +17,8 @@ export interface PaginationProps {
   onPageChange?: (page: number) => void;
   prevLabel?: string;
   nextLabel?: string;
+  /** The nav's accessible name, for pages that are not in Ukrainian. */
+  label?: string;
   className?: string;
 }
 
@@ -29,8 +31,11 @@ export function Pagination({
   onPageChange,
   prevLabel = 'Попередня',
   nextLabel = 'Наступна',
+  label = 'Пагінація',
   className = '',
 }: PaginationProps) {
+  // The arrows live under the site's base path, not the server root.
+  const base = import.meta.env.BASE_URL;
   const pages = buildPages(currentPage, totalPages);
   const canPrev = currentPage > 1;
   const canNext = currentPage < totalPages;
@@ -38,7 +43,7 @@ export function Pagination({
   return (
     <nav
       className={`flex flex-wrap items-center gap-4 font-mono text-h3-desktop text-brand-black ${className}`.trim()}
-      aria-label="Пагінація"
+      aria-label={label}
     >
       <button
         type="button"
@@ -46,7 +51,7 @@ export function Pagination({
         disabled={!canPrev}
         onClick={() => onPageChange?.(currentPage - 1)}
       >
-        <img src="/assets/ui/arrow-prev.svg" alt="" width={9} height={13} />
+        <img src={`${base}assets/ui/arrow-prev.svg`} alt="" width={9} height={13} />
         <span>{prevLabel}</span>
       </button>
 
@@ -87,7 +92,7 @@ export function Pagination({
       >
         <span>{nextLabel}</span>
         <img
-          src="/assets/ui/arrow-next.svg"
+          src={`${base}assets/ui/arrow-next.svg`}
           alt=""
           width={9}
           height={13}

@@ -115,6 +115,8 @@ export interface MatchScientist {
   imageSrc: string;
   tags: string[];
   sharedTags: string[];
+  /** Shown to the person who wrote only once this colleague has accepted the request. */
+  email?: string;
 }
 
 export interface Course {
@@ -131,7 +133,6 @@ export interface Grant {
   href: string;
   /** ISO date, YYYY-MM-DD. */
   deadline?: string;
-  saved?: boolean;
 }
 
 const PHOTO = '/assets/mirror/expert.jpg';
@@ -241,6 +242,7 @@ export const sampleMatches: Record<CabinetLocale, MatchScientist[]> = {
   en: [
     {
       id: 'm1',
+      email: 'm1@university.example',
       name: 'Oleksandra Antoniuk',
       subtitle: 'Doctor of Sciences, Professor',
       organization: 'Taras Shevchenko National University of Kyiv',
@@ -250,6 +252,7 @@ export const sampleMatches: Record<CabinetLocale, MatchScientist[]> = {
     },
     {
       id: 'm2',
+      email: 'm2@university.example',
       name: 'Volodymyr Akhmetov',
       subtitle: 'Candidate of Sciences, Associate Professor',
       organization: 'Odesa I. I. Mechnikov National University',
@@ -259,6 +262,7 @@ export const sampleMatches: Record<CabinetLocale, MatchScientist[]> = {
     },
     {
       id: 'm3',
+      email: 'm3@university.example',
       name: 'Iryna Kovalenko',
       subtitle: 'Senior Researcher',
       organization: 'Institute of Geography, NAS of Ukraine',
@@ -270,6 +274,7 @@ export const sampleMatches: Record<CabinetLocale, MatchScientist[]> = {
   uk: [
     {
       id: 'm1',
+      email: 'm1@university.example',
       name: 'Антонюк Олександра Вікторівна',
       subtitle: 'Доктор наук, професор',
       organization: 'Київський національний університет імені Тараса Шевченка',
@@ -279,6 +284,7 @@ export const sampleMatches: Record<CabinetLocale, MatchScientist[]> = {
     },
     {
       id: 'm2',
+      email: 'm2@university.example',
       name: 'Ахметов Володимир Сабірджанович',
       subtitle: 'Кандидат наук, доцент',
       organization: 'Одеський національний університет імені І. І. Мечникова',
@@ -288,6 +294,7 @@ export const sampleMatches: Record<CabinetLocale, MatchScientist[]> = {
     },
     {
       id: 'm3',
+      email: 'm3@university.example',
       name: 'Коваленко Ірина Петрівна',
       subtitle: 'Старший дослідник',
       organization: 'Інститут географії НАН України',
@@ -362,7 +369,6 @@ export const sampleGrants: Record<CabinetLocale, Grant[]> = {
       title: 'Short research stay at a European partner university',
       field: 'Soil science',
       href: '#',
-      saved: true,
     },
     {
       id: 'g3',
@@ -385,7 +391,6 @@ export const sampleGrants: Record<CabinetLocale, Grant[]> = {
       title: 'Коротке дослідницьке стажування в європейському університеті-партнері',
       field: 'Ґрунтознавство',
       href: '#',
-      saved: true,
     },
     {
       id: 'g3',
@@ -396,3 +401,292 @@ export const sampleGrants: Record<CabinetLocale, Grant[]> = {
     },
   ],
 };
+
+/**
+ * A copy of something that reached the scientist: a visitor's request sent with
+ * the Connect button (after the team has read it and let it through), or a
+ * message from the team. The letter itself is in the scientist's mailbox; this
+ * copy is only here so it is not lost, and it cannot be answered from here.
+ */
+export type NotificationKind =
+  | 'request'
+  | 'team'
+  /** Another scientist asks to talk: the person accepts or declines right in the card. */
+  | 'colleague'
+  /** To the one who wrote: the colleague accepted, and here is the email. */
+  | 'accepted'
+  /** To the one who wrote: the colleague declined; the text is a polite one, fixed in the copy. */
+  | 'declined';
+
+export type ColleagueStatus = 'pending' | 'accepted' | 'declined';
+
+export interface Notification {
+  id: string;
+  kind: NotificationKind;
+  read: boolean;
+  /** ISO date and time the copy reached the cabinet. */
+  date: string;
+  /** The letter's subject, word for word, so the person can find it in their mailbox. */
+  subject: string;
+  /** The whole text; a new line starts a new paragraph. */
+  body: string;
+  /** Requests only. A team message has no sender fields: the team is the sender. */
+  senderName?: string;
+  senderEmail?: string;
+  /** Colleague requests only: where the person stands on it. */
+  status?: ColleagueStatus;
+  /** Colleague requests only: the line under the name. */
+  senderPosition?: string;
+}
+
+/** Times are counted back from now, so "today" and "yesterday" always have a case to show. */
+const ago = (days: number, hour = 10) => {
+  const t = new Date();
+  t.setDate(t.getDate() - Math.floor(days));
+  t.setHours(hour, (days * 37) % 60, 0, 0);
+  if (t.getTime() > Date.now()) t.setTime(Date.now() - 20 * 60 * 1000);
+  return t.toISOString();
+};
+
+export const sampleNotifications: Record<CabinetLocale, Notification[]> = {
+  en: [
+    {
+      id: 'c1',
+      kind: 'colleague',
+      read: false,
+      date: ago(0, 9),
+      subject: '',
+      status: 'pending',
+      senderName: 'Iryna Boiko',
+      senderPosition: 'Candidate of Sciences, Associate Professor',
+      senderEmail: 'iryna.boiko@university.example',
+      body: 'Hello! I study soil degradation in the Kherson region and saw that you work with remote sensing. I would like to discuss a joint article: do you have time for a short talk?',
+    },
+    {
+      id: 'c2',
+      kind: 'accepted',
+      read: false,
+      date: ago(1, 11),
+      subject: '',
+      senderName: 'Oleksandra Antoniuk',
+      senderEmail: 'm1@university.example',
+      body: '',
+    },
+    {
+      id: 'c3',
+      kind: 'declined',
+      read: true,
+      date: ago(4, 14),
+      subject: '',
+      senderName: 'Volodymyr Akhmetov',
+      body: '',
+    },
+    {
+      id: 'c4',
+      kind: 'colleague',
+      read: true,
+      date: ago(7, 16),
+      subject: '',
+      status: 'accepted',
+      senderName: 'Andrii Kovalchuk',
+      senderPosition: 'Doctor of Sciences, Professor',
+      senderEmail: 'andrii.kovalchuk@university.example',
+      body: 'Hello! I am looking for a co-author for a review of methods for mapping saline soils. Your profile fits perfectly.',
+    },
+    {
+      id: 'n1',
+      kind: 'request',
+      read: false,
+      date: ago(0),
+      subject: 'A comment for a story on soil erosion',
+      senderName: 'Olena Melnyk',
+      senderEmail: 'olena.melnyk@newsroom.example',
+      body: 'Hello! I am a journalist and I am writing about soil erosion after the dam was destroyed.\nCould you give a short comment this week? Five questions, about twenty minutes by phone or in writing, whichever suits you.\nThank you in advance.',
+    },
+    {
+      id: 'n2',
+      kind: 'team',
+      read: false,
+      date: ago(1, 15),
+      subject: 'Your changes are approved',
+      body: 'The new version of your profile is already on the site.\nIf something looks wrong there, write to us and the editors will check it.',
+    },
+    {
+      id: 'n3',
+      kind: 'request',
+      read: false,
+      date: ago(3),
+      subject:
+        'A request for an expert opinion on a method of remote monitoring of soil degradation in frontline communities of the Kherson and Mykolaiv regions for humanitarian demining planning',
+      senderName: 'Oleksandr-Kostiantyn Mykolaiovych Verkhovynskyi-Pidhirnyi-Levytskyi',
+      senderEmail:
+        'oleksandr.kostiantyn.verkhovynskyi-pidhirnyi@institute-of-environmental-and-agricultural-research.example.org',
+      body: 'Dear colleague,\nOur institute is preparing a methodological note for demining operators and we would like to ask for your expert opinion on the method of remote monitoring that you describe in your profile.\nSpecifically, we need to know whether satellite data of a ten-metre resolution is enough to tell fields that are being worked from those that are overgrown, and how the answer changes in winter.\nIf it is easier, we can send the draft first. The deadline for comments is the end of the month.\nWith respect,\nthe methods group',
+    },
+    {
+      id: 'n4',
+      kind: 'request',
+      read: true,
+      date: ago(6),
+      subject: 'Student internship',
+      senderName: 'Taras Hrytsenko',
+      senderEmail: 'taras.hrytsenko@student.example.edu.ua',
+      body: 'Good afternoon. I am a third-year student of ecology and I would like to do an internship in your group.\nI have experience with QGIS and basic Python. My CV is attached to the letter.',
+    },
+    {
+      id: 'n5',
+      kind: 'request',
+      read: true,
+      date: ago(12),
+      subject: 'Joint application for a grant',
+      senderName: 'Marta Kovalenko',
+      senderEmail: 'marta.kovalenko@foundation.example.org',
+      body: 'Hello! We are putting together an application to a European call on land restoration and we are looking for a partner from Ukraine.\nYour profile matches what we need. Can we talk for half an hour next week?',
+    },
+    {
+      id: 'n6',
+      kind: 'team',
+      read: true,
+      date: ago(20),
+      subject: 'Your profile is on its way to the site',
+      body: 'Thank you for registering. The team is reading your answers and will write when the page is ready.',
+    },
+    {
+      id: 'n7',
+      kind: 'request',
+      read: true,
+      date: ago(41),
+      subject: 'Lecture for a school science club',
+      senderName: 'Ihor Savchuk',
+      senderEmail: 'ihor.savchuk@school.example.ua',
+      body: 'Good day! We run a science club for senior pupils. Would you give a lecture online about how soil is studied? Any date in the spring suits us.',
+    },
+  ],
+  uk: [
+    {
+      id: 'c1',
+      kind: 'colleague',
+      read: false,
+      date: ago(0, 9),
+      subject: '',
+      status: 'pending',
+      senderName: 'Бойко Ірина Павлівна',
+      senderPosition: 'Кандидат наук, доцент',
+      senderEmail: 'iryna.boiko@university.example',
+      body: 'Доброго дня! Я вивчаю деградацію ґрунтів на Херсонщині й побачила, що ви працюєте з дистанційним зондуванням. Хотіла б обговорити спільну статтю: чи є у вас час на коротку розмову?',
+    },
+    {
+      id: 'c2',
+      kind: 'accepted',
+      read: false,
+      date: ago(1, 11),
+      subject: '',
+      senderName: 'Антонюк Олександра Вікторівна',
+      senderEmail: 'm1@university.example',
+      body: '',
+    },
+    {
+      id: 'c3',
+      kind: 'declined',
+      read: true,
+      date: ago(4, 14),
+      subject: '',
+      senderName: 'Ахметов Володимир Сабірджанович',
+      body: '',
+    },
+    {
+      id: 'c4',
+      kind: 'colleague',
+      read: true,
+      date: ago(7, 16),
+      subject: '',
+      status: 'accepted',
+      senderName: 'Ковальчук Андрій Миколайович',
+      senderPosition: 'Доктор наук, професор',
+      senderEmail: 'andrii.kovalchuk@university.example',
+      body: 'Вітаю! Шукаю співавтора для огляду методів картографування засолених ґрунтів. Ваш профіль підходить ідеально.',
+    },
+    {
+      id: 'n1',
+      kind: 'request',
+      read: false,
+      date: ago(0),
+      subject: 'Коментар для матеріалу про ерозію ґрунтів',
+      senderName: 'Олена Мельник',
+      senderEmail: 'olena.melnyk@newsroom.example',
+      body: 'Добрий день! Я журналістка й пишу про ерозію ґрунтів після руйнування дамби.\nЧи могли б ви дати короткий коментар цього тижня? П’ять запитань, близько двадцяти хвилин по телефону або письмово, як вам зручніше.\nЗаздалегідь дякую.',
+    },
+    {
+      id: 'n2',
+      kind: 'team',
+      read: false,
+      date: ago(1, 15),
+      subject: 'Зміни в профілі схвалено',
+      body: 'Нова версія вашого профілю вже на сайті.\nЯкщо щось там виглядає не так, напишіть нам, і редактори перевірять.',
+    },
+    {
+      id: 'n3',
+      kind: 'request',
+      read: false,
+      date: ago(3),
+      subject:
+        'Запит на експертну оцінку методики дистанційного моніторингу деградації ґрунтів у прифронтових громадах Херсонщини та Миколаївщини для планування гуманітарного розмінування',
+      senderName: 'Олександр-Костянтин Миколайович Верховинський-Підгірний-Левицький',
+      senderEmail:
+        'oleksandr.kostiantyn.verkhovynskyi-pidhirnyi@institute-of-environmental-and-agricultural-research.example.org',
+      body: 'Шановна колего, шановний колего!\nНаш інститут готує методичну записку для операторів розмінування, і ми хотіли б попросити вашу експертну оцінку методики дистанційного моніторингу, яку ви описуєте у своєму профілі.\nЗокрема, нам важливо знати, чи достатньо супутникових даних із роздільністю десять метрів, щоб відрізнити поля, які обробляють, від тих, що заросли, і як відповідь змінюється взимку.\nЯкщо так зручніше, ми можемо спершу надіслати чернетку. Строк для коментарів: кінець місяця.\nЗ повагою,\nметодична група',
+    },
+    {
+      id: 'n4',
+      kind: 'request',
+      read: true,
+      date: ago(6),
+      subject: 'Стажування для студента',
+      senderName: 'Тарас Гриценко',
+      senderEmail: 'taras.hrytsenko@student.example.edu.ua',
+      body: 'Добрий день. Я студент третього курсу, вивчаю екологію, і хотів би пройти стажування у вашій групі.\nМаю досвід роботи з QGIS і базовий Python. Резюме додаю до листа.',
+    },
+    {
+      id: 'n5',
+      kind: 'request',
+      read: true,
+      date: ago(12),
+      subject: 'Спільна грантова заявка',
+      senderName: 'Марта Коваленко',
+      senderEmail: 'marta.kovalenko@foundation.example.org',
+      body: 'Вітаю! Ми готуємо заявку на європейський конкурс із відновлення земель і шукаємо партнера з України.\nВаш профіль збігається з тим, що нам потрібно. Чи можемо ми поговорити пів години наступного тижня?',
+    },
+    {
+      id: 'n6',
+      kind: 'team',
+      read: true,
+      date: ago(20),
+      subject: 'Ваш профіль готується до публікації',
+      body: 'Дякуємо за реєстрацію. Команда читає ваші відповіді й напише, коли сторінка буде готова.',
+    },
+    {
+      id: 'n7',
+      kind: 'request',
+      read: true,
+      date: ago(41),
+      subject: 'Лекція для шкільного гуртка',
+      senderName: 'Ігор Савчук',
+      senderEmail: 'ihor.savchuk@school.example.ua',
+      body: 'Доброго дня! Ми ведемо науковий гурток для старшокласників. Чи не прочитали б ви онлайн-лекцію про те, як вивчають ґрунти? Будь-яка дата навесні нам підходить.',
+    },
+  ],
+};
+
+/** Forty-seven of them, to see paging: the same few requests under different names. */
+export const sampleManyNotifications: Record<CabinetLocale, Notification[]> = {
+  en: manyOf('en'),
+  uk: manyOf('uk'),
+};
+
+function manyOf(locale: CabinetLocale): Notification[] {
+  const base = sampleNotifications[locale];
+  return Array.from({ length: 47 }, (_, i) => {
+    const n = base[i % base.length];
+    return { ...n, id: `m${i}`, read: i > 4, date: ago(i * 1.7, 9 + (i % 8)) };
+  });
+}

@@ -130,17 +130,19 @@ function changeButton(
   const t = cabinetCopy[locale].profile;
   if (locked || !onEdit) return null;
   return (
+    <div className="mt-5 border-t border-brand-black/40 pt-3">
     <button
       type="button"
       onClick={() => onEdit(id)}
       aria-label={`${filled ? t.change : t.add}: ${part}`}
-      className="inline-flex items-center gap-1.5 border-2 border-brand-black bg-white px-2.5 py-0.5 font-mono text-[14px] leading-[20px] tracking-[-0.03em] hover:bg-brand-black hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-black"
+      className="inline-flex cursor-pointer items-center gap-1.5 border-0 bg-transparent p-0 font-mono text-[14px] leading-[20px] tracking-[-0.03em] text-brand-black underline decoration-1 underline-offset-4 hover:decoration-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-black"
     >
       <svg aria-hidden width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.6">
         <path d="M2 14l.8-3.4L11.4 2l2.6 2.6-8.6 8.6L2 14zM9.6 3.8l2.6 2.6" />
       </svg>
       {filled ? t.change : t.add}
     </button>
+    </div>
   );
 }
 
@@ -221,7 +223,7 @@ function ProfileName({
     <div>
       {show !== 'position' ? (
         <h1
-          className={`m-0 font-serif tracking-[-0.02em] ${show === 'both' ? 'mb-4' : ''} ${
+          className={`m-0 font-serif tracking-[-0.02em] ${show === 'both' ? 'mb-6' : ''} ${
             compact
               ? 'text-[28px] leading-[34px]'
               : 'text-[32px] leading-[38px] md:text-[48px] md:leading-[54px]'
@@ -238,9 +240,9 @@ function ProfileName({
             </p>
           ) : null}
           {profile.institution ? (
-            <p className="m-0 mt-1 font-mono text-[14px] leading-[22px] md:text-[15px]">{profile.institution}</p>
+            <p className="m-0 mt-1 font-ukraine text-[16px] font-light leading-[24px] md:text-[18px] md:leading-[26px]">{profile.institution}</p>
           ) : null}
-          <div className="mt-4">{action}</div>
+          <div className="mt-5">{action}</div>
         </>
       ) : null}
     </div>
@@ -393,13 +395,17 @@ export function ProfileView({
           <ProfileName locale={locale} profile={profile} show="position" action={change('name', t.parts.name)} />
         </div>
       )}
-      <div className={`mt-8 grid gap-6 ${identity ? 'md:grid-cols-[5fr_7fr] lg:grid-cols-[4fr_8fr]' : ''}`}>
+      <div className={`mt-[38px] grid gap-6 ${identity ? 'md:grid-cols-[5fr_7fr] lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-x-[42px]' : ''}`}>
         <aside>
-          {identity ? <ProfilePhoto locale={locale} profile={profile} locked={locked} onPhoto={onPhoto} /> : null}
+          {identity ? (
+            <div className="max-w-[240px]">
+              <ProfilePhoto locale={locale} profile={profile} locked={locked} onPhoto={onPhoto} />
+            </div>
+          ) : null}
 
           {profile.languages ? (
             <>
-              <h4 className={`${identity ? 'mt-8' : 'mt-0'} mb-1 font-mono text-[14px] leading-[20px] tracking-[-0.03em]`}>
+              <h4 className={`${identity ? 'mt-[35px]' : 'mt-0'} mb-3 font-serif text-[20px] font-normal leading-[26px] tracking-[-0.02em]`}>
                 {t.aside.languages}
               </h4>
               <p className={`m-0 ${SITE_SMALL}`}>{profile.languages}</p>
@@ -410,7 +416,12 @@ export function ProfileView({
           ) : null}
 
           {links.length ? (
-            <ul className="m-0 mt-6 flex list-none flex-wrap gap-x-5 gap-y-2 p-0">
+            <h4 className={`${profile.languages || identity ? 'mt-10' : 'mt-0'} mb-3 font-serif text-[20px] font-normal leading-[26px] tracking-[-0.02em]`}>
+              {t.aside.links}
+            </h4>
+          ) : null}
+          {links.length ? (
+            <ul className="m-0 flex list-none flex-wrap gap-x-5 gap-y-2 p-0">
               {links.map((l) => (
                 <li key={l.href}>
                   <a
@@ -765,15 +776,14 @@ export function ProfileEditForm({
       <TextField
         multiline
         autoGrow
-        rows={3}
         label={label + star(key)}
         value={String(draft[key])}
         onChange={(e) => set(key, e.currentTarget.value as never)}
         aria-invalid={missing(key) || undefined}
-        placeholder={hint}
         className="max-w-none"
         {...extra}
       />
+      {hint ? <p className="mt-2 mb-0 font-mono text-breadcrumbs text-brand-muted">{hint}</p> : null}
       {err(missing(key) && t.errors.required)}
     </div>
   );
@@ -958,6 +968,19 @@ export function ProfileEditForm({
 
   return (
     <form onSubmit={submit} noValidate className="pb-28">
+      <a
+        href="#profile"
+        onClick={(e) => {
+          e.preventDefault();
+          cancel();
+        }}
+        className="mb-4 inline-flex items-center gap-2 font-mono text-breadcrumbs text-brand-black no-underline hover:opacity-70 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-black"
+      >
+        <svg aria-hidden width="14" height="10" viewBox="0 0 14 10" fill="none" stroke="currentColor" strokeWidth="1.6">
+          <path d="M13 5H1.5M5.5 1 1.5 5l4 4" />
+        </svg>
+        {cabinetCopy[locale].nav.items.profile}
+      </a>
       <h1 className="font-serif text-h2-mobile md:text-h2-desktop">
         {only ? `${t.partTitle}: ${partName}` : t.title}
       </h1>
