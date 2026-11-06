@@ -68,7 +68,7 @@ export function CabinetLayout({
                     e.preventDefault();
                     onNavigate(key);
                   }}
-                  className={`-mb-0.5 flex items-center gap-3 whitespace-nowrap border-b-4 py-3 font-mono text-h3-mobile no-underline md:text-h3-desktop lg:mb-0 lg:border-b-0 lg:border-l-4 lg:py-2.5 lg:pl-4 ${
+                  className={`-mb-0.5 flex items-center gap-3 whitespace-nowrap border-b-4 py-3 font-mono text-h3-mobile no-underline md:text-h3-desktop lg:mb-0 lg:w-fit lg:py-1.5 ${
                     current
                       ? 'border-brand-black font-bold'
                       : 'border-transparent hover:border-brand-black'
