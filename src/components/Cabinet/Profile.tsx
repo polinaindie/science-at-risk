@@ -50,6 +50,12 @@ export interface ProfileViewProps {
   onWithdraw?: () => void;
   /** The new photo, from the “Change photo” dialog. */
   onPhoto?: (src: string) => void;
+  /** Saved changes that are not sent yet: the strip offers to send them all at once. */
+  unsent?: boolean;
+  /** The send is on its way. */
+  sending?: boolean;
+  onSend?: () => void;
+  onDiscard?: () => void;
   siteHref?: string;
 }
 
@@ -112,8 +118,9 @@ const ExperienceList = ({ items }: { items: ExperienceItem[] }) => (
 
 /**
  * The profile as the site shows it — the same aside, the same headings, the
- * same tags — with the status on top and one button: Edit. The phone and the
- * email are not part of it: the site never publishes them.
+ * same tags — with the status on top and one button: Edit. Saved changes wait
+ * here as unsent, so several parts can be changed before one send. The phone
+ * and the email are not part of it: the site never publishes them.
  */
 export function ProfileView({
   locale,
@@ -122,12 +129,19 @@ export function ProfileView({
   onEdit,
   onWithdraw,
   onPhoto,
+  unsent = false,
+  sending = false,
+  onSend,
+  onDiscard,
   siteHref = '#',
 }: ProfileViewProps) {
   const [photoOpen, setPhotoOpen] = useState(false);
+  const [discardOpen, setDiscardOpen] = useState(false);
   const t = cabinetCopy[locale].profile;
   const pub = cabinetCopy[locale].edit.publication;
   const locked = status === 'pending';
+  /** Unsent changes show in the strip as a draft, with the send and discard beside it. */
+  const unsentNow = unsent && !locked;
   /** "Change" beside a piece of the profile; "Add" when that piece is still empty. */
   const change = (id: SectionId, part: string, filled = true) =>
     locked || !onEdit ? null : (
@@ -171,7 +185,24 @@ export function ProfileView({
 
   return (
     <div>
-      <StatusStrip status={status} locale={locale} outlined>
+      <StatusStrip status={unsentNow ? 'draft' : status} locale={locale} outlined>
+        {unsentNow && onSend ? (
+          <Button
+            variant="black"
+            type="button"
+            onClick={onSend}
+            disabled={sending}
+            aria-busy={sending || undefined}
+            className="self-center disabled:opacity-60"
+          >
+            {sending ? `${cabinetCopy[locale].edit.bar.sending}…` : t.unsent.send}
+          </Button>
+        ) : null}
+        {unsentNow && onDiscard ? (
+          <Link as="button" onClick={() => setDiscardOpen(true)} className="self-center text-[16px]! leading-[24px]!">
+            {t.unsent.discard}
+          </Link>
+        ) : null}
         {status === 'approved' ? (
           <Link href={siteHref} className="self-center text-[16px]! leading-[24px]!">
             {t.openOnSite}
@@ -183,6 +214,31 @@ export function ProfileView({
           </Link>
         ) : null}
       </StatusStrip>
+      {discardOpen ? (
+        <Modal
+          title={t.unsent.discardTitle}
+          onClose={() => setDiscardOpen(false)}
+          actions={
+            <>
+              <Button variant="black" type="button" onClick={() => setDiscardOpen(false)}>
+                {t.unsent.discardKeep}
+              </Button>
+              <Button
+                variant="bordered"
+                type="button"
+                onClick={() => {
+                  setDiscardOpen(false);
+                  onDiscard?.();
+                }}
+              >
+                {t.unsent.discardConfirm}
+              </Button>
+            </>
+          }
+        >
+          {t.unsent.discardText}
+        </Modal>
+      ) : null}
 
       {/* The page of an expert on the site, piece for piece; what is added is the way to change it. */}
       <div className="mt-8 grid gap-6 md:grid-cols-[5fr_7fr] lg:grid-cols-[4fr_8fr]">
@@ -389,11 +445,10 @@ export interface ProfileEditFormProps {
   only?: SectionId;
   /** Show the form already failing — for stories and the design review. */
   showErrors?: boolean;
-  /** The button is busy: the request is on its way. */
-  sending?: boolean;
-  /** Open with the "leave without sending?" sheet showing. */
+  /** Open with the "leave without saving?" sheet showing. */
   confirmingCancel?: boolean;
-  onSubmit?: (next: ProfileData) => void;
+  /** Keeps the valid answers as unsent changes; nothing is sent from here. */
+  onSave?: (next: ProfileData) => void;
   onCancel?: () => void;
 }
 
@@ -436,16 +491,16 @@ const REQUIRED: (keyof ProfileData)[] = [
  * The registration form again, with the answers in it: five groups, in the
  * order the scientist first met them. Some answers are changed, some are added
  * to; the e-mail comes from the account and stays as it is. The bar fixed to
- * the bottom holds the two buttons.
+ * the bottom holds the two buttons. Save keeps the changes on the profile as
+ * unsent; they go to the team together, from the profile.
  */
 export function ProfileEditForm({
   locale,
   initial,
   only,
   showErrors = false,
-  sending = false,
   confirmingCancel = false,
-  onSubmit,
+  onSave,
   onCancel,
 }: ProfileEditFormProps) {
   const t = cabinetCopy[locale].edit;
@@ -756,7 +811,7 @@ export function ProfileEditForm({
       draft.activities.includes(t.options.activity[t.options.activity.length - 1]) ||
       (['nameEn', 'orcid', 'linkedin', 'facebook'] as const).some((k) => formatIssue(k));
     if (bad || !draft.activities[0]) return;
-    onSubmit?.({
+    onSave?.({
       ...draft,
       extraKnowledge: draft.extraKnowledge.filter((k) => (k.field === OTHER_FIELD ? k.other?.trim() : k.field || k.specialties.length)),
       publications: draft.publications.filter((p) => !isPublicationEmpty(p)),
@@ -1133,14 +1188,8 @@ export function ProfileEditForm({
             <Button variant="bordered" type="button" onClick={cancel}>
               {t.bar.cancel}
             </Button>
-            <Button
-              variant="black"
-              type="submit"
-              disabled={sending}
-              aria-busy={sending || undefined}
-              className="disabled:opacity-60"
-            >
-              {sending ? `${t.bar.sending}…` : t.bar.submit}
+            <Button variant="black" type="submit">
+              {t.bar.save}
             </Button>
           </div>
         </div>

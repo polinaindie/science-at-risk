@@ -51,6 +51,8 @@ export function CabinetDemo({
   // Which part is being changed; none means the whole form.
   const [part, setPart] = useState<SectionId | undefined>();
   const [profile, setProfile] = useState<ProfileData>(sampleProfile[initialLocale]);
+  // Saved changes that are not sent yet; several sections can add to them before one send.
+  const [unsent, setUnsent] = useState<ProfileData | null>(null);
   const [sending, setSending] = useState(false);
   const [confirmed, setConfirmed] = useState(false);
   const [banner, setBanner] = useState(false);
@@ -64,6 +66,7 @@ export function CabinetDemo({
   const setLocale = (next: CabinetLocale) => {
     setLocaleState(next);
     setProfile(sampleProfile[next]);
+    setUnsent(null);
     onLocaleChange?.(next);
   };
   const go = (next: CabinetSection) => {
@@ -78,10 +81,21 @@ export function CabinetDemo({
     if (next === 'draft') setProfile((p) => ({ ...p, extraFields: (p.extraFields + '; …').replace(/^; /, '') }));
   };
 
-  const send = (next: ProfileData) => {
+  /** Saving keeps the change on the profile as unsent: nothing reaches the team yet. */
+  const save = (next: ProfileData) => {
+    setUnsent(next);
+    setEditing(false);
+  };
+
+  /** Sends every saved change at once, so the team checks them together. */
+  const sendAll = () => {
+    const next = unsent;
+    if (!next) return;
     setSending(true);
     setTimeout(() => {
       setProfile(next);
+      // A change saved while the send was on its way stays unsent.
+      setUnsent((u) => (u === next ? null : u));
       setSending(false);
       setEditing(false);
       setStatus('pending');
@@ -89,6 +103,8 @@ export function CabinetDemo({
       setConfirmed(true);
     }, 900);
   };
+
+  const discard = () => setUnsent(null);
 
   const notifications = [
     banner || status === 'approved'
@@ -107,9 +123,8 @@ export function CabinetDemo({
             key={`${locale}${part}`}
             locale={locale}
             only={part}
-            initial={profile}
-            sending={sending}
-            onSubmit={send}
+            initial={unsent ?? profile}
+            onSave={save}
             onCancel={() => setEditing(false)}
           />
         );
@@ -120,14 +135,18 @@ export function CabinetDemo({
           ) : null}
           <ProfileView
             locale={locale}
-            profile={profile}
+            profile={unsent ?? profile}
             status={status}
             onEdit={(p) => {
               setPart(p);
               setEditing(true);
             }}
             onWithdraw={() => setStatus('draft')}
-            onPhoto={(src) => send({ ...profile, imageSrc: src })}
+            onPhoto={(src) => save({ ...(unsent ?? profile), imageSrc: src })}
+            unsent={!!unsent}
+            sending={sending}
+            onSend={sendAll}
+            onDiscard={discard}
           />
         </div>
       );

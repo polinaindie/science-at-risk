@@ -92,12 +92,35 @@ export const EditFormatErrors: Story = {
       />,
     ),
 };
-export const EditSending: Story = {
-  render: () => frame(<ProfileEditForm locale="en" initial={sampleProfile.en} sending />),
-};
 export const EditLeaveSheet: Story = {
   render: () =>
     frame(<ProfileEditForm locale="uk" initial={sampleProfile.uk} confirmingCancel />),
+};
+
+/* Saved changes that are not sent yet: one send for all of them */
+export const ProfileUnsent: Story = {
+  render: () =>
+    frame(
+      <ProfileView
+        locale="uk"
+        profile={sampleProfile.uk}
+        status="approved"
+        unsent
+        onSend={() => {}}
+        onDiscard={() => {}}
+        onPhoto={() => {}}
+      />,
+      'profile',
+      true,
+    ),
+};
+export const ProfileUnsentSending: Story = {
+  render: () =>
+    frame(
+      <ProfileView locale="uk" profile={sampleProfile.uk} status="approved" unsent sending onSend={() => {}} onDiscard={() => {}} />,
+      'profile',
+      true,
+    ),
 };
 
 /* After sending, and after approval */

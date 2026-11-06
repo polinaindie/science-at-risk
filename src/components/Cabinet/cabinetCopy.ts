@@ -29,6 +29,14 @@ export interface CabinetCopy {
     add: string;
     parts: Record<'photo' | 'links' | 'name', string>;
     empty: string;
+    unsent: {
+      send: string;
+      discard: string;
+      discardTitle: string;
+      discardText: string;
+      discardKeep: string;
+      discardConfirm: string;
+    };
   };
   edit: {
     title: string;
@@ -66,7 +74,7 @@ export interface CabinetCopy {
       addOther: string;
       open: string;
     };
-    bar: { submit: string; cancel: string; unsaved: string; saved: string; sending: string };
+    bar: { save: string; cancel: string; unsaved: string; saved: string; sending: string };
     cancelTitle: string;
     cancelText: string;
     cancelKeep: string;
@@ -178,11 +186,19 @@ const en: CabinetCopy = {
     sections: { activity: 'Main activity:', area: 'Description of the field of scientific research:', experience: 'Professional experience:', expert: 'Expert experience:', publications: 'Key publications:', keywords: 'Keywords:', projects: 'Scientific projects:', otherProjects: 'Other projects:', societies: 'Scientific societies:' },
     aside: { languages: 'Languages for professional communication:' },
     empty: 'Not filled in yet',
+    unsent: {
+      send: 'Send for approval',
+      discard: 'Discard changes',
+      discardTitle: 'Discard unsent changes?',
+      discardText: 'Every change you saved but did not send will be lost. The site keeps the previous version.',
+      discardKeep: 'Keep them',
+      discardConfirm: 'Discard',
+    },
   },
   edit: {
     title: 'Edit profile',
     partTitle: 'Change',
-    lede: 'Everything you filled in at registration is here. Change what has moved on and add what is new. Changes go to the Science At Risk team first and appear on the site only after the check.',
+    lede: 'Everything you filled in at registration is here. Change what has moved on and add what is new. Save as you go, then send all the changes together. The team checks them at once, and they appear on the site only after the check.',
     required: '* required',
     groups: { photo: 'Photo', contacts: 'Contact details', science: 'Scientific profile', publications: 'Key publications (1 to 3)', keywords: 'Keywords and activity', societies: 'Scientific societies', links: 'Contacts and links' },
     fields: { photoChange: 'Change photo', nameUk: 'Full name in Ukrainian', nameEn: 'Full name in English', email: 'Email', phone: 'Mobile phone', orcid: 'ORCID link', facebook: 'Facebook link', linkedin: 'LinkedIn link', degree: 'Scientific degree', degreeOther: 'Which degree exactly', activityOther: 'Which activity exactly', rank: 'Academic title', institution: 'Official full name of the institution', languages: 'Foreign languages', activity: 'Main activity', area: 'Field of scientific research', experience: 'Professional experience', expert: 'Expert experience', field: 'Field of knowledge and speciality', extraFields: 'Suggest another field or speciality', act1: 'Additional activity 1', act2: 'Additional activity 2', act3: 'Additional activity 3', extraActivities: 'Other activities', scienceProjects: 'Participation in scientific projects', otherProjects: 'Participation in other projects', societies: 'Scientific societies' },
@@ -223,9 +239,9 @@ const en: CabinetCopy = {
       addOther: 'Add a project',
       open: 'Open the project',
     },
-    bar: { submit: 'Send for approval', cancel: 'Cancel', unsaved: 'Unsent changes', saved: 'No changes yet', sending: 'Sending' },
-    cancelTitle: 'Leave without sending?',
-    cancelText: 'Your edits will be lost. The profile stays as it was.',
+    bar: { save: 'Save changes', cancel: 'Cancel', unsaved: 'Unsaved changes', saved: 'No changes yet', sending: 'Sending' },
+    cancelTitle: 'Leave without saving?',
+    cancelText: 'Unsaved edits will be lost. Changes you have already saved stay in your profile until you send them.',
     cancelKeep: 'Keep editing',
     cancelDiscard: 'Discard changes',
   },
@@ -362,11 +378,19 @@ const uk: CabinetCopy = {
     sections: { activity: 'Суть основної діяльності:', area: 'Сфера наукових досліджень:', experience: 'Професійний досвід:', expert: 'Досвід експертної діяльності:', publications: 'Основні наукові публікації:', keywords: 'Ключові слова:', projects: 'Наукові проєкти:', otherProjects: 'Інші проєкти:', societies: 'Наукові товариства:' },
     aside: { languages: 'Мови для професійного спілкування:' },
     empty: 'Ще не заповнено',
+    unsent: {
+      send: 'Надіслати на затвердження',
+      discard: 'Відкинути зміни',
+      discardTitle: 'Відкинути ненадіслані зміни?',
+      discardText: 'Усі зміни, які ви зберегли, але не надіслали, буде втрачено. На сайті залишиться попередня версія.',
+      discardKeep: 'Залишити',
+      discardConfirm: 'Відкинути',
+    },
   },
   edit: {
     title: 'Редагування профілю',
     partTitle: 'Редагування',
-    lede: 'Тут усе, що ви заповнили під час реєстрації. Змініть те, що застаріло, і додайте нове. Зміни спершу потрапляють до команди Science At Risk і з’являться на сайті лише після перевірки.',
+    lede: 'Тут усе, що ви заповнили під час реєстрації. Змініть те, що застаріло, і додайте нове. Зберігайте зміни по мірі роботи, а коли все буде готово, надішліть їх разом. Команда перевіряє їх одним пакетом, і на сайті вони з’являться лише після перевірки.',
     required: '* обов’язкове поле',
     groups: { photo: 'Фото', contacts: 'Контактні дані', science: 'Науковий профіль', publications: 'Основні наукові публікації (від 1 до 3)', keywords: 'Ключові слова та діяльність', societies: 'Наукові товариства', links: 'Контакти й посилання' },
     fields: { photoChange: 'Змінити фото', nameUk: 'Прізвище, ім’я, по батькові', nameEn: 'Прізвище та ім’я англійською', email: 'Адреса електронної пошти', phone: 'Номер мобільного телефону', orcid: 'Посилання на ORCID', facebook: 'Посилання на Facebook', linkedin: 'Посилання на LinkedIn', degree: 'Науковий ступінь', degreeOther: 'Вкажіть, який саме ступінь', activityOther: 'Вкажіть, яка саме діяльність', rank: 'Вчене звання', institution: 'Офіційна повна назва установи', languages: 'Іноземні мови', activity: 'Суть основної діяльності', area: 'Сфера наукових досліджень', experience: 'Професійний досвід', expert: 'Досвід експертної діяльності', field: 'Галузь знань і спеціальність', extraFields: 'Запропонувати іншу галузь або спеціальність', act1: 'Додаткова діяльність 1', act2: 'Додаткова діяльність 2', act3: 'Додаткова діяльність 3', extraActivities: 'Інша додаткова діяльність', scienceProjects: 'Участь у наукових проєктах', otherProjects: 'Участь в інших проєктах', societies: 'Наукові товариства' },
@@ -407,9 +431,9 @@ const uk: CabinetCopy = {
       addOther: 'Додати проєкт',
       open: 'Відкрити проєкт',
     },
-    bar: { submit: 'Надіслати на затвердження', cancel: 'Скасувати', unsaved: 'Є ненадіслані зміни', saved: 'Змін поки немає', sending: 'Надсилаємо' },
-    cancelTitle: 'Вийти без надсилання?',
-    cancelText: 'Правки буде втрачено. Профіль залишиться таким, яким був.',
+    bar: { save: 'Зберегти зміни', cancel: 'Скасувати', unsaved: 'Є незбережені зміни', saved: 'Змін поки немає', sending: 'Надсилаємо' },
+    cancelTitle: 'Вийти без збереження?',
+    cancelText: 'Незбережені правки буде втрачено. Вже збережені зміни залишаться в профілі, доки ви їх не надішлете.',
     cancelKeep: 'Продовжити редагування',
     cancelDiscard: 'Відкинути зміни',
   },
