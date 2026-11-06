@@ -46,8 +46,9 @@ export function CabinetLayout({
       {name ? (
         <p className="m-0 font-serif text-h2-mobile md:text-h2-desktop">{name}</p>
       ) : null}
-      <nav aria-label={t.nav.label} className={name ? 'mt-6' : undefined}>
-        <ul className="m-0 flex list-none gap-6 overflow-x-auto border-b-2 border-brand-line-muted p-0 md:gap-10">
+      <div className={`${name ? 'mt-6' : ''} lg:mt-10 lg:grid lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-12`}>
+      <nav aria-label={t.nav.label} className="lg:sticky lg:top-28 lg:self-start">
+        <ul className="m-0 flex list-none gap-6 overflow-x-auto border-b-2 border-brand-line-muted p-0 md:gap-10 lg:flex-col lg:gap-1 lg:overflow-visible lg:border-b-0">
           {ORDER.map((key) => {
             const current = key === section;
             const count = key === 'notifications' ? unread : 0;
@@ -62,7 +63,7 @@ export function CabinetLayout({
                     e.preventDefault();
                     onNavigate(key);
                   }}
-                  className={`-mb-0.5 flex items-center gap-3 whitespace-nowrap border-b-4 py-3 font-mono text-h3-mobile no-underline md:text-h3-desktop ${
+                  className={`-mb-0.5 flex items-center gap-3 whitespace-nowrap border-b-4 py-3 font-mono text-h3-mobile no-underline md:text-h3-desktop lg:mb-0 lg:border-b-0 lg:border-l-4 lg:py-2.5 lg:pl-4 ${
                     current
                       ? 'border-brand-black font-bold'
                       : 'border-transparent hover:border-brand-black'
@@ -88,7 +89,8 @@ export function CabinetLayout({
           })}
         </ul>
       </nav>
-      <main className="mt-8 min-w-0 lg:mt-10">{children}</main>
+      <main className="mt-8 min-w-0 lg:mt-0">{children}</main>
+      </div>
     </div>
     </div>
   );
