@@ -404,7 +404,7 @@ const en: CabinetCopy = {
     courses: {
       lede: 'For now these are courses on Diia.Osvita.',
       provider: 'Provider',
-      open: 'Open the course',
+      open: 'Watch',
       emptyTitle: 'No courses yet',
       emptyText: 'We will add courses here as soon as they are published.',
     },
@@ -724,7 +724,7 @@ const uk: CabinetCopy = {
     courses: {
       lede: 'Поки це курси на Дія.Освіта.',
       provider: 'Провайдер',
-      open: 'Перейти до курсу',
+      open: 'Дивитися',
       emptyTitle: 'Курсів поки немає',
       emptyText: 'Ми додамо курси сюди, щойно їх опублікують.',
     },

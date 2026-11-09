@@ -6,7 +6,7 @@ import { Link } from '@/components/Link';
 import { cabinetCopy, type CabinetLocale } from './cabinetCopy';
 import type { Notification } from './cabinetData';
 import { formatNotificationDate } from './format';
-import { EmptyState, PageTitle, Toast } from './parts';
+import { EmptyState, PageTitle, tabClass, Toast } from './parts';
 
 const WRAP = '[overflow-wrap:anywhere]';
 
@@ -357,6 +357,9 @@ export function NotificationsScreen({
 
   const [tab, setTabState] = useState<Tab>(readTab);
   const setTab = (next: Tab) => {
+    // A shorter list must not shorten the page: the browser would pull the scroll position up
+    // and the sticky side menu would jump. The screen keeps the height it has now.
+    if (top.current) top.current.style.minHeight = `${top.current.offsetHeight}px`;
     setTabState(next);
     setBatches(1);
     try {
@@ -437,16 +440,14 @@ export function NotificationsScreen({
     <div ref={top} className="scroll-mt-28">
       <PageTitle title={t.title} lede={t.lede} />
       <div className="mb-6 flex flex-wrap items-center justify-between gap-x-6 gap-y-3">
-        <div role="group" aria-label={t.tabs.label} className="flex flex-wrap gap-3">
+        <div role="group" aria-label={t.tabs.label} className="flex flex-wrap gap-x-6 md:gap-x-10">
           {tabs.map(([key, label, count]) => (
             <button
               key={key}
               type="button"
               aria-pressed={tab === key}
               onClick={() => setTab(key)}
-              className={`flex min-h-11 items-center gap-2 border-2 border-brand-black px-4 font-mono text-text1-mobile md:text-text1-desktop ${
-                tab === key ? 'bg-brand-black text-white' : 'bg-white'
-              }`}
+              className={tabClass(tab === key)}
             >
               {label}
               {key !== 'all' && count > 0 ? (

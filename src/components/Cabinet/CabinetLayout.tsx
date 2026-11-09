@@ -2,6 +2,7 @@ import type { ReactNode } from 'react';
 import { wrapperClass } from '@/components/Layout';
 import { cabinetCopy, type CabinetLocale, type CabinetSection } from './cabinetCopy';
 import type { ProfileStatus } from './cabinetCopy';
+import { tabClass } from './parts';
 
 const ORDER: CabinetSection[] = ['profile', 'notifications', 'collaboration', 'opportunities'];
 
@@ -24,6 +25,34 @@ export interface CabinetLayoutProps {
   onNavigate?: (section: CabinetSection) => void;
   logoutHref?: string;
   children: ReactNode;
+}
+
+/** One menu entry — tabs, Settings and Log out all look and behave the same. */
+function MenuLink({
+  href,
+  current = false,
+  onClick,
+  children,
+}: {
+  href: string;
+  current?: boolean;
+  onClick?: () => void;
+  children: ReactNode;
+}) {
+  return (
+    <a
+      href={href}
+      aria-current={current ? 'page' : undefined}
+      onClick={(e) => {
+        if (!onClick) return;
+        e.preventDefault();
+        onClick();
+      }}
+      className={tabClass(current)}
+    >
+      {children}
+    </a>
+  );
 }
 
 /**
@@ -55,7 +84,7 @@ export function CabinetLayout({
       <div className="min-w-0">
       {aside ? <div className="mb-8">{aside}</div> : null}
       {/* One box as tall as the screen under the header: the tabs at its top, the account links at its foot. It stays put while the cabinet scrolls and leaves, whole, when the content ends. */}
-      <div className="flex flex-col lg:sticky lg:top-[10.5rem] lg:h-[calc(100dvh-10.5rem)]">
+      <div className="flex flex-col lg:sticky lg:top-[calc(68px+2rem)] lg:h-[calc(100dvh-168px)]">
       <div className="lg:flex-1">
       <nav aria-label={t.nav.label}>
         <ul className="m-0 flex list-none gap-6 overflow-x-auto border-b-2 border-brand-line-muted p-0 md:gap-10 lg:flex-col lg:gap-1 lg:overflow-visible lg:border-b-0">
@@ -65,17 +94,10 @@ export function CabinetLayout({
             const isNew = marked.includes(key);
             return (
               <li key={key} className="shrink-0">
-                <a
+                <MenuLink
                   href={hrefFor(key)}
-                  aria-current={current ? 'page' : undefined}
-                  onClick={(e) => {
-                    if (!onNavigate) return;
-                    e.preventDefault();
-                    onNavigate(key);
-                  }}
-                  className={`flex items-center gap-3 whitespace-nowrap py-3 font-mono text-h3-mobile no-underline [--satr-ul:2px] md:text-h3-desktop lg:py-2.5 ${
-                    current ? 'satr-underlined font-bold' : 'satr-hover-underline'
-                  }`}
+                  current={current}
+                  onClick={onNavigate && (() => onNavigate(key))}
                 >
                   <span>{t.nav.items[key]}</span>
                   {count > 0 ? (
@@ -91,7 +113,7 @@ export function CabinetLayout({
                       {t.nav.new}
                     </span>
                   ) : null}
-                </a>
+                </MenuLink>
               </li>
             );
           })}
@@ -101,28 +123,16 @@ export function CabinetLayout({
       {/* Account links sit at the foot of the side column, at the bottom edge of the screen. */}
       <ul className="m-0 mt-4 flex list-none flex-col gap-1 p-0 lg:mb-8">
         <li>
-          <a
+          <MenuLink
             href={hrefFor('settings')}
-            aria-current={section === 'settings' ? 'page' : undefined}
-            onClick={(e) => {
-              if (!onNavigate) return;
-              e.preventDefault();
-              onNavigate('settings');
-            }}
-            className={`flex w-fit items-center whitespace-nowrap py-2.5 font-mono text-h3-mobile no-underline [--satr-ul:2px] md:text-h3-desktop lg:self-start ${
-              section === 'settings' ? 'satr-underlined font-bold' : 'satr-hover-underline'
-            }`}
+            current={section === 'settings'}
+            onClick={onNavigate && (() => onNavigate('settings'))}
           >
             {t.nav.items.settings}
-          </a>
+          </MenuLink>
         </li>
         <li>
-          <a
-            href={logoutHref}
-            className="satr-hover-underline flex w-fit items-center whitespace-nowrap py-2.5 font-mono text-h3-mobile text-brand-black no-underline [--satr-ul:2px] md:text-h3-desktop"
-          >
-            {t.nav.logout}
-          </a>
+          <MenuLink href={logoutHref}>{t.nav.logout}</MenuLink>
         </li>
       </ul>
       </div>

@@ -249,3 +249,9 @@ export function PageTitle({ title, lede }: { title: string; lede?: string }) {
 }
 
 export { Button };
+
+/** The look of every cabinet tab: the side menu and the notification filter share it. */
+export const tabClass = (current: boolean) =>
+  `flex w-fit items-center gap-3 whitespace-nowrap py-3 font-mono text-h3-mobile text-brand-black no-underline [--satr-ul:2px] md:text-h3-desktop lg:py-2.5 ${
+    current ? 'satr-underlined font-bold' : 'satr-hover-underline'
+  }`;
