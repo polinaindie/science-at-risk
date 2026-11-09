@@ -4,11 +4,37 @@
  * own translation files (same contract as `authCopy`).
  */
 export type CabinetLocale = 'en' | 'uk';
-export type CabinetSection = 'profile' | 'notifications' | 'collaboration' | 'opportunities';
+export type CabinetSection = 'profile' | 'notifications' | 'collaboration' | 'opportunities' | 'settings';
 export type ProfileStatus = 'draft' | 'pending' | 'approved';
 
+export interface SettingsCopy {
+  title: string;
+  lede: string;
+  email: { title: string; text: string; change: string; newLabel: string; send: string; cancel: string; sent: (e: string) => string; invalid: string };
+  password: {
+    title: string;
+    text: string;
+    current: string;
+    next: string;
+    repeat: string;
+    show: string;
+    hide: string;
+    rulesTitle: string;
+    rules: { length: string; letter: string; digit: string };
+    submit: string;
+    saved: string;
+    failed: string;
+    busy: string;
+    close: string;
+    errors: { current: string; wrong: string; same: string; weak: string; mismatch: string };
+  };
+  letters: { title: string; text: string; items: { requests: string; team: string; opportunities: string }; saved: string };
+  language: { title: string; text: string; uk: string; en: string };
+  delete: { title: string; text: string; action: string; askTitle: string; askText: string; confirm: string; keep: string; doneTitle: string; doneText: string };
+}
+
 export interface CabinetCopy {
-  nav: { label: string; items: Record<CabinetSection, string>; new: string };
+  nav: { label: string; items: Record<CabinetSection, string>; new: string; logout: string };
   status: Record<
     ProfileStatus,
     { label: string; text: string }
@@ -169,10 +195,28 @@ export interface CabinetCopy {
     youAccepted: string;
     youDeclined: string;
     writeTo: string;
+    markRead: string;
+    declinedNote: string;
+    acceptAgain: string;
+    profileOf: (name: string) => string;
+    staleCancelled: string;
+    staleDeleted: string;
+    unreadEmpty: string;
+    emptyTab: string;
+    more: string;
+    moreLoading: string;
+    allShown: string;
+    deleteAction: string;
+    actions: string;
+    deletedToast: string;
+    deletedSaid: string;
+    tabs: { label: string; all: string; unread: string };
+    mutual: (names: string[]) => string;
+    declinedToast: string;
+    undo: string;
+    closeToast: string;
+    undoneSaid: string;
     acceptedTitle: string;
-    declinedTitle: string;
-    declinedText: string;
-    declineAsk: { title: string; text: string; keep: string; confirm: string };
     acceptedSaid: string;
     declinedSaid: string;
     subject: string;
@@ -181,6 +225,7 @@ export interface CabinetCopy {
     emptyText: string;
     pager: { label: string; prev: string; next: string };
   };
+  settings: SettingsCopy;
   demo: { label: string; status: string; section: string; state: string };
 }
 
@@ -192,8 +237,10 @@ const en: CabinetCopy = {
       notifications: 'My notifications',
       collaboration: 'Collaboration',
       opportunities: 'Opportunities',
+      settings: 'Settings',
     },
     new: 'New',
+    logout: 'Log out',
   },
   status: {
     draft: {
@@ -344,7 +391,7 @@ const en: CabinetCopy = {
     demoAccepted: 'Colleague accepted',
     writeTitle: (name) => `Message to ${name}`,
     writeLabel: 'Your message',
-    writeHint: 'Introduce yourself briefly and say how you could be useful to each other. The colleague sees it in their cabinet. If they agree to talk, their email opens up here.',
+    writeHint: 'Say hi and tell them what you’d like to work on together. If they’re up for it, you’ll get their email.',
     writeEmpty: 'Write a few words to start the conversation.',
     send: 'Send',
     cancel: 'Cancel',
@@ -380,7 +427,7 @@ const en: CabinetCopy = {
     unreadMark: 'Unread',
     unreadCount: (n) => `Unread: ${n}`,
     allRead: 'Everything is read',
-    markAllRead: 'Mark all as read',
+    markAllRead: 'Read all',
     markedAllRead: 'All notifications are marked as read',
     requestTitle: 'A letter for you',
     requestText: 'Check your mailbox: the letter is already there.',
@@ -391,18 +438,31 @@ const en: CabinetCopy = {
     colleague: 'Colleague',
     accept: 'Accept',
     decline: 'Decline',
-    youAccepted: 'You agreed to talk.',
+    youAccepted: 'You accepted the request.',
     youDeclined: 'You declined the request.',
-    writeTo: 'Write to:',
-    acceptedTitle: 'A colleague agreed to talk',
-    declinedTitle: 'A reply to your message',
-    declinedText: 'Thank you for writing. This time the conversation will not work out: right now your colleague is not able to take it up. It is nothing to do with you or your work. Other scientists on the site will be glad to talk, so please try writing to them.',
-    declineAsk: {
-      title: 'Decline the request?',
-      text: 'Are you sure you want to decline? The person will get a polite message saying that this time the conversation will not take place.',
-      keep: 'No, keep it',
-      confirm: 'Yes, decline',
-    },
+    writeTo: 'Email for correspondence:',
+    markRead: 'Mark as read',
+    declinedNote: 'You declined this request. If you changed your mind, you can still accept it.',
+    acceptAgain: 'Accept the request',
+    profileOf: (name) => `Profile: ${name}`,
+    staleCancelled: 'The sender withdrew this request.',
+    staleDeleted: 'This account no longer exists.',
+    unreadEmpty: 'No new notifications',
+    emptyTab: 'When something new arrives, it will appear here.',
+    more: 'Show more',
+    moreLoading: 'Loading',
+    allShown: 'These are all the notifications',
+    deleteAction: 'Delete',
+    actions: 'Actions for this notification',
+    deletedToast: 'Notification deleted.',
+    deletedSaid: 'Notification deleted',
+    tabs: { label: 'Show', all: 'All', unread: 'Unread' },
+    mutual: (names) => `Mutual contacts: ${names.join(', ')}`,
+    declinedToast: 'Request declined.',
+    undo: 'Undo',
+    closeToast: 'Close',
+    undoneSaid: 'Decline undone, the request is back',
+    acceptedTitle: 'A colleague accepted your request',
     acceptedSaid: 'You agreed to talk',
     declinedSaid: 'The request is declined',
     subject: 'Subject',
@@ -411,6 +471,70 @@ const en: CabinetCopy = {
     emptyText:
       'When a visitor writes to you through the site, or the team sends a message, a copy appears here. The letter also comes to your email.',
     pager: { label: 'Notification pages', prev: 'Previous', next: 'Next' },
+  },
+  settings: {
+    title: 'Account settings',
+    lede: 'Your sign-in details and how we write to you.',
+    email: {
+      title: 'Sign-in email',
+      text: 'This is the address you sign in with and where letters reach you.',
+      change: 'Change email',
+      newLabel: 'New email',
+      send: 'Send confirmation',
+      cancel: 'Cancel',
+      sent: (e) => `We sent a letter to ${e}. Follow the link in it to confirm the new address; until then the old one stays.`,
+      invalid: 'Enter an email like name@example.com',
+    },
+    password: {
+      title: 'Password',
+      text: 'Choose a new password. You stay signed in on this device.',
+      current: 'Current password',
+      next: 'New password',
+      repeat: 'Repeat the new password',
+      show: 'Show',
+      hide: 'Hide',
+      rulesTitle: 'The password must have',
+      rules: { length: 'at least 10 characters', letter: 'a letter', digit: 'a digit' },
+      submit: 'Change password',
+      saved: 'Password changed successfully',
+      failed: 'Could not change the password. Check your connection and try again.',
+      busy: 'Saving',
+      close: 'Close',
+      errors: {
+        current: 'Enter your current password',
+        wrong: 'The current password is incorrect',
+        same: 'The new password must differ from the current one',
+        weak: 'The new password does not meet the requirements yet',
+        mismatch: 'The passwords do not match',
+      },
+    },
+    letters: {
+      title: 'Letters',
+      text: 'What we may write to you about.',
+      items: {
+        requests: 'A letter when someone asks to contact me',
+        team: 'Messages from the Science at Risk team',
+        opportunities: 'New courses and grants for my fields',
+      },
+      saved: 'Saved',
+    },
+    language: {
+      title: 'Language of letters',
+      text: 'The language we write to you in.',
+      uk: 'Ukrainian',
+      en: 'English',
+    },
+    delete: {
+      title: 'Delete account',
+      text: 'Your profile will be taken off the site and your data deleted. This cannot be undone.',
+      action: 'Delete account',
+      askTitle: 'Delete the account?',
+      askText: 'The profile, notifications and requests will be deleted for good. You will be signed out.',
+      confirm: 'Yes, delete',
+      keep: 'Keep the account',
+      doneTitle: 'Request received',
+      doneText: 'The team will delete the account within a few days and write to you by email.',
+    },
   },
   demo: { label: 'Preview controls', status: 'Profile status', section: 'Screen', state: 'State' },
 };
@@ -423,8 +547,10 @@ const uk: CabinetCopy = {
       notifications: 'Мої сповіщення',
       collaboration: 'Співпраця',
       opportunities: 'Можливості',
+      settings: 'Налаштування',
     },
     new: 'Нове',
+    logout: 'Вийти',
   },
   status: {
     draft: {
@@ -575,7 +701,7 @@ const uk: CabinetCopy = {
     demoAccepted: 'Колега прийняв запит',
     writeTitle: (name) => `Повідомлення для ${name}`,
     writeLabel: 'Ваше повідомлення',
-    writeHint: 'Коротко представтеся й напишіть, чим ви можете бути корисні одне одному. Колега побачить його у своєму кабінеті. Якщо погодиться поспілкуватися, тут відкриється пошта колеги.',
+    writeHint: 'Привітайтеся й напишіть, над чим хотіли б попрацювати разом. Якщо колега відгукнеться, ви побачите його пошту.',
     writeEmpty: 'Напишіть кілька слів, щоб почати розмову.',
     send: 'Надіслати',
     cancel: 'Скасувати',
@@ -627,7 +753,7 @@ const uk: CabinetCopy = {
     unreadMark: 'Непрочитане',
     unreadCount: (n) => `Непрочитаних: ${n}`,
     allRead: 'Усе прочитано',
-    markAllRead: 'Позначити всі прочитаними',
+    markAllRead: 'Прочитати всі',
     markedAllRead: 'Усі сповіщення позначено прочитаними',
     requestTitle: 'Вам лист',
     requestText: 'Перевірте свою пошту: лист уже там.',
@@ -638,18 +764,31 @@ const uk: CabinetCopy = {
     colleague: 'Колега',
     accept: 'Прийняти',
     decline: 'Відхилити',
-    youAccepted: 'Ви погодилися поспілкуватися.',
+    youAccepted: 'Ви прийняли запит.',
     youDeclined: 'Ви відхилили запит.',
-    writeTo: 'Пишіть на пошту:',
-    acceptedTitle: 'Колега погодився поспілкуватися',
-    declinedTitle: 'Відповідь на ваше повідомлення',
-    declinedText: 'Дякуємо, що ви написали. Цього разу поспілкуватися не вийде: зараз колега не має змоги. Це не про вас і не про вашу роботу. Серед інших науковців на сайті є ті, хто з радістю з вами поспілкується, тож спробуйте написати їм.',
-    declineAsk: {
-      title: 'Відхилити запит?',
-      text: 'Ви точно хочете відхилити запит? Людина отримає ввічливе повідомлення, що цього разу спілкування не відбудеться.',
-      keep: 'Ні, залишити',
-      confirm: 'Так, відхилити',
-    },
+    writeTo: 'Пошта для листування:',
+    markRead: 'Позначити прочитаним',
+    declinedNote: 'Ви відхилили запит. Якщо передумали, можете його прийняти.',
+    acceptAgain: 'Прийняти запит',
+    profileOf: (name) => `Профіль: ${name}`,
+    staleCancelled: 'Відправник скасував цей запит.',
+    staleDeleted: 'Цього акаунта більше немає.',
+    unreadEmpty: 'Нових сповіщень немає',
+    emptyTab: 'Коли надійде щось нове, воно з’явиться тут.',
+    more: 'Показати ще',
+    moreLoading: 'Завантажуємо',
+    allShown: 'Це всі сповіщення',
+    deleteAction: 'Видалити',
+    actions: 'Дії зі сповіщенням',
+    deletedToast: 'Сповіщення видалено.',
+    deletedSaid: 'Сповіщення видалено',
+    tabs: { label: 'Показати', all: 'Усі', unread: 'Непрочитані' },
+    mutual: (names) => `Спільні контакти: ${names.join(', ')}`,
+    declinedToast: 'Запит відхилено.',
+    undo: 'Скасувати',
+    closeToast: 'Закрити',
+    undoneSaid: 'Відхилення скасовано, запит повернувся',
+    acceptedTitle: 'Колега прийняв ваш запит',
     acceptedSaid: 'Ви погодилися поспілкуватися',
     declinedSaid: 'Запит відхилено',
     subject: 'Тема листа',
@@ -658,6 +797,70 @@ const uk: CabinetCopy = {
     emptyText:
       'Коли вам напише відвідувач сайту або команда, тут з’явиться копія повідомлення. Сам лист також прийде на вашу пошту.',
     pager: { label: 'Сторінки сповіщень', prev: 'Попередня', next: 'Наступна' },
+  },
+  settings: {
+    title: 'Налаштування акаунта',
+    lede: 'Дані для входу та те, як ми вам пишемо.',
+    email: {
+      title: 'Електронна пошта для входу',
+      text: 'З цією адресою ви входите в кабінет, і на неї приходять листи.',
+      change: 'Змінити пошту',
+      newLabel: 'Нова електронна пошта',
+      send: 'Надіслати підтвердження',
+      cancel: 'Скасувати',
+      sent: (e) => `Ми надіслали лист на ${e}. Перейдіть за посиланням у ньому, щоб підтвердити нову адресу; до того часу діє стара.`,
+      invalid: 'Введіть пошту у форматі name@example.com',
+    },
+    password: {
+      title: 'Пароль',
+      text: 'Придумайте новий пароль. На цьому пристрої ви залишитесь у кабінеті.',
+      current: 'Поточний пароль',
+      next: 'Новий пароль',
+      repeat: 'Повторіть новий пароль',
+      show: 'Показати',
+      hide: 'Сховати',
+      rulesTitle: 'У паролі має бути',
+      rules: { length: 'щонайменше 10 символів', letter: 'літера', digit: 'цифра' },
+      submit: 'Змінити пароль',
+      saved: 'Пароль успішно змінено',
+      failed: 'Не вдалося змінити пароль. Перевірте з’єднання й спробуйте ще раз.',
+      busy: 'Зберігаємо',
+      close: 'Закрити',
+      errors: {
+        current: 'Введіть поточний пароль',
+        wrong: 'Поточний пароль неправильний',
+        same: 'Новий пароль має відрізнятися від поточного',
+        weak: 'Новий пароль ще не відповідає вимогам',
+        mismatch: 'Паролі не збігаються',
+      },
+    },
+    letters: {
+      title: 'Листи',
+      text: 'Про що ми можемо вам писати.',
+      items: {
+        requests: 'Лист, коли хтось просить зв’язатися зі мною',
+        team: 'Повідомлення від команди Science at Risk',
+        opportunities: 'Нові курси та гранти за моїми галузями',
+      },
+      saved: 'Збережено',
+    },
+    language: {
+      title: 'Мова листів',
+      text: 'Якою мовою ми вам пишемо.',
+      uk: 'Українська',
+      en: 'English',
+    },
+    delete: {
+      title: 'Видалити акаунт',
+      text: 'Ваш профіль знімуть із сайту, а дані видалять. Цю дію не можна скасувати.',
+      action: 'Видалити акаунт',
+      askTitle: 'Видалити акаунт?',
+      askText: 'Профіль, сповіщення та запити буде видалено назавжди. Ви вийдете з кабінету.',
+      confirm: 'Так, видалити',
+      keep: 'Залишити акаунт',
+      doneTitle: 'Запит прийнято',
+      doneText: 'Команда видалить акаунт протягом кількох днів і напише вам на пошту.',
+    },
   },
   demo: { label: 'Керування переглядом', status: 'Статус профілю', section: 'Екран', state: 'Стан' },
 };

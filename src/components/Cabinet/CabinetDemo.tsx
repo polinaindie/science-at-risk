@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { SiteHeader } from '@/components/SiteHeader';
 import { Footer } from '@/components/Footer';
 import { Button } from '@/components/Button';
@@ -14,6 +14,7 @@ import {
   type ProfileData,
 } from './cabinetData';
 import { CabinetLayout } from './CabinetLayout';
+import { SettingsScreen } from './Settings';
 import { CollaborationScreen } from './Collaboration';
 import { NotificationsScreen } from './Notifications';
 import { OpportunitiesScreen } from './Opportunities';
@@ -135,9 +136,15 @@ export function CabinetDemo({
   };
   const changePhoto = (src: string) => save({ ...(unsent ?? profile), imageSrc: src });
 
-  const unread = notes.filter((n) => !n.read).length;
+  // The badge counts what has not been seen; opening the page resets it, while the cards stay unread.
+  const unread = notes.filter((n) => !n.seen && !n.read && n.status !== 'declined').length;
+  useEffect(() => {
+    if (section === 'notifications' && notes.some((n) => !n.seen))
+      setNotes((list) => list.map((n) => (n.seen ? n : { ...n, seen: true })));
+  }, [section, notes]);
 
-  // The profile as it is read is on the blue of the site's expert page; forms stay on white.
+
+  // The profile as it is read is on the blue of the site's expert page; forms and other screens stay white.
   const onProfilePage = section === 'profile' && !editing;
 
   const screen = (() => {
@@ -202,6 +209,20 @@ export function CabinetDemo({
             setSectionState('profile');
             setPart('keywords');
             setEditing(true);
+          }}
+        />
+      );
+    if (section === 'settings')
+      return (
+        <SettingsScreen
+          key={locale}
+          locale={locale}
+          email={profile.email ?? ''}
+          // Demo: the current password "wrong" is refused; "error" stands for a failed request.
+          onChangePassword={async (current) => {
+            await new Promise((r) => setTimeout(r, 600));
+            if (current === 'error') throw new Error('network');
+            return current !== 'wrong';
           }}
         />
       );
@@ -273,6 +294,21 @@ export function CabinetDemo({
                 setNoteSet(next);
                 setNotes(next === 'many' ? sampleManyNotifications[locale] : sampleNotifications[locale]);
               })}
+              {chip(false, locale === 'uk' ? 'Надійшло нове' : 'New one arrives', () =>
+                // On the notifications page it lands on top without a badge; elsewhere it raises the badge.
+                setNotes((list) => [
+                  {
+                    id: `live-${list.length}-${Date.now()}`,
+                    kind: 'team',
+                    read: false,
+                    seen: section === 'notifications',
+                    date: new Date().toISOString(),
+                    subject: locale === 'uk' ? 'Нове повідомлення від команди' : 'A new message from the team',
+                    body: locale === 'uk' ? 'Це приклад сповіщення, що надійшло щойно.' : 'This is an example of a notification that has just arrived.',
+                  },
+                  ...list,
+                ]),
+              )}
               {chip(noteSet === 'none', locale === 'uk' ? 'Немає сповіщень' : 'No notifications', () => {
                 const next = noteSet === 'none' ? 'few' : 'none';
                 setNoteSet(next);

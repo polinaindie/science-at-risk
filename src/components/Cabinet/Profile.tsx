@@ -29,7 +29,7 @@ import { PhotoDialog } from './PhotoDialog';
 import { OTHER_FIELD, SpecialtyPicker } from './SpecialtyPicker';
 import { FormattedText } from './FormattedText';
 import { isRichEmpty } from './formatText';
-import { Modal, StatusStrip } from './parts';
+import { Modal, StatusBadge } from './parts';
 import { societies, societyBySlug } from './societies';
 
 const H4 = 'font-serif text-[22px] font-normal leading-[30px] tracking-[-0.02em] md:text-[28px] md:leading-[36px]';
@@ -130,17 +130,14 @@ function changeButton(
   const t = cabinetCopy[locale].profile;
   if (locked || !onEdit) return null;
   return (
-    <div className="mt-5 border-t border-brand-black/40 pt-3">
+    <div className="mt-5 border-t-2 border-brand-black pt-3">
     <button
       type="button"
       onClick={() => onEdit(id)}
       aria-label={`${filled ? t.change : t.add}: ${part}`}
-      className="inline-flex cursor-pointer items-center gap-1.5 border-0 bg-transparent p-0 font-mono text-[14px] leading-[20px] tracking-[-0.03em] text-brand-black underline decoration-1 underline-offset-4 hover:decoration-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-black"
+      className="satr-underlined-box inline-flex cursor-pointer items-center border-0 bg-transparent p-0 font-mono text-[14px] leading-[20px] tracking-[-0.03em] text-brand-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-black"
     >
-      <svg aria-hidden width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.6">
-        <path d="M2 14l.8-3.4L11.4 2l2.6 2.6-8.6 8.6L2 14zM9.6 3.8l2.6 2.6" />
-      </svg>
-      {filled ? t.change : t.add}
+      <span className="satr-underlined">{filled ? t.change : t.add}</span>
     </button>
     </div>
   );
@@ -318,20 +315,25 @@ export function ProfileView({
     .map((k) => k.trim())
     .filter((k, i, all) => k && all.indexOf(k) === i);
 
+  /** The status stays small, above the name, level with the top of the photo: a chip and the one thing that can be done about it. */
+  const statusLine = (
+    <div className="mb-4 flex flex-wrap items-center gap-x-4 gap-y-2">
+      <StatusBadge status={unsentNow ? 'draft' : status} locale={locale} />
+      {status === 'approved' && !unsentNow ? (
+        <Link href={siteHref} className="self-center text-[14px]! leading-[20px]!">
+          {t.openOnSite}
+        </Link>
+      ) : null}
+      {status === 'pending' && onWithdraw ? (
+        <Link as="button" onClick={onWithdraw} className="self-center text-[14px]! leading-[20px]!">
+          {t.withdraw}
+        </Link>
+      ) : null}
+    </div>
+  );
+
   return (
     <div className={unsentNow ? 'pb-28' : undefined}>
-      <StatusStrip status={unsentNow ? 'draft' : status} locale={locale} outlined>
-        {status === 'approved' ? (
-          <Link href={siteHref} className="self-center text-[16px]! leading-[24px]!">
-            {t.openOnSite}
-          </Link>
-        ) : null}
-        {status === 'pending' && onWithdraw ? (
-          <Link as="button" onClick={onWithdraw} className="self-center text-[16px]! leading-[24px]!">
-            {t.withdraw}
-          </Link>
-        ) : null}
-      </StatusStrip>
       {discardOpen ? (
         <Modal
           title={t.unsent.discardTitle}
@@ -392,6 +394,7 @@ export function ProfileView({
       {/* The page of an expert on the site, piece for piece; what is added is the way to change it. */}
       {identity ? null : (
         <div className="mt-8">
+          {statusLine}
           <ProfileName locale={locale} profile={profile} show="position" action={change('name', t.parts.name)} />
         </div>
       )}
@@ -439,7 +442,10 @@ export function ProfileView({
 
         <div className="min-w-0">
           {identity ? (
-            <ProfileName locale={locale} profile={profile} action={change('name', t.parts.name)} />
+            <>
+              {statusLine}
+              <ProfileName locale={locale} profile={profile} action={change('name', t.parts.name)} />
+            </>
           ) : null}
 
           <Section title={t.sections.activity} empty={isRichEmpty(profile.activity)} action={change('activity', sec('activity'))}>
@@ -471,7 +477,7 @@ export function ProfileView({
               {profile.publications
                 .filter((x) => !isPublicationEmpty(x))
                 .map((x) => (
-                  <li key={formatPublication(x)} className="border-b-2 border-brand-black py-6 first:border-t-2">
+                  <li key={formatPublication(x)} className="border-b-2 border-brand-black py-6 first:border-t-2 last:border-b-0 last:pb-0">
                     <div>
                       <h3 className="m-0 font-serif text-[26px] font-normal leading-[34px] tracking-[-0.02em] md:text-[34px] md:leading-[42px]">
                         {x.title}
@@ -503,15 +509,16 @@ export function ProfileView({
             return (
               <Section title={t.sections.societies} action={change('societies', sec('societies'), mine.length > 0)}>
                 {mine.length ? (
-                  <ul className="m-0 flex list-none flex-wrap gap-x-6 gap-y-3 p-0">
-                    {mine.map((x) => (
-                      <li key={x.slug}>
+                  <ul className="m-0 list-none p-0 font-ukraine text-[16px] font-light leading-[19px]">
+                    {mine.map((x, i) => (
+                      <li key={x.slug} className="inline">
                         <a
                           href={`${import.meta.env.BASE_URL}society/${x.slug}.html`}
-                          className="satr-hover-underline font-mono text-[15px] leading-[22px] tracking-[-0.03em]"
+                          className="satr-hover-underline"
                         >
                           {x.name}
                         </a>
+                        {i < mine.length - 1 ? <span className="mr-2">, </span> : null}
                       </li>
                     ))}
                   </ul>

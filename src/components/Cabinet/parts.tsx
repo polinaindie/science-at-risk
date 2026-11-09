@@ -6,7 +6,7 @@ import { cabinetCopy, type CabinetLocale, type ProfileStatus } from './cabinetCo
 const STATUS_GROUND: Record<ProfileStatus, string> = {
   draft: 'bg-white',
   pending: 'bg-brand-accent-yellow',
-  approved: 'bg-brand-accent-blue',
+  approved: 'bg-brand-accent-green',
 };
 
 /** The mark before the label: three shapes, so the state reads without colour. */
@@ -20,14 +20,20 @@ function StatusMark({ status }: { status: ProfileStatus }) {
         className="size-3 shrink-0 rounded-full border-2 border-brand-black bg-[linear-gradient(90deg,#000_50%,transparent_50%)]"
       />
     );
-  return <span aria-hidden className="size-3 shrink-0 rounded-full bg-brand-black" />;
+  // Approved needs no mark: the green and the word say it.
+  return null;
 }
 
 export function StatusBadge({ status, locale }: { status: ProfileStatus; locale: CabinetLocale }) {
   const t = cabinetCopy[locale].status[status];
   return (
     <span
-      className={`inline-flex items-center gap-2 border-2 border-brand-black px-3 py-1 font-mono text-text1-mobile ${STATUS_GROUND[status]}`}
+      role="status"
+      title={t.text || undefined}
+      // Only the draft chip is outlined: it is white, and on a white page it would vanish.
+      className={`inline-flex items-center gap-2 px-3 py-1 font-mono text-text1-mobile ${STATUS_GROUND[status]} ${
+        status === 'draft' ? 'border-2 border-brand-black' : ''
+      }`}
       data-status={status}
     >
       <StatusMark status={status} />
@@ -48,7 +54,7 @@ export function StatusStrip({
 }: {
   status: ProfileStatus;
   locale: CabinetLocale;
-  /** On the blue page the blue strip would vanish: it gets the black outline. */
+  /** Only the draft strip is outlined: it is white, and on a white page it would vanish. */
   outlined?: boolean;
   children?: ReactNode;
 }) {
@@ -57,7 +63,7 @@ export function StatusStrip({
     <div
       role="status"
       data-status={status}
-      className={`flex flex-col gap-3 px-5 py-[10px] md:flex-row md:items-center md:justify-between md:gap-6 ${STATUS_GROUND[status]} ${outlined ? 'border-2 border-brand-black' : ''}`}
+      className={`flex flex-col gap-3 px-5 py-[10px] md:flex-row md:items-center md:justify-between md:gap-6 ${STATUS_GROUND[status]} ${outlined && status === 'draft' ? 'border-2 border-brand-black' : ''}`}
     >
       <div className="flex min-w-0 items-start gap-3">
         <span className="mt-1 flex md:mt-2">
@@ -102,7 +108,7 @@ export function ApprovedBanner({
           <button
             type="button"
             onClick={onClose}
-            className="font-mono text-text1-mobile text-white underline underline-offset-4"
+            className="satr-underlined font-mono text-text1-mobile text-white"
           >
             {t.close}
           </button>
@@ -125,14 +131,19 @@ export function Modal({
   actions: ReactNode;
 }) {
   const panel = useRef<HTMLDivElement>(null);
+  // The latest onClose, read when Esc is pressed. It is a new function on every render of the
+  // caller, so it must not be an effect dependency: that moved focus to the sheet on every keystroke.
+  const close = useRef(onClose);
+  close.current = onClose;
   useEffect(() => {
-    panel.current?.focus();
+    // Focus the sheet once, unless something inside (a field with autoFocus) already has it.
+    if (!panel.current?.contains(document.activeElement)) panel.current?.focus();
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose?.();
+      if (e.key === 'Escape') close.current?.();
     };
     document.addEventListener('keydown', onKey);
     return () => document.removeEventListener('keydown', onKey);
-  }, [onClose]);
+  }, []);
 
   return (
     <div className="fixed inset-0 z-50 grid place-items-center p-4">
@@ -150,6 +161,54 @@ export function Modal({
           {children}
         </div>
         <div className="mt-8 flex flex-wrap gap-3">{actions}</div>
+      </div>
+    </div>
+  );
+}
+
+/** A short message that appears over the page and goes away on its own; errors stay until closed. */
+export function Toast({
+  kind,
+  children,
+  closeLabel,
+  onClose,
+  action,
+  duration = 5000,
+}: {
+  kind: 'success' | 'error';
+  children: ReactNode;
+  closeLabel: string;
+  onClose: () => void;
+  /** An optional button in the message, e.g. "Undo". */
+  action?: { label: string; onClick: () => void };
+  /** How long a success message stays, in ms. */
+  duration?: number;
+}) {
+  useEffect(() => {
+    if (kind !== 'success') return;
+    const id = setTimeout(onClose, duration);
+    return () => clearTimeout(id);
+  }, [kind, onClose, duration]);
+  return (
+    <div className="pointer-events-none fixed inset-x-0 top-24 z-[60] flex justify-end px-4 md:px-10">
+      <div
+        role={kind === 'error' ? 'alert' : 'status'}
+        className={`pointer-events-auto flex max-w-[560px] items-start gap-4 border-2 border-brand-black px-5 py-4 font-ukraine text-text2-mobile md:text-text2-desktop ${
+          kind === 'error' ? 'bg-white' : 'bg-brand-accent-blue'
+        }`}
+      >
+        <span aria-hidden className="mt-0.5 font-mono">{kind === 'error' ? '!' : '✓'}</span>
+        <span className="min-w-0">{children}</span>
+        {action ? (
+          <button type="button" onClick={action.onClick} className="shrink-0 font-bold underline underline-offset-4">
+            {action.label}
+          </button>
+        ) : null}
+        <button type="button" onClick={onClose} aria-label={closeLabel} className="-my-2 -mr-3 ml-2 grid size-11 shrink-0 place-items-center">
+          <svg aria-hidden width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="square">
+            <path d="M3 3l16 16M19 3L3 19" />
+          </svg>
+        </button>
       </div>
     </div>
   );

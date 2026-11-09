@@ -413,10 +413,8 @@ export type NotificationKind =
   | 'team'
   /** Another scientist asks to talk: the person accepts or declines right in the card. */
   | 'colleague'
-  /** To the one who wrote: the colleague accepted, and here is the email. */
-  | 'accepted'
-  /** To the one who wrote: the colleague declined; the text is a polite one, fixed in the copy. */
-  | 'declined';
+  /** To the one who wrote: the colleague accepted, and the chat is open. The sender is never told about a decline. */
+  | 'accepted';
 
 export type ColleagueStatus = 'pending' | 'accepted' | 'declined';
 
@@ -433,10 +431,20 @@ export interface Notification {
   /** Requests only. A team message has no sender fields: the team is the sender. */
   senderName?: string;
   senderEmail?: string;
+  /** The badge on the avatar was reset by opening the page (seen); the card stays yellow until it is read. */
+  seen?: boolean;
+  /** What it points to is gone (the request was withdrawn, the account deleted): shown inactive. */
+  stale?: 'cancelled' | 'deleted';
   /** Colleague requests only: where the person stands on it. */
   status?: ColleagueStatus;
   /** Colleague requests only: the line under the name. */
   senderPosition?: string;
+  /** Colleague requests only: the sender's photo; initials stand in when there is none. */
+  senderImage?: string;
+  /** Where the photo leads: the scientist's public profile. */
+  senderHref?: string;
+  /** Colleague requests only: names of people both of you are connected with. */
+  mutualContacts?: string[];
 }
 
 /** Times are counted back from now, so "today" and "yesterday" always have a case to show. */
@@ -451,15 +459,47 @@ const ago = (days: number, hour = 10) => {
 export const sampleNotifications: Record<CabinetLocale, Notification[]> = {
   en: [
     {
+      id: 'c6',
+      kind: 'colleague',
+      read: true,
+      seen: true,
+      date: ago(2, 10),
+      subject: '',
+      status: 'pending',
+      stale: 'cancelled',
+      senderName: 'Vira Artemieva',
+      senderImage: '/storage/person/286/f018fdbb78623c428ae13aed05119dbea0c7dfd6.jpg',
+      senderHref: '/expert/artemieva-vira-borysivna.html',
+      senderPosition: 'Candidate of Sciences, Associate Professor',
+      body: 'Hello! I wanted to ask about joint field work in the spring.',
+    },
+    {
+      id: 'c5',
+      kind: 'colleague',
+      read: true,
+      date: ago(3, 12),
+      subject: '',
+      status: 'declined',
+      senderName: 'Volodymyr Akhmetov',
+      senderImage: '/storage/person/610/fc26a40b08d8e48536e1385e14c4a56108bdb056.jpg',
+      senderHref: '/expert/akhmetov-volodymyr-sabirdzhanovych.html',
+      senderPosition: 'Candidate of Sciences, Senior Researcher',
+      senderEmail: 'volodymyr.akhmetov@institute.example',
+      body: 'Hello! I would like to invite you to a joint grant application on soil monitoring.',
+    },
+    {
       id: 'c1',
       kind: 'colleague',
       read: false,
       date: ago(0, 9),
       subject: '',
       status: 'pending',
-      senderName: 'Iryna Boiko',
+      senderName: 'Svitlana Arbuzova',
+      senderImage: '/storage/person/97/846431c8049d103260d0d306aa3f662890877b8a.jpg',
+      senderHref: '/expert/arbuzova-svitlana-borysivna.html',
       senderPosition: 'Candidate of Sciences, Associate Professor',
-      senderEmail: 'iryna.boiko@university.example',
+      senderEmail: 'svitlana.arbuzova@university.example',
+      mutualContacts: ['Andrii Achasov', 'Oleksandra Antoniouk'],
       body: 'Hello! I study soil degradation in the Kherson region and saw that you work with remote sensing. I would like to discuss a joint article: do you have time for a short talk?',
     },
     {
@@ -469,16 +509,9 @@ export const sampleNotifications: Record<CabinetLocale, Notification[]> = {
       date: ago(1, 11),
       subject: '',
       senderName: 'Oleksandra Antoniuk',
+      senderImage: '/storage/person/86/76974a4734d28a7b05cc94ca0b20a2f7655e36a6.jpg',
+      senderHref: '/expert/antoniuk-oleksandra-viktorivna.html',
       senderEmail: 'm1@university.example',
-      body: '',
-    },
-    {
-      id: 'c3',
-      kind: 'declined',
-      read: true,
-      date: ago(4, 14),
-      subject: '',
-      senderName: 'Volodymyr Akhmetov',
       body: '',
     },
     {
@@ -488,9 +521,11 @@ export const sampleNotifications: Record<CabinetLocale, Notification[]> = {
       date: ago(7, 16),
       subject: '',
       status: 'accepted',
-      senderName: 'Andrii Kovalchuk',
+      senderName: 'Andrii Achasov',
+      senderImage: '/storage/person/608/28bb19babb2b83f169028aaf3e150ff64406e790.jpg',
+      senderHref: '/expert/achasov-andrii-borysovych.html',
       senderPosition: 'Doctor of Sciences, Professor',
-      senderEmail: 'andrii.kovalchuk@university.example',
+      senderEmail: 'andrii.achasov@university.example',
       body: 'Hello! I am looking for a co-author for a review of methods for mapping saline soils. Your profile fits perfectly.',
     },
     {
@@ -564,15 +599,47 @@ export const sampleNotifications: Record<CabinetLocale, Notification[]> = {
   ],
   uk: [
     {
+      id: 'c6',
+      kind: 'colleague',
+      read: true,
+      seen: true,
+      date: ago(2, 10),
+      subject: '',
+      status: 'pending',
+      stale: 'cancelled',
+      senderName: 'Артем’єва Віра Борисівна',
+      senderImage: '/storage/person/286/f018fdbb78623c428ae13aed05119dbea0c7dfd6.jpg',
+      senderHref: '/expert/artemieva-vira-borysivna.html',
+      senderPosition: 'Кандидат наук, доцент',
+      body: 'Доброго дня! Хотіла запитати про спільну польову роботу навесні.',
+    },
+    {
+      id: 'c5',
+      kind: 'colleague',
+      read: true,
+      date: ago(3, 12),
+      subject: '',
+      status: 'declined',
+      senderName: 'Ахметов Володимир Сабірджанович',
+      senderImage: '/storage/person/610/fc26a40b08d8e48536e1385e14c4a56108bdb056.jpg',
+      senderHref: '/expert/akhmetov-volodymyr-sabirdzhanovych.html',
+      senderPosition: 'Кандидат наук, старший дослідник',
+      senderEmail: 'volodymyr.akhmetov@institute.example',
+      body: 'Доброго дня! Хочу запросити вас до спільної грантової заявки з моніторингу ґрунтів.',
+    },
+    {
       id: 'c1',
       kind: 'colleague',
       read: false,
       date: ago(0, 9),
       subject: '',
       status: 'pending',
-      senderName: 'Бойко Ірина Павлівна',
+      senderName: 'Арбузова Світлана Борисівна',
+      senderImage: '/storage/person/97/846431c8049d103260d0d306aa3f662890877b8a.jpg',
+      senderHref: '/expert/arbuzova-svitlana-borysivna.html',
       senderPosition: 'Кандидат наук, доцент',
-      senderEmail: 'iryna.boiko@university.example',
+      senderEmail: 'svitlana.arbuzova@university.example',
+      mutualContacts: ['Ачасов Андрій Борисович', 'Антонюк Олександра Вікторівна'],
       body: 'Доброго дня! Я вивчаю деградацію ґрунтів на Херсонщині й побачила, що ви працюєте з дистанційним зондуванням. Хотіла б обговорити спільну статтю: чи є у вас час на коротку розмову?',
     },
     {
@@ -582,16 +649,9 @@ export const sampleNotifications: Record<CabinetLocale, Notification[]> = {
       date: ago(1, 11),
       subject: '',
       senderName: 'Антонюк Олександра Вікторівна',
+      senderImage: '/storage/person/86/76974a4734d28a7b05cc94ca0b20a2f7655e36a6.jpg',
+      senderHref: '/expert/antoniuk-oleksandra-viktorivna.html',
       senderEmail: 'm1@university.example',
-      body: '',
-    },
-    {
-      id: 'c3',
-      kind: 'declined',
-      read: true,
-      date: ago(4, 14),
-      subject: '',
-      senderName: 'Ахметов Володимир Сабірджанович',
       body: '',
     },
     {
@@ -601,9 +661,11 @@ export const sampleNotifications: Record<CabinetLocale, Notification[]> = {
       date: ago(7, 16),
       subject: '',
       status: 'accepted',
-      senderName: 'Ковальчук Андрій Миколайович',
+      senderName: 'Ачасов Андрій Борисович',
+      senderImage: '/storage/person/608/28bb19babb2b83f169028aaf3e150ff64406e790.jpg',
+      senderHref: '/expert/achasov-andrii-borysovych.html',
       senderPosition: 'Доктор наук, професор',
-      senderEmail: 'andrii.kovalchuk@university.example',
+      senderEmail: 'andrii.achasov@university.example',
       body: 'Вітаю! Шукаю співавтора для огляду методів картографування засолених ґрунтів. Ваш профіль підходить ідеально.',
     },
     {

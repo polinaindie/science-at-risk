@@ -82,9 +82,9 @@ export function GrantCard({
             </Tag>
           </div>
         </div>
-        <div className="flex w-full shrink-0 flex-col gap-3 md:w-[290px]">
+        <div className="flex w-full shrink-0 flex-col gap-3 md:w-auto">
           <a href={grant.href} target="_blank" rel="noopener noreferrer" className="block no-underline">
-            <Button variant="black" tabIndex={-1} className="w-full justify-center">
+            <Button variant="black" tabIndex={-1} className="w-full justify-center md:w-auto">
               {t.open}
             </Button>
           </a>

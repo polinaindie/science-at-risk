@@ -22,6 +22,7 @@ export interface CabinetLayoutProps {
   aside?: ReactNode;
   hrefFor?: (section: CabinetSection) => string;
   onNavigate?: (section: CabinetSection) => void;
+  logoutHref?: string;
   children: ReactNode;
 }
 
@@ -39,6 +40,7 @@ export function CabinetLayout({
   aside,
   hrefFor = (s) => `#${s}`,
   onNavigate,
+  logoutHref = '/logout',
   children,
 }: CabinetLayoutProps) {
   const t = cabinetCopy[locale];
@@ -50,8 +52,11 @@ export function CabinetLayout({
         <p className="m-0 font-serif text-h2-mobile md:text-h2-desktop">{name}</p>
       ) : null}
       <div className={`${name ? 'mt-6' : ''} ${name ? 'lg:mt-10' : ''} lg:grid lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-[42px]`}>
-      <div className={`min-w-0 lg:self-start ${aside ? '' : 'lg:sticky lg:top-28'}`}>
+      <div className="min-w-0">
       {aside ? <div className="mb-8">{aside}</div> : null}
+      {/* One box as tall as the screen under the header: the tabs at its top, the account links at its foot. It stays put while the cabinet scrolls and leaves, whole, when the content ends. */}
+      <div className="flex flex-col lg:sticky lg:top-[10.5rem] lg:h-[calc(100dvh-10.5rem)]">
+      <div className="lg:flex-1">
       <nav aria-label={t.nav.label}>
         <ul className="m-0 flex list-none gap-6 overflow-x-auto border-b-2 border-brand-line-muted p-0 md:gap-10 lg:flex-col lg:gap-1 lg:overflow-visible lg:border-b-0">
           {ORDER.map((key) => {
@@ -68,10 +73,8 @@ export function CabinetLayout({
                     e.preventDefault();
                     onNavigate(key);
                   }}
-                  className={`-mb-0.5 flex items-center gap-3 whitespace-nowrap border-b-4 py-3 font-mono text-h3-mobile no-underline md:text-h3-desktop lg:mb-0 lg:border-b-2 lg:py-2.5 ${
-                    current
-                      ? 'border-brand-black font-bold'
-                      : 'border-transparent hover:border-brand-black'
+                  className={`flex items-center gap-3 whitespace-nowrap py-3 font-mono text-h3-mobile no-underline [--satr-ul:2px] md:text-h3-desktop lg:py-2.5 ${
+                    current ? 'satr-underlined font-bold' : 'satr-hover-underline'
                   }`}
                 >
                   <span>{t.nav.items[key]}</span>
@@ -80,7 +83,7 @@ export function CabinetLayout({
                       className="grid min-w-6 place-items-center rounded-full bg-brand-accent-yellow px-1.5 font-mono text-breadcrumbs text-brand-black"
                       aria-label={t.notifications.unreadCount(count)}
                     >
-                      {count}
+                      {count > 99 ? '99+' : count}
                     </span>
                   ) : null}
                   {isNew && !count ? (
@@ -94,6 +97,35 @@ export function CabinetLayout({
           })}
         </ul>
       </nav>
+      </div>
+      {/* Account links sit at the foot of the side column, at the bottom edge of the screen. */}
+      <ul className="m-0 mt-4 flex list-none flex-col gap-1 p-0 lg:mb-8">
+        <li>
+          <a
+            href={hrefFor('settings')}
+            aria-current={section === 'settings' ? 'page' : undefined}
+            onClick={(e) => {
+              if (!onNavigate) return;
+              e.preventDefault();
+              onNavigate('settings');
+            }}
+            className={`flex w-fit items-center whitespace-nowrap py-2.5 font-mono text-h3-mobile no-underline [--satr-ul:2px] md:text-h3-desktop lg:self-start ${
+              section === 'settings' ? 'satr-underlined font-bold' : 'satr-hover-underline'
+            }`}
+          >
+            {t.nav.items.settings}
+          </a>
+        </li>
+        <li>
+          <a
+            href={logoutHref}
+            className="satr-hover-underline flex w-fit items-center whitespace-nowrap py-2.5 font-mono text-h3-mobile text-brand-black no-underline [--satr-ul:2px] md:text-h3-desktop"
+          >
+            {t.nav.logout}
+          </a>
+        </li>
+      </ul>
+      </div>
       </div>
       <main className="mt-8 min-w-0 lg:mt-0">{children}</main>
       </div>

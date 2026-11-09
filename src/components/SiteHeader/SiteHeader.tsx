@@ -2,6 +2,8 @@ import { useEffect, useId, useRef, useState, type Ref } from 'react';
 import { MobileNav } from '@/components/MobileNav';
 import { SquircleLink } from '@/components/SquircleLink';
 import { wrapperClass } from '@/components/Layout';
+import { SquircleDefs } from '@/styles/SquircleDefs';
+import { useSquircleClipPath } from '@/styles/useSquircleClipPath';
 
 /** Where the site's pages are served from. The live site's pages are copied
  *  under `public/`, so they sit beside this app: `BASE_URL` is `/` locally and
@@ -62,18 +64,52 @@ export interface SiteHeaderProps extends AccountLinks {
   className?: string;
 }
 
-/**
- * A member's way into the cabinet, kept to one small control: the photo and a
- * caret open a short list. It replaces two items that took more room than the
- * sections and the language switch could spare.
- */
-function AccountMenu({
+/** The count of what is new: the same yellow pill as the cabinet menu's counter; 9+ above nine. */
+function CountBadge({ count, className = '' }: { count: number; className?: string }) {
+  if (count <= 0) return null;
+  return (
+    <span
+      aria-hidden
+      className={`pointer-events-none grid min-w-6 place-items-center rounded-full bg-brand-accent-yellow px-1.5 font-mono text-breadcrumbs text-brand-black ${className}`}
+    >
+      {count > 9 ? '9+' : count}
+    </span>
+  );
+}
+
+/** The member's photo (or initial) in a squircle with a black ring, and a blue dot when something is new. */
+function Avatar({ src, name, unread }: { src?: string; name?: string; unread: number }) {
+  const shape = useSquircleClipPath({ radius: 12, smoothing: 0.9 });
+  const ring = useSquircleClipPath({ radius: 12, smoothing: 0.9, strokeWidth: 2 });
+  return (
+    <span className="relative flex size-10">
+      {src ? (
+        <img ref={shape.ref} src={src} alt="" style={shape.style} className="size-10 object-cover" />
+      ) : (
+        <span
+          ref={shape.ref}
+          aria-hidden
+          style={shape.style}
+          className="flex size-10 items-center justify-center bg-white font-mono text-[16px]"
+        >
+          {(name ?? '?').trim().charAt(0).toUpperCase()}
+        </span>
+      )}
+      <span ref={ring.ref} aria-hidden style={ring.style} className="absolute inset-0 bg-current" />
+      <SquircleDefs clipId={shape.clipId} pathD={shape.pathD} />
+      <SquircleDefs clipId={ring.clipId} pathD={ring.pathD} />
+      <CountBadge count={unread} className="absolute -bottom-2 -right-3" />
+    </span>
+  );
+}
+
+/** A member's way into the cabinet: the photo is a link straight to it. */
+function AccountLink({
   isUa,
   avatarSrc,
   name,
   unread = 0,
   cabinetHref,
-  logoutHref,
   ink,
   focusRing,
 }: {
@@ -82,98 +118,18 @@ function AccountMenu({
   name?: string;
   unread?: number;
   cabinetHref: string;
-  logoutHref: string;
   ink: string;
   focusRing: string;
 }) {
-  const [open, setOpen] = useState(false);
-  const root = useRef<HTMLDivElement>(null);
-  const button = useRef<HTMLButtonElement>(null);
-  const panelId = useId();
-
-  useEffect(() => {
-    if (!open) return;
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key !== 'Escape') return;
-      setOpen(false);
-      button.current?.focus();
-    };
-    const onDown = (e: MouseEvent) => {
-      if (!root.current?.contains(e.target as Node)) setOpen(false);
-    };
-    document.addEventListener('keydown', onKey);
-    document.addEventListener('mousedown', onDown);
-    return () => {
-      document.removeEventListener('keydown', onKey);
-      document.removeEventListener('mousedown', onDown);
-    };
-  }, [open]);
-
   const label = isUa ? 'Мій кабінет' : 'My cabinet';
-  const row = `block px-4 py-3 font-mono text-[16px] leading-[24px] text-brand-black no-underline hover:bg-brand-accent-yellow/40 ${focusRing}`;
-
   return (
-    <div ref={root} className="relative">
-      <button
-        ref={button}
-        type="button"
-        onClick={() => setOpen((v) => !v)}
-        aria-expanded={open}
-        aria-haspopup="true"
-        aria-controls={panelId}
-        aria-label={`${name ? `${label}: ${name}` : label}${unread > 0 ? (isUa ? `, нових сповіщень: ${unread}` : `, ${unread} unread`) : ''}`}
-        className={`satr-dim flex min-h-11 items-center gap-2 border-0 bg-transparent p-0 ${ink} ${focusRing}`}
-      >
-        <span className="relative flex">
-        {avatarSrc ? (
-          <img src={avatarSrc} alt="" className="size-10 border-2 border-current object-cover" />
-        ) : (
-          <span
-            aria-hidden
-            className="flex size-10 items-center justify-center border-2 border-current font-mono text-[16px]"
-          >
-            {(name ?? '?').trim().charAt(0).toUpperCase()}
-          </span>
-        )}
-          {unread > 0 ? (
-            <span
-              aria-hidden
-              className="absolute -right-2 -top-2 grid h-5 min-w-5 place-items-center rounded-full border border-brand-black bg-brand-accent-yellow px-1 font-mono text-[12px] leading-none text-brand-black"
-            >
-              {unread}
-            </span>
-          ) : null}
-        </span>
-        <svg
-          aria-hidden
-          width="12"
-          height="8"
-          viewBox="0 0 12 8"
-          fill="none"
-          className={`transition-transform duration-150 ${open ? 'rotate-180' : ''}`}
-        >
-          <path d="M1 1.5 6 6.5 11 1.5" stroke="currentColor" strokeWidth="2" />
-        </svg>
-      </button>
-      {open ? (
-        <div
-          id={panelId}
-          className="absolute right-0 top-full z-[80] mt-2 w-[240px] border-2 border-brand-black bg-white shadow-none"
-        >
-          {name ? (
-            <p className="m-0 border-b-2 border-brand-black px-4 py-3 font-mono text-breadcrumbs text-brand-muted">
-              {name}
-            </p>
-          ) : null}
-          <a href={cabinetHref} className={row}>
-            {label}
-          </a>
-          <a href={logoutHref} className={`${row} border-t border-brand-black/20`}>
-            {isUa ? 'Вийти' : 'Log out'}
-          </a>
-        </div>
-      ) : null}
-    </div>
+    <a
+      href={cabinetHref}
+      aria-label={`${name ? `${label}: ${name}` : label}${unread > 0 ? (isUa ? `, нових сповіщень: ${unread}` : `, ${unread} new notifications`) : ''}`}
+      className={`satr-dim flex min-h-11 min-w-11 items-center justify-center no-underline ${ink} ${focusRing}`}
+    >
+      <Avatar src={avatarSrc} name={name} unread={unread} />
+    </a>
   );
 }
 
@@ -255,7 +211,7 @@ export function SiteHeader({
     return () => document.removeEventListener('keydown', onKey);
   }, [menuOpen]);
 
-  const current = <span className="underline underline-offset-4">{isUa ? 'УКР' : 'ENG'}</span>;
+  const current = <span className="satr-underlined">{isUa ? 'УКР' : 'ENG'}</span>;
   // The language not in use is greyed, as in "Stolen museum story" (341:765),
   // and comes up to full ink on hover. #4d4d4d rather than the frame's #6e6e6e:
   // the bar also stands on the blue blocks, where #6e6e6e falls under AA.
@@ -341,13 +297,12 @@ export function SiteHeader({
               the foot of the menu. */}
           <div className="hidden items-center gap-4 md:flex" data-satr-account={account}>
             {member ? (
-              <AccountMenu
+              <AccountLink
                 isUa={isUa}
                 avatarSrc={avatarSrc}
                 name={accountName}
                 unread={unread}
                 cabinetHref={cabinetHref}
-                logoutHref={logoutHref}
                 ink={ink}
                 focusRing={focusRing}
               />
@@ -361,12 +316,14 @@ export function SiteHeader({
             ref={menuButtonRef}
             type="button"
             onClick={() => setMenuOpen((open) => !open)}
-            aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+            aria-label={`${menuOpen ? 'Close menu' : 'Open menu'}${member && unread ? (isUa ? `, нових сповіщень: ${unread}` : `, ${unread} new notifications`) : ''}`}
             aria-expanded={menuOpen}
             aria-controls={menuId}
             data-satr-menu-button=""
             className={`satr-dim flex min-h-11 min-w-11 items-center justify-center border-0 bg-transparent p-0 xl:hidden ${focusRing}`}
           >
+            <span className="relative flex">
+            <CountBadge count={member ? unread ?? 0 : 0} className="absolute -right-3 -top-3 md:hidden" />
             <img
               src={`${base}assets/ui/hamburger-dark.svg`}
               alt=""
@@ -374,6 +331,7 @@ export function SiteHeader({
               height={22}
               className={`h-[22px] w-[30px] ${inverted ? 'brightness-0 invert' : ''}`}
             />
+            </span>
           </button>
         </div>
       </div>

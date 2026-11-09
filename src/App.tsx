@@ -1,7 +1,7 @@
 import { HomePageV6 } from '@/sandbox/HomePageV6';
 import { CabinetDemo, type CabinetSection } from '@/components/Cabinet';
 
-const SECTIONS: CabinetSection[] = ['profile', 'notifications', 'collaboration', 'opportunities'];
+const SECTIONS: CabinetSection[] = ['profile', 'notifications', 'collaboration', 'opportunities', 'settings'];
 
 /**
  * Standalone preview, outside Storybook. No router: the home page is what
