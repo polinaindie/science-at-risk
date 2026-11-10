@@ -70,7 +70,9 @@ export interface CabinetCopy {
     partTitle: string;
     lede: string;
     required: string;
-    groups: Record<'photo' | 'contacts' | 'science' | 'publications' | 'keywords' | 'societies' | 'links', string>;
+    /** Leads an example shown under a field: the field itself stays empty. */
+    example: string;
+    groups: Record<'photo' | 'contacts' | 'science' | 'publications' | 'keywords' | 'societies' | 'links' | 'recommenders' | 'consents', string>;
     fields: Record<string, string>;
     hints: Record<string, string>;
     societies: { hint: string; search: string; none: string; selected: (n: number) => string };
@@ -82,7 +84,7 @@ export interface CabinetCopy {
     addPublication: string;
     addActivity: string;
     fromAccount: string;
-    errors: Record<'required' | 'nameEn' | 'orcid' | 'linkedin' | 'facebook' | 'url' | 'year', string>;
+    errors: Record<'required' | 'nameEn' | 'orcid' | 'linkedin' | 'facebook' | 'url' | 'year' | 'email' | 'consent', string>;
     experience: { year: string; position: string; place: string; yearHint: string; positionHint: string; placeHint: string; addJob: string; addExpert: string };
     publication: {
       titles: [string, string, string];
@@ -102,6 +104,8 @@ export interface CabinetCopy {
       open: string;
     };
     bar: { save: string; cancel: string; unsaved: string; saved: string; sending: string };
+    recommenders: { lede: string; rows: [string, string, string]; name: string; email: string; nameHint: string; emailHint: string; privateNote: string };
+    consents: { personalData: string; publish: string; yes: string; no: string; publishNote: string };
     cancelTitle: string;
     cancelText: string;
     cancelKeep: string;
@@ -168,6 +172,7 @@ export interface CabinetCopy {
       open: string;
       deadline: string;
       field: string;
+      fields: string;
       soon: (days: number) => string;
       emptyTitle: string;
       emptyText: string;
@@ -227,6 +232,34 @@ export interface CabinetCopy {
   };
   settings: SettingsCopy;
   demo: { label: string; status: string; section: string; state: string };
+  onboarding: OnboardingCopy;
+}
+
+export type OnboardingStepId = 'about' | 'work' | 'activity' | 'field' | 'career' | 'publications' | 'more' | 'recommenders' | 'review';
+
+export interface OnboardingCopy {
+  welcome: { title: string; lede: string; start: string };
+  steps: Record<OnboardingStepId, { title: string; lede: string; optional?: boolean }>;
+  progress: (n: number, total: number) => string;
+  stepperLabel: string;
+  optional: string;
+  back: string;
+  next: string;
+  saveExit: string;
+  saved: string;
+  review: {
+    previewTitle: string;
+    missingTitle: string;
+    missingOk: string;
+    fix: string;
+    consentsTitle: string;
+    consentsLede: string;
+    send: string;
+    sending: string;
+    blocked: string;
+    missing: Record<string, string>;
+  };
+  exited: { title: string; text: string; back: string };
 }
 
 const en: CabinetCopy = {
@@ -284,13 +317,14 @@ const en: CabinetCopy = {
     partTitle: 'Change',
     lede: 'Everything you filled in at registration is here. Change what has moved on and add what is new. Save as you go, then send all the changes together. The team checks them at once, and they appear on the site only after the check.',
     required: '* required',
-    groups: { photo: 'Photo', contacts: 'Contact details', science: 'Scientific profile', publications: 'Key publications (1 to 3)', keywords: 'Keywords and activity', societies: 'Scientific societies', links: 'Contacts and links' },
-    fields: { photoChange: 'Change photo', nameUk: 'Full name in Ukrainian', nameEn: 'Full name in English', email: 'Email', phone: 'Mobile phone', orcid: 'ORCID link', facebook: 'Facebook link', linkedin: 'LinkedIn link', degree: 'Scientific degree', degreeOther: 'Which degree exactly', activityOther: 'Which activity exactly', rank: 'Academic title', institution: 'Official full name of the institution', languages: 'Foreign languages', activity: 'Main activity', area: 'Field of scientific research', experience: 'Professional experience', expert: 'Expert experience', field: 'Field of knowledge and speciality', extraFields: 'Suggest another field or speciality', act1: 'Additional activity 1', act2: 'Additional activity 2', act3: 'Additional activity 3', extraActivities: 'Other activities', scienceProjects: 'Participation in scientific projects', otherProjects: 'Participation in other projects', societies: 'Scientific societies' },
+    example: 'For example:',
+    groups: { photo: 'Photo', contacts: 'Contact details', science: 'Scientific profile', publications: 'Key publications (1 to 3)', keywords: 'Keywords and activity', societies: 'Scientific societies', links: 'Contacts and links', recommenders: 'Recommendations', consents: 'Two confirmations' },
+    fields: { photoChange: 'Change photo', photoAdd: 'Add a photo', nameUk: 'Full name in Ukrainian', nameEn: 'Full name in English', email: 'Email', phone: 'Mobile phone', orcid: 'ORCID link', facebook: 'Facebook link', linkedin: 'LinkedIn link', degree: 'Scientific degree', degreeOther: 'Which degree exactly', activityOther: 'Which activity exactly', rank: 'Academic title', institution: 'Official full name of the institution', languages: 'Foreign languages', activity: 'Main activity', area: 'Field of scientific research', experience: 'Professional experience', expert: 'Expert experience', field: 'Field of knowledge and speciality', extraFields: 'Suggest another field or speciality', act1: 'Additional activity 1', act2: 'Additional activity 2', act3: 'Additional activity 3', extraActivities: 'Other activities', scienceProjects: 'Participation in scientific projects', otherProjects: 'Participation in other projects', societies: 'Scientific societies' },
     societies: { hint: 'Tick the societies you belong to; the profile will link to their pages on the site.', search: 'Search the societies', none: 'No society found.', selected: (n) => `Selected: ${n}` },
     picker: { otherOption: 'Not in the list', otherLabel: 'Your field or speciality', otherHint: 'The editors will look at it before it is added.', field: 'Field of knowledge', select: 'Select', specialties: 'Specialities', specialtiesHint: 'Tick one or several.', firstField: 'First choose the field of knowledge.', addField: 'Add a field', moreTitle: (n) => `Another field ${n}`, removeField: 'Remove this field', extraHint: 'Not in the list? Write your own field here; the editors will look at it before it is added.', errField: 'Pick a field of knowledge from the list.', errSpecialty: 'Pick at least one speciality.' },
     linkRemove: { aria: 'Remove link', title: 'Remove this link?', text: (l) => `${l} will be removed from your profile after you send it.`, confirm: 'Remove' },
     photoRemove: 'Remove photo',
-    hints: { photo: 'A square picture, JPEG or PNG, up to 10 MB. About 420×420 px on a plain background.', phone: 'Not published on the site.', email: 'Taken from your account. To change it, email us.', nameUk: 'Taken from your account. To change it, email us.', activity: 'In the first person, a few sentences; the editors will turn them into the text for your page. For example: “I am a PhD student in research policy at Lund University (Sweden). I am interested in how modern research infrastructures are governed.”', area: 'A list separated by semicolons; a double space types one for you. The editors will turn it into the text for your page. For example: gemological study of Ukrainian gemstones; pricing and valuation of precious stones; expert assessment and diagnostics of gems.', experience: 'One line per post: “year – position, place of work”.', expert: 'In the same format.', field: 'From the list of fields and specialities.' },
+    hints: { photo: 'A square picture, JPEG or PNG, up to 10 MB. About 420×420 px on a plain background.', phone: 'Not published on the site.', email: 'Taken from your account. To change it, email us.', nameUk: 'Taken from your account. To change it, email us.', nameUkFill: 'Surname, first name and patronymic in Ukrainian. For example: Шевченко Володимир Вікторович.', activity: 'In the first person, a few sentences; the editors will turn them into the text for your page. For example: “I am a PhD student in research policy at Lund University (Sweden). I am interested in how modern research infrastructures are governed.”', area: 'A list separated by semicolons; a double space types one for you. The editors will turn it into the text for your page. For example: gemological study of Ukrainian gemstones; pricing and valuation of precious stones; expert assessment and diagnostics of gems.', experience: 'One line per post: “year – position, place of work”.', expert: 'In the same format.', field: 'From the list of fields and specialities.' },
     options: { degree: ['Candidate of Sciences / PhD', 'Doctor of Sciences', 'Other'], rank: ['None', 'Associate Professor', 'Senior Researcher', 'Professor'], activity: ['Science popularisation / science communication', 'Science policy', 'Programming', 'Public speaking', 'Writing books', 'Networking', 'Project management', 'Entrepreneurship', 'Grant writing / fundraising', 'Patenting', 'Commercialisation of scientific inventions', 'Research ethics', 'Academic integrity', 'Working with databases', 'Teaching', 'Other'] },
     select: 'Choose',
     addPublication: 'Add a publication',
@@ -304,6 +338,8 @@ const en: CabinetCopy = {
       facebook: 'This should be a link to a page on facebook.com.',
       url: 'A link starts with https://',
       year: 'The year is four digits, for example 2022.',
+      email: 'This does not look like an email address.',
+      consent: 'We cannot go on without this confirmation.',
     },
     experience: { year: 'Year', position: 'Position', place: 'Place of work', yearHint: '2021 or 2018–2021', positionHint: 'Head of department', placeHint: 'Kharkiv University', addJob: 'Add a place of work', addExpert: 'Add a role' },
     publication: {
@@ -324,6 +360,22 @@ const en: CabinetCopy = {
       open: 'Open the project',
     },
     bar: { save: 'Save changes', cancel: 'Cancel', unsaved: 'Unsaved changes', saved: 'No changes yet', sending: 'Sending' },
+    recommenders: {
+      lede: 'Name three scientists who can recommend you, and the email where the team can reach them. We write to them only to confirm that they know you.',
+      rows: ['First scientist', 'Second scientist', 'Third scientist'],
+      name: 'Full name',
+      email: 'Email',
+      nameHint: 'Surname First name',
+      emailHint: 'name@university.edu.ua',
+      privateNote: 'Not published on the site.',
+    },
+    consents: {
+      personalData: 'I consent to the processing of my personal data in accordance with the Law of Ukraine “On Personal Data Protection”',
+      publish: 'I consent to the publication of the data I have given on the platform https://scienceatrisk.org/',
+      yes: 'Yes',
+      no: 'No',
+      publishNote: 'If you answer “No”, the team will contact you before anything is published.',
+    },
     cancelTitle: 'Leave without saving?',
     cancelText: 'Unsaved edits will be lost. Changes you have already saved stay in your profile until you send them.',
     cancelKeep: 'Keep editing',
@@ -413,6 +465,7 @@ const en: CabinetCopy = {
       open: 'Learn more',
       deadline: 'Deadline',
       field: 'Field',
+      fields: 'Fields',
       soon: (days) => (days <= 0 ? 'Deadline is today' : days === 1 ? '1 day left' : `${days} days left`),
       emptyTitle: 'No grants for you yet',
       emptyText:
@@ -537,6 +590,48 @@ const en: CabinetCopy = {
     },
   },
   demo: { label: 'Preview controls', status: 'Profile status', section: 'Screen', state: 'State' },
+  onboarding: {
+    welcome: {
+      title: 'Welcome. Let’s set up your page',
+      lede: 'To become part of our community, please fill in the information about yourself.',
+      start: 'Start',
+    },
+    steps: {
+      about: { title: 'About you', lede: 'Your name as it will stand on the site, a photo, and how to reach you.' },
+      work: { title: 'Where you work', lede: 'Your degree, title and institution, and the languages you can use with foreign partners and journalists.' },
+      activity: { title: 'What you do', lede: 'Two short texts in your own words. The editors will turn them into the text for your page.' },
+      field: { title: 'Your field', lede: 'Choose your field and specialities from the list. This is how partners and journalists will find you, so take a moment here.' },
+      career: { title: 'Your career', lede: 'Your places of work, from the first to the latest, and your expert work: societies, expert bodies, editorial boards, reviewing.' },
+      publications: { title: 'Key publications', lede: 'From one to three of your most important publications. One field per part, so the entry comes out neat on the site.' },
+      more: { title: 'Projects and societies', lede: 'Projects described online and the scientific societies you belong to. Add them now or later.', optional: true },
+      recommenders: { title: 'Recommendations', lede: 'Three scientists who can recommend you.' },
+      review: { title: 'Check and send', lede: 'This is how your page will look. Check it, then send it to the team.' },
+    },
+    progress: (n, total) => `Step ${n} of ${total}`,
+    stepperLabel: 'Steps of the profile',
+    optional: 'optional',
+    back: 'Back',
+    next: 'Next',
+    saveExit: 'Save and finish later',
+    saved: 'Saved',
+    review: {
+      previewTitle: 'Your page',
+      missingTitle: 'Still to fill in',
+      missingOk: 'Everything required is filled in.',
+      fix: 'Fill in',
+      consentsTitle: 'Two confirmations',
+      consentsLede: 'The last thing before sending.',
+      send: 'Send to the team',
+      sending: 'Sending',
+      blocked: 'Fill in the required fields and give both confirmations to send.',
+      missing: { about: 'About you', work: 'Where you work', activity: 'What you do', field: 'Your field', career: 'Your career', publications: 'Key publications', recommenders: 'Recommendations' },
+    },
+    exited: {
+      title: 'Saved. Come back whenever you like',
+      text: 'Everything you have filled in is kept. Sign in again and you will continue from where you stopped.',
+      back: 'Continue now',
+    },
+  },
 };
 
 const uk: CabinetCopy = {
@@ -594,13 +689,14 @@ const uk: CabinetCopy = {
     partTitle: 'Редагування',
     lede: 'Тут усе, що ви заповнили під час реєстрації. Змініть те, що застаріло, і додайте нове. Зберігайте зміни по мірі роботи, а коли все буде готово, надішліть їх разом. Команда перевіряє їх одним пакетом, і на сайті вони з’являться лише після перевірки.',
     required: '* обов’язкове поле',
-    groups: { photo: 'Фото', contacts: 'Контактні дані', science: 'Науковий профіль', publications: 'Основні наукові публікації (від 1 до 3)', keywords: 'Ключові слова та діяльність', societies: 'Наукові товариства', links: 'Контакти й посилання' },
-    fields: { photoChange: 'Змінити фото', nameUk: 'Прізвище, ім’я, по батькові', nameEn: 'Прізвище та ім’я англійською', email: 'Адреса електронної пошти', phone: 'Номер мобільного телефону', orcid: 'Посилання на ORCID', facebook: 'Посилання на Facebook', linkedin: 'Посилання на LinkedIn', degree: 'Науковий ступінь', degreeOther: 'Вкажіть, який саме ступінь', activityOther: 'Вкажіть, яка саме діяльність', rank: 'Вчене звання', institution: 'Офіційна повна назва установи', languages: 'Іноземні мови', activity: 'Суть основної діяльності', area: 'Сфера наукових досліджень', experience: 'Професійний досвід', expert: 'Досвід експертної діяльності', field: 'Галузь знань і спеціальність', extraFields: 'Запропонувати іншу галузь або спеціальність', act1: 'Додаткова діяльність 1', act2: 'Додаткова діяльність 2', act3: 'Додаткова діяльність 3', extraActivities: 'Інша додаткова діяльність', scienceProjects: 'Участь у наукових проєктах', otherProjects: 'Участь в інших проєктах', societies: 'Наукові товариства' },
+    example: 'Наприклад:',
+    groups: { photo: 'Фото', contacts: 'Контактні дані', science: 'Науковий профіль', publications: 'Основні наукові публікації (від 1 до 3)', keywords: 'Ключові слова та діяльність', societies: 'Наукові товариства', links: 'Контакти й посилання', recommenders: 'Рекомендації', consents: 'Два підтвердження' },
+    fields: { photoChange: 'Змінити фото', photoAdd: 'Додати фото', nameUk: 'Прізвище, ім’я, по батькові', nameEn: 'Прізвище та ім’я англійською', email: 'Адреса електронної пошти', phone: 'Номер мобільного телефону', orcid: 'Посилання на ORCID', facebook: 'Посилання на Facebook', linkedin: 'Посилання на LinkedIn', degree: 'Науковий ступінь', degreeOther: 'Вкажіть, який саме ступінь', activityOther: 'Вкажіть, яка саме діяльність', rank: 'Вчене звання', institution: 'Офіційна повна назва установи', languages: 'Іноземні мови', activity: 'Суть основної діяльності', area: 'Сфера наукових досліджень', experience: 'Професійний досвід', expert: 'Досвід експертної діяльності', field: 'Галузь знань і спеціальність', extraFields: 'Запропонувати іншу галузь або спеціальність', act1: 'Додаткова діяльність 1', act2: 'Додаткова діяльність 2', act3: 'Додаткова діяльність 3', extraActivities: 'Інша додаткова діяльність', scienceProjects: 'Участь у наукових проєктах', otherProjects: 'Участь в інших проєктах', societies: 'Наукові товариства' },
     societies: { hint: 'Позначте товариства, до яких ви належите; профіль матиме посилання на їхні сторінки на сайті.', search: 'Пошук серед товариств', none: 'Нічого не знайдено.', selected: (n) => `Обрано: ${n}` },
     picker: { otherOption: 'Немає у переліку', otherLabel: 'Ваша галузь або спеціальність', otherHint: 'Редактори розглянуть її перед додаванням.', field: 'Галузь знань', select: 'Оберіть', specialties: 'Спеціальності', specialtiesHint: 'Позначте одну або кілька.', firstField: 'Спочатку оберіть галузь знань.', addField: 'Додати галузь', moreTitle: (n) => `Ще одна галузь ${n}`, removeField: 'Прибрати цю галузь', extraHint: 'Немає у переліку? Напишіть свою галузь тут, редактори розглянуть її перед додаванням.', errField: 'Оберіть галузь знань зі списку.', errSpecialty: 'Оберіть хоча б одну спеціальність.' },
     linkRemove: { aria: 'Видалити посилання', title: 'Видалити це посилання?', text: (l) => `${l} зникне з вашого профілю після надсилання.`, confirm: 'Видалити' },
     photoRemove: 'Прибрати фото',
-    hints: { photo: 'Квадратне фото, JPEG або PNG, до 10 MB. Бажано 420×420 px, однотонний фон.', phone: 'На сайті не публікується.', email: 'Береться з вашого акаунта. Щоб поредагувати, напишіть нам на email.', nameUk: 'Береться з вашого акаунта. Щоб поредагувати, напишіть нам на email.', activity: 'Кілька речень від першої особи; редактори складуть з них текст для вашої сторінки. Наприклад: «Я аспірантка у галузі дослідницької політики в Лундському університеті (Швеція). Мене цікавить тема керування сучасними дослідницькими інфраструктурами.»', area: 'Список через крапку з комою; подвійний пробіл поставить її за вас. З нього редактори складуть текст для вашої сторінки. Наприклад: гемологічне вивчення самоцвітів України; особливості ціноутворення і визначення вартості коштовного каміння; експертиза і діагностика дорогоцінного каміння.', experience: 'Один рядок на посаду: «рік – посада, місце роботи».', expert: 'У тому самому форматі.', field: 'За переліком галузей і спеціальностей.' },
+    hints: { photo: 'Квадратне фото, JPEG або PNG, до 10 MB. Бажано 420×420 px, однотонний фон.', phone: 'На сайті не публікується.', email: 'Береться з вашого акаунта. Щоб поредагувати, напишіть нам на email.', nameUk: 'Береться з вашого акаунта. Щоб поредагувати, напишіть нам на email.', nameUkFill: 'Прізвище, ім’я, по батькові. Наприклад: Шевченко Володимир Вікторович.', activity: 'Кілька речень від першої особи; редактори складуть з них текст для вашої сторінки. Наприклад: «Я аспірантка у галузі дослідницької політики в Лундському університеті (Швеція). Мене цікавить тема керування сучасними дослідницькими інфраструктурами.»', area: 'Список через крапку з комою; подвійний пробіл поставить її за вас. З нього редактори складуть текст для вашої сторінки. Наприклад: гемологічне вивчення самоцвітів України; особливості ціноутворення і визначення вартості коштовного каміння; експертиза і діагностика дорогоцінного каміння.', experience: 'Один рядок на посаду: «рік – посада, місце роботи».', expert: 'У тому самому форматі.', field: 'За переліком галузей і спеціальностей.' },
     options: { degree: ['Кандидат наук / Доктор філософії', 'Доктор наук', 'Інше'], rank: ['Немає', 'Доцент', 'Старший дослідник', 'Професор'], activity: ['Популяризація науки / наукові комунікації', 'Політики в галузі науки', 'Програмування', 'Публічні виступи', 'Написання книжок', 'Нетворкінг', 'Менеджмент проєктів', 'Підприємництво', 'Написання грантових заявок / фандрейзинг', 'Патентування', 'Комерціалізація наукових винаходів', 'Наукова етика', 'Академічна доброчесність', 'Робота з базами даних', 'Викладання', 'Інше'] },
     select: 'Оберіть',
     addPublication: 'Додати публікацію',
@@ -614,6 +710,8 @@ const uk: CabinetCopy = {
       facebook: 'Це має бути посилання на сторінку у facebook.com.',
       url: 'Посилання починається з https://',
       year: 'Рік складається з чотирьох цифр, наприклад 2022.',
+      email: 'Це не схоже на адресу електронної пошти.',
+      consent: 'Без цього підтвердження ми не можемо рухатися далі.',
     },
     experience: { year: 'Рік', position: 'Посада', place: 'Місце роботи', yearHint: '2021 або 2018–2021', positionHint: 'Завідувач кафедри', placeHint: 'ХНУ імені В. Н. Каразіна', addJob: 'Додати місце роботи', addExpert: 'Додати діяльність' },
     publication: {
@@ -634,6 +732,22 @@ const uk: CabinetCopy = {
       open: 'Відкрити проєкт',
     },
     bar: { save: 'Зберегти зміни', cancel: 'Скасувати', unsaved: 'Є незбережені зміни', saved: 'Змін поки немає', sending: 'Надсилаємо' },
+    recommenders: {
+      lede: 'Назвіть трьох науковців, які можуть вас рекомендувати, і електронну пошту, за якою команда може з ними зв’язатися. Ми напишемо їм лише для того, щоб підтвердити, що вони вас знають.',
+      rows: ['Перший науковець', 'Другий науковець', 'Третій науковець'],
+      name: 'Прізвище та ім’я',
+      email: 'Електронна пошта',
+      nameHint: 'Прізвище Ім’я',
+      emailHint: 'name@university.edu.ua',
+      privateNote: 'На сайті не публікується.',
+    },
+    consents: {
+      personalData: 'Я надаю згоду на обробку моїх персональних даних відповідно до Закону України «Про захист персональних даних»',
+      publish: 'Я надаю згоду на публікацію вказаних мною даних на платформі https://scienceatrisk.org/',
+      yes: 'Так',
+      no: 'Ні',
+      publishNote: 'Якщо ви оберете «Ні», команда зв’яжеться з вами, перш ніж щось буде опубліковано.',
+    },
     cancelTitle: 'Вийти без збереження?',
     cancelText: 'Незбережені правки буде втрачено. Вже збережені зміни залишаться в профілі, доки ви їх не надішлете.',
     cancelKeep: 'Продовжити редагування',
@@ -733,6 +847,7 @@ const uk: CabinetCopy = {
       open: 'Дізнатись більше',
       deadline: 'Дедлайн',
       field: 'Галузь',
+      fields: 'Галузі',
       soon: (days) => {
         if (days <= 0) return 'Дедлайн сьогодні';
         const last = days % 10;
@@ -863,6 +978,48 @@ const uk: CabinetCopy = {
     },
   },
   demo: { label: 'Керування переглядом', status: 'Статус профілю', section: 'Екран', state: 'Стан' },
+  onboarding: {
+    welcome: {
+      title: 'Вітаємо. Створімо вашу сторінку',
+      lede: 'Щоб стати частиною нашої спільноти, заповніть, будь ласка, інформацію про себе.',
+      start: 'Почати',
+    },
+    steps: {
+      about: { title: 'Про вас', lede: 'Ваше ім’я так, як воно буде на сайті, фото і спосіб зв’язку.' },
+      work: { title: 'Де ви працюєте', lede: 'Науковий ступінь, звання й установа, а також мови, якими ви можете спілкуватися з іноземними партнерами та журналістами.' },
+      activity: { title: 'Чим ви займаєтесь', lede: 'Два короткі тексти своїми словами. Редактори складуть з них текст для вашої сторінки.' },
+      field: { title: 'Ваша галузь', lede: 'Оберіть галузь і спеціальності зі списку. За ними вас знаходитимуть партнери та журналісти, тому приділіть цьому кілька хвилин.' },
+      career: { title: 'Ваш шлях', lede: 'Місця роботи від першого до останнього та експертна діяльність: товариства, експертні органи, редколегії, рецензування.' },
+      publications: { title: 'Основні публікації', lede: 'Від однієї до трьох найважливіших публікацій. Кожна частина в окремому полі, щоб запис на сайті вийшов охайним.' },
+      more: { title: 'Проєкти й товариства', lede: 'Проєкти, опис яких є онлайн, і наукові товариства, до яких ви належите. Додайте зараз або пізніше.', optional: true },
+      recommenders: { title: 'Рекомендації', lede: 'Троє науковців, які можуть вас рекомендувати.' },
+      review: { title: 'Перевірте й надішліть', lede: 'Так виглядатиме ваша сторінка. Перевірте її й надішліть команді.' },
+    },
+    progress: (n, total) => `Крок ${n} з ${total}`,
+    stepperLabel: 'Кроки профілю',
+    optional: 'необов’язково',
+    back: 'Назад',
+    next: 'Далі',
+    saveExit: 'Зберегти й продовжити пізніше',
+    saved: 'Збережено',
+    review: {
+      previewTitle: 'Ваша сторінка',
+      missingTitle: 'Ще треба заповнити',
+      missingOk: 'Усе обов’язкове заповнено.',
+      fix: 'Заповнити',
+      consentsTitle: 'Два підтвердження',
+      consentsLede: 'Останнє перед надсиланням.',
+      send: 'Надіслати команді',
+      sending: 'Надсилаємо',
+      blocked: 'Щоб надіслати, заповніть обов’язкові поля й надайте обидві згоди.',
+      missing: { about: 'Про вас', work: 'Де ви працюєте', activity: 'Чим ви займаєтесь', field: 'Ваша галузь', career: 'Ваш шлях', publications: 'Основні публікації', recommenders: 'Рекомендації' },
+    },
+    exited: {
+      title: 'Збережено. Повертайтеся, коли зручно',
+      text: 'Усе, що ви заповнили, збережено. Увійдіть знову, і ви продовжите з того місця, де зупинилися.',
+      back: 'Продовжити зараз',
+    },
+  },
 };
 
 export const cabinetCopy: Record<CabinetLocale, CabinetCopy> = { en, uk };

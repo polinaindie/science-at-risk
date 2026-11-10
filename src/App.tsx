@@ -16,6 +16,8 @@ export function App() {
     return (
       <CabinetDemo
         section={section}
+        // `/cabinet/welcome` is where the first sign-in lands: an empty profile and the wizard.
+        firstLogin={match[1] === 'welcome'}
         // `?controls` shows the review strip: statuses, empty and many-record states, language.
         controls={new URLSearchParams(window.location.search).has('controls')}
         onSectionChange={(s) =>

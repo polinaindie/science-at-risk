@@ -21,6 +21,8 @@ export interface CabinetLayoutProps {
   status?: ProfileStatus;
   /** Stands above the menu in the side column (on narrow screens, above the tabs): the person. */
   aside?: ReactNode;
+  /** Replaces the menu in the side column: the first-fill wizard puts its steps here. */
+  sideNav?: ReactNode;
   hrefFor?: (section: CabinetSection) => string;
   onNavigate?: (section: CabinetSection) => void;
   logoutHref?: string;
@@ -67,6 +69,7 @@ export function CabinetLayout({
   unread = 0,
   marked = [],
   aside,
+  sideNav,
   hrefFor = (s) => `#${s}`,
   onNavigate,
   logoutHref = '/logout',
@@ -82,6 +85,10 @@ export function CabinetLayout({
       ) : null}
       <div className={`${name ? 'mt-6' : ''} ${name ? 'lg:mt-10' : ''} lg:grid lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-[42px]`}>
       <div className="min-w-0">
+      {sideNav ? (
+        <div className="lg:sticky lg:top-[calc(68px+2rem)]">{sideNav}</div>
+      ) : (
+      <>
       {aside ? <div className="mb-8">{aside}</div> : null}
       {/* One box as tall as the screen under the header: the tabs at its top, the account links at its foot. It stays put while the cabinet scrolls and leaves, whole, when the content ends. */}
       <div className="flex flex-col lg:sticky lg:top-[calc(68px+2rem)] lg:h-[calc(100dvh-168px)]">
@@ -121,7 +128,7 @@ export function CabinetLayout({
       </nav>
       </div>
       {/* Account links sit at the foot of the side column, at the bottom edge of the screen. */}
-      <ul className="m-0 mt-4 flex list-none flex-col gap-1 p-0 lg:mb-8">
+      <ul className="m-0 mt-4 flex list-none flex-col gap-1 p-0">
         <li>
           <MenuLink
             href={hrefFor('settings')}
@@ -136,6 +143,8 @@ export function CabinetLayout({
         </li>
       </ul>
       </div>
+      </>
+      )}
       </div>
       <main className="mt-8 min-w-0 lg:mt-0">{children}</main>
       </div>

@@ -154,7 +154,7 @@ export function Modal({
         aria-modal="true"
         aria-label={title}
         tabIndex={-1}
-        className="relative w-full max-w-[560px] bg-white p-6 outline-none md:p-10"
+        className="relative max-h-full w-full max-w-[560px] overflow-y-auto bg-white p-6 outline-none md:p-10"
       >
         <h2 className="font-serif text-h2-mobile md:text-h2-desktop">{title}</h2>
         <div className="mt-4 font-ukraine text-text2-mobile font-light md:text-text2-desktop">

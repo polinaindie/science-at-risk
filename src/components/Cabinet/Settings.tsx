@@ -17,9 +17,9 @@ export interface SettingsScreenProps {
 
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-function Block({ title, text, children }: { title: string; text?: string; children: ReactNode }) {
+function Block({ title, text, last = false, children }: { title: string; text?: string; last?: boolean; children: ReactNode }) {
   return (
-    <section className="border-t-2 border-brand-black py-8 md:py-10">
+    <section className={`border-t-2 border-brand-black pt-8 md:pt-10 ${last ? '' : 'pb-8 md:pb-10'}`}>
       <h2 className="font-serif text-h2-mobile md:text-h2-desktop">{title}</h2>
       {text ? (
         <p className="mt-3 max-w-[620px] font-ukraine text-text2-mobile font-light md:text-text2-desktop">{text}</p>
@@ -245,7 +245,7 @@ export function SettingsScreen({ locale, email, onChangePassword, onChangeEmail,
         </fieldset>
       </Block>
 
-      <Block title={t.delete.title} text={t.delete.text}>
+      <Block title={t.delete.title} text={t.delete.text} last>
         {deleted ? (
           <p role="status" className="max-w-[620px] bg-brand-accent-yellow px-4 py-3 font-ukraine text-text2-mobile font-light">
             <strong className="font-medium">{t.delete.doneTitle}.</strong> {t.delete.doneText}

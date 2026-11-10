@@ -4,11 +4,13 @@ import {
   CabinetDemo,
   CabinetLayout,
   CollaborationScreen,
+  OnboardingWizard,
   NotificationsScreen,
   OpportunitiesScreen,
   ProfileEditForm,
   ProfileView,
   SubmitConfirmModal,
+  emptyProfile,
   emptyPublication,
   sampleCourses,
   sampleGrants,
@@ -267,4 +269,41 @@ export const NotificationsEnglish: Story = {
       />,
       'notifications',
     ),
+};
+
+/* ------------------------------------------------- first sign-in: the wizard */
+
+const firstProfile = emptyProfile(sampleProfile.uk.email);
+/** Everything but the field of knowledge and the recommenders: the review has something left to say. */
+const almostFilled = { ...sampleProfile.uk, field: '', specialties: [], activities: [], recommenders: [], consents: { personalData: false, publish: '' as const } };
+
+export const FirstLoginWelcome: Story = {
+  render: () => <OnboardingWizard locale="uk" initial={firstProfile} />,
+};
+export const FirstLoginStepAbout: Story = {
+  render: () => <OnboardingWizard locale="uk" initial={firstProfile} initialStep={0} />,
+};
+export const FirstLoginStepAboutErrors: Story = {
+  render: () => <OnboardingWizard locale="uk" initial={firstProfile} initialStep={0} showErrors />,
+};
+export const FirstLoginStepField: Story = {
+  render: () => <OnboardingWizard locale="uk" initial={firstProfile} initialStep={3} />,
+};
+export const FirstLoginStepCareer: Story = {
+  render: () => <OnboardingWizard locale="uk" initial={firstProfile} initialStep={4} />,
+};
+export const FirstLoginStepRecommenders: Story = {
+  render: () => <OnboardingWizard locale="uk" initial={firstProfile} initialStep={7} />,
+};
+export const FirstLoginReviewIncomplete: Story = {
+  render: () => <OnboardingWizard locale="uk" initial={almostFilled} initialStep={8} />,
+};
+export const FirstLoginReviewReady: Story = {
+  render: () => <OnboardingWizard locale="uk" initial={sampleProfile.uk} initialStep={8} />,
+};
+export const FirstLoginEnglish: Story = {
+  render: () => <OnboardingWizard locale="en" initial={emptyProfile(sampleProfile.en.email)} initialStep={1} />,
+};
+export const FirstLoginWholeFlow: Story = {
+  render: () => <CabinetDemo locale="uk" firstLogin controls />,
 };

@@ -19,3 +19,6 @@ export type { CabinetLocale, CabinetSection, ProfileStatus, CabinetCopy } from '
 export * from './cabinetData';
 export { SpecialtyPicker } from "./SpecialtyPicker";
 export { knowledgeFields } from "./knowledgeFields";
+export { OnboardingWizard, STEP_SECTIONS, STEP_ORDER } from './Onboarding/OnboardingWizard';
+export type { OnboardingWizardProps } from './Onboarding/OnboardingWizard';
+export type { FormSection, StepBar } from './Profile';

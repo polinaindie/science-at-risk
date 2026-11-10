@@ -9,6 +9,7 @@ import {
   sampleManyNotifications,
   sampleMatches,
   sampleNotifications,
+  emptyProfile,
   sampleProfile,
   type Notification,
   type ProfileData,
@@ -20,12 +21,18 @@ import { NotificationsScreen } from './Notifications';
 import { OpportunitiesScreen } from './Opportunities';
 import { ProfileEditForm, ProfileView, SubmitConfirmModal, type SectionId } from './Profile';
 import { ApprovedBanner } from './parts';
+import { OnboardingWizard } from './Onboarding/OnboardingWizard';
+
+/** Where the demo keeps the half-filled profile, as the backend will. */
+const WIZARD_KEY = 'satr-first-fill';
 
 export interface CabinetDemoProps {
   locale?: CabinetLocale;
   section?: CabinetSection;
   status?: ProfileStatus;
   editing?: boolean;
+  /** The first sign-in: an empty profile and the fill-in wizard instead of the cabinet. */
+  firstLogin?: boolean;
   /** Show the review controls (status, empty states) above the cabinet. */
   controls?: boolean;
   /** Keep the real site header and footer around it. */
@@ -44,6 +51,7 @@ export function CabinetDemo({
   section: initialSection = 'profile',
   status: initialStatus = 'approved',
   editing: initialEditing = false,
+  firstLogin = false,
   controls = false,
   chrome = true,
   onSectionChange,
@@ -53,6 +61,9 @@ export function CabinetDemo({
   const [section, setSectionState] = useState(initialSection);
   const [status, setStatus] = useState(initialStatus);
   const [editing, setEditing] = useState(initialEditing);
+  // The wizard is on until the first send; `wizardKey` starts it over from the welcome screen.
+  const [onboarding, setOnboarding] = useState(firstLogin);
+  const [wizardKey, setWizardKey] = useState(0);
   // Which part is being changed; none means the whole form.
   const [part, setPart] = useState<SectionId | undefined>();
   const [profile, setProfile] = useState<ProfileData>(sampleProfile[initialLocale]);
@@ -145,7 +156,7 @@ export function CabinetDemo({
 
 
   // The profile as it is read is on the blue of the site's expert page; forms and other screens stay white.
-  const onProfilePage = section === 'profile' && !editing;
+  const onProfilePage = section === 'profile' && !editing && !onboarding;
 
   const screen = (() => {
     if (section === 'profile') {
@@ -265,9 +276,9 @@ export function CabinetDemo({
             ground={onProfilePage ? 'bg-brand-accent-blue' : 'bg-white'}
             locale={locale === 'uk' ? 'UA' : 'EN'}
             cabinetHref={`${base}cabinet`}
-            avatarSrc={profile.imageSrc}
-            accountName={locale === 'uk' ? profile.nameUk : profile.nameEn}
-            unread={unread}
+            avatarSrc={onboarding ? '' : profile.imageSrc}
+            accountName={onboarding ? '' : locale === 'uk' ? profile.nameUk : profile.nameEn}
+            unread={onboarding ? 0 : unread}
           />
           <div className="h-[64px]" aria-hidden />
         </>
@@ -316,6 +327,18 @@ export function CabinetDemo({
               })}
             </span>
             <span className="flex items-center gap-2">
+              {chip(onboarding, locale === 'uk' ? 'Перший вхід' : 'First sign-in', () => {
+                try {
+                  localStorage.removeItem(WIZARD_KEY);
+                } catch {
+                  /* nothing to clear */
+                }
+                setWizardKey((k) => k + 1);
+                setOnboarding(true);
+                setSectionState('profile');
+              })}
+            </span>
+            <span className="flex items-center gap-2">
               {chip(locale === 'uk', 'УКР', () => setLocale('uk'))}
               {chip(locale === 'en', 'ENG', () => setLocale('en'))}
             </span>
@@ -323,6 +346,31 @@ export function CabinetDemo({
         </div>
       ) : null}
 
+      {onboarding ? (
+        <OnboardingWizard
+          key={`${locale}${wizardKey}`}
+          locale={locale}
+          initial={emptyProfile(sampleProfile[locale].email)}
+          storageKey={WIZARD_KEY}
+          sending={sending}
+          onSubmit={(next) => {
+            setSending(true);
+            setTimeout(() => {
+              setProfile(next);
+              setUnsent(null);
+              setSending(false);
+              setOnboarding(false);
+              setStatus('pending');
+              setConfirmed(true);
+              try {
+                localStorage.removeItem(WIZARD_KEY);
+              } catch {
+                /* nothing to clear */
+              }
+            }, 900);
+          }}
+        />
+      ) : (
       <CabinetLayout
         locale={locale}
         ground={onProfilePage ? 'blue' : 'white'}
@@ -334,12 +382,13 @@ export function CabinetDemo({
       >
         {screen}
       </CabinetLayout>
+      )}
 
       {confirmed ? (
         <SubmitConfirmModal locale={locale} onClose={() => setConfirmed(false)} />
       ) : null}
 
-      {chrome && !editing ? <Footer account="member" cabinetHref={`${base}cabinet`} /> : null}
+      {chrome && !editing && !onboarding ? <Footer account="member" cabinetHref={`${base}cabinet`} /> : null}
     </div>
   );
 }

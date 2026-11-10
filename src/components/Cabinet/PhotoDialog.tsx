@@ -85,16 +85,18 @@ export function PhotoDialog({
         onDragLeave={() => setOver(false)}
         onDrop={drop}
         data-testid="photo-drop"
-        className={`flex flex-col items-center gap-3 border-2 border-dashed border-brand-black p-6 text-center ${
+        className={`flex flex-col items-center gap-2 border-2 border-dashed border-brand-black p-5 text-center ${
           over ? 'bg-brand-accent-blue' : 'bg-white'
         }`}
       >
-        <img
-          src={src ?? current}
-          alt=""
-          className="aspect-square w-[160px] object-cover"
-          title={src ? t.preview : undefined}
-        />
+        {src ?? current ? (
+          <img
+            src={src ?? current}
+            alt=""
+            className="aspect-square w-[112px] object-cover"
+            title={src ? t.preview : undefined}
+          />
+        ) : null}
         {src ? <p className="m-0 font-mono text-breadcrumbs text-brand-muted">{t.preview}</p> : null}
         <p className="m-0 font-bold">{t.drop}</p>
         <p className="m-0 font-mono text-breadcrumbs text-brand-muted">{t.or}</p>
@@ -119,7 +121,7 @@ export function PhotoDialog({
         {error}
       </p>
 
-      <h3 className="mt-6 mb-2 font-mono text-[16px] font-bold">{t.tipsTitle}</h3>
+      <h3 className="mt-4 mb-2 font-mono text-[16px] font-bold">{t.tipsTitle}</h3>
       <ul className="m-0 list-disc space-y-1 pl-5 text-[16px] leading-[22px]">
         {t.tips.map((x) => (
           <li key={x}>{x}</li>

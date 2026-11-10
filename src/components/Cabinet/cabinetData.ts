@@ -54,7 +54,66 @@ export interface ProfileData {
   otherProjects: Project[];
   /** Scientific societies the person belongs to: slugs from societies.ts, each linked to its page on the site. */
   societies: string[];
+  // 5 · asked at registration, never published
+  /** Three scientists who can vouch for the person. */
+  recommenders: Recommender[];
+  consents: Consents;
 }
+
+/** A scientist who can give a recommendation: the name and the e-mail the team writes to. */
+export interface Recommender {
+  name: string;
+  email: string;
+}
+
+export const emptyRecommender: Recommender = { name: '', email: '' };
+
+/** What the person agrees to. Both are asked before the first send. */
+export interface Consents {
+  /** Processing of personal data under the Law of Ukraine “On Personal Data Protection”. */
+  personalData: boolean;
+  /** Publishing the answers on the site; "no" is a valid answer the team has to know. */
+  publish: '' | 'yes' | 'no';
+}
+
+/** A profile with nothing in it yet: what a scientist meets after the first sign-in. */
+export const emptyProfile = (email: string, nameUk = ''): ProfileData => ({
+  imageSrc: '',
+  nameUk,
+  nameEn: '',
+  email,
+  phone: '',
+  orcid: '',
+  facebook: '',
+  linkedin: '',
+  degree: '',
+  degreeOther: '',
+  rank: '',
+  institution: '',
+  languages: '',
+  activity: '',
+  researchArea: '',
+  experience: [],
+  expertExperience: [],
+  publications: [],
+  field: '',
+  specialties: [],
+  extraKnowledge: [],
+  extraFields: '',
+  activities: [],
+  extraActivities: '',
+  scienceProjects: [],
+  otherProjects: [],
+  societies: [],
+  recommenders: [],
+  consents: { personalData: false, publish: '' },
+});
+
+const sampleRecommenders: Recommender[] = [
+  { name: 'Ihor Biletskyi', email: 'ihor.biletskyi@university.edu.ua' },
+  { name: 'Olena Kovalenko', email: 'olena.kovalenko@institute.org.ua' },
+  { name: 'Serhii Shevchenko', email: 'serhii.shevchenko@university.edu.ua' },
+];
 
 /** A project the scientist took part in: what it is called, what it is, their part, a link. */
 export interface Project {
@@ -129,7 +188,8 @@ export interface Course {
 export interface Grant {
   id: string;
   title: string;
-  field: string;
+  /** One field of knowledge, or several: each shows as its own tag. */
+  field: string | string[];
   href: string;
   /** ISO date, YYYY-MM-DD. */
   deadline?: string;
@@ -186,6 +246,8 @@ export const sampleProfile: Record<CabinetLocale, ProfileData> = {
     ],
     otherProjects: [],
     societies: ['ukrainske-botanichne-tovarystvo', 'hidroekolohichne-tovarystvo-ukrainy'],
+    recommenders: sampleRecommenders,
+    consents: { personalData: true, publish: 'yes' },
   },
   uk: {
     imageSrc: PHOTO,
@@ -235,6 +297,8 @@ export const sampleProfile: Record<CabinetLocale, ProfileData> = {
     ],
     otherProjects: [],
     societies: ['ukrainske-botanichne-tovarystvo', 'hidroekolohichne-tovarystvo-ukrainy'],
+    recommenders: sampleRecommenders,
+    consents: { personalData: true, publish: 'yes' },
   },
 };
 
@@ -373,7 +437,7 @@ export const sampleGrants: Record<CabinetLocale, Grant[]> = {
     {
       id: 'g3',
       title: 'Equipment grant for field monitoring',
-      field: 'Remote sensing',
+      field: ['Remote sensing', 'Soil science', 'Environmental management'],
       href: '#',
       deadline: inDays(40),
     },
@@ -395,7 +459,7 @@ export const sampleGrants: Record<CabinetLocale, Grant[]> = {
     {
       id: 'g3',
       title: 'Грант на обладнання для польового моніторингу',
-      field: 'Дистанційне зондування',
+      field: ['Дистанційне зондування', 'Ґрунтознавство', 'Екологічний менеджмент'],
       href: '#',
       deadline: inDays(40),
     },

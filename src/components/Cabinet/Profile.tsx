@@ -8,6 +8,7 @@ import { cabinetCopy, type CabinetLocale, type ProfileStatus } from './cabinetCo
 import {
   emptyExperience,
   emptyProject,
+  emptyRecommender,
   emptyPublication,
   type ExperienceItem,
   type Project,
@@ -22,10 +23,12 @@ import {
   isLatinName,
   isProfileLink,
   isPublicationEmpty,
+  isEmail,
   isUrl,
   isYear,
 } from './format';
 import { PhotoDialog } from './PhotoDialog';
+import { areSectionsValid } from './validate';
 import { OTHER_FIELD, SpecialtyPicker } from './SpecialtyPicker';
 import { FormattedText } from './FormattedText';
 import { isRichEmpty } from './formatText';
@@ -393,12 +396,12 @@ export function ProfileView({
 
       {/* The page of an expert on the site, piece for piece; what is added is the way to change it. */}
       {identity ? null : (
-        <div className="mt-8">
+        <div>
           {statusLine}
           <ProfileName locale={locale} profile={profile} show="position" action={change('name', t.parts.name)} />
         </div>
       )}
-      <div className={`mt-[38px] grid gap-6 ${identity ? 'md:grid-cols-[5fr_7fr] lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-x-[42px]' : ''}`}>
+      <div className={`grid gap-6 ${identity ? 'mt-0 md:grid-cols-[5fr_7fr] lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-x-[42px]' : 'mt-[38px]'}`}>
         <aside>
           {identity ? (
             <div className="max-w-[240px]">
@@ -567,11 +570,39 @@ export function ProfileView({
 
 /* ------------------------------------------------------------------ edit */
 
+/** Parts the wizard can ask for besides the ones the profile page edits. */
+export type FormSection = SectionId | 'identity' | 'work' | 'recommenders' | 'consents';
+
+/** The buttons under one step of the wizard. */
+export interface StepBar {
+  nextLabel: string;
+  backLabel: string;
+  onBack?: () => void;
+  exitLabel: string;
+  /** Keeps the draft as it is and leaves; nothing is checked. */
+  onExit?: (draft: ProfileData) => void;
+  /** Hides Next; the step has its own way on. */
+  hideNext?: boolean;
+  nextDisabled?: boolean;
+}
+
+/** Every part the form can show, in the order it shows them. */
+const ALL_PARTS: FormSection[] = [
+  'photo', 'identity', 'work', 'activity', 'area', 'experience', 'expert', 'publications',
+  'keywords', 'scienceProjects', 'otherProjects', 'societies', 'languages', 'links', 'recommenders', 'consents',
+];
+
 export interface ProfileEditFormProps {
   locale: CabinetLocale;
   initial: ProfileData;
   /** Show only this part of the form: the one the person chose to change. */
   only?: SectionId;
+  /** Show several parts at once: one step of the first-fill wizard. Wins over `only`. */
+  sections?: FormSection[];
+  /** Step mode: no page title and no bottom bar; the wizard's own buttons take their place. */
+  step?: StepBar;
+  /** Called with the draft each time it changes, so a wizard can keep it. */
+  onChange?: (draft: ProfileData) => void;
   /** Show the form already failing — for stories and the design review. */
   showErrors?: boolean;
   /** Open with the "leave without saving?" sheet showing. */
@@ -627,6 +658,9 @@ export function ProfileEditForm({
   locale,
   initial,
   only,
+  sections,
+  step,
+  onChange,
   showErrors = false,
   confirmingCancel = false,
   onSave,
@@ -636,6 +670,16 @@ export function ProfileEditForm({
   const f = t.fields;
   const pub = t.publication;
   const [draft, setDraft] = useState<ProfileData>(initial);
+  const formRef = useRef<HTMLFormElement>(null);
+  const firstRun = useRef(true);
+  useEffect(() => {
+    if (firstRun.current) {
+      firstRun.current = false;
+      return;
+    }
+    onChange?.(draft);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [draft]);
   const [tried, setTried] = useState(showErrors);
   const [leaving, setLeaving] = useState(confirmingCancel);
   const [photoOpen, setPhotoOpen] = useState(false);
@@ -686,7 +730,6 @@ export function ProfileEditForm({
     if (p.url.trim() && !isUrl(p.url)) out.url = t.errors.url;
     return out;
   };
-  const anyPubIssue = () => Array.from({ length: pubCount }, (_, i) => pubIssues(i)).some((o) => Object.keys(o).length);
 
   /** The first row needs both parts; a later row needs both only once one is filled. */
   const expIssues = (key: 'experience' | 'expertExperience', i: number) => {
@@ -698,12 +741,6 @@ export function ProfileEditForm({
     if (!r.place.trim()) out.place = t.errors.required;
     return out;
   };
-  const anyExpIssue = () =>
-    (['experience', 'expertExperience'] as const).some((key) =>
-      Array.from({ length: Math.max(1, draft[key].length) }, (_, i) => expIssues(key, i)).some(
-        (o) => Object.keys(o).length,
-      ),
-    );
 
   /** A project that was started needs a name, a short description and the person's role. */
   const projIssues = (key: 'scienceProjects' | 'otherProjects', i: number) => {
@@ -716,10 +753,23 @@ export function ProfileEditForm({
     if (r.url.trim() && !isUrl(r.url)) out.url = t.errors.url;
     return out;
   };
-  const anyProjIssue = () =>
-    (['scienceProjects', 'otherProjects'] as const).some((key) =>
-      draft[key].some((_, i) => Object.keys(projIssues(key, i)).length),
-    );
+
+  /** Each of the three recommenders needs a name and a working-looking e-mail. */
+  const recAt = (i: number) => draft.recommenders[i] ?? emptyRecommender;
+  const recIssues = (i: number) => {
+    const r = recAt(i);
+    const out: Partial<Record<'name' | 'email', string>> = {};
+    if (!r.name.trim()) out.name = t.errors.required;
+    if (!r.email.trim()) out.email = t.errors.required;
+    else if (!isEmail(r.email)) out.email = t.errors.email;
+    return out;
+  };
+  const setRec = (i: number, patch: Partial<typeof emptyRecommender>) =>
+    setDraft((d) => {
+      const next = [0, 1, 2].map((n) => d.recommenders[n] ?? { ...emptyRecommender });
+      next[i] = { ...next[i], ...patch };
+      return { ...d, recommenders: next };
+    });
 
   /** Format checks for the fields that have one; the required check stays separate. */
   const formatIssue = (key: keyof ProfileData): string | undefined => {
@@ -750,19 +800,18 @@ export function ProfileEditForm({
         value={String(draft[key])}
         onChange={(e) => set(key, e.currentTarget.value as never)}
         aria-invalid={missing(key) || (shown(key) && !!formatIssue(key)) || undefined}
-        placeholder={hint}
         className="max-w-none"
         onBlur={() => touch(key)}
         {...extra}
       />
-      {note ? <p className="mt-2 font-mono text-breadcrumbs text-brand-muted">{note}</p> : null}
+      {note || hint ? <p className="mt-2 font-mono text-breadcrumbs text-brand-muted">{note ?? `${t.example} ${hint}`}</p> : null}
       {err(missing(key) ? t.errors.required : shown(key) && formatIssue(key))}
     </div>
   );
 
-  const linkField = (key: 'orcid' | 'linkedin' | 'facebook', label: string, hint: string) => (
+  const linkField = (key: 'orcid' | 'linkedin' | 'facebook', label: string) => (
     <div className="flex items-end gap-2">
-      <div className="min-w-0 flex-1">{text(key, label, hint, undefined, { type: 'url' })}</div>
+      <div className="min-w-0 flex-1">{text(key, label, undefined, undefined, { type: 'url' })}</div>
       {draft[key] ? (
         <button
           type="button"
@@ -806,7 +855,7 @@ export function ProfileEditForm({
     };
     return (
       <div className="space-y-6">
-        <h3 className="font-mono text-h3-mobile md:text-h3-desktop">{title} *</h3>
+        <h3 className="font-serif text-h2-mobile font-normal md:text-h2-desktop">{title} *</h3>
         {rows.map((r, i) => {
           const issue = expIssues(key, i);
           const k = (part: string) => `${key}${i}.${part}`;
@@ -818,7 +867,6 @@ export function ProfileEditForm({
                     <TextField
                       label={t.experience[part] + (i === 0 ? ' *' : '')}
                       value={r[part]}
-                      placeholder={t.experience[part === 'year' ? 'yearHint' : part === 'position' ? 'positionHint' : 'placeHint']}
                       onChange={(e) => change(i, { [part]: e.currentTarget.value })}
                       // A long line scrolls sideways; coming into the field puts the caret
                       // at the end, where the person goes on writing.
@@ -834,6 +882,11 @@ export function ProfileEditForm({
                   </div>
                 ))}
               </div>
+              {i === 0 ? (
+                <p className="mt-2 font-mono text-breadcrumbs text-brand-muted">
+                  {t.example} {t.experience.yearHint} · {t.experience.positionHint} · {t.experience.placeHint}
+                </p>
+              ) : null}
               {i > 0 ? (
                 <div className="mt-3">
                   <Link
@@ -865,7 +918,7 @@ export function ProfileEditForm({
     const pr = t.project;
     return (
       <div className="space-y-12">
-        <h3 className="font-mono text-h3-mobile md:text-h3-desktop">{title}</h3>
+        <h3 className="font-serif text-h2-mobile font-normal md:text-h2-desktop">{title}</h3>
         {rows.map((r, i) => {
           const issue = projIssues(key, i);
           const k = (part: string) => `${key}${i}.${part}`;
@@ -878,7 +931,6 @@ export function ProfileEditForm({
                   rows={1}
                   label={pr.fields[part] + ' *'}
                   value={r[part]}
-                  placeholder={pr.hints[part]}
                   onChange={(e) => change(i, { [part]: e.currentTarget.value })}
                   onBlur={() => touch(k(part))}
                   aria-invalid={(shown(k(part)) && !!issue[part]) || undefined}
@@ -888,7 +940,6 @@ export function ProfileEditForm({
                 <TextField
                   label={pr.fields[part] + (part === 'url' ? '' : ' *')}
                   value={r[part]}
-                  placeholder={part === 'url' ? 'https://' : pr.hints[part]}
                   type={part === 'url' ? 'url' : undefined}
                   onChange={(e) => change(i, { [part]: e.currentTarget.value })}
                   onBlur={() => touch(k(part))}
@@ -896,6 +947,9 @@ export function ProfileEditForm({
                   className="max-w-none"
                 />
               )}
+              {part !== 'url' ? (
+                <p className="mt-2 font-mono text-breadcrumbs text-brand-muted">{t.example} {pr.hints[part]}</p>
+              ) : null}
               {err(shown(k(part)) && issue[part])}
             </div>
           );
@@ -929,16 +983,20 @@ export function ProfileEditForm({
   const submit = (e: FormEvent) => {
     e.preventDefault();
     setTried(true);
-    const bad =
-      REQUIRED.some((k) => !String(draft[k]).trim()) ||
-      (draft.field === OTHER_FIELD ? !draft.extraFields.trim() : draft.specialties.length === 0) ||
-      (otherDegree && !draft.degreeOther.trim()) ||
-      anyPubIssue() ||
-      anyExpIssue() ||
-      anyProjIssue() ||
-      draft.activities.includes(t.options.activity[t.options.activity.length - 1]) ||
-      (['nameEn', 'orcid', 'linkedin', 'facebook'] as const).some((k) => formatIssue(k));
-    if (bad || !draft.activities[0]) return;
+    const bad = !areSectionsValid(
+      draft,
+      ALL_PARTS.filter(on),
+      { otherDegree: t.options.degree.at(-1) ?? '', otherActivity: t.options.activity[t.options.activity.length - 1] },
+    );
+    if (bad) {
+      // Bring the first thing that needs an answer into view.
+      requestAnimationFrame(() => {
+        const el = formRef.current?.querySelector<HTMLElement>('[aria-invalid="true"], [role="alert"]');
+        el?.scrollIntoView({ block: 'center', behavior: 'smooth' });
+        if (el && 'focus' in el && el.tagName !== 'P') el.focus({ preventScroll: true });
+      });
+      return;
+    }
     onSave?.({
       ...draft,
       extraKnowledge: draft.extraKnowledge.filter((k) => (k.field === OTHER_FIELD ? k.other?.trim() : k.field || k.specialties.length)),
@@ -970,11 +1028,18 @@ export function ProfileEditForm({
         } as Record<SectionId, string>
       )[only].toLowerCase()
     : '';
-  const on = (id: SectionId) => !only || only === id;
+  const want: FormSection[] | undefined = sections ?? (only ? [only] : undefined);
+  // The full form is the profile as it is edited later: what was asked only once, at the start, is not in it.
+  const on = (id: FormSection) =>
+    want
+      ? want.includes(id) || ((id === 'identity' || id === 'work') && want.includes('name'))
+      : id !== 'recommenders' && id !== 'consents';
+  const anyOn = (...ids: FormSection[]) => ids.some(on);
   const cancel = () => (dirty ? setLeaving(true) : onCancel?.());
 
   return (
-    <form onSubmit={submit} noValidate className="pb-28">
+    <form ref={formRef} onSubmit={submit} noValidate className={step ? 'pb-40' : 'pb-28'}>
+      {step ? null : <>
       <a
         href="#profile"
         onClick={(e) => {
@@ -993,20 +1058,21 @@ export function ProfileEditForm({
       </h1>
       {only ? null : <p className={`mt-3 max-w-[760px] ${PARA}`}>{t.lede}</p>}
       <p className="mt-2 mb-10 font-mono text-breadcrumbs text-brand-muted">{t.required}</p>
+      </>}
 
       <div>
         {on('photo') ? (
-          <Group bare={!!only} title={t.groups.photo}>
+          <Group bare={!!want} title={t.groups.photo}>
           <div className="flex items-center gap-5">
             {draft.imageSrc ? (
               <img src={draft.imageSrc} alt="" className="size-[96px] shrink-0 object-cover" />
             ) : (
-              <div aria-hidden className="size-[96px] shrink-0 bg-white/60" />
+              <div aria-hidden className="size-[96px] shrink-0 border-2 border-dashed border-brand-black/40 bg-white/60" />
             )}
             <div>
               <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
                 <Button variant="bordered" type="button" onClick={() => setPhotoOpen(true)}>
-                  {f.photoChange}
+                  {draft.imageSrc ? f.photoChange : f.photoAdd}
                 </Button>
                 {draft.imageSrc ? (
                   <Link as="button" onClick={() => set('imageSrc', '')} className="text-[16px]! leading-[24px]!">
@@ -1028,20 +1094,27 @@ export function ProfileEditForm({
               <p className="mt-2 max-w-[420px] font-mono text-breadcrumbs text-brand-muted">
                 {t.hints.photo}
               </p>
+              {err(tried && !draft.imageSrc && t.errors.required)}
             </div>
           </div>
         </Group>
         ) : null}
 
-        <Group bare={!!only} title={t.groups.contacts}>
-          {on('name') ? (<>
+        {anyOn('identity') ? (
+        <Group bare={!!want} title={t.groups.contacts}>
+          {on('identity') ? (<>
           <div className={PAIR}>
+            {/* Known from the account: shown, not changed. In the first-fill wizard only the e-mail is known, so the person writes the name, on every step they come back to. */}
+            {!step && initial.nameUk.trim() ? (
+              <div>
+                <TextField label={f.nameUk} value={draft.nameUk} readOnly disabled className="max-w-none" />
+                <p className="mt-2 font-mono text-breadcrumbs text-brand-muted">{t.hints.nameUk}</p>
+              </div>
+            ) : (
+              text('nameUk', f.nameUk, undefined, undefined, { autoComplete: 'name' })
+            )}
             <div>
-              <TextField label={f.nameUk} value={draft.nameUk} readOnly disabled className="max-w-none" />
-              <p className="mt-2 font-mono text-breadcrumbs text-brand-muted">{t.hints.nameUk}</p>
-            </div>
-            <div>
-            {text('nameEn', f.nameEn, 'Volodymyr Shevchenko', undefined, {
+            {text('nameEn', f.nameEn, undefined, undefined, {
               lang: 'en',
               spellCheck: false,
               autoCapitalize: 'words',
@@ -1065,9 +1138,11 @@ export function ProfileEditForm({
           </div>
           </>) : null}
         </Group>
+        ) : null}
 
-        <Group bare={!!only} title={t.groups.science}>
-          {on('name') ? (<>
+        {anyOn('work', 'activity', 'area', 'experience', 'expert') ? (
+        <Group bare={!!want} title={t.groups.science}>
+          {on('work') ? (<>
           <div className={PAIR}>
             <FieldSelect
               label={f.degree + ' *'}
@@ -1105,9 +1180,10 @@ export function ProfileEditForm({
           {on('experience') ? experienceRows('experience', f.experience, t.experience.addJob) : null}
           {on('expert') ? experienceRows('expertExperience', f.expert, t.experience.addExpert) : null}
         </Group>
+        ) : null}
 
         {on('publications') ? (
-        <Group bare={!!only} title={t.groups.publications}>
+        <Group bare={!!want} title={t.groups.publications}>
           {Array.from({ length: pubCount }, (_, i) => {
             const cur = pubAt(i);
             const issues = pubIssues(i);
@@ -1125,7 +1201,6 @@ export function ProfileEditForm({
                     setPub(i, { [k]: v });
                   }}
                   onBlur={() => touch(key(k))}
-                  placeholder={k === 'authors' ? pub.hints.authors : undefined}
                   aria-invalid={(shown(key(k)) && !!issues[k]) || undefined}
                   inputMode={k === 'year' ? 'numeric' : undefined}
                   maxLength={k === 'year' ? 4 : undefined}
@@ -1139,7 +1214,7 @@ export function ProfileEditForm({
             return (
               <div key={i} className="space-y-12">
                 <div className="flex items-baseline justify-between gap-4">
-                  <h3 className="font-mono text-h3-mobile md:text-h3-desktop">{pub.titles[i]}</h3>
+                  <h3 className="font-serif text-h2-mobile font-normal md:text-h2-desktop">{pub.titles[i]}</h3>
                   {i > 0 ? (
                     <Link as="button" onClick={() => removePub(i)} className="text-[16px]! leading-[24px]!">
                       {pub.remove}
@@ -1147,7 +1222,7 @@ export function ProfileEditForm({
                   ) : null}
                 </div>
                 {field('title')}
-                {field('authors')}
+                {field('authors', `${t.example} ${pub.hints.authors}`)}
                 {field('journal')}
                 <div className={PAIR}>
                   {field('year')}
@@ -1164,12 +1239,6 @@ export function ProfileEditForm({
                   placeholder={t.select}
                 />
                 {field('url', pub.hints.url)}
-                {cur.title.trim() ? (
-                  <p className="font-mono text-text1-mobile text-brand-muted">
-                    {pub.preview}{' '}
-                    <span className="text-brand-black">{formatPublication(cur)}</span>
-                  </p>
-                ) : null}
               </div>
             );
           })}
@@ -1183,7 +1252,8 @@ export function ProfileEditForm({
         </Group>
         ) : null}
 
-        <Group bare={!!only} title={t.groups.keywords}>
+        {anyOn('keywords', 'scienceProjects', 'otherProjects') ? (
+        <Group bare={!!want} title={t.groups.keywords}>
           {on('keywords') ? (<>
           <SpecialtyPicker
             field={draft.field}
@@ -1283,8 +1353,10 @@ export function ProfileEditForm({
           {on('scienceProjects') ? projectCards('scienceProjects', f.scienceProjects, t.project.addScience) : null}
           {on('otherProjects') ? projectCards('otherProjects', f.otherProjects, t.project.addOther) : null}
         </Group>
+        ) : null}
 
-        <Group bare={!!only} title={t.groups.societies}>
+        {anyOn('societies') ? (
+        <Group bare={!!want} title={t.groups.societies}>
           {on('societies') ? (
             <SocietyPicker
               value={draft.societies}
@@ -1294,8 +1366,10 @@ export function ProfileEditForm({
             />
           ) : null}
         </Group>
+        ) : null}
 
-        <Group bare={!!only} title={t.groups.links}>
+        {anyOn('languages', 'links') ? (
+        <Group bare={!!want} title={t.groups.links}>
           {on('languages') ? text('languages', f.languages, undefined, undefined, {
             // A space after a finished word starts the next language: the comma is put in.
             onChange: (e: ChangeEvent<HTMLInputElement>) => {
@@ -1307,15 +1381,120 @@ export function ProfileEditForm({
           }) : null}
           {on('links') ? (
           <div className={PAIR}>
-            {linkField('orcid', f.orcid, 'https://orcid.org/0000-0000-0000-0000')}
-            {linkField('linkedin', f.linkedin, 'https://www.linkedin.com/in/…')}
-            {linkField('facebook', f.facebook, 'https://www.facebook.com/…')}
+            {linkField('orcid', f.orcid)}
+            {linkField('linkedin', f.linkedin)}
+            {linkField('facebook', f.facebook)}
           </div>
           ) : null}
         </Group>
+        ) : null}
+
+        {on('recommenders') ? (
+          <Group bare={!!want} title={t.groups.recommenders} note={t.recommenders.lede}>
+            {[0, 1, 2].map((i) => {
+              const r = recAt(i);
+              const issue = recIssues(i);
+              const k = (part: string) => `rec${i}.${part}`;
+              return (
+                <div key={i} className="space-y-6">
+                  <h3 className="font-serif text-h2-mobile font-normal md:text-h2-desktop">{t.recommenders.rows[i]} *</h3>
+                  <div className={PAIR}>
+                    <div>
+                      <TextField
+                        label={t.recommenders.name + ' *'}
+                        value={r.name}
+                        autoComplete="off"
+                        onChange={(e) => setRec(i, { name: e.currentTarget.value })}
+                        onBlur={() => touch(k('name'))}
+                        aria-invalid={(shown(k('name')) && !!issue.name) || undefined}
+                        className="max-w-none"
+                      />
+                      {err(shown(k('name')) && issue.name)}
+                    </div>
+                    <div>
+                      <TextField
+                        label={t.recommenders.email + ' *'}
+                        type="email"
+                        value={r.email}
+                        autoComplete="off"
+                        onChange={(e) => setRec(i, { email: e.currentTarget.value })}
+                        onBlur={() => touch(k('email'))}
+                        aria-invalid={(shown(k('email')) && !!issue.email) || undefined}
+                        className="max-w-none"
+                      />
+                      {err(shown(k('email')) && issue.email)}
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+            <p className="font-mono text-breadcrumbs text-brand-muted">{t.recommenders.privateNote}</p>
+          </Group>
+        ) : null}
+
+        {on('consents') ? (
+          <Group bare={!!want} title={t.groups.consents}>
+            <div>
+              <label className="flex cursor-pointer items-start gap-3 font-ukraine text-text2-mobile font-light md:text-text2-desktop">
+                <input
+                  type="checkbox"
+                  checked={draft.consents.personalData}
+                  onChange={(e) => set('consents', { ...draft.consents, personalData: e.currentTarget.checked })}
+                  aria-invalid={(tried && !draft.consents.personalData) || undefined}
+                  className="mt-1.5 size-5 shrink-0 accent-black"
+                />
+                <span>{t.consents.personalData} *</span>
+              </label>
+              {err(tried && !draft.consents.personalData && t.errors.consent)}
+            </div>
+            <fieldset className="m-0 min-w-0 border-0 p-0">
+              <legend className="font-ukraine text-text2-mobile font-light md:text-text2-desktop">{t.consents.publish} *</legend>
+              <div className="mt-4 flex flex-wrap gap-6">
+                {(['yes', 'no'] as const).map((v) => (
+                  <label key={v} className="flex cursor-pointer items-center gap-3 font-ukraine text-text2-mobile font-light md:text-text2-desktop">
+                    <input
+                      type="radio"
+                      name="consent-publish"
+                      checked={draft.consents.publish === v}
+                      onChange={() => set('consents', { ...draft.consents, publish: v })}
+                      aria-invalid={(tried && !draft.consents.publish) || undefined}
+                      className="size-5 accent-black"
+                    />
+                    {t.consents[v]}
+                  </label>
+                ))}
+              </div>
+              <p className="mt-3 font-mono text-breadcrumbs text-brand-muted">{t.consents.publishNote}</p>
+              {err(tried && !draft.consents.publish && t.errors.consent)}
+            </fieldset>
+          </Group>
+        ) : null}
       </div>
 
-      {/* Fixed to the bottom of the screen: the two answers are always in reach. */}
+      {step ? (
+        <div className="fixed inset-x-0 bottom-0 z-40 border-t-2 border-brand-black bg-brand-accent-blue">
+          <div className="mx-auto flex max-w-[1744px] flex-wrap items-center justify-between gap-x-6 gap-y-3 px-4 py-3 xl:px-10">
+            <div className="flex flex-wrap items-center gap-x-5 gap-y-1">
+              <Link as="button" onClick={() => step.onExit?.(draft)} className="text-[16px]! leading-[24px]!">
+                {step.exitLabel}
+              </Link>
+            </div>
+            <div className="flex flex-wrap items-center gap-3">
+              {step.onBack ? (
+                <Button variant="bordered" type="button" onClick={step.onBack}>
+                  {step.backLabel}
+                </Button>
+              ) : null}
+              {step.hideNext ? null : (
+                <Button variant="black" type="submit" disabled={step.nextDisabled} aria-busy={step.nextDisabled || undefined} className="disabled:opacity-60">
+                  {step.nextLabel}
+                </Button>
+              )}
+            </div>
+          </div>
+        </div>
+      ) : (
+        <>
       <div className="fixed inset-x-0 bottom-0 z-40 border-t-2 border-brand-black bg-white">
         <div className="mx-auto flex max-w-[1744px] flex-wrap items-center justify-between gap-3 px-4 py-3 xl:px-10">
           <p className="font-mono text-text1-mobile" aria-live="polite">
@@ -1335,6 +1514,9 @@ export function ProfileEditForm({
           </div>
         </div>
       </div>
+
+        </>
+      )}
 
       {removing ? (
         <Modal

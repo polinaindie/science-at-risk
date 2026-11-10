@@ -52,6 +52,7 @@ export function GrantCard({
       })
     : null;
 
+  const fields = Array.isArray(grant.field) ? grant.field : [grant.field];
   return (
     <article data-soon={soon || undefined} className="border-b-2 border-brand-black py-6 md:py-8">
       <div className="flex flex-col gap-5 md:flex-row md:items-start md:justify-between">
@@ -75,11 +76,18 @@ export function GrantCard({
             </p>
           ) : null}
           <h3 className="font-serif text-h2-mobile md:text-h2-desktop">{grant.title}</h3>
-          <div className="mt-4 flex items-center gap-3">
-            <span className="font-mono text-breadcrumbs text-brand-muted">{t.field}:</span>
-            <Tag as="span" variant="accent">
-              {grant.field}
-            </Tag>
+          {/* The label stands over the tags, so a grant with several fields has room for all of them. */}
+          <div className="mt-4">
+            <p className="m-0 mb-2 font-mono text-breadcrumbs text-brand-muted">{fields.length > 1 ? t.fields : t.field}</p>
+            <ul className="m-0 flex list-none flex-wrap gap-2 p-0">
+              {fields.map((f) => (
+                <li key={f}>
+                  <Tag as="span" variant="accent">
+                    {f}
+                  </Tag>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
         <div className="flex w-full shrink-0 flex-col gap-3 md:w-auto">

@@ -103,3 +103,6 @@ export function formatNotificationDate(
     .format(d)
     .replace(/\s?р\.$/, '');
 }
+
+/** A plain e-mail check: something@something.something, no spaces. */
+export const isEmail = (v: string) => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim());
