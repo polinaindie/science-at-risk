@@ -60,7 +60,6 @@ try {
             nextHref: `${base}cabinet`,
             forgotHref: 'forgot-password.html',
             firstLoginHref: 'first-login.html',
-            contactHref: `${base}contacts.html`,
           }),
         );
       case 'firstLogin':
@@ -71,7 +70,6 @@ try {
             nextHref: 'set-password.html',
             forgotHref: 'forgot-password.html',
             loginHref: 'login.html',
-            contactHref: `${base}contacts.html`,
           }),
         );
       case 'setPassword':

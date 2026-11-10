@@ -19,7 +19,6 @@ export interface AuthCopy {
     firstTime: string;
     noInviteTitle: string;
     noInvite: string;
-    noInviteLink: string;
     errors: {
       emailRequired: string;
       emailInvalid: string;
@@ -112,8 +111,7 @@ export const authCopy: Record<AuthLocale, AuthCopy> = {
       firstTime: 'First time here? Log in with the one-time password from your letter.',
       noInviteTitle: 'Entry is by invitation only',
       noInvite:
-        'The cabinet is for members of a closed community. If nobody has invited you yet, write to the project team.',
-      noInviteLink: 'Contact the team',
+        'The cabinet is for members of a closed community.',
       errors: {
         emailRequired: 'Enter your email.',
         emailInvalid: 'Enter a valid email, like name@example.org.',
@@ -218,8 +216,7 @@ export const authCopy: Record<AuthLocale, AuthCopy> = {
       firstTime: 'Вперше тут? Увійдіть з одноразовим паролем із листа.',
       noInviteTitle: 'Вхід лише за запрошенням',
       noInvite:
-        'Кабінет призначений для учасників закритої спільноти. Якщо вас ще ніхто не запросив, напишіть команді проєкту.',
-      noInviteLink: 'Зв’язатися з командою',
+        'Кабінет призначений для учасників закритої спільноти.',
       errors: {
         emailRequired: 'Введіть email.',
         emailInvalid: 'Введіть коректний email, наприклад name@example.org.',

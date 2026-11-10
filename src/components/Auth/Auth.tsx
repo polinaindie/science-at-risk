@@ -149,27 +149,14 @@ export interface LoginFormProps extends AuthBaseProps {
   nextHref?: string;
   forgotHref?: string;
   firstLoginHref?: string;
-  contactHref?: string;
 }
 
-/** The note for people who were never invited. */
-function InviteOnlyNote({
-  title,
-  text,
-  linkLabel,
-  href,
-}: {
-  title: string;
-  text: string;
-  linkLabel: string;
-  href: string;
-}) {
+/** The note for people who were never invited: the entry is by invitation, and that is all it says. */
+function InviteOnlyNote({ title, text }: { title: string; text: string }) {
   return (
     <>
       <p className="satr-auth__aside-title">{title}</p>
-      <p>
-        {text} <a href={href}>{linkLabel}</a>
-      </p>
+      <p>{text}</p>
     </>
   );
 }
@@ -185,7 +172,6 @@ export function LoginForm({
   nextHref = 'cabinet',
   forgotHref = 'forgot-password.html',
   firstLoginHref = 'first-login.html',
-  contactHref = 'contacts.html',
   className,
 }: LoginFormProps) {
   const t = authCopy[locale];
@@ -196,12 +182,7 @@ export function LoginForm({
       lede={l.lede}
       className={className}
       aside={
-        <InviteOnlyNote
-          title={l.noInviteTitle}
-          text={l.noInvite}
-          linkLabel={l.noInviteLink}
-          href={contactHref}
-        />
+        <InviteOnlyNote title={l.noInviteTitle} text={l.noInvite} />
       }
     >
       <form
@@ -265,7 +246,6 @@ export interface FirstLoginFormProps extends AuthBaseProps {
   nextHref?: string;
   forgotHref?: string;
   loginHref?: string;
-  contactHref?: string;
 }
 
 export function FirstLoginForm({
@@ -279,7 +259,6 @@ export function FirstLoginForm({
   nextHref = 'set-password.html',
   forgotHref = 'forgot-password.html',
   loginHref = 'login.html',
-  contactHref = 'contacts.html',
   className,
 }: FirstLoginFormProps) {
   const t = authCopy[locale];
@@ -291,12 +270,7 @@ export function FirstLoginForm({
       lede={l.lede}
       className={className}
       aside={
-        <InviteOnlyNote
-          title={note.noInviteTitle}
-          text={note.noInvite}
-          linkLabel={note.noInviteLink}
-          href={contactHref}
-        />
+        <InviteOnlyNote title={note.noInviteTitle} text={note.noInvite} />
       }
     >
       <form
