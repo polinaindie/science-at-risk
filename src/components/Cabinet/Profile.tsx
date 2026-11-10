@@ -33,9 +33,10 @@ import { OTHER_FIELD, SpecialtyPicker } from './SpecialtyPicker';
 import { FormattedText } from './FormattedText';
 import { isRichEmpty } from './formatText';
 import { Modal, StatusBadge } from './parts';
-import { societies, societyBySlug } from './societies';
+import { societies, societyBySlug, societyName } from './societies';
 
-const H4 = 'font-serif text-[22px] font-normal leading-[30px] tracking-[-0.02em] md:text-[28px] md:leading-[36px]';
+/** Every heading inside the profile, left column and right: 24px. */
+const H4 = 'font-serif text-[24px] font-normal leading-[30px] tracking-[-0.02em]';
 /** The site's text on an expert's page: mono, 18/26. */
 const SITE_P = 'font-mono text-[16px] leading-[26px] md:text-[18px]';
 /** Small print in the site's aside and project cards: e-Ukraine light, 16. */
@@ -411,36 +412,16 @@ export function ProfileView({
 
           {profile.languages ? (
             <>
-              <h4 className={`${identity ? 'mt-[35px]' : 'mt-0'} mb-3 font-serif text-[20px] font-normal leading-[26px] tracking-[-0.02em]`}>
+              <h4 className={`${identity ? 'mt-[35px]' : 'mt-0'} mb-3 ${H4}`}>
                 {t.aside.languages}
               </h4>
-              <p className={`m-0 ${SITE_SMALL}`}>{profile.languages}</p>
+              <p className={`m-0 ${SITE_P}`}>{profile.languages}</p>
               <div className="mt-4">
                 {change('languages', t.aside.languages.replace(/:$/, '').toLowerCase())}
               </div>
             </>
           ) : null}
 
-          {links.length ? (
-            <h4 className={`${profile.languages || identity ? 'mt-10' : 'mt-0'} mb-3 font-serif text-[20px] font-normal leading-[26px] tracking-[-0.02em]`}>
-              {t.aside.links}
-            </h4>
-          ) : null}
-          {links.length ? (
-            <ul className="m-0 flex list-none flex-wrap gap-x-5 gap-y-2 p-0">
-              {links.map((l) => (
-                <li key={l.href}>
-                  <a
-                    href={l.href}
-                    className="satr-hover-underline font-mono text-[15px] leading-[18px] tracking-[-0.03em]"
-                  >
-                    {l.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          ) : null}
-          {links.length ? <div className="mt-4">{change('links', t.parts.links)}</div> : null}
         </aside>
 
         <div className="min-w-0">
@@ -450,6 +431,19 @@ export function ProfileView({
               <ProfileName locale={locale} profile={profile} action={change('name', t.parts.name)} />
             </>
           ) : null}
+
+          {/* The links stand right under the name and the post: who the person is, and where to find them. */}
+          <Section title={t.aside.links.replace(/:$/, '') + ':'} empty={links.length === 0} action={change('links', t.parts.links)}>
+            <ul className="m-0 flex list-none flex-wrap gap-x-6 gap-y-2 p-0">
+              {links.map((l) => (
+                <li key={l.href}>
+                  <a href={l.href} className={`satr-hover-underline ${SITE_P}`}>
+                    {l.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </Section>
 
           <Section title={t.sections.activity} empty={isRichEmpty(profile.activity)} action={change('activity', sec('activity'))}>
             <FormattedText text={profile.activity} className={SITE_P} />
@@ -519,7 +513,7 @@ export function ProfileView({
                           href={`${import.meta.env.BASE_URL}society/${x.slug}.html`}
                           className="satr-hover-underline"
                         >
-                          {x.name}
+                          {societyName(x, locale)}
                         </a>
                         {i < mine.length - 1 ? <span className="mr-2">, </span> : null}
                       </li>
@@ -1359,6 +1353,7 @@ export function ProfileEditForm({
         <Group bare={!!want} title={t.groups.societies}>
           {on('societies') ? (
             <SocietyPicker
+              locale={locale}
               value={draft.societies}
               onChange={(v) => setDraft((d) => ({ ...d, societies: v }))}
               label={f.societies}
@@ -1609,11 +1604,13 @@ export function SubmitConfirmModal({
  * narrows as you type, and the chosen ones listed beneath, each removable.
  */
 function SocietyPicker({
+  locale,
   value,
   onChange,
   label,
   copy,
 }: {
+  locale: CabinetLocale;
   value: string[];
   onChange: (next: string[]) => void;
   label: string;
@@ -1630,7 +1627,7 @@ function SocietyPicker({
     document.addEventListener('mousedown', away);
     return () => document.removeEventListener('mousedown', away);
   }, [open]);
-  const shown = societies.filter((x) => x.name.toLowerCase().includes(q.trim().toLowerCase()));
+  const shown = societies.filter((x) => societyName(x, locale).toLowerCase().includes(q.trim().toLowerCase()));
   const toggle = (slug: string) =>
     onChange(value.includes(slug) ? value.filter((x) => x !== slug) : [...value, slug]);
   const chosen = value.map(societyBySlug).filter((x): x is NonNullable<typeof x> => !!x);
@@ -1673,7 +1670,7 @@ function SocietyPicker({
                       onChange={() => toggle(x.slug)}
                       className="mt-[3px] size-[18px] shrink-0 accent-black"
                     />
-                    {x.name}
+                    {societyName(x, locale)}
                   </label>
                 </li>
               ))
@@ -1694,7 +1691,7 @@ function SocietyPicker({
                 type="button"
                 variant="accent"
                 onClick={() => toggle(x.slug)}
-                aria-label={`${x.name} ✕`}
+                aria-label={`${societyName(x, locale)} ✕`}
                 className="min-h-[36px]! py-1.5! text-[14px]! leading-[20px]! tracking-[-0.03em]!"
               >
                 {x.name} ✕

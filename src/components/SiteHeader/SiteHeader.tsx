@@ -177,7 +177,7 @@ export function SiteHeader({
   ground = 'bg-transparent',
   inverted = false,
   locale = 'EN',
-  localeHref = `${base}uk.html`,
+  localeHref = `${base}uk`,
   homeHref = base || './',
   innerRef,
   className = '',
@@ -316,7 +316,7 @@ export function SiteHeader({
             ref={menuButtonRef}
             type="button"
             onClick={() => setMenuOpen((open) => !open)}
-            aria-label={`${menuOpen ? 'Close menu' : 'Open menu'}${member && unread ? (isUa ? `, нових сповіщень: ${unread}` : `, ${unread} new notifications`) : ''}`}
+            aria-label={`${menuOpen ? (isUa ? 'Закрити меню' : 'Close menu') : isUa ? 'Відкрити меню' : 'Open menu'}${member && unread ? (isUa ? `, нових сповіщень: ${unread}` : `, ${unread} new notifications`) : ''}`}
             aria-expanded={menuOpen}
             aria-controls={menuId}
             data-satr-menu-button=""

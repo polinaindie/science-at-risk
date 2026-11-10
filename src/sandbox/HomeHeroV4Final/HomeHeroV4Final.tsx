@@ -174,7 +174,7 @@ function SquircleLink({ className = '', children, ...props }: AnchorHTMLAttribut
 export function HomeHeroV4Final({
   navItems = defaultNavItems,
   locale = 'en',
-  localeHref = live('uk.html'),
+  localeHref = live('uk'),
   tagline = 'Centre of Excellence on Science at Risk, Ukraine',
   stories = defaultHomeHeroV4FinalStories,
   storiesLabel = 'Stories',
@@ -311,7 +311,7 @@ export function HomeHeroV4Final({
               ref={menuButtonRef}
               type="button"
               onClick={() => setMenuOpen((open) => !open)}
-              aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+              aria-label={menuOpen ? (isUk ? 'Закрити меню' : 'Close menu') : isUk ? 'Відкрити меню' : 'Open menu'}
               aria-expanded={menuOpen}
               aria-controls={menuId}
               className={`flex satr-dim min-h-11 min-w-11 items-center justify-center border-0 bg-transparent p-0 xl:hidden ${focusRing}`}

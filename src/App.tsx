@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { HomePageV6 } from '@/sandbox/HomePageV6';
 import { CabinetDemo, type CabinetSection } from '@/components/Cabinet';
 
@@ -9,6 +10,10 @@ const SECTIONS: CabinetSection[] = ['profile', 'notifications', 'collaboration',
  * (the sign-in screens send people there).
  */
 export function App() {
+  useEffect(() => {
+    // The document says which language it is in, for readers and for the browser.
+    document.documentElement.lang = /^\/uk\/?$/.test(window.location.pathname.replace(import.meta.env.BASE_URL, '/')) ? 'uk' : 'en';
+  }, []);
   const path = window.location.pathname.replace(import.meta.env.BASE_URL, '/');
   const match = path.match(/^\/cabinet(?:\/([a-z]+))?\/?$/);
   if (match) {
@@ -26,7 +31,9 @@ export function App() {
       />
     );
   }
-  return <HomePageV6 />;
+  // `/uk` is the Ukrainian home page: the same page, in Ukrainian.
+  const uk = /^\/uk\/?$/.test(path);
+  return <HomePageV6 locale={uk ? 'uk' : 'en'} />;
 }
 
 export default App;

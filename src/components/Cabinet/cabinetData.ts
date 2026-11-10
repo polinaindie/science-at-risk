@@ -211,7 +211,7 @@ export const sampleProfile: Record<CabinetLocale, ProfileData> = {
     degreeOther: '',
     rank: 'Professor',
     institution: 'V. N. Karazin Kharkiv National University',
-    languages: 'English, German',
+    languages: 'Ukrainian, English, German',
     activity:
       'Head of the Department of Ecology and Environmental Management at V. N. Karazin Kharkiv National University.',
     researchArea:
@@ -262,7 +262,7 @@ export const sampleProfile: Record<CabinetLocale, ProfileData> = {
     degreeOther: '',
     rank: 'Професор',
     institution: 'Харківський національний університет імені В. Н. Каразіна',
-    languages: 'англійська, німецька',
+    languages: 'українська, англійська, німецька',
     activity:
       'Завідувач кафедри екології та управління довкіллям Харківського національного університету імені В. Н. Каразіна.',
     researchArea:

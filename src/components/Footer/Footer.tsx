@@ -2,6 +2,7 @@ import { useState, type FormEvent } from 'react';
 import { wrapperClass } from '@/components/Layout';
 import { Button } from '@/components/Button';
 import { TextField } from '@/components/TextField';
+import { footerCopy, type FooterLocale } from './footerCopy';
 
 export interface FooterPartner {
   label: string;
@@ -16,6 +17,8 @@ export interface FooterSubmitData {
 }
 
 export interface FooterProps {
+  /** The language of everything the footer says unless a prop says otherwise. */
+  locale?: FooterLocale;
   title?: string;
   subtitle?: string;
   submitLabel?: string;
@@ -39,18 +42,15 @@ export interface FooterProps {
   className?: string;
 }
 
-const DEFAULT_PARTNERS: FooterPartner[] = [
-  {
-    label: 'Press, Education and Culture Department of the US Embassy in Ukraine',
-    href: 'https://ua.usembassy.gov/uk/education-culture-uk/',
-  },
-  { label: 'Alfred P. Sloan Foundation', href: 'https://sloan.org/' },
-  {
-    label: 'Ministry of Education and Science of Ukraine',
-    href: 'https://mon.gov.ua/ua',
-  },
-  { label: 'National research fund', href: 'https://nrfu.org.ua/' },
+const PARTNER_HREFS = [
+  'https://ua.usembassy.gov/uk/education-culture-uk/',
+  'https://sloan.org/',
+  'https://mon.gov.ua/ua',
+  'https://nrfu.org.ua/',
 ];
+
+const partnersFor = (locale: FooterLocale): FooterPartner[] =>
+  footerCopy[locale].partners.map((label, i) => ({ label, href: PARTNER_HREFS[i] }));
 
 /** The two headings on the right, and their links. Mono, held to a narrow
  *  measure — the reference caps them at 280px so a supporter's full legal name
@@ -72,23 +72,24 @@ const ACCOUNT_LINK =
  * stop stacking and stand side by side on one baseline.
  */
 export function Footer({
-  title = 'Want\nto help?',
-  subtitle = 'Fill out the form or contact us',
-  submitLabel = 'Send',
-  partnersTitle = 'The project is supported by:',
-  implementerTitle = 'Responsible for project implementation:',
-  implementerLabel = 'NGO "Kunsht"',
+  locale = 'en',
+  title = footerCopy[locale].title,
+  subtitle = footerCopy[locale].subtitle,
+  submitLabel = footerCopy[locale].submit,
+  partnersTitle = footerCopy[locale].partnersTitle,
+  implementerTitle = footerCopy[locale].implementerTitle,
+  implementerLabel = footerCopy[locale].implementerLabel,
   implementerHref = 'https://kunsht.com.ua/',
-  partners = DEFAULT_PARTNERS,
+  partners = partnersFor(locale),
   maxLength = 7000,
-  overLimitMessage = 'Please shorten your inquiry.',
+  overLimitMessage = footerCopy[locale].overLimit,
   onSubmit,
   account = 'guest',
-  loginLabel = 'Log in',
-  loginHref = `${import.meta.env.BASE_URL}login.html`,
-  cabinetLabel = 'My cabinet',
+  loginLabel = footerCopy[locale].login,
+  loginHref = `${import.meta.env.BASE_URL}${locale === 'uk' ? 'uk/' : ''}login.html`,
+  cabinetLabel = footerCopy[locale].cabinet,
   cabinetHref = '/cabinet',
-  logoutLabel = 'Log out',
+  logoutLabel = footerCopy[locale].logout,
   logoutHref = '/logout',
   className = '',
 }: FooterProps) {
@@ -106,7 +107,7 @@ export function Footer({
       subject: String(fd.get('subject') ?? ''),
       description: String(fd.get('description') ?? ''),
     });
-    setStatus('Thanks — we received your message.');
+    setStatus(footerCopy[locale].thanks);
   };
 
   return (
@@ -131,9 +132,9 @@ export function Footer({
             <form className="mt-8" onSubmit={handleSubmit} noValidate>
               {/* Name and email share a line from `lg` up, as they do there. */}
               <div className="grid gap-6 lg:grid-cols-2">
-                <TextField label="Name" name="name" tone="dark" autoComplete="name" required />
+                <TextField label={footerCopy[locale].fields.name} name="name" tone="dark" autoComplete="name" required />
                 <TextField
-                  label="Email"
+                  label={footerCopy[locale].fields.email}
                   name="email"
                   type="email"
                   tone="dark"
@@ -143,7 +144,7 @@ export function Footer({
               </div>
 
               <TextField
-                label="Topic"
+                label={footerCopy[locale].fields.topic}
                 name="subject"
                 tone="dark"
                 className="mt-6 max-w-none"
@@ -151,7 +152,7 @@ export function Footer({
               />
 
               <TextField
-                label="Text"
+                label={footerCopy[locale].fields.text}
                 name="description"
                 multiline
                 rows={3}

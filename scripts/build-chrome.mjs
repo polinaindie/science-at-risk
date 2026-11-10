@@ -52,9 +52,8 @@ try {
         footerMod.Footer,
         ua
           ? {
-              loginLabel: 'Увійти',
-              cabinetLabel: 'Мій кабінет',
-              logoutLabel: 'Вийти',
+              // The whole footer in Ukrainian: its own copy knows the words.
+              locale: 'uk',
               loginHref: `${base}uk/login.html`,
               cabinetHref: `${base}cabinet`,
               logoutHref: `${base}logout`,
@@ -95,7 +94,7 @@ try {
             menuId,
             inverted: light,
             locale: ua ? 'UA' : 'EN',
-            localeHref: alt ? `${base}${alt}` : ua ? base || './' : `${base}uk.html`,
+            localeHref: alt ? `${base}${alt}` : ua ? base || './' : `${base}uk`,
             loginHref: ua ? `${base}uk/login.html` : `${base}login.html`,
             cabinetHref: `${base}cabinet`,
             logoutHref: `${base}logout`,

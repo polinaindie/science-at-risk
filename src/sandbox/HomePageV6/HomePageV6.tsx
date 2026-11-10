@@ -9,8 +9,11 @@ import {
   type InfrastructuresSectionProps,
 } from '@/components/InfoSection';
 import { Footer, type FooterProps } from '@/components/Footer';
+import { homeCopyUk, homeHeroEn, type HomeLocale } from './homeCopy';
 
 export interface HomePageV6Props {
+  /** The language of the whole page; each prop below still overrides its part. */
+  locale?: HomeLocale;
   header?: SiteHeaderProps;
   hero?: HomeHeroV4FinalProps;
   scientists?: HomeScientistsBlockProps;
@@ -213,14 +216,16 @@ const scrollableUnder = (from: EventTarget | null, within: HTMLElement, deltaY: 
  * scrolling page, which is also what the reference does.
  */
 export function HomePageV6({
+  locale = 'en',
   header,
   hero,
   scientists,
-  research = defaultResearchV6,
-  infrastructure = defaultInfrastructureV6,
+  research = locale === 'uk' ? homeCopyUk.research : defaultResearchV6,
+  infrastructure = locale === 'uk' ? homeCopyUk.infrastructure : defaultInfrastructureV6,
   footer,
   className = '',
 }: HomePageV6Props) {
+  const uk = locale === 'uk';
   const [deck, setDeck] = useState(false);
   const [index, setIndex] = useState(0);
   /** Which block's ink the bar is wearing. It lags the block itself by most of
@@ -581,12 +586,12 @@ export function HomePageV6({
       // `fill` only in the deck: there the block's height is given, so the
       // photograph takes whatever the type does not need. In the flow nothing
       // dictates a height and the 666:428 crop stands.
-      content: <HomeHeroV4Final masthead={false} layout="museum" backLabel="< Previous" otherLabel="Other Stories" fill={deck} wordmarkRef={wordmarkRef} className="min-h-0 flex-1" {...hero} />,
+      content: <HomeHeroV4Final masthead={false} layout="museum" fill={deck} wordmarkRef={wordmarkRef} className="min-h-0 flex-1" {...(uk ? homeCopyUk.hero : homeHeroEn)} {...hero} />,
     },
     {
       ground: SECTIONS[1].ground,
       className: 'flex flex-col [justify-content:safe_flex-end]',
-      content: <HomeScientistsBlock {...scientists} />,
+      content: <HomeScientistsBlock {...(uk ? homeCopyUk.scientists : {})} {...scientists} />,
     },
     {
       ground: SECTIONS[2].ground,
@@ -601,13 +606,15 @@ export function HomePageV6({
     {
       ground: SECTIONS[4].ground,
       className: 'flex flex-col [justify-content:safe_flex-end]',
-      content: <Footer {...footer} />,
+      content: <Footer locale={locale} {...footer} />,
     },
   ];
 
   return (
     <div className={`bg-brand-white ${className}`.trim()}>
       <SiteHeader
+        locale={uk ? 'UA' : 'EN'}
+        localeHref={uk ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}uk`}
         progress={deck ? progress : barOn ? 1 : 0}
         ground={barGround}
         inverted={inverted}

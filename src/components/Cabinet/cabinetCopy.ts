@@ -300,7 +300,7 @@ const en: CabinetCopy = {
     parts: { photo: 'photo', links: 'links', name: 'name and position' },
     pendingNote: 'This is the version you sent. It is not on the site yet.',
     sections: { activity: 'Main activity:', area: 'Description of the field of scientific research:', experience: 'Professional experience:', expert: 'Expert experience:', publications: 'Key publications:', keywords: 'Keywords:', projects: 'Scientific projects:', otherProjects: 'Other projects:', societies: 'Scientific societies:' },
-    aside: { languages: 'Languages for professional communication:', links: 'Links:' },
+    aside: { languages: 'Languages:', links: 'Links:' },
     empty: 'Not filled in yet',
     unsent: {
       send: 'Send changes',
@@ -672,7 +672,7 @@ const uk: CabinetCopy = {
     parts: { photo: 'фото', links: 'посилання', name: 'ім’я та посада' },
     pendingNote: 'Це версія, яку ви надіслали. На сайті її ще немає.',
     sections: { activity: 'Суть основної діяльності:', area: 'Сфера наукових досліджень:', experience: 'Професійний досвід:', expert: 'Досвід експертної діяльності:', publications: 'Основні наукові публікації:', keywords: 'Ключові слова:', projects: 'Наукові проєкти:', otherProjects: 'Інші проєкти:', societies: 'Наукові товариства:' },
-    aside: { languages: 'Мови для професійного спілкування:', links: 'Посилання:' },
+    aside: { languages: 'Мови спілкування:', links: 'Посилання:' },
     empty: 'Ще не заповнено',
     unsent: {
       send: 'Надіслати зміни',
