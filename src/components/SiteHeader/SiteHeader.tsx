@@ -352,21 +352,6 @@ export function SiteHeader({
           </a>
         </div>
 
-        <nav aria-label={isUa ? 'Розділи' : 'Sections'} className="absolute left-1/2 hidden -translate-x-1/2 -translate-y-1/2 xl:block" style={{ top: PAD_TOP + ROW_H / 2 }}>
-          <ul className="m-0 flex list-none items-center gap-[20px] p-0 min-[1440px]:gap-[32px]">
-            {items.map((item) => (
-              <li key={item.href}>
-                <a
-                  href={item.href}
-                  className={`satr-hover-underline whitespace-nowrap font-mono text-[16px] leading-[26px] no-underline ${ink} ${focusRing}`}
-                >
-                  {item.label}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </nav>
-
         <div className="flex shrink-0 items-center gap-4 xl:gap-5">
           <p className="m-0 whitespace-nowrap font-mono text-text1-mobile md:text-[18px] md:leading-[24px] md:tracking-normal">
             {isUa ? other : current}
@@ -403,7 +388,7 @@ export function SiteHeader({
             aria-expanded={menuOpen}
             aria-controls={menuId}
             data-satr-menu-button=""
-            className={`satr-dim flex min-h-11 min-w-11 items-center justify-center border-0 bg-transparent p-0 xl:hidden ${focusRing}`}
+            className={`satr-dim flex min-h-11 min-w-11 items-center justify-center border-0 bg-transparent p-0 ${focusRing}`}
           >
             <span className="relative flex">
             <CountBadge count={member ? unread ?? 0 : 0} className="absolute -right-3 -top-3 md:hidden" />
@@ -426,7 +411,7 @@ export function SiteHeader({
         id={menuId}
         data-satr-menu=""
         hidden={!menuOpen}
-        className="fixed inset-0 z-[60] flex justify-end xl:hidden"
+        className="fixed inset-0 z-[60] flex justify-end"
       >
         <div
           data-satr-menu-backdrop=""
