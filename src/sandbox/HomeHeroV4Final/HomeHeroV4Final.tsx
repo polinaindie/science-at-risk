@@ -265,7 +265,7 @@ export function HomeHeroV4Final({
 
   return (
     <section
-      className={`bg-brand-white ${masthead ? 'pt-[26px] pb-[22px]' : ''} ${
+      className={`bg-brand-white ${masthead ? 'pt-[26px] pb-[22px]' : 'pb-10 md:pb-14 lg:pb-0'} ${
         fill ? 'flex h-full flex-col' : ''
       } ${className}`.trim()}
     >
