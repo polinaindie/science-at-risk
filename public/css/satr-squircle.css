@@ -1,0 +1,78 @@
+/*
+ * satr-squircle.css — the outlined squircle link (the header's Log in).
+ * Shared by the React component and the static pages.
+ *
+ * The ring is a clip-path on `__bg`; until it is drawn (before the script
+ * runs) a plain 1.5px outline stands in, so nothing flashes solid.
+ */
+:is(.satr-chrome, body) .satr-squircle-link {
+  --link-ink: #000;
+  --link-ground: #fff;
+  position: relative;
+  display: inline-block;
+  isolation: isolate;
+  padding: 5px 14px;
+  color: var(--link-ink);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 15px;
+  line-height: 22px;
+  white-space: nowrap;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+:is(.satr-chrome, body) .satr-squircle-link--inverted {
+  --link-ink: #fff;
+  --link-ground: #000;
+}
+
+:is(.satr-chrome, body) .satr-squircle-link__bg {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border: 1.5px solid var(--link-ink);
+  border-radius: 14px;
+  background: transparent;
+}
+
+:is(.satr-chrome, body) .satr-squircle-link__bg[data-ready='true'] {
+  border: 0;
+  background: var(--link-ink);
+}
+
+:is(.satr-chrome, body) .satr-squircle-link:hover,
+:is(.satr-chrome, body) .satr-squircle-link:focus-visible {
+  color: var(--link-ground);
+}
+
+:is(.satr-chrome, body) .satr-squircle-link:hover .satr-squircle-link__bg:not([data-ready='true']),
+:is(.satr-chrome, body) .satr-squircle-link:focus-visible .satr-squircle-link__bg:not([data-ready='true']) {
+  background: var(--link-ink);
+}
+
+:is(.satr-chrome, body) .satr-squircle-link:active {
+  opacity: 0.7;
+}
+
+:is(.satr-chrome, body) .satr-squircle-link:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+}
+
+/* Section titles on a scientist's page ("Description of the field of
+   scientific research:", "Professional experience:"…) are headings, so they
+   take the heading face rather than the mono of body labels. */
+body .expertTitle.expertTitle--h4 {
+  font-family: "Noto Serif", serif;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 28px;
+  letter-spacing: -0.02em;
+}
+
+@media (min-width: 768px) {
+  body .expertTitle.expertTitle--h4 {
+    font-size: 28px;
+    line-height: 34px;
+  }
+}

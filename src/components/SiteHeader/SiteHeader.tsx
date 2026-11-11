@@ -353,7 +353,11 @@ export function SiteHeader({
         </div>
 
         <div className="flex shrink-0 items-center gap-4 xl:gap-5">
-          <p className="m-0 whitespace-nowrap font-mono text-text1-mobile md:text-[18px] md:leading-[24px] md:tracking-normal">
+          {/* From `md` up the language switch stands in the middle of the bar; on a phone there is no room beside the wordmark, so it keeps to the right. */}
+          <p
+            className="m-0 whitespace-nowrap font-mono text-text1-mobile md:absolute md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:text-[18px] md:leading-[24px] md:tracking-normal"
+            style={{ top: PAD_TOP + ROW_H / 2 }}
+          >
             {isUa ? other : current}
             <span aria-hidden>/</span>
             {isUa ? current : other}
@@ -388,7 +392,7 @@ export function SiteHeader({
             aria-expanded={menuOpen}
             aria-controls={menuId}
             data-satr-menu-button=""
-            className={`satr-dim flex min-h-11 min-w-11 items-center justify-center border-0 bg-transparent p-0 ${focusRing}`}
+            className={`satr-dim flex min-h-11 min-w-11 items-center justify-center border-0 bg-transparent p-0 -mr-[10px] ${focusRing}`}
           >
             <span className="relative flex">
             <CountBadge count={member ? unread ?? 0 : 0} className="absolute -right-3 -top-3 md:hidden" />
