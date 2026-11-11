@@ -30,6 +30,7 @@ import {
 import { PhotoDialog } from './PhotoDialog';
 import { areSectionsValid } from './validate';
 import { OTHER_FIELD, SpecialtyPicker } from './SpecialtyPicker';
+import { knowledgeLabel } from './knowledgeFields';
 import { FormattedText } from './FormattedText';
 import { isRichEmpty } from './formatText';
 import { Modal, StatusBadge } from './parts';
@@ -316,7 +317,7 @@ export function ProfileView({
     ...profile.activities,
     ...profile.extraActivities.split(/[;,]/),
   ]
-    .map((k) => k.trim())
+    .map((k) => knowledgeLabel(k.trim(), locale))
     .filter((k, i, all) => k && all.indexOf(k) === i);
 
   /** The status stays small, above the name, level with the top of the photo: a chip and the one thing that can be done about it. */
@@ -1268,6 +1269,7 @@ export function ProfileEditForm({
             onOther={(v) => set('extraFields', v)}
             onChange={(v) => setDraft((d) => ({ ...d, field: v.field, specialties: v.specialties }))}
             labels={t.picker}
+            locale={locale}
             fieldInvalid={missing('field')}
             specialtiesInvalid={tried && (draft.field === OTHER_FIELD ? !draft.extraFields.trim() : draft.specialties.length === 0)}
           />
@@ -1282,6 +1284,7 @@ export function ProfileEditForm({
                 onOther={(v) => set('extraKnowledge', draft.extraKnowledge.map((x, n) => (n === i ? { ...x, other: v } : x)))}
                 onChange={(v) => set('extraKnowledge', draft.extraKnowledge.map((x, n) => (n === i ? { ...x, ...v } : x)))}
                 labels={t.picker}
+                locale={locale}
                 requiredMark=""
               />
               <div>

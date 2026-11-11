@@ -1,7 +1,7 @@
 import { FieldSelect } from '@/components/Select';
 import { TextField } from '@/components/TextField';
 import { Tag } from '@/components/Tag';
-import { knowledgeFields } from './knowledgeFields';
+import { knowledgeFields, knowledgeLabel } from './knowledgeFields';
 
 /** The last choice in the dropdown: the list lacks what the person works in. */
 export const OTHER_FIELD = '__other__';
@@ -32,6 +32,7 @@ export function SpecialtyPicker({
   requiredMark = ' *',
   fieldInvalid,
   specialtiesInvalid,
+  locale = 'uk',
 }: {
   field: string;
   specialties: string[];
@@ -42,6 +43,8 @@ export function SpecialtyPicker({
   requiredMark?: string;
   fieldInvalid?: boolean;
   specialtiesInvalid?: boolean;
+  /** Which language the names are shown in; the stored value is always the Ukrainian name. */
+  locale?: 'en' | 'uk';
 }) {
   const group = knowledgeFields.find((g) => g.field === field);
   const toggle = (s: string) =>
@@ -54,7 +57,7 @@ export function SpecialtyPicker({
     <div className="flex flex-col gap-6">
       <FieldSelect
         label={labels.field + requiredMark}
-        options={[...knowledgeFields.map((g) => ({ value: g.field, label: g.field })), { value: OTHER_FIELD, label: labels.otherOption }]}
+        options={[...knowledgeFields.map((g) => ({ value: g.field, label: knowledgeLabel(g.field, locale) })), { value: OTHER_FIELD, label: labels.otherOption }]}
         value={field}
         onChange={(v) =>
           onChange({
@@ -100,7 +103,7 @@ export function SpecialtyPicker({
                       className="min-h-[36px]! py-1.5! text-[14px]! leading-[20px]! tracking-[-0.03em]!"
                     >
                       {on ? '✓ ' : ''}
-                      {s}
+                      {knowledgeLabel(s, locale)}
                     </Tag>
                   </li>
                 );

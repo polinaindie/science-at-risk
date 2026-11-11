@@ -59,6 +59,8 @@ export interface SiteHeaderProps extends AccountLinks {
   inverted?: boolean;
   locale?: string;
   localeHref?: string;
+  /** Where the page changes language in place (the cabinet): the other language then switches here, not by following the link. */
+  onLocaleToggle?: () => void;
   homeHref?: string;
   /** The page measures this row to know where the wordmark must land. */
   innerRef?: Ref<HTMLDivElement>;
@@ -251,6 +253,7 @@ export function SiteHeader({
   inverted = false,
   locale = 'EN',
   localeHref = `${base}uk`,
+  onLocaleToggle,
   homeHref = base || './',
   innerRef,
   className = '',
@@ -291,6 +294,7 @@ export function SiteHeader({
   const other = (
     <a
       href={localeHref}
+      onClick={onLocaleToggle ? (e) => { e.preventDefault(); onLocaleToggle(); } : undefined}
       className={`satr-hover-underline no-underline transition-colors ${
         inverted ? 'text-white/70 hover:text-white' : 'text-brand-muted hover:text-brand-black'
       } ${focusRing}`}

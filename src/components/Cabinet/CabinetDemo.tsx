@@ -275,6 +275,8 @@ export function CabinetDemo({
             progress={1}
             ground={onProfilePage ? 'bg-brand-accent-blue' : 'bg-white'}
             locale={locale === 'uk' ? 'UA' : 'EN'}
+            localeHref={`${base}cabinet`}
+            onLocaleToggle={() => setLocale(locale === 'uk' ? 'en' : 'uk')}
             cabinetHref={`${base}cabinet`}
             avatarSrc={onboarding ? '' : profile.imageSrc}
             accountName={onboarding ? '' : locale === 'uk' ? profile.nameUk : profile.nameEn}
