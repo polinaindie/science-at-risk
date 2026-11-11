@@ -127,6 +127,7 @@ function AccountMenu({
   logoutHref,
   ink,
   focusRing,
+  inPanel = false,
 }: {
   isUa: boolean;
   avatarSrc?: string;
@@ -137,6 +138,8 @@ function AccountMenu({
   logoutHref: string;
   ink: string;
   focusRing: string;
+  /** In the mobile menu: the name stands beside the photo and the list opens upward from the foot of the panel. */
+  inPanel?: boolean;
 }) {
   const [open, setOpen] = useState(false);
   const menuId = useId();
@@ -168,9 +171,10 @@ function AccountMenu({
         aria-expanded={open}
         aria-controls={menuId}
         aria-label={`${name ? `${label}: ${name}` : label}${unread > 0 ? (isUa ? `, нових сповіщень: ${unread}` : `, ${unread} new notifications`) : ''}`}
-        className={`satr-dim flex min-h-11 items-center gap-1 border-0 bg-transparent p-0 ${ink} ${focusRing}`}
+        className={`satr-dim flex min-h-11 items-center ${inPanel ? 'w-full gap-3' : 'gap-1'} border-0 bg-transparent p-0 ${ink} ${focusRing}`}
       >
         <Avatar src={avatarSrc} name={name} unread={unread} />
+        {inPanel && name ? <span className="min-w-0 flex-1 text-left font-mono text-[18px] leading-[24px]">{name}</span> : null}
         <svg
           aria-hidden
           viewBox="0 0 9.06066 5.59099"
@@ -185,7 +189,7 @@ function AccountMenu({
       <ul
         id={menuId}
         hidden={!open}
-        className="absolute right-0 top-full z-10 m-0 mt-2 min-w-[200px] list-none border-2 border-brand-black bg-white p-0 text-brand-black"
+        className={`absolute z-10 m-0 min-w-[200px] list-none border-2 border-brand-black bg-white p-0 text-brand-black ${inPanel ? 'bottom-full left-0 mb-2' : 'right-0 top-full mt-2'}`}
       >
         <li>
           <a href={cabinetHref} className={item}>
@@ -436,6 +440,22 @@ export function SiteHeader({
             tone={inverted ? 'dark' : 'light'}
             locale={isUa ? 'UA' : 'EN'}
             account={account}
+            accountMenu={
+              member ? (
+                <AccountMenu
+                  inPanel
+                  isUa={isUa}
+                  avatarSrc={avatarSrc}
+                  name={accountName}
+                  unread={unread}
+                  cabinetHref={cabinetHref}
+                  settingsHref={settingsHref}
+                  logoutHref={logoutHref}
+                  ink={inverted ? 'text-brand-black' : 'text-white'}
+                  focusRing={focusRing}
+                />
+              ) : undefined
+            }
             loginHref={loginHref}
             cabinetHref={cabinetHref}
             settingsHref={settingsHref}

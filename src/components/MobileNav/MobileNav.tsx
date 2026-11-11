@@ -1,3 +1,5 @@
+import type { ReactNode } from 'react';
+
 export interface NavItem {
   label: string;
   href: string;
@@ -10,6 +12,8 @@ export interface MobileNavProps {
   cabinetHref?: string;
   settingsHref?: string;
   logoutHref?: string;
+  /** The member's account menu (photo, name, dropdown), drawn by the header. Without it the menu lists the cabinet links. */
+  accountMenu?: ReactNode;
   open?: boolean;
   onClose?: () => void;
   items?: NavItem[];
@@ -67,6 +71,7 @@ export function MobileNav({
   cabinetHref = '/cabinet',
   settingsHref = '/cabinet/settings',
   logoutHref = '/logout',
+  accountMenu,
   className = '',
 }: MobileNavProps) {
   if (!open) return null;
@@ -130,11 +135,13 @@ export function MobileNav({
           </li>
         ))}
       </ul>
-      {/* The way into the cabinet: last in the list, under its own rule. */}
-      <div className={`sticky bottom-0 mt-auto -mb-7 pb-7 pt-5 ${surface}`}>
+      {/* The way into the cabinet, last under its own rule. From `md` up the bar carries it, so the menu does not repeat it. */}
+      <div className={`md:hidden sticky bottom-0 mt-auto -mb-7 pb-7 pt-5 ${surface}`}>
       <hr className={`mb-5 border-0 border-t ${divider}`} />
       <ul className="m-0 flex list-none flex-col gap-5 p-0" data-satr-account={account}>
-        {account === 'member' ? (
+        {account === 'member' && accountMenu ? (
+          <li>{accountMenu}</li>
+        ) : account === 'member' ? (
           <>
             <li>
               <a href={cabinetHref} className={linkClass}>
