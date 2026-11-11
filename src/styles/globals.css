@@ -17,8 +17,8 @@
   /* Accents — Figma node 292:1481 */
   --color-brand-accent-blue: #b5c6cd;
   --color-brand-accent-yellow: #f0eebe;
-  /* A fresh mint, cool enough to sit beside the blue and the yellow; black text on it is ≈13:1. */
-  --color-brand-accent-green: #8fdba4;
+  /* A clear mid green, darker and more saturated than the blue ground so it never melts into it; black text on it is ≈7:1. */
+  --color-brand-accent-green: #37b066;
   /* Input / disabled states */
   --color-brand-disabled: #c8c8c8;
   --color-brand-line: #000000;
