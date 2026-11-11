@@ -6,10 +6,10 @@ import { cabinetCopy, type CabinetLocale, type ProfileStatus } from './cabinetCo
 const STATUS_GROUND: Record<ProfileStatus, string> = {
   draft: 'bg-white',
   pending: 'bg-brand-accent-yellow',
-  approved: 'bg-brand-accent-green',
+  approved: 'bg-brand-accent-yellow',
 };
 
-/** The mark before the label: three shapes, so the state reads without colour. */
+/** The mark before the label: three shapes (square, half-circle, tick), so the state reads without colour. */
 function StatusMark({ status }: { status: ProfileStatus }) {
   if (status === 'draft')
     return <span aria-hidden className="size-3 shrink-0 border-2 border-brand-black" />;
@@ -20,8 +20,11 @@ function StatusMark({ status }: { status: ProfileStatus }) {
         className="size-3 shrink-0 rounded-full border-2 border-brand-black bg-[linear-gradient(90deg,#000_50%,transparent_50%)]"
       />
     );
-  // Approved needs no mark: the green and the word say it.
-  return null;
+  return (
+    <svg aria-hidden viewBox="0 0 12 12" className="size-3 shrink-0" fill="none" stroke="currentColor" strokeWidth="2">
+      <path d="M1.5 6.5 4.5 9.5 10.5 2.5" />
+    </svg>
+  );
 }
 
 export function StatusBadge({ status, locale }: { status: ProfileStatus; locale: CabinetLocale }) {
