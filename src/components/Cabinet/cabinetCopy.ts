@@ -4,7 +4,7 @@
  * own translation files (same contract as `authCopy`).
  */
 export type CabinetLocale = 'en' | 'uk';
-export type CabinetSection = 'profile' | 'notifications' | 'collaboration' | 'opportunities' | 'settings';
+export type CabinetSection = 'profile' | 'notifications' | 'collaboration' | 'courses' | 'grants' | 'settings';
 export type ProfileStatus = 'draft' | 'pending' | 'approved';
 
 export interface SettingsCopy {
@@ -270,7 +270,8 @@ const en: CabinetCopy = {
       profile: 'My profile',
       notifications: 'My notifications',
       collaboration: 'Collaboration',
-      opportunities: 'Opportunities',
+      courses: 'Educational courses',
+      grants: 'Opportunities',
       settings: 'Settings',
     },
     new: 'New',
@@ -421,7 +422,7 @@ const en: CabinetCopy = {
   collab: {
     title: 'Find a colleague to collaborate with',
     lede: 'Colleagues who work in the same fields as you. Write first. If the colleague agrees to talk, you will see their email and can continue by email.',
-    search: 'Search by name, university or topic',
+    search: 'Search by name, university, topic or field',
     find: 'Search',
     shared: 'Fields and topics',
     request: 'Start a conversation',
@@ -451,7 +452,7 @@ const en: CabinetCopy = {
   opp: {
     title: 'Opportunities',
     lede: 'Courses to learn from and grants to apply for, picked just for you.',
-    tabs: { courses: 'Educational courses', grants: 'Grants and opportunities' },
+    tabs: { courses: 'Educational courses', grants: 'Opportunities' },
     courses: {
       lede: 'For now these are courses on Diia.Osvita.',
       provider: 'Provider',
@@ -639,7 +640,8 @@ const uk: CabinetCopy = {
       profile: 'Мій профіль',
       notifications: 'Мої сповіщення',
       collaboration: 'Співпраця',
-      opportunities: 'Можливості',
+      courses: 'Освітні курси',
+      grants: 'Можливості',
       settings: 'Налаштування',
     },
     new: 'Нове',
@@ -790,7 +792,7 @@ const uk: CabinetCopy = {
   collab: {
     title: 'Знайдіть колегу для співпраці',
     lede: 'Колеги, які працюють у тих самих галузях, що й ви. Напишіть першими. Якщо колега погодиться поспілкуватися, ви побачите пошту колеги й продовжите розмову листами.',
-    search: 'Пошук за іменем, університетом або темою',
+    search: 'Пошук за іменем, університетом, темою або галуззю',
     find: 'Знайти',
     shared: 'Галузі та теми',
     request: 'Почати спілкування',
@@ -830,7 +832,7 @@ const uk: CabinetCopy = {
   opp: {
     title: 'Можливості',
     lede: 'Курси, на яких можна повчитися, і гранти, на які можна податися, підібрані саме для вас.',
-    tabs: { courses: 'Освітні курси', grants: 'Гранти та можливості' },
+    tabs: { courses: 'Освітні курси', grants: 'Можливості' },
     courses: {
       lede: 'Поки це курси на Дія.Освіта.',
       provider: 'Провайдер',

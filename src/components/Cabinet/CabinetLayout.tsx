@@ -4,7 +4,7 @@ import { cabinetCopy, type CabinetLocale, type CabinetSection } from './cabinetC
 import type { ProfileStatus } from './cabinetCopy';
 import { tabClass } from './parts';
 
-const ORDER: CabinetSection[] = ['profile', 'notifications', 'collaboration', 'opportunities'];
+const ORDER: CabinetSection[] = ['profile', 'notifications', 'collaboration', 'courses', 'grants'];
 
 export interface CabinetLayoutProps {
   locale: CabinetLocale;

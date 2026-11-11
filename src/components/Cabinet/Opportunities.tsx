@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { Button } from '@/components/Button';
 import { Tag } from '@/components/Tag';
 import { cabinetCopy, type CabinetLocale } from './cabinetCopy';
@@ -8,18 +7,21 @@ import { EmptyState, PageTitle } from './parts';
 export function CourseCard({ locale, course }: { locale: CabinetLocale; course: Course }) {
   const t = cabinetCopy[locale].opp.courses;
   return (
-    <article className="flex flex-col gap-5 border-b-2 border-brand-black py-6 md:flex-row md:items-center md:justify-between md:py-8">
-      <div className="min-w-0">
+    <article className="flex flex-col gap-6 border-b-2 border-brand-black py-6 md:flex-row md:items-end md:justify-between md:py-8">
+      <div className="min-w-0 md:max-w-[70%]">
         <h3 className="font-serif text-h2-mobile md:text-h2-desktop">{course.title}</h3>
         <p className="mt-3 font-mono text-text1-mobile text-brand-muted">
           {t.provider}: <span className="text-brand-black">{course.provider}</span>
         </p>
+        <p className="mt-3 font-ukraine text-[16px] leading-[22px] md:text-[18px] md:leading-[26px]">{course.description}</p>
       </div>
-      <a href={course.href} target="_blank" rel="noopener noreferrer" className="shrink-0 no-underline">
-        <Button variant="bordered" tabIndex={-1}>
-          {t.open}
-        </Button>
-      </a>
+      <div className="flex justify-end md:shrink-0">
+        <a href={course.href} target="_blank" rel="noopener noreferrer" className="shrink-0 no-underline">
+          <Button variant="black" tabIndex={-1}>
+            {t.open}
+          </Button>
+        </a>
+      </div>
     </article>
   );
 }
@@ -55,8 +57,8 @@ export function GrantCard({
   const fields = Array.isArray(grant.field) ? grant.field : [grant.field];
   return (
     <article data-soon={soon || undefined} className="border-b-2 border-brand-black py-6 md:py-8">
-      <div className="flex flex-col gap-5 md:flex-row md:items-start md:justify-between">
-        <div className="min-w-0 flex-1">
+      <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+        <div className="min-w-0 md:max-w-[70%]">
           {date ? (
             <p className="mb-3 flex flex-wrap items-center gap-x-4 gap-y-2 font-mono text-text1-mobile">
               {date ? (
@@ -90,9 +92,9 @@ export function GrantCard({
             </ul>
           </div>
         </div>
-        <div className="flex w-full shrink-0 flex-col gap-3 md:w-auto">
+        <div className="flex justify-end md:shrink-0">
           <a href={grant.href} target="_blank" rel="noopener noreferrer" className="block no-underline">
-            <Button variant="black" tabIndex={-1} className="w-full justify-center md:w-auto">
+            <Button variant="black" tabIndex={-1}>
               {t.open}
             </Button>
           </a>
@@ -116,34 +118,14 @@ export function OpportunitiesScreen({
   locale,
   courses,
   grants,
-  tab: initialTab = 'courses',
+  tab = 'courses',
   onEditKeywords,
 }: OpportunitiesScreenProps) {
   const t = cabinetCopy[locale].opp;
-  const [tab, setTab] = useState<OpportunityTab>(initialTab);
 
   return (
     <div>
-      <PageTitle title={t.title} lede={t.lede} />
-
-      <fieldset className="m-0 flex gap-8 border-0 p-0">
-        <legend className="sr-only">{t.title}</legend>
-        {(['courses', 'grants'] as const).map((key) => (
-          <label key={key} className="group cursor-pointer py-2">
-            <input
-              type="radio"
-              name="opp-tab"
-              value={key}
-              checked={tab === key}
-              onChange={() => setTab(key)}
-              className="peer sr-only"
-            />
-            <span className="block border-b-[3px] border-transparent pb-1 font-mono text-[20px] font-medium leading-[28px] text-brand-muted transition-colors group-hover:border-brand-line-muted group-hover:text-brand-black md:text-[24px] md:leading-[32px] peer-checked:border-brand-black peer-checked:text-brand-black peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-4 peer-focus-visible:outline-brand-black">
-              {t.tabs[key]}
-            </span>
-          </label>
-        ))}
-      </fieldset>
+      <PageTitle title={t.tabs[tab]} lede={t[tab].lede} />
 
       <div className="mt-8">
         {tab === 'courses' ? (

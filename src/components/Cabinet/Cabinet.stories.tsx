@@ -30,7 +30,7 @@ type Story = StoryObj<typeof meta>;
 
 const frame = (
   node: React.ReactNode,
-  section: 'profile' | 'notifications' | 'collaboration' | 'opportunities' = 'profile',
+  section: 'profile' | 'notifications' | 'collaboration' | 'courses' | 'grants' = 'profile',
   blue = false,
   unread = 3,
 ) => (
@@ -40,7 +40,7 @@ const frame = (
     ground={blue ? 'blue' : 'white'}
     section={section}
     unread={unread}
-    marked={['collaboration', 'opportunities']}
+    marked={['collaboration', 'courses', 'grants']}
     status="approved"
   >
     {node}
@@ -191,7 +191,7 @@ export const Courses: Story = {
   render: () =>
     frame(
       <OpportunitiesScreen locale="uk" courses={sampleCourses.uk} grants={sampleGrants.uk} />,
-      'opportunities',
+      'courses',
     ),
 };
 export const Grants: Story = {
@@ -203,19 +203,19 @@ export const Grants: Story = {
         grants={sampleGrants.uk}
         tab="grants"
       />,
-      'opportunities',
+      'grants',
     ),
 };
 export const GrantsEmpty: Story = {
   render: () =>
     frame(
       <OpportunitiesScreen locale="uk" courses={sampleCourses.uk} grants={[]} tab="grants" />,
-      'opportunities',
+      'grants',
     ),
 };
 export const CoursesEmpty: Story = {
   render: () =>
-    frame(<OpportunitiesScreen locale="uk" courses={[]} grants={sampleGrants.uk} />, 'opportunities'),
+    frame(<OpportunitiesScreen locale="uk" courses={[]} grants={sampleGrants.uk} />, 'courses'),
 };
 
 /* Notifications: copies of visitors' requests and team messages. Reply happens by email. */

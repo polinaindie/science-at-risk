@@ -239,11 +239,11 @@ export function CabinetDemo({
       );
     return (
       <OpportunitiesScreen
-        key={`${locale}${noGrants}`}
+        key={`${locale}${noGrants}${section}`}
         locale={locale}
         courses={sampleCourses[locale]}
         grants={noGrants ? [] : sampleGrants[locale]}
-        tab="courses"
+        tab={section === 'grants' ? 'grants' : 'courses'}
         onEditKeywords={() => {
           setSectionState('profile');
           setPart('keywords');
