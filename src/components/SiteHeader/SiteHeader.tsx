@@ -166,16 +166,18 @@ function AccountMenu({
         aria-expanded={open}
         aria-controls={menuId}
         aria-label={`${name ? `${label}: ${name}` : label}${unread > 0 ? (isUa ? `, нових сповіщень: ${unread}` : `, ${unread} new notifications`) : ''}`}
-        className={`satr-dim flex min-h-11 items-center gap-2 border-0 bg-transparent p-0 ${ink} ${focusRing}`}
+        className={`satr-dim flex min-h-11 items-center gap-1 border-0 bg-transparent p-0 ${ink} ${focusRing}`}
       >
         <Avatar src={avatarSrc} name={name} unread={unread} />
         <svg
           aria-hidden
-          viewBox="0 0 12 8"
-          className={`h-2 w-3 shrink-0 transition-transform ${open ? 'rotate-180' : ''}`}
-          fill="currentColor"
+          viewBox="0 0 9.06066 5.59099"
+          className={`h-2 w-3 shrink-0 overflow-visible transition-transform ${open ? 'rotate-180' : ''}`}
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.5"
         >
-          <path d="M0 0h12L6 8Z" />
+          <path d="M0.53033 0.53033L4.53033 4.53033L8.53033 0.53033" />
         </svg>
       </button>
       <ul
