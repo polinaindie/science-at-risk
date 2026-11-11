@@ -182,6 +182,8 @@ export interface Course {
   id: string;
   title: string;
   provider: string;
+  /** One or two sentences on what the course covers. */
+  description: string;
   href: string;
 }
 
@@ -377,18 +379,21 @@ export const sampleCourses: Record<CabinetLocale, Course[]> = {
       id: 'c1',
       title: 'Research integrity and academic writing',
       provider: 'Diia.Osvita',
+      description: 'How to cite sources, avoid plagiarism and structure a research paper for publication.',
       href: 'https://www.youtube.com/playlist?list=PLACEHOLDER',
     },
     {
       id: 'c2',
       title: 'Writing a competitive grant proposal',
       provider: 'Diia.Osvita',
+      description: 'How to shape an idea into a grant application: goals, budget, work plan and what reviewers look for.',
       href: 'https://www.youtube.com/playlist?list=PLACEHOLDER',
     },
     {
       id: 'c3',
       title: 'Open data in science',
       provider: 'Diia.Osvita',
+      description: 'Why and how to share research data: repositories, licences and the FAIR principles.',
       href: 'https://www.youtube.com/playlist?list=PLACEHOLDER',
     },
   ],
@@ -397,18 +402,21 @@ export const sampleCourses: Record<CabinetLocale, Course[]> = {
       id: 'c1',
       title: 'Академічна доброчесність і наукове письмо',
       provider: 'Дія.Освіта',
+      description: 'Як цитувати джерела, уникати плагіату та будувати наукову статтю для публікації.',
       href: 'https://www.youtube.com/playlist?list=PLACEHOLDER',
     },
     {
       id: 'c2',
       title: 'Як написати конкурентну грантову заявку',
       provider: 'Дія.Освіта',
+      description: 'Як перетворити ідею на грантову заявку: мета, бюджет, план робіт і на що дивляться рецензенти.',
       href: 'https://www.youtube.com/playlist?list=PLACEHOLDER',
     },
     {
       id: 'c3',
       title: 'Відкриті дані в науці',
       provider: 'Дія.Освіта',
+      description: 'Навіщо і як ділитися даними досліджень: репозиторії, ліцензії та принципи FAIR.',
       href: 'https://www.youtube.com/playlist?list=PLACEHOLDER',
     },
   ],
