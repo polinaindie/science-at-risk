@@ -235,10 +235,11 @@ export function EmptyState({
   );
 }
 
-export function PageTitle({ title, lede }: { title: string; lede?: string }) {
+/** `wide`: the page has no side column, so the title takes the big size from `md`, not only from `lg`. */
+export function PageTitle({ title, lede, wide = false }: { title: string; lede?: string; wide?: boolean }) {
   return (
     <header className="mb-8">
-      <h1 className="font-serif text-h1-mobile md:text-h2-desktop lg:text-h1-desktop">{title}</h1>
+      <h1 className={`font-serif text-h1-mobile ${wide ? 'md:text-h1-desktop' : 'md:text-h2-desktop lg:text-h1-desktop'}`}>{title}</h1>
       {lede ? (
         <p className="mt-4 max-w-[760px] font-ukraine text-text2-mobile font-light md:text-text2-desktop">
           {lede}

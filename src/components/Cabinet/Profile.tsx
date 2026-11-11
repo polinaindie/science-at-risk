@@ -433,7 +433,7 @@ export function ProfileView({
           ) : null}
 
           {/* The links stand right under the name and the post: who the person is, and where to find them. */}
-          <Section title={t.aside.links.replace(/:$/, '') + ':'} empty={links.length === 0} action={change('links', t.parts.links)}>
+          <Section title={t.aside.links} empty={links.length === 0} action={change('links', t.parts.links)}>
             <ul className="m-0 flex list-none flex-wrap gap-x-6 gap-y-2 p-0">
               {links.map((l) => (
                 <li key={l.href}>
@@ -1061,7 +1061,19 @@ export function ProfileEditForm({
             {draft.imageSrc ? (
               <img src={draft.imageSrc} alt="" className="size-[96px] shrink-0 object-cover" />
             ) : (
-              <div aria-hidden className="size-[96px] shrink-0 border-2 border-dashed border-brand-black/40 bg-white/60" />
+              <div aria-hidden className="size-[96px] shrink-0 border-2 border-dashed border-brand-black/40 bg-white/60 p-2 text-[#c8c8c8]">
+                {/* The same grey scientist as in the site header: no photo yet. */}
+                <svg viewBox="0 0 40 40" className="size-full" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round">
+                  <path d="M13 13 9 6M17 11 16 4M21 10.5 23 3.5M25 11.5 30 6M28 14.5 34 12" />
+                  <path d="M10 25c0-8 4-12 10-12s10 4 10 12-4 11-10 11-10-3-10-11Z" />
+                  <circle cx="15.5" cy="23" r="3.6" />
+                  <circle cx="24.5" cy="23" r="3.6" />
+                  <path d="M19.1 23h1.8" />
+                  <circle cx="15.5" cy="23" r=".6" fill="currentColor" />
+                  <circle cx="24.5" cy="23" r=".6" fill="currentColor" />
+                  <path d="M16 31c2.5 2 6 1.5 8-1.2" />
+                </svg>
+              </div>
             )}
             <div>
               <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
@@ -1467,7 +1479,7 @@ export function ProfileEditForm({
       </div>
 
       {step ? (
-        <div className="fixed inset-x-0 bottom-0 z-40 border-t-2 border-brand-black bg-brand-accent-blue">
+        <div className="fixed inset-x-0 bottom-0 z-40 bg-brand-accent-blue">
           <div className="mx-auto flex max-w-[1744px] flex-wrap items-center justify-between gap-x-6 gap-y-3 px-4 py-3 xl:px-10">
             <div className="flex flex-wrap items-center gap-x-5 gap-y-1">
               <Link as="button" onClick={() => step.onExit?.(draft)} className="text-[16px]! leading-[24px]!">

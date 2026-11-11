@@ -83,7 +83,7 @@ function StepMark({ state, children }: { state: 'done' | 'current' | 'todo'; chi
   const sq = useSquircleClipPath({ radius: 10, smoothing: 0.9, strokeWidth: state === 'todo' ? 2 : 0 });
   const fill = state === 'done' ? 'bg-brand-accent-green' : state === 'current' ? 'bg-brand-accent-yellow' : 'bg-brand-black';
   return (
-    <span aria-hidden className="relative grid size-7 shrink-0 place-items-center text-[12px] leading-none text-brand-black">
+    <span aria-hidden className="relative grid size-[32px] shrink-0 place-items-center text-[12px] leading-none text-brand-black">
       <span ref={sq.ref} className={`absolute inset-0 ${fill}`} style={sq.style} />
       <SquircleDefs clipId={sq.clipId} pathD={sq.pathD} />
       <span className="relative grid place-items-center">{children}</span>

@@ -196,6 +196,8 @@ export interface Grant {
 }
 
 const PHOTO = '/assets/mirror/expert.jpg';
+// One portrait per suggested colleague, the same in both languages.
+const MATCH_PHOTOS = ['/assets/mirror/match-1.jpg', '/assets/mirror/match-2.jpg', '/assets/mirror/match-3.jpg'];
 
 export const sampleProfile: Record<CabinetLocale, ProfileData> = {
   en: {
@@ -310,7 +312,7 @@ export const sampleMatches: Record<CabinetLocale, MatchScientist[]> = {
       name: 'Oleksandra Antoniuk',
       subtitle: 'Doctor of Sciences, Professor',
       organization: 'Taras Shevchenko National University of Kyiv',
-      imageSrc: PHOTO,
+      imageSrc: MATCH_PHOTOS[0],
       tags: ['Soil science', 'Remote sensing', 'GIS'],
       sharedTags: ['Soil science', 'Remote sensing'],
     },
@@ -320,7 +322,7 @@ export const sampleMatches: Record<CabinetLocale, MatchScientist[]> = {
       name: 'Volodymyr Akhmetov',
       subtitle: 'Candidate of Sciences, Associate Professor',
       organization: 'Odesa I. I. Mechnikov National University',
-      imageSrc: PHOTO,
+      imageSrc: MATCH_PHOTOS[1],
       tags: ['Environmental management', 'Hydrology'],
       sharedTags: ['Environmental management'],
     },
@@ -330,7 +332,7 @@ export const sampleMatches: Record<CabinetLocale, MatchScientist[]> = {
       name: 'Iryna Kovalenko',
       subtitle: 'Senior Researcher',
       organization: 'Institute of Geography, NAS of Ukraine',
-      imageSrc: PHOTO,
+      imageSrc: MATCH_PHOTOS[2],
       tags: ['Remote sensing', 'Climate', 'Soil science'],
       sharedTags: ['Soil science', 'Remote sensing'],
     },
@@ -342,7 +344,7 @@ export const sampleMatches: Record<CabinetLocale, MatchScientist[]> = {
       name: 'Антонюк Олександра Вікторівна',
       subtitle: 'Доктор наук, професор',
       organization: 'Київський національний університет імені Тараса Шевченка',
-      imageSrc: PHOTO,
+      imageSrc: MATCH_PHOTOS[0],
       tags: ['Ґрунтознавство', 'Дистанційне зондування', 'ГІС'],
       sharedTags: ['Ґрунтознавство', 'Дистанційне зондування'],
     },
@@ -352,7 +354,7 @@ export const sampleMatches: Record<CabinetLocale, MatchScientist[]> = {
       name: 'Ахметов Володимир Сабірджанович',
       subtitle: 'Кандидат наук, доцент',
       organization: 'Одеський національний університет імені І. І. Мечникова',
-      imageSrc: PHOTO,
+      imageSrc: MATCH_PHOTOS[1],
       tags: ['Екологічний менеджмент', 'Гідрологія'],
       sharedTags: ['Екологічний менеджмент'],
     },
@@ -362,7 +364,7 @@ export const sampleMatches: Record<CabinetLocale, MatchScientist[]> = {
       name: 'Коваленко Ірина Петрівна',
       subtitle: 'Старший дослідник',
       organization: 'Інститут географії НАН України',
-      imageSrc: PHOTO,
+      imageSrc: MATCH_PHOTOS[2],
       tags: ['Дистанційне зондування', 'Клімат', 'Ґрунтознавство'],
       sharedTags: ['Ґрунтознавство', 'Дистанційне зондування'],
     },
@@ -497,8 +499,8 @@ export interface Notification {
   senderEmail?: string;
   /** The badge on the avatar was reset by opening the page (seen); the card stays yellow until it is read. */
   seen?: boolean;
-  /** What it points to is gone (the request was withdrawn, the account deleted): shown inactive. */
-  stale?: 'cancelled' | 'deleted';
+  /** What it points to is gone (the account was deleted; a withdrawn request just disappears, nobody is told): shown inactive. */
+  stale?: 'deleted';
   /** Colleague requests only: where the person stands on it. */
   status?: ColleagueStatus;
   /** Colleague requests only: the line under the name. */
@@ -523,26 +525,11 @@ const ago = (days: number, hour = 10) => {
 export const sampleNotifications: Record<CabinetLocale, Notification[]> = {
   en: [
     {
-      id: 'c6',
-      kind: 'colleague',
-      read: true,
-      seen: true,
-      date: ago(2, 10),
-      subject: '',
-      status: 'pending',
-      stale: 'cancelled',
-      senderName: 'Vira Artemieva',
-      senderImage: '/storage/person/286/f018fdbb78623c428ae13aed05119dbea0c7dfd6.jpg',
-      senderHref: '/expert/artemieva-vira-borysivna.html',
-      senderPosition: 'Candidate of Sciences, Associate Professor',
-      body: 'Hello! I wanted to ask about joint field work in the spring.',
-    },
-    {
       id: 'c5',
       kind: 'colleague',
       read: true,
       date: ago(3, 12),
-      subject: '',
+      subject: 'Joint grant application on soil monitoring',
       status: 'declined',
       senderName: 'Volodymyr Akhmetov',
       senderImage: '/storage/person/610/fc26a40b08d8e48536e1385e14c4a56108bdb056.jpg',
@@ -556,7 +543,7 @@ export const sampleNotifications: Record<CabinetLocale, Notification[]> = {
       kind: 'colleague',
       read: false,
       date: ago(0, 9),
-      subject: '',
+      subject: 'A joint article on soil degradation',
       status: 'pending',
       senderName: 'Svitlana Arbuzova',
       senderImage: '/storage/person/97/846431c8049d103260d0d306aa3f662890877b8a.jpg',
@@ -575,6 +562,7 @@ export const sampleNotifications: Record<CabinetLocale, Notification[]> = {
       senderName: 'Oleksandra Antoniuk',
       senderImage: '/storage/person/86/76974a4734d28a7b05cc94ca0b20a2f7655e36a6.jpg',
       senderHref: '/expert/antoniuk-oleksandra-viktorivna.html',
+      senderPosition: 'Doctor of Sciences, Professor',
       senderEmail: 'm1@university.example',
       body: '',
     },
@@ -583,7 +571,7 @@ export const sampleNotifications: Record<CabinetLocale, Notification[]> = {
       kind: 'colleague',
       read: true,
       date: ago(7, 16),
-      subject: '',
+      subject: 'Co-author for a review of saline soil mapping',
       status: 'accepted',
       senderName: 'Andrii Achasov',
       senderImage: '/storage/person/608/28bb19babb2b83f169028aaf3e150ff64406e790.jpg',
@@ -663,26 +651,11 @@ export const sampleNotifications: Record<CabinetLocale, Notification[]> = {
   ],
   uk: [
     {
-      id: 'c6',
-      kind: 'colleague',
-      read: true,
-      seen: true,
-      date: ago(2, 10),
-      subject: '',
-      status: 'pending',
-      stale: 'cancelled',
-      senderName: 'Артем’єва Віра Борисівна',
-      senderImage: '/storage/person/286/f018fdbb78623c428ae13aed05119dbea0c7dfd6.jpg',
-      senderHref: '/expert/artemieva-vira-borysivna.html',
-      senderPosition: 'Кандидат наук, доцент',
-      body: 'Доброго дня! Хотіла запитати про спільну польову роботу навесні.',
-    },
-    {
       id: 'c5',
       kind: 'colleague',
       read: true,
       date: ago(3, 12),
-      subject: '',
+      subject: 'Спільна грантова заявка з моніторингу ґрунтів',
       status: 'declined',
       senderName: 'Ахметов Володимир Сабірджанович',
       senderImage: '/storage/person/610/fc26a40b08d8e48536e1385e14c4a56108bdb056.jpg',
@@ -696,7 +669,7 @@ export const sampleNotifications: Record<CabinetLocale, Notification[]> = {
       kind: 'colleague',
       read: false,
       date: ago(0, 9),
-      subject: '',
+      subject: 'Спільна стаття про деградацію ґрунтів',
       status: 'pending',
       senderName: 'Арбузова Світлана Борисівна',
       senderImage: '/storage/person/97/846431c8049d103260d0d306aa3f662890877b8a.jpg',
@@ -715,6 +688,7 @@ export const sampleNotifications: Record<CabinetLocale, Notification[]> = {
       senderName: 'Антонюк Олександра Вікторівна',
       senderImage: '/storage/person/86/76974a4734d28a7b05cc94ca0b20a2f7655e36a6.jpg',
       senderHref: '/expert/antoniuk-oleksandra-viktorivna.html',
+      senderPosition: 'Доктор наук, професор',
       senderEmail: 'm1@university.example',
       body: '',
     },
@@ -723,7 +697,7 @@ export const sampleNotifications: Record<CabinetLocale, Notification[]> = {
       kind: 'colleague',
       read: true,
       date: ago(7, 16),
-      subject: '',
+      subject: 'Співавтор для огляду картографування засолених ґрунтів',
       status: 'accepted',
       senderName: 'Ачасов Андрій Борисович',
       senderImage: '/storage/person/608/28bb19babb2b83f169028aaf3e150ff64406e790.jpg',

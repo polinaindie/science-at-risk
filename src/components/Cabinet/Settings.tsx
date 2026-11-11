@@ -148,7 +148,7 @@ export function SettingsScreen({ locale, email, onChangePassword, onChangeEmail,
 
   return (
     <div>
-      <PageTitle title={t.title} />
+      <PageTitle title={t.title} wide />
 
       <Block title={t.email.title} text={t.email.text}>
         <p className="m-0 font-mono text-text1-mobile md:text-text1-desktop">{email}</p>

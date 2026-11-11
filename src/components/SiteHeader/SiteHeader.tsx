@@ -31,11 +31,12 @@ export const siteNavItemsUk = (base: string = APP_BASE): NavEntry[] => [
 export interface AccountLinks {
   loginHref?: string;
   cabinetHref?: string;
+  settingsHref?: string;
   logoutHref?: string;
 }
 
 export interface SiteHeaderProps extends AccountLinks {
-  /** `guest` shows Log in; `member` shows the account menu: photo, My cabinet, Log out. */
+  /** `guest` shows Log in; `member` shows the account menu: photo, My cabinet, Settings, Log out. */
   account?: 'guest' | 'member';
   /** The member's photo and name, for the account menu. */
   avatarSrc?: string;
@@ -78,7 +79,7 @@ function CountBadge({ count, className = '' }: { count: number; className?: stri
 }
 
 /** The member's photo (or initial) in a squircle with a black ring, and a blue dot when something is new. */
-function Avatar({ src, name, unread }: { src?: string; name?: string; unread: number }) {
+function Avatar({ src, unread }: { src?: string; name?: string; unread: number }) {
   const shape = useSquircleClipPath({ radius: 12, smoothing: 0.9 });
   const ring = useSquircleClipPath({ radius: 12, smoothing: 0.9, strokeWidth: 2 });
   return (
@@ -92,7 +93,17 @@ function Avatar({ src, name, unread }: { src?: string; name?: string; unread: nu
           style={shape.style}
           className="flex size-10 items-center justify-center bg-white font-mono text-[16px]"
         >
-          {(name ?? '?').trim().charAt(0).toUpperCase()}
+          <svg viewBox="0 0 40 40" className="size-full text-[#c8c8c8]" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
+            {/* A scientist with wild hair, round glasses and a lopsided grin. */}
+            <path d="M13 13 9 6M17 11 16 4M21 10.5 23 3.5M25 11.5 30 6M28 14.5 34 12" />
+            <path d="M10 25c0-8 4-12 10-12s10 4 10 12-4 11-10 11-10-3-10-11Z" />
+            <circle cx="15.5" cy="23" r="3.6" />
+            <circle cx="24.5" cy="23" r="3.6" />
+            <path d="M19.1 23h1.8" />
+            <circle cx="15.5" cy="23" r=".6" fill="currentColor" />
+            <circle cx="24.5" cy="23" r=".6" fill="currentColor" />
+            <path d="M16 31c2.5 2 6 1.5 8-1.2" />
+          </svg>
         </span>
       )}
       <span ref={ring.ref} aria-hidden style={ring.style} className="absolute inset-0 bg-current" />
@@ -103,13 +114,15 @@ function Avatar({ src, name, unread }: { src?: string; name?: string; unread: nu
   );
 }
 
-/** A member's way into the cabinet: the photo is a link straight to it. */
-function AccountLink({
+/** A member's account menu: the photo with a caret, opening My cabinet, Settings and Log out. */
+function AccountMenu({
   isUa,
   avatarSrc,
   name,
   unread = 0,
   cabinetHref,
+  settingsHref,
+  logoutHref,
   ink,
   focusRing,
 }: {
@@ -118,18 +131,75 @@ function AccountLink({
   name?: string;
   unread?: number;
   cabinetHref: string;
+  settingsHref: string;
+  logoutHref: string;
   ink: string;
   focusRing: string;
 }) {
-  const label = isUa ? 'Мій кабінет' : 'My cabinet';
+  const [open, setOpen] = useState(false);
+  const menuId = useId();
+  const root = useRef<HTMLDivElement>(null);
+  const label = isUa ? 'Акаунт' : 'Account';
+
+  useEffect(() => {
+    if (!open) return;
+    const onDown = (e: MouseEvent) => {
+      if (!root.current?.contains(e.target as Node)) setOpen(false);
+    };
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setOpen(false);
+    };
+    document.addEventListener('mousedown', onDown);
+    document.addEventListener('keydown', onKey);
+    return () => {
+      document.removeEventListener('mousedown', onDown);
+      document.removeEventListener('keydown', onKey);
+    };
+  }, [open]);
+
+  const item = `block whitespace-nowrap px-4 py-3 font-mono text-[16px] leading-[24px] text-brand-black no-underline hover:bg-brand-accent-blue ${focusRing}`;
   return (
-    <a
-      href={cabinetHref}
-      aria-label={`${name ? `${label}: ${name}` : label}${unread > 0 ? (isUa ? `, нових сповіщень: ${unread}` : `, ${unread} new notifications`) : ''}`}
-      className={`satr-dim flex min-h-11 min-w-11 items-center justify-center no-underline ${ink} ${focusRing}`}
-    >
-      <Avatar src={avatarSrc} name={name} unread={unread} />
-    </a>
+    <div ref={root} className="relative">
+      <button
+        type="button"
+        onClick={() => setOpen((v) => !v)}
+        aria-expanded={open}
+        aria-controls={menuId}
+        aria-label={`${name ? `${label}: ${name}` : label}${unread > 0 ? (isUa ? `, нових сповіщень: ${unread}` : `, ${unread} new notifications`) : ''}`}
+        className={`satr-dim flex min-h-11 items-center gap-2 border-0 bg-transparent p-0 ${ink} ${focusRing}`}
+      >
+        <Avatar src={avatarSrc} name={name} unread={unread} />
+        <svg
+          aria-hidden
+          viewBox="0 0 12 8"
+          className={`h-2 w-3 shrink-0 transition-transform ${open ? 'rotate-180' : ''}`}
+          fill="currentColor"
+        >
+          <path d="M0 0h12L6 8Z" />
+        </svg>
+      </button>
+      <ul
+        id={menuId}
+        hidden={!open}
+        className="absolute right-0 top-full z-10 m-0 mt-2 min-w-[200px] list-none border-2 border-brand-black bg-white p-0 text-brand-black"
+      >
+        <li>
+          <a href={cabinetHref} className={item}>
+            {isUa ? 'Мій кабінет' : 'My cabinet'}
+          </a>
+        </li>
+        <li>
+          <a href={settingsHref} className={item}>
+            {isUa ? 'Налаштування' : 'Settings'}
+          </a>
+        </li>
+        <li className="border-t-2 border-brand-black">
+          <a href={logoutHref} className={item}>
+            {isUa ? 'Вийти' : 'Log out'}
+          </a>
+        </li>
+      </ul>
+    </div>
   );
 }
 
@@ -171,6 +241,7 @@ export function SiteHeader({
   unread,
   loginHref: loginHrefProp,
   cabinetHref = `${base}cabinet`,
+  settingsHref = `${base}cabinet/settings`,
   logoutHref = `${base}logout`,
   menuId: menuIdProp,
   progress = 0,
@@ -297,12 +368,14 @@ export function SiteHeader({
               the foot of the menu. */}
           <div className="hidden items-center gap-4 md:flex" data-satr-account={account}>
             {member ? (
-              <AccountLink
+              <AccountMenu
                 isUa={isUa}
                 avatarSrc={avatarSrc}
                 name={accountName}
                 unread={unread}
                 cabinetHref={cabinetHref}
+                settingsHref={settingsHref}
+                logoutHref={logoutHref}
                 ink={ink}
                 focusRing={focusRing}
               />
@@ -359,6 +432,7 @@ export function SiteHeader({
             account={account}
             loginHref={loginHref}
             cabinetHref={cabinetHref}
+            settingsHref={settingsHref}
             logoutHref={logoutHref}
             onClose={() => {
               setMenuOpen(false);

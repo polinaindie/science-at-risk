@@ -67,16 +67,16 @@ export function MatchCard({
           </div>
 
           {/* The request sits apart from the tags, so a button never reads as one more tag. */}
-          <div className="flex shrink-0 flex-col items-start gap-3 xl:w-[240px]">
+          <div className="flex shrink-0 flex-col items-start gap-3 xl:w-[300px]">
             {request === 'accepted' ? (
               /* Once the colleague agrees, the button gives way to their email, in the button's own type. */
               <p
                 role="status"
-                className="m-0 font-mono text-[16px] leading-[24px] [overflow-wrap:anywhere]"
+                className="m-0 font-mono text-[20px] leading-[28px] md:text-[24px] md:leading-[32px] [overflow-wrap:anywhere]"
               >
                 {t.acceptedText}{' '}
                 {scientist.email ? (
-                  <Link href={`mailto:${scientist.email}`} className="text-[16px]! leading-[24px]!">
+                  <Link href={`mailto:${scientist.email}`} className="text-[20px]! leading-[28px]! md:text-[24px]! md:leading-[32px]! [--satr-ul:2px]">
                     {scientist.email}
                   </Link>
                 ) : null}
@@ -98,7 +98,7 @@ export function MatchCard({
                 <Link
                   as="button"
                   onClick={() => onRequest?.(scientist.id)}
-                  className="text-[16px]! leading-[24px]!"
+                  className="text-[20px]! leading-[28px]! md:text-[24px]! md:leading-[32px]! [--satr-ul:2px]"
                 >
                   {request === 'error' ? t.retry : t.request}
                 </Link>
@@ -157,21 +157,26 @@ export function CollaborationScreen({
 
   // Who is being written to, and what has been typed so far.
   const [writingTo, setWritingTo] = useState<MatchScientist | null>(null);
+  const [subject, setSubject] = useState('');
   const [draft, setDraft] = useState('');
-  const [empty, setEmpty] = useState(false);
+  const [subjectEmpty, setSubjectEmpty] = useState(false);
+  const [draftEmpty, setDraftEmpty] = useState(false);
   const [failed, setFailed] = useState(false);
 
   const open = (id: string) => {
     setWritingTo(scientists.find((s) => s.id === id) ?? null);
+    setSubject('');
     setDraft('');
-    setEmpty(false);
+    setSubjectEmpty(false);
+    setDraftEmpty(false);
     setFailed(false);
   };
   const close = () => setWritingTo(null);
   const submit = () => {
     if (!writingTo) return;
-    if (!draft.trim()) {
-      setEmpty(true);
+    if (!subject.trim() || !draft.trim()) {
+      setSubjectEmpty(!subject.trim());
+      setDraftEmpty(!draft.trim());
       return;
     }
     if (fail) {
@@ -264,22 +269,39 @@ export function CollaborationScreen({
           <p className="m-0">{t.writeHint}</p>
           <div className="mt-6">
             <TextField
+              label={`${t.writeSubject} *`}
+              value={subject}
+              onChange={(e) => {
+                setSubject(e.currentTarget.value);
+                setSubjectEmpty(false);
+              }}
+              aria-invalid={subjectEmpty || undefined}
+              className="max-w-none"
+            />
+            {subjectEmpty ? (
+              <p role="alert" className="mt-2 bg-brand-accent-yellow px-3 py-1 font-mono text-text1-mobile">
+                {t.writeSubjectEmpty}
+              </p>
+            ) : null}
+          </div>
+          <div className="mt-6">
+            <TextField
               multiline
-              label={t.writeLabel}
+              label={`${t.writeLabel} *`}
               value={draft}
               onChange={(e) => {
                 setDraft(e.currentTarget.value);
-                setEmpty(false);
+                setDraftEmpty(false);
               }}
-              aria-invalid={empty || undefined}
+              aria-invalid={draftEmpty || undefined}
               className="max-w-none"
             />
+            {draftEmpty ? (
+              <p role="alert" className="mt-2 bg-brand-accent-yellow px-3 py-1 font-mono text-text1-mobile">
+                {t.writeEmpty}
+              </p>
+            ) : null}
           </div>
-          {empty ? (
-            <p role="alert" className="mt-2 font-mono text-text1-mobile">
-              {t.writeEmpty}
-            </p>
-          ) : null}
           {failed ? (
             <p role="alert" className="mt-4 bg-brand-accent-yellow px-3 py-2 font-mono text-text1-mobile">
               {t.errorText}

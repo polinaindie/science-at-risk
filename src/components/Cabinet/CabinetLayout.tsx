@@ -25,7 +25,6 @@ export interface CabinetLayoutProps {
   sideNav?: ReactNode;
   hrefFor?: (section: CabinetSection) => string;
   onNavigate?: (section: CabinetSection) => void;
-  logoutHref?: string;
   children: ReactNode;
 }
 
@@ -72,10 +71,20 @@ export function CabinetLayout({
   sideNav,
   hrefFor = (s) => `#${s}`,
   onNavigate,
-  logoutHref = '/logout',
   children,
 }: CabinetLayoutProps) {
   const t = cabinetCopy[locale];
+
+  // Account settings is a page of its own, reached from the account menu: no tabs around it.
+  if (section === 'settings' && !sideNav) {
+    return (
+      <div className={ground === 'blue' ? 'bg-brand-accent-blue' : ''}>
+        <div className={`${wrapperClass} pt-8 pb-8 lg:pb-12`}>
+          <main className="min-w-0">{children}</main>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className={ground === 'blue' ? 'bg-brand-accent-blue' : ''}>
@@ -127,21 +136,6 @@ export function CabinetLayout({
         </ul>
       </nav>
       </div>
-      {/* Account links sit at the foot of the side column, at the bottom edge of the screen. */}
-      <ul className="m-0 mt-4 flex list-none flex-col gap-1 p-0">
-        <li>
-          <MenuLink
-            href={hrefFor('settings')}
-            current={section === 'settings'}
-            onClick={onNavigate && (() => onNavigate('settings'))}
-          >
-            {t.nav.items.settings}
-          </MenuLink>
-        </li>
-        <li>
-          <MenuLink href={logoutHref}>{t.nav.logout}</MenuLink>
-        </li>
-      </ul>
       </div>
       </>
       )}

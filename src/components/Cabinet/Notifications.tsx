@@ -109,6 +109,7 @@ export function NotificationCard({
   }, [menu]);
   // A colleague's request still waiting for an answer keeps its buttons on the card's bottom row.
   const answerable = n.kind === 'colleague' && !n.stale && n.status !== 'accepted' && n.status !== 'declined';
+  const isLetter = n.kind === 'request' || n.kind === 'team' || n.kind === 'colleague';
   const title = {
     request: t.requestTitle,
     team: t.teamTitle,
@@ -167,7 +168,7 @@ export function NotificationCard({
       data-read={n.read}
       data-stale={n.stale}
       onClick={() => unread && onRead?.(n.id)}
-      className={`relative px-5 py-4 md:px-6 md:py-5 ${n.stale ? 'opacity-70' : ''}`}
+      className={`relative px-5 py-4 transition-opacity md:px-6 md:py-5 ${n.stale ? 'opacity-70' : n.read ? 'opacity-70 hover:opacity-100 focus-within:opacity-100' : ''}`}
     >
       <span
         ref={fill.ref}
@@ -182,11 +183,13 @@ export function NotificationCard({
         {unread ? <UnreadMark label={t.unreadMark} /> : null}
         <div className="min-w-0 flex-1">
           <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
-            <h3
-              className={`m-0 font-mono text-text1-mobile font-bold md:text-text1-desktop ${WRAP}`}
-            >
-              {title}
-            </h3>
+            {isLetter ? null : (
+              <h3
+                className={`m-0 font-mono text-text1-mobile font-bold md:text-text1-desktop ${WRAP}`}
+              >
+                {title}
+              </h3>
+            )}
             <time
               dateTime={n.date}
               className="whitespace-nowrap font-mono text-breadcrumbs text-brand-muted"
@@ -198,46 +201,70 @@ export function NotificationCard({
 
           {n.kind === 'request' || n.kind === 'team' ? (
             <>
-              <p className={`mt-3 font-mono text-text1-mobile md:text-text1-desktop ${WRAP}`}>
-                <span className="text-brand-muted">{t.subject}: </span>
-                <strong className="font-bold">{n.subject}</strong>
-              </p>
-              <p className={`mt-1 font-mono text-text1-mobile md:text-text1-desktop ${WRAP}`}>
-                <span className="text-brand-muted">{t.sender}: </span>
+              <h3 className={`m-0 mt-4 font-serif text-[22px] leading-[28px] tracking-[-0.02em] md:text-[26px] md:leading-[32px] ${WRAP}`}>
+                {n.subject}
+              </h3>
+              <p className={`m-0 mt-2 font-mono text-breadcrumbs text-brand-muted ${WRAP}`}>
                 {isRequest ? n.senderEmail : t.teamName}
               </p>
-              <p
-                className={`mt-4 border-t-2 border-brand-black pt-4 font-mono text-text1-mobile md:text-text1-desktop ${WRAP}`}
-              >
-                {isRequest ? t.requestText : n.body.replace(/\s*\n\s*/g, ' ')}
-              </p>
+              <div className="mt-5 border-t-2 border-brand-line-muted pt-5">
+                <div className={`flex flex-col gap-4 font-mono text-text1-mobile md:text-text1-desktop ${WRAP}`}>
+                  {(n.body || (isRequest ? t.requestText : ''))
+                    .split(/\s*\n\s*/)
+                    .filter(Boolean)
+                    .map((para, i) => (
+                      <p key={i} className="m-0">
+                        {para}
+                      </p>
+                    ))}
+                </div>
+              </div>
             </>
           ) : (
             <>
-              <div className="mt-3 flex items-center gap-4">
+              {n.subject ? (
+                <h3 className={`m-0 mt-4 font-serif text-[22px] leading-[28px] tracking-[-0.02em] md:text-[26px] md:leading-[32px] ${WRAP}`}>
+                  {n.subject}
+                </h3>
+              ) : null}
+              <div className="mt-4 flex items-center gap-4">
                 <Avatar name={n.senderName ?? ''} src={n.senderImage} href={n.senderHref} label={t.profileOf(n.senderName ?? '')} />
-                <div className={`min-w-0 font-mono text-text1-mobile md:text-text1-desktop ${WRAP}`}>
-                  <p className="m-0">
-                    <span className="text-brand-muted">
-                      {(n.kind === 'colleague' ? t.from : t.colleague) + ': '}
-                    </span>
-                    <strong className="font-bold">{n.senderName}</strong>
-                  </p>
-                  {n.senderPosition ? <p className="m-0 mt-1 text-brand-muted">{n.senderPosition}</p> : null}
+                <div className={`min-w-0 ${WRAP}`}>
+                  {n.subject ? (
+                    <p className="m-0 font-mono text-text1-mobile font-bold md:text-text1-desktop">{n.senderName}</p>
+                  ) : (
+                    <h3 className="m-0 font-serif text-[22px] leading-[28px] tracking-[-0.02em] md:text-[26px] md:leading-[32px]">
+                      {n.senderName}
+                    </h3>
+                  )}
+                  {n.senderPosition ? (
+                    <p className="m-0 mt-1 font-mono text-breadcrumbs text-brand-muted">{n.senderPosition}</p>
+                  ) : null}
                 </div>
               </div>
               <div
-                className={`mt-4 border-t-2 border-brand-black pt-4 font-mono text-text1-mobile md:text-text1-desktop ${WRAP}`}
+                className={`mt-5 border-t-2 border-brand-line-muted pt-5 font-mono text-text1-mobile md:text-text1-desktop ${WRAP}`}
               >
                 {n.kind === 'colleague' ? (
                   <>
-                    {n.body ? <p className="m-0">{n.body}</p> : null}
+                    {n.body ? (
+                      <div className="flex flex-col gap-4">
+                        {n.body
+                          .split(/\s*\n\s*/)
+                          .filter(Boolean)
+                          .map((para, i) => (
+                            <p key={i} className="m-0">
+                              {para}
+                            </p>
+                          ))}
+                      </div>
+                    ) : null}
                     {n.mutualContacts?.length ? (
-                      <p className="mt-3 mb-0 text-brand-muted">{t.mutual(n.mutualContacts)}</p>
+                      <p className="mt-4 mb-0 text-brand-muted">{t.mutual(n.mutualContacts)}</p>
                     ) : null}
                     {n.stale ? (
                       <p className="mt-5 mb-0 text-brand-muted">
-                        {n.stale === 'cancelled' ? t.staleCancelled : t.staleDeleted}
+                        {t.staleDeleted}
                       </p>
                     ) : n.status === 'declined' ? (
                       <div className="mt-5">
@@ -270,7 +297,7 @@ export function NotificationCard({
             </>
           )}
           {hasLeft ? (
-            <div className="mt-5 flex items-center gap-4">
+            <div className="mt-5 mb-2 flex items-center gap-4 border-t-2 border-brand-line-muted pt-4 md:mb-3">
             {answerable ? (
               <div className="flex flex-wrap gap-3">
                 <Button variant="black" type="button" onClick={(e) => { e.stopPropagation(); onAccept?.(n.id); }}>

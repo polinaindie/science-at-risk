@@ -155,6 +155,8 @@ export interface CabinetCopy {
     acceptedText: string;
     demoAccepted: string;
     writeTitle: (name: string) => string;
+    writeSubject: string;
+    writeSubjectEmpty: string;
     writeLabel: string;
     writeHint: string;
     writeEmpty: string;
@@ -204,7 +206,6 @@ export interface CabinetCopy {
     declinedNote: string;
     acceptAgain: string;
     profileOf: (name: string) => string;
-    staleCancelled: string;
     staleDeleted: string;
     unreadEmpty: string;
     emptyTab: string;
@@ -299,8 +300,8 @@ const en: CabinetCopy = {
     add: 'Add',
     parts: { photo: 'photo', links: 'links', name: 'name and position' },
     pendingNote: 'This is the version you sent. It is not on the site yet.',
-    sections: { activity: 'Main activity:', area: 'Description of the field of scientific research:', experience: 'Professional experience:', expert: 'Expert experience:', publications: 'Key publications:', keywords: 'Keywords:', projects: 'Scientific projects:', otherProjects: 'Other projects:', societies: 'Scientific societies:' },
-    aside: { languages: 'Languages:', links: 'Links:' },
+    sections: { activity: 'Main activity', area: 'Description of the field of scientific research', experience: 'Professional experience', expert: 'Expert experience', publications: 'Key publications', keywords: 'Keywords', projects: 'Scientific projects', otherProjects: 'Other projects', societies: 'Scientific societies' },
+    aside: { languages: 'Languages', links: 'Links' },
     empty: 'Not filled in yet',
     unsent: {
       send: 'Send changes',
@@ -318,8 +319,8 @@ const en: CabinetCopy = {
     lede: 'Everything you filled in at registration is here. Change what has moved on and add what is new. Save as you go, then send all the changes together. The team checks them at once, and they appear on the site only after the check.',
     required: '* required',
     example: 'For example:',
-    groups: { photo: 'Photo', contacts: 'Contact details', science: 'Scientific profile', publications: 'Key publications (1 to 3)', keywords: 'Keywords and activity', societies: 'Scientific societies', links: 'Contacts and links', recommenders: 'Recommendations', consents: 'Two confirmations' },
-    fields: { photoChange: 'Change photo', photoAdd: 'Add a photo', nameUk: 'Full name in Ukrainian', nameEn: 'Full name in English', email: 'Email', phone: 'Mobile phone', orcid: 'ORCID link', facebook: 'Facebook link', linkedin: 'LinkedIn link', degree: 'Scientific degree', degreeOther: 'Which degree exactly', activityOther: 'Which activity exactly', rank: 'Academic title', institution: 'Official full name of the institution', languages: 'Foreign languages', activity: 'Main activity', area: 'Field of scientific research', experience: 'Professional experience', expert: 'Expert experience', field: 'Field of knowledge and speciality', extraFields: 'Suggest another field or speciality', act1: 'Additional activity 1', act2: 'Additional activity 2', act3: 'Additional activity 3', extraActivities: 'Other activities', scienceProjects: 'Participation in scientific projects', otherProjects: 'Participation in other projects', societies: 'Scientific societies' },
+    groups: { photo: 'Photo', contacts: 'Contact details', science: 'Scientific profile', publications: 'Key publications (1 to 3)', keywords: 'Keywords', societies: 'Scientific societies', links: 'Contacts and links', recommenders: 'Recommendations', consents: 'Two confirmations' },
+    fields: { photoChange: 'Change photo', photoAdd: 'Add a photo', nameUk: 'Full name in Ukrainian', nameEn: 'Full name in English', email: 'Email', phone: 'Mobile phone', orcid: 'ORCID link', facebook: 'Facebook link', linkedin: 'LinkedIn link', degree: 'Scientific degree', degreeOther: 'Which degree exactly', activityOther: 'Which activity exactly', rank: 'Academic title', institution: 'Official full name of the institution', languages: 'Foreign languages', activity: 'Main activity', area: 'Description of the field of scientific research', experience: 'Professional experience', expert: 'Expert experience', field: 'Field of knowledge and speciality', extraFields: 'Suggest another field or speciality', act1: 'Additional activity 1', act2: 'Additional activity 2', act3: 'Additional activity 3', extraActivities: 'Other activities', scienceProjects: 'Scientific projects', otherProjects: 'Other projects', societies: 'Scientific societies' },
     societies: { hint: 'Tick the societies you belong to; the profile will link to their pages on the site.', search: 'Search the societies', none: 'No society found.', selected: (n) => `Selected: ${n}` },
     picker: { otherOption: 'Not in the list', otherLabel: 'Your field or speciality', otherHint: 'The editors will look at it before it is added.', field: 'Field of knowledge', select: 'Select', specialties: 'Specialities', specialtiesHint: 'Tick one or several.', firstField: 'First choose the field of knowledge.', addField: 'Add a field', moreTitle: (n) => `Another field ${n}`, removeField: 'Remove this field', extraHint: 'Not in the list? Write your own field here; the editors will look at it before it is added.', errField: 'Pick a field of knowledge from the list.', errSpecialty: 'Pick at least one speciality.' },
     linkRemove: { aria: 'Remove link', title: 'Remove this link?', text: (l) => `${l} will be removed from your profile after you send it.`, confirm: 'Remove' },
@@ -442,6 +443,8 @@ const en: CabinetCopy = {
     acceptedText: 'Write by email:',
     demoAccepted: 'Colleague accepted',
     writeTitle: (name) => `Message to ${name}`,
+    writeSubject: 'Subject',
+    writeSubjectEmpty: 'Give the message a subject.',
     writeLabel: 'Your message',
     writeHint: 'Say hi and tell them what you’d like to work on together. If they’re up for it, you’ll get their email.',
     writeEmpty: 'Write a few words to start the conversation.',
@@ -498,7 +501,6 @@ const en: CabinetCopy = {
     declinedNote: 'You declined this request. If you changed your mind, you can still accept it.',
     acceptAgain: 'Accept the request',
     profileOf: (name) => `Profile: ${name}`,
-    staleCancelled: 'The sender withdrew this request.',
     staleDeleted: 'This account no longer exists.',
     unreadEmpty: 'No new notifications',
     emptyTab: 'When something new arrives, it will appear here.',
@@ -671,8 +673,8 @@ const uk: CabinetCopy = {
     add: 'Додати',
     parts: { photo: 'фото', links: 'посилання', name: 'ім’я та посада' },
     pendingNote: 'Це версія, яку ви надіслали. На сайті її ще немає.',
-    sections: { activity: 'Суть основної діяльності:', area: 'Сфера наукових досліджень:', experience: 'Професійний досвід:', expert: 'Досвід експертної діяльності:', publications: 'Основні наукові публікації:', keywords: 'Ключові слова:', projects: 'Наукові проєкти:', otherProjects: 'Інші проєкти:', societies: 'Наукові товариства:' },
-    aside: { languages: 'Мови спілкування:', links: 'Посилання:' },
+    sections: { activity: 'Суть основної діяльності', area: 'Сфера наукових досліджень', experience: 'Професійний досвід', expert: 'Досвід експертної діяльності', publications: 'Основні наукові публікації', keywords: 'Ключові слова', projects: 'Наукові проєкти', otherProjects: 'Інші проєкти', societies: 'Наукові товариства' },
+    aside: { languages: 'Мови спілкування', links: 'Посилання' },
     empty: 'Ще не заповнено',
     unsent: {
       send: 'Надіслати зміни',
@@ -690,8 +692,8 @@ const uk: CabinetCopy = {
     lede: 'Тут усе, що ви заповнили під час реєстрації. Змініть те, що застаріло, і додайте нове. Зберігайте зміни по мірі роботи, а коли все буде готово, надішліть їх разом. Команда перевіряє їх одним пакетом, і на сайті вони з’являться лише після перевірки.',
     required: '* обов’язкове поле',
     example: 'Наприклад:',
-    groups: { photo: 'Фото', contacts: 'Контактні дані', science: 'Науковий профіль', publications: 'Основні наукові публікації (від 1 до 3)', keywords: 'Ключові слова та діяльність', societies: 'Наукові товариства', links: 'Контакти й посилання', recommenders: 'Рекомендації', consents: 'Два підтвердження' },
-    fields: { photoChange: 'Змінити фото', photoAdd: 'Додати фото', nameUk: 'Прізвище, ім’я, по батькові', nameEn: 'Прізвище та ім’я англійською', email: 'Адреса електронної пошти', phone: 'Номер мобільного телефону', orcid: 'Посилання на ORCID', facebook: 'Посилання на Facebook', linkedin: 'Посилання на LinkedIn', degree: 'Науковий ступінь', degreeOther: 'Вкажіть, який саме ступінь', activityOther: 'Вкажіть, яка саме діяльність', rank: 'Вчене звання', institution: 'Офіційна повна назва установи', languages: 'Іноземні мови', activity: 'Суть основної діяльності', area: 'Сфера наукових досліджень', experience: 'Професійний досвід', expert: 'Досвід експертної діяльності', field: 'Галузь знань і спеціальність', extraFields: 'Запропонувати іншу галузь або спеціальність', act1: 'Додаткова діяльність 1', act2: 'Додаткова діяльність 2', act3: 'Додаткова діяльність 3', extraActivities: 'Інша додаткова діяльність', scienceProjects: 'Участь у наукових проєктах', otherProjects: 'Участь в інших проєктах', societies: 'Наукові товариства' },
+    groups: { photo: 'Фото', contacts: 'Контактні дані', science: 'Науковий профіль', publications: 'Основні наукові публікації (від 1 до 3)', keywords: 'Ключові слова', societies: 'Наукові товариства', links: 'Контакти й посилання', recommenders: 'Рекомендації', consents: 'Два підтвердження' },
+    fields: { photoChange: 'Змінити фото', photoAdd: 'Додати фото', nameUk: 'Прізвище, ім’я, по батькові', nameEn: 'Прізвище та ім’я англійською', email: 'Адреса електронної пошти', phone: 'Номер мобільного телефону', orcid: 'Посилання на ORCID', facebook: 'Посилання на Facebook', linkedin: 'Посилання на LinkedIn', degree: 'Науковий ступінь', degreeOther: 'Вкажіть, який саме ступінь', activityOther: 'Вкажіть, яка саме діяльність', rank: 'Вчене звання', institution: 'Офіційна повна назва установи', languages: 'Іноземні мови', activity: 'Суть основної діяльності', area: 'Сфера наукових досліджень', experience: 'Професійний досвід', expert: 'Досвід експертної діяльності', field: 'Галузь знань і спеціальність', extraFields: 'Запропонувати іншу галузь або спеціальність', act1: 'Додаткова діяльність 1', act2: 'Додаткова діяльність 2', act3: 'Додаткова діяльність 3', extraActivities: 'Інша додаткова діяльність', scienceProjects: 'Наукові проєкти', otherProjects: 'Інші проєкти', societies: 'Наукові товариства' },
     societies: { hint: 'Позначте товариства, до яких ви належите; профіль матиме посилання на їхні сторінки на сайті.', search: 'Пошук серед товариств', none: 'Нічого не знайдено.', selected: (n) => `Обрано: ${n}` },
     picker: { otherOption: 'Немає у переліку', otherLabel: 'Ваша галузь або спеціальність', otherHint: 'Редактори розглянуть її перед додаванням.', field: 'Галузь знань', select: 'Оберіть', specialties: 'Спеціальності', specialtiesHint: 'Позначте одну або кілька.', firstField: 'Спочатку оберіть галузь знань.', addField: 'Додати галузь', moreTitle: (n) => `Ще одна галузь ${n}`, removeField: 'Прибрати цю галузь', extraHint: 'Немає у переліку? Напишіть свою галузь тут, редактори розглянуть її перед додаванням.', errField: 'Оберіть галузь знань зі списку.', errSpecialty: 'Оберіть хоча б одну спеціальність.' },
     linkRemove: { aria: 'Видалити посилання', title: 'Видалити це посилання?', text: (l) => `${l} зникне з вашого профілю після надсилання.`, confirm: 'Видалити' },
@@ -814,6 +816,8 @@ const uk: CabinetCopy = {
     acceptedText: 'Написати на пошту:',
     demoAccepted: 'Колега прийняв запит',
     writeTitle: (name) => `Повідомлення для ${name}`,
+    writeSubject: 'Тема',
+    writeSubjectEmpty: 'Вкажіть тему повідомлення.',
     writeLabel: 'Ваше повідомлення',
     writeHint: 'Привітайтеся й напишіть, над чим хотіли б попрацювати разом. Якщо колега відгукнеться, ви побачите його пошту.',
     writeEmpty: 'Напишіть кілька слів, щоб почати розмову.',
@@ -886,7 +890,6 @@ const uk: CabinetCopy = {
     declinedNote: 'Ви відхилили запит. Якщо передумали, можете його прийняти.',
     acceptAgain: 'Прийняти запит',
     profileOf: (name) => `Профіль: ${name}`,
-    staleCancelled: 'Відправник скасував цей запит.',
     staleDeleted: 'Цього акаунта більше немає.',
     unreadEmpty: 'Нових сповіщень немає',
     emptyTab: 'Коли надійде щось нове, воно з’явиться тут.',

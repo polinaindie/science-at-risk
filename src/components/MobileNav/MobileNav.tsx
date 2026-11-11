@@ -8,6 +8,7 @@ export interface MobileNavProps {
   account?: 'guest' | 'member';
   loginHref?: string;
   cabinetHref?: string;
+  settingsHref?: string;
   logoutHref?: string;
   open?: boolean;
   onClose?: () => void;
@@ -64,6 +65,7 @@ export function MobileNav({
   account = 'guest',
   loginHref = `${import.meta.env.BASE_URL}login.html`,
   cabinetHref = '/cabinet',
+  settingsHref = '/cabinet/settings',
   logoutHref = '/logout',
   className = '',
 }: MobileNavProps) {
@@ -137,6 +139,11 @@ export function MobileNav({
             <li>
               <a href={cabinetHref} className={linkClass}>
                 {isUa ? 'Мій кабінет' : 'My cabinet'}
+              </a>
+            </li>
+            <li>
+              <a href={settingsHref} className={linkClass}>
+                {isUa ? 'Налаштування' : 'Settings'}
               </a>
             </li>
             <li>
