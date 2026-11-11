@@ -1,0 +1,69 @@
+/* A scientist's profile: the site's `.expert` template, with its labelled
+   paragraphs promoted to real H2s under the name. */
+.scientist__affiliation {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.55556rem;
+  margin-top: 0.66667rem;
+  overflow-wrap: anywhere;
+}
+
+.scientist__affiliation-icon {
+  flex: none;
+  margin-top: 0.1em;
+}
+
+.scientist__section {
+  margin-top: 1.77778rem;
+}
+
+/* Section titles share the cabinet's look: serif, the site's H2 size, one
+   hairline above so a long profile reads as clear blocks. */
+.scientist__section {
+  padding-top: 1.33333rem;
+  border-top: 1px solid #000;
+}
+
+.scientist__section .scientist__title {
+  margin: 0 0 0.88889rem;
+  font-family: "Noto Serif", serif;
+  font-weight: 400;
+  font-size: 1.11111rem;
+  line-height: 1.55556rem;
+  letter-spacing: -0.02em;
+  text-transform: none;
+  color: #000;
+  text-wrap: balance;
+}
+
+@media (min-width: 1024px) {
+  .scientist__section .scientist__title { font-size: 1.55556rem; line-height: 2.11111rem; }
+}
+
+@media (min-width: 1280px) {
+  .scientist__section .scientist__title { font-size: 1.77778rem; line-height: 2.22222rem; }
+}
+
+@media (min-width: 1440px) {
+  .scientist__section .scientist__title { font-size: 2rem; line-height: 2.33333rem; }
+}
+
+.scientist__section .expertParagraph {
+  font-size: max(0.88889rem, 16px);
+  line-height: 1.55;
+}
+
+.scientist__section .tags {
+  margin-top: 0.44444rem;
+}
+
+.scientist__back {
+  margin-top: 2.66667rem;
+}
+
+.scientist__back a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: #000;
+}
