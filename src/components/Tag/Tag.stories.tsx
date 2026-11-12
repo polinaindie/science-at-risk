@@ -33,7 +33,7 @@ export const WithCircle: Story = {
 export const AsLink: Story = {
   args: {
     as: 'a',
-    href: '/experts?tag=teaching',
+    href: '/scientists?tag=teaching',
     children: 'Teaching',
     count: 101,
   },
@@ -45,19 +45,19 @@ export const PopularRequests: Story = {
     <div className="bg-brand-accent-blue p-8">
       <p className="mb-4 font-mono text-text1-desktop">Popular requests</p>
       <div className="flex flex-wrap gap-2.5">
-        <Tag as="a" href="/experts?tag=teaching" count={101}>
+        <Tag as="a" href="/scientists?tag=teaching" count={101}>
           Teaching
         </Tag>
-        <Tag as="a" href="/experts?tag=science-popularization" count={86}>
+        <Tag as="a" href="/scientists?tag=science-popularization" count={86}>
           Science popularization
         </Tag>
-        <Tag as="a" href="/experts?tag=biology" count={57}>
+        <Tag as="a" href="/scientists?tag=biology" count={57}>
           Biology
         </Tag>
-        <Tag as="a" href="/experts?tag=natural-sciences" count={55}>
+        <Tag as="a" href="/scientists?tag=natural-sciences" count={55}>
           Natural sciences
         </Tag>
-        <Tag as="a" href="/experts?tag=biochemistry" count={41}>
+        <Tag as="a" href="/scientists?tag=biochemistry" count={41}>
           Biochemistry
         </Tag>
       </div>

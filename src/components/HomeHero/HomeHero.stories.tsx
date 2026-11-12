@@ -31,7 +31,7 @@ export const Ukrainian: Story = {
       },
       {
         label: 'Пошук та залучення вчених до проєктів',
-        href: '/uk/experts',
+        href: '/uk/scientists',
       },
       { label: 'White Papers', href: '/uk/whitepapers' },
     ],

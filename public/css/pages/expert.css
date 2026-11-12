@@ -198,8 +198,8 @@
 .expert-cta .btn,
 .tag { border-radius: var(--r); }
 
-/* ---- Minimum 14px: crumbs, captions, chips, errors ---- */
-.breadcrumbs, .breadcrumbs *, .tag, .tag *, .help-form small, .help-form [class*="error"] { font-size: var(--t-xs); line-height: 1.4; }
+/* ---- Minimum 14px: captions, chips, errors (breadcrumbs: css/breadcrumbs.css) ---- */
+.tag, .tag *, .help-form small, .help-form [class*="error"] { font-size: var(--t-xs); line-height: 1.4; }
 .tags .tag { background: #fff; }
 
 /* ---- Pause and coda before the footer ---- */
@@ -265,7 +265,6 @@
 
 /* ---- Breadcrumbs ride with the photo and the button in the sticky column ---- */
 .aside > .breadcrumbs { margin: 0 0 var(--s2); }
-.aside .breadcrumbs, .aside .breadcrumbs * { font-size: var(--t-xs); line-height: 1.4; }
 .aside .breadcrumbs__list { flex-wrap: wrap; white-space: normal; overflow: visible; row-gap: 2px; }
 
 /* While the header is showing (scrolling up), the column steps below it. */

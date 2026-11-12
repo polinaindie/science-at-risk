@@ -19,7 +19,7 @@ export function HomeHero({
     },
     {
       label: 'Find Ukrainian scientists for collaboration',
-      href: '/experts',
+      href: '/scientists',
     },
     { label: 'White Papers', href: '/whitepapers' },
   ],

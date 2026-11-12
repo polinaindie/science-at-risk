@@ -68,7 +68,7 @@
   --text-text2-mobile--letter-spacing: 0;
 
   --text-breadcrumbs: 14px;
-  --text-breadcrumbs--line-height: 20px;
+  --text-breadcrumbs--line-height: 1.4;
   --text-breadcrumbs--letter-spacing: -0.03em;
 
   /* The live site's ladder, read off scienceatrisk.org's own stylesheet.

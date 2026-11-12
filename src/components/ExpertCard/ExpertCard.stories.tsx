@@ -19,16 +19,16 @@ export const Default: Story = {
     description:
       'Igor leads the Institute of High Technologies of Taras Shevchenko Kyiv National University and participates in forming the university\'s scientific policy.',
     tags: [
-      { label: 'Chemistry', href: '/experts?tag=chemistry', value: 'chemistry' },
-      { label: 'Biochemistry', href: '/experts?tag=biochemistry', value: 'biochemistry' },
+      { label: 'Chemistry', href: '/scientists?tag=chemistry', value: 'chemistry' },
+      { label: 'Biochemistry', href: '/scientists?tag=biochemistry', value: 'biochemistry' },
       {
         label: 'Natural sciences',
-        href: '/experts?tag=natural-sciences',
+        href: '/scientists?tag=natural-sciences',
         value: 'natural-sciences',
       },
       {
         label: 'Science popularization',
-        href: '/experts?tag=science-popularization',
+        href: '/scientists?tag=science-popularization',
         value: 'science-popularization',
       },
     ],

@@ -14,15 +14,15 @@ export const ExpertKeywords: Story = {
   args: {
     title: 'Ключові слова:',
     keywords: [
-      { label: 'Математика', href: '/uk/experts?tag=mathematics', value: 'mathematics' },
+      { label: 'Математика', href: '/uk/scientists?tag=mathematics', value: 'mathematics' },
       {
         label: 'Природничі науки',
-        href: '/uk/experts?tag=natural-sciences',
+        href: '/uk/scientists?tag=natural-sciences',
         value: 'natural-sciences',
       },
       {
         label: 'Трансфер інновацій',
-        href: '/uk/experts?tag=innovation-transfer',
+        href: '/uk/scientists?tag=innovation-transfer',
         value: 'innovation-transfer',
       },
     ],

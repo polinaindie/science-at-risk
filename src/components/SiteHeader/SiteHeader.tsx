@@ -18,7 +18,7 @@ export interface NavEntry {
 
 /** The same seven sections in Ukrainian. */
 export const siteNavItemsUk = (base: string = APP_BASE): NavEntry[] => [
-  { label: 'Науковці', href: `${base}experts.html` },
+  { label: 'Науковці', href: `${base}scientists.html` },
   { label: 'Товариства', href: `${base}societies.html` },
   { label: 'Дослідження', href: `${base}whitepapers.html` },
   { label: 'Історії', href: `${base}stories.html` },
@@ -222,7 +222,7 @@ const ROW_H = 42;
 /** The sections of "Stolen museum story" (341:756), in one row — the site's
  *  one menu, for every page. */
 export const siteNavItems = (base: string = APP_BASE): NavEntry[] => [
-  { label: 'Scientists', href: `${base}experts.html` },
+  { label: 'Scientists', href: `${base}scientists.html` },
   { label: 'Societies', href: `${base}societies.html` },
   { label: 'Research', href: `${base}whitepapers.html` },
   { label: 'Stories', href: `${base}stories.html` },

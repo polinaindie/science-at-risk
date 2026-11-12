@@ -64,7 +64,7 @@ export interface HomeHeroV4FinalProps {
 }
 
 const defaultNavItems: HomeHeroV4FinalNavItem[] = [
-  { label: 'Scientists', href: live('experts.html') },
+  { label: 'Scientists', href: live('scientists.html') },
   { label: 'Scientific societies', href: live('societies.html') },
   { label: 'Research', href: live('whitepapers.html') },
   { label: 'Stories', href: live('stories.html') },

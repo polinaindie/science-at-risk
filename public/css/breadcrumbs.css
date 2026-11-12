@@ -1,0 +1,15 @@
+/* Breadcrumbs: one look on every page (listings, scientists, societies, stories, whitepapers, infrastructures…).
+   The markup is the same everywhere (.breadcrumbs > ul.breadcrumbs__list > li …); this file is the only place that
+   sets its type. It sits after style.min.css, which keeps the layout (flex row, gaps, dimmed last crumb).
+   The React twin is src/components/Breadcrumbs — same 14/1.4 IBM Plex Mono. */
+
+.breadcrumbs,
+.breadcrumbs__link,
+.breadcrumbs__divider,
+.breadcrumbs span {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.4;
+    letter-spacing: -0.03em;
+}

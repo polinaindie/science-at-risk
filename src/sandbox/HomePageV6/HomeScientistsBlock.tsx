@@ -50,15 +50,15 @@ export const defaultScientistsMode: HomeScientistsMode = {
   buttonLabel: 'Find scientists',
   note: 'Mark the scientific field that interests you - find and involve Ukrainian scientists in your own projects',
   noteLinkLabel: 'To the full database of scientists',
-  noteHref: live('experts.html'),
+  noteHref: live('scientists.html'),
   tags: [
-    { label: 'Teaching', count: 101, href: live('experts-tag-teaching.html') },
-    { label: 'Science popularization', count: 86, href: live('experts-tag-science-popularization.html') },
-    { label: 'Biology', count: 57, href: live('experts-tag-biology.html') },
-    { label: 'Natural sciences', count: 55, href: live('experts-tag-natural-sciences.html') },
-    { label: 'Biochemistry', count: 41, href: live('experts-tag-biochemistry.html') },
+    { label: 'Teaching', count: 101, href: live('scientists-tag-teaching.html') },
+    { label: 'Science popularization', count: 86, href: live('scientists-tag-science-popularization.html') },
+    { label: 'Biology', count: 57, href: live('scientists-tag-biology.html') },
+    { label: 'Natural sciences', count: 55, href: live('scientists-tag-natural-sciences.html') },
+    { label: 'Biochemistry', count: 41, href: live('scientists-tag-biochemistry.html') },
   ],
-  action: live('experts.html'),
+  action: live('scientists.html'),
 };
 
 /** The societies' fields as sartr-ui's `societiesContent` tags them, counted

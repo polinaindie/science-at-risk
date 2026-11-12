@@ -15,7 +15,7 @@ export interface ExpertCardProps {
   subtitle?: string;
   organization?: string;
   description?: string;
-  /** Tags may be plain strings or links to `/experts?tag=…`. */
+  /** Tags may be plain strings or links to `/scientists?tag=…`. */
   tags?: Array<string | ExpertTag>;
   ctaLabel?: string;
   /** Heading level — lower it to 3 when the card sits under a section heading. */

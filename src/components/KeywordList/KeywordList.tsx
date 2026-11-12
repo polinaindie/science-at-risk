@@ -14,7 +14,7 @@ export interface KeywordListProps {
 }
 
 /**
- * Clickable keyword chips — link to listing filter (`/experts?tag=` or `/societies?tag=`).
+ * Clickable keyword chips — link to listing filter (`/scientists?tag=` or `/societies?tag=`).
  */
 export function KeywordList({
   title = 'Ключові слова:',

@@ -23,25 +23,25 @@ export const Experts: Story = {
     exampleLabel: 'Try a query like',
     exampleQuery: 'soil contamination data exchange for a joint Horizon Europe proposal',
     popularTags: [
-      { label: 'Teaching', count: 101, value: 'teaching', href: '/experts?tag=teaching' },
+      { label: 'Teaching', count: 101, value: 'teaching', href: '/scientists?tag=teaching' },
       {
         label: 'Science popularization',
         count: 86,
         value: 'science-popularization',
-        href: '/experts?tag=science-popularization',
+        href: '/scientists?tag=science-popularization',
       },
-      { label: 'Biology', count: 57, value: 'biology', href: '/experts?tag=biology' },
+      { label: 'Biology', count: 57, value: 'biology', href: '/scientists?tag=biology' },
       {
         label: 'Natural sciences',
         count: 55,
         value: 'natural-sciences',
-        href: '/experts?tag=natural-sciences',
+        href: '/scientists?tag=natural-sciences',
       },
       {
         label: 'Biochemistry',
         count: 41,
         value: 'biochemistry',
-        href: '/experts?tag=biochemistry',
+        href: '/scientists?tag=biochemistry',
       },
     ],
   },
@@ -63,6 +63,6 @@ export const WithNote: Story = {
     headingLevel: 2,
     note: 'This is a collaboration database — match methods, labs, and joint-grant partners, not a list of people to rescue.',
     noteLinkLabel: 'Open the full expert base',
-    noteHref: '/experts',
+    noteHref: '/scientists',
   },
 };

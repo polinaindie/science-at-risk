@@ -10,7 +10,8 @@ export interface BreadcrumbsProps {
   className?: string;
 }
 
-/** Site breadcrumbs (`.breadcrumbs`) — IBM Plex Mono 12/16. */
+/** Site breadcrumbs (`.breadcrumbs`) — IBM Plex Mono 14/1.4, the last crumb dimmed.
+ * The static pages draw the same thing from `public/css/breadcrumbs.css`; change both together. */
 export function Breadcrumbs({ items, className = '' }: BreadcrumbsProps) {
   return (
     <nav className={`mb-2.5 md:mb-4 ${className}`.trim()} aria-label="Breadcrumb">
@@ -25,7 +26,9 @@ export function Breadcrumbs({ items, className = '' }: BreadcrumbsProps) {
                 </span>
               ) : null}
               {last || !item.href ? (
-                <span aria-current={last ? 'page' : undefined}>{item.label}</span>
+                <span aria-current={last ? 'page' : undefined} className={last ? 'opacity-50' : undefined}>
+                  {item.label}
+                </span>
               ) : (
                 <a
                   href={item.href}

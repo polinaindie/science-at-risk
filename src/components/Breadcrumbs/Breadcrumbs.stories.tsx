@@ -23,7 +23,7 @@ export const Deep: Story = {
   args: {
     items: [
       { label: 'Main', href: '/' },
-      { label: 'Experts', href: '/experts' },
+      { label: 'Experts', href: '/scientists' },
       { label: 'Igor Komarov' },
     ],
   },
