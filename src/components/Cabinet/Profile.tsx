@@ -91,29 +91,34 @@ function Section({
   title,
   action,
   empty = false,
+  tight = false,
   children,
 }: {
   title: string;
   action?: ReactNode;
   /** Nothing filled in: the block is not shown at all, as on the site. */
   empty?: boolean;
+  /** Stands close under what is above it (the links under the photo) instead of a section's usual air. */
+  tight?: boolean;
   children: ReactNode;
 }) {
   if (empty) return null;
   return (
     <>
-      <div className="mt-12 mb-4">
+      {/* the heading and its "Change" share a row: the button stands opposite the title, centred on its height */}
+      <div className={`${tight ? 'mt-6' : 'mt-12'} mb-4 flex items-center justify-between gap-4`}>
         <h4 className={H4}>{title}</h4>
+        {action}
       </div>
       {children}
-      {action ? <div className="mt-4">{action}</div> : null}
     </>
   );
 }
 
-/** The list of projects or publications: a 2px rule between items, none after the last. */
-const CARD = 'border-b-2 border-brand-black py-8 last:border-b-0 last:pb-0';
-const CardList = ({ children }: { children: ReactNode }) => <ul className="m-0 mt-2 list-none p-0">{children}</ul>;
+/** The list of projects or publications: a 2px rule above the first item, between items and under the last.
+    The rule belongs to the item, not to the heading: 32px of air above it (the margins collapse, so this one alone sets it), 32px below. */
+const CARD = 'border-b-2 border-brand-black py-8 first:border-t-2';
+const CardList = ({ children }: { children: ReactNode }) => <ul className="m-0 mt-8 list-none p-0">{children}</ul>;
 
 /** A career as a timeline: the year in its own column, the post, then the place. */
 const ExperienceList = ({ items }: { items: ExperienceItem[] }) => (
@@ -144,16 +149,14 @@ function changeButton(
   const t = cabinetCopy[locale].profile;
   if (locked || !onEdit) return null;
   return (
-    <div className="mt-5 border-t-2 border-brand-black pt-3">
     <button
       type="button"
       onClick={() => onEdit(id)}
       aria-label={`${filled ? t.change : t.add}: ${part}`}
-      className="satr-underlined-box inline-flex cursor-pointer items-center border-0 bg-transparent p-0 font-mono text-[14px] leading-[20px] tracking-[-0.03em] text-brand-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-black"
+      className="satr-underlined-box inline-flex shrink-0 cursor-pointer items-center border-0 bg-transparent p-0 font-mono text-[14px] leading-[20px] tracking-[-0.03em] text-brand-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-black"
     >
       <span className="satr-underlined">{filled ? t.change : t.add}</span>
     </button>
-    </div>
   );
 }
 
@@ -231,31 +234,34 @@ function ProfileName({
     .filter((x) => x && x !== copy.edit.options.rank[0])
     .join(', ');
   return (
-    <div>
-      {show !== 'position' ? (
-        <h1
-          className={`m-0 font-serif tracking-[-0.02em] ${
-            compact
-              ? 'text-[28px] leading-[34px]'
-              : 'text-[28px] leading-[32px] md:text-[36px] md:leading-[40px]'
-          }`}
-        >
-          {name}
-        </h1>
-      ) : null}
-      {show !== 'name' ? (
-        <>
-          {position ? (
-            <p className={`m-0 ${POST} md:text-[18px] md:leading-[26px] ${show === 'both' ? 'mt-4' : ''}`}>
-              {position.charAt(0).toUpperCase() + position.slice(1)}
-            </p>
-          ) : null}
-          {profile.institution ? (
-            <p className={`m-0 mt-1 text-[#4a5459] ${PLACE}`}>{profile.institution}</p>
-          ) : null}
-          <div className="mt-5">{action}</div>
-        </>
-      ) : null}
+    <div className="flex items-start justify-between gap-4">
+      <div className="min-w-0">
+        {show !== 'position' ? (
+          <h1
+            className={`m-0 font-serif tracking-[-0.02em] ${
+              compact
+                ? 'text-[28px] leading-[34px]'
+                : 'text-[28px] leading-[32px] md:text-[36px] md:leading-[40px]'
+            }`}
+          >
+            {name}
+          </h1>
+        ) : null}
+        {show !== 'name' ? (
+          <>
+            {position ? (
+              <p className={`m-0 ${POST} md:text-[18px] md:leading-[26px] ${show === 'both' ? 'mt-4' : ''}`}>
+                {position.charAt(0).toUpperCase() + position.slice(1)}
+              </p>
+            ) : null}
+            {profile.institution ? (
+              <p className={`m-0 mt-1 text-[#4a5459] ${PLACE}`}>{profile.institution}</p>
+            ) : null}
+          </>
+        ) : null}
+      </div>
+      {/* the "Change" for the whole block stands opposite it, level with its top edge, like the section titles' */}
+      {show !== 'name' ? <div className="shrink-0 pt-2">{action}</div> : null}
     </div>
   );
 }
@@ -331,7 +337,7 @@ export function ProfileView({
 
   /** The links stand under the photo. On the site they have no heading; in the cabinet they get one ("Links", not "Social networks": ORCID is a researcher ID, not a network). */
   const linksBlock = (
-    <Section title={t.aside.links} empty={links.length === 0} action={change('links', t.parts.links)}>
+    <Section title={t.aside.links} empty={links.length === 0} tight action={change('links', t.parts.links)}>
       <ul className="m-0 flex list-none flex-wrap gap-x-6 gap-y-1 p-0">
         {links.map((l) => (
           <li key={l.href}>
@@ -550,7 +556,7 @@ export function ProfileView({
                       <li key={x.slug} className="inline">
                         <a
                           href={`${import.meta.env.BASE_URL}society/${x.slug}.html`}
-                          className="satr-hover-underline"
+                          className="satr-underlined"
                         >
                           {societyName(x, locale)}
                         </a>

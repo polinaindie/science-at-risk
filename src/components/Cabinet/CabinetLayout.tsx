@@ -103,7 +103,7 @@ export function CabinetLayout({
       <div className="flex flex-col lg:sticky lg:top-[calc(68px+2rem)] lg:h-[calc(100dvh-168px)]">
       <div className="lg:flex-1">
       <nav aria-label={t.nav.label}>
-        <ul className="m-0 flex list-none gap-6 overflow-x-auto border-b-2 border-brand-line-muted p-0 md:gap-10 lg:flex-col lg:gap-1 lg:overflow-visible lg:border-b-0">
+        <ul className="m-0 flex list-none gap-6 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden border-b-2 border-brand-line-muted p-0 md:gap-10 lg:flex-col lg:gap-1 lg:overflow-visible lg:border-b-0">
           {ORDER.map((key) => {
             const current = key === section;
             const count = key === 'notifications' ? unread : 0;
