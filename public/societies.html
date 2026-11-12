@@ -35,6 +35,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.9/fullpage.min.css"/>
     <link href="css/style.min.css" rel="stylesheet">
     <link href="css/breadcrumbs.css" rel="stylesheet">
+    <link href="css/pages/search-field.css" rel="stylesheet">
+    <link href="css/pages/listing-hero.css" rel="stylesheet">
         
     <link rel="apple-touch-icon" sizes="57x57" href="images/favicon_client/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="images/favicon_client/apple-icon-60x60.png">
@@ -72,48 +74,43 @@
         <div class="base-wrap__content">
             	<div class="page infrastructures">
 
-		<section class="infrastructures-hero indentHeader">
+        <section class="search-hero indentHeader">
             <div class="wrapper">
                 <div class="breadcrumbs">
         <ul itemscope="itemscope" itemtype="http://schema.org/BreadcrumbList" class="breadcrumbs__list">
-                                                            <li itemprop="itemListElement" itemscope="itemscope" itemtype="http://schema.org/ListItem" class="breadcrumbs__item">
-                                                    <a href="./" itemprop="item" class="breadcrumbs__link">
-                                <span itemprop="name">Main</span>
-                            </a>
-                                                <meta itemprop="position" content="1">
-                    </li>
-                    <li class="breadcrumbs__divider">
-                        /
-                    </li>
-                                                                                <li itemprop="itemListElement" itemscope="itemscope" itemtype="http://schema.org/ListItem" class="breadcrumbs__item breadcrumbs__link--disabled">
-                        <span itemprop="item">
-                            <span itemprop="name">Scientific societies</span>
-                        </span>
-                        <meta itemprop="position" content="2">
-                    </li>
-                                                    </ul>
+            <li itemprop="itemListElement" itemscope="itemscope" itemtype="http://schema.org/ListItem" class="breadcrumbs__item">
+                <a href="./" itemprop="item" class="breadcrumbs__link"><span itemprop="name">Main</span></a>
+                <meta itemprop="position" content="1">
+            </li>
+            <li class="breadcrumbs__divider">/</li>
+            <li itemprop="itemListElement" itemscope="itemscope" itemtype="http://schema.org/ListItem" class="breadcrumbs__item breadcrumbs__link--disabled">
+                <span itemprop="item"><span itemprop="name">Societies</span></span>
+                <meta itemprop="position" content="2">
+            </li>
+        </ul>
     </div>
-                <div class="row justify-content-between">
-                    <div class="col-md-8 col-12">
-                        <h1 class="infrastructures-hero__title">Scientific societies</h1>
-                        <p class="infrastructures-hero__text">Find Ukrainian scientific society for collaboration</p>
-                    </div>
+                <div class="search-hero__info-wrap">
+                    <h1 class="search-hero__title">Find partners in Ukrainian science</h1>
                 </div>
+                <nav class="scope-tabs" aria-label="Search in">
+                    <a class="scope-tabs__link" href="scientists.html"><span class="scope-tabs__word">Scientists</span></a>
+                    <a class="scope-tabs__link" href="societies.html" aria-current="page"><span class="scope-tabs__word">Societies</span></a>
+                </nav>
+                <form role="search" action="societies.html" method="GET" class="_searchSocieties search-field">
+                    <label class="satr-float" for="search">
+                        <input id="search" type="search" name="search" placeholder=" ">
+                        <span class="satr-float__label">Enter field or society name</span>
+                    </label>
+                    <button class="btn btn--black" type="submit">Find societies</button>
+                </form>
+                <div class="search-hero__requests popular-requests">
+                    <p class="popular-requests__text">Popular domains</p>
+                    <div class="popular-requests__wrapper"><button type="button" data-tag="medicine" data-href="societies.html?tag=medicine" aria-label="Medicine" class="popular-requests__tags tag">Medicine<span class="tag__number">6</span></button><button type="button" data-tag="psychology" data-href="societies.html?tag=psychology" aria-label="Psychology" class="popular-requests__tags tag">Psychology<span class="tag__number">3</span></button><button type="button" data-tag="ecology" data-href="societies.html?tag=ecology" aria-label="Ecology" class="popular-requests__tags tag">Ecology<span class="tag__number">3</span></button><button type="button" data-tag="economics" data-href="societies.html?tag=economics" aria-label="Economics" class="popular-requests__tags tag">Economics<span class="tag__number">2</span></button><button type="button" data-tag="technology" data-href="societies.html?tag=technology" aria-label="Technology" class="popular-requests__tags tag">Technology<span class="tag__number">2</span></button></div>
             </div>
         </section>
 
 		<section class="infrastructures__wrapper">
 			<div class="wrapper">
-				<header class="infrastructures__header row d-md-flex d-none">
-					<div class="col-7">
-						<p class="">Scientific society</p>
-					</div>
-					<div class="col-5">
-						<div class="infrastructures__right">
-							<p class="infrastructures__text-left">Science Domain</p>
-						</div>
-					</div>
-				</header>
 				<div class="infrastructures__list">
 																		<div class="infrastructures-card position-relative">
     <article class="infrastructures-card__wrap">
@@ -127,8 +124,8 @@
             <div class="col-md-5 col-12">
                 <div class="infrastructures-card__right">
                     <div class="infrastructures-card__text-left">
-                        <p class="d-md-none infrastructures__text-left">Science Domain</p>
-                        <p></p>
+                        <p class="infrastructures__text-left">Science domain</p>
+                        <p>Education</p>
                     </div>
                 </div>
             </div>
@@ -153,8 +150,8 @@
             <div class="col-md-5 col-12">
                 <div class="infrastructures-card__right">
                     <div class="infrastructures-card__text-left">
-                        <p class="d-md-none infrastructures__text-left">Science Domain</p>
-                        <p></p>
+                        <p class="infrastructures__text-left">Science domain</p>
+                        <p>Open science</p>
                     </div>
                 </div>
             </div>
@@ -179,8 +176,8 @@
             <div class="col-md-5 col-12">
                 <div class="infrastructures-card__right">
                     <div class="infrastructures-card__text-left">
-                        <p class="d-md-none infrastructures__text-left">Science Domain</p>
-                        <p></p>
+                        <p class="infrastructures__text-left">Science domain</p>
+                        <p>Medicine</p>
                     </div>
                 </div>
             </div>
@@ -205,8 +202,8 @@
             <div class="col-md-5 col-12">
                 <div class="infrastructures-card__right">
                     <div class="infrastructures-card__text-left">
-                        <p class="d-md-none infrastructures__text-left">Science Domain</p>
-                        <p></p>
+                        <p class="infrastructures__text-left">Science domain</p>
+                        <p>Medicine</p>
                     </div>
                 </div>
             </div>
@@ -231,8 +228,8 @@
             <div class="col-md-5 col-12">
                 <div class="infrastructures-card__right">
                     <div class="infrastructures-card__text-left">
-                        <p class="d-md-none infrastructures__text-left">Science Domain</p>
-                        <p></p>
+                        <p class="infrastructures__text-left">Science domain</p>
+                        <p>Pharmacy</p>
                     </div>
                 </div>
             </div>
@@ -257,8 +254,8 @@
             <div class="col-md-5 col-12">
                 <div class="infrastructures-card__right">
                     <div class="infrastructures-card__text-left">
-                        <p class="d-md-none infrastructures__text-left">Science Domain</p>
-                        <p></p>
+                        <p class="infrastructures__text-left">Science domain</p>
+                        <p>Psychology</p>
                     </div>
                 </div>
             </div>
@@ -283,8 +280,8 @@
             <div class="col-md-5 col-12">
                 <div class="infrastructures-card__right">
                     <div class="infrastructures-card__text-left">
-                        <p class="d-md-none infrastructures__text-left">Science Domain</p>
-                        <p></p>
+                        <p class="infrastructures__text-left">Science domain</p>
+                        <p>History and archaeology</p>
                     </div>
                 </div>
             </div>
@@ -309,8 +306,8 @@
             <div class="col-md-5 col-12">
                 <div class="infrastructures-card__right">
                     <div class="infrastructures-card__text-left">
-                        <p class="d-md-none infrastructures__text-left">Science Domain</p>
-                        <p></p>
+                        <p class="infrastructures__text-left">Science domain</p>
+                        <p>Mathematics</p>
                     </div>
                 </div>
             </div>
@@ -335,8 +332,8 @@
             <div class="col-md-5 col-12">
                 <div class="infrastructures-card__right">
                     <div class="infrastructures-card__text-left">
-                        <p class="d-md-none infrastructures__text-left">Science Domain</p>
-                        <p></p>
+                        <p class="infrastructures__text-left">Science domain</p>
+                        <p>Biophysics</p>
                     </div>
                 </div>
             </div>
@@ -361,8 +358,8 @@
             <div class="col-md-5 col-12">
                 <div class="infrastructures-card__right">
                     <div class="infrastructures-card__text-left">
-                        <p class="d-md-none infrastructures__text-left">Science Domain</p>
-                        <p></p>
+                        <p class="infrastructures__text-left">Science domain</p>
+                        <p>Publishing</p>
                     </div>
                 </div>
             </div>
@@ -387,8 +384,8 @@
             <div class="col-md-5 col-12">
                 <div class="infrastructures-card__right">
                     <div class="infrastructures-card__text-left">
-                        <p class="d-md-none infrastructures__text-left">Science Domain</p>
-                        <p></p>
+                        <p class="infrastructures__text-left">Science domain</p>
+                        <p>Ecology</p>
                     </div>
                 </div>
             </div>
@@ -413,8 +410,8 @@
             <div class="col-md-5 col-12">
                 <div class="infrastructures-card__right">
                     <div class="infrastructures-card__text-left">
-                        <p class="d-md-none infrastructures__text-left">Science Domain</p>
-                        <p></p>
+                        <p class="infrastructures__text-left">Science domain</p>
+                        <p>Public administration</p>
                     </div>
                 </div>
             </div>
@@ -488,6 +485,7 @@ gtag('config', 'G-9BH3YJZYRB');
 <script src="js/client.bundle.js"></script>
 <script src="js/jquery.min.js"></script>
 <script src="js/common.js"></script>
+<script src="js/societies-filter.js" data-base=""></script>
 <script>
     (async function () {
         if (!("paintWorklet" in CSS)) {

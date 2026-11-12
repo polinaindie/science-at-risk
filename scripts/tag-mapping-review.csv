@@ -1,0 +1,160 @@
+scientists,old tag,how sure,field of knowledge,speciality
+100,Teaching,activity,,
+86,Science popularization,activity,,
+57,Biology,exact,Biology,
+55,Natural sciences,exact,Natural sciences,
+41,Biochemistry,guess,Biology,Biology and biochemistry
+40,Fundraising,activity,,
+40,Public speaking,activity,,
+34,Science communications,activity,,
+31,Chemistry,exact,Natural sciences,Chemistry
+30,Book writing,activity,,
+26,Ecology,exact,Natural sciences,Ecology
+26,Project management,activity,,
+25,Physics,guess,Natural sciences,Physics and astronomy
+24,Humanities,exact,Humanities,
+21,Social and behavioural sciences,exact,Social and behavioural sciences,
+17,Economics,exact,Social and behavioural sciences,Economics
+16,Education,exact,Education,
+15,Medicine,exact,Health care,Medicine
+14,History,guess,Humanities,History and archaeology
+14,Management,exact,Management and administration,Management
+13,History and archeology,guess,Humanities,History and archaeology
+12,Applied physics and nanomaterials,exact,Natural sciences,Applied physics and nanomaterials
+11,Academic integrity,activity,,
+11,International relations,exact,International relations,
+10,Biotechnology and bioengineering,exact,Chemical engineering and bioengineering,Biotechnology and bioengineering
+10,Healthcare,guess,Health care,Medicine
+10,Astronomy,guess,Natural sciences,Physics and astronomy
+10,Agricultural sciences,guess,Agricultural sciences and food,
+9,Databases,guess,Information technology,Computer science
+9,Programming,guess,Information technology,Computer science
+9,Philology,exact,Humanities,Philology
+8,Patenting,activity,,
+8,Sustainable development management,guess,Natural sciences,Ecology
+8,Environmental management,guess,Manufacturing and technology,Environmental protection technology
+8,Mathematics,exact,Mathematics and statistics,Mathematics
+8,Mechanical engineering,exact,Mechanical engineering,
+8,Chemical engineering,guess,Chemical engineering and bioengineering,Chemical technology and engineering
+7,Culture and arts,exact,Culture and arts,
+7,Molecular Biology,guess,Biology,Biology and biochemistry
+7,Recovery,activity,,
+6,Food science,guess,Manufacturing and technology,Food technology
+6,Management and administration,exact,Management and administration,
+6,Physical sciences,guess,Natural sciences,Physics and astronomy
+6,Nanomaterials,guess,Natural sciences,Applied physics and nanomaterials
+5,Artificial intelligence,guess,Information technology,Computer science
+5,Social science,guess,Social and behavioural sciences,
+5,Psychology,exact,Social and behavioural sciences,Psychology
+5,Water resources security,guess,Manufacturing and technology,Environmental protection technology
+5,Genetics,guess,Biology,Biology and biochemistry
+5,Science policies,activity,,
+5,Media communications,guess,Journalism,
+5,Law,exact,Law,
+5,Technology,activity,,
+4,Cultural studies,exact,Humanities,Cultural studies
+4,Zoology,guess,Biology,Biology and biochemistry
+4,Biophysics,guess,Biology,Biology and biochemistry
+4,Commercialization of scientific inventions,activity,,
+4,Political science,exact,Social and behavioural sciences,Political science
+3,Expert consulting,activity,,
+3,Physical chemistry,guess,Natural sciences,Chemistry
+3,Linguistic and cultural studies,guess,Humanities,Philology
+3,Energetics,guess,Electrical engineering,
+3,Electrical engineering,exact,Electrical engineering,
+3,"Electric power engineering, electrical engineering and electromechanics",guess,Electrical engineering,"Electric power, electrical engineering and electromechanics"
+3,Entrepreneurship and Trade,exact,Management and administration,Entrepreneurship and trade
+3,Water management,guess,Manufacturing and technology,Environmental protection technology
+3,Innovation transfer,activity,,
+3,Scientific ethics,activity,,
+3,Applied Mathematics,exact,Mathematics and statistics,Applied mathematics
+3,Electronic communications,guess,"Electronics, automation and electronic communications",Electronic communications and radio engineering
+3,Social media analysis,activity,,
+3,Biomedicine,guess,Health care,Medicine
+3,Library and archive science,guess,Culture and arts,"Information, library and archival studies"
+3,Public Health,exact,Health care,Public health
+3,Climate change,guess,Natural sciences,Ecology
+3,Media,guess,Journalism,
+2,Plasma physics,guess,Natural sciences,Physics and astronomy
+2,Art history,guess,Humanities,History and archaeology
+2,Information systems and technologies,guess,Information technology,Computer science
+2,Efficient energy use,guess,Electrical engineering,
+2,Commodity science,guess,Management and administration,Entrepreneurship and trade
+2,Industrial ecology,guess,Natural sciences,Ecology
+2,Museum studies,guess,Culture and arts,"Museum studies, heritage studies"
+2,Infrastructure,activity,,
+2,Palaeontology,guess,Biology,Biology and biochemistry
+2,Astrophysics,guess,Natural sciences,Physics and astronomy
+2,Physical culture and sport,guess,Natural sciences,Physics and astronomy
+2,Statistics,exact,Mathematics and statistics,Statistics
+2,Immunology,guess,Biology,Biology and biochemistry
+2,Information technology,exact,Information technology,
+2,Regional studies,guess,Social and behavioural sciences,
+2,Botanics,guess,Biology,Biology and biochemistry
+2,Forest management,guess,Agricultural sciences and food,Forestry
+2,Evolution,guess,Biology,Biology and biochemistry
+2,Plant phylogeny,guess,Biology,Biology and biochemistry
+2,Information technologies,guess,Information technology,Computer science
+2,2D materials,guess,Natural sciences,Applied physics and nanomaterials
+2,Waste treatment,guess,Manufacturing and technology,Environmental protection technology
+2,Pedagogical sciences,exact,Education,Pedagogical sciences
+2,Computer technology,guess,Information technology,Computer science
+2,Mass communication,guess,Journalism,
+2,Tourism and recreation.,exact,Services,Tourism and recreation
+2,Sustainable Tourism,guess,Services,Tourism and recreation
+2,Cultural heritage,guess,Culture and arts,"Museum studies, heritage studies"
+2,International investment activities,guess,Social and behavioural sciences,Economics
+2,Digital economy,guess,Social and behavioural sciences,Economics
+2,Digital transformation,activity,,
+1,Surface science,guess,Natural sciences,Applied physics and nanomaterials
+1,Imperial politics,guess,Humanities,History and archaeology
+1,Arts and crafts,guess,Culture and arts,"Fine arts, decorative arts, restoration"
+1,Electrochemistry of semiconductors,guess,Natural sciences,Chemistry
+1,Nanoart,guess,Natural sciences,Applied physics and nanomaterials
+1,Gemology,guess,Natural sciences,Earth sciences
+1,Gemstones,guess,Natural sciences,Earth sciences
+1,Tourismology,guess,Services,Tourism and recreation
+1,Mediastylistics,guess,Journalism,
+1,Surface engineering,guess,Natural sciences,Applied physics and nanomaterials
+1,Identification of goods,guess,Management and administration,Entrepreneurship and trade
+1,Production and technology,guess,Manufacturing and technology,
+1,Inorganic chemistry,guess,Natural sciences,Chemistry
+1,Taxation policy,guess,Social and behavioural sciences,Economics
+1,Philosophy,exact,Humanities,Philosophy
+1,Museum and monument studies,guess,Culture and arts,"Museum studies, heritage studies"
+1,Technology transfer,activity,,
+1,Heritage management,activity,,
+1,Digitalisation,activity,,
+1,Neurobiology,guess,Biology,Biology and biochemistry
+1,Neurophysiology,guess,Biology,Biology and biochemistry
+1,Cultural anthropology,guess,Humanities,Cultural studies
+1,Applied Mechanics,guess,Mechanical engineering,
+1,Applied Physics,guess,Natural sciences,Applied physics and nanomaterials
+1,Cell biology,guess,Biology,Biology and biochemistry
+1,Demining,activity,,
+1,Science of science,activity,,
+1,Crisis Management,activity,,
+1,Social Sciences and Geopolitical Studies,guess,Social and behavioural sciences,
+1,Discourse analysis,guess,Humanities,Philology
+1,Communication for Civil Society Organizations,unmapped,,
+1,Batrachology,guess,Biology,Biology and biochemistry
+1,Forest genetics,guess,Biology,Biology and biochemistry
+1,Grants management,activity,,
+1,Forestry,exact,Agricultural sciences and food,Forestry
+1,Comparative literature,guess,Humanities,Philology
+1,Energy storage,guess,Natural sciences,Applied physics and nanomaterials
+1,MXene,guess,Natural sciences,Applied physics and nanomaterials
+1,MAX phase,guess,Natural sciences,Applied physics and nanomaterials
+1,Hybrid hydrogels,guess,Natural sciences,Chemistry
+1,Colloidal systems,guess,Natural sciences,Chemistry
+1,Catalysis,guess,Natural sciences,Chemistry
+1,SDG,activity,,
+1,Literary theory,guess,Humanities,Philology
+1,Modern Ukrainian literature,guess,Humanities,Philology
+1,Sociology,exact,Social and behavioural sciences,Sociology
+1,Food technologies,guess,Manufacturing and technology,Food technology
+1,Physical organic chemistry,guess,Natural sciences,Chemistry
+1,Art education,guess,Culture and arts,"Fine arts, decorative arts, restoration"
+1,Journalism,exact,Journalism,
+1,Nuclear energy,guess,Electrical engineering,
+1,Photochemistry,guess,Natural sciences,Chemistry

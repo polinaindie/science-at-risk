@@ -1,6 +1,7 @@
 import { useId, useRef, type FormEvent } from 'react';
 import { Button } from '@/components/Button';
 import { Breadcrumbs, type BreadcrumbItem } from '@/components/Breadcrumbs';
+import { ScopeTabs } from '@/components/ScopeTabs';
 import { Tag } from '@/components/Tag';
 
 export interface PopularTag {
@@ -11,8 +12,20 @@ export interface PopularTag {
   href?: string;
 }
 
+export interface SearchHeroScope {
+  label: string;
+  href: string;
+  /** The page that is open. */
+  current?: boolean;
+}
+
 export interface SearchHeroProps {
   title: string;
+  /**
+   * The Scientists / Societies switch under the heading. Links, so each list stays its own page
+   * (static twin: `.search-hero__scope`, public/css/pages/listing-hero.css).
+   */
+  scopes?: SearchHeroScope[];
   breadcrumbs?: BreadcrumbItem[];
   placeholder?: string;
   buttonLabel?: string;
@@ -46,6 +59,7 @@ export interface SearchHeroProps {
 /** Experts / search blue hero (`.search-hero` + `.popular-requests`). */
 export function SearchHero({
   title,
+  scopes,
   breadcrumbs,
   placeholder = 'Name, specialty, institution',
   buttonLabel = 'Find a scientist',
@@ -148,7 +162,15 @@ export function SearchHero({
           {title}
         </Heading>
       </div>
-      <form className="mt-8" onSubmit={handleSubmit} aria-labelledby={id}>
+      {scopes?.length ? (
+        <ScopeTabs
+          className="mt-8 md:mt-12"
+          label="Search in"
+          value={scopes.find((scope) => scope.current)?.href ?? ''}
+          tabs={scopes.map((scope) => ({ value: scope.href, label: scope.label, href: scope.href }))}
+        />
+      ) : null}
+      <form className={scopes?.length ? 'mt-4' : 'mt-8'} onSubmit={handleSubmit} aria-labelledby={id}>
         <div className="flex flex-col gap-4 border-b-2 border-brand-black pb-6 md:flex-row md:items-end md:gap-6">
           <label className="flex-1 font-mono text-breadcrumbs text-brand-black">
             <span className="mb-1 block">{placeholder}</span>

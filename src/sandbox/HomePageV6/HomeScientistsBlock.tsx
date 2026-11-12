@@ -2,6 +2,7 @@ import { useId, useLayoutEffect, useRef, useState, type FormEvent, type ReactNod
 import { Button } from '@/components/Button';
 import { Wrapper, Row, Col, fitTextClass } from '@/components/Layout';
 import { Link } from '@/components/Link';
+import { ScopeTabs } from '@/components/ScopeTabs';
 import { Tag } from '@/components/Tag';
 
 /** The live site's pages are copied under `public/`, so they sit beside this app
@@ -29,6 +30,8 @@ export interface HomeScientistsMode {
   noteLinkLabel: string;
   noteHref: string;
   tags: HomeScientistsTag[];
+  /** Over the tags, when this scope's tags are not the block's `popularLabel`. */
+  popularLabel?: string;
   /** Where the form goes without a handler — a plain GET. */
   action: string;
 }
@@ -46,23 +49,24 @@ export interface HomeScientistsBlockProps {
 
 export const defaultScientistsMode: HomeScientistsMode = {
   label: 'Scientists',
+  popularLabel: 'Popular requests',
   placeholder: 'Enter scientific field or name',
   buttonLabel: 'Find scientists',
   note: 'Mark the scientific field that interests you - find and involve Ukrainian scientists in your own projects',
   noteLinkLabel: 'To the full database of scientists',
   noteHref: live('scientists.html'),
   tags: [
-    { label: 'Teaching', count: 101, href: live('scientists-tag-teaching.html') },
-    { label: 'Science popularization', count: 86, href: live('scientists-tag-science-popularization.html') },
-    { label: 'Biology', count: 57, href: live('scientists-tag-biology.html') },
-    { label: 'Natural sciences', count: 55, href: live('scientists-tag-natural-sciences.html') },
-    { label: 'Biochemistry', count: 41, href: live('scientists-tag-biochemistry.html') },
+    { label: 'Teaching', count: 100, href: live('scientists.html?tag=teaching') },
+    { label: 'Science popularization', count: 86, href: live('scientists.html?tag=science-popularization') },
+    { label: 'Biology', count: 57, href: live('scientists.html?tag=biology') },
+    { label: 'Natural sciences', count: 55, href: live('scientists.html?tag=natural-sciences') },
+    { label: 'Biochemistry', count: 41, href: live('scientists.html?tag=biochemistry') },
   ],
   action: live('scientists.html'),
 };
 
-/** The societies' fields as sartr-ui's `societiesContent` tags them, counted
- *  on 2026-10-05 — static, like the scientists' counts above. */
+/** The societies' domains, counted on the societies page (public/societies.html) — static, like the scientists' counts above.
+ *  Fifteen societies had no domain in the live data; the page carries placeholder ones (scripts/societies-placeholder-domains.json). */
 export const defaultSocietiesMode: HomeScientistsMode = {
   label: 'Societies',
   placeholder: 'Enter field or society name',
@@ -71,11 +75,11 @@ export const defaultSocietiesMode: HomeScientistsMode = {
   noteLinkLabel: 'To all scientific societies',
   noteHref: live('societies.html'),
   tags: [
-    { label: 'Medicine', count: 4, href: '/societies?tag=medicine' },
-    { label: 'Ecology', count: 2, href: '/societies?tag=ecology' },
+    { label: 'Medicine', count: 6, href: '/societies?tag=medicine' },
+    { label: 'Psychology', count: 3, href: '/societies?tag=psychology' },
+    { label: 'Ecology', count: 3, href: '/societies?tag=ecology' },
+    { label: 'Economics', count: 2, href: '/societies?tag=economics' },
     { label: 'Technology', count: 2, href: '/societies?tag=technology' },
-    { label: 'Psychology', count: 2, href: '/societies?tag=psychology' },
-    { label: 'Microbiology', count: 2, href: '/societies?tag=microbiology' },
   ],
   action: live('societies.html'),
 };
@@ -197,7 +201,7 @@ function PopularTags({ label, tags }: { label: string; tags: HomeScientistsTag[]
 export function HomeScientistsBlock({
   title = 'Find partners in Ukrainian science',
   scopeLabel = 'Search in',
-  popularLabel = 'Popular requests',
+  popularLabel = 'Popular domains',
   modes = defaultModes,
   defaultScope = 'scientists',
   onSearch,
@@ -220,32 +224,16 @@ export function HomeScientistsBlock({
           {title}
         </h2>
 
-        {/* Native radios, drawn as two words: the arrow keys, the focus and
-            what a screen reader says all come with them. They sit outside the
-            form so the scope never rides along in the query — the form's
-            action already says where it goes. Words, not buttons: set larger
-            and heavier than the text around them, the chosen one underlined
-            thick, so the choice reads without competing with the search
-            button. Each label is padded to a 44px target; the padding comes
-            out of the gap above it. */}
-        <fieldset className="m-0 mt-8 flex gap-8 border-0 p-0 md:mt-12">
-          <legend className="sr-only">{scopeLabel}</legend>
-          {SCOPES.map((value) => (
-            <label key={value} className="group cursor-pointer py-2">
-              <input
-                type="radio"
-                name={`${id}-scope`}
-                value={value}
-                checked={scope === value}
-                onChange={() => setScope(value)}
-                className="peer sr-only"
-              />
-              <span className="block border-b-[3px] border-transparent pb-1 font-mono text-[20px] font-medium leading-[28px] text-brand-muted transition-colors group-hover:border-brand-line-muted group-hover:text-brand-black md:text-[24px] md:leading-[32px] peer-checked:border-brand-black peer-checked:text-brand-black peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-4 peer-focus-visible:outline-brand-black">
-                {modes[value].label}
-              </span>
-            </label>
-          ))}
-        </fieldset>
+        {/* Two words, not buttons (see ScopeTabs): native radios, so the arrow keys, the focus and what a screen reader
+            says all come with them. They sit outside the form so the scope never rides along in the query — the form's
+            action already says where it goes. */}
+        <ScopeTabs
+          className="mt-8 md:mt-12"
+          label={scopeLabel}
+          value={scope}
+          onChange={setScope}
+          tabs={SCOPES.map((value) => ({ value, label: modes[value].label }))}
+        />
 
         <form
           role="search"
@@ -269,11 +257,11 @@ export function HomeScientistsBlock({
               name="search"
               type="search"
               placeholder=" "
-              className="w-full appearance-none border-0 bg-transparent font-mono text-[length:clamp(16px,4.8vw,22px)] font-light leading-[28px] text-brand-black outline-none lg:text-[18px]"
+              className="w-full appearance-none border-0 bg-transparent font-ukraine text-[length:clamp(16px,4.8vw,22px)] font-light leading-[28px] text-brand-black outline-none lg:text-[18px]"
             />
             {/* Wraps rather than truncates: a reader who widens the letter
                 spacing still gets the whole label, not an ellipsis. */}
-            <span className="satr-float__label max-w-full font-mono text-brand-muted">
+            <span className="satr-float__label max-w-full font-ukraine text-brand-muted">
               {mode.placeholder}
             </span>
           </label>
@@ -290,9 +278,8 @@ export function HomeScientistsBlock({
         </form>
 
         <Row className="mt-14 items-end gap-y-8 md:mt-24">
-          {/* Side by side from `md`, halves until `lg`, then the four columns
-              the Research block gives its text, with the tags from the same
-              sixth column as its stories. */}
+          {/* As on scienceatrisk.org: side by side from `md`, their bottoms on one line — halves until `lg`, then the four
+              columns the Research block gives its text, with the tags from the same sixth column as its stories. */}
           <Col md={6} lg={4}>
             <ScopeStack
               scope={scope}
@@ -314,7 +301,7 @@ export function HomeScientistsBlock({
               modes={modes}
               className="items-end"
               render={(m) => (
-                <PopularTags label={popularLabel} tags={m.tags} />
+                <PopularTags label={m.popularLabel ?? popularLabel} tags={m.tags} />
               )}
             />
           </Col>

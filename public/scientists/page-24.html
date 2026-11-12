@@ -37,6 +37,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.9/fullpage.min.css"/>
     <link href="https://scienceatrisk.org/css/style.min.css?v=1793795401" rel="stylesheet">
     <link href="../css/breadcrumbs.css" rel="stylesheet">
+    <link href="../css/pages/listing-hero.css" rel="stylesheet">
     <link href="../css/pages/search-field.css" rel="stylesheet">
     <link href="../css/pages/expert-card.css" rel="stylesheet">
         
@@ -99,15 +100,19 @@
                 <div class="search-hero__info-wrap">
                     <h1 class="search-hero__title">Find partners in Ukrainian science</h1>
                 </div>
+                <nav class="scope-tabs" aria-label="Search in">
+                    <a class="scope-tabs__link" href="../scientists.html" aria-current="page"><span class="scope-tabs__word">Scientists</span></a>
+                    <a class="scope-tabs__link" href="../societies.html"><span class="scope-tabs__word">Societies</span></a>
+                </nav>
                 <form role="search" action="../scientists.html" method="GET" class="_searchScientists search-field">
                     <label class="satr-float" for="search">
-                        <input id="search" type="search" name="search" placeholder=" ">
-                        <span class="satr-float__label">Enter scientific field or name</span>
+                        <input id="search" type="search" name="search" placeholder=" " autocomplete="off">
+                        <span class="satr-float__label">Enter name, scientific field or speciality</span>
                     </label>
-                    <button class="btn btn--black" type="submit">Find scientist</button>
+                    <button class="btn btn--black" type="submit">Find scientists</button>
                 </form>
                 <div class="search-hero__requests popular-requests">
-                    <p class="popular-requests__text">Popular requests</p>
+                    <p class="popular-requests__text">Popular specialities</p>
                     <div class="popular-requests__wrapper">
                                                                                 <button data-tag="teaching" type="button" class="popular-requests__tags tag" aria-label="Teaching">
                                 Teaching

@@ -66,3 +66,21 @@ export const WithNote: Story = {
     noteHref: '/scientists',
   },
 };
+
+/** The shared hero of the Scientists and Societies lists: one heading, a switch between the two pages. */
+export const WithScopes: Story = {
+  args: {
+    title: 'Find partners in Ukrainian science',
+    breadcrumbs: [{ label: 'Main', href: '/' }, { label: 'Societies' }],
+    scopes: [
+      { label: 'Scientists', href: '/scientists' },
+      { label: 'Societies', href: '/societies', current: true },
+    ],
+    placeholder: 'Enter field or society name',
+    buttonLabel: 'Find societies',
+    popularTags: [
+      { label: 'Medicine', count: 4, value: 'medicine', href: '/societies?tag=medicine' },
+      { label: 'Ecology', count: 2, value: 'ecology', href: '/societies?tag=ecology' },
+    ],
+  },
+};
