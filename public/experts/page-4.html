@@ -36,6 +36,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/9.1.0/swiper-bundle.min.css" integrity="sha512-n/86mxSdfFpsFtq9QYVhRlke9BQ/ZqIaRBe/dboH4l8JwBVitjpCS2HnDfbZnISV5Zq1lKONL/aQDqDQmtY/cA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.9/fullpage.min.css"/>
     <link href="../css/style.min.css" rel="stylesheet">
+    <link href="../css/pages/search-field.css" rel="stylesheet">
+    <link href="../css/pages/expert-card.css" rel="stylesheet">
         
     <link rel="apple-touch-icon" sizes="57x57" href="../images/favicon_client/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="../images/favicon_client/apple-icon-60x60.png">
@@ -96,12 +98,12 @@
                 <div class="search-hero__info-wrap">
                     <h1 class="search-hero__title">Find Ukrainian scientists for collaboration</h1>
                 </div>
-                <form action="../experts.html" method="GET" class="_searchScientists  search-hero__input-wrap">
-                    <div class="search-hero__column">
-                        <input class="_risk-label" type="text" name="search" id="search" value=""/>
-                        <label for="search">Scientific field or name </label>
-                    </div>
-                    <button class="search-hero__btn btn btn--black" type="submit">Find a scientist</button>
+                <form role="search" action="../experts.html" method="GET" class="_searchScientists search-field">
+                    <label class="satr-float" for="search">
+                        <input id="search" type="search" name="search" placeholder=" ">
+                        <span class="satr-float__label">Enter scientific field or name</span>
+                    </label>
+                    <button class="btn btn--black" type="submit">Find a scientist</button>
                 </form>
                 <div class="search-hero__requests popular-requests">
                     <p class="popular-requests__text">Popular requests</p>
@@ -190,8 +192,7 @@
             <p class="expert-card__subtitle">Ph.D., professor</p>
             <p class="expert-card__text">The National Technical University &quot;Kharkiv Polytechnic Institute&quot;</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Leonid is a senior member of the Institute of Electrical and Electronics Engineers (USA); member of the American Mathematical Society (USA); member of the Data Science Association (USA).</p>
-                                            <p  class="paragraph">He is a member of the editorial and review board of the International Journal of Mathematical Modeling and Computing; International Journal of Modern Education and Computer Sciences, International Journal "Intelligent Systems and Applications".</p>
+                                                                                                                        <p  class="paragraph">Leonid is a senior member of the Institute of Electrical and Electronics Engineers (USA); member of the American Mathematical Society (USA); member of the Data Science Association (USA). He is a member of the editorial and review board of the International Journal of Mathematical Modeling and Computing; International Journal of Modern Education and Computer Sciences, International Journal "Intelligent Systems and Applications".</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -225,7 +226,7 @@
             <p class="expert-card__subtitle">Postgraduate researcher</p>
             <p class="expert-card__text">Departement of Evolutionary Biology and Environmental Sciences, University of Zurich</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Viktor is a third-year postgraduate student at the University of Zurich (Switzerland). He is engaged in theoretical biology in the field of sexual selection. Namely, he studies the evolution of fertility signals in females and quality signals in males.</p>
+                                                                                                                        <p  class="paragraph">Viktor is a third-year postgraduate student at the University of Zurich (Switzerland). He is engaged in theoretical biology in the field of sexual selection. Namely, he studies the evolution of fertility signals in females and quality signals in males.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -259,8 +260,7 @@
             <p class="expert-card__subtitle">Ph.D., senior researcher</p>
             <p class="expert-card__text">Bogolyubov Institute for Theoretical Physics of the National Academy of Sciences of Ukraine</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Sergei studies the physics of the condensed state, the theory of low-dimensional Dirac materials such as graphene, as well as the theory of superconductivity: thermoelectric and thermomagnetic phenomena in Dirac materials, namely the Seebeck and Nernst-Ettingshausen effects.</p>
-                                            <p  class="paragraph">Sergei is the head of the laboratory of strongly correlated low-dimensional systems at the Bogolyubov Institute for Theoretical Physics of the National Academy of Sciences of Ukraine. He also teaches at the Department of Theoretical and Mathematical Physics of Kyiv Academic University. He is engaged in scientific research and teaches such courses <a href="https://eduportal.kau.org.ua/course/view.php?id=57">"Physics of graphene and Dirac materials"</a>&nbsp and "Electronic systems in a magnetic field." Is engaged in the popularization of scientific research.</p>
+                                                                                                                        <p  class="paragraph">Sergei studies the physics of the condensed state, the theory of low-dimensional Dirac materials such as graphene, as well as the theory of superconductivity: thermoelectric and thermomagnetic phenomena in Dirac materials, namely the Seebeck and Nernst-Ettingshausen effects. Sergei is the head of the laboratory of strongly correlated low-dimensional systems at the Bogolyubov Institute for Theoretical Physics of the National Academy of Sciences of Ukraine. He also teaches at the Department of Theoretical and Mathematical Physics of Kyiv Academic University.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -270,6 +270,7 @@
                         <button data-try-tag="physics" class="expert-card__tag tag">Physics</button>
                     </li>
                             </ul>
+            <p class="expert-card__societies"><span class="expert-card__societies-label">Societies:</span> <a href="../society/ukrainske-fizychne-tovarystvo.html">Ukrainian physical society</a></p>
         </div>
     </article>
     <a class="absoluteLink" href="../expert/sharapov-serhii-hennadiiovych.html"></a>
@@ -291,7 +292,7 @@
             <p class="expert-card__subtitle">Ph.D.</p>
             <p class="expert-card__text">Institute of Physics of the National Academy of Sciences of Ukraine</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Anton is a senior researcher at the Department of Physical Electronics of the Institute of Physics of the National Academy of Sciences of Ukraine. His main activity is conducting studies of ultrathin organic films by scanning probe microscopy methods.</p>
+                                                                                                                        <p  class="paragraph">Anton is a senior researcher at the Department of Physical Electronics of the Institute of Physics of the National Academy of Sciences of Ukraine. His main activity is conducting studies of ultrathin organic films by scanning probe microscopy methods.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -322,8 +323,7 @@
             <p class="expert-card__subtitle">Ph.D., professor</p>
             <p class="expert-card__text">Dobrobut Academy Medical School</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Nana is a rector of a medical institution&nbsp;of higher education. She is also a professor at the Department of Biomedicine and Neurosciences of the Kyiv Academic University and an adviser to the Minister of Education and Science on science issues.</p>
-                                            <p  class="paragraph">Nana is the co-chair of the working group of the National Council for the preparation of proposals on the strategy for the development of state research infrastructure and a member of the active group of the National Council for the preparation of recommendations for the integration of domestic science into the global scientific space and the European research space, taking into account national interests.</p>
+                                                                                                                        <p  class="paragraph">Nana is a rector of a medical institution of higher education. She is also a professor at the Department of Biomedicine and Neurosciences of the Kyiv Academic University and an adviser to the Minister of Education and Science on science issues. Nana is the co-chair of the working group of the National Council for the preparation of proposals on the strategy for the development of state research infrastructure and a member of the active group of the National Council for the preparation of recommendations for the integration of domestic science into the global scientific space and the European research space, taking into account national interests.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -360,8 +360,7 @@
             <p class="expert-card__subtitle">Ph.D., associate professor</p>
             <p class="expert-card__text">National Science Centre &quot;Kharkiv Institute of Physics and Technology&quot; of the National Academy of Sciences of Ukraine</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Olena manages the scientific center for the Development of Museology and monument studies. She is interested in the science of cultural heritage, the impacts of origin on society, and the tools we can use to manage those impacts.</p>
-                                            <p  class="paragraph">Olena focuses on conducting scientific research in the heritage field, approbating the obtained results in practice and their integration into the modern educational process.</p>
+                                                                                                                        <p  class="paragraph">Olena manages the scientific center for the Development of Museology and monument studies. She is interested in the science of cultural heritage, the impacts of origin on society, and the tools we can use to manage those impacts. Olena focuses on conducting scientific research in the heritage field, approbating the obtained results in practice and their integration into the modern educational process.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -404,7 +403,7 @@
             <p class="expert-card__subtitle">Ph.D., associate professor</p>
             <p class="expert-card__text">Schmalhausen Institute of Zoology of National Academy of Sciences of Ukraine</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Zoologist, specialist in marine mammals.</p>
+                                                                                                                        <p  class="paragraph">Zoologist, specialist in marine mammals.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -438,7 +437,7 @@
             <p class="expert-card__subtitle">Ph.D., associate professor of UCU, researcher</p>
             <p class="expert-card__text">Ukrainian Catholic University</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Nadiia is an associate professor of the Ukrainian Catholic University. She is also an honorary doctor of the International Institute of Business in Ukraine and visiting professor.</p>
+                                                                                                                        <p  class="paragraph">Nadiia is an associate professor of the Ukrainian Catholic University. She is also an honorary doctor of the International Institute of Business in Ukraine and visiting professor.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -469,9 +468,7 @@
             <p class="expert-card__subtitle">Prof. Dr., leading researcher</p>
             <p class="expert-card__text">Institute of Mathematics of the National Academy of Sciences of Ukraine/Kyiv Academic University/American University Kyiv/Member of the Editorial Board of the «Ukrainian Mathematical Journal»</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Oleksandra works at the Institute of Mathematics of the National Academy of Sciences of Ukraine. She deals with analys of pseudo-differential operators on functions of the p-adic argument.</p>
-                                            <p  class="paragraph">In addition, he is the deputy director for development and innovation at the State Research Institution "Kyiv Academic University" of the NASU, where she leads the project&nbsp;<a href="https://academcity.org.ua/">"Academ.City"</a>, the purpose of which is to create conditions for the cooperation of science and business in Ukraine and the development of the open innovation ecosystem of the National Academy of Sciences. This pilot project is based on 12 scientific institutes of the National Academy of Sciences of Ukraine, located in the Akademmistechko neighborhood of Kyiv.</p>
-                                            <p  class="paragraph">Prof. Dr. Antoniouk is a Fellow of Alexander von Humboldt Foundation, received different research and social activity awards, including the 2015 AvH award "Innovation Networking Initiative", National Academy of Science of Ukraine Honors "For Professional Achievements" (2020), Diploma of the Verkhovna Rada of Ukraine "For services to the Ukrainian people" (2021).</p>
+                                                                                                                        <p  class="paragraph">Oleksandra works at the Institute of Mathematics of the National Academy of Sciences of Ukraine. She deals with analys of pseudo-differential operators on functions of the p-adic argument. In addition, he is the deputy director for development and innovation at the State Research Institution "Kyiv Academic University" of the NASU, where she leads the project "Academ.City" , the purpose of which is to create conditions for the cooperation of science and business in Ukraine and the development of the open innovation ecosystem of the National Academy of Sciences.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -505,7 +502,7 @@
             <p class="expert-card__subtitle">DSc</p>
             <p class="expert-card__text">National Science and Natural History Museum of the National Academy of Sciences of Ukraine</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Leonid researches bird remains from archaeological and paleontological sites in Eastern Europe to study the natural history of avifauna in Eastern Europe, birds as indicators of environmental change, and the relationship between humans and birds in different historical eras.</p>
+                                                                                                                        <p  class="paragraph">Leonid researches bird remains from archaeological and paleontological sites in Eastern Europe to study the natural history of avifauna in Eastern Europe, birds as indicators of environmental change, and the relationship between humans and birds in different historical eras.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">

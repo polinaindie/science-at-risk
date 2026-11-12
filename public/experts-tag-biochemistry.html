@@ -34,6 +34,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/9.1.0/swiper-bundle.min.css" integrity="sha512-n/86mxSdfFpsFtq9QYVhRlke9BQ/ZqIaRBe/dboH4l8JwBVitjpCS2HnDfbZnISV5Zq1lKONL/aQDqDQmtY/cA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.9/fullpage.min.css"/>
     <link href="css/style.min.css" rel="stylesheet">
+    <link href="css/pages/search-field.css" rel="stylesheet">
+    <link href="css/pages/expert-card.css" rel="stylesheet">
         
     <link rel="apple-touch-icon" sizes="57x57" href="images/favicon_client/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="images/favicon_client/apple-icon-60x60.png">
@@ -94,12 +96,12 @@
                 <div class="search-hero__info-wrap">
                     <h1 class="search-hero__title">Find Ukrainian scientists for collaboration</h1>
                 </div>
-                <form action="experts.html" method="GET" class="_searchScientists  search-hero__input-wrap">
-                    <div class="search-hero__column">
-                        <input class="_risk-label" type="text" name="search" id="search" value=""/>
-                        <label for="search">Scientific field or name </label>
-                    </div>
-                    <button class="search-hero__btn btn btn--black" type="submit">Find a scientist</button>
+                <form role="search" action="experts.html" method="GET" class="_searchScientists search-field">
+                    <label class="satr-float" for="search">
+                        <input id="search" type="search" name="search" placeholder=" ">
+                        <span class="satr-float__label">Enter scientific field or name</span>
+                    </label>
+                    <button class="btn btn--black" type="submit">Find a scientist</button>
                 </form>
                 <div class="search-hero__requests popular-requests">
                     <p class="popular-requests__text">Popular requests</p>
@@ -188,7 +190,7 @@
             <p class="expert-card__subtitle">Ph.D., professor</p>
             <p class="expert-card__text">Educational and Scientific Institute of High Technologies, Taras Shevchenko National University of Kyiv</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Igor leads the Institute of High Technologies of Taras Shevchenko Kyiv National University and participates in forming the university's scientific policy. He is a member of the expert council of the Ministry of Education and Science of Ukraine, which examines scientific projects, a reviewer for RSC Advances, Royal Society of Chemistry (Great Britain), and a member of the scientific society AMPERE SOCIETY.</p>
+                                                                                                                        <p  class="paragraph">Igor leads the Institute of High Technologies of Taras Shevchenko Kyiv National University and participates in forming the university's scientific policy. He is a member of the expert council of the Ministry of Education and Science of Ukraine, which examines scientific projects, a reviewer for RSC Advances, Royal Society of Chemistry (Great Britain), and a member of the scientific society AMPERE SOCIETY.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -228,7 +230,7 @@
             <p class="expert-card__subtitle">Ph.D., associate professor</p>
             <p class="expert-card__text">Helmholtz Institute for Pharmaceutical Research Saarland in Saarbrücken, Germany</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Mariia is a member of the American Chemical Society and the European College of Neuropsychopharmacology. She is a reviewer in international publications: Molecules, Pharmaceutics, Antibiotics, Membranes, Biomolecules, Pharmaceuticals, Metabolites, Molbank, Scientia Pharmaceutica (MDPI Publisher); Sustainable Chemistry &amp; Engineering, Journal of Agricultural and Food Chemistry (ACS, American Chemical Society); Natural Product Research, Polycyclic Aromatic Compounds (Taylor & Francis) and Open Chemistry (De Gruyter).</p>
+                                                                                                                        <p  class="paragraph">Mariia is a member of the American Chemical Society and the European College of Neuropsychopharmacology. She is a reviewer in international publications: Molecules, Pharmaceutics, Antibiotics, Membranes, Biomolecules, Pharmaceuticals, Metabolites, Molbank, Scientia Pharmaceutica (MDPI Publisher); Sustainable Chemistry &amp; Engineering, Journal of Agricultural and Food Chemistry (ACS, American Chemical Society); Natural Product Research, Polycyclic Aromatic Compounds (Taylor &amp; Francis) and Open Chemistry (De Gruyter).</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -265,7 +267,7 @@
             <p class="expert-card__subtitle">Doctor of Biological Sciences, associate professor</p>
             <p class="expert-card__text">Plant Breeding &amp; Genetics Institute-National Center of Seed and Cultivar Investigation</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Olga's main activity is biochemical research of raw materials and food products for quality and safety, studying the biochemical composition of medicinal plants as raw materials for use in the pharmaceutical and food industries.&nbsp;She currently works as Head of the Laboratory of Plant Biochemistry at the&nbsp;Plant Breeding &amp; Genetics Institute-National Center of Seed and Cultivar Investigation.</p>
+                                                                                                                        <p  class="paragraph">Olga's main activity is biochemical research of raw materials and food products for quality and safety, studying the biochemical composition of medicinal plants as raw materials for use in the pharmaceutical and food industries. She currently works as Head of the Laboratory of Plant Biochemistry at the Plant Breeding &amp; Genetics Institute-National Center of Seed and Cultivar Investigation.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -302,7 +304,7 @@
             <p class="expert-card__subtitle">Ph.D.</p>
             <p class="expert-card__text">Stanford University, School of Humanity and Sciences, Biology Department</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Oleksandr is a researcher at the Center for Longevity at Stanford University. The main focus of his research project is increasing physical activity among children and adolescents through educational tools and the modern technologies.</p>
+                                                                                                                        <p  class="paragraph">Oleksandr is a researcher at the Center for Longevity at Stanford University. The main focus of his research project is increasing physical activity among children and adolescents through educational tools and the modern technologies.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -345,7 +347,7 @@
             <p class="expert-card__subtitle">Ph.D.</p>
             <p class="expert-card__text">Taras Shevchenko National University of Kyiv</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Viktoriia is a lecturer at the Department of Human and Animal Physiology at Taras Shevchenko National University of Kyiv. She teaches human physiology and anatomy. She is interested in the topic of learning based on the principles of brain functioning, as well as the physiological mechanisms of information assimilation.</p>
+                                                                                                                        <p  class="paragraph">Viktoriia is a lecturer at the Department of Human and Animal Physiology at Taras Shevchenko National University of Kyiv. She teaches human physiology and anatomy. She is interested in the topic of learning based on the principles of brain functioning, as well as the physiological mechanisms of information assimilation.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -388,7 +390,7 @@
             <p class="expert-card__subtitle">Ph.D., associate professor</p>
             <p class="expert-card__text">D.K. Zabolotny Institute of Microbiology an Virology of the NASU</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Olga is a microbiologist at the D.K. Zabolotnyi Institute of Microbiology and Virology of the National Academy of Sciences of Ukraine. She is interested in the fermentation of products of plant and animal origin, the use of lactic acid bacteria as biopreservatives, inhibitors of foreign microbiota in food, and the use of microorganisms to ferret waste from various industries to produce secondary metabolites.</p>
+                                                                                                                        <p  class="paragraph">Olga is a microbiologist at the D.K. Zabolotnyi Institute of Microbiology and Virology of the National Academy of Sciences of Ukraine. She is interested in the fermentation of products of plant and animal origin, the use of lactic acid bacteria as biopreservatives, inhibitors of foreign microbiota in food, and the use of microorganisms to ferret waste from various industries to produce secondary metabolites.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -434,7 +436,7 @@
             <p class="expert-card__subtitle">Postgraduate student</p>
             <p class="expert-card__text">Frankfurt Zoological Society</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Hanna is an ornithologist at the Western Ukrainian Ornithological Society.</p>
+                                                                                                                        <p  class="paragraph">Hanna is an ornithologist at the Western Ukrainian Ornithological Society.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -480,7 +482,7 @@
             <p class="expert-card__subtitle">Ph.D.</p>
             <p class="expert-card__text">Ph.D.</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Olena is a science popularizer, founder and author of the popular science information resource MICROB & ME.</p>
+                                                                                                                        <p  class="paragraph">Olena is a science popularizer, founder and author of the popular science information resource MICROB &amp; ME.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -520,7 +522,7 @@
             <p class="expert-card__subtitle">Ph.D.</p>
             <p class="expert-card__text">Institute of Molecular Biology and Genetics of the National Academy of Sciences of Ukraine</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Olena conducts research and is interested in interdisciplinary research projects in biomedicine and new materials.</p>
+                                                                                                                        <p  class="paragraph">Olena conducts research and is interested in interdisciplinary research projects in biomedicine and new materials.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -557,7 +559,7 @@
             <p class="expert-card__subtitle">Ph.D.</p>
             <p class="expert-card__text">Palladin Institute of Biochemistry of NAS of Ukraine</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Oleksandr is an expert in molecular and cell biology, skeletogenesis, cell signaling pathways, immunology and osteoimmunology. He has authored and co-authored over 25 SJR-Q1 publications, including works published in Nature and Science. Olexandr's publications have received over 3000 citations.</p>
+                                                                                                                        <p  class="paragraph">Oleksandr is an expert in molecular and cell biology, skeletogenesis, cell signaling pathways, immunology and osteoimmunology. He has authored and co-authored over 25 SJR-Q1 publications, including works published in Nature and Science. Olexandr's publications have received over 3000 citations.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">

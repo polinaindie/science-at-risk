@@ -1,0 +1,89 @@
+/* The entities of a scientist, set once: a profile page, a scientist's card in the lists and the cabinet's "My profile"
+   (src/components/Cabinet/Profile.tsx) all read the same.
+
+     name ............ Noto Serif 400            page 36/1.12, card 22/28 (28/34 from 768px)
+     post (degree) ... e-Ukraine Light 18/26
+     institution ..... IBM Plex Mono 400, 14 (15 from 768px) / 22, #4a5459
+     description ..... IBM Plex Mono 400, 16/1.65
+   Scale: 14 / 16 / 18 / 22 / 28 / 36 / 48 px; spacing: 8 / 16 / 24 / 32 / 48 / 64 / 96; one radius. */
+
+:root {
+    --s1: 8px; --s2: 16px; --s3: 24px; --s4: 32px; --s5: 48px; --s6: 64px; --s7: 96px;
+    --t-xs: 14px; --t-sm: 16px; --t-md: 18px; --t-lg: 22px; --t-xl: 28px; --t-2xl: 36px; --t-3xl: 48px;
+    --r: 8px;
+    --ground: #bccbd2; /* was #b5c6cd: black text 12.6:1 instead of 11.9:1 */
+    --paper: var(--ground); /* the reading column shares the page colour */
+}
+
+/* e-Ukraine from this site: the main stylesheet is loaded from another domain, where the browser refuses its font files. */
+@font-face { font-family: "e-Ukraine"; font-weight: 300; font-style: normal; font-display: swap;
+    src: url("../../fonts/client/e-ukraine/e-ukraine.woff") format("woff"), url("../../fonts/client/e-ukraine/e-ukraine.otf") format("opentype"); }
+@font-face { font-family: "e-Ukraine"; font-weight: 700; font-style: normal; font-display: swap;
+    src: url("../../fonts/client/e-ukraine/e-Ukraine-Bold.woff") format("woff"), url("../../fonts/client/e-ukraine/e-Ukraine-Bold.otf") format("opentype"); }
+
+/* ---- name ---- */
+.expert__header,
+.expert-card__content .expert-card__title {
+    font-family: "Noto Serif", serif;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    text-transform: none;
+    color: #000;
+}
+
+.expert-id .expert__header { margin: 0; font-size: var(--t-2xl); line-height: 1.12; overflow-wrap: anywhere; }
+
+.expert-card__content .expert-card__title { font-size: var(--t-lg); line-height: 28px; }
+
+@media (min-width: 768px) {
+    .expert-card__content .expert-card__title { font-size: var(--t-xl); line-height: 34px; }
+}
+
+/* ---- post: the same faces as the Experience list, by what each line is ---- */
+.expert-id .paragraph,
+.expert-card__content .expert-card__subtitle {
+    font-family: "e-Ukraine", sans-serif;
+    font-weight: 300;
+    font-size: var(--t-md);
+    line-height: 26px;
+    letter-spacing: 0;
+    color: #000;
+    max-width: none;
+}
+
+.expert-id .paragraph { margin: var(--s2) 0 0; }
+.expert-card__content .expert-card__subtitle { margin: var(--s1) 0 0; }
+
+/* ---- institution: lighter than the post ---- */
+.expert-id .expert__affiliation,
+.expert-card__content .expert-card__subtitle + .expert-card__text {
+    font-family: "IBM Plex Mono", monospace;
+    font-weight: 400;
+    font-size: var(--t-xs);
+    line-height: 22px;
+    letter-spacing: 0;
+    margin: 4px 0 0;
+    color: #4a5459; /* 5.3:1 on the page colour, 7.5:1 on white */
+    overflow-wrap: break-word;
+}
+
+@media (min-width: 768px) {
+    .expert-id .expert__affiliation,
+    .expert-card__content .expert-card__subtitle + .expert-card__text { font-size: 15px; }
+}
+
+/* ---- description (a card; on a page it is the "Research field" text) ---- */
+.expert-card__content .paragraph {
+    font-family: "IBM Plex Mono", monospace;
+    font-weight: 400;
+    font-size: var(--t-sm);
+    line-height: 1.65;
+    letter-spacing: 0;
+    font-variant-ligatures: none;
+    color: #000;
+    max-width: none; /* the card's text runs the full width of its content */
+    margin: var(--s2) 0 0;
+}
+
+/* the list's markup nests a paragraph in a paragraph, which leaves empty ones behind */
+.expert-card__text:empty { display: none; }

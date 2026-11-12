@@ -36,6 +36,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/9.1.0/swiper-bundle.min.css" integrity="sha512-n/86mxSdfFpsFtq9QYVhRlke9BQ/ZqIaRBe/dboH4l8JwBVitjpCS2HnDfbZnISV5Zq1lKONL/aQDqDQmtY/cA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.9/fullpage.min.css"/>
     <link href="https://scienceatrisk.org/css/style.min.css?v=1793795538" rel="stylesheet">
+    <link href="../css/pages/search-field.css" rel="stylesheet">
+    <link href="../css/pages/expert-card.css" rel="stylesheet">
         
     <link rel="apple-touch-icon" sizes="57x57" href="../images/favicon_client/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="../images/favicon_client/apple-icon-60x60.png">
@@ -96,12 +98,12 @@
                 <div class="search-hero__info-wrap">
                     <h1 class="search-hero__title">Find Ukrainian scientists for collaboration</h1>
                 </div>
-                <form action="../experts.html" method="GET" class="_searchScientists  search-hero__input-wrap">
-                    <div class="search-hero__column">
-                        <input class="_risk-label" type="text" name="search" id="search" value=""/>
-                        <label for="search">Scientific field or name </label>
-                    </div>
-                    <button class="search-hero__btn btn btn--black" type="submit">Find a scientist</button>
+                <form role="search" action="../experts.html" method="GET" class="_searchScientists search-field">
+                    <label class="satr-float" for="search">
+                        <input id="search" type="search" name="search" placeholder=" ">
+                        <span class="satr-float__label">Enter scientific field or name</span>
+                    </label>
+                    <button class="btn btn--black" type="submit">Find a scientist</button>
                 </form>
                 <div class="search-hero__requests popular-requests">
                     <p class="popular-requests__text">Popular requests</p>
@@ -190,7 +192,7 @@
             <p class="expert-card__subtitle">Ph.D.</p>
             <p class="expert-card__text">Kuialnytskyi National Nature Park, Slobozhanskyi National Nature Park</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Her research interests include mammalian biology and ecology, spatial organization of mammalian populations, biodiversity monitoring and conservation, the functioning of protected areas, and citizen science.</p>
+                                                                                                                        <p  class="paragraph">Her research interests include mammalian biology and ecology, spatial organization of mammalian populations, biodiversity monitoring and conservation, the functioning of protected areas, and citizen science.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -236,7 +238,7 @@
             <p class="expert-card__subtitle">Ph.D.</p>
             <p class="expert-card__text">Yuriy Fedkovych Chernivtsi National University</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Vasylyna and her colleagues are conducting joint research on AgInS2 quantum dots. They are studying the physical and chemical patterns of melting of semiconductor materials based on CdTe and CsPbHal3 perovskites.</p>
+                                                                                                                        <p  class="paragraph">Vasylyna and her colleagues are conducting joint research on AgInS2 quantum dots. They are studying the physical and chemical patterns of melting of semiconductor materials based on CdTe and CsPbHal3 perovskites.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -270,7 +272,7 @@
             <p class="expert-card__subtitle">Ph.D.</p>
             <p class="expert-card__text">Institute of Social and Political Psychology National Academy of Educational Sciences of Ukraine</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Anna's research interests include tolerance/intolerance to uncertainty, stress and post-traumatic stress disorder, time perspective, healthy lifestyle, and perception of environmental challenges by Ukrainians during the war.</p>
+                                                                                                                        <p  class="paragraph">Anna's research interests include tolerance/intolerance to uncertainty, stress and post-traumatic stress disorder, time perspective, healthy lifestyle, and perception of environmental challenges by Ukrainians during the war.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -304,7 +306,7 @@
             <p class="expert-card__subtitle">Ph.D., Associate professor</p>
             <p class="expert-card__text">Kamianets-Podіlskyi Ivan Ohiienko National University</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">History of journalism; theory and methodology of journalism; social communications; manipulation technologies.</p>
+                                                                                                                        <p  class="paragraph">History of journalism; theory and methodology of journalism; social communications; manipulation technologies.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -341,7 +343,7 @@
             <p class="expert-card__subtitle">Ph.D.</p>
             <p class="expert-card__text">Institute for Economics and Forecasting of the National Academy of Sciences of Ukraine</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Monetary policy; financial depth of the economy; financial inclusion; international capital flows; central bank communication policy; digital currencies; green finance; economic inequality and economic well-being.</p>
+                                                                                                                        <p  class="paragraph">Monetary policy; financial depth of the economy; financial inclusion; international capital flows; central bank communication policy; digital currencies; green finance; economic inequality and economic well-being.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -378,7 +380,7 @@
             <p class="expert-card__subtitle">Ph.D.</p>
             <p class="expert-card__text">Institute of Cell Biology and Genetic Engineering of the National Academy of Sciences of Ukraine</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Obtaining and analyzing genetically modified plants with improved traits, production of medicinal and pharmaceutical secondary metabolites of plants.</p>
+                                                                                                                        <p  class="paragraph">Obtaining and analyzing genetically modified plants with improved traits, production of medicinal and pharmaceutical secondary metabolites of plants.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -409,7 +411,7 @@
             <p class="expert-card__subtitle">D.Sc., Senior Researcher</p>
             <p class="expert-card__text">F. D. Ovcharenko Institute of Biocolloidal Chemistry</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Peculiarities of physical and chemical processes at the solid/liquid and solid/gas interfaces, namely the influence of the structure of high-surface oxides on the adsorption of low- and high-molecular-weight compounds, the formation of surface charge and double electric layers in aqueous medium, the dependence of the enthalpy of interaction of polar and non-polar substances on the type and concentration of surface-active centers of nanoxides. The research priorities also include:— Determining the relationship between physical and chemical processes at the interface and such properties of aqueous and non-aqueous dispersions as aggregation and sedimentation stability, rheology, particle size distribution, zeta potential, etc.— Studying the effect of synthesis and modification methods on the morphology and structure of individual and mixed nanoxides obtained by pyrogenic and nanocarrier deposition methods, and determining their impact on the general properties of dispersions.— Study of the influence of nanoxides on the structure and functional properties of their composites with natural (polysaccharides) and synthetic (N-isopropyl acrylamide) polymers.— Synthesis and study of the structural and functional properties of hydrogels crosslinked/filled with inorganic nanoparticles.— Development of hydride organic-inorganic materials for sorption and prolonged release of immobilized substances.</p>
+                                                                                                                        <p  class="paragraph">Peculiarities of physical and chemical processes at the solid/liquid and solid/gas interfaces, namely the influence of the structure of high-surface oxides on the adsorption of low- and high-molecular-weight compounds, the formation of surface charge and double electric layers in aqueous medium, the dependence of the enthalpy of interaction of polar and non-polar substances on the type and concentration of surface-active centers of nanoxides. The research priorities also include:— Determining the relationship between physical and chemical processes at the interface and such properties of aqueous and non-aqueous dispersions as aggregation and sedimentation stability, rheology, particle size distribution, zeta potential, etc.— Studying the effect of synthesis and modification methods on the morphology and structure of individual and mixed nanoxides obtained by pyrogenic and nanocarrier deposition methods, and determining their impact on the general properties of dispersions.— Study of the influence of nanoxides on the structure and functional properties of their composites with natural (polysaccharides) and synthetic (N-isopropyl acrylamide) polymers.— Synthesis and study of the structural and functional properties of hydrogels crosslinked/filled with inorganic nanoparticles.— Development of hydride organic-inorganic materials for sorption and prolonged release of immobilized substances.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -446,7 +448,7 @@
             <p class="expert-card__subtitle">Ph.D., Associate professor</p>
             <p class="expert-card__text">Volodymyr Dahl East Ukrainian National University</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Catalysis in biomass processing. Creation of nanoscale oxides that can be used as catalysts, pigments, and solar cell elements. Including the use of industrial waste as a raw material.</p>
+                                                                                                                        <p  class="paragraph">Catalysis in biomass processing. Creation of nanoscale oxides that can be used as catalysts, pigments, and solar cell elements. Including the use of industrial waste as a raw material.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -498,7 +500,7 @@
             <p class="expert-card__subtitle">Ph.D., prof.</p>
             <p class="expert-card__text">Ivan Franko National University of Lviv</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Health psychology; Mental health; Psychological well-being; Resilience; Life in war; War-affected population; Psychometrics; Public health,</p>
+                                                                                                                        <p  class="paragraph">Health psychology; Mental health; Psychological well-being; Resilience; Life in war; War-affected population; Psychometrics; Public health,</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -541,7 +543,7 @@
             <p class="expert-card__subtitle">Ph.D., Associate professor</p>
             <p class="expert-card__text">University of Vienna</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Verbal aggression and verbal violence: points of contact and differences; aggressive speech acts; functions of peyoratives; intercultural peculiarities of peyoratives; peculiarities of translation of peyorative vocabulary; language variations: Viennese and Lviv dialects, youth languages; verbal aggression and verbal violence among children and youth; preventive measures at school to overcome verbal violence; language and war; verbal aggression and war.</p>
+                                                                                                                        <p  class="paragraph">Verbal aggression and verbal violence: points of contact and differences; aggressive speech acts; functions of peyoratives; intercultural peculiarities of peyoratives; peculiarities of translation of peyorative vocabulary; language variations: Viennese and Lviv dialects, youth languages; verbal aggression and verbal violence among children and youth; preventive measures at school to overcome verbal violence; language and war; verbal aggression and war.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">

@@ -36,6 +36,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/9.1.0/swiper-bundle.min.css" integrity="sha512-n/86mxSdfFpsFtq9QYVhRlke9BQ/ZqIaRBe/dboH4l8JwBVitjpCS2HnDfbZnISV5Zq1lKONL/aQDqDQmtY/cA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.9/fullpage.min.css"/>
     <link href="https://scienceatrisk.org/css/style.min.css?v=1793795528" rel="stylesheet">
+    <link href="../css/pages/search-field.css" rel="stylesheet">
+    <link href="../css/pages/expert-card.css" rel="stylesheet">
         
     <link rel="apple-touch-icon" sizes="57x57" href="../images/favicon_client/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="../images/favicon_client/apple-icon-60x60.png">
@@ -96,12 +98,12 @@
                 <div class="search-hero__info-wrap">
                     <h1 class="search-hero__title">Find Ukrainian scientists for collaboration</h1>
                 </div>
-                <form action="../experts.html" method="GET" class="_searchScientists  search-hero__input-wrap">
-                    <div class="search-hero__column">
-                        <input class="_risk-label" type="text" name="search" id="search" value=""/>
-                        <label for="search">Scientific field or name </label>
-                    </div>
-                    <button class="search-hero__btn btn btn--black" type="submit">Find a scientist</button>
+                <form role="search" action="../experts.html" method="GET" class="_searchScientists search-field">
+                    <label class="satr-float" for="search">
+                        <input id="search" type="search" name="search" placeholder=" ">
+                        <span class="satr-float__label">Enter scientific field or name</span>
+                    </label>
+                    <button class="btn btn--black" type="submit">Find a scientist</button>
                 </form>
                 <div class="search-hero__requests popular-requests">
                     <p class="popular-requests__text">Popular requests</p>
@@ -190,7 +192,7 @@
             <p class="expert-card__subtitle">Ph.D., Senior Researcher</p>
             <p class="expert-card__text">National Technical University of Ukraine &quot;Igor Sikorsky Kyiv Polytechnic Institute&quot;</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">He teaches at Igor Sikorsky Kyiv Polytechnic Institute in the Department of High-Temperature Materials and Powder Metallurgy and conducts scientific activities in the development and research of high-temperature materials.</p>
+                                                                                                                        <p  class="paragraph">He teaches at Igor Sikorsky Kyiv Polytechnic Institute in the Department of High-Temperature Materials and Powder Metallurgy and conducts scientific activities in the development and research of high-temperature materials.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -227,7 +229,7 @@
             <p class="expert-card__subtitle">Старший дослідник</p>
             <p class="expert-card__text">Institute of History of Ukraine</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">The History of the Ancient Kyivan Metropolis: Images, Manuscripts, and Printed Sources.</p>
+                                                                                                                        <p  class="paragraph">The History of the Ancient Kyivan Metropolis: Images, Manuscripts, and Printed Sources.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -255,7 +257,7 @@
             <p class="expert-card__subtitle">D.Sc., Professor</p>
             <p class="expert-card__text">Kherson State University</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Research interests: flora, systematics, and geography of higher plants, vegetation, and biotopes of the South of Ukraine, protection of flora, nature conservation, urban floristics, phytoinvasions, digitalization of biodiversity data, the impact of military operations on the environment. Of particular interest is the biodiversity of cultural heritage sites: mounds, ancient settlements, old cemeteries and parks, and the Serpent's Wall and their integrated conservation. </p>
+                                                                                                                        <p  class="paragraph">Research interests: flora, systematics, and geography of higher plants, vegetation, and biotopes of the South of Ukraine, protection of flora, nature conservation, urban floristics, phytoinvasions, digitalization of biodiversity data, the impact of military operations on the environment. Of particular interest is the biodiversity of cultural heritage sites: mounds, ancient settlements, old cemeteries and parks, and the Serpent's Wall and their integrated conservation.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -274,6 +276,7 @@
                         <button data-try-tag="databases" class="expert-card__tag tag">Databases</button>
                     </li>
                             </ul>
+            <p class="expert-card__societies"><span class="expert-card__societies-label">Societies:</span> <a href="../society/ukrainske-botanichne-tovarystvo.html">Ukrainian Botanical Society</a></p>
         </div>
     </article>
     <a class="absoluteLink" href="../expert/moisiienko-ivan-ivanovych.html"></a>
@@ -295,7 +298,7 @@
             <p class="expert-card__subtitle">Ph.D.</p>
             <p class="expert-card__text">Institute of Cell Biology and Genetic Engineering of the National Academy of Sciences of Ukraine</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Molecular biology of plants; plant biotechnology; parasitic plants; proteomics; phytohormones.</p>
+                                                                                                                        <p  class="paragraph">Molecular biology of plants; plant biotechnology; parasitic plants; proteomics; phytohormones.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -338,7 +341,7 @@
             <p class="expert-card__subtitle">D.Sc.</p>
             <p class="expert-card__text">Institute of Cell Biology NAS of Ukraine</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Nataliia is interested in nanotechnology and biosensing.</p>
+                                                                                                                        <p  class="paragraph">Nataliia is interested in nanotechnology and biosensing.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -381,7 +384,7 @@
             <p class="expert-card__subtitle">Ph.D.</p>
             <p class="expert-card__text">National aviation university</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Her research interests include Ukrainian and American studies, social anthropology, cultural diplomacy, foreign policy history, and narrativism.</p>
+                                                                                                                        <p  class="paragraph">Her research interests include Ukrainian and American studies, social anthropology, cultural diplomacy, foreign policy history, and narrativism.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -427,7 +430,7 @@
             <p class="expert-card__subtitle">Ph.D.</p>
             <p class="expert-card__text">Borys Grinchenko Kyiv University</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Her research interests include the linguistic situation in Ukraine, bilingualism and multilingualism in children, early bilingualism, migrant integration, language policy, language planning, minority languages, language rights, linguistic landscape and visual communication, ethnolinguistics and linguistic diversity, and automatic translation and artificial intelligence in linguistics.</p>
+                                                                                                                        <p  class="paragraph">Her research interests include the linguistic situation in Ukraine, bilingualism and multilingualism in children, early bilingualism, migrant integration, language policy, language planning, minority languages, language rights, linguistic landscape and visual communication, ethnolinguistics and linguistic diversity, and automatic translation and artificial intelligence in linguistics.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -467,7 +470,7 @@
             <p class="expert-card__subtitle">D.Sc., Associate Professor</p>
             <p class="expert-card__text">Borys Grinchenko Kyiv University, Taras Shevchenko Institute of Literature of the National Academy of Sciences of Ukraine</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Snizhana is interested in the history of Ukrainian women's literature: authors, genres, ideas (her current research project is “Four Wars and Emigration in Ukrainian Women's Literature”); national and Soviet in Ukrainian children's literature of the 1920s and 30s; literature of the Ukrainian Renaissance of the 1920s.</p>
+                                                                                                                        <p  class="paragraph">Snizhana is interested in the history of Ukrainian women's literature: authors, genres, ideas (her current research project is “Four Wars and Emigration in Ukrainian Women's Literature”); national and Soviet in Ukrainian children's literature of the 1920s and 30s; literature of the Ukrainian Renaissance of the 1920s.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -507,7 +510,7 @@
             <p class="expert-card__subtitle">Ph.D.</p>
             <p class="expert-card__text">Ukrainian Research Institute of Archival Affairs and Record Keeping</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">His research interests include the history of Ukraine in the first third of the 20th century and digital history.</p>
+                                                                                                                        <p  class="paragraph">His research interests include the history of Ukraine in the first third of the 20th century and digital history.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -550,7 +553,7 @@
             <p class="expert-card__subtitle">Ph.D., Associate professor</p>
             <p class="expert-card__text">Sumy State University</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Anna is interested in the synthesis of biomaterials (scaffolds, hydrogels, powders, flakes) based on hydroxyapatite and biopolymers; synthesis of calcium-phosphate substituted materials and coatings for medical implants; surface modification, hydrogel synthesis, electrospinning of membranes based on biopolymers, green synthesis, creation of granular fertilizers and soil additives that improve their fertility and properties, and the use of eco-friendly technologies. She is also researching fertilizer surface modification, granulation, multilayer structures of nanoporous materials, and nanoparticle synthesis.</p>
+                                                                                                                        <p  class="paragraph">Anna is interested in the synthesis of biomaterials (scaffolds, hydrogels, powders, flakes) based on hydroxyapatite and biopolymers; synthesis of calcium-phosphate substituted materials and coatings for medical implants; surface modification, hydrogel synthesis, electrospinning of membranes based on biopolymers, green synthesis, creation of granular fertilizers and soil additives that improve their fertility and properties, and the use of eco-friendly technologies. She is also researching fertilizer surface modification, granulation, multilayer structures of nanoporous materials, and nanoparticle synthesis.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">

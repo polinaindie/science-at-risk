@@ -36,6 +36,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/9.1.0/swiper-bundle.min.css" integrity="sha512-n/86mxSdfFpsFtq9QYVhRlke9BQ/ZqIaRBe/dboH4l8JwBVitjpCS2HnDfbZnISV5Zq1lKONL/aQDqDQmtY/cA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.9/fullpage.min.css"/>
     <link href="../css/style.min.css" rel="stylesheet">
+    <link href="../css/pages/search-field.css" rel="stylesheet">
+    <link href="../css/pages/expert-card.css" rel="stylesheet">
         
     <link rel="apple-touch-icon" sizes="57x57" href="../images/favicon_client/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="../images/favicon_client/apple-icon-60x60.png">
@@ -96,12 +98,12 @@
                 <div class="search-hero__info-wrap">
                     <h1 class="search-hero__title">Find Ukrainian scientists for collaboration</h1>
                 </div>
-                <form action="../experts.html" method="GET" class="_searchScientists  search-hero__input-wrap">
-                    <div class="search-hero__column">
-                        <input class="_risk-label" type="text" name="search" id="search" value=""/>
-                        <label for="search">Scientific field or name </label>
-                    </div>
-                    <button class="search-hero__btn btn btn--black" type="submit">Find a scientist</button>
+                <form role="search" action="../experts.html" method="GET" class="_searchScientists search-field">
+                    <label class="satr-float" for="search">
+                        <input id="search" type="search" name="search" placeholder=" ">
+                        <span class="satr-float__label">Enter scientific field or name</span>
+                    </label>
+                    <button class="btn btn--black" type="submit">Find a scientist</button>
                 </form>
                 <div class="search-hero__requests popular-requests">
                     <p class="popular-requests__text">Popular requests</p>
@@ -190,7 +192,7 @@
             <p class="expert-card__subtitle">Ph.D.</p>
             <p class="expert-card__text">Stanford University, School of Humanity and Sciences, Biology Department</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Oleksandr is a researcher at the Center for Longevity at Stanford University. The main focus of his research project is increasing physical activity among children and adolescents through educational tools and the modern technologies.</p>
+                                                                                                                        <p  class="paragraph">Oleksandr is a researcher at the Center for Longevity at Stanford University. The main focus of his research project is increasing physical activity among children and adolescents through educational tools and the modern technologies.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -233,7 +235,7 @@
             <p class="expert-card__subtitle">Ph.D.</p>
             <p class="expert-card__text">State Research Center for the Protection of Cultural Heritage from Technological Disasters</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Daria is a folklorist, anthropologist, and science popularizer. As a researcher at the SCCFRCC, she works on expeditions, analyzes collected materials, compiles an ethnographic dictionary, and writes articles on the folk medicine of Polissia. As a science popularizer, she has a telegram channel <i>Mushrooms, Coffins, and Dissertations</i> and creates a podcast of the same name. In addition, she is a co-author with Anna Nikolaieva of the podcast <i>Porobleno</i> and gives charity popular science lectures.</p>
+                                                                                                                        <p  class="paragraph">Daria is a folklorist, anthropologist, and science popularizer. As a researcher at the SCCFRCC, she works on expeditions, analyzes collected materials, compiles an ethnographic dictionary, and writes articles on the folk medicine of Polissia. As a science popularizer, she has a telegram channel Mushrooms, Coffins, and Dissertations and creates a podcast of the same name.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -273,7 +275,7 @@
             <p class="expert-card__subtitle">Ph.D.</p>
             <p class="expert-card__text">Kyiv School of Economics</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Tina's main activity is applied anthropological research for the public sector and business. Tina also promotes science in general and cultural anthropology in particular. She develops anthropological online courses, collaborates with the Cultural Project organization, and manages the educational anthropological telegram channel <a href="https://t.me/anthropologynka">Anthropologinka</a>. Since the beginning of the full-scale invasion, she has been working on the anthropology of war and participating in anthropological discussions and lectures on the war in Ukraine around the world.</p>
+                                                                                                                        <p  class="paragraph">Tina's main activity is applied anthropological research for the public sector and business. Tina also promotes science in general and cultural anthropology in particular. She develops anthropological online courses, collaborates with the Cultural Project organization, and manages the educational anthropological telegram channel Anthropologinka .</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -310,7 +312,7 @@
             <p class="expert-card__subtitle">Ph.D., senior researcher</p>
             <p class="expert-card__text">Institute of Mathematics of NAS of Ukraine</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Irina is a mathematician who studies symmetric properties and exact solutions of differential equations of mathematical physics, differential invariants, and realizations of algebras and Lie groups used in mathematical physics. He is also popularizing mathematics, research on academic integrity, and scientific and educational policy.</p>
+                                                                                                                        <p  class="paragraph">Irina is a mathematician who studies symmetric properties and exact solutions of differential equations of mathematical physics, differential invariants, and realizations of algebras and Lie groups used in mathematical physics. He is also popularizing mathematics, research on academic integrity, and scientific and educational policy.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -353,7 +355,7 @@
             <p class="expert-card__subtitle">Ph.D., senior researcher</p>
             <p class="expert-card__text">Ukrainian Catholic University</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Oleksii is a professor at the computer science department at the Ukrainian Catholic University. He teaches courses in NLP, complex systems, game theory, and machine learning. He also teaches at the Kyiv Academic University and the Kyiv-Mohyla Academy.</p>
+                                                                                                                        <p  class="paragraph">Oleksii is a professor at the computer science department at the Ukrainian Catholic University. He teaches courses in NLP, complex systems, game theory, and machine learning. He also teaches at the Kyiv Academic University and the Kyiv-Mohyla Academy.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -399,7 +401,7 @@
             <p class="expert-card__subtitle">Ph.D.</p>
             <p class="expert-card__text">University of California Berkeley</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Vira is a Ph.D. in Molecular Biomedicine, a postdoctoral fellow at the University of California, Berkeley (USA) in the Department of Molecular and Cellular Biology. Vira works in neurobiology and uses stem cells to study human cortical development and associated genetic disorders. She is currently working on a study of the disease that causes epilepsy.</p>
+                                                                                                                        <p  class="paragraph">Vira is a Ph.D. in Molecular Biomedicine, a postdoctoral fellow at the University of California, Berkeley (USA) in the Department of Molecular and Cellular Biology. Vira works in neurobiology and uses stem cells to study human cortical development and associated genetic disorders. She is currently working on a study of the disease that causes epilepsy.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -436,7 +438,7 @@
             <p class="expert-card__subtitle">Ph.D., Senior Researcher</p>
             <p class="expert-card__text">National Center of the Minor Academy of Sciences of Ukraine, Institute of Mathematical Machines and Systems Problems of the National Academy of Sciences of Ukraine</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Kateryna has a Ph.D. in Physics and Mathematics in numerical modeling of hydrodynamic and oceanographic problems. She is interested in oceanography, nonlinear processes, climate change, and mathematical education.</p>
+                                                                                                                        <p  class="paragraph">Kateryna has a Ph.D. in Physics and Mathematics in numerical modeling of hydrodynamic and oceanographic problems. She is interested in oceanography, nonlinear processes, climate change, and mathematical education.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -479,7 +481,7 @@
             <p class="expert-card__subtitle">Ph.D.</p>
             <p class="expert-card__text">Bogolyubov Institute for Theoretical Physics of the National Academy of Sciences of Ukraine</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Anton is a researcher at the Bogolyubov Institute of Theoretical Physics. He is interested in studying the nature of dark matter and the epoch of formation of the first galaxies in the Universe.</p>
+                                                                                                                        <p  class="paragraph">Anton is a researcher at the Bogolyubov Institute of Theoretical Physics. He is interested in studying the nature of dark matter and the epoch of formation of the first galaxies in the Universe.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -516,7 +518,7 @@
             <p class="expert-card__subtitle">Ph.D.</p>
             <p class="expert-card__text">Taras Shevchenko National University of Kyiv</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Viktoriia is a lecturer at the Department of Human and Animal Physiology at Taras Shevchenko National University of Kyiv. She teaches human physiology and anatomy. She is interested in the topic of learning based on the principles of brain functioning, as well as the physiological mechanisms of information assimilation.</p>
+                                                                                                                        <p  class="paragraph">Viktoriia is a lecturer at the Department of Human and Animal Physiology at Taras Shevchenko National University of Kyiv. She teaches human physiology and anatomy. She is interested in the topic of learning based on the principles of brain functioning, as well as the physiological mechanisms of information assimilation.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -559,7 +561,7 @@
             <p class="expert-card__subtitle">Ph.D., associate professor</p>
             <p class="expert-card__text">D.K. Zabolotny Institute of Microbiology an Virology of the NASU</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Olga is a microbiologist at the D.K. Zabolotnyi Institute of Microbiology and Virology of the National Academy of Sciences of Ukraine. She is interested in the fermentation of products of plant and animal origin, the use of lactic acid bacteria as biopreservatives, inhibitors of foreign microbiota in food, and the use of microorganisms to ferret waste from various industries to produce secondary metabolites.</p>
+                                                                                                                        <p  class="paragraph">Olga is a microbiologist at the D.K. Zabolotnyi Institute of Microbiology and Virology of the National Academy of Sciences of Ukraine. She is interested in the fermentation of products of plant and animal origin, the use of lactic acid bacteria as biopreservatives, inhibitors of foreign microbiota in food, and the use of microorganisms to ferret waste from various industries to produce secondary metabolites.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">

@@ -36,6 +36,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/9.1.0/swiper-bundle.min.css" integrity="sha512-n/86mxSdfFpsFtq9QYVhRlke9BQ/ZqIaRBe/dboH4l8JwBVitjpCS2HnDfbZnISV5Zq1lKONL/aQDqDQmtY/cA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.9/fullpage.min.css"/>
     <link href="https://scienceatrisk.org/css/style.min.css?v=1793795406" rel="stylesheet">
+    <link href="../css/pages/search-field.css" rel="stylesheet">
+    <link href="../css/pages/expert-card.css" rel="stylesheet">
         
     <link rel="apple-touch-icon" sizes="57x57" href="../images/favicon_client/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="../images/favicon_client/apple-icon-60x60.png">
@@ -96,12 +98,12 @@
                 <div class="search-hero__info-wrap">
                     <h1 class="search-hero__title">Find Ukrainian scientists for collaboration</h1>
                 </div>
-                <form action="../experts.html" method="GET" class="_searchScientists  search-hero__input-wrap">
-                    <div class="search-hero__column">
-                        <input class="_risk-label" type="text" name="search" id="search" value=""/>
-                        <label for="search">Scientific field or name </label>
-                    </div>
-                    <button class="search-hero__btn btn btn--black" type="submit">Find a scientist</button>
+                <form role="search" action="../experts.html" method="GET" class="_searchScientists search-field">
+                    <label class="satr-float" for="search">
+                        <input id="search" type="search" name="search" placeholder=" ">
+                        <span class="satr-float__label">Enter scientific field or name</span>
+                    </label>
+                    <button class="btn btn--black" type="submit">Find a scientist</button>
                 </form>
                 <div class="search-hero__requests popular-requests">
                     <p class="popular-requests__text">Popular requests</p>
@@ -190,7 +192,7 @@
             <p class="expert-card__subtitle">Ph.D., Associate professor</p>
             <p class="expert-card__text">State University of Trade and Economics</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">She studies the issue of income of hospitality companies in times of crisis and uncertainty. Establishes connections for joint classes for university students in English with foreign partners.</p>
+                                                                                                                        <p  class="paragraph">She studies the issue of income of hospitality companies in times of crisis and uncertainty. Establishes connections for joint classes for university students in English with foreign partners.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -230,7 +232,7 @@
             <p class="expert-card__subtitle">Ph.D., Senior Researcher</p>
             <p class="expert-card__text">V.M.Koretsky Institute of state and law of National Academy of Sciences of Ukraine</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Senior researcher in the history of constitutional law. She is interested in the legalization of the formation of the Ukrainian state in 1917-1921 and various aspects, instruments, and legal institutions related to it. Particular attention is focused on the institution of non-territorial autonomy for national minorities as an independent research subject and as part of the legalization of the Ukrainian state.</p>
+                                                                                                                        <p  class="paragraph">Senior researcher in the history of constitutional law. She is interested in the legalization of the formation of the Ukrainian state in 1917-1921 and various aspects, instruments, and legal institutions related to it. Particular attention is focused on the institution of non-territorial autonomy for national minorities as an independent research subject and as part of the legalization of the Ukrainian state.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -267,7 +269,7 @@
             <p class="expert-card__subtitle">Ph.D., Associate professor</p>
             <p class="expert-card__text">Taras Shevchenko National University of Kyiv</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Associate Professor of the Department of International Economics at the Faculty of Economics of Taras Shevchenko National University of Kyiv.</p>
+                                                                                                                        <p  class="paragraph">Associate Professor of the Department of International Economics at the Faculty of Economics of Taras Shevchenko National University of Kyiv.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -310,7 +312,7 @@
             <p class="expert-card__subtitle">Ph.D., Associate professor</p>
             <p class="expert-card__text">Ukrainian National Tchaikovsky Academy of Music</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Associate Professor of the Department of World Music History at the Tchaikovsky National Music Academy of Ukraine. She lectures on the history of Western music, supervises master's and PhD research, and is also engaged in research activities.</p>
+                                                                                                                        <p  class="paragraph">Associate Professor of the Department of World Music History at the Tchaikovsky National Music Academy of Ukraine. She lectures on the history of Western music, supervises master's and PhD research, and is also engaged in research activities.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -344,7 +346,7 @@
 of the National Academy of Sciences of Ukraine
  </p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Senior Research Scientist at the Department of Thermal Properties and Structure of Solids and Nanosystems at the B.Verkin Institute for Low Temperature Physics and Engineering of the National Academy of Sciences of Ukraine. She works in the field of studying the thermal and sorption properties of the latest nanostructured materials, such as fullerite, carbon nanotubes, graphene oxide and composites based on them. She investigates the influence of physical and technological conditions on their properties and develops physical principles and technologies for creating nanocomposites with improved mechanical characteristics, when the introduction of carbon nanosystems significantly changes the physical and operational qualities of the material. </p>
+                                                                                                                        <p  class="paragraph">Senior Research Scientist at the Department of Thermal Properties and Structure of Solids and Nanosystems at the B.Verkin Institute for Low Temperature Physics and Engineering of the National Academy of Sciences of Ukraine. She works in the field of studying the thermal and sorption properties of the latest nanostructured materials, such as fullerite, carbon nanotubes, graphene oxide and composites based on them. She investigates the influence of physical and technological conditions on their properties and develops physical principles and technologies for creating nanocomposites with improved mechanical characteristics, when the introduction of carbon nanosystems significantly changes the physical and operational qualities of the material.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -387,12 +389,7 @@ of the National Academy of Sciences of Ukraine
             <p class="expert-card__subtitle">Ph.D., Associate professor</p>
             <p class="expert-card__text">National University of Life and Environmental Sciences of Ukraine</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">З 2002 по 2019 працює доценткою кафедри карантину рослин, яка реорганізована у кафедру інтегрованого захисту та карантину рослин НУБіП України. З 2009 по 2013  на посаді заступниці декана та в.о. декана факультету захисту рослин НУБіП України (2013-14 рр.). З 2018 р. заступниця декана факультету захисту рослин, біотехнологій та екології.</p>
-                                            <p  class="paragraph">За період роботи ініціювала розробку стандарту магістрів за спеціальністю «Карантин рослин». Брала безпосередню участь у розробці освітньо-кваліфікаційної характеристики, освітньо-професійної програми та засобів діагностики для стандартів спеціальностей «Захист рослин» (2013 р.) і «Карантин рослин» (2014 р.). </p>
-                                            <p  class="paragraph">У 2018-2019 рр. брала участь у розробці та написанні освітньо-професійних програм «Захист рослин» та «Карантин рослин» зі спеціальності «Захист і карантин рослин». Протягом 2012-2019 рр. працювала над розробкою навчально-методичного забезпечення ряду навчальних дисциплін ОПП магістрів «Карантин рослин», зокрема «Зовнішній і внутрішній карантин рослин», «Методи огляду та експертизи об’єктів регулювання», «Карантинні шкідливі організми», «Аналіз ризику карантинних шкідливих організмів», «Міжнародні фітосанітарні стандарти» та бакалаврів «Основи карантину рослин».</p>
-                                            <p  class="paragraph">Крім того, членкиня фахової комісії науково-методичного центру «Агроосвіта» за напрямом «Захист рослин» (2010-2014 рр.), співавторка стандартів за напрямом та спеціальністю «Захист рослин», Типової програми з дисципліни «Основи карантину рослин», «Карантинні шкідливі організми», «Міжнародні фітосанітарні стандарти».</p>
-                                            <p  class="paragraph">Також співавторка підручників: «Карантинні хвороби рослин», навчальних посібників «Нормативні документи, що використовуються при викладанні дисциплін спеціальності «Карантин рослин», «Карантинні бур’яни», «Аналіз фітосанітарного ризику карантинних шкідливих організмів» та довідника «Регульовані карантинні шкідливі організми».</p>
-                                            <p  class="paragraph">У період 2019-2023 — експертка НАЗЯВО, а з 2010 по 2024 була членкинею експертної групи з проведення науково-екологічної експертизи реєстраційних матеріалів по пестицидах і агрохімікатах Міністерства екології та природних ресурсів України. </p>
+                                                                                                                        <p  class="paragraph">З 2002 по 2019 працює доценткою кафедри карантину рослин, яка реорганізована у кафедру інтегрованого захисту та карантину рослин НУБіП України. З 2009 по 2013 на посаді заступниці декана та в.о. декана факультету захисту рослин НУБіП України (2013-14 рр.). З 2018 р. заступниця декана факультету захисту рослин, біотехнологій та екології.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -426,7 +423,7 @@ of the National Academy of Sciences of Ukraine
             <p class="expert-card__subtitle">Ph.D., Associate professor</p>
             <p class="expert-card__text">Dragomanov Ukrainian State University</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Associate Professor of the Department of Biology at the Faculty of Natural Sciences of the Dragomanov Ukrainian State University. She teaches disciplines in the department's profile for first-, second-, and third-level students. She is interested in the study of plant organisms – from morphology and systematics to physiology, biochemistry and biotechnology. She supervises students' research in these fields and actively cooperates with scientists from leading institutions of the National Academy of Sciences of Ukraine and the Maria Curie-Skłodowska University in Lublin.</p>
+                                                                                                                        <p  class="paragraph">Associate Professor of the Department of Biology at the Faculty of Natural Sciences of the Dragomanov Ukrainian State University. She teaches disciplines in the department's profile for first-, second-, and third-level students. She is interested in the study of plant organisms – from morphology and systematics to physiology, biochemistry and biotechnology.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -448,6 +445,7 @@ of the National Academy of Sciences of Ukraine
                         <button data-try-tag="biology" class="expert-card__tag tag">Biology</button>
                     </li>
                             </ul>
+            <p class="expert-card__societies"><span class="expert-card__societies-label">Societies:</span> <a href="../society/ukrainske-botanichne-tovarystvo.html">Ukrainian Botanical Society</a></p>
         </div>
     </article>
     <a class="absoluteLink" href="../expert/kustovska-alla-valentynivna.html"></a>
@@ -470,7 +468,7 @@ of the National Academy of Sciences of Ukraine
             <p class="expert-card__subtitle">Ph.D.</p>
             <p class="expert-card__text">M.G. Kholodny Institute of botany, NAS of Ukraine</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Works at the Institute of Botany as a junior researcher in the Department of Systematics and Floristics of Vascular Plants. She studies species of the Ukrainian flora and has participated in international workshops on biodiversity (and plans to continue working with foreign colleagues). She is mainly interested in rare species in the flora of Ukraine, as the most vulnerable, and alien species as potential biological pollutants.</p>
+                                                                                                                        <p  class="paragraph">Works at the Institute of Botany as a junior researcher in the Department of Systematics and Floristics of Vascular Plants. She studies species of the Ukrainian flora and has participated in international workshops on biodiversity (and plans to continue working with foreign colleagues). She is mainly interested in rare species in the flora of Ukraine, as the most vulnerable, and alien species as potential biological pollutants.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -480,6 +478,7 @@ of the National Academy of Sciences of Ukraine
                         <button data-try-tag="biology" class="expert-card__tag tag">Biology</button>
                     </li>
                             </ul>
+            <p class="expert-card__societies"><span class="expert-card__societies-label">Societies:</span> <a href="../society/ukrainske-botanichne-tovarystvo.html">Ukrainian Botanical Society</a></p>
         </div>
     </article>
     <a class="absoluteLink" href="../expert/miskova-olena-viktorivna.html"></a>
@@ -501,7 +500,7 @@ of the National Academy of Sciences of Ukraine
             <p class="expert-card__subtitle"> Postgraduate student</p>
             <p class="expert-card__text">National University of Ukraine on Physical Education and Sport</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">She is a postgraduate student at the Department of Therapy and Rehabilitation. Her research focuses on modeling the musculoskeletal system to improve physical therapy programs, determining the functional relationship between overweight and its impact on knee joints.</p>
+                                                                                                                        <p  class="paragraph">She is a postgraduate student at the Department of Therapy and Rehabilitation. Her research focuses on modeling the musculoskeletal system to improve physical therapy programs, determining the functional relationship between overweight and its impact on knee joints.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -535,7 +534,7 @@ of the National Academy of Sciences of Ukraine
             <p class="expert-card__subtitle">Ph.D., associate professor</p>
             <p class="expert-card__text">Ukrainian State University of Science and Technologies, Ukrainian State University of Chemical Technology</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Associate Professor of the Department of Inorganic Chemistry, guarantor of the “Food Chemistry” educational program. She teaches “General and Inorganic Chemistry” and “Food Quality and Safety”. In the scientific field, she is interested in nanosystems of various natures for targeted drug delivery, as well as the use of nanotechnological techniques in the food industry.</p>
+                                                                                                                        <p  class="paragraph">Associate Professor of the Department of Inorganic Chemistry, guarantor of the “Food Chemistry” educational program. She teaches “General and Inorganic Chemistry” and “Food Quality and Safety”. In the scientific field, she is interested in nanosystems of various natures for targeted drug delivery, as well as the use of nanotechnological techniques in the food industry.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">

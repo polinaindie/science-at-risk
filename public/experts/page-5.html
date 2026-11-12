@@ -36,6 +36,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/9.1.0/swiper-bundle.min.css" integrity="sha512-n/86mxSdfFpsFtq9QYVhRlke9BQ/ZqIaRBe/dboH4l8JwBVitjpCS2HnDfbZnISV5Zq1lKONL/aQDqDQmtY/cA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.9/fullpage.min.css"/>
     <link href="../css/style.min.css" rel="stylesheet">
+    <link href="../css/pages/search-field.css" rel="stylesheet">
+    <link href="../css/pages/expert-card.css" rel="stylesheet">
         
     <link rel="apple-touch-icon" sizes="57x57" href="../images/favicon_client/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="../images/favicon_client/apple-icon-60x60.png">
@@ -96,12 +98,12 @@
                 <div class="search-hero__info-wrap">
                     <h1 class="search-hero__title">Find Ukrainian scientists for collaboration</h1>
                 </div>
-                <form action="../experts.html" method="GET" class="_searchScientists  search-hero__input-wrap">
-                    <div class="search-hero__column">
-                        <input class="_risk-label" type="text" name="search" id="search" value=""/>
-                        <label for="search">Scientific field or name </label>
-                    </div>
-                    <button class="search-hero__btn btn btn--black" type="submit">Find a scientist</button>
+                <form role="search" action="../experts.html" method="GET" class="_searchScientists search-field">
+                    <label class="satr-float" for="search">
+                        <input id="search" type="search" name="search" placeholder=" ">
+                        <span class="satr-float__label">Enter scientific field or name</span>
+                    </label>
+                    <button class="btn btn--black" type="submit">Find a scientist</button>
                 </form>
                 <div class="search-hero__requests popular-requests">
                     <p class="popular-requests__text">Popular requests</p>
@@ -190,8 +192,7 @@
             <p class="expert-card__subtitle">D.Sc., professor</p>
             <p class="expert-card__text">National University of Kyiv-Mohyla Academy</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Nina is the head of the Scientific Center for Analytics and Business Modeling of Sustainable Development and a professor at the Department of Marketing and Business Management of the National University of Kyiv-Mohyla Academy.</p>
-                                            <p  class="paragraph">Nina is professionally active in the following areas: teaching such disciplines as management, logistics, management of scientific projects, reengineering of business processes; analytical work: (sustainable development, environmentally conscious consumer behavior, business analytics for the sustainable development of higher education institutions); increasing women's economic opportunities.</p>
+                                                                                                                        <p  class="paragraph">Nina is the head of the Scientific Center for Analytics and Business Modeling of Sustainable Development and a professor at the Department of Marketing and Business Management of the National University of Kyiv-Mohyla Academy. Nina is professionally active in the following areas: teaching such disciplines as management, logistics, management of scientific projects, reengineering of business processes; analytical work: (sustainable development, environmentally conscious consumer behavior, business analytics for the sustainable development of higher education institutions); increasing women's economic opportunities.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -222,7 +223,7 @@
             <p class="expert-card__subtitle">Ph.D.</p>
             <p class="expert-card__text">Beehiveor Academy and R&amp;D Labs, private company &quot;Anima&quot;</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Sergiy is the founder and CEO of Beehiveor Academy and R&D Labs, Ph.D., a neuroscientist with 20 years of lecturing and research experience at Taras Shevchenko Kyiv National University. Sergiy is the founder and manager of projects based on behavior analysis using computer vision: Anima — an online mental health testing platform. Eyepass — increasing the effectiveness of online learning and the quality of memorizing e-learning materials and Odry — online diagnosis and rehabilitation for children with autism spectrum disorders</p>
+                                                                                                                        <p  class="paragraph">Sergiy is the founder and CEO of Beehiveor Academy and R&amp;D Labs, Ph.D., a neuroscientist with 20 years of lecturing and research experience at Taras Shevchenko Kyiv National University. Sergiy is the founder and manager of projects based on behavior analysis using computer vision: Anima — an online mental health testing platform. Eyepass — increasing the effectiveness of online learning and the quality of memorizing e-learning materials and Odry — online diagnosis and rehabilitation for children with autism spectrum disorders</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -253,8 +254,7 @@
             <p class="expert-card__subtitle">Dr. Sci. in Economics, associate professor</p>
             <p class="expert-card__text">State Organization &quot;Institute for Economics and Forecasting of National Academy of Sciences of Ukraine&quot;</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Olena's scientific interests include industrial development and policy and related issues: innovations, innovative ecosystems, regional policy, institutional and social processes, and European integration.</p>
-                                            <p  class="paragraph">Her research focuses on the interaction between innovators and investors, the creation of a favorable business climate, and the organization of technology transfer in educational institutions and research institutes.</p>
+                                                                                                                        <p  class="paragraph">Olena's scientific interests include industrial development and policy and related issues: innovations, innovative ecosystems, regional policy, institutional and social processes, and European integration. Her research focuses on the interaction between innovators and investors, the creation of a favorable business climate, and the organization of technology transfer in educational institutions and research institutes.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -288,7 +288,7 @@
             <p class="expert-card__subtitle">Ph.D.</p>
             <p class="expert-card__text">Astronomical Observatory of Lviv University</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Maksym is a researcher in the field of cosmology and astrophysics. He is interested in the application of the latest methods of data processing, such as topological data analysis and machine learning, the study of the universe's large-scale structure and various astrophysical objects.</p>
+                                                                                                                        <p  class="paragraph">Maksym is a researcher in the field of cosmology and astrophysics. He is interested in the application of the latest methods of data processing, such as topological data analysis and machine learning, the study of the universe's large-scale structure and various astrophysical objects.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -322,7 +322,7 @@
             <p class="expert-card__subtitle">Ph.D., senior researcher</p>
             <p class="expert-card__text">Bogomoletz Institute of Physiology of NAS of Ukraine</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Dmytro is a neurophysiologist. His main activity is the study of the mechanisms involved in the functioning of the nervous system under normal conditions and pathological changes. In his research, he pays special attention to the processes of emergence and development of epileptic seizures on various experimental models.</p>
+                                                                                                                        <p  class="paragraph">Dmytro is a neurophysiologist. His main activity is the study of the mechanisms involved in the functioning of the nervous system under normal conditions and pathological changes. In his research, he pays special attention to the processes of emergence and development of epileptic seizures on various experimental models.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -356,7 +356,7 @@
             <p class="expert-card__subtitle">Ph.D.</p>
             <p class="expert-card__text">Schmalhausen Institute of Zoology of National Academy of Sciences of Ukraine</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Svitozar is a junior researcher at the Department of Evolutionary Morphology of the Schmalhausen Institute of Zoology of the National Academy of Sciences of Ukraine. They are interested in adapting to the aquatic lifestyle of secondarily aquatic tetrapods, working with museum collections (arrangement, identification, three-dimensional digitization), search for new fossil materials (paleontology).</p>
+                                                                                                                        <p  class="paragraph">Svitozar is a junior researcher at the Department of Evolutionary Morphology of the Schmalhausen Institute of Zoology of the National Academy of Sciences of Ukraine. They are interested in adapting to the aquatic lifestyle of secondarily aquatic tetrapods, working with museum collections (arrangement, identification, three-dimensional digitization), search for new fossil materials (paleontology).</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -387,7 +387,7 @@
             <p class="expert-card__subtitle">Ph.D.</p>
             <p class="expert-card__text">V. N. Karazin Kharkiv National University</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Oleksandr is a researcher and teacher. He studies zoology, ecology, phylogenetics, animal population genetics, fauna changes under climate change and global factors, invasive species, and animal diseases.</p>
+                                                                                                                        <p  class="paragraph">Oleksandr is a researcher and teacher. He studies zoology, ecology, phylogenetics, animal population genetics, fauna changes under climate change and global factors, invasive species, and animal diseases.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -421,7 +421,7 @@
             <p class="expert-card__subtitle">Ph.D., professor</p>
             <p class="expert-card__text">Institute of Molecular Biology and Genetics of National Academy of Sciences of Ukraine</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Oksana works in molecular genetics and regulation of adaptation of the mammalian heart to physical exertion and postnatal formation of the canonical WNT signaling pathway. Recent studies are focused on studying the function of the canonical WNT signaling cascade in maintaining the metabolic homeostasis of the heart.</p>
+                                                                                                                        <p  class="paragraph">Oksana works in molecular genetics and regulation of adaptation of the mammalian heart to physical exertion and postnatal formation of the canonical WNT signaling pathway. Recent studies are focused on studying the function of the canonical WNT signaling cascade in maintaining the metabolic homeostasis of the heart.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -455,7 +455,7 @@
             <p class="expert-card__subtitle">Ph.D., professor</p>
             <p class="expert-card__text">Specialized Center of Medical Genetics and Prenatal Diagnosis</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">The main focus of her scientific and practical activities is the study of the pathogenesis and etiology of congenital and hereditary diseases and developing methods for their prevention. Under Svetlana's leadership, prenatal screening for several genetic disorders, including Down syndrome, was first introduced in Ukraine. According to foreign scientists, Svetlana has made a significant contribution to solving this issue at the international level, as she has developed several prenatal screening strategies and combinations of maternal serum markers that exist today in many countries. These strategies are considered among the most effective for prenatal diagnosis of these diseases.</p>
+                                                                                                                        <p  class="paragraph">The main focus of her scientific and practical activities is the study of the pathogenesis and etiology of congenital and hereditary diseases and developing methods for their prevention. Under Svetlana's leadership, prenatal screening for several genetic disorders, including Down syndrome, was first introduced in Ukraine. According to foreign scientists, Svetlana has made a significant contribution to solving this issue at the international level, as she has developed several prenatal screening strategies and combinations of maternal serum markers that exist today in many countries.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -492,7 +492,7 @@
             <p class="expert-card__subtitle">Ph.D.</p>
             <p class="expert-card__text">Kyiv Academic University</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Oleksii is a researcher in experimental biology (biophysics, molecular biology, neuropsychology) and the history of biology. He studies ion channels, receptors, and RNA biology (RNA interference, RNA editing). He also explores the scientific contribution of repressed Ukrainian scientists.</p>
+                                                                                                                        <p  class="paragraph">Oleksii is a researcher in experimental biology (biophysics, molecular biology, neuropsychology) and the history of biology. He studies ion channels, receptors, and RNA biology (RNA interference, RNA editing). He also explores the scientific contribution of repressed Ukrainian scientists.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">

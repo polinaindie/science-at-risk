@@ -36,6 +36,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/9.1.0/swiper-bundle.min.css" integrity="sha512-n/86mxSdfFpsFtq9QYVhRlke9BQ/ZqIaRBe/dboH4l8JwBVitjpCS2HnDfbZnISV5Zq1lKONL/aQDqDQmtY/cA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.9/fullpage.min.css"/>
     <link href="https://scienceatrisk.org/css/style.min.css?v=1793795398" rel="stylesheet">
+    <link href="../css/pages/search-field.css" rel="stylesheet">
+    <link href="../css/pages/expert-card.css" rel="stylesheet">
         
     <link rel="apple-touch-icon" sizes="57x57" href="../images/favicon_client/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="../images/favicon_client/apple-icon-60x60.png">
@@ -96,12 +98,12 @@
                 <div class="search-hero__info-wrap">
                     <h1 class="search-hero__title">Find Ukrainian scientists for collaboration</h1>
                 </div>
-                <form action="../experts.html" method="GET" class="_searchScientists  search-hero__input-wrap">
-                    <div class="search-hero__column">
-                        <input class="_risk-label" type="text" name="search" id="search" value=""/>
-                        <label for="search">Scientific field or name </label>
-                    </div>
-                    <button class="search-hero__btn btn btn--black" type="submit">Find a scientist</button>
+                <form role="search" action="../experts.html" method="GET" class="_searchScientists search-field">
+                    <label class="satr-float" for="search">
+                        <input id="search" type="search" name="search" placeholder=" ">
+                        <span class="satr-float__label">Enter scientific field or name</span>
+                    </label>
+                    <button class="btn btn--black" type="submit">Find a scientist</button>
                 </form>
                 <div class="search-hero__requests popular-requests">
                     <p class="popular-requests__text">Popular requests</p>
@@ -190,7 +192,7 @@
             <p class="expert-card__subtitle">Doctor of Sciences, Professor</p>
             <p class="expert-card__text">Sumy State University</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Oleksii Plastun’s current work is focused on countering false information and propaganda in Russian science within the activities of the Analytical Center “Research on Fakes and Propaganda in Russian Science.”</p>
+                                                                                                                        <p  class="paragraph">Oleksii Plastun’s current work is focused on countering false information and propaganda in Russian science within the activities of the Analytical Center “Research on Fakes and Propaganda in Russian Science.”</p>
                                                 </p>
             <ul class="expert-card__list">
                             </ul>
@@ -215,7 +217,7 @@
             <p class="expert-card__subtitle">Doctor of Sciences, Professor</p>
             <p class="expert-card__text">V. N. Karazin Kharkiv National University</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Andrii is Head of the Department of Ecology and Environmental Management at V. N. Karazin Kharkiv National University.&nbsp;</p>
+                                                                                                                        <p  class="paragraph">Andrii is Head of the Department of Ecology and Environmental Management at V. N. Karazin Kharkiv National University.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -243,7 +245,7 @@
             <p class="expert-card__subtitle">Doctor of Sciences</p>
             <p class="expert-card__text">Taras Shevchenko National University of Kyiv</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Volodymyr Aushev is a Professor at the Department of Nuclear and High Energy Physics at Taras Shevchenko National University of Kyiv, where he conducts research in fundamental physics.</p>
+                                                                                                                        <p  class="paragraph">Volodymyr Aushev is a Professor at the Department of Nuclear and High Energy Physics at Taras Shevchenko National University of Kyiv, where he conducts research in fundamental physics.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -274,9 +276,7 @@
             <p class="expert-card__subtitle">Doctor of Sciences</p>
             <p class="expert-card__text">Main Astronomical Observatory of the National Academy of Sciences of Ukraine</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Volodymyr Akhmetov is an astrophysicist and currently works as a grant-funded researcher at INAF – Osservatorio Astrofisico di Torino in Italy.</p>
-                                            <p  class="paragraph">His research focuses on the analysis of large astronomical datasets to study the kinematics, structure, and evolution of the Milky Way, as well as on developing methods for detecting gravitational waves through high-precision astrometry.</p>
-                                            <p  class="paragraph">Volodymyr also works on modelling the dynamical evolution of toroidal structures in active galactic nuclei. He is a member of the Gaia Collaboration of the European Space Agency (ESA), specifically the Data Processing and Analysis Consortium (DPAC), Coordination Unit 3, which is responsible for processing and scientifically analysing Gaia mission data and developing fundamental astrometric models.</p>
+                                                                                                                        <p  class="paragraph">Volodymyr Akhmetov is an astrophysicist and currently works as a grant-funded researcher at INAF – Osservatorio Astrofisico di Torino in Italy. His research focuses on the analysis of large astronomical datasets to study the kinematics, structure, and evolution of the Milky Way, as well as on developing methods for detecting gravitational waves through high-precision astrometry. Volodymyr also works on modelling the dynamical evolution of toroidal structures in active galactic nuclei.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -307,8 +307,7 @@
             <p class="expert-card__subtitle">PhD, Senior Researcher</p>
             <p class="expert-card__text">O. Ya. Usikov Institute for Radiophysics and Electronics of the National Academy of Sciences of Ukraine</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Kostyantyn Ilyenko is a Senior Researcher at the Department of Vacuum Electronics of the O. Ya. Usikov Institute for Radiophysics and Electronics of the National Academy of Sciences of Ukraine.</p>
-                                            <p  class="paragraph">His research interests include non-relativistic and moderately relativistic systems of charged particles and electromagnetic radiation, including emission processes, transport, electron beam formation, and the generation of coherent electromagnetic radiation in the microwave, millimeter-wave, and submillimeter-wave (terahertz) ranges.</p>
+                                                                                                                        <p  class="paragraph">Kostyantyn Ilyenko is a Senior Researcher at the Department of Vacuum Electronics of the O. Ya. Usikov Institute for Radiophysics and Electronics of the National Academy of Sciences of Ukraine. His research interests include non-relativistic and moderately relativistic systems of charged particles and electromagnetic radiation, including emission processes, transport, electron beam formation, and the generation of coherent electromagnetic radiation in the microwave, millimeter-wave, and submillimeter-wave (terahertz) ranges.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -342,9 +341,7 @@
             <p class="expert-card__subtitle">Doctor of Sciences, Professor</p>
             <p class="expert-card__text">Sumy State University</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Roman Moskalenko is Head of the Department of Pathological Anatomy at the Medical Institute of Sumy State University and Director of the Ukrainian-Swedish Research Center SUMEYA.</p>
-                                            <p  class="paragraph">Roman’s research interests include biomineralization, the development of biocompatible materials, digital pathology, and oncopathology. Together with international consortia, he leads the implementation of European projects under the HORIZON EUROPE programme, including ARGO and MxWound, with a focus on the development and testing of innovative biomaterials for dentistry and wound treatment.</p>
-                                            <p  class="paragraph">Roman also has practical experience in preserving and restoring scientific and educational infrastructure, including the construction and adaptation of teaching laboratories and safe spaces (shelters) in a border region of Ukraine under martial law. He was a recipient of the Kyiv School of Economics “Talents for Ukraine” grant programme in 2024.</p>
+                                                                                                                        <p  class="paragraph">Roman Moskalenko is Head of the Department of Pathological Anatomy at the Medical Institute of Sumy State University and Director of the Ukrainian-Swedish Research Center SUMEYA. Roman’s research interests include biomineralization, the development of biocompatible materials, digital pathology, and oncopathology. Together with international consortia, he leads the implementation of European projects under the HORIZON EUROPE programme, including ARGO and MxWound, with a focus on the development and testing of innovative biomaterials for dentistry and wound treatment.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -378,11 +375,7 @@
             <p class="expert-card__subtitle">PhD</p>
             <p class="expert-card__text">University of Warwick</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Viktoriya Pyeshkova is an Assistant Professor (Research-Focused) at the School of Engineering, University of Warwick. Her current work focuses on developing gas sensor systems for detecting volatile organic compounds and other chemicals emitted by infected crops, including onions and potatoes. </p>
-                                            <p  class="paragraph">She develops, tests, validates, and optimises sensors under laboratory and crop-storage conditions and collaborates closely with industrial partners within the FUSED and TuberSense projects. Her broader experience includes research leadership, grant proposal development, project planning and delivery, technical and financial reporting, knowledge transfer, team management, and supervision of students and early-career researchers.</p>
-                                            <p  class="paragraph">Viktoriya has extensive experience in the development of optical and electrochemical chemo/biosensors for applications in clinical diagnostics, food and water quality control, environmental monitoring, and agriculture.</p>
-                                            <p  class="paragraph">Dr. Pyeshkova has been involved in the Horizon 2020 project Waste2Fresh H2020-LCCI-2020-EASME-958491, “Smart innovative system for recycling wastewater and creating closed loops in textile manufacturing industrial processes” (2020-2024), where she serves as Co-Project Director. Her team focused on the development of an automated electrochemical multi-biosensor system for real-time monitoring of water quality to control wastewater treatment.</p>
-                                            <p  class="paragraph">In collaboration with colleagues, Viktoriya has developed effective electrochemical and optical biosensors for detecting carbohydrates, oligonucleotides, antibodies, ammonium, urea, arginine, and toxic compounds (such as heavy metal ions and pesticides).&nbsp;</p>
+                                                                                                                        <p  class="paragraph">Viktoriya Pyeshkova is an Assistant Professor (Research-Focused) at the School of Engineering, University of Warwick. Her current work focuses on developing gas sensor systems for detecting volatile organic compounds and other chemicals emitted by infected crops, including onions and potatoes. She develops, tests, validates, and optimises sensors under laboratory and crop-storage conditions and collaborates closely with industrial partners within the FUSED and TuberSense projects.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -422,7 +415,7 @@
             <p class="expert-card__subtitle">PhD, Senior Researcher</p>
             <p class="expert-card__text">Institute of Water Problems and Land Reclamation</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Nataliia Didenko is a researcher in the agricultural field, with a particular focus on climate-smart agriculture.</p>
+                                                                                                                        <p  class="paragraph">Nataliia Didenko is a researcher in the agricultural field, with a particular focus on climate-smart agriculture.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -453,9 +446,7 @@
             <p class="expert-card__subtitle">PhD</p>
             <p class="expert-card__text">Taras Shevchenko National University of Kyiv</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Bohdan Veselovskyi is an Associate Professor at the Department of European Law of the Educational and Scientific Institute of International Relations at Taras Shevchenko National University of Kyiv and holds a PhD in International Law.</p>
-                                            <p  class="paragraph">His work combines teaching, academic research, and expert activities in the field of European Union law. Bohdan studies Ukraine’s European integration, the EU accession negotiation process, the rule of law, and constitutional changes related to Ukraine’s future membership in the European Union.</p>
-                                            <p  class="paragraph">In addition to his academic work, Bohdan provides expert advice to public authorities and think tanks on European integration and EU law.</p>
+                                                                                                                        <p  class="paragraph">Bohdan Veselovskyi is an Associate Professor at the Department of European Law of the Educational and Scientific Institute of International Relations at Taras Shevchenko National University of Kyiv and holds a PhD in International Law. His work combines teaching, academic research, and expert activities in the field of European Union law. Bohdan studies Ukraine’s European integration, the EU accession negotiation process, the rule of law, and constitutional changes related to Ukraine’s future membership in the European Union.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -486,8 +477,7 @@
             <p class="expert-card__subtitle">PhD, Associate Professor</p>
             <p class="expert-card__text">Sumy State University</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Inna Chorna is an Associate Professor at the Department of Biophysics, Biochemistry, Pharmacology and Biomolecular Engineering at Sumy State University. She teaches the courses “Biological and Bioorganic Chemistry” and “Clinical Biochemistry” to students of Medicine and Dentistry.</p>
-                                            <p  class="paragraph">Inna also works at the Shared Research Equipment Center “Center for Biomedical Research” of the Academic and Research Medical Institute of Sumy State University, where she studies the mechanisms of action of two-dimensional nanomaterials on biological systems.</p>
+                                                                                                                        <p  class="paragraph">Inna Chorna is an Associate Professor at the Department of Biophysics, Biochemistry, Pharmacology and Biomolecular Engineering at Sumy State University. She teaches the courses “Biological and Bioorganic Chemistry” and “Clinical Biochemistry” to students of Medicine and Dentistry. Inna also works at the Shared Research Equipment Center “Center for Biomedical Research” of the Academic and Research Medical Institute of Sumy State University, where she studies the mechanisms of action of two-dimensional nanomaterials on biological systems.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">

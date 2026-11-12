@@ -34,6 +34,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/9.1.0/swiper-bundle.min.css" integrity="sha512-n/86mxSdfFpsFtq9QYVhRlke9BQ/ZqIaRBe/dboH4l8JwBVitjpCS2HnDfbZnISV5Zq1lKONL/aQDqDQmtY/cA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.9/fullpage.min.css"/>
     <link href="css/style.min.css" rel="stylesheet">
+    <link href="css/pages/search-field.css" rel="stylesheet">
+    <link href="css/pages/expert-card.css" rel="stylesheet">
         
     <link rel="apple-touch-icon" sizes="57x57" href="images/favicon_client/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="images/favicon_client/apple-icon-60x60.png">
@@ -94,12 +96,12 @@
                 <div class="search-hero__info-wrap">
                     <h1 class="search-hero__title">Find Ukrainian scientists for collaboration</h1>
                 </div>
-                <form action="experts.html" method="GET" class="_searchScientists  search-hero__input-wrap">
-                    <div class="search-hero__column">
-                        <input class="_risk-label" type="text" name="search" id="search" value=""/>
-                        <label for="search">Scientific field or name </label>
-                    </div>
-                    <button class="search-hero__btn btn btn--black" type="submit">Find a scientist</button>
+                <form role="search" action="experts.html" method="GET" class="_searchScientists search-field">
+                    <label class="satr-float" for="search">
+                        <input id="search" type="search" name="search" placeholder=" ">
+                        <span class="satr-float__label">Enter scientific field or name</span>
+                    </label>
+                    <button class="btn btn--black" type="submit">Find a scientist</button>
                 </form>
                 <div class="search-hero__requests popular-requests">
                     <p class="popular-requests__text">Popular requests</p>
@@ -188,7 +190,7 @@
             <p class="expert-card__subtitle"> </p>
             <p class="expert-card__text">National University of Pharmacy</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Analytical chemist, Doctor of Chemical Sciences, Professor of the Department of General Chemistry.</p>
+                                                                                                                        <p  class="paragraph">Analytical chemist, Doctor of Chemical Sciences, Professor of the Department of General Chemistry.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -228,8 +230,7 @@
             <p class="expert-card__subtitle">Ph.D., associate professor</p>
             <p class="expert-card__text">National Science Centre &quot;Kharkiv Institute of Physics and Technology&quot; of the National Academy of Sciences of Ukraine</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Olena manages the scientific center for the Development of Museology and monument studies. She is interested in the science of cultural heritage, the impacts of origin on society, and the tools we can use to manage those impacts.</p>
-                                            <p  class="paragraph">Olena focuses on conducting scientific research in the heritage field, approbating the obtained results in practice and their integration into the modern educational process.</p>
+                                                                                                                        <p  class="paragraph">Olena manages the scientific center for the Development of Museology and monument studies. She is interested in the science of cultural heritage, the impacts of origin on society, and the tools we can use to manage those impacts. Olena focuses on conducting scientific research in the heritage field, approbating the obtained results in practice and their integration into the modern educational process.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -272,7 +273,7 @@
             <p class="expert-card__subtitle">DSc</p>
             <p class="expert-card__text">National Science and Natural History Museum of the National Academy of Sciences of Ukraine</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Leonid researches bird remains from archaeological and paleontological sites in Eastern Europe to study the natural history of avifauna in Eastern Europe, birds as indicators of environmental change, and the relationship between humans and birds in different historical eras.</p>
+                                                                                                                        <p  class="paragraph">Leonid researches bird remains from archaeological and paleontological sites in Eastern Europe to study the natural history of avifauna in Eastern Europe, birds as indicators of environmental change, and the relationship between humans and birds in different historical eras.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -309,8 +310,7 @@
             <p class="expert-card__subtitle">D.Sc., professor</p>
             <p class="expert-card__text">National University of Kyiv-Mohyla Academy</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Nina is the head of the Scientific Center for Analytics and Business Modeling of Sustainable Development and a professor at the Department of Marketing and Business Management of the National University of Kyiv-Mohyla Academy.</p>
-                                            <p  class="paragraph">Nina is professionally active in the following areas: teaching such disciplines as management, logistics, management of scientific projects, reengineering of business processes; analytical work: (sustainable development, environmentally conscious consumer behavior, business analytics for the sustainable development of higher education institutions); increasing women's economic opportunities.</p>
+                                                                                                                        <p  class="paragraph">Nina is the head of the Scientific Center for Analytics and Business Modeling of Sustainable Development and a professor at the Department of Marketing and Business Management of the National University of Kyiv-Mohyla Academy. Nina is professionally active in the following areas: teaching such disciplines as management, logistics, management of scientific projects, reengineering of business processes; analytical work: (sustainable development, environmentally conscious consumer behavior, business analytics for the sustainable development of higher education institutions); increasing women's economic opportunities.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -341,7 +341,7 @@
             <p class="expert-card__subtitle">Ph.D.</p>
             <p class="expert-card__text">State Research Center for the Protection of Cultural Heritage from Technological Disasters</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Daria is a folklorist, anthropologist, and science popularizer. As a researcher at the SCCFRCC, she works on expeditions, analyzes collected materials, compiles an ethnographic dictionary, and writes articles on the folk medicine of Polissia. As a science popularizer, she has a telegram channel <i>Mushrooms, Coffins, and Dissertations</i> and creates a podcast of the same name. In addition, she is a co-author with Anna Nikolaieva of the podcast <i>Porobleno</i> and gives charity popular science lectures.</p>
+                                                                                                                        <p  class="paragraph">Daria is a folklorist, anthropologist, and science popularizer. As a researcher at the SCCFRCC, she works on expeditions, analyzes collected materials, compiles an ethnographic dictionary, and writes articles on the folk medicine of Polissia. As a science popularizer, she has a telegram channel Mushrooms, Coffins, and Dissertations and creates a podcast of the same name.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -381,7 +381,7 @@
             <p class="expert-card__subtitle">Ph.D.</p>
             <p class="expert-card__text">University of California Berkeley</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Vira is a Ph.D. in Molecular Biomedicine, a postdoctoral fellow at the University of California, Berkeley (USA) in the Department of Molecular and Cellular Biology. Vira works in neurobiology and uses stem cells to study human cortical development and associated genetic disorders. She is currently working on a study of the disease that causes epilepsy.</p>
+                                                                                                                        <p  class="paragraph">Vira is a Ph.D. in Molecular Biomedicine, a postdoctoral fellow at the University of California, Berkeley (USA) in the Department of Molecular and Cellular Biology. Vira works in neurobiology and uses stem cells to study human cortical development and associated genetic disorders. She is currently working on a study of the disease that causes epilepsy.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -418,7 +418,7 @@
             <p class="expert-card__subtitle">Ph.D.</p>
             <p class="expert-card__text">Taras Shevchenko National University of Kyiv</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Viktoriia is a lecturer at the Department of Human and Animal Physiology at Taras Shevchenko National University of Kyiv. She teaches human physiology and anatomy. She is interested in the topic of learning based on the principles of brain functioning, as well as the physiological mechanisms of information assimilation.</p>
+                                                                                                                        <p  class="paragraph">Viktoriia is a lecturer at the Department of Human and Animal Physiology at Taras Shevchenko National University of Kyiv. She teaches human physiology and anatomy. She is interested in the topic of learning based on the principles of brain functioning, as well as the physiological mechanisms of information assimilation.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -461,7 +461,7 @@
             <p class="expert-card__subtitle">Ph.D., associate professor</p>
             <p class="expert-card__text">D.K. Zabolotny Institute of Microbiology an Virology of the NASU</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Olga is a microbiologist at the D.K. Zabolotnyi Institute of Microbiology and Virology of the National Academy of Sciences of Ukraine. She is interested in the fermentation of products of plant and animal origin, the use of lactic acid bacteria as biopreservatives, inhibitors of foreign microbiota in food, and the use of microorganisms to ferret waste from various industries to produce secondary metabolites.</p>
+                                                                                                                        <p  class="paragraph">Olga is a microbiologist at the D.K. Zabolotnyi Institute of Microbiology and Virology of the National Academy of Sciences of Ukraine. She is interested in the fermentation of products of plant and animal origin, the use of lactic acid bacteria as biopreservatives, inhibitors of foreign microbiota in food, and the use of microorganisms to ferret waste from various industries to produce secondary metabolites.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -507,7 +507,7 @@
             <p class="expert-card__subtitle">Junior researcher</p>
             <p class="expert-card__text">Vasyl&#039; Stus Donetsk National University</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Ella is a junior researcher at Vasyl' Stus Donetsk National University. She is interested in developing synthesis conditions and studying the properties of d-metal polyoxometalate.</p>
+                                                                                                                        <p  class="paragraph">Ella is a junior researcher at Vasyl' Stus Donetsk National University. She is interested in developing synthesis conditions and studying the properties of d-metal polyoxometalate.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -547,7 +547,7 @@
             <p class="expert-card__subtitle">Ph.D., Senior Researcher</p>
             <p class="expert-card__text">V.N. Karazin Kharkiv National University</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Irina is the head of a department at the Research Institute of Astronomy at V.N. Karazin Kharkiv National University, where she researches the physical properties of small bodies in the solar system.</p>
+                                                                                                                        <p  class="paragraph">Irina is the head of a department at the Research Institute of Astronomy at V.N. Karazin Kharkiv National University, where she researches the physical properties of small bodies in the solar system.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">

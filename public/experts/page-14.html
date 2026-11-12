@@ -36,6 +36,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/9.1.0/swiper-bundle.min.css" integrity="sha512-n/86mxSdfFpsFtq9QYVhRlke9BQ/ZqIaRBe/dboH4l8JwBVitjpCS2HnDfbZnISV5Zq1lKONL/aQDqDQmtY/cA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.9/fullpage.min.css"/>
     <link href="https://scienceatrisk.org/css/style.min.css?v=1793795452" rel="stylesheet">
+    <link href="../css/pages/search-field.css" rel="stylesheet">
+    <link href="../css/pages/expert-card.css" rel="stylesheet">
         
     <link rel="apple-touch-icon" sizes="57x57" href="../images/favicon_client/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="../images/favicon_client/apple-icon-60x60.png">
@@ -96,12 +98,12 @@
                 <div class="search-hero__info-wrap">
                     <h1 class="search-hero__title">Find Ukrainian scientists for collaboration</h1>
                 </div>
-                <form action="../experts.html" method="GET" class="_searchScientists  search-hero__input-wrap">
-                    <div class="search-hero__column">
-                        <input class="_risk-label" type="text" name="search" id="search" value=""/>
-                        <label for="search">Scientific field or name </label>
-                    </div>
-                    <button class="search-hero__btn btn btn--black" type="submit">Find a scientist</button>
+                <form role="search" action="../experts.html" method="GET" class="_searchScientists search-field">
+                    <label class="satr-float" for="search">
+                        <input id="search" type="search" name="search" placeholder=" ">
+                        <span class="satr-float__label">Enter scientific field or name</span>
+                    </label>
+                    <button class="btn btn--black" type="submit">Find a scientist</button>
                 </form>
                 <div class="search-hero__requests popular-requests">
                     <p class="popular-requests__text">Popular requests</p>
@@ -190,7 +192,7 @@
             <p class="expert-card__subtitle">Ph.D.</p>
             <p class="expert-card__text">T.H. Shevchenko Institute of Literature of the National Academy of Sciences of Ukraine</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Kateryna has a PhD in philology; her specialty is comparative literature. She currently works as a junior researcher at the Department of Comparative Literature at the T.H. Shevchenko Institute of Literature of the NAS of Ukraine. She is interested in memory in literature and the methodology of representing Ukrainian literature for multinational countries (Brazil). She is preparing a bilingual anthology of Ukrainian poetry at the University of Londrina (Brazil).</p>
+                                                                                                                        <p  class="paragraph">Kateryna has a PhD in philology; her specialty is comparative literature. She currently works as a junior researcher at the Department of Comparative Literature at the T.H. Shevchenko Institute of Literature of the NAS of Ukraine.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -227,8 +229,7 @@
             <p class="expert-card__subtitle">Ph.D.</p>
             <p class="expert-card__text">lnstitute of lndustrial Economics of National academy of sciences of Ukraine</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">He is an experienced practitioner with 15 years of experience implementing digital technologies in various industries, including retail, financial services, manufacturing, tourism and hospitality, and healthcare. Roman's expertise also includes consulting, where he helps organizations implement digital and agile transformation. </p>
-                                            <p  class="paragraph">He has worked with companies in the US, UK, EU, and the Middle East. In his research, he uses business experience to assess the impact of digital technologies on the economy, including microeconomic aspects within organizations. His research covers the impact of data science, neural networks, machine learning, artificial intelligence, cloud computing, cybersecurity, and quantum computing on organizational productivity. <br><br>In his work, Roman relies on real-life cases and detailed observations of numerous organizations he has worked with to substantiate his conclusions. </p>
+                                                                                                                        <p  class="paragraph">He is an experienced practitioner with 15 years of experience implementing digital technologies in various industries, including retail, financial services, manufacturing, tourism and hospitality, and healthcare. Roman's expertise also includes consulting, where he helps organizations implement digital and agile transformation. He has worked with companies in the US, UK, EU, and the Middle East.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -265,7 +266,7 @@
             <p class="expert-card__subtitle">Ph.D.</p>
             <p class="expert-card__text">Department of Paleontology, National Museum of Natural History at the National Academy of Sciences of Ukraine</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Alina is a paleozoologist. She studies the remains of animals, primarily mammals, from archaeological sites. Her area of interest is the Stone Age periods — the Paleolithic, Mesolithic, and Neolithic. He also has projects related to other periods. An additional interest is the history of paleontology in Ukraine, particularly in women in paleontological research. Research results are published on the ResearchGate platform, and popular science videos are posted on the museum's YouTube channel.</p>
+                                                                                                                        <p  class="paragraph">Alina is a paleozoologist. She studies the remains of animals, primarily mammals, from archaeological sites. Her area of interest is the Stone Age periods — the Paleolithic, Mesolithic, and Neolithic.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -299,7 +300,7 @@
             <p class="expert-card__subtitle">Postgraduate student</p>
             <p class="expert-card__text">National University of Life and Environmental Sciences of Ukraine</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Andrii is a postgraduate student in forestry at the National University of Life and Environmental Sciences of Ukraine (Kyiv). He is interested in mapping the damage to forest ecosystems caused by military operations in Ukraine.</p>
+                                                                                                                        <p  class="paragraph">Andrii is a postgraduate student in forestry at the National University of Life and Environmental Sciences of Ukraine (Kyiv). He is interested in mapping the damage to forest ecosystems caused by military operations in Ukraine.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -333,7 +334,7 @@
             <p class="expert-card__subtitle">Ph.D.</p>
             <p class="expert-card__text">L. V. Pisarzhevsky Institute of Physical Chemistry</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Olga is a Senior Research Scientist at the Department of Catalytic Redox Processes of the L. V. Pisarzhevsky Institute of Physical Chemistry. Her research interests are related to catalysis as a component of physical chemistry, green chemistry, production catalysis from renewable raw materials (bioalcohols), and using CO2 (greenhouse gas) to obtain valuable chemical compounds.</p>
+                                                                                                                        <p  class="paragraph">Olga is a Senior Research Scientist at the Department of Catalytic Redox Processes of the L. V. Pisarzhevsky Institute of Physical Chemistry. Her research interests are related to catalysis as a component of physical chemistry, green chemistry, production catalysis from renewable raw materials (bioalcohols), and using CO2 (greenhouse gas) to obtain valuable chemical compounds.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -376,7 +377,7 @@
             <p class="expert-card__subtitle">Postgraduate student</p>
             <p class="expert-card__text">Bogomolets National Medical University</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Kateryna is a bacteriologist and a postgraduate student at the Department of microbiology and parasitology with the basics of immunology at Bogomolets National Medical University. She is interested in the problem of antibiotic resistance in hospital strains of microorganisms and ways to overcome it and prevent its spread. In addition, she promotes microbiology knowledge among clinicians and collaborates with the infection control team.</p>
+                                                                                                                        <p  class="paragraph">Kateryna is a bacteriologist and a postgraduate student at the Department of microbiology and parasitology with the basics of immunology at Bogomolets National Medical University. She is interested in the problem of antibiotic resistance in hospital strains of microorganisms and ways to overcome it and prevent its spread. In addition, she promotes microbiology knowledge among clinicians and collaborates with the infection control team.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -416,7 +417,7 @@
             <p class="expert-card__subtitle">D.Sc., assistant professor</p>
             <p class="expert-card__text">lnstitute of lndustrial Economics of National academy of sciences of Ukraine</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Svitlana is a scientist and researcher at the Institute of Industrial Economics of the National Academy of Sciences of Ukraine. Her research interests include behavioral economics and the use of mathematical methods, models, and information technologies in modern economic science.&nbsp;</p>
+                                                                                                                        <p  class="paragraph">Svitlana is a scientist and researcher at the Institute of Industrial Economics of the National Academy of Sciences of Ukraine. Her research interests include behavioral economics and the use of mathematical methods, models, and information technologies in modern economic science.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -459,7 +460,7 @@
             <p class="expert-card__subtitle">Ph.D.</p>
             <p class="expert-card__text">State Scientific Institution “Institute for Single Crystals” of National Academy of Sciences of Ukraine</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Daria is a postgraduate student at the Institute of Functional Materials Chemistry. Her main focus is on the development and research of supramolecular systems for further implementation in agriculture and veterinary medicine.</p>
+                                                                                                                        <p  class="paragraph">Daria is a postgraduate student at the Institute of Functional Materials Chemistry. Her main focus is on the development and research of supramolecular systems for further implementation in agriculture and veterinary medicine.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -496,7 +497,7 @@
             <p class="expert-card__subtitle">Ph.D.</p>
             <p class="expert-card__text">Institute of Telecommunications and Global Information Space of the National Academy of Sciences of Ukraine</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">For more than ten years, Snizhana has been researching the state of the nature reserve fund of Ukraine. Her research interests include environmental safety, nature management systems, nature reserve funds, geoinformation, and information-analytical systems, as well as the implementation of a scientifically based approach to the development and implementation of an information-analytical system for the management of protected areas as an integral part of the environmental safety system using information technology.</p>
+                                                                                                                        <p  class="paragraph">For more than ten years, Snizhana has been researching the state of the nature reserve fund of Ukraine. Her research interests include environmental safety, nature management systems, nature reserve funds, geoinformation, and information-analytical systems, as well as the implementation of a scientifically based approach to the development and implementation of an information-analytical system for the management of protected areas as an integral part of the environmental safety system using information technology.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -533,7 +534,7 @@
             <p class="expert-card__subtitle">Ph.D., assistant professor</p>
             <p class="expert-card__text">Odesa State University of Internal Affairs</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Iryna is an associate professor at Odesa State University of Internal Affairs and Odesa National Medical University. She is interested in socio-economic history, the history of advertising, innovation, and intellectual property issues of the late nineteenth and early twentieth centuries, and their development in the modern world. She focuses on the introduction of innovations in the recovery process of countries after the First World War, as this experience can be helpful in the reconstruction of Ukraine today.</p>
+                                                                                                                        <p  class="paragraph">Iryna is an associate professor at Odesa State University of Internal Affairs and Odesa National Medical University. She is interested in socio-economic history, the history of advertising, innovation, and intellectual property issues of the late nineteenth and early twentieth centuries, and their development in the modern world. She focuses on the introduction of innovations in the recovery process of countries after the First World War, as this experience can be helpful in the reconstruction of Ukraine today.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">

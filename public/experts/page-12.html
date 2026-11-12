@@ -36,6 +36,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/9.1.0/swiper-bundle.min.css" integrity="sha512-n/86mxSdfFpsFtq9QYVhRlke9BQ/ZqIaRBe/dboH4l8JwBVitjpCS2HnDfbZnISV5Zq1lKONL/aQDqDQmtY/cA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.9/fullpage.min.css"/>
     <link href="https://scienceatrisk.org/css/style.min.css?v=1793795414" rel="stylesheet">
+    <link href="../css/pages/search-field.css" rel="stylesheet">
+    <link href="../css/pages/expert-card.css" rel="stylesheet">
         
     <link rel="apple-touch-icon" sizes="57x57" href="../images/favicon_client/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="../images/favicon_client/apple-icon-60x60.png">
@@ -96,12 +98,12 @@
                 <div class="search-hero__info-wrap">
                     <h1 class="search-hero__title">Find Ukrainian scientists for collaboration</h1>
                 </div>
-                <form action="../experts.html" method="GET" class="_searchScientists  search-hero__input-wrap">
-                    <div class="search-hero__column">
-                        <input class="_risk-label" type="text" name="search" id="search" value=""/>
-                        <label for="search">Scientific field or name </label>
-                    </div>
-                    <button class="search-hero__btn btn btn--black" type="submit">Find a scientist</button>
+                <form role="search" action="../experts.html" method="GET" class="_searchScientists search-field">
+                    <label class="satr-float" for="search">
+                        <input id="search" type="search" name="search" placeholder=" ">
+                        <span class="satr-float__label">Enter scientific field or name</span>
+                    </label>
+                    <button class="btn btn--black" type="submit">Find a scientist</button>
                 </form>
                 <div class="search-hero__requests popular-requests">
                     <p class="popular-requests__text">Popular requests</p>
@@ -190,7 +192,7 @@
             <p class="expert-card__subtitle">Ph.D.</p>
             <p class="expert-card__text">I.I. Schmalhausen Institute of Zoology of National Academy of Sciences of Ukraine</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Iryna is a researcher at the Department of Wildlife Monitoring and Protection, specializing in vertebrate population ecology.</p>
+                                                                                                                        <p  class="paragraph">Iryna is a researcher at the Department of Wildlife Monitoring and Protection, specializing in vertebrate population ecology.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -206,6 +208,7 @@
                         <button data-try-tag="biology" class="expert-card__tag tag">Biology</button>
                     </li>
                             </ul>
+            <p class="expert-card__societies"><span class="expert-card__societies-label">Societies:</span> <a href="../society/ukrainske-herpetolohichne-tovarystvo.html">Ukrainian Herpetological Society</a></p>
         </div>
     </article>
     <a class="absoluteLink" href="../expert/syniavska-iryna-oleksandrivna.html"></a>
@@ -227,9 +230,7 @@
             <p class="expert-card__subtitle">Ph.D.</p>
             <p class="expert-card__text">State University &quot;Kyiv Aviation Institute&quot;</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Since October 2024, Yehor has been an associate professor in the Department of International Relations and Strategic Studies at the State University "Kyiv Aviation Institute".</p>
-                                            <p  class="paragraph">Previously, he worked as an analyst at the Detector Media Research Center. He researched the influence of Russian propaganda on the world, in particular disinformation on social media (Telegram, VK). The scientist analyzed Russian disinformation messages regarding elections abroad, the Russian-Ukrainian war, and wars around the world. </p>
-                                            <p  class="paragraph">As an international journalist, he comments on world politics and Ukraine-NATO relations. As a historian, he has long studied modern British history and Ukrainian-British relations.</p>
+                                                                                                                        <p  class="paragraph">Since October 2024, Yehor has been an associate professor in the Department of International Relations and Strategic Studies at the State University "Kyiv Aviation Institute". Previously, he worked as an analyst at the Detector Media Research Center. He researched the influence of Russian propaganda on the world, in particular disinformation on social media (Telegram, VK).</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -275,7 +276,7 @@
             <p class="expert-card__subtitle">Ph.D.</p>
             <p class="expert-card__text">Kyiv School of Economics</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Dmytro works as an associate professor at the Kyiv School of Economics and part-time at Vytautas Magnus University and Vilnius University. He teaches courses in political communication and researches issues of resilience to disinformation and propaganda.</p>
+                                                                                                                        <p  class="paragraph">Dmytro works as an associate professor at the Kyiv School of Economics and part-time at Vytautas Magnus University and Vilnius University. He teaches courses in political communication and researches issues of resilience to disinformation and propaganda.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -315,7 +316,7 @@
             <p class="expert-card__subtitle">Ph.D.</p>
             <p class="expert-card__text">National preserve Kyiv-Pechersk lavra</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Anna is the Deputy Head of the Research Department of History and Archeology. She studies the history of the 1920s and 1930s Ukrainian humanities, particularly the history of museum studies and archeology. Her professional activities focus on digitizing museum collections, organizing science (conferences), and popularizing the history of humanities in Ukraine. In addition, Anna is a member of the board of the Ukrainian Association of Archaeologists.</p>
+                                                                                                                        <p  class="paragraph">Anna is the Deputy Head of the Research Department of History and Archeology. She studies the history of the 1920s and 1930s Ukrainian humanities, particularly the history of museum studies and archeology. Her professional activities focus on digitizing museum collections, organizing science (conferences), and popularizing the history of humanities in Ukraine.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -337,6 +338,7 @@
                         <button data-try-tag="public-speaking" class="expert-card__tag tag">Public speaking</button>
                     </li>
                             </ul>
+            <p class="expert-card__societies"><span class="expert-card__societies-label">Societies:</span> <a href="../society/spilka-arkheolohiv-ukrainy.html">The Ukrainian Association of Archaeologists</a></p>
         </div>
     </article>
     <a class="absoluteLink" href="../expert/yanenko-anna-serhiivna.html"></a>
@@ -358,7 +360,7 @@
             <p class="expert-card__subtitle">Ph.D.</p>
             <p class="expert-card__text">National Technical University of Ukraine &quot;Igor Sikorsky Kyiv Polytechnic Institute&quot;</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Viacheslav is a researcher at the Institute for Applied System Analysis at Igor Sikorsky Kyiv Polytechnic Institute. This is a dual-subordination structure in conjunction with the Academy of Sciences. The main activity is related to understanding the brain's computational principles and using them to improve existing algorithms in computer vision, machine learning, and autonomous drone control.</p>
+                                                                                                                        <p  class="paragraph">Viacheslav is a researcher at the Institute for Applied System Analysis at Igor Sikorsky Kyiv Polytechnic Institute. This is a dual-subordination structure in conjunction with the Academy of Sciences. The main activity is related to understanding the brain's computational principles and using them to improve existing algorithms in computer vision, machine learning, and autonomous drone control.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -398,7 +400,7 @@
             <p class="expert-card__subtitle">D.Sc., professor</p>
             <p class="expert-card__text">V. N. Karazin Kharkiv National University</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Professor of the Department of Zoology and Animal Ecology at the Faculty of Biology of V. N. Karazin Kharkiv National University is interested in the use of genomic methodologies, in particular DNA barcoding, to assess the biodiversity of Ukraine and the World Ocean, as well as to determine the impact on biodiversity of several anthropogenic factors, climate change, and military operations.</p>
+                                                                                                                        <p  class="paragraph">Professor of the Department of Zoology and Animal Ecology at the Faculty of Biology of V. N. Karazin Kharkiv National University is interested in the use of genomic methodologies, in particular DNA barcoding, to assess the biodiversity of Ukraine and the World Ocean, as well as to determine the impact on biodiversity of several anthropogenic factors, climate change, and military operations.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -447,7 +449,7 @@
             <p class="expert-card__subtitle">Ph.D., Senior researcher</p>
             <p class="expert-card__text">Institute of Hydrobiology and Aquatic Ecosystem Management, University of Natural Resources and Life Sciences, Vienna (BOKU, Austria) and Institute of Hydrobiology in Kyiv, Ukraine</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Olena is a postdoc at the Institute of Hydrobiology and Aquatic Ecosystem Management, University of Natural Resources and Life Sciences, Vienna (BOKU, Austria) and still combines her duties as a Senior researcher at the Institute of Hydrobiology in Kyiv, Ukraine. She studies the diversity of algae to understand how the connectivity of water bodies affects their metacommunities.</p>
+                                                                                                                        <p  class="paragraph">Olena is a postdoc at the Institute of Hydrobiology and Aquatic Ecosystem Management, University of Natural Resources and Life Sciences, Vienna (BOKU, Austria) and still combines her duties as a Senior researcher at the Institute of Hydrobiology in Kyiv, Ukraine. She studies the diversity of algae to understand how the connectivity of water bodies affects their metacommunities.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -469,6 +471,7 @@
                         <button data-try-tag="fundraising" class="expert-card__tag tag">Fundraising</button>
                     </li>
                             </ul>
+            <p class="expert-card__societies"><span class="expert-card__societies-label">Societies:</span> <a href="../society/hidroekolohichne-tovarystvo-ukrainy.html">Hydroecological Society of Ukraine</a></p>
         </div>
     </article>
     <a class="absoluteLink" href="../expert/bilous-olena-petrivna.html"></a>
@@ -490,8 +493,7 @@
             <p class="expert-card__subtitle">D.Sc., professor</p>
             <p class="expert-card__text">The National University of Ukraine on Physical Education and Sport</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Svitlana is a professor at the Department of Medical and Biological Disciplines at the National University of Ukraine on Physical Education and Sport. Her doctoral dissertation was on molecular genetic markers of high physical performance in sports. She studied the peculiarities of molecular genetic adaptation of obese women to various health fitness programs. As a senior researcher at the University of Lausanne, she studied the effects of hypoxic training and physical activity of different intensities on the expression of genes involved in skeletal muscle metabolism. </p>
-                                            <p  class="paragraph">Currently, Svitlana is interested in studying changes in the transcriptome and epigenetic profile of genes under the influence of prolonged physical activity as the basis for the health-promoting effect of exercise on the human body and the health of the population as a whole.</p>
+                                                                                                                        <p  class="paragraph">Svitlana is a professor at the Department of Medical and Biological Disciplines at the National University of Ukraine on Physical Education and Sport. Her doctoral dissertation was on molecular genetic markers of high physical performance in sports. She studied the peculiarities of molecular genetic adaptation of obese women to various health fitness programs.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -531,7 +533,7 @@
             <p class="expert-card__subtitle">D.Sc., professor</p>
             <p class="expert-card__text">CSD LAB</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Oksana works in a medical laboratory, combining practical activities and scientific research in clinical and molecular pathology, regenerative medicine, and biomaterials. She considers the development of personalized medicine in Ukraine, the introduction of international standards for genetic research and the development of biobanking to be an essential goal of her work.</p>
+                                                                                                                        <p  class="paragraph">Oksana works in a medical laboratory, combining practical activities and scientific research in clinical and molecular pathology, regenerative medicine, and biomaterials. She considers the development of personalized medicine in Ukraine, the introduction of international standards for genetic research and the development of biobanking to be an essential goal of her work.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -571,8 +573,7 @@
             <p class="expert-card__subtitle">Postgraduate student</p>
             <p class="expert-card__text">Bogomoletz Institute of Physiology of NAS of Ukraine</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Borys is a postgraduate student in the field of molecular biophysics and neuroscience. He is interested in the molecular physiology of synaptic transmission mechanisms and synaptic plasticity.</p>
-                                            <p  class="paragraph">His technical interests include image analysis, application of computer vision and machine learning methods in microscopy and visual scientific data analysis, and free software development.</p>
+                                                                                                                        <p  class="paragraph">Borys is a postgraduate student in the field of molecular biophysics and neuroscience. He is interested in the molecular physiology of synaptic transmission mechanisms and synaptic plasticity. His technical interests include image analysis, application of computer vision and machine learning methods in microscopy and visual scientific data analysis, and free software development.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">

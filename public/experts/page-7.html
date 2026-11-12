@@ -36,6 +36,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/9.1.0/swiper-bundle.min.css" integrity="sha512-n/86mxSdfFpsFtq9QYVhRlke9BQ/ZqIaRBe/dboH4l8JwBVitjpCS2HnDfbZnISV5Zq1lKONL/aQDqDQmtY/cA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.9/fullpage.min.css"/>
     <link href="../css/style.min.css" rel="stylesheet">
+    <link href="../css/pages/search-field.css" rel="stylesheet">
+    <link href="../css/pages/expert-card.css" rel="stylesheet">
         
     <link rel="apple-touch-icon" sizes="57x57" href="../images/favicon_client/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="../images/favicon_client/apple-icon-60x60.png">
@@ -96,12 +98,12 @@
                 <div class="search-hero__info-wrap">
                     <h1 class="search-hero__title">Find Ukrainian scientists for collaboration</h1>
                 </div>
-                <form action="../experts.html" method="GET" class="_searchScientists  search-hero__input-wrap">
-                    <div class="search-hero__column">
-                        <input class="_risk-label" type="text" name="search" id="search" value=""/>
-                        <label for="search">Scientific field or name </label>
-                    </div>
-                    <button class="search-hero__btn btn btn--black" type="submit">Find a scientist</button>
+                <form role="search" action="../experts.html" method="GET" class="_searchScientists search-field">
+                    <label class="satr-float" for="search">
+                        <input id="search" type="search" name="search" placeholder=" ">
+                        <span class="satr-float__label">Enter scientific field or name</span>
+                    </label>
+                    <button class="btn btn--black" type="submit">Find a scientist</button>
                 </form>
                 <div class="search-hero__requests popular-requests">
                     <p class="popular-requests__text">Popular requests</p>
@@ -190,7 +192,7 @@
             <p class="expert-card__subtitle">Postgraduate student</p>
             <p class="expert-card__text">Frankfurt Zoological Society</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Hanna is an ornithologist at the Western Ukrainian Ornithological Society.</p>
+                                                                                                                        <p  class="paragraph">Hanna is an ornithologist at the Western Ukrainian Ornithological Society.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -236,7 +238,7 @@
             <p class="expert-card__subtitle">Junior researcher</p>
             <p class="expert-card__text">Vasyl&#039; Stus Donetsk National University</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Ella is a junior researcher at Vasyl' Stus Donetsk National University. She is interested in developing synthesis conditions and studying the properties of d-metal polyoxometalate.</p>
+                                                                                                                        <p  class="paragraph">Ella is a junior researcher at Vasyl' Stus Donetsk National University. She is interested in developing synthesis conditions and studying the properties of d-metal polyoxometalate.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -276,7 +278,7 @@
             <p class="expert-card__subtitle">Ph.D., Dr.Sc. Leading Researcher</p>
             <p class="expert-card__text">Pisarzhevskii Institute of physical chemistry of NAS of Ukraine</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Nataliya is a leading researcher at the Department of Porous Substances and Materials.</p>
+                                                                                                                        <p  class="paragraph">Nataliya is a leading researcher at the Department of Porous Substances and Materials.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -313,7 +315,7 @@
             <p class="expert-card__subtitle">Ph.D.</p>
             <p class="expert-card__text">Ph.D.</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Olena is a science popularizer, founder and author of the popular science information resource MICROB & ME.</p>
+                                                                                                                        <p  class="paragraph">Olena is a science popularizer, founder and author of the popular science information resource MICROB &amp; ME.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -353,7 +355,7 @@
             <p class="expert-card__subtitle">Ph.D., Senior Researcher</p>
             <p class="expert-card__text">V.N. Karazin Kharkiv National University</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Irina is the head of a department at the Research Institute of Astronomy at V.N. Karazin Kharkiv National University, where she researches the physical properties of small bodies in the solar system.</p>
+                                                                                                                        <p  class="paragraph">Irina is the head of a department at the Research Institute of Astronomy at V.N. Karazin Kharkiv National University, where she researches the physical properties of small bodies in the solar system.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -387,7 +389,7 @@
             <p class="expert-card__subtitle">Ph.D., Senior Researcher</p>
             <p class="expert-card__text">Main Astronomical Observatory of National Academy of Sciences</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Yakiv is an astrophysicist.</p>
+                                                                                                                        <p  class="paragraph">Yakiv is an astrophysicist.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -421,7 +423,7 @@
             <p class="expert-card__subtitle">Postgraduate student</p>
             <p class="expert-card__text">Slovak University of Technology in Bratislava</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Kateryna is a Ph.D. student in materials science at the Slovak University of Technology in Bratislava. Her research focuses on protective nanostructured coatings for cutting tools, various parts operating under extreme conditions, and two-dimensional nanomaterials called MXenes.</p>
+                                                                                                                        <p  class="paragraph">Kateryna is a Ph.D. student in materials science at the Slovak University of Technology in Bratislava. Her research focuses on protective nanostructured coatings for cutting tools, various parts operating under extreme conditions, and two-dimensional nanomaterials called MXenes.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -452,7 +454,7 @@
             <p class="expert-card__subtitle">Ph.D., professor</p>
             <p class="expert-card__text">Institute oInstitute of Mathematical Machines and Systems Problems of the Ukraine National Academy of Science</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Vladimir is the Head of the Department of Modeling of Marine and River Systems at the Institute of Mathematical Machines and Systems Problems. His interests are related to physical oceanography (regional circulation models), environmental fluid mechanics (e.g., oil spills, cooling water problems, sediment transport), and the dispersion and fate of radioactivity in the marine environment.</p>
+                                                                                                                        <p  class="paragraph">Vladimir is the Head of the Department of Modeling of Marine and River Systems at the Institute of Mathematical Machines and Systems Problems. His interests are related to physical oceanography (regional circulation models), environmental fluid mechanics (e.g., oil spills, cooling water problems, sediment transport), and the dispersion and fate of radioactivity in the marine environment.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -483,7 +485,7 @@
             <p class="expert-card__subtitle">Ph.D., professor</p>
             <p class="expert-card__text">National University of Water and Environmental Engineering</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Halyna is the head of the Department of Human Resources and Entrepreneurship and has over 20 years of professional experience in relevant case studies of human capital reproduction at various levels. In this area of research interests, research and applied projects are being implemented, some in partnership with foreign partners and authorities. She is most interested in research topics related to preserving Ukraine's human resources, re-emigration, talent development and retention, and ensuring social comfort in the living and working environment. Halyna constantly looks for new opportunities for the team of researchers with whom she collaborates in these areas to publish their ideas in international publications, prepare new grant applications, etc. Halyna is also interested in the area of change management in the business environment of enterprises, given the current transformation processes and security challenges that have changed the business environment, not only in Ukraine. She plans to develop this area of her research.</p>
+                                                                                                                        <p  class="paragraph">Halyna is the head of the Department of Human Resources and Entrepreneurship and has over 20 years of professional experience in relevant case studies of human capital reproduction at various levels. In this area of research interests, research and applied projects are being implemented, some in partnership with foreign partners and authorities. She is most interested in research topics related to preserving Ukraine's human resources, re-emigration, talent development and retention, and ensuring social comfort in the living and working environment.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -526,7 +528,7 @@
             <p class="expert-card__subtitle">D.Sc., professor</p>
             <p class="expert-card__text">National Research Center &quot;Kharkiv Institute of Physics and Technology&quot;</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Gennadiy is the Head of the department at the  National Science Centre "Kharkiv Institute of Physics and Technology".</p>
+                                                                                                                        <p  class="paragraph">Gennadiy is the Head of the department at the National Science Centre "Kharkiv Institute of Physics and Technology".</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">

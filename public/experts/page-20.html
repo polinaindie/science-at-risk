@@ -36,6 +36,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/9.1.0/swiper-bundle.min.css" integrity="sha512-n/86mxSdfFpsFtq9QYVhRlke9BQ/ZqIaRBe/dboH4l8JwBVitjpCS2HnDfbZnISV5Zq1lKONL/aQDqDQmtY/cA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.9/fullpage.min.css"/>
     <link href="https://scienceatrisk.org/css/style.min.css?v=1793795495" rel="stylesheet">
+    <link href="../css/pages/search-field.css" rel="stylesheet">
+    <link href="../css/pages/expert-card.css" rel="stylesheet">
         
     <link rel="apple-touch-icon" sizes="57x57" href="../images/favicon_client/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="../images/favicon_client/apple-icon-60x60.png">
@@ -96,12 +98,12 @@
                 <div class="search-hero__info-wrap">
                     <h1 class="search-hero__title">Find Ukrainian scientists for collaboration</h1>
                 </div>
-                <form action="../experts.html" method="GET" class="_searchScientists  search-hero__input-wrap">
-                    <div class="search-hero__column">
-                        <input class="_risk-label" type="text" name="search" id="search" value=""/>
-                        <label for="search">Scientific field or name </label>
-                    </div>
-                    <button class="search-hero__btn btn btn--black" type="submit">Find a scientist</button>
+                <form role="search" action="../experts.html" method="GET" class="_searchScientists search-field">
+                    <label class="satr-float" for="search">
+                        <input id="search" type="search" name="search" placeholder=" ">
+                        <span class="satr-float__label">Enter scientific field or name</span>
+                    </label>
+                    <button class="btn btn--black" type="submit">Find a scientist</button>
                 </form>
                 <div class="search-hero__requests popular-requests">
                     <p class="popular-requests__text">Popular requests</p>
@@ -190,7 +192,7 @@
             <p class="expert-card__subtitle">Ph.D., Associate professor</p>
             <p class="expert-card__text">V.M.Koretsky Institute of state and law of National Academy of Sciences of Ukraine</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Researcher at the V. Koretsky Institute of State and Law. She is interested in the problem of statehood in the global, national, historical and legal contexts. She focuses on the study of economic and legal relations between the European Union and Ukraine, Ukraine and the United States, as well as implementation.</p>
+                                                                                                                        <p  class="paragraph">Researcher at the V. Koretsky Institute of State and Law. She is interested in the problem of statehood in the global, national, historical and legal contexts. She focuses on the study of economic and legal relations between the European Union and Ukraine, Ukraine and the United States, as well as implementation.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -227,7 +229,7 @@
             <p class="expert-card__subtitle">Ph.D.</p>
             <p class="expert-card__text">Taras Shevchenko National University of Kyiv</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Andrii works as a lecturer at the Faculty of Physics at Taras Shevchenko National University of Kyiv. His research interests and activities include molecular modeling and liquid crystal physics.</p>
+                                                                                                                        <p  class="paragraph">Andrii works as a lecturer at the Faculty of Physics at Taras Shevchenko National University of Kyiv. His research interests and activities include molecular modeling and liquid crystal physics.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -264,7 +266,7 @@
             <p class="expert-card__subtitle">D., Associate Professor</p>
             <p class="expert-card__text">Taras Shevchenko National University of Kyiv</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Olena is a lecturer at the Faculty of Physics in the educational programs “Physics” and “Medical Physics”, a researcher and supervisor of postgraduate, master's and bachelor's students.</p>
+                                                                                                                        <p  class="paragraph">Olena is a lecturer at the Faculty of Physics in the educational programs “Physics” and “Medical Physics”, a researcher and supervisor of postgraduate, master's and bachelor's students.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -298,7 +300,7 @@
             <p class="expert-card__subtitle">Ph.D., Associate Professor</p>
             <p class="expert-card__text">Chernihiv Polytechnic National University</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">She is the head of the Department of Law Enforcement and General Legal Disciplines. She is interested in human rights, history and modernity, and problems of state-building in Ukraine.</p>
+                                                                                                                        <p  class="paragraph">She is the head of the Department of Law Enforcement and General Legal Disciplines. She is interested in human rights, history and modernity, and problems of state-building in Ukraine.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -339,7 +341,7 @@
             <p class="expert-card__subtitle">Ph.D.</p>
             <p class="expert-card__text">National Pedagogical Dragomanov University</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">She is a lecturer at the Department of World History and Archeology at the Dragomanov Ukrainian State University and is currently applying for an associate professorship. She teaches Modern International Relations, History of Central Asia, and Civilizations of the New World.</p>
+                                                                                                                        <p  class="paragraph">She is a lecturer at the Department of World History and Archeology at the Dragomanov Ukrainian State University and is currently applying for an associate professorship. She teaches Modern International Relations, History of Central Asia, and Civilizations of the New World.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -373,7 +375,7 @@
             <p class="expert-card__subtitle">Ph.D.</p>
             <p class="expert-card__text">Institute of Cell Biology and Genetic Engineering of the National Academy of Sciences of Ukraine</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Researcher at the Plant Immunity Laboratory of the Department of Biophysics and Radiobiology. He is interested in plant stresses and their defense reactions. Particular attention is paid to important food crops and the stimulation of plant adaptation through environmentally friendly methods.</p>
+                                                                                                                        <p  class="paragraph">Researcher at the Plant Immunity Laboratory of the Department of Biophysics and Radiobiology. He is interested in plant stresses and their defense reactions. Particular attention is paid to important food crops and the stimulation of plant adaptation through environmentally friendly methods.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -383,6 +385,7 @@
                         <button data-try-tag="biology" class="expert-card__tag tag">Biology</button>
                     </li>
                             </ul>
+            <p class="expert-card__societies"><span class="expert-card__societies-label">Societies:</span> <a href="../society/ukrainske-botanichne-tovarystvo.html">Ukrainian Botanical Society</a></p>
         </div>
     </article>
     <a class="absoluteLink" href="../expert/zhuk-iryna-viktorivna.html"></a>
@@ -404,7 +407,7 @@
             <p class="expert-card__subtitle">Ph.D.</p>
             <p class="expert-card__text">Podillia State University</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">I am a lecturer in law, acting director of the Educational and Research Institute of Correspondence and Distance Education at Podillia State University, and practicing law. Therefore, she focuses her work on the legal regulation of specific management issues in education and science, ensuring the rights and freedoms of participants in the educational process.</p>
+                                                                                                                        <p  class="paragraph">I am a lecturer in law, acting director of the Educational and Research Institute of Correspondence and Distance Education at Podillia State University, and practicing law. Therefore, she focuses her work on the legal regulation of specific management issues in education and science, ensuring the rights and freedoms of participants in the educational process.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -441,8 +444,7 @@
             <p class="expert-card__subtitle">Ph.D., Associate professor</p>
             <p class="expert-card__text">Berdyansk State Pedagogical University</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Associate Professor of the Department of Social Work and Inclusive Education at Berdyansk State Pedagogical University. She is interested in several areas in the context of professional activity, in particular, the system of professional training and development of social workers in developed countries, the preservation of academic potential in the higher education system, as well as the development of an inclusive educational environment in higher education institutions.</p>
-                                            <p  class="paragraph"> </p>
+                                                                                                                        <p  class="paragraph">Associate Professor of the Department of Social Work and Inclusive Education at Berdyansk State Pedagogical University. She is interested in several areas in the context of professional activity, in particular, the system of professional training and development of social workers in developed countries, the preservation of academic potential in the higher education system, as well as the development of an inclusive educational environment in higher education institutions.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -482,7 +484,7 @@
             <p class="expert-card__subtitle">D.Sc., Associate professor</p>
             <p class="expert-card__text">Ivan Franko National University of Lviv</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Professor of the Department of Ukrainian Literature. He is interested in contemporary Ukrainian literature as well as contemporary English-language culture.</p>
+                                                                                                                        <p  class="paragraph">Professor of the Department of Ukrainian Literature. He is interested in contemporary Ukrainian literature as well as contemporary English-language culture.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -522,7 +524,7 @@
             <p class="expert-card__subtitle">Ph.D., Associate professor</p>
             <p class="expert-card__text">V.M.Koretsky Institute of state and law of National Academy of Sciences of Ukraine</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Senior Research Fellow at the Department of Criminal Law, Criminology and Judicial System of the V.M. Koretsky Institute of State and Law of the National Academy of Sciences of Ukraine. He is interested in criminal law protection of state sovereignty of Ukraine.</p>
+                                                                                                                        <p  class="paragraph">Senior Research Fellow at the Department of Criminal Law, Criminology and Judicial System of the V.M. Koretsky Institute of State and Law of the National Academy of Sciences of Ukraine. He is interested in criminal law protection of state sovereignty of Ukraine.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">

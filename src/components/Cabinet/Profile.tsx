@@ -368,17 +368,18 @@ export function ProfileView({
   /** The status stays small, above the name, level with the top of the photo: a chip and the one thing that can be done about it. */
   const statusLine = (
     <div className="mb-4 flex flex-wrap items-center gap-x-4 gap-y-2">
-      <StatusBadge status={unsentNow ? 'draft' : status} locale={locale} />
-      {status === 'approved' && !unsentNow ? (
-        <Link href={siteHref} className="self-center text-[14px]! leading-[20px]!">
-          {t.openOnSite}
-        </Link>
-      ) : null}
-      {status === 'pending' && onWithdraw ? (
-        <Link as="button" onClick={onWithdraw} className="self-center text-[14px]! leading-[20px]!">
-          {t.withdraw}
-        </Link>
-      ) : null}
+      <StatusBadge status={unsentNow ? 'draft' : status} locale={locale}>
+        {status === 'approved' && !unsentNow ? (
+          <Link href={siteHref} className="self-center text-[14px]! leading-[20px]!">
+            {t.openOnSite}
+          </Link>
+        ) : null}
+        {status === 'pending' && onWithdraw ? (
+          <Link as="button" onClick={onWithdraw} className="self-center text-[14px]! leading-[20px]!">
+            {t.withdraw}
+          </Link>
+        ) : null}
+      </StatusBadge>
     </div>
   );
 
@@ -449,25 +450,32 @@ export function ProfileView({
           <ProfileName locale={locale} profile={profile} show="position" action={change('name', t.parts.name)} />
         </div>
       )}
-      <div className={`grid gap-6 ${identity ? 'mt-0 md:grid-cols-[5fr_7fr] md:gap-x-12 lg:grid-cols-[4fr_8fr]' : 'mt-[24px]'}`}>
+      {/* Photo and identity stand side by side whenever they fit, and the identity stands first: when they do not fit it goes under the photo, before the links and the rest.
+          Wide screens: the photo and the links in the left column, the identity and the rest in the right one. */}
+      <div
+        className={
+          identity
+            ? 'flex flex-wrap gap-x-8 gap-y-6 md:grid md:grid-cols-[max-content_minmax(0,1fr)] md:gap-y-0'
+            : 'mt-[24px] grid gap-6'
+        }
+      >
         {identity ? (
-          <aside className="md:w-[min(100%,max(180px,32vh))]">
-            {/* the photo is as wide as the site's: the column, and no taller than a third of the screen; the links and the rule under it share that width */}
-            <div className="w-full">
-              <ProfilePhoto locale={locale} profile={profile} locked={locked} onPhoto={onPhoto} />
-            </div>
-            {linksBlock}
-          </aside>
-        ) : null}
-
-        <div className="min-w-0">
-          {identity ? (
-            <>
+          <>
+            <aside className="contents md:col-start-1 md:row-span-2 md:row-start-1 md:block md:w-[clamp(180px,32vh,360px)]">
+              {/* the photo is as wide as the site's: no taller than a third of the screen and never wider than 360px (200px when small); the links under it share that width */}
+              <div className="order-1 w-[200px] shrink-0 md:w-full">
+                <ProfilePhoto locale={locale} profile={profile} locked={locked} onPhoto={onPhoto} />
+              </div>
+              <div className="order-3 basis-full md:basis-auto">{linksBlock}</div>
+            </aside>
+            <div className="order-2 min-w-[260px] flex-1 md:col-start-2 md:row-start-1 md:min-w-0">
               {statusLine}
               <ProfileName locale={locale} profile={profile} action={change('name', t.parts.name)} />
-            </>
-          ) : null}
+            </div>
+          </>
+        ) : null}
 
+        <div className={identity ? 'order-4 min-w-0 basis-full md:col-start-2 md:row-start-2 md:basis-auto' : 'min-w-0'}>
           {keywordsBlock}
 
           <Section title={t.headings.languages} empty={!profile.languages} action={change('languages', t.aside.languages.replace(/:$/, '').toLowerCase())}>

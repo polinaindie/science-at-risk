@@ -36,6 +36,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/9.1.0/swiper-bundle.min.css" integrity="sha512-n/86mxSdfFpsFtq9QYVhRlke9BQ/ZqIaRBe/dboH4l8JwBVitjpCS2HnDfbZnISV5Zq1lKONL/aQDqDQmtY/cA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.9/fullpage.min.css"/>
     <link href="../css/style.min.css" rel="stylesheet">
+    <link href="../css/pages/search-field.css" rel="stylesheet">
+    <link href="../css/pages/expert-card.css" rel="stylesheet">
         
     <link rel="apple-touch-icon" sizes="57x57" href="../images/favicon_client/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="../images/favicon_client/apple-icon-60x60.png">
@@ -96,12 +98,12 @@
                 <div class="search-hero__info-wrap">
                     <h1 class="search-hero__title">Find Ukrainian scientists for collaboration</h1>
                 </div>
-                <form action="../experts.html" method="GET" class="_searchScientists  search-hero__input-wrap">
-                    <div class="search-hero__column">
-                        <input class="_risk-label" type="text" name="search" id="search" value=""/>
-                        <label for="search">Scientific field or name </label>
-                    </div>
-                    <button class="search-hero__btn btn btn--black" type="submit">Find a scientist</button>
+                <form role="search" action="../experts.html" method="GET" class="_searchScientists search-field">
+                    <label class="satr-float" for="search">
+                        <input id="search" type="search" name="search" placeholder=" ">
+                        <span class="satr-float__label">Enter scientific field or name</span>
+                    </label>
+                    <button class="btn btn--black" type="submit">Find a scientist</button>
                 </form>
                 <div class="search-hero__requests popular-requests">
                     <p class="popular-requests__text">Popular requests</p>
@@ -190,7 +192,7 @@
             <p class="expert-card__subtitle">Ph.D., Senior Researcher</p>
             <p class="expert-card__text">Bogolyubov Institute for Theoretical Physics of the National Academy of Sciences of Ukraine</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Andrii is a leading researcher at the Bogolyubov Institute of Theoretical Physics. He works in the fundamentals of quantum physics and modern quantum technologies. His interests include fundamental questions of quantum theory and practical applications of quantum phenomena. In particular, he is one of the co-authors of the theory describing quantum communication channels in the atmosphere (including using satellites). In addition, Andrii has resulted in the theory of realistic quantum measurements. He significantly tries to understand the fundamental differences between quantum and classical systems.</p>
+                                                                                                                        <p  class="paragraph">Andrii is a leading researcher at the Bogolyubov Institute of Theoretical Physics. He works in the fundamentals of quantum physics and modern quantum technologies. His interests include fundamental questions of quantum theory and practical applications of quantum phenomena.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -233,7 +235,7 @@
             <p class="expert-card__subtitle">Ph.D., professor</p>
             <p class="expert-card__text">Igor Sikorsky Kyiv Polytechnic Institute</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Larysa is a professor of information and communication technologies and systems, currently working on a project at the Dresden University of Technology.</p>
+                                                                                                                        <p  class="paragraph">Larysa is a professor of information and communication technologies and systems, currently working on a project at the Dresden University of Technology.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -267,7 +269,7 @@
             <p class="expert-card__subtitle">Ph.D., professor</p>
             <p class="expert-card__text">Luhansk Taras Shevchenko National University</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Olena is the university's rector, organizer of educational, scientific, and international activities, chairman of the specialized academic council to defend doctoral dissertations in pedagogical sciences and supervisor of doctoral and doctoral dissertations.</p>
+                                                                                                                        <p  class="paragraph">Olena is the university's rector, organizer of educational, scientific, and international activities, chairman of the specialized academic council to defend doctoral dissertations in pedagogical sciences and supervisor of doctoral and doctoral dissertations.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -304,7 +306,7 @@
             <p class="expert-card__subtitle">Ph.D., Associate Professor</p>
             <p class="expert-card__text">Luhansk Taras Shevchenko National University</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Anton is the Director of the Educational and Scientific Institute of International Relations and National Security. He researches various types of armed violence and their impact on the functioning and change of political systems.</p>
+                                                                                                                        <p  class="paragraph">Anton is the Director of the Educational and Scientific Institute of International Relations and National Security. He researches various types of armed violence and their impact on the functioning and change of political systems.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -341,7 +343,7 @@
             <p class="expert-card__subtitle">Ph.D., Senior Researcher</p>
             <p class="expert-card__text">V.M. Glushkov Institute of Cybernetics of NAS of Ukraine</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Volodymyr is an expert in operations research, a Doctor of Science in Physics and Mathematics, a Professor of Applied Mathematics, and a leading researcher. He has published over 100 scientific papers on operations research and its applications and a monograph entitled Methods of Nonconvex Optimization.</p>
+                                                                                                                        <p  class="paragraph">Volodymyr is an expert in operations research, a Doctor of Science in Physics and Mathematics, a Professor of Applied Mathematics, and a leading researcher. He has published over 100 scientific papers on operations research and its applications and a monograph entitled Methods of Nonconvex Optimization.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -378,7 +380,7 @@
             <p class="expert-card__subtitle">Ph.D.</p>
             <p class="expert-card__text">National Science Center &#039;Kharkiv Institute of Physics and Technology&quot;</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Andrii is a leading researcher at the National Science Center's Kharkiv Institute of Physics and Technology". Together with his research group, he theoretically investigates the physical properties of quantum many-particle systems, phase transitions and new unique states of matter that can be realized with ultracold quantum gases and the possibility of using them as universal quantum simulators.</p>
+                                                                                                                        <p  class="paragraph">Andrii is a leading researcher at the National Science Center's Kharkiv Institute of Physics and Technology". Together with his research group, he theoretically investigates the physical properties of quantum many-particle systems, phase transitions and new unique states of matter that can be realized with ultracold quantum gases and the possibility of using them as universal quantum simulators.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -412,7 +414,7 @@
             <p class="expert-card__subtitle">Ph.D., professor</p>
             <p class="expert-card__text">Vasyl Stefanyk Precarpathian National University</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Andriy is the Head of the Department of Mathematical and Functional Analysis. He teaches undergraduate and graduate students, supervises graduate students, research, and manages research projects.</p>
+                                                                                                                        <p  class="paragraph">Andriy is the Head of the Department of Mathematical and Functional Analysis. He teaches undergraduate and graduate students, supervises graduate students, research, and manages research projects.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -446,7 +448,7 @@
             <p class="expert-card__subtitle">Ph.D.</p>
             <p class="expert-card__text">National University of Kyiv-Mohyla Academy</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Olena is a senior lecturer at the Department of Ecology at the Kyiv-Mohyla Academy. In addition to biodiversity research, she is interested in education for sustainable development.</p>
+                                                                                                                        <p  class="paragraph">Olena is a senior lecturer at the Department of Ecology at the Kyiv-Mohyla Academy. In addition to biodiversity research, she is interested in education for sustainable development.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -486,7 +488,7 @@
             <p class="expert-card__subtitle">Ph.D., professor</p>
             <p class="expert-card__text">Berdyansk State Pedagogical University</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">For more than 30 years, Igor has been studying the regional history of Southern Ukraine during the Russian Empire, including the history of Crimea and Donbas.&nbsp;He launched the book series "History of Foreign Consulates in Southern Ukraine," where five books have been published. Currently, Igor is working on the issues of recording the destroyed research infrastructure of Ukraine and the initiative "Ukrainian Science Diaspora."</p>
+                                                                                                                        <p  class="paragraph">For more than 30 years, Igor has been studying the regional history of Southern Ukraine during the Russian Empire, including the history of Crimea and Donbas. He launched the book series "History of Foreign Consulates in Southern Ukraine," where five books have been published. Currently, Igor is working on the issues of recording the destroyed research infrastructure of Ukraine and the initiative "Ukrainian Science Diaspora."</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -535,7 +537,7 @@
             <p class="expert-card__subtitle">Ph.D., Associate Professor</p>
             <p class="expert-card__text">Vasyl&#039; Stus Donetsk National University</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Serhii is a scientist in the field of chemistry and is also engaged in scientific and organizational work at Vasyl' Stus Donetsk National University. Regarding research administration, he deals with practical issues of implementing research projects and creating conditions for their proper implementation. In chemical science, he focuses on the fundamental issues of obtaining new coordination compounds of polyoxometalates, predicting interactions in complex oxide systems, and on the applied aspects of using chemical knowledge to create the latest materials with specified properties.</p>
+                                                                                                                        <p  class="paragraph">Serhii is a scientist in the field of chemistry and is also engaged in scientific and organizational work at Vasyl' Stus Donetsk National University. Regarding research administration, he deals with practical issues of implementing research projects and creating conditions for their proper implementation. In chemical science, he focuses on the fundamental issues of obtaining new coordination compounds of polyoxometalates, predicting interactions in complex oxide systems, and on the applied aspects of using chemical knowledge to create the latest materials with specified properties.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">

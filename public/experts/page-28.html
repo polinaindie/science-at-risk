@@ -36,6 +36,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/9.1.0/swiper-bundle.min.css" integrity="sha512-n/86mxSdfFpsFtq9QYVhRlke9BQ/ZqIaRBe/dboH4l8JwBVitjpCS2HnDfbZnISV5Zq1lKONL/aQDqDQmtY/cA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.9/fullpage.min.css"/>
     <link href="https://scienceatrisk.org/css/style.min.css?v=1793795400" rel="stylesheet">
+    <link href="../css/pages/search-field.css" rel="stylesheet">
+    <link href="../css/pages/expert-card.css" rel="stylesheet">
         
     <link rel="apple-touch-icon" sizes="57x57" href="../images/favicon_client/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="../images/favicon_client/apple-icon-60x60.png">
@@ -96,12 +98,12 @@
                 <div class="search-hero__info-wrap">
                     <h1 class="search-hero__title">Find Ukrainian scientists for collaboration</h1>
                 </div>
-                <form action="../experts.html" method="GET" class="_searchScientists  search-hero__input-wrap">
-                    <div class="search-hero__column">
-                        <input class="_risk-label" type="text" name="search" id="search" value=""/>
-                        <label for="search">Scientific field or name </label>
-                    </div>
-                    <button class="search-hero__btn btn btn--black" type="submit">Find a scientist</button>
+                <form role="search" action="../experts.html" method="GET" class="_searchScientists search-field">
+                    <label class="satr-float" for="search">
+                        <input id="search" type="search" name="search" placeholder=" ">
+                        <span class="satr-float__label">Enter scientific field or name</span>
+                    </label>
+                    <button class="btn btn--black" type="submit">Find a scientist</button>
                 </form>
                 <div class="search-hero__requests popular-requests">
                     <p class="popular-requests__text">Popular requests</p>
@@ -190,7 +192,7 @@
             <p class="expert-card__subtitle">Doctor of Sciences, Professor</p>
             <p class="expert-card__text">Institute of Molecular Biology and Genetics of the National Academy of Sciences of Ukraine</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Sergei Dzyadevych is Deputy Director for Research at the Institute of Molecular Biology and Genetics of the National Academy of Sciences of Ukraine and a Principal Researcher at the Department of Biomolecular Electronics.&nbsp;</p>
+                                                                                                                        <p  class="paragraph">Sergei Dzyadevych is Deputy Director for Research at the Institute of Molecular Biology and Genetics of the National Academy of Sciences of Ukraine and a Principal Researcher at the Department of Biomolecular Electronics.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -230,7 +232,7 @@
             <p class="expert-card__subtitle">PhD, Senior Researcher</p>
             <p class="expert-card__text">Institute for Scintillation Materials of the National Academy of Sciences of Ukraine</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Iaroslav Gerasymov is a specialist in the field of oxide single-crystal growth.</p>
+                                                                                                                        <p  class="paragraph">Iaroslav Gerasymov is a specialist in the field of oxide single-crystal growth.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -267,9 +269,7 @@
             <p class="expert-card__subtitle">Doctor of Sciences, Senior Researcher</p>
             <p class="expert-card__text">Institute of Industrial Economics of the National Academy of Sciences of Ukraine</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Iryna Petrova works at the Institute of Industrial Economics of the National Academy of Sciences of Ukraine, where she combines academic research with the preparation of analytical materials for public authorities, participation in research projects, and support for early-career researchers.</p>
-                                            <p  class="paragraph">She studies the transformation of Ukraine’s economy under wartime conditions, technological change, and the challenges of post-war recovery. Her work focuses primarily on industrial policy, investment, public–private partnerships, and mechanisms for the recovery of industrial regions and local communities.</p>
-                                            <p  class="paragraph">Iryna also examines how government, businesses, research institutions, and international partners can cooperate more effectively to modernize industry, attract investment, and strengthen the resilience of the Ukrainian economy.</p>
+                                                                                                                        <p  class="paragraph">Iryna Petrova works at the Institute of Industrial Economics of the National Academy of Sciences of Ukraine, where she combines academic research with the preparation of analytical materials for public authorities, participation in research projects, and support for early-career researchers. She studies the transformation of Ukraine’s economy under wartime conditions, technological change, and the challenges of post-war recovery. Her work focuses primarily on industrial policy, investment, public–private partnerships, and mechanisms for the recovery of industrial regions and local communities.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -306,8 +306,7 @@
             <p class="expert-card__subtitle">Doctor of Sciences, Senior Researcher</p>
             <p class="expert-card__text">Institute of Industrial Economics of the National Academy of Sciences of Ukraine</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">At the Institute of Industrial Economics of the NAS of Ukraine, she combines academic research with the preparation of analytical materials for public authorities, participation in research projects, and support for early-career researchers.</p>
-                                            <p  class="paragraph">Iryna Petrova studies the transformation of Ukraine’s economy under wartime conditions, technological change, and the challenges of post-war recovery. Her work focuses primarily on industrial policy, investment, public-private partnerships, and mechanisms for rebuilding industrial regions and territorial communities.&nbsp;</p>
+                                                                                                                        <p  class="paragraph">At the Institute of Industrial Economics of the NAS of Ukraine, she combines academic research with the preparation of analytical materials for public authorities, participation in research projects, and support for early-career researchers. Iryna Petrova studies the transformation of Ukraine’s economy under wartime conditions, technological change, and the challenges of post-war recovery. Her work focuses primarily on industrial policy, investment, public-private partnerships, and mechanisms for rebuilding industrial regions and territorial communities.</p>
                                                 </p>
             <ul class="expert-card__list">
                             </ul>
@@ -332,7 +331,7 @@
             <p class="expert-card__subtitle">PhD</p>
             <p class="expert-card__text">Taras Shevchenko National University of Kyiv</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Hennadii Bulavko is an Associate Professor at Taras Shevchenko National University of Kyiv. His research focuses on functional materials for photonics, photoelectrochemistry, and photovoltaics. He studies photoinduced processes, photochemical cells, organic and hybrid materials for solar energy conversion, and polymer materials and composites with tailored optical and electronic properties.&nbsp;</p>
+                                                                                                                        <p  class="paragraph">Hennadii Bulavko is an Associate Professor at Taras Shevchenko National University of Kyiv. His research focuses on functional materials for photonics, photoelectrochemistry, and photovoltaics. He studies photoinduced processes, photochemical cells, organic and hybrid materials for solar energy conversion, and polymer materials and composites with tailored optical and electronic properties.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -369,8 +368,7 @@
             <p class="expert-card__subtitle">PhD, Associate Professor</p>
             <p class="expert-card__text">Sumy State University</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Inna Koblianska heads the Department of International Economic Relations at Sumy State University and the LCA Hub research laboratory, which focuses on life cycle assessment of socio-economic systems. Her work combines teaching, academic research, leadership of research and international educational projects, and academic cooperation.</p>
-                                            <p  class="paragraph">Inna’s research focuses on sustainable development, ecological economics, life cycle assessment, post-war regional</p>
+                                                                                                                        <p  class="paragraph">Inna Koblianska heads the Department of International Economic Relations at Sumy State University and the LCA Hub research laboratory, which focuses on life cycle assessment of socio-economic systems. Her work combines teaching, academic research, leadership of research and international educational projects, and academic cooperation. Inna’s research focuses on sustainable development, ecological economics, life cycle assessment, post-war regional</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -407,7 +405,7 @@
             <p class="expert-card__subtitle">PhD, Professor</p>
             <p class="expert-card__text">Zaporizhzhia National University</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Oleksandr Davlietov is a German historian and Professor at the Department of World History and International Relations at Zaporizhzhia National University.</p>
+                                                                                                                        <p  class="paragraph">Oleksandr Davlietov is a German historian and Professor at the Department of World History and International Relations at Zaporizhzhia National University.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -435,7 +433,7 @@
             <p class="expert-card__subtitle">PhD</p>
             <p class="expert-card__text">Sumy State University</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Anna Vorontsova is a researcher in the field of economics at Sumy State University. Her research focuses on two key areas: the resilience and transformation of higher education in the context of military conflict and instability, and the analysis of institutional challenges in science during global crises, including practices of manipulation and academic misconduct within the editorial boards of journals from the aggressor state.</p>
+                                                                                                                        <p  class="paragraph">Anna Vorontsova is a researcher in the field of economics at Sumy State University. Her research focuses on two key areas: the resilience and transformation of higher education in the context of military conflict and instability, and the analysis of institutional challenges in science during global crises, including practices of manipulation and academic misconduct within the editorial boards of journals from the aggressor state.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -466,7 +464,7 @@
             <p class="expert-card__subtitle">PhD, Associate Professor</p>
             <p class="expert-card__text"></p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Svitlana Tarasenko holds a PhD in Economics and is an Associate Professor at the Department of International Economic Relations at Sumy State University. Her work lies at the intersection of industrial development, industrial policy, and technology diffusion across sectors, as well as the development of scientific and technical products.</p>
+                                                                                                                        <p  class="paragraph">Svitlana Tarasenko holds a PhD in Economics and is an Associate Professor at the Department of International Economic Relations at Sumy State University. Her work lies at the intersection of industrial development, industrial policy, and technology diffusion across sectors, as well as the development of scientific and technical products.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -503,7 +501,7 @@
             <p class="expert-card__subtitle">Doctor of Sciences, Associate Professor</p>
             <p class="expert-card__text">Sumy State University</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Maryna Utkina is an Associate Professor at Sumy State University. Her research focuses on the legal regulation of digital economic security and anti-corruption mechanisms in the context of war and post-war recovery. In particular, she concentrates on developing an integrated legal framework for assessing and ensuring accountability in the management of international financial assistance to Ukraine.</p>
+                                                                                                                        <p  class="paragraph">Maryna Utkina is an Associate Professor at Sumy State University. Her research focuses on the legal regulation of digital economic security and anti-corruption mechanisms in the context of war and post-war recovery. In particular, she concentrates on developing an integrated legal framework for assessing and ensuring accountability in the management of international financial assistance to Ukraine.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">

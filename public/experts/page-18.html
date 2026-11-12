@@ -36,6 +36,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/9.1.0/swiper-bundle.min.css" integrity="sha512-n/86mxSdfFpsFtq9QYVhRlke9BQ/ZqIaRBe/dboH4l8JwBVitjpCS2HnDfbZnISV5Zq1lKONL/aQDqDQmtY/cA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.9/fullpage.min.css"/>
     <link href="https://scienceatrisk.org/css/style.min.css?v=1793795514" rel="stylesheet">
+    <link href="../css/pages/search-field.css" rel="stylesheet">
+    <link href="../css/pages/expert-card.css" rel="stylesheet">
         
     <link rel="apple-touch-icon" sizes="57x57" href="../images/favicon_client/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="../images/favicon_client/apple-icon-60x60.png">
@@ -96,12 +98,12 @@
                 <div class="search-hero__info-wrap">
                     <h1 class="search-hero__title">Find Ukrainian scientists for collaboration</h1>
                 </div>
-                <form action="../experts.html" method="GET" class="_searchScientists  search-hero__input-wrap">
-                    <div class="search-hero__column">
-                        <input class="_risk-label" type="text" name="search" id="search" value=""/>
-                        <label for="search">Scientific field or name </label>
-                    </div>
-                    <button class="search-hero__btn btn btn--black" type="submit">Find a scientist</button>
+                <form role="search" action="../experts.html" method="GET" class="_searchScientists search-field">
+                    <label class="satr-float" for="search">
+                        <input id="search" type="search" name="search" placeholder=" ">
+                        <span class="satr-float__label">Enter scientific field or name</span>
+                    </label>
+                    <button class="btn btn--black" type="submit">Find a scientist</button>
                 </form>
                 <div class="search-hero__requests popular-requests">
                     <p class="popular-requests__text">Popular requests</p>
@@ -190,7 +192,7 @@
             <p class="expert-card__subtitle">Ph.D., Associate professor</p>
             <p class="expert-card__text">Zaporizhzhia National University</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Plant anatomy and morphology, plant resilience, genetics, landscape design, forestry, plant interactions and interactions, breeding, biodiversity conservation (including water resources), popularization of science, sustainable development (especially urban), pedagogical research.</p>
+                                                                                                                        <p  class="paragraph">Plant anatomy and morphology, plant resilience, genetics, landscape design, forestry, plant interactions and interactions, breeding, biodiversity conservation (including water resources), popularization of science, sustainable development (especially urban), pedagogical research.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -233,6 +235,7 @@
                         <button data-try-tag="sdg" class="expert-card__tag tag">SDG</button>
                     </li>
                             </ul>
+            <p class="expert-card__societies"><span class="expert-card__societies-label">Societies:</span> <a href="../society/ukrainske-botanichne-tovarystvo.html">Ukrainian Botanical Society</a></p>
         </div>
     </article>
     <a class="absoluteLink" href="../expert/boika-olena-anatoliivna.html"></a>
@@ -254,7 +257,7 @@
             <p class="expert-card__subtitle">D.Sc., Associate Professor</p>
             <p class="expert-card__text">Lesya Ukrainka Volyn National University</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Migration policy; gender aspects of political processes; communication processes of public authorities with civil society.</p>
+                                                                                                                        <p  class="paragraph">Migration policy; gender aspects of political processes; communication processes of public authorities with civil society.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -291,7 +294,7 @@
             <p class="expert-card__subtitle">Ph.D.</p>
             <p class="expert-card__text">G. V. Kurdyumov Institute for Metal Physics of the National Academy of Science of Ukraine</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Synthesis of composites; microscopic and spectroscopic studies of materials; electronic structure and electronic properties of nanoscale systems; perovskite photovoltaics.</p>
+                                                                                                                        <p  class="paragraph">Synthesis of composites; microscopic and spectroscopic studies of materials; electronic structure and electronic properties of nanoscale systems; perovskite photovoltaics.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -331,7 +334,7 @@
             <p class="expert-card__subtitle">Postgraduate student</p>
             <p class="expert-card__text">Uppsala University</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Ecology of communities, modeling of ecological niches, vegetation of sands, classification of vegetation, methods of teaching natural sciences.</p>
+                                                                                                                        <p  class="paragraph">Ecology of communities, modeling of ecological niches, vegetation of sands, classification of vegetation, methods of teaching natural sciences.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -374,7 +377,7 @@
             <p class="expert-card__subtitle">D.Sc., Professor</p>
             <p class="expert-card__text">The Modern Art Research Institute of the National Academy of Arts of Ukraine</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">She is a theater scholar, theater critic, and is engaged in the history and theory of theater. </p>
+                                                                                                                        <p  class="paragraph">She is a theater scholar, theater critic, and is engaged in the history and theory of theater.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -408,7 +411,7 @@
             <p class="expert-card__subtitle">Ph.D.</p>
             <p class="expert-card__text">Potebnia Institute of Linguistics</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Junior Researcher at the Department of Ukrainian Languages is interested in the world experience of sociolinguistic research. She focuses on the issues of ethnic communities and their linguistic situation in the context of globalization.</p>
+                                                                                                                        <p  class="paragraph">Junior Researcher at the Department of Ukrainian Languages is interested in the world experience of sociolinguistic research. She focuses on the issues of ethnic communities and their linguistic situation in the context of globalization.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -445,7 +448,7 @@
             <p class="expert-card__subtitle">Ph.D., Associate professor</p>
             <p class="expert-card__text">Sumy State University</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Associate Professor of the Department of Theoretical and Applied Chemistry and Candidate of Technical Sciences. She is interested in the following topics: “Adsorption of ions from aqueous solutions by clay sorbents,” ‘Improving the ability of electrolyte dispersion when applying zinc coatings to metal products,’ ‘Improving the technological process scheme of the electroplating industry,’ “Increasing the efficiency of regeneration of technological solutions containing chromium,” ‘Development and correction of electrolyte composition for the creation of antifriction coatings,’ ‘Study of corrosion resistance of metal structures in operation,’ fertilizer production, and teaching of chemical disciplines.</p>
+                                                                                                                        <p  class="paragraph">Associate Professor of the Department of Theoretical and Applied Chemistry and Candidate of Technical Sciences. She is interested in the following topics: “Adsorption of ions from aqueous solutions by clay sorbents,” ‘Improving the ability of electrolyte dispersion when applying zinc coatings to metal products,’ ‘Improving the technological process scheme of the electroplating industry,’ “Increasing the efficiency of regeneration of technological solutions containing chromium,” ‘Development and correction of electrolyte composition for the creation of antifriction coatings,’ ‘Study of corrosion resistance of metal structures in operation,’ fertilizer production, and teaching of chemical disciplines.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -482,7 +485,7 @@
             <p class="expert-card__subtitle">D.Sc.</p>
             <p class="expert-card__text">National University of Kyiv-Mohyla Academy</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">He is interested in the history of the church, religious culture, education, and literacy of the early modern and modern periods.</p>
+                                                                                                                        <p  class="paragraph">He is interested in the history of the church, religious culture, education, and literacy of the early modern and modern periods.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -519,7 +522,7 @@
             <p class="expert-card__subtitle">Ph.D., Associate professor</p>
             <p class="expert-card__text">Bogomolets Institute of Physiology, Centro de Biología Molecular Severo Ochoa</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Alina has worked as a Postdoc at the Centro de Biología Molecular Severo Ochoa (CBMSO), Madrid, Spain, since June 2024. His research focuses on the role of the transcription factor Nrf2 in protecting cardiomyocytes from doxorubicin-induced damage. </p>
+                                                                                                                        <p  class="paragraph">Alina has worked as a Postdoc at the Centro de Biología Molecular Severo Ochoa (CBMSO), Madrid, Spain, since June 2024. His research focuses on the role of the transcription factor Nrf2 in protecting cardiomyocytes from doxorubicin-induced damage.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -550,7 +553,7 @@
             <p class="expert-card__subtitle">Ph.D., Associate professor</p>
             <p class="expert-card__text">Mariupol State University</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Sergiy is an associate professor at the Department of Political Science and International Relations at Mariupol State University and lectures online at the University of Latvia. Research interests include politics of historical memory, information wars, historical narratives in propaganda, nationalism, and ethnic studies.</p>
+                                                                                                                        <p  class="paragraph">Sergiy is an associate professor at the Department of Political Science and International Relations at Mariupol State University and lectures online at the University of Latvia. Research interests include politics of historical memory, information wars, historical narratives in propaganda, nationalism, and ethnic studies.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">

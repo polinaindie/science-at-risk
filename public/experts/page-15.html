@@ -36,6 +36,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/9.1.0/swiper-bundle.min.css" integrity="sha512-n/86mxSdfFpsFtq9QYVhRlke9BQ/ZqIaRBe/dboH4l8JwBVitjpCS2HnDfbZnISV5Zq1lKONL/aQDqDQmtY/cA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.9/fullpage.min.css"/>
     <link href="https://scienceatrisk.org/css/style.min.css?v=1793795526" rel="stylesheet">
+    <link href="../css/pages/search-field.css" rel="stylesheet">
+    <link href="../css/pages/expert-card.css" rel="stylesheet">
         
     <link rel="apple-touch-icon" sizes="57x57" href="../images/favicon_client/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="../images/favicon_client/apple-icon-60x60.png">
@@ -96,12 +98,12 @@
                 <div class="search-hero__info-wrap">
                     <h1 class="search-hero__title">Find Ukrainian scientists for collaboration</h1>
                 </div>
-                <form action="../experts.html" method="GET" class="_searchScientists  search-hero__input-wrap">
-                    <div class="search-hero__column">
-                        <input class="_risk-label" type="text" name="search" id="search" value=""/>
-                        <label for="search">Scientific field or name </label>
-                    </div>
-                    <button class="search-hero__btn btn btn--black" type="submit">Find a scientist</button>
+                <form role="search" action="../experts.html" method="GET" class="_searchScientists search-field">
+                    <label class="satr-float" for="search">
+                        <input id="search" type="search" name="search" placeholder=" ">
+                        <span class="satr-float__label">Enter scientific field or name</span>
+                    </label>
+                    <button class="btn btn--black" type="submit">Find a scientist</button>
                 </form>
                 <div class="search-hero__requests popular-requests">
                     <p class="popular-requests__text">Popular requests</p>
@@ -190,7 +192,7 @@
             <p class="expert-card__subtitle">Ph.D.</p>
             <p class="expert-card__text">Ternopil Volodymyr Hnatiuk National Pedagogical University, Institute of Ukrainian Language</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">She works in sociolinguistics. She studies changes in the linguistic situation in Ukraine and changes in Ukrainians' linguistic behavior during the Russian-Ukrainian war.</p>
+                                                                                                                        <p  class="paragraph">She works in sociolinguistics. She studies changes in the linguistic situation in Ukraine and changes in Ukrainians' linguistic behavior during the Russian-Ukrainian war.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -224,7 +226,7 @@
             <p class="expert-card__subtitle">Ph.D., Associate Professor</p>
             <p class="expert-card__text">Kyiv National I. K. Karpenko-Kary Theatre, Cinema and Television University</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">She is an art historian with research interests in the history and theory of Ukrainian photography and Soviet and post-Soviet photography in Ukraine. She is also interested in the intersection of gender and sexuality in Ukraine's visual culture.</p>
+                                                                                                                        <p  class="paragraph">She is an art historian with research interests in the history and theory of Ukrainian photography and Soviet and post-Soviet photography in Ukraine. She is also interested in the intersection of gender and sexuality in Ukraine's visual culture.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -261,7 +263,7 @@
             <p class="expert-card__subtitle">Postgraduate student</p>
             <p class="expert-card__text">Materials Research Centre, Carbon-Ukraine (Y-Carbon)</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Veronika is a postgraduate student working in the non-governmental sector, engaged in research and development in the field of materials science, in particular 2D nanomaterials with MXenes nanomachines for various applications.</p>
+                                                                                                                        <p  class="paragraph">Veronika is a postgraduate student working in the non-governmental sector, engaged in research and development in the field of materials science, in particular 2D nanomaterials with MXenes nanomachines for various applications.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -313,7 +315,7 @@
             <p class="expert-card__subtitle">Doctor in the field of Humanities in the discipline of Archaeology</p>
             <p class="expert-card__text">Institute of Archaeology of the National Academy of Science of Ukraine; Leibniz-Institut für Geschichte und Kultur des östlichen Europa (GWZO)</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">In 2022, Natalia was invited to the  Leibniz Institute for the History and Culture of Eastern Europe (GWZO) as a researcher at risk. She is currently researching the archaeology and history of Kievan Rus.&nbsp;She is a member of the European Association of Archaeologists (EAA), the Medieval Europe Research Community (MERC), and the International Council of Museums (ICOM), serves as a Research Expert for the European Commission services, and is a member of the Editorial Board of the Kyiv-Mohyla Archaeology Journal.</p>
+                                                                                                                        <p  class="paragraph">In 2022, Natalia was invited to the Leibniz Institute for the History and Culture of Eastern Europe (GWZO) as a researcher at risk. She is currently researching the archaeology and history of Kievan Rus. She is a member of the European Association of Archaeologists (EAA), the Medieval Europe Research Community (MERC), and the International Council of Museums (ICOM), serves as a Research Expert for the European Commission services, and is a member of the Editorial Board of the Kyiv-Mohyla Archaeology Journal.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -353,7 +355,7 @@
             <p class="expert-card__subtitle">D.Sc., Senior Researcher</p>
             <p class="expert-card__text">Lviv Polytechnic National University</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Viktoriya is a professor at the Department of Technology of Biologically Active Substances, Pharmacy, and Biotechnology. She is engaged in teaching and research. She lectures to undergraduate and postgraduate students majoring in “Biotechnology and Bioengineering.”&nbsp;</p>
+                                                                                                                        <p  class="paragraph">Viktoriya is a professor at the Department of Technology of Biologically Active Substances, Pharmacy, and Biotechnology. She is engaged in teaching and research. She lectures to undergraduate and postgraduate students majoring in “Biotechnology and Bioengineering.”</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -399,8 +401,7 @@
             <p class="expert-card__subtitle">Ph.D., associate professor</p>
             <p class="expert-card__text">Richelieu Scientific Lyceum</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Three years ago, Vladyslava's main activities were teaching astrophysics at the Odesa II Mechnikov National University, working with students in the field of studying variable stars, working with schoolchildren in an astronomy club, preparing for astronomy competitions, working with schoolchildren and preparing papers for competitions of the Junior Academy of Sciences. </p>
-                                            <p  class="paragraph">After the start of the full-scale invasion, the scientist received a scholarship for an internship in Slovakia but lost her position at Odesa II Mechnikov National University. At the same time, she continued to lead an astronomy club at the Richelieu Scientific Lyceum, worked as a jury member for astronomy competitions, and trained teams before international competitions.&nbsp;</p>
+                                                                                                                        <p  class="paragraph">Three years ago, Vladyslava's main activities were teaching astrophysics at the Odesa II Mechnikov National University, working with students in the field of studying variable stars, working with schoolchildren in an astronomy club, preparing for astronomy competitions, working with schoolchildren and preparing papers for competitions of the Junior Academy of Sciences. After the start of the full-scale invasion, the scientist received a scholarship for an internship in Slovakia but lost her position at Odesa II Mechnikov National University. At the same time, she continued to lead an astronomy club at the Richelieu Scientific Lyceum, worked as a jury member for astronomy competitions, and trained teams before international competitions.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -443,7 +444,7 @@
             <p class="expert-card__subtitle">D.Sc, Associate Professor</p>
             <p class="expert-card__text">Taras Shevchenko National University of Kyiv</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">He combines teaching chemical disciplines at the Faculty of Chemistry of Taras Shevchenko National University of Kyiv with scientific developments in solid-state chemistry: luminescent materials and composites.</p>
+                                                                                                                        <p  class="paragraph">He combines teaching chemical disciplines at the Faculty of Chemistry of Taras Shevchenko National University of Kyiv with scientific developments in solid-state chemistry: luminescent materials and composites.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -480,7 +481,7 @@
             <p class="expert-card__subtitle">Ph.D.</p>
             <p class="expert-card__text">Taras Shevchenko National University of Kyiv</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">He teaches at the Taras Shevchenko National University of Kyiv, holds a PhD in Physics and Mathematics, is an associate professor, and is a member of the scientific society.</p>
+                                                                                                                        <p  class="paragraph">He teaches at the Taras Shevchenko National University of Kyiv, holds a PhD in Physics and Mathematics, is an associate professor, and is a member of the scientific society.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -529,8 +530,7 @@
             <p class="expert-card__subtitle">Ph.D., Senior Researcher</p>
             <p class="expert-card__text">Institute of Physics of the National Academy of Sciences of Ukraine</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Senior Researcher at the Institute of Physics of the National Academy of Sciences of Ukraine, Department of Laser Spectroscopy. Currently, all of the group's scientific works are devoted to research that studies the propagation of laser beams (with different energy characteristics) in the real atmosphere and the ability to form specified beams over long distances. </p>
-                                            <p  class="paragraph">In addition to scientific work, the group also pays attention to a project to create an appropriate infrastructure in Ukraine for the production of laser systems, as well as the introduction of scientific methods for quality control and the possibility of using such laser systems that can improve our defense capabilities in the future.</p>
+                                                                                                                        <p  class="paragraph">Senior Researcher at the Institute of Physics of the National Academy of Sciences of Ukraine, Department of Laser Spectroscopy. Currently, all of the group's scientific works are devoted to research that studies the propagation of laser beams (with different energy characteristics) in the real atmosphere and the ability to form specified beams over long distances. In addition to scientific work, the group also pays attention to a project to create an appropriate infrastructure in Ukraine for the production of laser systems, as well as the introduction of scientific methods for quality control and the possibility of using such laser systems that can improve our defense capabilities in the future.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -567,7 +567,7 @@
             <p class="expert-card__subtitle">D.Sc.</p>
             <p class="expert-card__text">NASU Institute of Ukrainian Language</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">She is a lexicographer, compiler and editor of academic dictionaries. Her doctoral dissertation pioneered linguistic rhymology in Ukrainian studies, the linguistic study of rhyme: typology, structure, functions, and lexicography of rhymes.</p>
+                                                                                                                        <p  class="paragraph">She is a lexicographer, compiler and editor of academic dictionaries. Her doctoral dissertation pioneered linguistic rhymology in Ukrainian studies, the linguistic study of rhyme: typology, structure, functions, and lexicography of rhymes.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">

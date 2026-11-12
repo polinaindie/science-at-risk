@@ -36,6 +36,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/9.1.0/swiper-bundle.min.css" integrity="sha512-n/86mxSdfFpsFtq9QYVhRlke9BQ/ZqIaRBe/dboH4l8JwBVitjpCS2HnDfbZnISV5Zq1lKONL/aQDqDQmtY/cA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.9/fullpage.min.css"/>
     <link href="https://scienceatrisk.org/css/style.min.css?v=1793795405" rel="stylesheet">
+    <link href="../css/pages/search-field.css" rel="stylesheet">
+    <link href="../css/pages/expert-card.css" rel="stylesheet">
         
     <link rel="apple-touch-icon" sizes="57x57" href="../images/favicon_client/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="../images/favicon_client/apple-icon-60x60.png">
@@ -96,12 +98,12 @@
                 <div class="search-hero__info-wrap">
                     <h1 class="search-hero__title">Find Ukrainian scientists for collaboration</h1>
                 </div>
-                <form action="../experts.html" method="GET" class="_searchScientists  search-hero__input-wrap">
-                    <div class="search-hero__column">
-                        <input class="_risk-label" type="text" name="search" id="search" value=""/>
-                        <label for="search">Scientific field or name </label>
-                    </div>
-                    <button class="search-hero__btn btn btn--black" type="submit">Find a scientist</button>
+                <form role="search" action="../experts.html" method="GET" class="_searchScientists search-field">
+                    <label class="satr-float" for="search">
+                        <input id="search" type="search" name="search" placeholder=" ">
+                        <span class="satr-float__label">Enter scientific field or name</span>
+                    </label>
+                    <button class="btn btn--black" type="submit">Find a scientist</button>
                 </form>
                 <div class="search-hero__requests popular-requests">
                     <p class="popular-requests__text">Popular requests</p>
@@ -190,7 +192,7 @@
             <p class="expert-card__subtitle">Ph.D., associate professor</p>
             <p class="expert-card__text">Kherson State Maritime Academy</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Associate Professor of the Department of Shipboard Electrical and Automation Equipment Operation. Performs educational, methodological, scientific, organizational work in a higher education institution.</p>
+                                                                                                                        <p  class="paragraph">Associate Professor of the Department of Shipboard Electrical and Automation Equipment Operation. Performs educational, methodological, scientific, organizational work in a higher education institution.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -224,7 +226,7 @@
             <p class="expert-card__subtitle">Ph.D.</p>
             <p class="expert-card__text">Kyiv City Center for Disease Control and Prevention of the Ministry of Health of Ukraine</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Public health expert. He is engaged in the study and dissemination of scientific information on health, the prevention of non-communicable diseases, the prevention of behavioral risk factors, and longevity. He pays special attention to strengthening public policy on tobacco and alcohol control and limiting the spread of ultra-processed food.</p>
+                                                                                                                        <p  class="paragraph">Public health expert. He is engaged in the study and dissemination of scientific information on health, the prevention of non-communicable diseases, the prevention of behavioral risk factors, and longevity. He pays special attention to strengthening public policy on tobacco and alcohol control and limiting the spread of ultra-processed food.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -252,7 +254,7 @@
             <p class="expert-card__subtitle">Ph.D., associate professor</p>
             <p class="expert-card__text">Sumy State University</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Senior Lecturer at the Department of Psychology, Political Science and Socio-Cultural Technologies at Sumy State University. Her main interest is the integration of internally displaced persons in Ukraine. This unique phenomenon of mass displacement and the need to devictimize internally displaced persons is a highly relevant theoretical and practical issue. In addition to teaching, she is the project manager of the “Uniting for Action” project and, as part of the “Stabilization Support Services” Charitable Foundation, supports the Councils of Internally Displaced Persons in different regions of Ukraine.</p>
+                                                                                                                        <p  class="paragraph">Senior Lecturer at the Department of Psychology, Political Science and Socio-Cultural Technologies at Sumy State University. Her main interest is the integration of internally displaced persons in Ukraine. This unique phenomenon of mass displacement and the need to devictimize internally displaced persons is a highly relevant theoretical and practical issue.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -283,8 +285,7 @@
             <p class="expert-card__subtitle">Postgraduate student</p>
             <p class="expert-card__text">Taras Shevchenko National University of Kyiv</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">A Ph.D. student at the Taras Shevchenko National University of Kyiv is working on her dissertation “Linguistic means of expressing comics in the Ukrainian literary language.” From 2021 to 2023, she had experience teaching Ukrainian as a foreign language at the University of Washington (Seattle, USA) under the Fulbright program. </p>
-                                            <p  class="paragraph">Currently, she works at the Department of Theory and Practice of Translation from English at the Taras Shevchenko National University of Kyiv, where she teaches the Practical English Course. She also works at the private school “Nasha Shkola,” where she teaches Ukrainian to high school students.</p>
+                                                                                                                        <p  class="paragraph">A Ph.D. student at the Taras Shevchenko National University of Kyiv is working on her dissertation “Linguistic means of expressing comics in the Ukrainian literary language.” From 2021 to 2023, she had experience teaching Ukrainian as a foreign language at the University of Washington (Seattle, USA) under the Fulbright program. Currently, she works at the Department of Theory and Practice of Translation from English at the Taras Shevchenko National University of Kyiv, where she teaches the Practical English Course. She also works at the private school “Nasha Shkola,” where she teaches Ukrainian to high school students.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -327,7 +328,7 @@
             <p class="expert-card__subtitle">D.Sc., Senior Researcher</p>
             <p class="expert-card__text">The Ukrainian Research Institute of Archival Affairs and Records Keeping (URIAARK)</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Head of the Department of Archival Studies at the Ukrainian Research Institute of Archival Affairs and Records Keeping. She studies the history of women in the military service in the XX and XXI centuries. She is also engaged in developing scientific and methodological support for the work of Ukrainian archives.</p>
+                                                                                                                        <p  class="paragraph">Head of the Department of Archival Studies at the Ukrainian Research Institute of Archival Affairs and Records Keeping. She studies the history of women in the military service in the XX and XXI centuries. She is also engaged in developing scientific and methodological support for the work of Ukrainian archives.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -364,7 +365,7 @@
             <p class="expert-card__subtitle">D.Sc., Associate Professor</p>
             <p class="expert-card__text">National University of Kyiv-Mohyla Academy</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Professor of the Department of Ukrainian Language at the National University of Kyiv-Mohyla Academy. I teach the following disciplines: Morphology of the Ukrainian language, Linguistic pragmatics, Research seminar, Linguistic variation and language change: sociopolitical aspect. She is also the editor-in-chief of the journal Language: "Classical - Modern - Postmodern".</p>
+                                                                                                                        <p  class="paragraph">Professor of the Department of Ukrainian Language at the National University of Kyiv-Mohyla Academy. I teach the following disciplines: Morphology of the Ukrainian language, Linguistic pragmatics, Research seminar, Linguistic variation and language change: sociopolitical aspect. She is also the editor-in-chief of the journal Language: "Classical - Modern - Postmodern".</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -401,7 +402,7 @@
             <p class="expert-card__subtitle">Ph.D.</p>
             <p class="expert-card__text">Dragomanov Ukrainian State University</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Vitalii works as an independent researcher. He is interested in history, anthropology, environment and religion. He focuses on studying the history of archaic religious practices (shamanism, animism, neoshamanism, magical thinking) both in a historical perspective and in the modern world.</p>
+                                                                                                                        <p  class="paragraph">Vitalii works as an independent researcher. He is interested in history, anthropology, environment and religion. He focuses on studying the history of archaic religious practices (shamanism, animism, neoshamanism, magical thinking) both in a historical perspective and in the modern world.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -441,7 +442,7 @@
             <p class="expert-card__subtitle">Ph.D.</p>
             <p class="expert-card__text">National University of Food Technologies</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Victoria is an Associate Professor at the Department of Biotechnology and Microbiology of the National University of Food Technologies (Kyiv, Ukraine). Her research interests include the development of biotechnologies based on microorganisms for ecosystem restoration and conservation, the production of biologically active compounds, and the enrichment of yeast with iron to improve food quality and address health-related challenges. She pays particular attention to issues of sustainable development, especially biotechnological approaches to producing high-quality food products and introducing innovative methods into industry. Victoria actively involves students in research activities, integrating teaching with scientific inquiry, has experience participating in research projects, publishing in peer-reviewed journals, and presenting at scientific conferences, and considers the dissemination of scientific knowledge and interdisciplinary collaboration essential for addressing global challenges.</p>
+                                                                                                                        <p  class="paragraph">Victoria is an Associate Professor at the Department of Biotechnology and Microbiology of the National University of Food Technologies (Kyiv, Ukraine). Her research interests include the development of biotechnologies based on microorganisms for ecosystem restoration and conservation, the production of biologically active compounds, and the enrichment of yeast with iron to improve food quality and address health-related challenges. She pays particular attention to issues of sustainable development, especially biotechnological approaches to producing high-quality food products and introducing innovative methods into industry.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -472,7 +473,7 @@
             <p class="expert-card__subtitle">Ph.D.</p>
             <p class="expert-card__text">Taras Shevchenko National University of Kyiv</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">She holds the position of Associate Professor at the Department of Turkology. She teaches specialized courses in Turkic linguistics and Turkish language, supervises student research, participates in research and international projects, and contributes to the development of educational and methodological materials.</p>
+                                                                                                                        <p  class="paragraph">She holds the position of Associate Professor at the Department of Turkology. She teaches specialized courses in Turkic linguistics and Turkish language, supervises student research, participates in research and international projects, and contributes to the development of educational and methodological materials.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -503,7 +504,7 @@
             <p class="expert-card__subtitle">Ph.D.</p>
             <p class="expert-card__text">Izmail State University of Humanities</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">He holds the position of Associate Professor at the Department of History and Methods of Teaching History. He teaches courses in Ukrainian history and history education methodology, participates in departmental research activities, and contributes to methodological and organizational work. He is also involved in expert activities related to quality assurance in higher education.</p>
+                                                                                                                        <p  class="paragraph">He holds the position of Associate Professor at the Department of History and Methods of Teaching History. He teaches courses in Ukrainian history and history education methodology, participates in departmental research activities, and contributes to methodological and organizational work. He is also involved in expert activities related to quality assurance in higher education.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">

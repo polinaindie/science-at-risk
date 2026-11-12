@@ -33,6 +33,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/9.1.0/swiper-bundle.min.css" integrity="sha512-n/86mxSdfFpsFtq9QYVhRlke9BQ/ZqIaRBe/dboH4l8JwBVitjpCS2HnDfbZnISV5Zq1lKONL/aQDqDQmtY/cA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.9/fullpage.min.css"/>
     <link href="css/style.min.css" rel="stylesheet">
+    <link href="css/pages/search-field.css" rel="stylesheet">
         
     <link rel="apple-touch-icon" sizes="57x57" href="images/favicon_client/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="images/favicon_client/apple-icon-60x60.png">
@@ -708,13 +709,13 @@
             <div class="search-hero__info-wrap">
                 <h1 class="search-hero__title">Пошук та залучення вчених</h1>
             </div>
-            <form action="https://scienceatrisk.org/uk/experts" method="GET" class="search-hero__input-wrap">
-                <div class="search-hero__column">
-                    <input class="_risk-label" type="text" name="search" id="search" value=""/>
-                    <label for="search">Наукова галузь / Імʼя </label>
-                </div>
-                <button class="search-hero__btn btn btn--black" type="submit">Знайти науковця</button>
-            </form>
+            <form role="search" action="https://scienceatrisk.org/uk/experts" method="GET" class="_searchScientists search-field">
+                    <label class="satr-float" for="search">
+                        <input id="search" type="search" name="search" placeholder=" ">
+                        <span class="satr-float__label">Наукова галузь / Імʼя</span>
+                    </label>
+                    <button class="btn btn--black" type="submit">Знайти науковця</button>
+                </form>
             <div class="row align-items-end flex-md-row flex-column-reverse search__bottom">
                 <div class="col-md-4 col-12">
                     <p class="search__text">Відмічайте наукову галузь, яка вас цікавить – знаходьте та залучайте українських вчених до власних проєктів</p>

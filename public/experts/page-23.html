@@ -36,6 +36,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/9.1.0/swiper-bundle.min.css" integrity="sha512-n/86mxSdfFpsFtq9QYVhRlke9BQ/ZqIaRBe/dboH4l8JwBVitjpCS2HnDfbZnISV5Zq1lKONL/aQDqDQmtY/cA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.9/fullpage.min.css"/>
     <link href="https://scienceatrisk.org/css/style.min.css?v=1793795404" rel="stylesheet">
+    <link href="../css/pages/search-field.css" rel="stylesheet">
+    <link href="../css/pages/expert-card.css" rel="stylesheet">
         
     <link rel="apple-touch-icon" sizes="57x57" href="../images/favicon_client/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="../images/favicon_client/apple-icon-60x60.png">
@@ -96,12 +98,12 @@
                 <div class="search-hero__info-wrap">
                     <h1 class="search-hero__title">Find Ukrainian scientists for collaboration</h1>
                 </div>
-                <form action="../experts.html" method="GET" class="_searchScientists  search-hero__input-wrap">
-                    <div class="search-hero__column">
-                        <input class="_risk-label" type="text" name="search" id="search" value=""/>
-                        <label for="search">Scientific field or name </label>
-                    </div>
-                    <button class="search-hero__btn btn btn--black" type="submit">Find a scientist</button>
+                <form role="search" action="../experts.html" method="GET" class="_searchScientists search-field">
+                    <label class="satr-float" for="search">
+                        <input id="search" type="search" name="search" placeholder=" ">
+                        <span class="satr-float__label">Enter scientific field or name</span>
+                    </label>
+                    <button class="btn btn--black" type="submit">Find a scientist</button>
                 </form>
                 <div class="search-hero__requests popular-requests">
                     <p class="popular-requests__text">Popular requests</p>
@@ -190,7 +192,7 @@
             <p class="expert-card__subtitle">Ph.D.</p>
             <p class="expert-card__text">G. V. Kurdyumov Institute for Metal Physics, National Academy of Sciences of Ukraine</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Victor holds the position of Senior Research Fellow. He conducts research in materials physics and polymer systems, participates in international research projects, peer review of scientific publications, and expert working groups. He also has experience in teaching and grant proposal preparation.</p>
+                                                                                                                        <p  class="paragraph">Victor holds the position of Senior Research Fellow. He conducts research in materials physics and polymer systems, participates in international research projects, peer review of scientific publications, and expert working groups. He also has experience in teaching and grant proposal preparation.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -224,7 +226,7 @@
             <p class="expert-card__subtitle">Ph.D.</p>
             <p class="expert-card__text">Dnipro University of Technology</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Conducts research in materials science, contributes to the development and implementation of new materials and technologies, and participates in scientific coordination and standardization activities. Engages in international scientific cooperation and preparation of academic publications.</p>
+                                                                                                                        <p  class="paragraph">Conducts research in materials science, contributes to the development and implementation of new materials and technologies, and participates in scientific coordination and standardization activities. Engages in international scientific cooperation and preparation of academic publications.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -255,7 +257,7 @@
             <p class="expert-card__subtitle">Ph.D.</p>
             <p class="expert-card__text">V. N. Karazin Kharkiv National University</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Conducts research in sociology and social communication, participates in international research projects, and carries out sociological studies, monitoring, and evaluation of social programs. Has experience in teaching, professional training, and grant proposal preparation.</p>
+                                                                                                                        <p  class="paragraph">Conducts research in sociology and social communication, participates in international research projects, and carries out sociological studies, monitoring, and evaluation of social programs. Has experience in teaching, professional training, and grant proposal preparation.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -292,7 +294,7 @@
             <p class="expert-card__subtitle">Doctor of Engineering Sciences</p>
             <p class="expert-card__text">Zaporizhzhia Polytechnic National University</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Professor and Head of the Department of Aircraft Engine Technology. Conducts research and organizational activities in aircraft engine engineering, leads the scientific school “Service Life Assurance of Gas Turbine Engines,” participates in international research and innovation projects, prepares grant proposals, and is involved in commercialization of scientific inventions. Works as a Lead Engineer at the experimental testing complex of Ivchenko-Progress State Enterprise.</p>
+                                                                                                                        <p  class="paragraph">Professor and Head of the Department of Aircraft Engine Technology. Conducts research and organizational activities in aircraft engine engineering, leads the scientific school “Service Life Assurance of Gas Turbine Engines,” participates in international research and innovation projects, prepares grant proposals, and is involved in commercialization of scientific inventions. Works as a Lead Engineer at the experimental testing complex of Ivchenko-Progress State Enterprise.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -323,7 +325,7 @@
             <p class="expert-card__subtitle">Ph.D.</p>
             <p class="expert-card__text">B. Verkin Institute for Low Temperature Physics and Engineering, National Academy of Sciences of Ukraine</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Senior Research Fellow at the Department of Physics of Real Crystals. Conducts fundamental and applied research in low-temperature materials science, participates in national and international research projects, prepares grant proposals, performs peer review, and engages in scientific communication activities.</p>
+                                                                                                                        <p  class="paragraph">Senior Research Fellow at the Department of Physics of Real Crystals. Conducts fundamental and applied research in low-temperature materials science, participates in national and international research projects, prepares grant proposals, performs peer review, and engages in scientific communication activities.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -354,7 +356,7 @@
             <p class="expert-card__subtitle">Ph.D.</p>
             <p class="expert-card__text">Lutsk National Technical University</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Associate Professor at the Department of Materials Science. Engages in teaching and research activities in materials science, participates in expert evaluation of research projects, peer review of scientific publications, and work of expert and competition committees in the fields of science and higher education.</p>
+                                                                                                                        <p  class="paragraph">Associate Professor at the Department of Materials Science. Engages in teaching and research activities in materials science, participates in expert evaluation of research projects, peer review of scientific publications, and work of expert and competition committees in the fields of science and higher education.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -382,7 +384,7 @@
             <p class="expert-card__subtitle">Ph.D.</p>
             <p class="expert-card__text">National University of Life and Environmental Sciences of Ukraine</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Associate Professor at the Department of International Relations and Social Sciences. Engages in teaching and research in international relations, coordinates international educational and research projects, including a Jean Monnet Module under the Erasmus+ programme, contributes to expert assessments and analytical outputs, prepares grant proposals, and participates in science communication initiatives.</p>
+                                                                                                                        <p  class="paragraph">Associate Professor at the Department of International Relations and Social Sciences. Engages in teaching and research in international relations, coordinates international educational and research projects, including a Jean Monnet Module under the Erasmus+ programme, contributes to expert assessments and analytical outputs, prepares grant proposals, and participates in science communication initiatives.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -416,7 +418,7 @@
             <p class="expert-card__subtitle">Doctor of Medical Sciences</p>
             <p class="expert-card__text">Bogomolets National Medical University</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Professor at the Department of Therapy, Infectious Diseases and Dermatovenereology (Postgraduate Education). Engages in teaching, research, and expert activities, contributes to the training of physicians and educators, development of educational programmes, expert assessments, national and international guidelines, as well as grant proposals and academic publications.</p>
+                                                                                                                        <p  class="paragraph">Professor at the Department of Therapy, Infectious Diseases and Dermatovenereology (Postgraduate Education). Engages in teaching, research, and expert activities, contributes to the training of physicians and educators, development of educational programmes, expert assessments, national and international guidelines, as well as grant proposals and academic publications.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -450,8 +452,7 @@
             <p class="expert-card__subtitle">Ph.D.</p>
             <p class="expert-card__text">Sumy National Agrarian University</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Tetiana Stepanova is an Associate Professor at the Department of Food Technology at Sumy National Agrarian University.</p>
-                                            <p  class="paragraph">She teaches courses in food technology and conducts research focused on developing food products with enhanced nutritional value and reduced caloric content. Particular attention in her work is devoted to enriching food products with biologically active components.</p>
+                                                                                                                        <p  class="paragraph">Tetiana Stepanova is an Associate Professor at the Department of Food Technology at Sumy National Agrarian University. She teaches courses in food technology and conducts research focused on developing food products with enhanced nutritional value and reduced caloric content. Particular attention in her work is devoted to enriching food products with biologically active components.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">

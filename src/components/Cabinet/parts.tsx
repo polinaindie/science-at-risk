@@ -27,7 +27,16 @@ function StatusMark({ status }: { status: ProfileStatus }) {
   );
 }
 
-export function StatusBadge({ status, locale }: { status: ProfileStatus; locale: CabinetLocale }) {
+/** The status chip. What can be done about the status (open the page, withdraw) stands inside it, after the word. */
+export function StatusBadge({
+  status,
+  locale,
+  children,
+}: {
+  status: ProfileStatus;
+  locale: CabinetLocale;
+  children?: ReactNode;
+}) {
   const t = cabinetCopy[locale].status[status];
   return (
     <span
@@ -41,6 +50,7 @@ export function StatusBadge({ status, locale }: { status: ProfileStatus; locale:
     >
       <StatusMark status={status} />
       {t.label}
+      {children ? <span className="ml-4 inline-flex items-center">{children}</span> : null}
     </span>
   );
 }

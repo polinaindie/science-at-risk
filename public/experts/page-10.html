@@ -36,6 +36,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/9.1.0/swiper-bundle.min.css" integrity="sha512-n/86mxSdfFpsFtq9QYVhRlke9BQ/ZqIaRBe/dboH4l8JwBVitjpCS2HnDfbZnISV5Zq1lKONL/aQDqDQmtY/cA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.9/fullpage.min.css"/>
     <link href="../css/style.min.css" rel="stylesheet">
+    <link href="../css/pages/search-field.css" rel="stylesheet">
+    <link href="../css/pages/expert-card.css" rel="stylesheet">
         
     <link rel="apple-touch-icon" sizes="57x57" href="../images/favicon_client/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="../images/favicon_client/apple-icon-60x60.png">
@@ -96,12 +98,12 @@
                 <div class="search-hero__info-wrap">
                     <h1 class="search-hero__title">Find Ukrainian scientists for collaboration</h1>
                 </div>
-                <form action="../experts.html" method="GET" class="_searchScientists  search-hero__input-wrap">
-                    <div class="search-hero__column">
-                        <input class="_risk-label" type="text" name="search" id="search" value=""/>
-                        <label for="search">Scientific field or name </label>
-                    </div>
-                    <button class="search-hero__btn btn btn--black" type="submit">Find a scientist</button>
+                <form role="search" action="../experts.html" method="GET" class="_searchScientists search-field">
+                    <label class="satr-float" for="search">
+                        <input id="search" type="search" name="search" placeholder=" ">
+                        <span class="satr-float__label">Enter scientific field or name</span>
+                    </label>
+                    <button class="btn btn--black" type="submit">Find a scientist</button>
                 </form>
                 <div class="search-hero__requests popular-requests">
                     <p class="popular-requests__text">Popular requests</p>
@@ -190,7 +192,7 @@
             <p class="expert-card__subtitle">Ph.D.</p>
             <p class="expert-card__text">The National Academy of Sciences of Ukraine</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Maryna is the Scientific Manager of the Consolidated Planning Sector of the&nbsp;Integrated Planning Unit of the Presidium of the National Academy of Sciences of Ukraine and the Scientific Manager of the Commission of the National Academy of Sciences of Ukraine for Integration into the European Research Area. In addition, she has been organizing information and advisory support for Ukrainian stakeholders in EU Framework Programs calls for proposals for 15 years and participated in a number of FP7 and H 2020 coordination and support projects.</p>
+                                                                                                                        <p  class="paragraph">Maryna is the Scientific Manager of the Consolidated Planning Sector of the Integrated Planning Unit of the Presidium of the National Academy of Sciences of Ukraine and the Scientific Manager of the Commission of the National Academy of Sciences of Ukraine for Integration into the European Research Area. In addition, she has been organizing information and advisory support for Ukrainian stakeholders in EU Framework Programs calls for proposals for 15 years and participated in a number of FP7 and H 2020 coordination and support projects.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -224,7 +226,7 @@
             <p class="expert-card__subtitle">Ph.D.</p>
             <p class="expert-card__text">Dana-Farber Cancer Institute</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Dr. Sviezhentseva is a Postdoctoral Research Associate at the Wilmot Cancer Institute, University of Rochester (Rochester, New York, USA). Her current research investigates how the bone marrow microenvironment contributes to acute myeloid leukemia progression and therapy resistance through interactions between leukemic cells and stromal cells.</p>
+                                                                                                                        <p  class="paragraph">Dr. Sviezhentseva is a Postdoctoral Research Associate at the Wilmot Cancer Institute, University of Rochester (Rochester, New York, USA). Her current research investigates how the bone marrow microenvironment contributes to acute myeloid leukemia progression and therapy resistance through interactions between leukemic cells and stromal cells.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -264,7 +266,7 @@
             <p class="expert-card__subtitle">Ph.D. ABD (in Business Research), Professor of Innovation Management</p>
             <p class="expert-card__text">Kyiv Academic University of the National Academy of Sciences of Ukraine, Max Planck Institute for Innovation and Competition</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Anastasiia is a Ph.D. student in innovation management at the Max Planck Institute for Innovation and Competition. She is also a scientific project coordinator to create the "Academ.City" at the National Academy of Sciences of Ukraine.</p>
+                                                                                                                        <p  class="paragraph">Anastasiia is a Ph.D. student in innovation management at the Max Planck Institute for Innovation and Competition. She is also a scientific project coordinator to create the "Academ.City" at the National Academy of Sciences of Ukraine.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -304,7 +306,7 @@
             <p class="expert-card__subtitle">Ph.D., Associate Professor</p>
             <p class="expert-card__text">Taras Shevchenko National University of Kyiv</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Oleksii teaches courses on the history of Ukraine in the early modern period, social history, and particular historical disciplines (paleography, diplomacy).</p>
+                                                                                                                        <p  class="paragraph">Oleksii teaches courses on the history of Ukraine in the early modern period, social history, and particular historical disciplines (paleography, diplomacy).</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -338,7 +340,7 @@
             <p class="expert-card__subtitle">Ph.D., professor</p>
             <p class="expert-card__text">Danylo Halytsky Lviv National Medical University</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Rostyslav is a professor at the Department of Histology, Cytology and Embryology. He lectures to medical students and postgraduate students. He conducts research in the field of cellular immunity.</p>
+                                                                                                                        <p  class="paragraph">Rostyslav is a professor at the Department of Histology, Cytology and Embryology. He lectures to medical students and postgraduate students. He conducts research in the field of cellular immunity.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -369,7 +371,7 @@
             <p class="expert-card__subtitle">Ph.D in social communication and media studies</p>
             <p class="expert-card__text">IFHV Ruhr University Bochum, V.N.Karazin Kharkiv National University</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Discourse analysis of communication policies, development of communication strategies for public organisations, media monitoring, media communications, journalism, PR, ethics of strategic communications.</p>
+                                                                                                                        <p  class="paragraph">Discourse analysis of communication policies, development of communication strategies for public organisations, media monitoring, media communications, journalism, PR, ethics of strategic communications.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -418,7 +420,7 @@
             <p class="expert-card__subtitle">Doctor of Science, Professor</p>
             <p class="expert-card__text">Drexel University, Sumy State University</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Charles T. and Ruth M. Bach Professor of Materials Science and Engineering Distinguished University Professor, Director, A.J. Drexel Nanomaterials Institute.</p>
+                                                                                                                        <p  class="paragraph">Charles T. and Ruth M. Bach Professor of Materials Science and Engineering Distinguished University Professor, Director, A.J. Drexel Nanomaterials Institute.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -464,7 +466,7 @@
             <p class="expert-card__subtitle">Ph.D.</p>
             <p class="expert-card__text">The State Museum of Natural History at the National Academy of Sciences of Ukraine</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Distribution of endemic plants in the Carpathians. Vascular anatomy and morphology of angiosperms. Systematics and taxonomy of buttercups. Digitization of the herbarium collections. Parsing, management and processing of natural history collections.</p>
+                                                                                                                        <p  class="paragraph">Distribution of endemic plants in the Carpathians. Vascular anatomy and morphology of angiosperms. Systematics and taxonomy of buttercups.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -486,6 +488,7 @@
                         <button data-try-tag="scientific-ethics" class="expert-card__tag tag">Scientific ethics</button>
                     </li>
                             </ul>
+            <p class="expert-card__societies"><span class="expert-card__societies-label">Societies:</span> <a href="../society/ukrainske-botanichne-tovarystvo.html">Ukrainian Botanical Society</a></p>
         </div>
     </article>
     <a class="absoluteLink" href="../expert/novikov-andrii-valeriiovych.html"></a>
@@ -507,7 +510,7 @@
             <p class="expert-card__subtitle">Doctor of Science, Professor</p>
             <p class="expert-card__text">The State Research Institution «Kyiv Academic University»</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Alexander is an experimental physicist in the field of electronic structure and properties of quantum phenomena, materials and applications, in particular, high-temperature superconductivity. He has extensive experience in conducting photoemission synchrotron experiments. He is also developing a model of research training in Ukraine based on the basic principle of "learning through live research", with particular attention to establishing mechanisms for sustainable international cooperation, using the example of the Kyiv Academic University.</p>
+                                                                                                                        <p  class="paragraph">Alexander is an experimental physicist in the field of electronic structure and properties of quantum phenomena, materials and applications, in particular, high-temperature superconductivity. He has extensive experience in conducting photoemission synchrotron experiments. He is also developing a model of research training in Ukraine based on the basic principle of "learning through live research", with particular attention to establishing mechanisms for sustainable international cooperation, using the example of the Kyiv Academic University.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -550,7 +553,7 @@
             <p class="expert-card__subtitle">Doctor of Science, Senior Researcher</p>
             <p class="expert-card__text">M.G. Kholodny Institute of Botany, National Academy of Sciences of Ukraine</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">The main focus of her research is the classification of vegetation and habitats. Anna was involved in the development of the Emerald Network of Ukraine. After the start of the full-scale Russian invasion, she was also involved in assessing the impact of military operations and the temporary occupation of protected areas.</p>
+                                                                                                                        <p  class="paragraph">The main focus of her research is the classification of vegetation and habitats. Anna was involved in the development of the Emerald Network of Ukraine. After the start of the full-scale Russian invasion, she was also involved in assessing the impact of military operations and the temporary occupation of protected areas.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -578,6 +581,7 @@
                         <button data-try-tag="public-speaking" class="expert-card__tag tag">Public speaking</button>
                     </li>
                             </ul>
+            <p class="expert-card__societies"><span class="expert-card__societies-label">Societies:</span> <a href="../society/ukrainske-botanichne-tovarystvo.html">Ukrainian Botanical Society</a></p>
         </div>
     </article>
     <a class="absoluteLink" href="../expert/kuzemko-anna-arkadiivna.html"></a>

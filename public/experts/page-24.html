@@ -36,6 +36,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/9.1.0/swiper-bundle.min.css" integrity="sha512-n/86mxSdfFpsFtq9QYVhRlke9BQ/ZqIaRBe/dboH4l8JwBVitjpCS2HnDfbZnISV5Zq1lKONL/aQDqDQmtY/cA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.9/fullpage.min.css"/>
     <link href="https://scienceatrisk.org/css/style.min.css?v=1793795401" rel="stylesheet">
+    <link href="../css/pages/search-field.css" rel="stylesheet">
+    <link href="../css/pages/expert-card.css" rel="stylesheet">
         
     <link rel="apple-touch-icon" sizes="57x57" href="../images/favicon_client/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="../images/favicon_client/apple-icon-60x60.png">
@@ -96,12 +98,12 @@
                 <div class="search-hero__info-wrap">
                     <h1 class="search-hero__title">Find Ukrainian scientists for collaboration</h1>
                 </div>
-                <form action="../experts.html" method="GET" class="_searchScientists  search-hero__input-wrap">
-                    <div class="search-hero__column">
-                        <input class="_risk-label" type="text" name="search" id="search" value=""/>
-                        <label for="search">Scientific field or name </label>
-                    </div>
-                    <button class="search-hero__btn btn btn--black" type="submit">Find a scientist</button>
+                <form role="search" action="../experts.html" method="GET" class="_searchScientists search-field">
+                    <label class="satr-float" for="search">
+                        <input id="search" type="search" name="search" placeholder=" ">
+                        <span class="satr-float__label">Enter scientific field or name</span>
+                    </label>
+                    <button class="btn btn--black" type="submit">Find a scientist</button>
                 </form>
                 <div class="search-hero__requests popular-requests">
                     <p class="popular-requests__text">Popular requests</p>
@@ -190,11 +192,7 @@
             <p class="expert-card__subtitle">PhD</p>
             <p class="expert-card__text">National University of Water and Environmental Engineering</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Serhii is a Leading Researcher at the Research Department of the National University of Water and Environmental Engineering.</p>
-                                            <p  class="paragraph">He is a specialist in water supply and wastewater management. Serhii’s work encompasses scientific research, the evaluation of research projects, organisational activities, and the development of support mechanisms for early-career researchers.</p>
-                                            <p  class="paragraph">Serhii Kunytskyi contributed to the development of the Regulations on the Heavenly Hundred Heroes Scholarship and the methodology for evaluating applicants. He was also a member of a working group that prepared proposals and recommendations for assessing applicants for scholarships awarded by the Cabinet of Ministers of Ukraine.</p>
-                                            <p  class="paragraph">He served on the organising committees of the first and second All-Ukrainian Forums of Councils of Young Scientists. He also contributed to the development of a model programme for territorial and regional support of scientific and technological development.</p>
-                                            <p  class="paragraph">Serhii is an expert of the Ministry of Education and Science of Ukraine involved in evaluating projects in fundamental and applied research, as well as research projects.</p>
+                                                                                                                        <p  class="paragraph">Serhii is a Leading Researcher at the Research Department of the National University of Water and Environmental Engineering. He is a specialist in water supply and wastewater management. Serhii’s work encompasses scientific research, the evaluation of research projects, organisational activities, and the development of support mechanisms for early-career researchers.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -234,8 +232,7 @@
             <p class="expert-card__subtitle">Ph.D.</p>
             <p class="expert-card__text">Institute of Pedagogy of the National Academy of Educational Sciences of Ukraine</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Daryna Vasylieva is Head of the Department of Mathematics and Informatics Education at the Institute of Pedagogy of the National Academy of Educational Sciences of Ukraine.</p>
-                                            <p  class="paragraph">She develops educational standards, curricula, and mathematics textbooks, provides professional development for teachers, and conducts research in the field of mathematics education.</p>
+                                                                                                                        <p  class="paragraph">Daryna Vasylieva is Head of the Department of Mathematics and Informatics Education at the Institute of Pedagogy of the National Academy of Educational Sciences of Ukraine. She develops educational standards, curricula, and mathematics textbooks, provides professional development for teachers, and conducts research in the field of mathematics education.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -269,10 +266,7 @@
             <p class="expert-card__subtitle">Ph.D.</p>
             <p class="expert-card__text">Institute for Single Crystals” of the National Academy of Sciences of Ukraine</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Olesia Kulyk is a Candidate of Chemical Sciences, Associate Professor, Deputy Director of the Institute of Chemistry of Functional Materials of the Institute for Single Crystals of the National Academy of Sciences of Ukraine, and Senior Researcher at the B. M. Krasovitsky Department of Luminescent Materials and Dyes.</p>
-                                            <p  class="paragraph">Her research focuses on organic and bioorganic chemistry, particularly the synthesis and investigation of fluorescent dyes and luminescent materials for diagnostic and biomedical applications, including photodynamic therapy, biomarking, and analytical systems.</p>
-                                            <p  class="paragraph">She also manages research projects and contributes to the development of research infrastructure within the NRFU-funded SupraKha project. She is actively involved in international cooperation and science communication, serving as Science Communication Coordinator of COST Action EU4MOFs and as a Senior Expert in the Erasmus+ BOOSTSCIENCE project.</p>
-                                            <p  class="paragraph">Olesia is also a member of the Coordination Council and Head of the Secretariat of the Pharmaceutical Cluster of the Kharkiv Region, which aims to consolidate the region’s scientific, educational, and industrial capacities for the development of the pharmaceutical sector. She also has experience in university teaching.</p>
+                                                                                                                        <p  class="paragraph">Olesia Kulyk is a Candidate of Chemical Sciences, Associate Professor, Deputy Director of the Institute of Chemistry of Functional Materials of the Institute for Single Crystals of the National Academy of Sciences of Ukraine, and Senior Researcher at the B. M. Krasovitsky Department of Luminescent Materials and Dyes. Her research focuses on organic and bioorganic chemistry, particularly the synthesis and investigation of fluorescent dyes and luminescent materials for diagnostic and biomedical applications, including photodynamic therapy, biomarking, and analytical systems. She also manages research projects and contributes to the development of research infrastructure within the NRFU-funded SupraKha project.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -306,10 +300,7 @@
             <p class="expert-card__subtitle">Ph.D.</p>
             <p class="expert-card__text">Institute for Single Crystals” of the National Academy of Sciences of Ukraine</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Olesia is a Candidate of Chemical Sciences, Associate Professor, Deputy Director of the Institute of Chemistry of Functional Materials of the Institute for Single Crystals of the National Academy of Sciences of Ukraine, and Senior Researcher at the B. M. Krasovitsky Department of Luminescent Materials and Dyes.</p>
-                                            <p  class="paragraph">Her research focuses on organic and bioorganic chemistry, particularly the synthesis and investigation of fluorescent dyes and luminescent materials for diagnostic and biomedical applications, including photodynamic therapy, biomarking, and analytical systems.</p>
-                                            <p  class="paragraph">She also manages research projects and contributes to the development of research infrastructure within the NRFU-funded SupraKha project. She is actively involved in international cooperation and science communication, serving as Science Communication Coordinator of COST Action EU4MOFs and as a Senior Expert in the Erasmus+ BOOSTSCIENCE project.</p>
-                                            <p  class="paragraph">Olesia is also a member of the Coordination Council and Head of the Secretariat of the Pharmaceutical Cluster of the Kharkiv Region, which aims to consolidate the region’s scientific, educational, and industrial capacities for the development of the pharmaceutical sector. She also has experience in university teaching.</p>
+                                                                                                                        <p  class="paragraph">Olesia is a Candidate of Chemical Sciences, Associate Professor, Deputy Director of the Institute of Chemistry of Functional Materials of the Institute for Single Crystals of the National Academy of Sciences of Ukraine, and Senior Researcher at the B. M. Krasovitsky Department of Luminescent Materials and Dyes. Her research focuses on organic and bioorganic chemistry, particularly the synthesis and investigation of fluorescent dyes and luminescent materials for diagnostic and biomedical applications, including photodynamic therapy, biomarking, and analytical systems. She also manages research projects and contributes to the development of research infrastructure within the NRFU-funded SupraKha project.</p>
                                                 </p>
             <ul class="expert-card__list">
                             </ul>
@@ -334,9 +325,7 @@
             <p class="expert-card__subtitle">Ph.D.</p>
             <p class="expert-card__text">Institute of Veterinary Medicine of the National Academy of Agrarian Sciences of Ukraine</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Sergii is Director of the Institute of Veterinary Medicine of the National Academy of Agrarian Sciences of Ukraine.</p>
-                                            <p  class="paragraph">His professional and research activities focus on veterinary medicine, particularly metabolic, infectious, and non-infectious diseases in animals, as well as biosafety, antimicrobial resistance, and veterinary and sanitary assessment of animal-derived products.</p>
-                                            <p  class="paragraph">He also has experience in teaching, science communication, and the development of science policy.</p>
+                                                                                                                        <p  class="paragraph">Sergii is Director of the Institute of Veterinary Medicine of the National Academy of Agrarian Sciences of Ukraine. His professional and research activities focus on veterinary medicine, particularly metabolic, infectious, and non-infectious diseases in animals, as well as biosafety, antimicrobial resistance, and veterinary and sanitary assessment of animal-derived products. He also has experience in teaching, science communication, and the development of science policy.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -373,11 +362,7 @@
             <p class="expert-card__subtitle">Ph.D.</p>
             <p class="expert-card__text">Ukrainian State Flight Academy</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Myroslava Kalashnyk-Rybalko is an Associate Professor at the Department of Air Navigation, Meteorology and Air Traffic Management at the Ukrainian State Flight Academy.</p>
-                                            <p  class="paragraph">Her work combines teaching and research in air navigation and the functional stability of navigation systems, as well as the integration of research findings into educational practice.</p>
-                                            <p  class="paragraph">In 2021, she was elected Chair of the Council of Young Scientists of the Ukrainian State Flight Academy and was re-elected in 2024.</p>
-                                            <p  class="paragraph">In 2025, Myroslava became a member of the Council of Young Scientists under the Ministry of Education and Science of Ukraine and was appointed Deputy Chair responsible for security-related issues. She also coordinates a working group supporting young scientists who are military service members and veterans.</p>
-                                            <p  class="paragraph">She has extensive experience in scientific and technical evaluation.</p>
+                                                                                                                        <p  class="paragraph">Myroslava Kalashnyk-Rybalko is an Associate Professor at the Department of Air Navigation, Meteorology and Air Traffic Management at the Ukrainian State Flight Academy. Her work combines teaching and research in air navigation and the functional stability of navigation systems, as well as the integration of research findings into educational practice. In 2021, she was elected Chair of the Council of Young Scientists of the Ukrainian State Flight Academy and was re-elected in 2024.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -405,8 +390,7 @@
             <p class="expert-card__subtitle">PhD</p>
             <p class="expert-card__text">Lviv Polytechnic National University</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Taras is a lecturer and researcher in media art and immersive technologies at Lviv Polytechnic National University.</p>
-                                            <p  class="paragraph">He develops and teaches courses focused on VJ culture, lighting design, interactive design, and spatial media practices.</p>
+                                                                                                                        <p  class="paragraph">Taras is a lecturer and researcher in media art and immersive technologies at Lviv Polytechnic National University. He develops and teaches courses focused on VJ culture, lighting design, interactive design, and spatial media practices.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -440,7 +424,7 @@
             <p class="expert-card__subtitle">Professor</p>
             <p class="expert-card__text">National University of Civil Protection of Ukraine, State Emergency Service of Ukraine</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Oleksandr Kondratenko is a Professor at the Department of Fire and Technogenic Safety of Facilities and Technologies, Educational and Research Institute of Fire and Technogenic Safety, National University of Civil Protection of Ukraine.</p>
+                                                                                                                        <p  class="paragraph">Oleksandr Kondratenko is a Professor at the Department of Fire and Technogenic Safety of Facilities and Technologies, Educational and Research Institute of Fire and Technogenic Safety, National University of Civil Protection of Ukraine.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -474,7 +458,7 @@
             <p class="expert-card__subtitle">PhD, Associate Professor</p>
             <p class="expert-card__text">Lutsk National Technical University</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Borys Prydalnyi is Head of the Department of Robotics at Lutsk National Technical University, where he combines teaching and research activities. He contributes to the development and quality assurance of academic programmes and serves as the Programme Director of the Bachelor’s programme in Metalworking Machinery and Robotic Production Systems. As an expert of the National Agency for Higher Education Quality Assurance, he also participates in the accreditation of academic programmes in Applied Mechanics.</p>
+                                                                                                                        <p  class="paragraph">Borys Prydalnyi is Head of the Department of Robotics at Lutsk National Technical University, where he combines teaching and research activities. He contributes to the development and quality assurance of academic programmes and serves as the Programme Director of the Bachelor’s programme in Metalworking Machinery and Robotic Production Systems. As an expert of the National Agency for Higher Education Quality Assurance, he also participates in the accreditation of academic programmes in Applied Mechanics.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -505,7 +489,7 @@
             <p class="expert-card__subtitle">PhD</p>
             <p class="expert-card__text">Independent Researcher</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Orysia's works as an independent researcher in political science. She combines academic research with civic and communication activities and participates in international academic programmes and research initiatives. Her work also includes science communication, public speaking, and grant writing. She has experience as a peer reviewer for the European Journal of Transformation Studies.</p>
+                                                                                                                        <p  class="paragraph">Orysia's works as an independent researcher in political science. She combines academic research with civic and communication activities and participates in international academic programmes and research initiatives. Her work also includes science communication, public speaking, and grant writing.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">

@@ -35,6 +35,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/9.1.0/swiper-bundle.min.css" integrity="sha512-n/86mxSdfFpsFtq9QYVhRlke9BQ/ZqIaRBe/dboH4l8JwBVitjpCS2HnDfbZnISV5Zq1lKONL/aQDqDQmtY/cA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.9/fullpage.min.css"/>
     <link href="../css/style.min.css" rel="stylesheet">
+    <link href="../css/pages/search-field.css" rel="stylesheet">
+    <link href="../css/pages/expert-card.css" rel="stylesheet">
         
     <link rel="apple-touch-icon" sizes="57x57" href="../images/favicon_client/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="../images/favicon_client/apple-icon-60x60.png">
@@ -95,12 +97,12 @@
                 <div class="search-hero__info-wrap">
                     <h1 class="search-hero__title">Find Ukrainian scientists for collaboration</h1>
                 </div>
-                <form action="../experts.html" method="GET" class="_searchScientists  search-hero__input-wrap">
-                    <div class="search-hero__column">
-                        <input class="_risk-label" type="text" name="search" id="search" value=""/>
-                        <label for="search">Scientific field or name </label>
-                    </div>
-                    <button class="search-hero__btn btn btn--black" type="submit">Find a scientist</button>
+                <form role="search" action="../experts.html" method="GET" class="_searchScientists search-field">
+                    <label class="satr-float" for="search">
+                        <input id="search" type="search" name="search" placeholder=" ">
+                        <span class="satr-float__label">Enter scientific field or name</span>
+                    </label>
+                    <button class="btn btn--black" type="submit">Find a scientist</button>
                 </form>
                 <div class="search-hero__requests popular-requests">
                     <p class="popular-requests__text">Popular requests</p>
@@ -189,9 +191,7 @@
             <p class="expert-card__subtitle">Doctor of Sciences, Professor</p>
             <p class="expert-card__text">Research Centre for Industrial Problems of Development of the National Academy of Sciences of Ukraine, Kharkiv</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Olha Ilyash is Head of the Sector of Macroeconomic Analysis and Forecasting at the Research Centre for Industrial Problems of Development of the National Academy of Sciences of Ukraine and holds a Doctor of Economic Sciences degree.</p>
-                                            <p  class="paragraph">At the same time, Olha is a Professor at the Department of Economic Cybernetics at the National Technical University of Ukraine “Igor Sikorsky Kyiv Polytechnic Institute.” She also works as a UNIDO National Expert on inclusive and sustainable industrial development. Within UNIDO projects, including the Green Industrial Recovery through Municipality-Based Development in Ukraine programme, she analyses municipal capacities and develops recommendations for restoring public services in war-affected communities.</p>
-                                            <p  class="paragraph">Olha is also a volunteer with the NGO “Academic Space,” which carries out charitable activities, and leads the international SICRS network focused on research into community resilience and recovery.</p>
+                                                                                                                        <p  class="paragraph">Olha Ilyash is Head of the Sector of Macroeconomic Analysis and Forecasting at the Research Centre for Industrial Problems of Development of the National Academy of Sciences of Ukraine and holds a Doctor of Economic Sciences degree. At the same time, Olha is a Professor at the Department of Economic Cybernetics at the National Technical University of Ukraine “Igor Sikorsky Kyiv Polytechnic Institute.” She also works as a UNIDO National Expert on inclusive and sustainable industrial development. Within UNIDO projects, including the Green Industrial Recovery through Municipality-Based Development in Ukraine programme, she analyses municipal capacities and develops recommendations for restoring public services in war-affected communities.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -225,7 +225,7 @@
             <p class="expert-card__subtitle">Doctor of Sciences, Senior Researcher</p>
             <p class="expert-card__text">L. V. Pisarzhevsky Institute of Physical Chemistry of the National Academy of Sciences of Ukraine</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Igor Bychko works at the L. V. Pisarzhevsky Institute of Physical Chemistry of the National Academy of Sciences of Ukraine, where he develops catalysts, studies catalytic processes, and creates new nanomaterials.&nbsp;</p>
+                                                                                                                        <p  class="paragraph">Igor Bychko works at the L. V. Pisarzhevsky Institute of Physical Chemistry of the National Academy of Sciences of Ukraine, where he develops catalysts, studies catalytic processes, and creates new nanomaterials.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -262,8 +262,7 @@
             <p class="expert-card__subtitle">PhD, Senior Researcher</p>
             <p class="expert-card__text">H. S. Skovoroda Institute of Philosophy of the National Academy of Sciences of Ukraine</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Olena Lazorenko is Ukrainian social &amp; cultural researcher, trainer, facilitator &amp; non-government organizations leader and now holds the positions of the Senior Researcher at Institute of Philosophy of the National Academy of Sciences of Ukraine &amp; President of Ukrainian NGO “League of Professional Women” (LPW).</p>
-                                            <p  class="paragraph">Olena possesses more than 20 years of proven academic, leadership, managerial experience in policy analysis, academic research, civil society leadership and advocacy on Democracy Issues,Creativity &amp; Culture, SDGs, Women Empowerment, Adults Learning, Social &amp; Human Capital Development.&nbsp;</p>
+                                                                                                                        <p  class="paragraph">Olena Lazorenko is Ukrainian social &amp; cultural researcher, trainer, facilitator &amp; non-government organizations leader and now holds the positions of the Senior Researcher at Institute of Philosophy of the National Academy of Sciences of Ukraine &amp; President of Ukrainian NGO “League of Professional Women” (LPW). Olena possesses more than 20 years of proven academic, leadership, managerial experience in policy analysis, academic research, civil society leadership and advocacy on Democracy Issues,Creativity &amp; Culture, SDGs, Women Empowerment, Adults Learning, Social &amp; Human Capital Development.</p>
                                                 </p>
             <ul class="expert-card__list">
                             </ul>
@@ -288,7 +287,7 @@
             <p class="expert-card__subtitle">PhD</p>
             <p class="expert-card__text">Institute of Ecology of the Carpathians of the National Academy of Sciences of Ukraine</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Nadiya Sytschak is a Senior Researcher at the Department of Natural Ecosystem Conservation of the Institute of Ecology of the Carpathians of the National Academy of Sciences of Ukraine. Her research focuses on the patterns of biogeographical differentiation of plant species diversity, the taxonomy of selected groups of vascular plants, and the application of information technologies in biodiversity conservation and management.</p>
+                                                                                                                        <p  class="paragraph">Nadiya Sytschak is a Senior Researcher at the Department of Natural Ecosystem Conservation of the Institute of Ecology of the Carpathians of the National Academy of Sciences of Ukraine. Her research focuses on the patterns of biogeographical differentiation of plant species diversity, the taxonomy of selected groups of vascular plants, and the application of information technologies in biodiversity conservation and management.</p>
                                                 </p>
             <ul class="expert-card__list">
                             </ul>
@@ -313,7 +312,7 @@
             <p class="expert-card__subtitle"></p>
             <p class="expert-card__text"></p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Khrystyna Semeryn is a researcher and journalist. Her work focuses on memory, imagology, diversity, cultural geography, and Eastern European literatures. She is also involved in editing the publication Geopoetical Studies and collaborates with the Ilko Kucheriv Democratic Initiatives Foundation as an analyst.<br></p>
+                                                                                                                        <p  class="paragraph">Khrystyna Semeryn is a researcher and journalist. Her work focuses on memory, imagology, diversity, cultural geography, and Eastern European literatures. She is also involved in editing the publication Geopoetical Studies and collaborates with the Ilko Kucheriv Democratic Initiatives Foundation as an analyst.</p>
                                                 </p>
             <ul class="expert-card__list">
                             </ul>

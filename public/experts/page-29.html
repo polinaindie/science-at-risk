@@ -36,6 +36,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/9.1.0/swiper-bundle.min.css" integrity="sha512-n/86mxSdfFpsFtq9QYVhRlke9BQ/ZqIaRBe/dboH4l8JwBVitjpCS2HnDfbZnISV5Zq1lKONL/aQDqDQmtY/cA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.9/fullpage.min.css"/>
     <link href="../css/style.min.css" rel="stylesheet">
+    <link href="../css/pages/search-field.css" rel="stylesheet">
+    <link href="../css/pages/expert-card.css" rel="stylesheet">
         
     <link rel="apple-touch-icon" sizes="57x57" href="../images/favicon_client/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="../images/favicon_client/apple-icon-60x60.png">
@@ -96,12 +98,12 @@
                 <div class="search-hero__info-wrap">
                     <h1 class="search-hero__title">Find Ukrainian scientists for collaboration</h1>
                 </div>
-                <form action="../experts.html" method="GET" class="_searchScientists  search-hero__input-wrap">
-                    <div class="search-hero__column">
-                        <input class="_risk-label" type="text" name="search" id="search" value=""/>
-                        <label for="search">Scientific field or name </label>
-                    </div>
-                    <button class="search-hero__btn btn btn--black" type="submit">Find a scientist</button>
+                <form role="search" action="../experts.html" method="GET" class="_searchScientists search-field">
+                    <label class="satr-float" for="search">
+                        <input id="search" type="search" name="search" placeholder=" ">
+                        <span class="satr-float__label">Enter scientific field or name</span>
+                    </label>
+                    <button class="btn btn--black" type="submit">Find a scientist</button>
                 </form>
                 <div class="search-hero__requests popular-requests">
                     <p class="popular-requests__text">Popular requests</p>
@@ -190,9 +192,7 @@
             <p class="expert-card__subtitle">PhD, Associate Professor</p>
             <p class="expert-card__text">Taras Shevchenko National University of Kyiv</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Viktoriya Gura is Head of the Department of European Integration Policy at the Educational and Scientific Institute of Public Administration and Civil Service of Taras Shevchenko National University of Kyiv.</p>
-                                            <p  class="paragraph">She is currently working on her doctoral dissertation, “Mechanisms of State Regulation of the Innovative Development of Social Entrepreneurship in Ukraine” (specialty 25.00.02 – Mechanisms of Public Administration).</p>
-                                            <p  class="paragraph">Viktoriya is also involved in the development of the department, the implementation of two master’s programs, and the supervision of PhD students.</p>
+                                                                                                                        <p  class="paragraph">Viktoriya Gura is Head of the Department of European Integration Policy at the Educational and Scientific Institute of Public Administration and Civil Service of Taras Shevchenko National University of Kyiv. She is currently working on her doctoral dissertation, “Mechanisms of State Regulation of the Innovative Development of Social Entrepreneurship in Ukraine” (specialty 25.00.02 – Mechanisms of Public Administration). Viktoriya is also involved in the development of the department, the implementation of two master’s programs, and the supervision of PhD students.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -226,8 +226,7 @@
             <p class="expert-card__subtitle">PhD, Senior Researcher</p>
             <p class="expert-card__text">National Scientific Center “O. N. Sokolovsky Institute of Soil Science and Agrochemistry”</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Yevheniia Hladkikh is Head of the Department of Agrochemistry named after Academician of the National Academy of Agrarian Sciences of Ukraine B. S. Nosko at the National Scientific Center “Institute for Soil Science and Agrochemistry Research named after O. N. Sokolovsky.”</p>
-                                            <p  class="paragraph">Her main activities include conducting fundamental and applied research in agrochemistry and soil science, participating in state-funded scientific and technical projects, carrying out field and laboratory studies, and preparing scientific and methodological recommendations in the areas of soil protection and sustainable land use.</p>
+                                                                                                                        <p  class="paragraph">Yevheniia Hladkikh is Head of the Department of Agrochemistry named after Academician of the National Academy of Agrarian Sciences of Ukraine B. S. Nosko at the National Scientific Center “Institute for Soil Science and Agrochemistry Research named after O. N. Sokolovsky.” Her main activities include conducting fundamental and applied research in agrochemistry and soil science, participating in state-funded scientific and technical projects, carrying out field and laboratory studies, and preparing scientific and methodological recommendations in the areas of soil protection and sustainable land use.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -261,7 +260,7 @@
             <p class="expert-card__subtitle">PhD, Associate Professor</p>
             <p class="expert-card__text">Sumy State University</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Olha Sydorenko is a lecturer in the behavioral sciences, including pedagogy, gender studies, and inclusive education. She also works as a forensic expert specializing in linguistic analysis of speech (specialty 1.2) at Sumy State University.</p>
+                                                                                                                        <p  class="paragraph">Olha Sydorenko is a lecturer in the behavioral sciences, including pedagogy, gender studies, and inclusive education. She also works as a forensic expert specializing in linguistic analysis of speech (specialty 1.2) at Sumy State University.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -301,7 +300,7 @@
             <p class="expert-card__subtitle">Doctor of Sciences, Professor</p>
             <p class="expert-card__text">I. Horbachevsky Ternopil National Medical University</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Liliya Logoyda is Head of the Department of Pharmaceutical Chemistry at I. Horbachevsky Ternopil National Medical University. She is also Director of the Scientific Society for Pharmaceutical Analytics and an expert of the European Pharmacopoeia. She supervises PhD researchers and leads scientific projects, including NATO SPS Project G6031 Wearable Smart Patches for Multimodal Wound Healing – DRESWOUTRE and two state-funded research projects.</p>
+                                                                                                                        <p  class="paragraph">Liliya Logoyda is Head of the Department of Pharmaceutical Chemistry at I. Horbachevsky Ternopil National Medical University. She is also Director of the Scientific Society for Pharmaceutical Analytics and an expert of the European Pharmacopoeia. She supervises PhD researchers and leads scientific projects, including NATO SPS Project G6031 Wearable Smart Patches for Multimodal Wound Healing – DRESWOUTRE and two state-funded research projects.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -317,6 +316,7 @@
                         <button data-try-tag="medicine" class="expert-card__tag tag">Medicine</button>
                     </li>
                             </ul>
+            <p class="expert-card__societies"><span class="expert-card__societies-label">Societies:</span> <a href="../society/naukove-tovarystvo-z-farmatsevtychnoi-analityky.html">Scientific Society for Pharmaceutical Analytics</a></p>
         </div>
     </article>
     <a class="absoluteLink" href="../expert/lohoida-liliia-sviatoslavivna.html"></a>
@@ -338,8 +338,7 @@
             <p class="expert-card__subtitle">Doctor of Sciences, Professor</p>
             <p class="expert-card__text">Research Centre for Industrial Problems of Development of the National Academy of Sciences of Ukraine</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Viktoriia Khaustova is Director of the Research Centre for Industrial Problems of Development of the National Academy of Sciences of Ukraine and a UNIDO National Expert on industrial and inclusive development.</p>
-                                            <p  class="paragraph">Her work focuses on industrialization, industrial development, structural transformation of the economy, industrial policy, critical infrastructure, and international cooperation.</p>
+                                                                                                                        <p  class="paragraph">Viktoriia Khaustova is Director of the Research Centre for Industrial Problems of Development of the National Academy of Sciences of Ukraine and a UNIDO National Expert on industrial and inclusive development. Her work focuses on industrialization, industrial development, structural transformation of the economy, industrial policy, critical infrastructure, and international cooperation.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -373,7 +372,7 @@
             <p class="expert-card__subtitle">PhD, Associate Professor</p>
             <p class="expert-card__text">Taras Shevchenko National University of Kyiv</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Vladyslav Kravchenko teaches various sections of the general physics course as well as specialised courses in optical spectroscopy, quantum electronics, optical radiation detectors and sources, LED radiation sources, solar cells, and the physical principles of information recording and reading. He also develops teaching materials and delivers popular science lectures in physics for school students.</p>
+                                                                                                                        <p  class="paragraph">Vladyslav Kravchenko teaches various sections of the general physics course as well as specialised courses in optical spectroscopy, quantum electronics, optical radiation detectors and sources, LED radiation sources, solar cells, and the physical principles of information recording and reading. He also develops teaching materials and delivers popular science lectures in physics for school students.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -407,7 +406,7 @@
             <p class="expert-card__subtitle">PhD</p>
             <p class="expert-card__text">National Scientific Center “O. N. Sokolovsky Institute of Soil Science and Agrochemistry”</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Maxim Popirny holds a PhD in Biological Sciences and works as a researcher at the Laboratory of Organic Fertilizers and Humus of the National Scientific Center “Institute for Soil Science and Agrochemistry Research named after O. N. Sokolovsky.” His work focuses on the development of physicochemical methods for studying and analysing organic matter and humic substances in the agricultural soils of Ukraine.</p>
+                                                                                                                        <p  class="paragraph">Maxim Popirny holds a PhD in Biological Sciences and works as a researcher at the Laboratory of Organic Fertilizers and Humus of the National Scientific Center “Institute for Soil Science and Agrochemistry Research named after O. N. Sokolovsky.” His work focuses on the development of physicochemical methods for studying and analysing organic matter and humic substances in the agricultural soils of Ukraine.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -444,7 +443,7 @@
             <p class="expert-card__subtitle">PhD, Senior Researcher</p>
             <p class="expert-card__text">Institute of Gifted Child of the National Academy of Educational Sciences of Ukraine</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Nataliia is Head of the Department for Giftedness Support at the Institute of Gifted Child of the National Academy of Educational Sciences of Ukraine. She leads research on gifted education, pedagogical support for student research, science education, and STEM/STEAM education.&nbsp;</p>
+                                                                                                                        <p  class="paragraph">Nataliia is Head of the Department for Giftedness Support at the Institute of Gifted Child of the National Academy of Educational Sciences of Ukraine. She leads research on gifted education, pedagogical support for student research, science education, and STEM/STEAM education.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -475,8 +474,7 @@
             <p class="expert-card__subtitle">PhD, Senior Researcher</p>
             <p class="expert-card__text">Research Centre for Industrial Problems of Development of the National Academy of Sciences of Ukraine, Kharkiv</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Nataliia&nbsp;Trushkina is a Senior Researcher in the Industrial Policy and Innovative Development Sector of the Department of Industrial Policy and Energy Security at the Research Centre for Industrial Problems of Development of the National Academy of Sciences of Ukraine. Her work focuses on strategic management, infrastructure development, and resilience. </p>
-                                            <p  class="paragraph">She pays particular attention to critical infrastructure, energy security, digital transformation, sustainable development, and mechanisms for strengthening the resilience of territories and communities to contemporary challenges and threats.&nbsp;</p>
+                                                                                                                        <p  class="paragraph">Nataliia Trushkina is a Senior Researcher in the Industrial Policy and Innovative Development Sector of the Department of Industrial Policy and Energy Security at the Research Centre for Industrial Problems of Development of the National Academy of Sciences of Ukraine. Her work focuses on strategic management, infrastructure development, and resilience. She pays particular attention to critical infrastructure, energy security, digital transformation, sustainable development, and mechanisms for strengthening the resilience of territories and communities to contemporary challenges and threats.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -516,7 +514,7 @@
             <p class="expert-card__subtitle">Doctor of Sciences, Associate Professor</p>
             <p class="expert-card__text">Sumy State University</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Mykola is a Senior Researcher and Head of the Center for Regional Security Studies at Sumy State University. His work combines research on security, national resilience, international relations, and post-war recovery with teaching at the Department of Psychology, Political Science and Sociocultural Technologies. He is also involved in project management, public speaking, grant writing, and international expert activities.</p>
+                                                                                                                        <p  class="paragraph">Mykola is a Senior Researcher and Head of the Center for Regional Security Studies at Sumy State University. His work combines research on security, national resilience, international relations, and post-war recovery with teaching at the Department of Psychology, Political Science and Sociocultural Technologies. He is also involved in project management, public speaking, grant writing, and international expert activities.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">

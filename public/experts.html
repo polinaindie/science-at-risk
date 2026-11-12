@@ -34,6 +34,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/9.1.0/swiper-bundle.min.css" integrity="sha512-n/86mxSdfFpsFtq9QYVhRlke9BQ/ZqIaRBe/dboH4l8JwBVitjpCS2HnDfbZnISV5Zq1lKONL/aQDqDQmtY/cA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.9/fullpage.min.css"/>
     <link href="css/style.min.css" rel="stylesheet">
+    <link href="css/pages/search-field.css" rel="stylesheet">
+    <link href="css/pages/expert-card.css" rel="stylesheet">
         
     <link rel="apple-touch-icon" sizes="57x57" href="images/favicon_client/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="images/favicon_client/apple-icon-60x60.png">
@@ -94,12 +96,12 @@
                 <div class="search-hero__info-wrap">
                     <h1 class="search-hero__title">Find Ukrainian scientists for collaboration</h1>
                 </div>
-                <form action="experts.html" method="GET" class="_searchScientists  search-hero__input-wrap">
-                    <div class="search-hero__column">
-                        <input class="_risk-label" type="text" name="search" id="search" value=""/>
-                        <label for="search">Scientific field or name </label>
-                    </div>
-                    <button class="search-hero__btn btn btn--black" type="submit">Find a scientist</button>
+                <form role="search" action="experts.html" method="GET" class="_searchScientists search-field">
+                    <label class="satr-float" for="search">
+                        <input id="search" type="search" name="search" placeholder=" ">
+                        <span class="satr-float__label">Enter scientific field or name</span>
+                    </label>
+                    <button class="btn btn--black" type="submit">Find a scientist</button>
                 </form>
                 <div class="search-hero__requests popular-requests">
                     <p class="popular-requests__text">Popular requests</p>
@@ -188,7 +190,7 @@
             <p class="expert-card__subtitle">Ph.D., professor</p>
             <p class="expert-card__text">Educational and Scientific Institute of High Technologies, Taras Shevchenko National University of Kyiv</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Igor leads the Institute of High Technologies of Taras Shevchenko Kyiv National University and participates in forming the university's scientific policy. He is a member of the expert council of the Ministry of Education and Science of Ukraine, which examines scientific projects, a reviewer for RSC Advances, Royal Society of Chemistry (Great Britain), and a member of the scientific society AMPERE SOCIETY.</p>
+                                                                                                                        <p  class="paragraph">Igor leads the Institute of High Technologies of Taras Shevchenko Kyiv National University and participates in forming the university's scientific policy. He is a member of the expert council of the Ministry of Education and Science of Ukraine, which examines scientific projects, a reviewer for RSC Advances, Royal Society of Chemistry (Great Britain), and a member of the scientific society AMPERE SOCIETY.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -228,7 +230,7 @@
             <p class="expert-card__subtitle">Ph.D., professor</p>
             <p class="expert-card__text">National Science Centre &quot;Kharkiv Institute of Physics and Technology&quot;</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Igor is the deputy general director for scientific work of the National Scientific Center «Kharkiv Physical and Technical Institute».</p>
+                                                                                                                        <p  class="paragraph">Igor is the deputy general director for scientific work of the National Scientific Center «Kharkiv Physical and Technical Institute».</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -262,7 +264,7 @@
             <p class="expert-card__subtitle">Doctor of Chemical Sciences</p>
             <p class="expert-card__text">Ivan Franko National University of Lviv</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Hryhoriy is the dean of the Faculty of Lviv Ivan Franko National University's Chemistry department of Lviv, a member of the University's Academic Council. He is a representative of Ukraine in the European Crystallographic Association.</p>
+                                                                                                                        <p  class="paragraph">Hryhoriy is the dean of the Faculty of Lviv Ivan Franko National University's Chemistry department of Lviv, a member of the University's Academic Council. He is a representative of Ukraine in the European Crystallographic Association.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -296,7 +298,7 @@
             <p class="expert-card__subtitle">Ph.D., professor</p>
             <p class="expert-card__text">National University of Kyiv-Mohyla Academy</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">In addition to his teaching activities, Oleksandr also specializes in the research of anti-cancer nanotechnologies and drugs for immuno-, chemoimmunotherapy and photodynamic therapy, in particular methods of fighting cancer that are safe for the body.</p>
+                                                                                                                        <p  class="paragraph">In addition to his teaching activities, Oleksandr also specializes in the research of anti-cancer nanotechnologies and drugs for immuno-, chemoimmunotherapy and photodynamic therapy, in particular methods of fighting cancer that are safe for the body.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -333,7 +335,7 @@
             <p class="expert-card__subtitle">Doctor of Cultural Studies, associate professor</p>
             <p class="expert-card__text">Lviv National Academy of Arts</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Iryna is a member of the editorial board of the publishing house of the Research Center for the History and Culture of Eastern and Central Europe of the University of Leipzig. She is also a member of the editorial board of the scientific journal "Nauchnyi Artsakh" (included in the list of DAC publications of the Republic of Armenia). She is a member of the Association internationale des études arméniennes (AIEA).</p>
+                                                                                                                        <p  class="paragraph">Iryna is a member of the editorial board of the publishing house of the Research Center for the History and Culture of Eastern and Central Europe of the University of Leipzig. She is also a member of the editorial board of the scientific journal "Nauchnyi Artsakh" (included in the list of DAC publications of the Republic of Armenia). She is a member of the Association internationale des études arméniennes (AIEA).</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -367,7 +369,7 @@
             <p class="expert-card__subtitle">Ph.D., associate professor</p>
             <p class="expert-card__text">Helmholtz Institute for Pharmaceutical Research Saarland in Saarbrücken, Germany</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Mariia is a member of the American Chemical Society and the European College of Neuropsychopharmacology. She is a reviewer in international publications: Molecules, Pharmaceutics, Antibiotics, Membranes, Biomolecules, Pharmaceuticals, Metabolites, Molbank, Scientia Pharmaceutica (MDPI Publisher); Sustainable Chemistry &amp; Engineering, Journal of Agricultural and Food Chemistry (ACS, American Chemical Society); Natural Product Research, Polycyclic Aromatic Compounds (Taylor & Francis) and Open Chemistry (De Gruyter).</p>
+                                                                                                                        <p  class="paragraph">Mariia is a member of the American Chemical Society and the European College of Neuropsychopharmacology. She is a reviewer in international publications: Molecules, Pharmaceutics, Antibiotics, Membranes, Biomolecules, Pharmaceuticals, Metabolites, Molbank, Scientia Pharmaceutica (MDPI Publisher); Sustainable Chemistry &amp; Engineering, Journal of Agricultural and Food Chemistry (ACS, American Chemical Society); Natural Product Research, Polycyclic Aromatic Compounds (Taylor &amp; Francis) and Open Chemistry (De Gruyter).</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -404,7 +406,7 @@
             <p class="expert-card__subtitle">Ph.D., associate professor</p>
             <p class="expert-card__text">Національний педагогічний університет ім. М.П. Драгоманова</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Natalia is a member of the Ukrainian Association of Teachers and Researchers of European Integration.</p>
+                                                                                                                        <p  class="paragraph">Natalia is a member of the Ukrainian Association of Teachers and Researchers of European Integration.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -438,7 +440,7 @@
             <p class="expert-card__subtitle">Ph.D., professor</p>
             <p class="expert-card__text">Lviv National Academy of Arts</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Rostyslav is a member of the specialized scientific councils to defend candidate and doctoral dissertations in the specialties «Fine, decorative and applied art», «Design». He is a member of the board of the Lviv Regional Organization of the National Union of Artists of Ukraine, the Union of Critics and Art Critics of Lviv.</p>
+                                                                                                                        <p  class="paragraph">Rostyslav is a member of the specialized scientific councils to defend candidate and doctoral dissertations in the specialties «Fine, decorative and applied art», «Design». He is a member of the board of the Lviv Regional Organization of the National Union of Artists of Ukraine, the Union of Critics and Art Critics of Lviv.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -472,7 +474,7 @@
             <p class="expert-card__subtitle"> </p>
             <p class="expert-card__text">National University of Pharmacy</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Analytical chemist, Doctor of Chemical Sciences, Professor of the Department of General Chemistry.</p>
+                                                                                                                        <p  class="paragraph">Analytical chemist, Doctor of Chemical Sciences, Professor of the Department of General Chemistry.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -512,8 +514,7 @@
             <p class="expert-card__subtitle">Ph.D., professor</p>
             <p class="expert-card__text">Berdyansk State Pedagogical University</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Yana is a mathematician. Her areas of expertise include economic and mathematical modeling and mathematical methods for modeling economic and social processes. She uses mathematical statistics to analyze psychology, sociology, pedagogy, engineering and information technology research, system analysis and information security, optimization of queuing systems using Markov and semi-Markov random processes, and bilingual education.</p>
-                                            <p  class="paragraph">Yana authorizes several textbooks and manuals on higher mathematics, probability theory, and mathematical statistics. She is also the author of articles for the Great Ukrainian Encyclopedia portal. She is engaged in organizational work and work with gifted youth, including preparing students for participation in international and national mathematics competitions. She organizes the work of the School of Young Cryptologists at the Department of Computer Mathematics and Information Security of the Vadym Hetman Kyiv National Economic University. She is the author of the idea and script for the multidisciplinary educational comic book Blaise Pascal and Combinatorics.</p>
+                                                                                                                        <p  class="paragraph">Yana is a mathematician. Her areas of expertise include economic and mathematical modeling and mathematical methods for modeling economic and social processes. She uses mathematical statistics to analyze psychology, sociology, pedagogy, engineering and information technology research, system analysis and information security, optimization of queuing systems using Markov and semi-Markov random processes, and bilingual education.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">

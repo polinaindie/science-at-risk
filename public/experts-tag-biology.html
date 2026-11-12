@@ -34,6 +34,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/9.1.0/swiper-bundle.min.css" integrity="sha512-n/86mxSdfFpsFtq9QYVhRlke9BQ/ZqIaRBe/dboH4l8JwBVitjpCS2HnDfbZnISV5Zq1lKONL/aQDqDQmtY/cA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.9/fullpage.min.css"/>
     <link href="css/style.min.css" rel="stylesheet">
+    <link href="css/pages/search-field.css" rel="stylesheet">
+    <link href="css/pages/expert-card.css" rel="stylesheet">
         
     <link rel="apple-touch-icon" sizes="57x57" href="images/favicon_client/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="images/favicon_client/apple-icon-60x60.png">
@@ -94,12 +96,12 @@
                 <div class="search-hero__info-wrap">
                     <h1 class="search-hero__title">Find Ukrainian scientists for collaboration</h1>
                 </div>
-                <form action="experts.html" method="GET" class="_searchScientists  search-hero__input-wrap">
-                    <div class="search-hero__column">
-                        <input class="_risk-label" type="text" name="search" id="search" value=""/>
-                        <label for="search">Scientific field or name </label>
-                    </div>
-                    <button class="search-hero__btn btn btn--black" type="submit">Find a scientist</button>
+                <form role="search" action="experts.html" method="GET" class="_searchScientists search-field">
+                    <label class="satr-float" for="search">
+                        <input id="search" type="search" name="search" placeholder=" ">
+                        <span class="satr-float__label">Enter scientific field or name</span>
+                    </label>
+                    <button class="btn btn--black" type="submit">Find a scientist</button>
                 </form>
                 <div class="search-hero__requests popular-requests">
                     <p class="popular-requests__text">Popular requests</p>
@@ -188,7 +190,7 @@
             <p class="expert-card__subtitle">Doctor of Biological Sciences, associate professor</p>
             <p class="expert-card__text">Plant Breeding &amp; Genetics Institute-National Center of Seed and Cultivar Investigation</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Olga's main activity is biochemical research of raw materials and food products for quality and safety, studying the biochemical composition of medicinal plants as raw materials for use in the pharmaceutical and food industries.&nbsp;She currently works as Head of the Laboratory of Plant Biochemistry at the&nbsp;Plant Breeding &amp; Genetics Institute-National Center of Seed and Cultivar Investigation.</p>
+                                                                                                                        <p  class="paragraph">Olga's main activity is biochemical research of raw materials and food products for quality and safety, studying the biochemical composition of medicinal plants as raw materials for use in the pharmaceutical and food industries. She currently works as Head of the Laboratory of Plant Biochemistry at the Plant Breeding &amp; Genetics Institute-National Center of Seed and Cultivar Investigation.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -225,7 +227,7 @@
             <p class="expert-card__subtitle">Postgraduate researcher</p>
             <p class="expert-card__text">Departement of Evolutionary Biology and Environmental Sciences, University of Zurich</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Viktor is a third-year postgraduate student at the University of Zurich (Switzerland). He is engaged in theoretical biology in the field of sexual selection. Namely, he studies the evolution of fertility signals in females and quality signals in males.</p>
+                                                                                                                        <p  class="paragraph">Viktor is a third-year postgraduate student at the University of Zurich (Switzerland). He is engaged in theoretical biology in the field of sexual selection. Namely, he studies the evolution of fertility signals in females and quality signals in males.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -259,7 +261,7 @@
             <p class="expert-card__subtitle">Ph.D.</p>
             <p class="expert-card__text">Kyiv Academic University</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Oleksii is a researcher in experimental biology (biophysics, molecular biology, neuropsychology) and the history of biology. He studies ion channels, receptors, and RNA biology (RNA interference, RNA editing). He also explores the scientific contribution of repressed Ukrainian scientists.</p>
+                                                                                                                        <p  class="paragraph">Oleksii is a researcher in experimental biology (biophysics, molecular biology, neuropsychology) and the history of biology. He studies ion channels, receptors, and RNA biology (RNA interference, RNA editing). He also explores the scientific contribution of repressed Ukrainian scientists.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -299,7 +301,7 @@
             <p class="expert-card__subtitle">Ph.D.</p>
             <p class="expert-card__text">Stanford University, School of Humanity and Sciences, Biology Department</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Oleksandr is a researcher at the Center for Longevity at Stanford University. The main focus of his research project is increasing physical activity among children and adolescents through educational tools and the modern technologies.</p>
+                                                                                                                        <p  class="paragraph">Oleksandr is a researcher at the Center for Longevity at Stanford University. The main focus of his research project is increasing physical activity among children and adolescents through educational tools and the modern technologies.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -342,7 +344,7 @@
             <p class="expert-card__subtitle">Ph.D.</p>
             <p class="expert-card__text">University of California Berkeley</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Vira is a Ph.D. in Molecular Biomedicine, a postdoctoral fellow at the University of California, Berkeley (USA) in the Department of Molecular and Cellular Biology. Vira works in neurobiology and uses stem cells to study human cortical development and associated genetic disorders. She is currently working on a study of the disease that causes epilepsy.</p>
+                                                                                                                        <p  class="paragraph">Vira is a Ph.D. in Molecular Biomedicine, a postdoctoral fellow at the University of California, Berkeley (USA) in the Department of Molecular and Cellular Biology. Vira works in neurobiology and uses stem cells to study human cortical development and associated genetic disorders. She is currently working on a study of the disease that causes epilepsy.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -379,7 +381,7 @@
             <p class="expert-card__subtitle">Ph.D.</p>
             <p class="expert-card__text">Taras Shevchenko National University of Kyiv</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Viktoriia is a lecturer at the Department of Human and Animal Physiology at Taras Shevchenko National University of Kyiv. She teaches human physiology and anatomy. She is interested in the topic of learning based on the principles of brain functioning, as well as the physiological mechanisms of information assimilation.</p>
+                                                                                                                        <p  class="paragraph">Viktoriia is a lecturer at the Department of Human and Animal Physiology at Taras Shevchenko National University of Kyiv. She teaches human physiology and anatomy. She is interested in the topic of learning based on the principles of brain functioning, as well as the physiological mechanisms of information assimilation.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -422,7 +424,7 @@
             <p class="expert-card__subtitle">Ph.D., associate professor</p>
             <p class="expert-card__text">D.K. Zabolotny Institute of Microbiology an Virology of the NASU</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Olga is a microbiologist at the D.K. Zabolotnyi Institute of Microbiology and Virology of the National Academy of Sciences of Ukraine. She is interested in the fermentation of products of plant and animal origin, the use of lactic acid bacteria as biopreservatives, inhibitors of foreign microbiota in food, and the use of microorganisms to ferret waste from various industries to produce secondary metabolites.</p>
+                                                                                                                        <p  class="paragraph">Olga is a microbiologist at the D.K. Zabolotnyi Institute of Microbiology and Virology of the National Academy of Sciences of Ukraine. She is interested in the fermentation of products of plant and animal origin, the use of lactic acid bacteria as biopreservatives, inhibitors of foreign microbiota in food, and the use of microorganisms to ferret waste from various industries to produce secondary metabolites.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -468,7 +470,7 @@
             <p class="expert-card__subtitle">Postgraduate student</p>
             <p class="expert-card__text">Frankfurt Zoological Society</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Hanna is an ornithologist at the Western Ukrainian Ornithological Society.</p>
+                                                                                                                        <p  class="paragraph">Hanna is an ornithologist at the Western Ukrainian Ornithological Society.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -514,7 +516,7 @@
             <p class="expert-card__subtitle">Ph.D.</p>
             <p class="expert-card__text">Ph.D.</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Olena is a science popularizer, founder and author of the popular science information resource MICROB & ME.</p>
+                                                                                                                        <p  class="paragraph">Olena is a science popularizer, founder and author of the popular science information resource MICROB &amp; ME.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -554,7 +556,7 @@
             <p class="expert-card__subtitle">Ph.D.</p>
             <p class="expert-card__text">Institute of Molecular Biology and Genetics of the National Academy of Sciences of Ukraine</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Olena conducts research and is interested in interdisciplinary research projects in biomedicine and new materials.</p>
+                                                                                                                        <p  class="paragraph">Olena conducts research and is interested in interdisciplinary research projects in biomedicine and new materials.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">

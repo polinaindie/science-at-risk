@@ -34,6 +34,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/9.1.0/swiper-bundle.min.css" integrity="sha512-n/86mxSdfFpsFtq9QYVhRlke9BQ/ZqIaRBe/dboH4l8JwBVitjpCS2HnDfbZnISV5Zq1lKONL/aQDqDQmtY/cA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.9/fullpage.min.css"/>
     <link href="css/style.min.css" rel="stylesheet">
+    <link href="css/pages/search-field.css" rel="stylesheet">
+    <link href="css/pages/expert-card.css" rel="stylesheet">
         
     <link rel="apple-touch-icon" sizes="57x57" href="images/favicon_client/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="images/favicon_client/apple-icon-60x60.png">
@@ -94,12 +96,12 @@
                 <div class="search-hero__info-wrap">
                     <h1 class="search-hero__title">Find Ukrainian scientists for collaboration</h1>
                 </div>
-                <form action="experts.html" method="GET" class="_searchScientists  search-hero__input-wrap">
-                    <div class="search-hero__column">
-                        <input class="_risk-label" type="text" name="search" id="search" value=""/>
-                        <label for="search">Scientific field or name </label>
-                    </div>
-                    <button class="search-hero__btn btn btn--black" type="submit">Find a scientist</button>
+                <form role="search" action="experts.html" method="GET" class="_searchScientists search-field">
+                    <label class="satr-float" for="search">
+                        <input id="search" type="search" name="search" placeholder=" ">
+                        <span class="satr-float__label">Enter scientific field or name</span>
+                    </label>
+                    <button class="btn btn--black" type="submit">Find a scientist</button>
                 </form>
                 <div class="search-hero__requests popular-requests">
                     <p class="popular-requests__text">Popular requests</p>
@@ -188,7 +190,7 @@
             <p class="expert-card__subtitle">Ph.D., professor</p>
             <p class="expert-card__text">Educational and Scientific Institute of High Technologies, Taras Shevchenko National University of Kyiv</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Igor leads the Institute of High Technologies of Taras Shevchenko Kyiv National University and participates in forming the university's scientific policy. He is a member of the expert council of the Ministry of Education and Science of Ukraine, which examines scientific projects, a reviewer for RSC Advances, Royal Society of Chemistry (Great Britain), and a member of the scientific society AMPERE SOCIETY.</p>
+                                                                                                                        <p  class="paragraph">Igor leads the Institute of High Technologies of Taras Shevchenko Kyiv National University and participates in forming the university's scientific policy. He is a member of the expert council of the Ministry of Education and Science of Ukraine, which examines scientific projects, a reviewer for RSC Advances, Royal Society of Chemistry (Great Britain), and a member of the scientific society AMPERE SOCIETY.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -228,7 +230,7 @@
             <p class="expert-card__subtitle">Doctor of Chemical Sciences</p>
             <p class="expert-card__text">Ivan Franko National University of Lviv</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Hryhoriy is the dean of the Faculty of Lviv Ivan Franko National University's Chemistry department of Lviv, a member of the University's Academic Council. He is a representative of Ukraine in the European Crystallographic Association.</p>
+                                                                                                                        <p  class="paragraph">Hryhoriy is the dean of the Faculty of Lviv Ivan Franko National University's Chemistry department of Lviv, a member of the University's Academic Council. He is a representative of Ukraine in the European Crystallographic Association.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -262,8 +264,7 @@
             <p class="expert-card__subtitle">Ph.D., professor</p>
             <p class="expert-card__text">Berdyansk State Pedagogical University</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Yana is a mathematician. Her areas of expertise include economic and mathematical modeling and mathematical methods for modeling economic and social processes. She uses mathematical statistics to analyze psychology, sociology, pedagogy, engineering and information technology research, system analysis and information security, optimization of queuing systems using Markov and semi-Markov random processes, and bilingual education.</p>
-                                            <p  class="paragraph">Yana authorizes several textbooks and manuals on higher mathematics, probability theory, and mathematical statistics. She is also the author of articles for the Great Ukrainian Encyclopedia portal. She is engaged in organizational work and work with gifted youth, including preparing students for participation in international and national mathematics competitions. She organizes the work of the School of Young Cryptologists at the Department of Computer Mathematics and Information Security of the Vadym Hetman Kyiv National Economic University. She is the author of the idea and script for the multidisciplinary educational comic book Blaise Pascal and Combinatorics.</p>
+                                                                                                                        <p  class="paragraph">Yana is a mathematician. Her areas of expertise include economic and mathematical modeling and mathematical methods for modeling economic and social processes. She uses mathematical statistics to analyze psychology, sociology, pedagogy, engineering and information technology research, system analysis and information security, optimization of queuing systems using Markov and semi-Markov random processes, and bilingual education.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -303,7 +304,7 @@
             <p class="expert-card__subtitle">Ph.D., associate professor</p>
             <p class="expert-card__text">National Technical University of Ukraine &quot;Kyiv Polytechnic Institute&quot;</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Since 2015, Sergiy has been the director of the gemological research center of Dniprov Polytechnic National Technical University (on a non-profit basis).&nbsp;Since 2016, he has been working as the Head of the Department of General and Structural Geology.</p>
+                                                                                                                        <p  class="paragraph">Since 2015, Sergiy has been the director of the gemological research center of Dniprov Polytechnic National Technical University (on a non-profit basis). Since 2016, he has been working as the Head of the Department of General and Structural Geology.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -341,8 +342,7 @@
             <p class="expert-card__subtitle">Doctor of Technical Science, Professor</p>
             <p class="expert-card__text">Kyiv National University of Trade and Economics</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Iuliia is engaged in developing food products for military personnel, patients (enteral nutrition), and food products for people with increased physical and psycho-emotional stress, and also research the issues of technical regulation, consumer protection, and comparative testing of goods and services.</p>
-                                            <p  class="paragraph">She is a professor at the Department of Safety and Quality Management at the State University of Trade and Economics.</p>
+                                                                                                                        <p  class="paragraph">Iuliia is engaged in developing food products for military personnel, patients (enteral nutrition), and food products for people with increased physical and psycho-emotional stress, and also research the issues of technical regulation, consumer protection, and comparative testing of goods and services. She is a professor at the Department of Safety and Quality Management at the State University of Trade and Economics.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -388,7 +388,7 @@
             <p class="expert-card__subtitle">Postgraduate researcher</p>
             <p class="expert-card__text">Departement of Evolutionary Biology and Environmental Sciences, University of Zurich</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Viktor is a third-year postgraduate student at the University of Zurich (Switzerland). He is engaged in theoretical biology in the field of sexual selection. Namely, he studies the evolution of fertility signals in females and quality signals in males.</p>
+                                                                                                                        <p  class="paragraph">Viktor is a third-year postgraduate student at the University of Zurich (Switzerland). He is engaged in theoretical biology in the field of sexual selection. Namely, he studies the evolution of fertility signals in females and quality signals in males.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -422,8 +422,7 @@
             <p class="expert-card__subtitle">Ph.D., senior researcher</p>
             <p class="expert-card__text">Bogolyubov Institute for Theoretical Physics of the National Academy of Sciences of Ukraine</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Sergei studies the physics of the condensed state, the theory of low-dimensional Dirac materials such as graphene, as well as the theory of superconductivity: thermoelectric and thermomagnetic phenomena in Dirac materials, namely the Seebeck and Nernst-Ettingshausen effects.</p>
-                                            <p  class="paragraph">Sergei is the head of the laboratory of strongly correlated low-dimensional systems at the Bogolyubov Institute for Theoretical Physics of the National Academy of Sciences of Ukraine. He also teaches at the Department of Theoretical and Mathematical Physics of Kyiv Academic University. He is engaged in scientific research and teaches such courses <a href="https://eduportal.kau.org.ua/course/view.php?id=57">"Physics of graphene and Dirac materials"</a>&nbsp and "Electronic systems in a magnetic field." Is engaged in the popularization of scientific research.</p>
+                                                                                                                        <p  class="paragraph">Sergei studies the physics of the condensed state, the theory of low-dimensional Dirac materials such as graphene, as well as the theory of superconductivity: thermoelectric and thermomagnetic phenomena in Dirac materials, namely the Seebeck and Nernst-Ettingshausen effects. Sergei is the head of the laboratory of strongly correlated low-dimensional systems at the Bogolyubov Institute for Theoretical Physics of the National Academy of Sciences of Ukraine. He also teaches at the Department of Theoretical and Mathematical Physics of Kyiv Academic University.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -433,6 +432,7 @@
                         <button data-try-tag="physics" class="expert-card__tag tag">Physics</button>
                     </li>
                             </ul>
+            <p class="expert-card__societies"><span class="expert-card__societies-label">Societies:</span> <a href="society/ukrainske-fizychne-tovarystvo.html">Ukrainian physical society</a></p>
         </div>
     </article>
     <a class="absoluteLink" href="expert/sharapov-serhii-hennadiiovych.html"></a>
@@ -454,7 +454,7 @@
             <p class="expert-card__subtitle">Ph.D.</p>
             <p class="expert-card__text">Institute of Physics of the National Academy of Sciences of Ukraine</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Anton is a senior researcher at the Department of Physical Electronics of the Institute of Physics of the National Academy of Sciences of Ukraine. His main activity is conducting studies of ultrathin organic films by scanning probe microscopy methods.</p>
+                                                                                                                        <p  class="paragraph">Anton is a senior researcher at the Department of Physical Electronics of the Institute of Physics of the National Academy of Sciences of Ukraine. His main activity is conducting studies of ultrathin organic films by scanning probe microscopy methods.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -485,8 +485,7 @@
             <p class="expert-card__subtitle">Ph.D., professor</p>
             <p class="expert-card__text">Dobrobut Academy Medical School</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Nana is a rector of a medical institution&nbsp;of higher education. She is also a professor at the Department of Biomedicine and Neurosciences of the Kyiv Academic University and an adviser to the Minister of Education and Science on science issues.</p>
-                                            <p  class="paragraph">Nana is the co-chair of the working group of the National Council for the preparation of proposals on the strategy for the development of state research infrastructure and a member of the active group of the National Council for the preparation of recommendations for the integration of domestic science into the global scientific space and the European research space, taking into account national interests.</p>
+                                                                                                                        <p  class="paragraph">Nana is a rector of a medical institution of higher education. She is also a professor at the Department of Biomedicine and Neurosciences of the Kyiv Academic University and an adviser to the Minister of Education and Science on science issues. Nana is the co-chair of the working group of the National Council for the preparation of proposals on the strategy for the development of state research infrastructure and a member of the active group of the National Council for the preparation of recommendations for the integration of domestic science into the global scientific space and the European research space, taking into account national interests.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -523,7 +522,7 @@
             <p class="expert-card__subtitle">Ph.D., associate professor</p>
             <p class="expert-card__text">Schmalhausen Institute of Zoology of National Academy of Sciences of Ukraine</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Zoologist, specialist in marine mammals.</p>
+                                                                                                                        <p  class="paragraph">Zoologist, specialist in marine mammals.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">

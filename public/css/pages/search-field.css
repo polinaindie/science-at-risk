@@ -1,0 +1,97 @@
+/* The search field of the home page (src/styles/globals.css `.satr-float`, and the form in HomePageV6) on the static pages:
+   a floating label inside the field, mono type, a 2px rule under the row and a black squircle button. */
+
+.search-field {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin-top: 16px;
+    font-family: "IBM Plex Mono", monospace;
+}
+
+@media (min-width: 768px) {
+    .search-field {
+        flex-direction: row;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 24px;
+        margin-top: 24px;
+        padding-bottom: 12px;
+        border-bottom: 2px solid #000;
+    }
+}
+
+.search-field .satr-float {
+    position: relative;
+    display: block;
+    min-width: 0;
+    flex: 1;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #000;
+}
+
+@media (min-width: 768px) {
+    .search-field .satr-float { padding-bottom: 0; border-bottom: 0; }
+}
+
+.search-field .satr-float > input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 25px 0 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    appearance: none;
+    -webkit-appearance: none;
+    outline: none;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: clamp(16px, 4.8vw, 22px);
+    font-weight: 300;
+    line-height: 28px;
+    color: #000;
+}
+
+.search-field .satr-float > input::-webkit-search-cancel-button { -webkit-appearance: none; }
+.search-field .satr-float > input:focus-visible { outline: 2px solid #000; outline-offset: 4px; }
+
+.search-field .satr-float > .satr-float__label {
+    position: absolute;
+    top: 25px;
+    left: 0;
+    max-width: 100%;
+    pointer-events: none;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: clamp(16px, 4.8vw, 22px);
+    font-weight: 300;
+    line-height: 28px;
+    color: #4d4d4d;
+    transform-origin: left top;
+    transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), color 0.3s;
+}
+
+.search-field .satr-float > input:focus + .satr-float__label,
+.search-field .satr-float > input:not(:placeholder-shown) + .satr-float__label {
+    transform: translateY(-25px) scale(0.8182);
+}
+
+@media (min-width: 1024px) {
+    .search-field .satr-float > input { padding-top: 0; font-size: 18px; }
+    .search-field .satr-float > .satr-float__label { top: 0; font-size: 18px; }
+    .search-field .satr-float > input:focus + .satr-float__label,
+    .search-field .satr-float > input:not(:placeholder-shown) + .satr-float__label {
+        transform: translateY(-24px) scale(0.7778);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .search-field .satr-float > .satr-float__label { transition: none; }
+}
+
+.search-field .btn {
+    flex-shrink: 0;
+    min-height: 47px;
+    padding: 9px 22px;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 18px;
+    line-height: 28px;
+}

@@ -36,6 +36,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/9.1.0/swiper-bundle.min.css" integrity="sha512-n/86mxSdfFpsFtq9QYVhRlke9BQ/ZqIaRBe/dboH4l8JwBVitjpCS2HnDfbZnISV5Zq1lKONL/aQDqDQmtY/cA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.9/fullpage.min.css"/>
     <link href="https://scienceatrisk.org/css/style.min.css?v=1793795322" rel="stylesheet">
+    <link href="../css/pages/search-field.css" rel="stylesheet">
+    <link href="../css/pages/expert-card.css" rel="stylesheet">
         
     <link rel="apple-touch-icon" sizes="57x57" href="../images/favicon_client/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="../images/favicon_client/apple-icon-60x60.png">
@@ -96,12 +98,12 @@
                 <div class="search-hero__info-wrap">
                     <h1 class="search-hero__title">Find Ukrainian scientists for collaboration</h1>
                 </div>
-                <form action="../experts.html" method="GET" class="_searchScientists  search-hero__input-wrap">
-                    <div class="search-hero__column">
-                        <input class="_risk-label" type="text" name="search" id="search" value=""/>
-                        <label for="search">Scientific field or name </label>
-                    </div>
-                    <button class="search-hero__btn btn btn--black" type="submit">Find a scientist</button>
+                <form role="search" action="../experts.html" method="GET" class="_searchScientists search-field">
+                    <label class="satr-float" for="search">
+                        <input id="search" type="search" name="search" placeholder=" ">
+                        <span class="satr-float__label">Enter scientific field or name</span>
+                    </label>
+                    <button class="btn btn--black" type="submit">Find a scientist</button>
                 </form>
                 <div class="search-hero__requests popular-requests">
                     <p class="popular-requests__text">Popular requests</p>
@@ -190,7 +192,7 @@
             <p class="expert-card__subtitle">Ph.D.</p>
             <p class="expert-card__text">I.I. Schmalhausen Institute of Zoology of National Academy of Sciences of Ukrain</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph"><a href="https://l.facebook.com/l.php?u=https%3A%2F%2Fyanish.pp.ua%2F%3Ffbclid%3DIwAR0tBsyt-PPnL06RI4N-fwssfN9GwhRikEPJVA2azWd6-1FF16zAGkM_F9I&amp;h=AT1pmvvPBMk4V0V8lXWTjSWFLeIMO2uyihAh_K7vZJ4IFZfwtANcWkGb-3O-iwjFo9-WEsXnD-yn7x34zjuh6oSiCW1sIWviNMB-ujFnGsyC_xuJff1BPK1U7TqWB_zJKebeew">Yevheniia</a> is a researcher at the I.I. Schmalhausen Institute of Zoology of the National Academy of Sciences of Ukraine, a zoologist (ornithologist), zooarchaeologist, and archaeozoologist. She has two areas of scientific interest, respectively, studying modern birds (family Corvidae) and, in addition, monitoring rare species of animals. She also learns archaeozoological materials, thanks to which she reconstructs paleoclimatic and paleoecological conditions, animal habitats, and their changes, as well as, together with archaeologists, human economic activities in the historical past.</p>
+                                                                                                                        <p  class="paragraph">Yevheniia is a researcher at the I.I. Schmalhausen Institute of Zoology of the National Academy of Sciences of Ukraine, a zoologist (ornithologist), zooarchaeologist, and archaeozoologist. She has two areas of scientific interest, respectively, studying modern birds (family Corvidae) and, in addition, monitoring rare species of animals.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -236,7 +238,7 @@
             <p class="expert-card__subtitle">D.Sc., professor</p>
             <p class="expert-card__text">I.I. Schmalhausen Institute of Zoology of National Academy of Sciences of Ukraine</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Valery is an entomologist, a specialist in the systematics of Diptera insects (flies and mosquitoes), in particular, true fruit flies and related families in the scope of the world fauna, invasive, quarantine species and biological control agents for weeds.</p>
+                                                                                                                        <p  class="paragraph">Valery is an entomologist, a specialist in the systematics of Diptera insects (flies and mosquitoes), in particular, true fruit flies and related families in the scope of the world fauna, invasive, quarantine species and biological control agents for weeds.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -279,7 +281,7 @@
             <p class="expert-card__subtitle">Ph.D. in Philosophy, Associate Professor</p>
             <p class="expert-card__text">Kyiv National Economic University named after Vadym Hetman</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Tetiana is an Associate Professor at the Department of Management at the Kyiv National Economic University named after Vadym Hetman. She teaches such disciplines as Management, Innovation Management, Intellectual Property Management, Competitiveness Management, Sustainability Management.</p>
+                                                                                                                        <p  class="paragraph">Tetiana is an Associate Professor at the Department of Management at the Kyiv National Economic University named after Vadym Hetman. She teaches such disciplines as Management, Innovation Management, Intellectual Property Management, Competitiveness Management, Sustainability Management.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -316,7 +318,7 @@
             <p class="expert-card__subtitle">Doctor of Science Biology, Professor</p>
             <p class="expert-card__text">V. N. Karazin Kharkiv National University</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Dmytro is a professor of the Department of Zoology and Animal Ecology at V. N. Karazin Kharkiv National University, head of the Laboratory of Integrative Teaching of Natural Sciences and author of the <a href="https://batrachos.com/">website</a>.</p>
+                                                                                                                        <p  class="paragraph">Dmytro is a professor of the Department of Zoology and Animal Ecology at V. N. Karazin Kharkiv National University, head of the Laboratory of Integrative Teaching of Natural Sciences and author of the website .</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -362,7 +364,7 @@
             <p class="expert-card__subtitle">Ph.D., Senior Researcher</p>
             <p class="expert-card__text">Institute of Pediatrics, Obstetrics and Gynecology of the National Academy of Medical Sciences of Ukraine</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph"><a href="https://ipag-kiev.org.ua/laboratoriya-imunologiyi/?fbclid=IwAR34fSyiprRJ_fwnss8eMnv_vUb4jMwDEOHnVqY2myA3tt0HNezGLjsPKMg">Boris</a> is the head of the Immunology Laboratory. He studies the immune aspects of reproductive processes in women. He researches the immune mechanisms of reproductive losses and endometrial receptivity.</p>
+                                                                                                                        <p  class="paragraph">Boris is the head of the Immunology Laboratory. He studies the immune aspects of reproductive processes in women. He researches the immune mechanisms of reproductive losses and endometrial receptivity.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -402,7 +404,7 @@
             <p class="expert-card__subtitle">Postgraduate student</p>
             <p class="expert-card__text">Martin Luther University Halle-Wittenberg</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Andrii is a researcher in the group of Systematics and Biodiversity, Department of Geobotany and Botanical Garden, Martin Luther University Halle-Wittenberg.&nbsp;</p>
+                                                                                                                        <p  class="paragraph">Andrii is a researcher in the group of Systematics and Biodiversity, Department of Geobotany and Botanical Garden, Martin Luther University Halle-Wittenberg.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -430,6 +432,7 @@
                         <button data-try-tag="plant-phylogeny" class="expert-card__tag tag">Plant phylogeny</button>
                     </li>
                             </ul>
+            <p class="expert-card__societies"><span class="expert-card__societies-label">Societies:</span> <a href="../society/ukrainske-botanichne-tovarystvo.html">Ukrainian Botanical Society</a></p>
         </div>
     </article>
     <a class="absoluteLink" href="../expert/tarieiev-andrii-serhiiovych.html"></a>
@@ -451,8 +454,7 @@
             <p class="expert-card__subtitle">Ph.D.</p>
             <p class="expert-card__text">National University of Kyiv-Mohyla Academy</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Martin-Oleksandr is a historian who studies the history of Crimea and the Crimean Tatars, and defended his dissertation entitled "The Return of the Crimean Tatars to their Homeland in 1956-1989". </p>
-                                            <p  class="paragraph">He is interested in migration, memory, trauma, identities, and colonialism.</p>
+                                                                                                                        <p  class="paragraph">Martin-Oleksandr is a historian who studies the history of Crimea and the Crimean Tatars, and defended his dissertation entitled "The Return of the Crimean Tatars to their Homeland in 1956-1989". He is interested in migration, memory, trauma, identities, and colonialism.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -486,7 +488,7 @@
             <p class="expert-card__subtitle">Ph.D.</p>
             <p class="expert-card__text">Institute for Nuclear Research of the National Academy of Sciences of Ukraine</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Yurii is a senior researcher at the Institute for Nuclear Research of NAS Ukraine. His research area is nuclear physics.</p>
+                                                                                                                        <p  class="paragraph">Yurii is a senior researcher at the Institute for Nuclear Research of NAS Ukraine. His research area is nuclear physics.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -523,8 +525,7 @@
             <p class="expert-card__subtitle">Researcher</p>
             <p class="expert-card__text">National Antarctic Scientific Center</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Mariia is a researcher at the National Antarctic Scientific Center of Ukraine. She is on the way to obtaining her PhD in Ecology.&nbsp;</p>
-                                            <p  class="paragraph">She studies marine microorganisms in marine ecosystems of polar and temperate latitudes. She is a biodiversity research expert for the UEU-UNDP project&nbsp;“European Union for the Improvement of Environmental Monitoring of the Black Sea” (EU4EMBLAS), which aims to improve the monitoring system.</p>
+                                                                                                                        <p  class="paragraph">Mariia is a researcher at the National Antarctic Scientific Center of Ukraine. She is on the way to obtaining her PhD in Ecology. She studies marine microorganisms in marine ecosystems of polar and temperate latitudes.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -573,7 +574,7 @@
             <p class="expert-card__subtitle">Doctor of Science</p>
             <p class="expert-card__text">Taras Shevchenko National University of Kyiv</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Halyna is a researcher at the Institute of High Technologies of Taras Shevchenko National University of Kyiv. Currently, she is researching the biological properties of carbon nanoparticles (in collaboration with the Institute Lumiere et Matiere), particularly their potential as wound healing agents.</p>
+                                                                                                                        <p  class="paragraph">Halyna is a researcher at the Institute of High Technologies of Taras Shevchenko National University of Kyiv. Currently, she is researching the biological properties of carbon nanoparticles (in collaboration with the Institute Lumiere et Matiere), particularly their potential as wound healing agents.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">

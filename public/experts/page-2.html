@@ -36,6 +36,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/9.1.0/swiper-bundle.min.css" integrity="sha512-n/86mxSdfFpsFtq9QYVhRlke9BQ/ZqIaRBe/dboH4l8JwBVitjpCS2HnDfbZnISV5Zq1lKONL/aQDqDQmtY/cA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.9/fullpage.min.css"/>
     <link href="../css/style.min.css" rel="stylesheet">
+    <link href="../css/pages/search-field.css" rel="stylesheet">
+    <link href="../css/pages/expert-card.css" rel="stylesheet">
         
     <link rel="apple-touch-icon" sizes="57x57" href="../images/favicon_client/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="../images/favicon_client/apple-icon-60x60.png">
@@ -96,12 +98,12 @@
                 <div class="search-hero__info-wrap">
                     <h1 class="search-hero__title">Find Ukrainian scientists for collaboration</h1>
                 </div>
-                <form action="../experts.html" method="GET" class="_searchScientists  search-hero__input-wrap">
-                    <div class="search-hero__column">
-                        <input class="_risk-label" type="text" name="search" id="search" value=""/>
-                        <label for="search">Scientific field or name </label>
-                    </div>
-                    <button class="search-hero__btn btn btn--black" type="submit">Find a scientist</button>
+                <form role="search" action="../experts.html" method="GET" class="_searchScientists search-field">
+                    <label class="satr-float" for="search">
+                        <input id="search" type="search" name="search" placeholder=" ">
+                        <span class="satr-float__label">Enter scientific field or name</span>
+                    </label>
+                    <button class="btn btn--black" type="submit">Find a scientist</button>
                 </form>
                 <div class="search-hero__requests popular-requests">
                     <p class="popular-requests__text">Popular requests</p>
@@ -190,7 +192,7 @@
             <p class="expert-card__subtitle">Ph.D., associate professor</p>
             <p class="expert-card__text">National Technical University of Ukraine &quot;Kyiv Polytechnic Institute&quot;</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Since 2015, Sergiy has been the director of the gemological research center of Dniprov Polytechnic National Technical University (on a non-profit basis).&nbsp;Since 2016, he has been working as the Head of the Department of General and Structural Geology.</p>
+                                                                                                                        <p  class="paragraph">Since 2015, Sergiy has been the director of the gemological research center of Dniprov Polytechnic National Technical University (on a non-profit basis). Since 2016, he has been working as the Head of the Department of General and Structural Geology.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -227,7 +229,7 @@
             <p class="expert-card__subtitle">Ph.D., professor</p>
             <p class="expert-card__text">Ivano-Frankivsk National Technical University of Oil and Gas</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Liudmyla works on the editorial board of the scientific and information magazine "Ecological Safety and balanced resource use". She also manages the project "Valorization of cultural and historical heritage through developing and promoting the Carpathian cultural route".</p>
+                                                                                                                        <p  class="paragraph">Liudmyla works on the editorial board of the scientific and information magazine "Ecological Safety and balanced resource use". She also manages the project "Valorization of cultural and historical heritage through developing and promoting the Carpathian cultural route".</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -261,7 +263,7 @@
             <p class="expert-card__subtitle">Ph.D., associate professor</p>
             <p class="expert-card__text">University of Vienna</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Oksana is a reviewer in the journal<b>"</b>Ukrainian Journal of Physics<b>"</b>; a member of the sectoral expert council of the National Agency for Higher Education Quality Assurance; an expert of the section <b><b>"</b>General Physics<b>"</b>&nbsp; of the scientific council of the Ministry of Education and Science of Ukraine.&nbsp;&nbsp;</p>
+                                                                                                                        <p  class="paragraph">Oksana is a reviewer in the journal " Ukrainian Journal of Physics " ; a member of the sectoral expert council of the National Agency for Higher Education Quality Assurance; an expert of the section " General Physics " of the scientific council of the Ministry of Education and Science of Ukraine.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -292,7 +294,7 @@
             <p class="expert-card__subtitle">Ph.D., associate professor</p>
             <p class="expert-card__text">Vinnytsia National Technical University</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Vitalii is a PhD in Engineering, Associate Professor.</p>
+                                                                                                                        <p  class="paragraph">Vitalii is a PhD in Engineering, Associate Professor.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -323,7 +325,7 @@
             <p class="expert-card__subtitle">Ph.D., professor</p>
             <p class="expert-card__text">Kyiv National Economic University named after Vadym Hetman</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Andrii is a professor of the Department of Mathematical Modeling and Statistics at Kyiv National Economic University named after Vadym Hetman. He is the editor-in-chief of the scientific journal "Neuro-fuzzy Modeling Techniques in Economics", a member of editorial boards and a reviewer of several Ukrainian and international editions.</p>
+                                                                                                                        <p  class="paragraph">Andrii is a professor of the Department of Mathematical Modeling and Statistics at Kyiv National Economic University named after Vadym Hetman. He is the editor-in-chief of the scientific journal "Neuro-fuzzy Modeling Techniques in Economics", a member of editorial boards and a reviewer of several Ukrainian and international editions.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -357,7 +359,7 @@
             <p class="expert-card__subtitle">Ph.D., professor</p>
             <p class="expert-card__text">National University “Odesa Law Academy”</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Myroslava is the Head of the Department of Applied Linguistics at the National University "Odesa Law Academy". </p>
+                                                                                                                        <p  class="paragraph">Myroslava is the Head of the Department of Applied Linguistics at the National University "Odesa Law Academy".</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -388,7 +390,7 @@
             <p class="expert-card__subtitle">Ph.D., professor</p>
             <p class="expert-card__text">King Danylo University</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Maksym researches issues in the field of energy and technological security. He is also Vice-Rector for International Relations and Strategic Development.</p>
+                                                                                                                        <p  class="paragraph">Maksym researches issues in the field of energy and technological security. He is also Vice-Rector for International Relations and Strategic Development.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -425,7 +427,7 @@
             <p class="expert-card__subtitle">Ph.D., associate professor</p>
             <p class="expert-card__text">Ukrainian Catholic University</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Oleh is the Vice-rector for science at the Ukrainian Catholic University. He is a member of the expert scientific group under the Mayor of Lviv; a reviewer of the international journals "International Journal of Fatigue" and "Fusion Engineering and Design".</p>
+                                                                                                                        <p  class="paragraph">Oleh is the Vice-rector for science at the Ukrainian Catholic University. He is a member of the expert scientific group under the Mayor of Lviv; a reviewer of the international journals "International Journal of Fatigue" and "Fusion Engineering and Design".</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -460,8 +462,7 @@
             <p class="expert-card__subtitle">Doctor of Technical Science, Professor</p>
             <p class="expert-card__text">Kyiv National University of Trade and Economics</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Iuliia is engaged in developing food products for military personnel, patients (enteral nutrition), and food products for people with increased physical and psycho-emotional stress, and also research the issues of technical regulation, consumer protection, and comparative testing of goods and services.</p>
-                                            <p  class="paragraph">She is a professor at the Department of Safety and Quality Management at the State University of Trade and Economics.</p>
+                                                                                                                        <p  class="paragraph">Iuliia is engaged in developing food products for military personnel, patients (enteral nutrition), and food products for people with increased physical and psycho-emotional stress, and also research the issues of technical regulation, consumer protection, and comparative testing of goods and services. She is a professor at the Department of Safety and Quality Management at the State University of Trade and Economics.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -507,7 +508,7 @@
             <p class="expert-card__subtitle">Doctor of Biological Sciences, associate professor</p>
             <p class="expert-card__text">Plant Breeding &amp; Genetics Institute-National Center of Seed and Cultivar Investigation</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Olga's main activity is biochemical research of raw materials and food products for quality and safety, studying the biochemical composition of medicinal plants as raw materials for use in the pharmaceutical and food industries.&nbsp;She currently works as Head of the Laboratory of Plant Biochemistry at the&nbsp;Plant Breeding &amp; Genetics Institute-National Center of Seed and Cultivar Investigation.</p>
+                                                                                                                        <p  class="paragraph">Olga's main activity is biochemical research of raw materials and food products for quality and safety, studying the biochemical composition of medicinal plants as raw materials for use in the pharmaceutical and food industries. She currently works as Head of the Laboratory of Plant Biochemistry at the Plant Breeding &amp; Genetics Institute-National Center of Seed and Cultivar Investigation.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">

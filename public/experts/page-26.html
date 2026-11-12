@@ -36,6 +36,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/9.1.0/swiper-bundle.min.css" integrity="sha512-n/86mxSdfFpsFtq9QYVhRlke9BQ/ZqIaRBe/dboH4l8JwBVitjpCS2HnDfbZnISV5Zq1lKONL/aQDqDQmtY/cA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.9/fullpage.min.css"/>
     <link href="https://scienceatrisk.org/css/style.min.css?v=1793795402" rel="stylesheet">
+    <link href="../css/pages/search-field.css" rel="stylesheet">
+    <link href="../css/pages/expert-card.css" rel="stylesheet">
         
     <link rel="apple-touch-icon" sizes="57x57" href="../images/favicon_client/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="../images/favicon_client/apple-icon-60x60.png">
@@ -96,12 +98,12 @@
                 <div class="search-hero__info-wrap">
                     <h1 class="search-hero__title">Find Ukrainian scientists for collaboration</h1>
                 </div>
-                <form action="../experts.html" method="GET" class="_searchScientists  search-hero__input-wrap">
-                    <div class="search-hero__column">
-                        <input class="_risk-label" type="text" name="search" id="search" value=""/>
-                        <label for="search">Scientific field or name </label>
-                    </div>
-                    <button class="search-hero__btn btn btn--black" type="submit">Find a scientist</button>
+                <form role="search" action="../experts.html" method="GET" class="_searchScientists search-field">
+                    <label class="satr-float" for="search">
+                        <input id="search" type="search" name="search" placeholder=" ">
+                        <span class="satr-float__label">Enter scientific field or name</span>
+                    </label>
+                    <button class="btn btn--black" type="submit">Find a scientist</button>
                 </form>
                 <div class="search-hero__requests popular-requests">
                     <p class="popular-requests__text">Popular requests</p>
@@ -190,7 +192,7 @@
             <p class="expert-card__subtitle">Doctor of Sciences, Senior Researcher</p>
             <p class="expert-card__text">National University of Life and Environmental Sciences of Ukraine</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Liudmyla Shevchuk is a Professor at the Department of Horticulture named after Prof. V. L. Symyrenko at the National University of Life and Environmental Sciences of Ukraine. She studies the impact of global changes on horticultural practices, fruit quality formation, and postharvest storage.</p>
+                                                                                                                        <p  class="paragraph">Liudmyla Shevchuk is a Professor at the Department of Horticulture named after Prof. V. L. Symyrenko at the National University of Life and Environmental Sciences of Ukraine. She studies the impact of global changes on horticultural practices, fruit quality formation, and postharvest storage.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -221,8 +223,7 @@
             <p class="expert-card__subtitle">Candidate of Veterinary Sciences, Associate Professor</p>
             <p class="expert-card__text">Stepan Gzhytskyi National University of Veterinary Medicine and Biotechnologies of Lviv</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Mykola Lychuk is an Associate Professor at the Department of Internal Animal Diseases and Clinical Diagnostics at Stepan Gzhytskyi National University of Veterinary Medicine and Biotechnologies of Lviv.</p>
-                                            <p  class="paragraph">He combines teaching and research activities, with his work focused on internal veterinary medicine.</p>
+                                                                                                                        <p  class="paragraph">Mykola Lychuk is an Associate Professor at the Department of Internal Animal Diseases and Clinical Diagnostics at Stepan Gzhytskyi National University of Veterinary Medicine and Biotechnologies of Lviv. He combines teaching and research activities, with his work focused on internal veterinary medicine.</p>
                                                 </p>
             <ul class="expert-card__list">
                             </ul>
@@ -247,8 +248,7 @@
             <p class="expert-card__subtitle">PhD, Associate Professor</p>
             <p class="expert-card__text">Sumy State Pedagogical University named after A. S. Makarenko</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Yulia Lytvynenko is a researcher and biology lecturer whose work focuses on mycology, fungal and plant biodiversity, soil ecology, and the study of microorganisms and fungi in culture.</p>
-                                            <p  class="paragraph">In her work, Yulia combines fundamental research in systematics and floristics with the study of the impact of anthropogenic and war-related factors on biocenoses. She also has experience in nature conservation as a researcher at a national nature park, participates in international research projects and publications, and is involved in student training and the popularization of the natural sciences.</p>
+                                                                                                                        <p  class="paragraph">Yulia Lytvynenko is a researcher and biology lecturer whose work focuses on mycology, fungal and plant biodiversity, soil ecology, and the study of microorganisms and fungi in culture. In her work, Yulia combines fundamental research in systematics and floristics with the study of the impact of anthropogenic and war-related factors on biocenoses. She also has experience in nature conservation as a researcher at a national nature park, participates in international research projects and publications, and is involved in student training and the popularization of the natural sciences.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -282,7 +282,7 @@
             <p class="expert-card__subtitle">PhD, Associate Professor</p>
             <p class="expert-card__text">Lviv National University of Veterinary Medicine and Biotechnologies named after S. Z. Gzhytskyi</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Oksana is an Associate Professor at the Department of Ecology and Environmental Protection. In her teaching and research activities, she focuses on technologies for the purification of biosphere ecosystems, as well as on applying the experience of the international scientific community to address environmental problems and improve the quality of biogeocenoses affected by technogenic impacts.</p>
+                                                                                                                        <p  class="paragraph">Oksana is an Associate Professor at the Department of Ecology and Environmental Protection. In her teaching and research activities, she focuses on technologies for the purification of biosphere ecosystems, as well as on applying the experience of the international scientific community to address environmental problems and improve the quality of biogeocenoses affected by technogenic impacts.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -316,9 +316,7 @@
             <p class="expert-card__subtitle">PhD</p>
             <p class="expert-card__text">I. I. Schmalhausen Institute of Zoology of the National Academy of Sciences of Ukraine</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Valeriia Telizhenko is a researcher at the I. I. Schmalhausen Institute of Zoology. Her research interests include evolutionary morphology and the use of deep machine learning methods for the analysis of biological and interdisciplinary data.</p>
-                                            <p  class="paragraph">She is particularly interested in how computational approaches can expand the possibilities of modern biology by making research more reproducible, scalable, and quantitatively grounded. In her work, Valeriia seeks to integrate algorithmic thinking, automation, and programming into scientific practice, combining her experience in zoological research with the development of data analysis and machine learning tools.</p>
-                                            <p  class="paragraph">She is also interested in exploring new ways of applying computational approaches beyond classical biological problems.</p>
+                                                                                                                        <p  class="paragraph">Valeriia Telizhenko is a researcher at the I. I. Schmalhausen Institute of Zoology. Her research interests include evolutionary morphology and the use of deep machine learning methods for the analysis of biological and interdisciplinary data. She is particularly interested in how computational approaches can expand the possibilities of modern biology by making research more reproducible, scalable, and quantitatively grounded.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -352,8 +350,7 @@
             <p class="expert-card__subtitle">PhD</p>
             <p class="expert-card__text">National Science Center “Kharkiv Institute of Physics and Technology”</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Denys serves as Acting Head of the Department of Magnetoplasma Technologies and Compact Pulsed Accelerators at the National Science Center “Kharkiv Institute of Physics and Technology”.</p>
-                                            <p  class="paragraph">His research interests include the generation of electromagnetic radiation in direct-action accelerators with plasma opening switches, the processing of solid materials using electron beams with energies of up to 500 keV, and the propagation of beams through polymer membranes and along dielectric structures.</p>
+                                                                                                                        <p  class="paragraph">Denys serves as Acting Head of the Department of Magnetoplasma Technologies and Compact Pulsed Accelerators at the National Science Center “Kharkiv Institute of Physics and Technology”. His research interests include the generation of electromagnetic radiation in direct-action accelerators with plasma opening switches, the processing of solid materials using electron beams with energies of up to 500 keV, and the propagation of beams through polymer membranes and along dielectric structures.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -387,7 +384,7 @@
             <p class="expert-card__subtitle">Doctor of Sciences, Professor</p>
             <p class="expert-card__text">Lviv Polytechnic National University</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Volodymyr Riznyk is a Professor at Lviv Polytechnic National University. His main work focuses on the development and implementation of advanced vector information technologies as an alternative to quantum approaches.</p>
+                                                                                                                        <p  class="paragraph">Volodymyr Riznyk is a Professor at Lviv Polytechnic National University. His main work focuses on the development and implementation of advanced vector information technologies as an alternative to quantum approaches.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -421,7 +418,7 @@
             <p class="expert-card__subtitle">PhD</p>
             <p class="expert-card__text">Kyiv National Economic University named after Vadym Hetman</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Tetiana Tymoshenko is an Associate Professor at the Department of Regional Studies and Tourism at the Kyiv National Economic University named after Vadym Hetman. She conducts research and develops practical solutions in the field of sustainable tourism and resort management, rural development through the activation of economic activity in the hospitality sector—including the creation of employment opportunities for vulnerable groups such as veterans, internally displaced persons, young people, and women at the community level—and the promotion of historical and cultural heritage through the development of integrated tourism products in the fields of culture and the creative industries.</p>
+                                                                                                                        <p  class="paragraph">Tetiana Tymoshenko is an Associate Professor at the Department of Regional Studies and Tourism at the Kyiv National Economic University named after Vadym Hetman. She conducts research and develops practical solutions in the field of sustainable tourism and resort management, rural development through the activation of economic activity in the hospitality sector—including the creation of employment opportunities for vulnerable groups such as veterans, internally displaced persons, young people, and women at the community level—and the promotion of historical and cultural heritage through the development of integrated tourism products in the fields of culture and the creative industries.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -464,7 +461,7 @@
             <p class="expert-card__subtitle">Doctor of Sciences, Professor</p>
             <p class="expert-card__text">Institute of Water Problems and Land Reclamation of the National Academy of Agrarian Sciences of Ukraine</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Andrii Shatkovskyi is a researcher in the fields of agricultural land reclamation, irrigated agriculture, and agronomy more broadly. He has developed and scientifically substantiated intensive drip irrigation technologies for agricultural crops that ensure optimal plant productivity while maintaining the ecological sustainability of agricultural landscapes.</p>
+                                                                                                                        <p  class="paragraph">Andrii Shatkovskyi is a researcher in the fields of agricultural land reclamation, irrigated agriculture, and agronomy more broadly. He has developed and scientifically substantiated intensive drip irrigation technologies for agricultural crops that ensure optimal plant productivity while maintaining the ecological sustainability of agricultural landscapes.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -498,7 +495,7 @@
             <p class="expert-card__subtitle">Doctor of Sciences, Associate Professor</p>
             <p class="expert-card__text">Institute of Food Biotechnology and Genomics, NAS of Ukraine</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Serhii Khablak is a researcher in the fields of plant physiology, immunity, and stress responses in agricultural crops. His main research focuses on the molecular mechanisms underlying the resistance of winter wheat and sunflower to biotic and abiotic stresses, the functioning of immune genes and receptors, as well as the critical analysis of modern agricultural technologies, specialty fertilizers, and biostimulants. In his work, Serhii combines field research, bioinformatic analysis, plant physiology, and science communication.</p>
+                                                                                                                        <p  class="paragraph">Serhii Khablak is a researcher in the fields of plant physiology, immunity, and stress responses in agricultural crops. His main research focuses on the molecular mechanisms underlying the resistance of winter wheat and sunflower to biotic and abiotic stresses, the functioning of immune genes and receptors, as well as the critical analysis of modern agricultural technologies, specialty fertilizers, and biostimulants. In his work, Serhii combines field research, bioinformatic analysis, plant physiology, and science communication.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">

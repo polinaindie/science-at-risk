@@ -36,6 +36,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/9.1.0/swiper-bundle.min.css" integrity="sha512-n/86mxSdfFpsFtq9QYVhRlke9BQ/ZqIaRBe/dboH4l8JwBVitjpCS2HnDfbZnISV5Zq1lKONL/aQDqDQmtY/cA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.9/fullpage.min.css"/>
     <link href="https://scienceatrisk.org/css/style.min.css?v=1793795420" rel="stylesheet">
+    <link href="../css/pages/search-field.css" rel="stylesheet">
+    <link href="../css/pages/expert-card.css" rel="stylesheet">
         
     <link rel="apple-touch-icon" sizes="57x57" href="../images/favicon_client/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="../images/favicon_client/apple-icon-60x60.png">
@@ -96,12 +98,12 @@
                 <div class="search-hero__info-wrap">
                     <h1 class="search-hero__title">Find Ukrainian scientists for collaboration</h1>
                 </div>
-                <form action="../experts.html" method="GET" class="_searchScientists  search-hero__input-wrap">
-                    <div class="search-hero__column">
-                        <input class="_risk-label" type="text" name="search" id="search" value=""/>
-                        <label for="search">Scientific field or name </label>
-                    </div>
-                    <button class="search-hero__btn btn btn--black" type="submit">Find a scientist</button>
+                <form role="search" action="../experts.html" method="GET" class="_searchScientists search-field">
+                    <label class="satr-float" for="search">
+                        <input id="search" type="search" name="search" placeholder=" ">
+                        <span class="satr-float__label">Enter scientific field or name</span>
+                    </label>
+                    <button class="btn btn--black" type="submit">Find a scientist</button>
                 </form>
                 <div class="search-hero__requests popular-requests">
                     <p class="popular-requests__text">Popular requests</p>
@@ -190,7 +192,7 @@
             <p class="expert-card__subtitle">Doctoral student</p>
             <p class="expert-card__text">Universitätsklinikum Tübingen</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Polina is a doctoral student at the University of Tübingen in neuroscience (neurodegenerative diseases). She is interested in the popularization and development of science in Ukraine.</p>
+                                                                                                                        <p  class="paragraph">Polina is a doctoral student at the University of Tübingen in neuroscience (neurodegenerative diseases). She is interested in the popularization and development of science in Ukraine.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -224,7 +226,7 @@
             <p class="expert-card__subtitle">D.Sc., professor</p>
             <p class="expert-card__text">Kyiv Academic University</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Mikhail conducts theoretical and experimental research in the field of quantum transport, in particular, the transport properties of hybrid heterostructures based on superconducting, magnetic and dielectric films.</p>
+                                                                                                                        <p  class="paragraph">Mikhail conducts theoretical and experimental research in the field of quantum transport, in particular, the transport properties of hybrid heterostructures based on superconducting, magnetic and dielectric films.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -237,6 +239,7 @@
                         <button data-try-tag="astronomy" class="expert-card__tag tag">Astronomy</button>
                     </li>
                             </ul>
+            <p class="expert-card__societies"><span class="expert-card__societies-label">Societies:</span> <a href="../society/ukrainske-fizychne-tovarystvo.html">Ukrainian physical society</a></p>
         </div>
     </article>
     <a class="absoluteLink" href="../expert/biloholovskyi-mykhailo-oleksandrovych.html"></a>
@@ -258,7 +261,7 @@
             <p class="expert-card__subtitle">D.Sc., Senior Researcher</p>
             <p class="expert-card__text">Institute of Marine Biology of the NAS of Ukraine</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Expert in aquatic parasites and biological invasions in aquatic ecosystems.</p>
+                                                                                                                        <p  class="paragraph">Expert in aquatic parasites and biological invasions in aquatic ecosystems.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -298,7 +301,7 @@
             <p class="expert-card__subtitle">Ph.D.</p>
             <p class="expert-card__text">Leonid Yuzkov Khmelnytskyi University of Management and Law</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Nataliia is a Ukrainian religious scholar and visiting scholar at the University of Manitoba. She is interested in the phenomenon of Ukrainian religious life in Canada.</p>
+                                                                                                                        <p  class="paragraph">Nataliia is a Ukrainian religious scholar and visiting scholar at the University of Manitoba. She is interested in the phenomenon of Ukrainian religious life in Canada.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -332,7 +335,7 @@
             <p class="expert-card__subtitle">Ph.D.</p>
             <p class="expert-card__text">V.N. Karazin Kharkiv National University</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Mykola has just defended his Ph.D. in Biology in zoological research. His primary research focuses on population processes and genetic diversity of hemiclonal population systems of the Pelophylax esculentus complex (green frogs). Still, in a broader sense, he pays attention to herpetological and general zoological studies of the entire fauna of Ukraine.</p>
+                                                                                                                        <p  class="paragraph">Mykola has just defended his Ph.D. in Biology in zoological research. His primary research focuses on population processes and genetic diversity of hemiclonal population systems of the Pelophylax esculentus complex (green frogs). Still, in a broader sense, he pays attention to herpetological and general zoological studies of the entire fauna of Ukraine.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -342,6 +345,7 @@
                         <button data-try-tag="biology" class="expert-card__tag tag">Biology</button>
                     </li>
                             </ul>
+            <p class="expert-card__societies"><span class="expert-card__societies-label">Societies:</span> <a href="../society/ukrainske-herpetolohichne-tovarystvo.html">Ukrainian Herpetological Society</a></p>
         </div>
     </article>
     <a class="absoluteLink" href="../expert/drohvalenko-mykola-oleksandrovych.html"></a>
@@ -363,7 +367,7 @@
             <p class="expert-card__subtitle">Ph.D., Associate Professor</p>
             <p class="expert-card__text">Kyiv School of Economics</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Tymofiy is the rector of the Kyiv School of Economics. He is a sociologist who researches topics ranging from religion to social inequalities. He coordinates European comparative surveys in Ukraine (European Social Survey, European Values Survey).</p>
+                                                                                                                        <p  class="paragraph">Tymofiy is the rector of the Kyiv School of Economics. He is a sociologist who researches topics ranging from religion to social inequalities. He coordinates European comparative surveys in Ukraine (European Social Survey, European Values Survey).</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -406,7 +410,7 @@
             <p class="expert-card__subtitle">D.Sc., professor</p>
             <p class="expert-card__text">M.G. Kholodny Institute of botany, NAS of Ukraine</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Yakiv is the head of the Department of Geobotany and Ecology at the M.G. Kholodny Institute of Botany, NAS of Ukraine, and a specialist in phytocoenology, geobotany, floristics, plant ecology, and flora protection.</p>
+                                                                                                                        <p  class="paragraph">Yakiv is the head of the Department of Geobotany and Ecology at the M.G. Kholodny Institute of Botany, NAS of Ukraine, and a specialist in phytocoenology, geobotany, floristics, plant ecology, and flora protection.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -431,6 +435,7 @@
                         <button data-try-tag="public-speaking" class="expert-card__tag tag">Public speaking</button>
                     </li>
                             </ul>
+            <p class="expert-card__societies"><span class="expert-card__societies-label">Societies:</span> <a href="../society/ukrainske-botanichne-tovarystvo.html">Ukrainian Botanical Society</a></p>
         </div>
     </article>
     <a class="absoluteLink" href="../expert/didukh-yakiv-petrovych.html"></a>
@@ -452,7 +457,7 @@
             <p class="expert-card__subtitle">D.Sc., professor</p>
             <p class="expert-card__text">Institute of Molecular Biology and Genetics</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">The scientist studies gene expression using molecular biology and bioinformatics methods.&nbsp;</p>
+                                                                                                                        <p  class="paragraph">The scientist studies gene expression using molecular biology and bioinformatics methods.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -483,7 +488,7 @@
             <p class="expert-card__subtitle">Ph.D.</p>
             <p class="expert-card__text">Swedish University of Agricultural Sciences</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">He is a postdoc at the Swedish University of Agriculture. He studies forest ecosystems at the landscape level using ground and satellite data and forest dynamics in Ukraine and Sweden.</p>
+                                                                                                                        <p  class="paragraph">He is a postdoc at the Swedish University of Agriculture. He studies forest ecosystems at the landscape level using ground and satellite data and forest dynamics in Ukraine and Sweden.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -523,7 +528,7 @@
             <p class="expert-card__subtitle">Ph.D.</p>
             <p class="expert-card__text">Institute of Geological Sciences of the National Academy of Sciences of Ukraine</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Liliana is a researcher at the Department of Hydrogeological Problems of the Institute of Geological Sciences of the NAS of Ukraine. She is interested in studying the water content of crystalline rocks in the context of using groundwater from fractured sediments as an alternative source of water supply in the context of climate change and in analyzing the petrophysical properties of crystalline rocks (in particular, permeability) in the context of choosing a suitable environment for radioactive waste disposal.</p>
+                                                                                                                        <p  class="paragraph">Liliana is a researcher at the Department of Hydrogeological Problems of the Institute of Geological Sciences of the NAS of Ukraine. She is interested in studying the water content of crystalline rocks in the context of using groundwater from fractured sediments as an alternative source of water supply in the context of climate change and in analyzing the petrophysical properties of crystalline rocks (in particular, permeability) in the context of choosing a suitable environment for radioactive waste disposal.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">

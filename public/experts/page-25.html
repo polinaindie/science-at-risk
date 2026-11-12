@@ -36,6 +36,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/9.1.0/swiper-bundle.min.css" integrity="sha512-n/86mxSdfFpsFtq9QYVhRlke9BQ/ZqIaRBe/dboH4l8JwBVitjpCS2HnDfbZnISV5Zq1lKONL/aQDqDQmtY/cA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.9/fullpage.min.css"/>
     <link href="https://scienceatrisk.org/css/style.min.css?v=1793795397" rel="stylesheet">
+    <link href="../css/pages/search-field.css" rel="stylesheet">
+    <link href="../css/pages/expert-card.css" rel="stylesheet">
         
     <link rel="apple-touch-icon" sizes="57x57" href="../images/favicon_client/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="../images/favicon_client/apple-icon-60x60.png">
@@ -96,12 +98,12 @@
                 <div class="search-hero__info-wrap">
                     <h1 class="search-hero__title">Find Ukrainian scientists for collaboration</h1>
                 </div>
-                <form action="../experts.html" method="GET" class="_searchScientists  search-hero__input-wrap">
-                    <div class="search-hero__column">
-                        <input class="_risk-label" type="text" name="search" id="search" value=""/>
-                        <label for="search">Scientific field or name </label>
-                    </div>
-                    <button class="search-hero__btn btn btn--black" type="submit">Find a scientist</button>
+                <form role="search" action="../experts.html" method="GET" class="_searchScientists search-field">
+                    <label class="satr-float" for="search">
+                        <input id="search" type="search" name="search" placeholder=" ">
+                        <span class="satr-float__label">Enter scientific field or name</span>
+                    </label>
+                    <button class="btn btn--black" type="submit">Find a scientist</button>
                 </form>
                 <div class="search-hero__requests popular-requests">
                     <p class="popular-requests__text">Popular requests</p>
@@ -190,7 +192,7 @@
             <p class="expert-card__subtitle">Ph.D.</p>
             <p class="expert-card__text">V. N. Karazin Kharkiv National University</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Tetiana Revina is a lecturer at the Faculty of Mathematics and Computer Science, as well as at the Faculty of Economics, at V. N. Karazin Kharkiv National University, Ukraine.</p>
+                                                                                                                        <p  class="paragraph">Tetiana Revina is a lecturer at the Faculty of Mathematics and Computer Science, as well as at the Faculty of Economics, at V. N. Karazin Kharkiv National University, Ukraine.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -221,7 +223,7 @@
             <p class="expert-card__subtitle">PhD, Associate Professor</p>
             <p class="expert-card__text">Taras Shevchenko National University of Kyiv</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Lesia Baranovska is an Associate Professor and Leading Researcher at Taras Shevchenko National University of Kyiv. She combines teaching and research activities and works in the field of differential games, with a particular focus on differential-difference pursuit games.</p>
+                                                                                                                        <p  class="paragraph">Lesia Baranovska is an Associate Professor and Leading Researcher at Taras Shevchenko National University of Kyiv. She combines teaching and research activities and works in the field of differential games, with a particular focus on differential-difference pursuit games.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -252,8 +254,7 @@
             <p class="expert-card__subtitle">Doctor of Sciences, Professor</p>
             <p class="expert-card__text">Odesa State University of Internal Affairs</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Iryna Hloviuk is a researcher and lecturer in the field of Ukrainian criminal procedure, the application of European Court of Human Rights case law in criminal proceedings, EU criminal procedural law, war crimes, and combating gender-based violence through criminal justice mechanisms.</p>
-                                            <p  class="paragraph">Iryna has experience participating in grant-funded and educational projects, including within the Erasmus+ Jean Monnet programme, as well as in the development and implementation of certificate programmes.</p>
+                                                                                                                        <p  class="paragraph">Iryna Hloviuk is a researcher and lecturer in the field of Ukrainian criminal procedure, the application of European Court of Human Rights case law in criminal proceedings, EU criminal procedural law, war crimes, and combating gender-based violence through criminal justice mechanisms. Iryna has experience participating in grant-funded and educational projects, including within the Erasmus+ Jean Monnet programme, as well as in the development and implementation of certificate programmes.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -281,8 +282,7 @@
             <p class="expert-card__subtitle">Doctor of Sciences, Professor</p>
             <p class="expert-card__text">Institute of Molecular Biology and Genetics of the National Academy of Sciences of Ukraine</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Boris Negrutskii heads the Department of Structural and Functional Proteomics at the Institute of Molecular Biology and Genetics of the National Academy of Sciences of Ukraine. His research focuses on the fundamental mechanisms of protein synthesis in humans.</p>
-                                            <p  class="paragraph">Boris also develops and implements research projects, secures grant funding, and is involved in international collaborations with researchers from Poland, Denmark, and the United Kingdom.</p>
+                                                                                                                        <p  class="paragraph">Boris Negrutskii heads the Department of Structural and Functional Proteomics at the Institute of Molecular Biology and Genetics of the National Academy of Sciences of Ukraine. His research focuses on the fundamental mechanisms of protein synthesis in humans. Boris also develops and implements research projects, secures grant funding, and is involved in international collaborations with researchers from Poland, Denmark, and the United Kingdom.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -313,7 +313,7 @@
             <p class="expert-card__subtitle">Ph.D., Senior Researcher</p>
             <p class="expert-card__text">Institute of Molecular Biology and Genetics of the National Academy of Sciences of Ukraine</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Inessa Skrypkina is Head of a Laboratory at the Institute of Molecular Biology and Genetics of the National Academy of Sciences of Ukraine, where she studies carcinogenesis, biomarkers of cancer development, and tumor resistance.</p>
+                                                                                                                        <p  class="paragraph">Inessa Skrypkina is Head of a Laboratory at the Institute of Molecular Biology and Genetics of the National Academy of Sciences of Ukraine, where she studies carcinogenesis, biomarkers of cancer development, and tumor resistance.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -347,7 +347,7 @@
             <p class="expert-card__subtitle">PhD, Associate Professor</p>
             <p class="expert-card__text">Stepan Gzhytskyi National University of Veterinary Medicine and Biotechnologies of Lviv</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Kateryna combines teaching and research in accounting and taxation, alternative energy sources, bioeconomy, sustainable development, and digitalisation. She is also involved in the development of international projects and academic mobility.</p>
+                                                                                                                        <p  class="paragraph">Kateryna combines teaching and research in accounting and taxation, alternative energy sources, bioeconomy, sustainable development, and digitalisation. She is also involved in the development of international projects and academic mobility.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -381,7 +381,7 @@
             <p class="expert-card__subtitle">PhD, Associate Professor</p>
             <p class="expert-card__text">National University of Life and Environmental Sciences of Ukraine</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Olena Pikovska is an Associate Professor at the Department of Soil Science and Soil Protection at the National University of Life and Environmental Sciences of Ukraine. Her work focuses on sustainable agricultural development and maintaining soil health.</p>
+                                                                                                                        <p  class="paragraph">Olena Pikovska is an Associate Professor at the Department of Soil Science and Soil Protection at the National University of Life and Environmental Sciences of Ukraine. Her work focuses on sustainable agricultural development and maintaining soil health.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -412,7 +412,7 @@
             <p class="expert-card__subtitle">PhD</p>
             <p class="expert-card__text">Taras Shevchenko National University of Kyiv</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Olha Bohovin is an Associate Professor at the Department of Advertising and Public Relations of the Educational and Scientific Institute of Journalism at Taras Shevchenko National University of Kyiv. She coordinates the activities of the Institute’s Educational Image Centre and is responsible for dissemination within the Erasmus+ DigiUni project in Ukraine.</p>
+                                                                                                                        <p  class="paragraph">Olha Bohovin is an Associate Professor at the Department of Advertising and Public Relations of the Educational and Scientific Institute of Journalism at Taras Shevchenko National University of Kyiv. She coordinates the activities of the Institute’s Educational Image Centre and is responsible for dissemination within the Erasmus+ DigiUni project in Ukraine.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -449,7 +449,7 @@
             <p class="expert-card__subtitle">PhD, Senior Researcher</p>
             <p class="expert-card__text">V. Bakul Institute for Superhard Materials of the National Academy of Sciences of Ukraine</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Pavlo Barvitskyi is a doctoral researcher and Senior Researcher at the V. Bakul Institute for Superhard Materials of the National Academy of Sciences of Ukraine. He specializes in refractory ceramic composites and functional materials.</p>
+                                                                                                                        <p  class="paragraph">Pavlo Barvitskyi is a doctoral researcher and Senior Researcher at the V. Bakul Institute for Superhard Materials of the National Academy of Sciences of Ukraine. He specializes in refractory ceramic composites and functional materials.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -477,7 +477,7 @@
             <p class="expert-card__subtitle">Doctor of Sciences, Associate Professor</p>
             <p class="expert-card__text">Lviv University of Trade and Economics</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Yuriy Myronov is a Professor at the Department of Tourism and Hospitality Management at Lviv University of Trade and Economics. He combines teaching and research activities, with a particular focus on the challenges of sustainable tourism development in Ukraine.</p>
+                                                                                                                        <p  class="paragraph">Yuriy Myronov is a Professor at the Department of Tourism and Hospitality Management at Lviv University of Trade and Economics. He combines teaching and research activities, with a particular focus on the challenges of sustainable tourism development in Ukraine.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">

@@ -1,32 +1,8 @@
-/* A scientist's profile on the mirrored static pages, and the same page in the cabinet (src/components/Cabinet/Profile.tsx).
-   Scale: 14 / 16 / 18 / 22 / 28 / 36 / 48 px; spacing: 8 / 16 / 24 / 32 / 48 / 64 / 96; one radius.
+@import url("expert-entities.css");
 
-   Every entity looks the same on every profile:
-     name .............. Noto Serif 36 (28 on phones), line 1.12
-     post (degree, rank) e-Ukraine Light 18/26
-     institution ....... IBM Plex Mono 15 (14 on phones), #4a5459
-     keywords .......... white chips, 14, right under the institution, inside the 62ch measure
-     languages ......... section title "Working languages" + IBM Plex Mono 18/16
-     section titles .... Noto Serif 28/34 (24/30 on phones), 48px above, 16px below
-     running text ...... IBM Plex Mono 18/1.7 (16 on phones), 62ch
-     experience ........ year column; the post e-Ukraine Light 16/24; the place IBM Plex Mono 15/14
-     projects, publications: serif title 22 (20), e-Ukraine Light 15 text, 2px rule between items, none after the last
-     links, Write button: under the photo, 16px apart; hint "Communicates in: …" under the button */
-:root {
-    --s1: 8px; --s2: 16px; --s3: 24px; --s4: 32px; --s5: 48px; --s6: 64px; --s7: 96px;
-    --t-xs: 14px; --t-sm: 16px; --t-md: 18px; --t-lg: 22px; --t-xl: 28px; --t-2xl: 36px; --t-3xl: 48px;
-    --r: 8px;
-    --ground: #bccbd2; /* was #b5c6cd: black text 12.6:1 instead of 11.9:1 */
-    --paper: var(--ground); /* the reading column shares the page colour */
-}
+/* A scientist's profile on the mirrored static pages: layout, sections, lists. The entities' type, the scale and the tokens are in expert-entities.css. */
 
 :focus-visible { outline: 2px solid #000; outline-offset: 3px; }
-
-/* e-Ukraine from this site: the main stylesheet is loaded from another domain, where the browser refuses its font files. */
-@font-face { font-family: "e-Ukraine"; font-weight: 300; font-style: normal; font-display: swap;
-    src: url("../../fonts/client/e-ukraine/e-ukraine.woff") format("woff"), url("../../fonts/client/e-ukraine/e-ukraine.otf") format("opentype"); }
-@font-face { font-family: "e-Ukraine"; font-weight: 700; font-style: normal; font-display: swap;
-    src: url("../../fonts/client/e-ukraine/e-Ukraine-Bold.woff") format("woff"), url("../../fonts/client/e-ukraine/e-Ukraine-Bold.otf") format("opentype"); }
 
 /* ---- Layout: two columns, the left one stays in view ---- */
 .page > .wrapper {
@@ -66,34 +42,8 @@
 /* The reading column shares the page colour and aligns with the photo's top edge. */
 .expert-profile > .col-lg-8 { background: var(--paper); padding: 0; }
 
-/* ---- Identity at the top of the right column: name, degree (mono), institution (e-Ukraine) ---- */
+/* ---- Identity at the top of the right column: its type is in expert-entities.css ---- */
 .expert-id { margin: 0; max-width: 62ch; } /* the same measure as the paragraphs below (18px mono) */
-.expert-id .expert__header { margin: 0; font-size: var(--t-2xl); line-height: 1.12; overflow-wrap: anywhere; }
-
-/* The same faces as the Experience list, by what each line is: the post is e-Ukraine Light, the place is IBM Plex Mono */
-.expert-id .paragraph {
-    font-family: "e-Ukraine", sans-serif;
-    font-weight: 300;
-    font-size: var(--t-md);
-    line-height: 26px;
-    letter-spacing: 0;
-    margin: var(--s2) 0 0;
-    max-width: none;
-}
-
-.expert-id .expert__affiliation {
-    font-family: "IBM Plex Mono", monospace;
-    font-weight: 400;
-    font-size: var(--t-xs);
-    line-height: 22px;
-    margin-top: 4px;
-    color: #4a5459; /* lighter than the post; 5.3:1 on the page colour */
-    overflow-wrap: break-word;
-}
-
-@media (min-width: 768px) {
-    .expert-id .expert__affiliation { font-size: 15px; }
-}
 
 /* keywords sit right under the institution; the chips' own 5px padding is pulled back so they start on the text edge */
 .expert__tags {
@@ -122,8 +72,8 @@
         scrollbar-width: thin;
     }
     .expert-profile > .col-lg-4 > .aside > picture.aside__img {
-        width: min(100%, max(180px, 32vh));
-        padding-top: min(100%, max(180px, 32vh));
+        width: min(100%, clamp(180px, 32vh, 360px));
+        padding-top: min(100%, clamp(180px, 32vh, 360px));
         margin-inline: 0;
     }
 }
@@ -237,7 +187,7 @@
 
 /* On wide screens the button is exactly as wide as the photo above it. */
 @media (min-width: 768px) {
-    .expert-profile > .col-lg-4 > .aside > .aside__contact { display: flex; width: min(100%, max(180px, 32vh)); }
+    .expert-profile > .col-lg-4 > .aside > .aside__contact { display: flex; width: min(100%, clamp(180px, 32vh, 360px)); }
 }
 
 /* The links row had negative side margins that pushed it past the column: keep it inside, text on the photo's edge. */
@@ -392,7 +342,7 @@
         display: grid;
         grid-template-rows: 0fr;
         opacity: 0;
-        width: min(100%, max(180px, 32vh));
+        width: min(100%, clamp(180px, 32vh, 360px));
         transition: grid-template-rows 0.25s ease, opacity 0.2s ease, margin-top 0.25s ease;
     }
     .aside-mini.is-on { grid-template-rows: 1fr; opacity: 1; }

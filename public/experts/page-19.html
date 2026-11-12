@@ -36,6 +36,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/9.1.0/swiper-bundle.min.css" integrity="sha512-n/86mxSdfFpsFtq9QYVhRlke9BQ/ZqIaRBe/dboH4l8JwBVitjpCS2HnDfbZnISV5Zq1lKONL/aQDqDQmtY/cA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.9/fullpage.min.css"/>
     <link href="https://scienceatrisk.org/css/style.min.css?v=1793795506" rel="stylesheet">
+    <link href="../css/pages/search-field.css" rel="stylesheet">
+    <link href="../css/pages/expert-card.css" rel="stylesheet">
         
     <link rel="apple-touch-icon" sizes="57x57" href="../images/favicon_client/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="../images/favicon_client/apple-icon-60x60.png">
@@ -96,12 +98,12 @@
                 <div class="search-hero__info-wrap">
                     <h1 class="search-hero__title">Find Ukrainian scientists for collaboration</h1>
                 </div>
-                <form action="../experts.html" method="GET" class="_searchScientists  search-hero__input-wrap">
-                    <div class="search-hero__column">
-                        <input class="_risk-label" type="text" name="search" id="search" value=""/>
-                        <label for="search">Scientific field or name </label>
-                    </div>
-                    <button class="search-hero__btn btn btn--black" type="submit">Find a scientist</button>
+                <form role="search" action="../experts.html" method="GET" class="_searchScientists search-field">
+                    <label class="satr-float" for="search">
+                        <input id="search" type="search" name="search" placeholder=" ">
+                        <span class="satr-float__label">Enter scientific field or name</span>
+                    </label>
+                    <button class="btn btn--black" type="submit">Find a scientist</button>
                 </form>
                 <div class="search-hero__requests popular-requests">
                     <p class="popular-requests__text">Popular requests</p>
@@ -190,7 +192,7 @@
             <p class="expert-card__subtitle">Ph.D.</p>
             <p class="expert-card__text">Scientific-Practical Medical Center for Pediatric Cardiology and Cardio Surgery of the Ministry of Health of Ukraine</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Andrii is a pediatric and fetal cardiologist. His main activity is diagnosing and treating congenital heart defects in fetuses (before birth) and children (after birth).  </p>
+                                                                                                                        <p  class="paragraph">Andrii is a pediatric and fetal cardiologist. His main activity is diagnosing and treating congenital heart defects in fetuses (before birth) and children (after birth).</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -224,7 +226,7 @@
             <p class="expert-card__subtitle">Ph.D.</p>
             <p class="expert-card__text">V.P. Kukhar Institute of Bioorganic Chemistry and Petrochemistry</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Nataliya is a researcher at the V.P. Kukhar Institute of Bioorganic Chemistry and Petrochemistry. She is interested in modern organic synthesis, the synthesis of organofluorine compounds, the connection between the structure and biological activity of molecules, and medicinal and bioorganic chemistry. </p>
+                                                                                                                        <p  class="paragraph">Nataliya is a researcher at the V.P. Kukhar Institute of Bioorganic Chemistry and Petrochemistry. She is interested in modern organic synthesis, the synthesis of organofluorine compounds, the connection between the structure and biological activity of molecules, and medicinal and bioorganic chemistry.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -264,8 +266,7 @@
             <p class="expert-card__subtitle">Ph.D., Senior researcher</p>
             <p class="expert-card__text">State Institute of Genetic and Regenerative Medicine of the National Academy of Medical Sciences of Ukraine,  Institute of Molecular Biology and Genetics of NASU</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">She is a researcher at two Ukrainian Research institutes: the Institute of Molecular Biology and Genetics of the NAS of Ukraine (IMBG) and the State Institute of Genetic and Regenerative Medicine of NSC Institute of Cardiology, Clinical and Regenerative Medicine n.a. M.D. Strazhesko of NAMS of Ukraine.</p>
-                                            <p  class="paragraph">Her research interests cover the study of the fundamental basis of injured organism renewal, the development and usage of gene and cell technologies for damaged cells and hereditary material replacement, biotechnological obtaining of therapeutic recombinant proteins, protein-protein interaction, targeted delivery of therapeutic drugs, and immunodiagnostic.</p>
+                                                                                                                        <p  class="paragraph">She is a researcher at two Ukrainian Research institutes: the Institute of Molecular Biology and Genetics of the NAS of Ukraine (IMBG) and the State Institute of Genetic and Regenerative Medicine of NSC Institute of Cardiology, Clinical and Regenerative Medicine n.a. M.D. Strazhesko of NAMS of Ukraine.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -308,7 +309,7 @@
             <p class="expert-card__subtitle">Ph.D., Associate professor</p>
             <p class="expert-card__text">Institute of the Ukrainian Language of the National Academy of Sciences of Ukraine</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Iryna is a senior researcher at the Department of Stylistics, Language Culture, and Sociolinguistics at the NASU Institute of Ukrainian Language. She is interested in sociolinguistic issues. Her research focuses on the impact of the Russian-Ukrainian war on the transformation of linguistic behavior and ethnolinguistic identity of the residents of the Sumy region.</p>
+                                                                                                                        <p  class="paragraph">Iryna is a senior researcher at the Department of Stylistics, Language Culture, and Sociolinguistics at the NASU Institute of Ukrainian Language. She is interested in sociolinguistic issues. Her research focuses on the impact of the Russian-Ukrainian war on the transformation of linguistic behavior and ethnolinguistic identity of the residents of the Sumy region.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -339,7 +340,7 @@
             <p class="expert-card__subtitle">Ph.D., Associate professor</p>
             <p class="expert-card__text">Berdyansk State Pedagogical University</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Natalia is an associate professor at the Department of Applied Psychology and Speech Therapy.</p>
+                                                                                                                        <p  class="paragraph">Natalia is an associate professor at the Department of Applied Psychology and Speech Therapy.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -370,7 +371,7 @@
             <p class="expert-card__subtitle">Ph.D., Associate professor</p>
             <p class="expert-card__text">Igor Sikorsky Kyiv Polytechnic Institute</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Her research interests are related to the theory of special functions and its applications, in particular, approximate fractional integro-differentiation, polynomial wavelets with finite carrier, etc.</p>
+                                                                                                                        <p  class="paragraph">Her research interests are related to the theory of special functions and its applications, in particular, approximate fractional integro-differentiation, polynomial wavelets with finite carrier, etc.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -401,7 +402,7 @@
             <p class="expert-card__subtitle">Ph.D.</p>
             <p class="expert-card__text">National University &quot;Chernihiv Collegium&quot; named after T. G. Shevchenko</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">She is a university lecturer, interested in new approaches to teaching and new technologies.</p>
+                                                                                                                        <p  class="paragraph">She is a university lecturer, interested in new approaches to teaching and new technologies.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -438,7 +439,7 @@
             <p class="expert-card__subtitle">Ph.D., Senior Researcher</p>
             <p class="expert-card__text">Institute of Geological Science of Ukraine National Science Academy</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Scientific Secretary at the Institute of Geological Sciences of the National Academy of Sciences of Ukraine. She is responsible for coordinating research at the Institute. Her personal research interests include groundwater studies, the environmental consequences of Russian aggression for Ukraine's recovery and holding Russia accountable, and the challenges of Ukraine's European integration.</p>
+                                                                                                                        <p  class="paragraph">Scientific Secretary at the Institute of Geological Sciences of the National Academy of Sciences of Ukraine. She is responsible for coordinating research at the Institute. Her personal research interests include groundwater studies, the environmental consequences of Russian aggression for Ukraine's recovery and holding Russia accountable, and the challenges of Ukraine's European integration.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -481,7 +482,7 @@
             <p class="expert-card__subtitle">Ph.D.</p>
             <p class="expert-card__text">Lviv University of Trade and Economics</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">Associate Professor of International Economic Relations at the Lviv University of Trade and Economics. Currently focuses on public diplomacy as an important area of international relations.</p>
+                                                                                                                        <p  class="paragraph">Associate Professor of International Economic Relations at the Lviv University of Trade and Economics. Currently focuses on public diplomacy as an important area of international relations.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
@@ -512,7 +513,7 @@
             <p class="expert-card__subtitle">Ph.D.</p>
             <p class="expert-card__text">Institute of Problems of Cryobiology and Cryomedicine of the National Academy of Sciences of Ukraine</p>
             <p class="expert-card__text">
-                                                            <p  class="paragraph">She is a senior researcher at the Department of Cryocytology at the Institute of Cryobiology and Cryomedicine of the National Academy of Sciences of Ukraine. She studies the pathways of apoptosis in cord blood cells and the possibility of its prevention/inhibition using multicomponent antioxidant-containing cryoprotective media.</p>
+                                                                                                                        <p  class="paragraph">She is a senior researcher at the Department of Cryocytology at the Institute of Cryobiology and Cryomedicine of the National Academy of Sciences of Ukraine. She studies the pathways of apoptosis in cord blood cells and the possibility of its prevention/inhibition using multicomponent antioxidant-containing cryoprotective media.</p>
                                                 </p>
             <ul class="expert-card__list">
                                     <li class="expert-card__item">
