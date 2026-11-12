@@ -43,7 +43,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.9/fullpage.min.css"/>
     <link href="https://scienceatrisk.org/css/style.min.css?v=1793795532" rel="stylesheet">
     <link href="../css/pages/expert.css" rel="stylesheet">
-    <script src="../js/expert-header.js" defer></script>
+    <script src="../js/expert-profile.js" defer></script>
         
     <link rel="apple-touch-icon" sizes="57x57" href="../images/favicon_client/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="../images/favicon_client/apple-icon-60x60.png">
@@ -171,7 +171,7 @@
     </ul>
 
                     <div class="aside__mobile d-md-none d-block">
-                        <h4 class="aside__title">Languages for professional communication</h4>
+                        <h4 class="aside__title">Working languages</h4>
                         <p class="aside__lang-text">English</p>
                         <button data-popup-open="helpExpert" class="aside__contact btn btn--black w-100">Connect</button>
                                                     <ul class="aside__links">
@@ -188,13 +188,23 @@
                                                     <p class="expertParagraph">Tymofiy is the rector of the Kyiv School of Economics. He is a sociologist who researches topics ranging from religion to social inequalities. He coordinates European comparative surveys in Ukraine (European Social Survey, European Values Survey).</p>
                                             
                                                                 <h2 class="expertTitle expertTitle--h4">Experience</h2>
-                                                    <p class="expertParagraph">From 2017 to 2018, Tymofii was a Postdoctoral Researcher at the University Carlos III, Department of Social Sciences. Since 2018, he has been an associate professor at the Kyiv School of Economics. In 2018, he was also a visiting scholar at Stanford University. </p>
-                                                    <p class="expertParagraph">From 2019 to 2020, Tymofiy worked as a Fulbright Visiting Scholar at New York University. Since 2022, he has been a national coordinator and a guest researcher at the European Social Survey (ESS). Since the same year, Tymofiy has been the Kyiv School of Economics rector.</p>
-                                                    <p class="expertParagraph">In addition, Tymofiy was a member of PONARS in 2019. He was also a board member of CEDOS, an editor at VoxUkraine, an Advisory Board Member at Gradus Research, and an Executive Team Member at SITADHub. </p>
-                                                    <p class="expertParagraph">He is also a co-founder of the Urban Space 500 public restaurant in Kyiv, 80% of the profits from which will be transferred to support urban initiatives; winner of the N. Panina Award (2018) for the paper "When church competition matters?" by the Institute of Sociology of the National Academy of Science of Ukraine; and co-chair of the "Social inequality" network, European Social Science History Conference.</p>
-
-                    
-                                            <h2 class="expertTitle expertTitle--h4">Projects</h2>
+<ul class="exp-list" style="--exp-year-w:11ch">
+<li class="exp-item"><span class="exp-year">Since 2022</span><span class="exp-what"><span class="exp-pos">National coordinator and a guest researcher</span><span class="exp-place">European Social Survey (ESS).</span></span></li>
+<li class="exp-item"><span class="exp-year">Since 2022</span><span class="exp-what"><span class="exp-pos">Rector</span><span class="exp-place">Kyiv School of Economics.</span></span></li>
+<li class="exp-item"><span class="exp-year">Since 2018</span><span class="exp-what"><span class="exp-pos">Associate professor</span><span class="exp-place">Kyiv School of Economics.</span></span></li>
+<li class="exp-item"><span class="exp-year">2019–2020</span><span class="exp-what"><span class="exp-pos">Fulbright Visiting Scholar</span><span class="exp-place">New York University.</span></span></li>
+<li class="exp-item"><span class="exp-year">2019</span><span class="exp-what"><span class="exp-pos">Member</span><span class="exp-place">PONARS.</span></span></li>
+<li class="exp-item"><span class="exp-year">2018</span><span class="exp-what"><span class="exp-pos">Visiting scholar</span><span class="exp-place">Stanford University.</span></span></li>
+<li class="exp-item"><span class="exp-year">2018</span><span class="exp-what"><span class="exp-pos">Winner of the N. Panina Award for the paper "When church competition matters?"</span><span class="exp-place">Institute of Sociology of the National Academy of Science of Ukraine.</span></span></li>
+<li class="exp-item"><span class="exp-year">2017–2018</span><span class="exp-what"><span class="exp-pos">Postdoctoral Researcher</span><span class="exp-place">University Carlos III, Department of Social Sciences.</span></span></li>
+<li class="exp-item"><span class="exp-year"></span><span class="exp-what"><span class="exp-pos">Board member</span><span class="exp-place">CEDOS.</span></span></li>
+<li class="exp-item"><span class="exp-year"></span><span class="exp-what"><span class="exp-pos">Editor</span><span class="exp-place">VoxUkraine.</span></span></li>
+<li class="exp-item"><span class="exp-year"></span><span class="exp-what"><span class="exp-pos">Advisory Board Member</span><span class="exp-place">Gradus Research.</span></span></li>
+<li class="exp-item"><span class="exp-year"></span><span class="exp-what"><span class="exp-pos">Executive Team Member</span><span class="exp-place">SITADHub.</span></span></li>
+<li class="exp-item"><span class="exp-year"></span><span class="exp-what"><span class="exp-pos">Co-founder of the Urban Space 500 public restaurant in Kyiv, 80% of the profits from which will be transferred to support urban initiatives</span></span></li>
+<li class="exp-item"><span class="exp-year"></span><span class="exp-what"><span class="exp-pos">Co-chair of the "Social inequality" network</span><span class="exp-place">European Social Science History Conference.</span></span></li>
+</ul>
+<h2 class="expertTitle expertTitle--h4">Projects</h2>
                             <ul class="projects">
             <li class="projects__item">
             <div class="project-card position-relative">
@@ -306,7 +316,7 @@
                 </button>
                 <h2 class="help-form__title">Contact a scientist</h2>
                 <p class="help-form__text">Fill out this form to contact the scientist directly</p>
-                <p class="help-form__text help-form__langs">The scientist communicates in: English</p>
+                <p class="help-form__text help-form__langs">The scientist communicates in: <span class="help-form__lang">English</span></p>
                 <form class="help-form__form">
                     <div class="row">
                         <div class="col-md-5 d-flex align-items-end">

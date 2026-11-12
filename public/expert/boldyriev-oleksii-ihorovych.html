@@ -43,7 +43,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.9/fullpage.min.css"/>
     <link href="../css/style.min.css" rel="stylesheet">
     <link href="../css/pages/expert.css" rel="stylesheet">
-    <script src="../js/expert-header.js" defer></script>
+    <script src="../js/expert-profile.js" defer></script>
         
     <link rel="apple-touch-icon" sizes="57x57" href="../images/favicon_client/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="../images/favicon_client/apple-icon-60x60.png">
@@ -166,7 +166,7 @@
     </ul>
 
                     <div class="aside__mobile d-md-none d-block">
-                        <h4 class="aside__title">Languages for professional communication</h4>
+                        <h4 class="aside__title">Working languages</h4>
                         <p class="aside__lang-text">Ukrainian, English</p>
                         <button data-popup-open="helpExpert" class="aside__contact btn btn--black w-100">Connect</button>
                                                     <ul class="aside__links">
@@ -183,14 +183,19 @@
                                                     <p class="expertParagraph">Oleksii is a researcher in experimental biology (biophysics, molecular biology, neuropsychology) and the history of biology. He studies ion channels, receptors, and RNA biology (RNA interference, RNA editing). He also explores the scientific contribution of repressed Ukrainian scientists.</p>
                                             
                                                                 <h2 class="expertTitle expertTitle--h4">Experience</h2>
-                                                    <p class="expertParagraph">From 2002 to 2003, Oleksii was an engineer at the Institute of Molecular Biology and Genetics of the National Academy of Sciences of Ukraine. From 2005 to 2016, he worked as an engineer, graduate student, and junior researcher at the International Center for Molecular Physiology of the National Academy of Sciences of Ukraine.</p>
-                                                    <p class="expertParagraph">Since 2007, Oleksii has also been an engineer, junior researcher, researcher, and lecturer at the Bogomoletz Institute of Physiology graduate department of the National Academy of Sciences of Ukraine.</p>
-                                                    <p class="expertParagraph">In addition, from 2015 to 2020, Oleksii was a member of the Supervisory Board of the Scientific Society of Students, Postgraduates, and Young Scientists of the National Aviation University. In 2017, he became a member of the Commission on Combating Academic Dishonesty, Plagiarism, and Pseudoscience member at the Presidium of the National Academy of Sciences of Ukraine and held this position for three years.</p>
-                                                    <p class="expertParagraph">In 2017, Oleksii also became the Chairman of the expert group of the popular science conference Brain&Ukraine. Also, from 2018 to 2019, he was a member of the Advisory Group on Reforming Higher Medical Education under the Deputy Minister of Health of Ukraine.</p>
-                                                    <p class="expertParagraph">Since 2019, Oleksii has been an associate professor of biomedicine and neuroscience at Kyiv Academic University. In addition, in 2007, 2009, 2012, 2013, 2018, and 2019, he was a visiting researcher in laboratories in the United States, Puerto Rico, Singapore, and the United Arab Emirates.</p>
-
-                    
-                                                                <h2 class="expertTitle expertTitle--h4">Publications</h2>
+<ul class="exp-list" style="--exp-year-w:13ch">
+<li class="exp-item"><span class="exp-year">Since 2019</span><span class="exp-what"><span class="exp-pos">Associate professor of biomedicine and neuroscience</span><span class="exp-place">Kyiv Academic University.</span></span></li>
+<li class="exp-item"><span class="exp-year">Since 2007</span><span class="exp-what"><span class="exp-pos">Engineer, junior researcher, researcher, and lecturer</span><span class="exp-place">Bogomoletz Institute of Physiology graduate department of the National Academy of Sciences of Ukraine.</span></span></li>
+<li class="exp-item"><span class="exp-year">2015–2020</span><span class="exp-what"><span class="exp-pos">Member of the Supervisory Board</span><span class="exp-place">Scientific Society of Students, Postgraduates, and Young Scientists of the National Aviation University.</span></span></li>
+<li class="exp-item"><span class="exp-year">2018–2019</span><span class="exp-what"><span class="exp-pos">Member of the Advisory Group on Reforming Higher Medical Education</span><span class="exp-place">Deputy Minister of Health of Ukraine.</span></span></li>
+<li class="exp-item"><span class="exp-year">2017</span><span class="exp-what"><span class="exp-pos">Member of the Commission on Combating Academic Dishonesty, Plagiarism, and Pseudoscience</span><span class="exp-place">Presidium of the National Academy of Sciences of Ukraine.</span></span></li>
+<li class="exp-item"><span class="exp-year">2017</span><span class="exp-what"><span class="exp-pos">Chairman of the expert group</span><span class="exp-place">Popular science conference Brain&amp;Ukraine.</span></span></li>
+<li class="exp-item"><span class="exp-year">2005–2016</span><span class="exp-what"><span class="exp-pos">Engineer, graduate student, and junior researcher</span><span class="exp-place">International Center for Molecular Physiology of the National Academy of Sciences of Ukraine.</span></span></li>
+<li class="exp-item"><span class="exp-year">2007, 2009, 2012, 2013, 2018, 2019</span><span class="exp-what"><span class="exp-pos">Visiting researcher</span><span class="exp-place">Laboratories in the United States, Puerto Rico, Singapore, and the United Arab Emirates.</span></span></li>
+<li class="exp-item"><span class="exp-year">2002–2003</span><span class="exp-what"><span class="exp-pos">Engineer</span><span class="exp-place">Institute of Molecular Biology and Genetics of the National Academy of Sciences of Ukraine.</span></span></li>
+<li class="exp-item"><span class="exp-year"></span><span class="exp-what"><span class="exp-pos">Held this position for three years</span></span></li>
+</ul>
+<h2 class="expertTitle expertTitle--h4">Publications</h2>
                             <ul class="projects">
             <li class="projects__item">
             <div class="project-card position-relative">
@@ -247,7 +252,7 @@
                 </button>
                 <h2 class="help-form__title">Contact a scientist</h2>
                 <p class="help-form__text">Fill out this form to contact the scientist directly</p>
-                <p class="help-form__text help-form__langs">The scientist communicates in: Ukrainian, English</p>
+                <p class="help-form__text help-form__langs">The scientist communicates in: <span class="help-form__lang">Ukrainian</span>, <span class="help-form__lang">English</span></p>
                 <form class="help-form__form">
                     <div class="row">
                         <div class="col-md-5 d-flex align-items-end">

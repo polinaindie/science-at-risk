@@ -43,7 +43,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.9/fullpage.min.css"/>
     <link href="https://scienceatrisk.org/css/style.min.css?v=1793795345" rel="stylesheet">
     <link href="../css/pages/expert.css" rel="stylesheet">
-    <script src="../js/expert-header.js" defer></script>
+    <script src="../js/expert-profile.js" defer></script>
         
     <link rel="apple-touch-icon" sizes="57x57" href="../images/favicon_client/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="../images/favicon_client/apple-icon-60x60.png">
@@ -155,7 +155,7 @@
     </ul>
 
                     <div class="aside__mobile d-md-none d-block">
-                        <h4 class="aside__title">Languages for professional communication</h4>
+                        <h4 class="aside__title">Working languages</h4>
                         <p class="aside__lang-text">Ukrainian, Russian, English</p>
                         <button data-popup-open="helpExpert" class="aside__contact btn btn--black w-100">Connect</button>
                                                     <ul class="aside__links">
@@ -172,8 +172,11 @@
                                                     <p class="expertParagraph">He is a member of the editorial and review board of the International Journal of Mathematical Modeling and Computing; International Journal of Modern Education and Computer Sciences, International Journal "Intelligent Systems and Applications".</p>
                                             
                                                                 <h2 class="expertTitle expertTitle--h4">Experience</h2>
-                                                    <p class="expertParagraph">2000 — visiting Professor of Safety Control Engineering, University of Wuppertal, Germany.</p>
-                                                    <p class="expertParagraph">2011 — visiting professor of the Department of Automatic Control, Center for Research and Advanced Education (CINVESTAV), Mexico.</p>
+<ul class="exp-list" style="--exp-year-w:5ch">
+<li class="exp-item"><span class="exp-year">2011</span><span class="exp-what"><span class="exp-pos">Visiting professor of the Department of Automatic Control</span><span class="exp-place">Center for Research and Advanced Education (CINVESTAV), Mexico.</span></span></li>
+<li class="exp-item"><span class="exp-year">2000</span><span class="exp-what"><span class="exp-pos">Visiting Professor of Safety Control Engineering</span><span class="exp-place">University of Wuppertal, Germany.</span></span></li>
+</ul>
+
 
                     
                                                                 <h2 class="expertTitle expertTitle--h4">Publications</h2>
@@ -250,7 +253,7 @@
                 </button>
                 <h2 class="help-form__title">Contact a scientist</h2>
                 <p class="help-form__text">Fill out this form to contact the scientist directly</p>
-                <p class="help-form__text help-form__langs">The scientist communicates in: Ukrainian, Russian, English</p>
+                <p class="help-form__text help-form__langs">The scientist communicates in: <span class="help-form__lang">Ukrainian</span>, <span class="help-form__lang">Russian</span>, <span class="help-form__lang">English</span></p>
                 <form class="help-form__form">
                     <div class="row">
                         <div class="col-md-5 d-flex align-items-end">

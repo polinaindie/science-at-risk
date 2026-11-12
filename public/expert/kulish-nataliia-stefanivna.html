@@ -43,7 +43,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.9/fullpage.min.css"/>
     <link href="https://scienceatrisk.org/css/style.min.css?v=1793795530" rel="stylesheet">
     <link href="../css/pages/expert.css" rel="stylesheet">
-    <script src="../js/expert-header.js" defer></script>
+    <script src="../js/expert-profile.js" defer></script>
         
     <link rel="apple-touch-icon" sizes="57x57" href="../images/favicon_client/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="../images/favicon_client/apple-icon-60x60.png">
@@ -154,7 +154,7 @@
     </ul>
 
                     <div class="aside__mobile d-md-none d-block">
-                        <h4 class="aside__title">Languages for professional communication</h4>
+                        <h4 class="aside__title">Working languages</h4>
                         <p class="aside__lang-text">Ukrainian, Russian</p>
                         <button data-popup-open="helpExpert" class="aside__contact btn btn--black w-100">Connect</button>
                                                     <ul class="aside__links">
@@ -169,12 +169,14 @@
                                                     <p class="expertParagraph">Nataliia is a Ukrainian religious scholar and visiting scholar at the University of Manitoba. She is interested in the phenomenon of Ukrainian religious life in Canada.</p>
                                             
                                                                 <h2 class="expertTitle expertTitle--h4">Experience</h2>
-                                                    <p class="expertParagraph">From 1995 to 1999, Natalia was a history teacher at a secondary school in Uhniv. From 2002 to 2004, she taught at the Khmelnytskyi Basic Medical College. From 2004 to 2005, she taught history at the secondary school in Kelmentsi.</p>
-                                                    <p class="expertParagraph">For the past 13 years, Nataliia has taught at the Leonid Yuzkov Khmelnytskyi University of Management and Law.</p>
-                                                    <p class="expertParagraph">She is also a member of the Ukrainian Association of Researchers of Religion.</p>
-
-                    
-                                                                <h2 class="expertTitle expertTitle--h4">Publications</h2>
+<ul class="exp-list" style="--exp-year-w:13ch">
+<li class="exp-item"><span class="exp-year">2004–2005</span><span class="exp-what"><span class="exp-pos">Taught history</span><span class="exp-place">Secondary school in Kelmentsi.</span></span></li>
+<li class="exp-item"><span class="exp-year">2002–2004</span><span class="exp-what"><span class="exp-pos">Taught</span><span class="exp-place">Khmelnytskyi Basic Medical College.</span></span></li>
+<li class="exp-item"><span class="exp-year">1995–1999</span><span class="exp-what"><span class="exp-pos">History teacher</span><span class="exp-place">Secondary school in Uhniv.</span></span></li>
+<li class="exp-item"><span class="exp-year">Past 13 years</span><span class="exp-what"><span class="exp-pos">Taught</span><span class="exp-place">Leonid Yuzkov Khmelnytskyi University of Management and Law.</span></span></li>
+<li class="exp-item"><span class="exp-year"></span><span class="exp-what"><span class="exp-pos">Member of the Ukrainian Association of Researchers of Religion</span></span></li>
+</ul>
+<h2 class="expertTitle expertTitle--h4">Publications</h2>
                             <ul class="projects">
             <li class="projects__item">
             <div class="project-card position-relative">
@@ -248,7 +250,7 @@
                 </button>
                 <h2 class="help-form__title">Contact a scientist</h2>
                 <p class="help-form__text">Fill out this form to contact the scientist directly</p>
-                <p class="help-form__text help-form__langs">The scientist communicates in: Ukrainian, Russian</p>
+                <p class="help-form__text help-form__langs">The scientist communicates in: <span class="help-form__lang">Ukrainian</span>, <span class="help-form__lang">Russian</span></p>
                 <form class="help-form__form">
                     <div class="row">
                         <div class="col-md-5 d-flex align-items-end">

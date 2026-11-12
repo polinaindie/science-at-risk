@@ -43,7 +43,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.9/fullpage.min.css"/>
     <link href="../css/style.min.css" rel="stylesheet">
     <link href="../css/pages/expert.css" rel="stylesheet">
-    <script src="../js/expert-header.js" defer></script>
+    <script src="../js/expert-profile.js" defer></script>
         
     <link rel="apple-touch-icon" sizes="57x57" href="../images/favicon_client/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="../images/favicon_client/apple-icon-60x60.png">
@@ -159,7 +159,7 @@
     </ul>
 
                     <div class="aside__mobile d-md-none d-block">
-                        <h4 class="aside__title">Languages for professional communication</h4>
+                        <h4 class="aside__title">Working languages</h4>
                         <p class="aside__lang-text">English, German, Ukrainian, Russian</p>
                         <button data-popup-open="helpExpert" class="aside__contact btn btn--black w-100">Connect</button>
                                                     <ul class="aside__links">
@@ -174,11 +174,11 @@
                                                     <p class="expertParagraph">Mariia is a member of the American Chemical Society and the European College of Neuropsychopharmacology. She is a reviewer in international publications: Molecules, Pharmaceutics, Antibiotics, Membranes, Biomolecules, Pharmaceuticals, Metabolites, Molbank, Scientia Pharmaceutica (MDPI Publisher); Sustainable Chemistry &amp; Engineering, Journal of Agricultural and Food Chemistry (ACS, American Chemical Society); Natural Product Research, Polycyclic Aromatic Compounds (Taylor & Francis) and Open Chemistry (De Gruyter).</p>
                                             
                                                                 <h2 class="expertTitle expertTitle--h4">Experience</h2>
-                                                    <p class="expertParagraph">Mariia is an associate of the Council of Young Scientists at the Odesa Regional Administration.</p>
-                                                    <p class="expertParagraph">She started the series of interviews "Scientific Talks" – a project aimed at popularizing chemistry, in which lecturers based on their own experience highlight the main problems and achievements in the field of chemistry, its social and practical significance.</p>
-
-                    
-                                                                <h2 class="expertTitle expertTitle--h4">Publications</h2>
+<ul class="exp-list" style="--exp-year-w:1ch">
+<li class="exp-item"><span class="exp-year"></span><span class="exp-what"><span class="exp-pos">Associate of the Council of Young Scientists</span><span class="exp-place">Odesa Regional Administration.</span></span></li>
+<li class="exp-item"><span class="exp-year"></span><span class="exp-what"><span class="exp-pos">Started the series of interviews "Scientific Talks" – a project aimed at popularizing chemistry, in which lecturers based on their own experience highlight the main problems and achievements in the field of chemistry, its social and practical significance</span></span></li>
+</ul>
+<h2 class="expertTitle expertTitle--h4">Publications</h2>
                             <ul class="projects">
             <li class="projects__item">
             <div class="project-card position-relative">
@@ -252,7 +252,7 @@
                 </button>
                 <h2 class="help-form__title">Contact a scientist</h2>
                 <p class="help-form__text">Fill out this form to contact the scientist directly</p>
-                <p class="help-form__text help-form__langs">The scientist communicates in: English, German, Ukrainian, Russian</p>
+                <p class="help-form__text help-form__langs">The scientist communicates in: <span class="help-form__lang">English</span>, <span class="help-form__lang">German</span>, <span class="help-form__lang">Ukrainian</span>, <span class="help-form__lang">Russian</span></p>
                 <form class="help-form__form">
                     <div class="row">
                         <div class="col-md-5 d-flex align-items-end">

@@ -43,7 +43,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.9/fullpage.min.css"/>
     <link href="https://scienceatrisk.org/css/style.min.css?v=1793795415" rel="stylesheet">
     <link href="../css/pages/expert.css" rel="stylesheet">
-    <script src="../js/expert-header.js" defer></script>
+    <script src="../js/expert-profile.js" defer></script>
         
     <link rel="apple-touch-icon" sizes="57x57" href="../images/favicon_client/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="../images/favicon_client/apple-icon-60x60.png">
@@ -150,7 +150,7 @@
     </ul>
 
                     <div class="aside__mobile d-md-none d-block">
-                        <h4 class="aside__title">Languages for professional communication</h4>
+                        <h4 class="aside__title">Working languages</h4>
                         <p class="aside__lang-text">Ukrainian, English, German, Polish</p>
                         <button data-popup-open="helpExpert" class="aside__contact btn btn--black w-100">Connect</button>
                                                     <ul class="aside__links">
@@ -166,14 +166,21 @@
                                                     <p class="expertParagraph">Rostyslav is a professor at the Department of Histology, Cytology and Embryology. He lectures to medical students and postgraduate students. He conducts research in the field of cellular immunity.</p>
                                             
                                                                 <h2 class="expertTitle expertTitle--h4">Experience</h2>
-                                                    <p class="expertParagraph">Rostyslav was an Ivan Franko National University of Lviv student from 2000 to 2005. After that, from 2003 to 2007, he worked as a researcher at the Department of Cell Proliferation Regulation at the Institute of Cell Biology of the National Academy of Sciences of Ukraine (ICB NASU). From 2007 to 2011, he worked as a postgraduate student.</p>
-                                                    <p class="expertParagraph">From 2006 to 2012, Rostyslav worked as a part-time assistant professor at Danylo Halytsky Lviv National Medical University (LNMU). In 2011 and 2012, he worked as a research secretary and postdoctoral fellow at the Institute of Chemical Biology of the National Academy of Sciences of Ukraine.</p>
-                                                    <p class="expertParagraph">From 2012 to 2015, Rostyslav worked as a senior researcher at the Institute of Cell Biology of the National Academy of Sciences of Ukraine. Until 2016 he was an associate professor at the Department of Cytology, Histology and Embryology of LNMU.</p>
-                                                    <p class="expertParagraph">Since 2022, Rostyslav has been a developer and manufacturer of blood hemostasis kits based on hemostatic chitosan and a professor at the Department of Cytology, Histology and Embryology at Danylo Halytsky Lviv National Medical University since 2016.</p>
-                                                    <p class="expertParagraph">He has been the editor of Frontiers since 2018, acting as the scientific secretary of the National Academy of Sciences of Ukraine (NASU) since 2012. He has been an EC Horizon expert since 2023.</p>
-
-                    
-                                            <h2 class="expertTitle expertTitle--h4">Projects</h2>
+<ul class="exp-list" style="--exp-year-w:11ch">
+<li class="exp-item"><span class="exp-year">Since 2023</span><span class="exp-what"><span class="exp-pos">EC Horizon expert</span></span></li>
+<li class="exp-item"><span class="exp-year">Since 2022</span><span class="exp-what"><span class="exp-pos">Developer and manufacturer of blood hemostasis kits based on hemostatic chitosan</span></span></li>
+<li class="exp-item"><span class="exp-year">Since 2018</span><span class="exp-what"><span class="exp-pos">Editor of Frontiers</span></span></li>
+<li class="exp-item"><span class="exp-year">Since 2016</span><span class="exp-what"><span class="exp-pos">Professor</span><span class="exp-place">Department of Cytology, Histology and Embryology at Danylo Halytsky Lviv National Medical University.</span></span></li>
+<li class="exp-item"><span class="exp-year">Since 2012</span><span class="exp-what"><span class="exp-pos">Acting as the scientific secretary</span><span class="exp-place">National Academy of Sciences of Ukraine (NASU).</span></span></li>
+<li class="exp-item"><span class="exp-year">Until 2016</span><span class="exp-what"><span class="exp-pos">Associate professor</span><span class="exp-place">Department of Cytology, Histology and Embryology of LNMU.</span></span></li>
+<li class="exp-item"><span class="exp-year">2012–2015</span><span class="exp-what"><span class="exp-pos">Senior researcher</span><span class="exp-place">Institute of Cell Biology of the National Academy of Sciences of Ukraine.</span></span></li>
+<li class="exp-item"><span class="exp-year">2006–2012</span><span class="exp-what"><span class="exp-pos">Part-time assistant professor</span><span class="exp-place">Danylo Halytsky Lviv National Medical University (LNMU).</span></span></li>
+<li class="exp-item"><span class="exp-year">2011, 2012</span><span class="exp-what"><span class="exp-pos">Research secretary and postdoctoral fellow</span><span class="exp-place">Institute of Chemical Biology of the National Academy of Sciences of Ukraine.</span></span></li>
+<li class="exp-item"><span class="exp-year">2007–2011</span><span class="exp-what"><span class="exp-pos">Postgraduate student</span></span></li>
+<li class="exp-item"><span class="exp-year">2003–2007</span><span class="exp-what"><span class="exp-pos">Researcher</span><span class="exp-place">Department of Cell Proliferation Regulation at the Institute of Cell Biology of the National Academy of Sciences of Ukraine (ICB NASU).</span></span></li>
+<li class="exp-item"><span class="exp-year">2000–2005</span><span class="exp-what"><span class="exp-pos">Student</span><span class="exp-place">Ivan Franko National University of Lviv.</span></span></li>
+</ul>
+<h2 class="expertTitle expertTitle--h4">Projects</h2>
                             <ul class="projects">
             <li class="projects__item">
             <div class="project-card position-relative">
@@ -269,7 +276,7 @@
                 </button>
                 <h2 class="help-form__title">Contact a scientist</h2>
                 <p class="help-form__text">Fill out this form to contact the scientist directly</p>
-                <p class="help-form__text help-form__langs">The scientist communicates in: Ukrainian, English, German, Polish</p>
+                <p class="help-form__text help-form__langs">The scientist communicates in: <span class="help-form__lang">Ukrainian</span>, <span class="help-form__lang">English</span>, <span class="help-form__lang">German</span>, <span class="help-form__lang">Polish</span></p>
                 <form class="help-form__form">
                     <div class="row">
                         <div class="col-md-5 d-flex align-items-end">

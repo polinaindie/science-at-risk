@@ -43,7 +43,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.9/fullpage.min.css"/>
     <link href="https://scienceatrisk.org/css/style.min.css?v=1793795565" rel="stylesheet">
     <link href="../css/pages/expert.css" rel="stylesheet">
-    <script src="../js/expert-header.js" defer></script>
+    <script src="../js/expert-profile.js" defer></script>
         
     <link rel="apple-touch-icon" sizes="57x57" href="../images/favicon_client/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="../images/favicon_client/apple-icon-60x60.png">
@@ -154,7 +154,7 @@
     </ul>
 
                     <div class="aside__mobile d-md-none d-block">
-                        <h4 class="aside__title">Languages for professional communication</h4>
+                        <h4 class="aside__title">Working languages</h4>
                         <p class="aside__lang-text">Polish</p>
                         <button data-popup-open="helpExpert" class="aside__contact btn btn--black w-100">Connect</button>
                                             </div>
@@ -166,13 +166,23 @@
                                                     <p class="expertParagraph">He is interested in the history of the church, religious culture, education, and literacy of the early modern and modern periods.</p>
                                             
                                                                 <h2 class="expertTitle expertTitle--h4">Experience</h2>
-                                                    <p class="expertParagraph">Maksym also worked as the secretary of the Scientific and Methodological Commission on History at the Ministry of Education and Science of Ukraine in 2007. From 2009 to 2011, he was a member of the International Association of Humanities, in 2022, a member of the Ukrainian Society for the Study of the Eighteenth Century, and in 2023, a member of the Ivan Franko International Prize jury.</p>
-                                                    <p class="expertParagraph">From 2002 to the present day, Maksym has been the head of the Research Center “Heritage of the Kyiv-Mohyla Academy” at the National University of Kyiv-Mohyla Academy. He has also been teaching at the Department of History at NaUKMA (he has been the Head of the Department since 2023) and working as a senior researcher at the National Museum of History of Ukraine since 2016.</p>
-                                                    <p class="expertParagraph">In addition, since 2004, Maksym has been a member of the editorial board of the “Kyiv Academy” journal (since 2021 — editor-in-chief), since 2016 - a member of the editorial board of the annual “Scientific Bulletin of the National Museum of History of Ukraine,” since 2018 — of the Scientific and Methodological and Scientific Council of the National Museum of History of Ukraine, since 2019 — of the editorial board of the scientific annual “History of Religions in Ukraine” and the journal “Scientific Notes of NaUKMA. Historical Sciences.”</p>
-                                                    <p class="expertParagraph">From 2013-2021, he was also a member of the international advisory board.</p>
-
-                    
-                                                                <h2 class="expertTitle expertTitle--h4">Publications</h2>
+<ul class="exp-list" style="--exp-year-w:11ch">
+<li class="exp-item"><span class="exp-year">Since 2023</span><span class="exp-what"><span class="exp-pos">Head of the Department</span><span class="exp-place">Department of History at NaUKMA.</span></span></li>
+<li class="exp-item"><span class="exp-year">Since 2021</span><span class="exp-what"><span class="exp-pos">Editor-in-chief</span><span class="exp-place">“Kyiv Academy” journal.</span></span></li>
+<li class="exp-item"><span class="exp-year">Since 2019</span><span class="exp-what"><span class="exp-pos">Member of the editorial board</span><span class="exp-place">scientific annual “History of Religions in Ukraine” and the journal “Scientific Notes of NaUKMA. Historical Sciences.”.</span></span></li>
+<li class="exp-item"><span class="exp-year">Since 2018</span><span class="exp-what"><span class="exp-pos">Member of the Scientific and Methodological and Scientific Council</span><span class="exp-place">National Museum of History of Ukraine.</span></span></li>
+<li class="exp-item"><span class="exp-year">Since 2016</span><span class="exp-what"><span class="exp-pos">Senior researcher</span><span class="exp-place">National Museum of History of Ukraine.</span></span></li>
+<li class="exp-item"><span class="exp-year">Since 2016</span><span class="exp-what"><span class="exp-pos">Member of the editorial board</span><span class="exp-place">annual “Scientific Bulletin of the National Museum of History of Ukraine,”.</span></span></li>
+<li class="exp-item"><span class="exp-year">Since 2004</span><span class="exp-what"><span class="exp-pos">Member of the editorial board</span><span class="exp-place">“Kyiv Academy” journal.</span></span></li>
+<li class="exp-item"><span class="exp-year">Since 2002</span><span class="exp-what"><span class="exp-pos">Head of the Research Center “Heritage of the Kyiv-Mohyla Academy”</span><span class="exp-place">National University of Kyiv-Mohyla Academy.</span></span></li>
+<li class="exp-item"><span class="exp-year">2023</span><span class="exp-what"><span class="exp-pos">Member of the Ivan Franko International Prize jury</span></span></li>
+<li class="exp-item"><span class="exp-year">2022</span><span class="exp-what"><span class="exp-pos">Member</span><span class="exp-place">Ukrainian Society for the Study of the Eighteenth Century.</span></span></li>
+<li class="exp-item"><span class="exp-year">2013–2021</span><span class="exp-what"><span class="exp-pos">Member of the international advisory board</span></span></li>
+<li class="exp-item"><span class="exp-year">2009–2011</span><span class="exp-what"><span class="exp-pos">Member</span><span class="exp-place">International Association of Humanities.</span></span></li>
+<li class="exp-item"><span class="exp-year">2007</span><span class="exp-what"><span class="exp-pos">Secretary of the Scientific and Methodological Commission on History</span><span class="exp-place">Ministry of Education and Science of Ukraine.</span></span></li>
+<li class="exp-item"><span class="exp-year"></span><span class="exp-what"><span class="exp-pos">Teaching</span><span class="exp-place">Department of History at NaUKMA.</span></span></li>
+</ul>
+<h2 class="expertTitle expertTitle--h4">Publications</h2>
                             <ul class="projects">
             <li class="projects__item">
             <div class="project-card position-relative project-card--no-hover">
@@ -280,7 +290,7 @@
                 </button>
                 <h2 class="help-form__title">Contact a scientist</h2>
                 <p class="help-form__text">Fill out this form to contact the scientist directly</p>
-                <p class="help-form__text help-form__langs">The scientist communicates in: Polish</p>
+                <p class="help-form__text help-form__langs">The scientist communicates in: <span class="help-form__lang">Polish</span></p>
                 <form class="help-form__form">
                     <div class="row">
                         <div class="col-md-5 d-flex align-items-end">
