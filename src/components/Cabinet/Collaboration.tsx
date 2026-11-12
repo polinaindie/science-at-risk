@@ -95,13 +95,9 @@ export function MatchCard({
               </>
             ) : (
               <>
-                <Link
-                  as="button"
-                  onClick={() => onRequest?.(scientist.id)}
-                  className="text-[20px]! leading-[28px]! md:text-[24px]! md:leading-[32px]! [--satr-ul:2px]"
-                >
+                <Button variant="black" type="button" onClick={() => onRequest?.(scientist.id)}>
                   {request === 'error' ? t.retry : t.request}
-                </Link>
+                </Button>
                 {request === 'error' ? (
                   <p
                     role="alert"

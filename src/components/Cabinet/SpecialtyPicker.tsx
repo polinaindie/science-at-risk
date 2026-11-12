@@ -100,7 +100,7 @@ export function SpecialtyPicker({
                       variant={on ? 'accent' : 'default'}
                       aria-pressed={on}
                       onClick={() => toggle(s)}
-                      className="min-h-[36px]! py-1.5! text-[14px]! leading-[20px]! tracking-[-0.03em]!"
+                      className={`min-h-[36px]! py-1.5! text-[14px]! leading-[20px]! tracking-[-0.03em]! ${on ? '' : 'satr-tag--off'}`}
                     >
                       {on ? '✓ ' : ''}
                       {knowledgeLabel(s, locale)}

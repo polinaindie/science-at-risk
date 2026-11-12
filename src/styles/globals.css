@@ -455,6 +455,11 @@
     }
   }
 
+  /* A chip you can switch on, while it is off: a light grey ground, so it shows on a white page. Hover still turns it black. */
+  button.satr-tag.satr-tag--off {
+    background-color: #ececec;
+  }
+
   /* Chips that go somewhere turn over on hover: black ground, white type, the
      count flips with them. A chip that is only a label (`span`) stays put.
      Squircle controls get no underline — theirs is the change of ground. */

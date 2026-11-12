@@ -37,11 +37,16 @@ import { Modal, StatusBadge } from './parts';
 import { societies, societyBySlug, societyName } from './societies';
 
 /** Every heading inside the profile, left column and right: 24px. */
-const H4 = 'font-serif text-[24px] font-normal leading-[30px] tracking-[-0.02em]';
-/** The site's text on an expert's page: mono, 18/26. */
-const SITE_P = 'font-mono text-[16px] leading-[26px] md:text-[18px]';
-/** Small print in the site's aside and project cards: e-Ukraine light, 16. */
-const SITE_SMALL = 'font-ukraine text-[16px] font-light leading-[19px]';
+const H4 = 'font-serif text-[24px] font-normal leading-[30px] tracking-[-0.02em] md:text-[28px] md:leading-[34px]';
+/** The site's running text on an expert's page: IBM Plex Mono, 16 on a phone and 18 above. */
+const SITE_P = 'font-mono text-[16px] leading-[26px] md:text-[18px] md:leading-[30px]';
+/** The small text in the site's project and publication cards: e-Ukraine Light, 15. */
+const SITE_SMALL = 'font-ukraine text-[15px] font-light leading-[25px]';
+/** A project's or publication's title: serif, 20 on a phone and 22 above. */
+const CARD_TITLE = 'm-0 font-serif text-[20px] font-normal leading-[28px] tracking-[-0.02em] md:text-[22px]';
+/** The post is e-Ukraine Light 16, the place it belongs to is IBM Plex Mono: the same on every profile. */
+const POST = 'font-ukraine text-[16px] font-light leading-[24px]';
+const PLACE = 'font-mono text-[14px] leading-[22px] md:text-[15px]';
 const PARA = 'font-ukraine text-text2-mobile font-light md:text-text2-desktop';
 
 /* ------------------------------------------------------------------ view */
@@ -97,7 +102,7 @@ function Section({
   if (empty) return null;
   return (
     <>
-      <div className="mt-12 mb-5">
+      <div className="mt-12 mb-4">
         <h4 className={H4}>{title}</h4>
       </div>
       {children}
@@ -105,6 +110,10 @@ function Section({
     </>
   );
 }
+
+/** The list of projects or publications: a 2px rule between items, none after the last. */
+const CARD = 'border-b-2 border-brand-black py-8 last:border-b-0 last:pb-0';
+const CardList = ({ children }: { children: ReactNode }) => <ul className="m-0 mt-2 list-none p-0">{children}</ul>;
 
 /** A career as a timeline: the year in its own column, the post, then the place. */
 const ExperienceList = ({ items }: { items: ExperienceItem[] }) => (
@@ -115,8 +124,8 @@ const ExperienceList = ({ items }: { items: ExperienceItem[] }) => (
         <li key={i} className="grid grid-cols-[3.5rem_1fr] gap-x-2 md:grid-cols-[5rem_1fr] md:gap-x-3">
           <span className="pt-[2px] text-[14px] leading-[22px] md:pt-[3px] md:text-[16px]">{x.year}</span>
           <span>
-            <span className="block font-ukraine text-[16px] font-medium leading-[24px] md:text-[18px] md:leading-[26px]">{x.position.charAt(0).toUpperCase() + x.position.slice(1)}</span>
-            {x.place ? <span className="mt-1 block text-[14px] leading-[22px] md:text-[15px]">{x.place}</span> : null}
+            <span className={`block ${POST}`}>{x.position.charAt(0).toUpperCase() + x.position.slice(1)}</span>
+            {x.place ? <span className={`mt-1 block ${PLACE}`}>{x.place}</span> : null}
           </span>
         </li>
       ))}
@@ -225,10 +234,10 @@ function ProfileName({
     <div>
       {show !== 'position' ? (
         <h1
-          className={`m-0 font-serif tracking-[-0.02em] ${show === 'both' ? 'mb-6' : ''} ${
+          className={`m-0 font-serif tracking-[-0.02em] ${
             compact
               ? 'text-[28px] leading-[34px]'
-              : 'text-[32px] leading-[38px] md:text-[48px] md:leading-[54px]'
+              : 'text-[28px] leading-[32px] md:text-[36px] md:leading-[40px]'
           }`}
         >
           {name}
@@ -237,12 +246,12 @@ function ProfileName({
       {show !== 'name' ? (
         <>
           {position ? (
-            <p className="m-0 font-ukraine text-[16px] font-medium leading-[24px] md:text-[18px] md:leading-[26px]">
+            <p className={`m-0 ${POST} md:text-[18px] md:leading-[26px] ${show === 'both' ? 'mt-4' : ''}`}>
               {position.charAt(0).toUpperCase() + position.slice(1)}
             </p>
           ) : null}
           {profile.institution ? (
-            <p className="m-0 mt-1 font-ukraine text-[16px] font-light leading-[24px] md:text-[18px] md:leading-[26px]">{profile.institution}</p>
+            <p className={`m-0 mt-1 text-[#4a5459] ${PLACE}`}>{profile.institution}</p>
           ) : null}
           <div className="mt-5">{action}</div>
         </>
@@ -320,6 +329,36 @@ export function ProfileView({
     .map((k) => knowledgeLabel(k.trim(), locale))
     .filter((k, i, all) => k && all.indexOf(k) === i);
 
+  /** The links stand under the photo. On the site they have no heading; in the cabinet they get one ("Links", not "Social networks": ORCID is a researcher ID, not a network). */
+  const linksBlock = (
+    <Section title={t.aside.links} empty={links.length === 0} action={change('links', t.parts.links)}>
+      <ul className="m-0 flex list-none flex-wrap gap-x-6 gap-y-1 p-0">
+        {links.map((l) => (
+          <li key={l.href}>
+            <a href={l.href} className="satr-hover-underline font-mono text-[16px] leading-[26px]">
+              {l.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </Section>
+  );
+
+  /** The keywords stand right under the institution. On the site they have no heading; in the cabinet they get one, with its own "Change". */
+  const keywordsBlock = (
+    <Section title={t.sections.keywords} empty={keywords.length === 0} action={change('keywords', sec('keywords'))}>
+      <div className="max-w-[62ch]">
+        <ul className="m-0 flex list-none flex-wrap gap-x-2.5 gap-y-2.5 p-0">
+          {keywords.map((k) => (
+            <li key={k}>
+              <Tag as="span" className="text-[14px]! leading-[22px]! tracking-[-0.03em]! transition-colors hover:bg-brand-black hover:text-white">{k}</Tag>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </Section>
+  );
+
   /** The status stays small, above the name, level with the top of the photo: a chip and the one thing that can be done about it. */
   const statusLine = (
     <div className="mb-4 flex flex-wrap items-center gap-x-4 gap-y-2">
@@ -396,34 +435,24 @@ export function ProfileView({
         </div>
       ) : null}
 
-      {/* The page of an expert on the site, piece for piece; what is added is the way to change it. */}
+      {/* The page of an expert on the site, entity for entity: the same blocks, in the same order, in the same type on every profile.
+          What is added is the way to change each one. */}
       {identity ? null : (
         <div>
           {statusLine}
           <ProfileName locale={locale} profile={profile} show="position" action={change('name', t.parts.name)} />
         </div>
       )}
-      <div className={`grid gap-6 ${identity ? 'mt-0 md:grid-cols-[5fr_7fr] lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-x-[42px]' : 'mt-[38px]'}`}>
-        <aside>
-          {identity ? (
-            <div className="max-w-[240px]">
+      <div className={`grid gap-6 ${identity ? 'mt-0 md:grid-cols-[5fr_7fr] md:gap-x-12 lg:grid-cols-[4fr_8fr]' : 'mt-[24px]'}`}>
+        {identity ? (
+          <aside className="md:w-[min(100%,max(180px,32vh))]">
+            {/* the photo is as wide as the site's: the column, and no taller than a third of the screen; the links and the rule under it share that width */}
+            <div className="w-full">
               <ProfilePhoto locale={locale} profile={profile} locked={locked} onPhoto={onPhoto} />
             </div>
-          ) : null}
-
-          {profile.languages ? (
-            <>
-              <h4 className={`${identity ? 'mt-[35px]' : 'mt-0'} mb-3 ${H4}`}>
-                {t.aside.languages}
-              </h4>
-              <p className={`m-0 ${SITE_P}`}>{profile.languages}</p>
-              <div className="mt-4">
-                {change('languages', t.aside.languages.replace(/:$/, '').toLowerCase())}
-              </div>
-            </>
-          ) : null}
-
-        </aside>
+            {linksBlock}
+          </aside>
+        ) : null}
 
         <div className="min-w-0">
           {identity ? (
@@ -433,81 +462,90 @@ export function ProfileView({
             </>
           ) : null}
 
-          {/* The links stand right under the name and the post: who the person is, and where to find them. */}
-          <Section title={t.aside.links} empty={links.length === 0} action={change('links', t.parts.links)}>
-            <ul className="m-0 flex list-none flex-wrap gap-x-6 gap-y-2 p-0">
-              {links.map((l) => (
-                <li key={l.href}>
-                  <a href={l.href} className={`satr-hover-underline ${SITE_P}`}>
-                    {l.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </Section>
+          {keywordsBlock}
 
-          <Section title={t.sections.activity} empty={isRichEmpty(profile.activity)} action={change('activity', sec('activity'))}>
-            <FormattedText text={profile.activity} className={SITE_P} />
+          <Section title={t.headings.languages} empty={!profile.languages} action={change('languages', t.aside.languages.replace(/:$/, '').toLowerCase())}>
+            <p className={`m-0 ${SITE_P}`}>{profile.languages}</p>
           </Section>
-          <Section title={t.sections.area} empty={isRichEmpty(profile.researchArea)} action={change('area', sec('area'))}>
+          {identity ? null : linksBlock}
+
+          <Section title={t.headings.area} empty={isRichEmpty(profile.researchArea)} action={change('area', sec('area'))}>
             <FormattedText text={profile.researchArea} className={SITE_P} />
           </Section>
+          <Section title={t.headings.activity} empty={isRichEmpty(profile.activity)} action={change('activity', sec('activity'))}>
+            <FormattedText text={profile.activity} className={SITE_P} />
+          </Section>
           <Section
-            title={t.sections.experience}
+            title={t.headings.experience}
             empty={profile.experience.every(isExperienceEmpty)}
             action={change('experience', sec('experience'))}
           >
             <ExperienceList items={profile.experience} />
           </Section>
           <Section
-            title={t.sections.expert}
+            title={t.headings.expert}
             empty={profile.expertExperience.every(isExperienceEmpty)}
             action={change('expert', sec('expert'))}
           >
             <ExperienceList items={profile.expertExperience} />
           </Section>
+          {(['scienceProjects', 'otherProjects'] as const).map((key) => {
+            const list = profile[key].filter((x) => !isProjectEmpty(x));
+            return (
+              <Section
+                key={key}
+                title={t.headings[key === 'scienceProjects' ? 'projects' : 'otherProjects']}
+                empty={list.length === 0}
+                action={change(key, sec(key))}
+              >
+                <CardList>
+                  {list.map((x) => (
+                    <li key={x.title + x.role} className={CARD}>
+                      <h3 className={CARD_TITLE}>{x.title}</h3>
+                      {x.description ? <p className={`m-0 mt-4 ${SITE_SMALL}`}>{x.description}</p> : null}
+                      {x.role ? (
+                        <p className={`m-0 mt-4 ${SITE_SMALL}`}>
+                          {pub.roleIs}: {x.role}
+                        </p>
+                      ) : null}
+                    </li>
+                  ))}
+                </CardList>
+              </Section>
+            );
+          })}
           <Section
-            title={t.sections.publications}
+            title={t.headings.publications}
             empty={profile.publications.every(isPublicationEmpty)}
             action={change('publications', sec('publications'))}
           >
-            <ul className="m-0 mt-2 list-none p-0">
+            <CardList>
               {profile.publications
                 .filter((x) => !isPublicationEmpty(x))
                 .map((x) => (
-                  <li key={formatPublication(x)} className="border-b-2 border-brand-black py-6 first:border-t-2 last:border-b-0 last:pb-0">
-                    <div>
-                      <h3 className="m-0 font-serif text-[26px] font-normal leading-[34px] tracking-[-0.02em] md:text-[34px] md:leading-[42px]">
-                        {x.title}
-                      </h3>
+                  <li key={formatPublication(x)} className={`${CARD} grid grid-cols-[4.5rem_minmax(0,1fr)] gap-x-6`}>
+                    <span className="font-mono text-[16px] leading-[28px]">{x.year}</span>
+                    <div className="col-start-2">
+                      <h3 className={CARD_TITLE}>{x.title}</h3>
+                      {x.authors || x.journal || x.year || x.pages ? (
+                        <p className={`m-0 mt-4 ${SITE_SMALL}`}>{formatCitation(x)}</p>
+                      ) : null}
+                      {x.role ? (
+                        <p className={`m-0 mt-4 ${SITE_SMALL}`}>
+                          {pub.roleIs}: {pub.roles[x.role]}
+                        </p>
+                      ) : null}
                     </div>
-                    {x.authors || x.journal || x.year || x.pages ? (
-                      <p className={`m-0 mt-2 ${SITE_SMALL}`}>{formatCitation(x)}</p>
-                    ) : null}
-                    {x.role ? (
-                      <p className={`m-0 mt-2.5 ${SITE_SMALL}`}>
-                        {pub.roleIs}: {pub.roles[x.role]}
-                      </p>
-                    ) : null}
                   </li>
                 ))}
-            </ul>
-          </Section>
-          <Section title={t.sections.keywords} empty={keywords.length === 0} action={change('keywords', sec('keywords'))}>
-            <ul className="m-0 flex list-none flex-wrap gap-2.5 p-0">
-              {keywords.map((k) => (
-                <li key={k}>
-                  <Tag as="span" className="text-[16px]! leading-[22px]! tracking-[-0.03em]!">{k}</Tag>
-                </li>
-              ))}
-            </ul>
+            </CardList>
           </Section>
           {(() => {
             const mine = profile.societies.map(societyBySlug).filter((x): x is NonNullable<typeof x> => !!x);
             return (
-              <Section title={t.sections.societies} action={change('societies', sec('societies'), mine.length > 0)}>
+              <Section title={t.headings.societies} action={change('societies', sec('societies'), mine.length > 0)}>
                 {mine.length ? (
-                  <ul className="m-0 list-none p-0 font-ukraine text-[16px] font-light leading-[19px]">
+                  <ul className={`m-0 list-none p-0 ${SITE_SMALL}`}>
                     {mine.map((x, i) => (
                       <li key={x.slug} className="inline">
                         <a
@@ -524,39 +562,6 @@ export function ProfileView({
               </Section>
             );
           })()}
-          {(['scienceProjects', 'otherProjects'] as const).map((key) => {
-            const list = profile[key].filter((x) => !isProjectEmpty(x));
-            return (
-              <Section
-                key={key}
-                title={t.sections[key === 'scienceProjects' ? 'projects' : 'otherProjects']}
-                empty={list.length === 0}
-                action={change(key, sec(key))}
-              >
-                {(
-                  <ul className="m-0 list-none space-y-6 p-0">
-                    {list.map((x) => (
-                      <li key={x.title + x.role}>
-                        <div>
-                          <h3 className="m-0 font-serif text-[26px] font-normal leading-[34px] tracking-[-0.02em] md:text-[34px] md:leading-[42px]">
-                            {x.title}
-                          </h3>
-                        </div>
-                        {x.description ? (
-                          <p className={`m-0 mt-2 ${SITE_SMALL}`}>{x.description}</p>
-                        ) : null}
-                        {x.role ? (
-                          <p className={`m-0 mt-2 ${SITE_SMALL}`}>
-                            {pub.roleIs}: {x.role}
-                          </p>
-                        ) : null}
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </Section>
-            );
-          })}
         </div>
       </div>
     </div>
@@ -812,7 +817,7 @@ export function ProfileEditForm({
           type="button"
           onClick={() => setRemoving(key)}
           aria-label={`${t.linkRemove.aria}: ${label}`}
-          className="mb-1 flex size-9 shrink-0 items-center justify-center border-2 border-brand-black bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-black"
+          className="mb-1 flex size-9 shrink-0 items-center justify-center border-2 border-[#c62828] bg-white text-[#c62828] transition-colors hover:bg-[#c62828] hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-black"
         >
           <svg aria-hidden width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.6">
             <path d="M2 4h12M6 4V2.5h4V4M3.5 4l.7 9.5h7.6L12.5 4M6.5 7v4M9.5 7v4" />
@@ -1319,7 +1324,7 @@ export function ProfileEditForm({
             return (
               <div key={i} className="flex flex-col gap-6">
                 <FieldSelect
-                  label={`${f.act1.replace(/ 1$/, '')} ${i + 1}` + (i === 0 ? ' *' : '')}
+                  label={`${f.act1.replace(/ 1$/, '')}${actCount > 1 ? ` ${i + 1}` : ''}` + (i === 0 ? ' *' : '')}
                   options={options(t.options.activity)}
                   value={isOther ? other : v}
                   onChange={setAct}

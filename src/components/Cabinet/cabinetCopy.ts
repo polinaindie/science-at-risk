@@ -51,6 +51,8 @@ export interface CabinetCopy {
       string
     >;
     aside: { languages: string; links: string };
+    /** The headings of the page on the site, the same words on every profile. */
+    headings: Record<'area' | 'activity' | 'experience' | 'expert' | 'projects' | 'otherProjects' | 'publications' | 'societies' | 'languages', string>;
     change: string;
     add: string;
     parts: Record<'photo' | 'links' | 'name', string>;
@@ -303,6 +305,7 @@ const en: CabinetCopy = {
     pendingNote: 'This is the version you sent. It is not on the site yet.',
     sections: { activity: 'Main activity', area: 'Description of the field of scientific research', experience: 'Professional experience', expert: 'Expert experience', publications: 'Key publications', keywords: 'Keywords', projects: 'Scientific projects', otherProjects: 'Other projects', societies: 'Scientific societies' },
     aside: { languages: 'Languages', links: 'Links' },
+    headings: { area: 'Research field', activity: 'Duties', experience: 'Experience', expert: 'Expert experience', projects: 'Projects', otherProjects: 'Other projects', publications: 'Publications', societies: 'Scientific societies', languages: 'Working languages' },
     empty: 'Not filled in yet',
     unsent: {
       send: 'Send changes',
@@ -673,6 +676,7 @@ const uk: CabinetCopy = {
     pendingNote: 'Це версія, яку ви надіслали. На сайті її ще немає.',
     sections: { activity: 'Суть основної діяльності', area: 'Сфера наукових досліджень', experience: 'Професійний досвід', expert: 'Досвід експертної діяльності', publications: 'Основні наукові публікації', keywords: 'Ключові слова', projects: 'Наукові проєкти', otherProjects: 'Інші проєкти', societies: 'Наукові товариства' },
     aside: { languages: 'Мови спілкування', links: 'Посилання' },
+    headings: { area: 'Сфера досліджень', activity: 'Обов’язки', experience: 'Досвід', expert: 'Експертний досвід', projects: 'Проєкти', otherProjects: 'Інші проєкти', publications: 'Публікації', societies: 'Наукові товариства', languages: 'Робочі мови' },
     empty: 'Ще не заповнено',
     unsent: {
       send: 'Надіслати зміни',

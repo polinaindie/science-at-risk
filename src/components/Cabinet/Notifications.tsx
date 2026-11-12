@@ -122,9 +122,8 @@ export function NotificationCard({
     </Link>
   ) : null;
 
-  // The card's fill and its black outline are two squircle layers behind the content.
+  // The card is one squircle fill behind the content: yellow when unread, a very pale blue once read. No outline.
   const fill = useSquircleClipPath({ radius: 24, smoothing: 0.9 });
-  const ring = useSquircleClipPath({ radius: 24, smoothing: 0.9, strokeWidth: 2 });
 
   const hasLeft = answerable || (unread && !n.stale);
   const menuNode = (
@@ -174,11 +173,9 @@ export function NotificationCard({
         ref={fill.ref}
         style={fill.style}
         aria-hidden
-        className={`absolute inset-0 ${unread ? 'bg-brand-accent-yellow' : 'bg-white'}`}
+        className={`absolute inset-0 ${unread ? 'bg-brand-accent-yellow' : 'bg-brand-accent-blue/25'}`}
       />
-      <span ref={ring.ref} style={ring.style} aria-hidden className="absolute inset-0 bg-brand-black" />
       <SquircleDefs clipId={fill.clipId} pathD={fill.pathD} />
-      <SquircleDefs clipId={ring.clipId} pathD={ring.pathD} />
       <div className="relative flex items-start gap-4">
         {unread ? <UnreadMark label={t.unreadMark} /> : null}
         <div className="min-w-0 flex-1">
