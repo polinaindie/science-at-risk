@@ -261,7 +261,7 @@ export function HomeHeroV4Final({
     </a>
   );
   const pagerStep =
-    'cursor-pointer border-0 bg-transparent p-0 font-mono text-[15px] leading-[26px] md:text-[22px] text-brand-black';
+    'cursor-pointer border-0 bg-transparent p-0 font-mono text-[0.9375rem] leading-[1.625rem] md:text-[1.375rem] text-brand-black';
 
   return (
     <section
@@ -278,7 +278,7 @@ export function HomeHeroV4Final({
           <a
             href={live('')}
             aria-label="Science At Risk"
-            className={`satr-dim font-serif text-[26px] leading-[42px] tracking-[-0.02em] text-brand-black no-underline ${focusRing}`}
+            className={`satr-dim font-serif text-[1.625rem] leading-[2.625rem] tracking-[-0.02em] text-brand-black no-underline ${focusRing}`}
           >
             !!!
           </a>
@@ -292,7 +292,7 @@ export function HomeHeroV4Final({
                 <li key={item.href}>
                   <a
                     href={item.href}
-                    className={`satr-hover-underline whitespace-nowrap font-mono text-[16px] leading-[26px] tracking-[-0.005em] text-brand-black ${focusRing}`}
+                    className={`satr-hover-underline whitespace-nowrap font-mono text-[1rem] leading-[1.625rem] tracking-[-0.005em] text-brand-black ${focusRing}`}
                   >
                     {item.label}
                   </a>
@@ -302,7 +302,7 @@ export function HomeHeroV4Final({
           </nav>
 
           <div className="flex items-center gap-4">
-            <p className="m-0 whitespace-nowrap font-mono text-text1-mobile text-brand-black md:text-[18px] md:leading-[23px]">
+            <p className="m-0 whitespace-nowrap font-mono text-text1-mobile text-brand-black md:text-[1.125rem] md:leading-[1.4375rem]">
               {isUk ? other : current}
               <span aria-hidden>/</span>
               {isUk ? current : other}
@@ -402,14 +402,14 @@ export function HomeHeroV4Final({
                     >
                       <h2
                         data-story-title={item === story ? '' : undefined}
-                        className="m-0 font-serif text-[28px] font-normal leading-[1.1667] tracking-[-0.02em] text-brand-black md:text-[32px] lg:line-clamp-5 lg:text-[36px]"
+                        className="m-0 font-serif text-[1.75rem] font-normal leading-[1.1667] tracking-[-0.02em] text-brand-black md:text-[2rem] lg:line-clamp-5 lg:text-[2.25rem]"
                       >
                         <a href={item.href} className={`satr-hover-underline text-brand-black ${focusRing}`}>
                           {item.title}
                         </a>
                       </h2>
                       {item.description ? (
-                        <p className="m-0 font-mono text-[15px] leading-[22px] text-brand-black md:text-[18px] md:leading-[23px]">
+                        <p className="m-0 font-mono text-[0.9375rem] leading-[1.375rem] text-brand-black md:text-[1.125rem] md:leading-[1.4375rem]">
                           {item.description}
                         </p>
                       ) : null}
@@ -522,7 +522,7 @@ export function HomeHeroV4Final({
                       </a>
                     </h2>
                     {item.description ? (
-                      <p className="m-0 max-w-[395px] font-ukraine text-[16px] font-light leading-[normal] text-[#717171]">
+                      <p className="m-0 max-w-[395px] font-ukraine text-[1rem] font-light leading-[normal] text-[#717171]">
                         {item.description}
                       </p>
                     ) : null}
@@ -561,7 +561,7 @@ export function HomeHeroV4Final({
           </button>
           <a
             href={otherHref}
-            className={`satr-underlined font-mono text-[15px] leading-[26px] md:text-[22px] tracking-[-0.03em] text-brand-black ${focusRing}`}
+            className={`satr-underlined font-mono text-[0.9375rem] leading-[1.625rem] md:text-[1.375rem] tracking-[-0.03em] text-brand-black ${focusRing}`}
           >
             {otherLabel}
           </a>

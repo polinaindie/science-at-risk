@@ -6,10 +6,13 @@
      institution ..... IBM Plex Mono 400, 14 (15 from 768px) / 22, #4a5459
      description ..... IBM Plex Mono 400, 16/1.65
    Scale: 14 / 16 / 18 / 22 / 28 / 36 / 48 px; spacing: 8 / 16 / 24 / 32 / 48 / 64 / 96; one radius. */
+@import url("../type-scale-static.css");
+
 
 :root {
     --s1: 8px; --s2: 16px; --s3: 24px; --s4: 32px; --s5: 48px; --s6: 64px; --s7: 96px;
-    --t-xs: 14px; --t-sm: 16px; --t-md: 18px; --t-lg: 22px; --t-xl: 28px; --t-2xl: 36px; --t-3xl: 48px;
+    /* the fluid ladder (css/type-scale.css, built by scripts/build-type-scale.py): the values below are its desktop ones */
+    --t-xs: var(--step-xs); --t-sm: var(--step-sm); --t-md: var(--step-md); --t-lg: var(--step-lg); --t-xl: var(--step-xl); --t-2xl: var(--step-2xl); --t-3xl: var(--step-3xl);
     --r: 8px;
     --ground: #bccbd2; /* was #b5c6cd: black text 12.6:1 instead of 11.9:1 */
     --paper: var(--ground); /* the reading column shares the page colour */
@@ -33,11 +36,7 @@
 
 .expert-id .expert__header { margin: 0; font-size: var(--t-2xl); line-height: 1.12; overflow-wrap: anywhere; }
 
-.expert-card__content .expert-card__title { font-size: var(--t-lg); line-height: 28px; }
-
-@media (min-width: 768px) {
-    .expert-card__content .expert-card__title { font-size: var(--t-xl); line-height: 34px; }
-}
+.expert-card__content .expert-card__title { font-size: var(--step-xl); line-height: var(--step-xl-lh); }
 
 /* ---- post: the same faces as the Experience list, by what each line is ---- */
 .expert-id .paragraph,
@@ -45,7 +44,7 @@
     font-family: "e-Ukraine", sans-serif;
     font-weight: 300;
     font-size: var(--t-md);
-    line-height: 26px;
+    line-height: 1.4444rem;
     letter-spacing: 0;
     color: #000;
     max-width: none;
@@ -60,16 +59,11 @@
     font-family: "IBM Plex Mono", monospace;
     font-weight: 400;
     font-size: var(--t-xs);
-    line-height: 22px;
+    line-height: 1.2222rem;
     letter-spacing: 0;
     margin: 4px 0 0;
     color: #4a5459; /* 5.3:1 on the page colour, 7.5:1 on white */
     overflow-wrap: break-word;
-}
-
-@media (min-width: 768px) {
-    .expert-id .expert__affiliation,
-    .expert-card__content .expert-card__subtitle + .expert-card__text { font-size: 15px; }
 }
 
 /* ---- description (a card; on a page it is the "Research field" text) ---- */

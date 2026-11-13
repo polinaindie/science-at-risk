@@ -95,16 +95,12 @@
     margin: var(--s5) 0 var(--s2);
     font-family: "Noto Serif", serif;
     font-weight: 400;
-    font-size: 24px;
-    line-height: 30px;
+    font-size: var(--step-xl);
+    line-height: var(--step-xl-lh);
     letter-spacing: -0.02em;
     text-transform: none;
     color: #000;
     text-wrap: balance;
-}
-
-@media (min-width: 768px) {
-    .expertTitle.expertTitle--h4 { font-size: var(--t-xl); line-height: 34px; }
 }
 
 /* ---- Running text: IBM Plex Mono, one size for every paragraph ---- */
@@ -124,12 +120,8 @@
 
 /* ---- Publications: year in its own column, article titles H3 20-22/28 ---- */
 .project-card__title {
-    font-size: 20px;
-    line-height: 28px;
-}
-
-@media (min-width: 768px) {
-    .project-card__title { font-size: var(--t-lg); }
+    font-size: var(--step-lg);
+    line-height: var(--step-lg-lh);
 }
 
 .project-card__wrapper:has(.project-card__year) {
@@ -145,13 +137,13 @@
     grid-row: 1 / span 4;
     font-family: "IBM Plex Mono", monospace;
     font-size: var(--t-sm);
-    line-height: 28px;
+    line-height: 1.5556rem;
     font-weight: 400;
 }
 
 /* e-Ukraine ships Light (300) and Bold (700) only; its 400 file does not load, so 400 renders heavy. */
 .project-card__text {
-    font-size: 15px;
+    font-size: 0.8333rem;
     font-weight: 300;
     line-height: 1.65;
 }
@@ -170,15 +162,12 @@
     margin: var(--s5) 0 var(--s2);
     font-family: "Noto Serif", serif;
     font-weight: 400;
-    font-size: 24px;
-    line-height: 30px;
+    font-size: var(--step-xl);
+    line-height: var(--step-xl-lh);
     letter-spacing: -0.02em;
     text-transform: none;
     color: #000;
     text-wrap: balance;
-}
-@media (min-width: 768px) {
-    .aside__mobile .aside__title { font-size: var(--t-xl); line-height: 34px; }
 }
 .aside__lang-text, .aside__item-link { font-size: var(--t-sm); line-height: 1.5; }
 
@@ -353,8 +342,8 @@
     /* who (name, degree, institution), then the links 24px below */
     .aside-mini__name { font-family: "Noto Serif", serif; font-weight: 400; font-size: var(--t-xl); line-height: 1.15; letter-spacing: -0.02em; }
     .aside-mini__line { font-size: var(--t-sm); line-height: 1.5; margin-top: var(--s2); }
-    .aside-mini__name + .aside-mini__line { font-family: "e-Ukraine", sans-serif; font-weight: 300; line-height: 24px; }
-    .aside-mini__place { font-family: "IBM Plex Mono", monospace; font-weight: 400; font-size: var(--t-xs); line-height: 22px; margin-top: 4px; color: #4a5459; }
+    .aside-mini__name + .aside-mini__line { font-family: "e-Ukraine", sans-serif; font-weight: 300; line-height: 1.3333rem; }
+    .aside-mini__place { font-family: "IBM Plex Mono", monospace; font-weight: 400; font-size: var(--t-xs); line-height: 1.2222rem; margin-top: 4px; color: #4a5459; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -364,14 +353,13 @@
 /* ---- Experience as a timeline, the way the cabinet prints it: year column, the post, then the place ---- */
 .exp-list { order: 5; list-style: none; margin: var(--s1) 0 0; padding: 0; display: grid; gap: var(--s3); max-width: 62ch; }
 .exp-item { display: grid; grid-template-columns: var(--exp-year-w, 6ch) minmax(0, 1fr); column-gap: var(--s2); }
-.exp-year { font-family: "IBM Plex Mono", monospace; font-size: var(--t-xs); line-height: 22px; padding-top: 2px; }
-.exp-pos { display: block; font-family: "e-Ukraine", sans-serif; font-weight: 300; font-size: var(--t-sm); line-height: 24px; }
-.exp-place { display: block; margin-top: 4px; font-family: "IBM Plex Mono", monospace; font-size: var(--t-xs); line-height: 22px; }
+.exp-year { font-family: "IBM Plex Mono", monospace; font-size: var(--t-sm); line-height: 1.2222rem; padding-top: 2px; }
+.exp-pos { display: block; font-family: "e-Ukraine", sans-serif; font-weight: 300; font-size: var(--t-sm); line-height: 1.3333rem; }
+.exp-place { display: block; margin-top: 4px; font-family: "IBM Plex Mono", monospace; font-size: var(--t-xs); line-height: 1.2222rem; }
 
 @media (min-width: 768px) {
     .exp-item { column-gap: var(--s3); }
-    .exp-year { font-size: var(--t-sm); padding-top: 3px; }
-    .exp-place { font-size: 15px; }
+    .exp-year { padding-top: 3px; }
 }
 
 /* Links and the button sit close under the photo */
@@ -383,12 +371,9 @@
 .aside__mobile .aside__lang-text {
     font-family: "IBM Plex Mono", monospace;
     font-weight: 400;
-    font-size: var(--t-sm);
+    font-size: var(--t-md);
     line-height: 1.65;
     font-variant-ligatures: none;
-}
-@media (min-width: 768px) {
-    .aside__mobile .aside__lang-text { font-size: var(--t-md); line-height: 1.7; }
 }
 
 /* ---- Hint under the Write button: the languages to write in, in the cabinet's alert style (yellow, square) ---- */
@@ -406,7 +391,7 @@
         border-radius: 0;
         font-family: "IBM Plex Mono", monospace;
         font-size: var(--t-xs);
-        line-height: 20px;
+        line-height: 1.1111rem;
         letter-spacing: -0.03em;
         pointer-events: none;
         opacity: 0;

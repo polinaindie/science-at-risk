@@ -83,7 +83,7 @@ function StepMark({ state, children }: { state: 'done' | 'current' | 'todo'; chi
   const sq = useSquircleClipPath({ radius: 10, smoothing: 0.9, strokeWidth: state === 'todo' ? 2 : 0 });
   const fill = state === 'done' ? 'bg-brand-accent-green' : state === 'current' ? 'bg-brand-accent-yellow' : 'bg-brand-black';
   return (
-    <span aria-hidden className="relative grid size-[32px] shrink-0 place-items-center text-[12px] leading-none text-brand-black">
+    <span aria-hidden className="relative grid size-[32px] shrink-0 place-items-center text-[0.75rem] leading-none text-brand-black">
       <span ref={sq.ref} className={`absolute inset-0 ${fill}`} style={sq.style} />
       <SquircleDefs clipId={sq.clipId} pathD={sq.pathD} />
       <span className="relative grid place-items-center">{children}</span>
@@ -289,7 +289,7 @@ export function OnboardingWizard({
               {missing.map((m) => (
                 <li key={m} className="flex flex-wrap items-baseline justify-between gap-x-4 font-ukraine text-text2-mobile font-light md:text-text2-desktop">
                   <span>{t.review.missing[m] ?? t.steps[m].title}</span>
-                  <Link as="button" onClick={() => goTo(STEP_ORDER.indexOf(m))} className="text-[16px]! leading-[24px]!">
+                  <Link as="button" onClick={() => goTo(STEP_ORDER.indexOf(m))} className="text-[1rem]! leading-[1.5rem]!">
                     {t.review.fix}
                   </Link>
                 </li>

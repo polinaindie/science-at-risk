@@ -170,7 +170,7 @@ function PopularTags({ label, tags }: { label: string; tags: HomeScientistsTag[]
 
   return (
     <div ref={boxRef} className="max-w-full md:ml-auto" style={{ width }}>
-      <p className="mb-3 font-mono text-text1-mobile text-brand-black md:text-[16px] md:leading-[24px]">
+      <p className="mb-3 font-mono text-text1-mobile text-brand-black md:text-[1rem] md:leading-[1.5rem]">
         {label}
       </p>
       <div ref={listRef} className="flex flex-wrap gap-2.5" role="list">
@@ -257,7 +257,7 @@ export function HomeScientistsBlock({
               name="search"
               type="search"
               placeholder=" "
-              className="w-full appearance-none border-0 bg-transparent font-ukraine text-[length:clamp(16px,4.8vw,22px)] font-light leading-[28px] text-brand-black outline-none lg:text-[18px]"
+              className="w-full appearance-none border-0 bg-transparent font-ukraine text-[length:clamp(16px,4.8vw,22px)] font-light leading-[1.75rem] text-brand-black outline-none lg:text-[1.125rem]"
             />
             {/* Wraps rather than truncates: a reader who widens the letter
                 spacing still gets the whole label, not an ellipsis. */}

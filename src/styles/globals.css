@@ -1,5 +1,6 @@
 @import './fonts.css';
 @import 'tailwindcss';
+@import '../../public/css/type-scale.css';
 @import '../../public/css/satr-auth.css';
 @import '../../public/css/satr-squircle.css';
 
@@ -26,45 +27,45 @@
   /* Paragraph links in article body (mirror) */
   --color-brand-link: #fdbe0d;
 
-  --text-h1-desktop: 72px;
-  --text-h1-desktop--line-height: 76px;
+  --text-h1-desktop: var(--step-h1);
+  --text-h1-desktop--line-height: var(--step-h1-lh);
   --text-h1-desktop--letter-spacing: -0.02em;
 
-  --text-h1-mobile: 32px;
-  --text-h1-mobile--line-height: 38px;
+  --text-h1-mobile: var(--step-h1);
+  --text-h1-mobile--line-height: var(--step-h1-lh);
   --text-h1-mobile--letter-spacing: -0.02em;
 
-  --text-h2-desktop: 36px;
-  --text-h2-desktop--line-height: 42px;
+  --text-h2-desktop: var(--step-h2);
+  --text-h2-desktop--line-height: var(--step-h2-lh);
   --text-h2-desktop--letter-spacing: -0.02em;
 
-  --text-h2-mobile: 20px;
-  --text-h2-mobile--line-height: 28px;
+  --text-h2-mobile: var(--step-h2);
+  --text-h2-mobile--line-height: var(--step-h2-lh);
   --text-h2-mobile--letter-spacing: -0.02em;
 
-  --text-h3-desktop: 22px;
-  --text-h3-desktop--line-height: 28px;
+  --text-h3-desktop: var(--step-h3);
+  --text-h3-desktop--line-height: var(--step-h3-lh);
   --text-h3-desktop--letter-spacing: -0.03em;
 
-  --text-h3-mobile: 15px;
-  --text-h3-mobile--line-height: 20px;
+  --text-h3-mobile: var(--step-h3);
+  --text-h3-mobile--line-height: var(--step-h3-lh);
   --text-h3-mobile--letter-spacing: -0.03em;
 
-  --text-text1-desktop: 18px;
-  --text-text1-desktop--line-height: 28px;
+  --text-text1-desktop: var(--step-text1);
+  --text-text1-desktop--line-height: var(--step-text1-lh);
   --text-text1-desktop--letter-spacing: -0.03em;
 
   /* 14px is the floor for anything meant to be read on a phone. */
-  --text-text1-mobile: 14px;
-  --text-text1-mobile--line-height: 20px;
+  --text-text1-mobile: var(--step-text1);
+  --text-text1-mobile--line-height: var(--step-text1-lh);
   --text-text1-mobile--letter-spacing: -0.03em;
 
-  --text-text2-desktop: 18px;
-  --text-text2-desktop--line-height: 26px;
+  --text-text2-desktop: var(--step-text2);
+  --text-text2-desktop--line-height: var(--step-text2-lh);
   --text-text2-desktop--letter-spacing: 0;
 
-  --text-text2-mobile: 14px;
-  --text-text2-mobile--line-height: 22px;
+  --text-text2-mobile: var(--step-text2);
+  --text-text2-mobile--line-height: var(--step-text2-lh);
   --text-text2-mobile--letter-spacing: 0;
 
   --text-breadcrumbs: 14px;
@@ -136,33 +137,13 @@
    * 32, 48, 64 and 72px at 0, 1024, 1280 and 1440. Our tokens only held the
    * two ends and jumped from 32 straight to 72 at 768, which is what made a
    * block title read as gigantic on an ordinary laptop: 72px where the site
-   * gives 64.
+   * gives 64. It now follows --step-h1 (public/css/type-scale.css): 32px at
+   * 375 gliding to 72px at 1440, about 66 at 1280, with no jumps.
    */
   .text-h1 {
-    font-size: 32px;
-    line-height: 38px;
-    letter-spacing: -0.02em;
-  }
-
-  @media (min-width: 1024px) {
-    .text-h1 {
-      font-size: 48px;
-      line-height: 54px;
-    }
-  }
-
-  @media (min-width: 1280px) {
-    .text-h1 {
-      font-size: 64px;
-      line-height: 72px;
-    }
-  }
-
-  @media (min-width: 1440px) {
-    .text-h1 {
-      font-size: 72px;
-      line-height: 76px;
-    }
+    font-size: var(--step-h1);
+    line-height: var(--step-h1-lh);
+    letter-spacing: var(--step-h1-ls);
   }
 
   /*

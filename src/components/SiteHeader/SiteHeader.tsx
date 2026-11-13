@@ -93,7 +93,7 @@ function Avatar({ src, unread }: { src?: string; name?: string; unread: number }
           ref={shape.ref}
           aria-hidden
           style={shape.style}
-          className="flex size-10 items-center justify-center bg-white font-mono text-[16px]"
+          className="flex size-10 items-center justify-center bg-white font-mono text-[1rem]"
         >
           <svg viewBox="0 0 40 40" className="size-full text-[#c8c8c8]" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
             {/* A scientist with wild hair, round glasses and a lopsided grin. */}
@@ -162,7 +162,7 @@ function AccountMenu({
     };
   }, [open]);
 
-  const item = `block whitespace-nowrap px-4 py-3 font-mono text-[16px] leading-[24px] text-brand-black no-underline hover:bg-brand-accent-blue ${focusRing}`;
+  const item = `block whitespace-nowrap px-4 py-3 font-mono text-[1rem] leading-[1.5rem] text-brand-black no-underline hover:bg-brand-accent-blue ${focusRing}`;
   return (
     <div ref={root} className="relative">
       <button
@@ -174,7 +174,7 @@ function AccountMenu({
         className={`satr-dim flex min-h-11 items-center ${inPanel ? 'w-full gap-3' : 'gap-1'} border-0 bg-transparent p-0 ${ink} ${focusRing}`}
       >
         <Avatar src={avatarSrc} name={name} unread={unread} />
-        {inPanel && name ? <span className="min-w-0 flex-1 text-left font-mono text-[18px] leading-[24px]">{name}</span> : null}
+        {inPanel && name ? <span className="min-w-0 flex-1 text-left font-mono text-[1.125rem] leading-[1.5rem]">{name}</span> : null}
         <svg
           aria-hidden
           viewBox="0 0 9.06066 5.59099"
@@ -326,7 +326,7 @@ export function SiteHeader({
           <a
             href={homeHref}
             aria-label="Science At Risk"
-            className={`satr-dim absolute left-0 top-1/2 -translate-y-1/2 font-serif text-[28px] leading-[42px] tracking-[-0.02em] no-underline transition-opacity duration-200 ${ink} ${focusRing}`}
+            className={`satr-dim absolute left-0 top-1/2 -translate-y-1/2 font-serif text-[1.75rem] leading-[2.625rem] tracking-[-0.02em] no-underline transition-opacity duration-200 ${ink} ${focusRing}`}
             style={{ opacity: landed ? 0 : 1, pointerEvents: landed ? 'none' : undefined }}
             tabIndex={landed ? -1 : undefined}
             aria-hidden={landed ? true : undefined}
@@ -345,7 +345,7 @@ export function SiteHeader({
                 18px on a phone, which is what leaves room on a 320px screen
                 for the language switch and the menu beside it. */}
             <span
-              className={`block whitespace-nowrap font-serif text-[18px] font-normal leading-[18px] tracking-[-0.27px] md:text-[24px] md:leading-[24px] md:tracking-[-0.36px] ${ink}`}
+              className={`block whitespace-nowrap font-serif text-[1.125rem] font-normal leading-[1.125rem] tracking-[-0.27px] md:text-[1.5rem] md:leading-[1.5rem] md:tracking-[-0.36px] ${ink}`}
             >
               SC!ENCE AT R!SK!
             </span>
@@ -355,7 +355,7 @@ export function SiteHeader({
         <div className="flex shrink-0 items-center gap-4 xl:gap-5">
           {/* From `md` up the language switch stands in the middle of the bar; on a phone there is no room beside the wordmark, so it keeps to the right. */}
           <p
-            className="m-0 whitespace-nowrap font-mono text-text1-mobile md:absolute md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:text-[18px] md:leading-[24px] md:tracking-normal"
+            className="m-0 whitespace-nowrap font-mono text-text1-mobile md:absolute md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:text-[1.125rem] md:leading-[1.5rem] md:tracking-normal"
             style={{ top: PAD_TOP + ROW_H / 2 }}
           >
             {isUa ? other : current}

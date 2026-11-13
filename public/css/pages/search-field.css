@@ -45,9 +45,9 @@
     -webkit-appearance: none;
     outline: none;
     font-family: "e-Ukraine", sans-serif;
-    font-size: clamp(16px, 4.8vw, 22px);
+    font-size: clamp(0.8889rem, 4.8vw, 1.2222rem);
     font-weight: 300;
-    line-height: 28px;
+    line-height: 1.5556rem;
     color: #000;
 }
 
@@ -60,9 +60,9 @@
     max-width: 100%;
     pointer-events: none;
     font-family: "e-Ukraine", sans-serif;
-    font-size: clamp(16px, 4.8vw, 22px);
+    font-size: clamp(0.8889rem, 4.8vw, 1.2222rem);
     font-weight: 300;
-    line-height: 28px;
+    line-height: 1.5556rem;
     color: #4d4d4d;
     transform-origin: left top;
     transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), color 0.3s;
@@ -74,8 +74,8 @@
 }
 
 @media (min-width: 1024px) {
-    .search-field .satr-float > input { padding-top: 0; font-size: 18px; }
-    .search-field .satr-float > .satr-float__label { top: 0; font-size: 18px; }
+    .search-field .satr-float > input { padding-top: 0; font-size: 1rem; }
+    .search-field .satr-float > .satr-float__label { top: 0; font-size: 1rem; }
     .search-field .satr-float > input:focus + .satr-float__label,
     .search-field .satr-float > input:not(:placeholder-shown) + .satr-float__label {
         transform: translateY(-24px) scale(0.7778);
@@ -91,8 +91,8 @@
     min-height: 47px;
     padding: 9px 22px;
     font-family: "IBM Plex Mono", monospace;
-    font-size: 18px;
-    line-height: 28px;
+    font-size: 1rem;
+    line-height: 1.5556rem;
 }
 
 /* The button is full width under the field on a phone. */
@@ -110,8 +110,8 @@
     border: 0;
     background: transparent;
     font-family: "IBM Plex Mono", monospace;
-    font-size: 24px;
-    line-height: 32px;
+    font-size: 1.3333rem;
+    line-height: 1.7778rem;
     color: #000;
     cursor: pointer;
 }

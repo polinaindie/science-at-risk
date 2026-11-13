@@ -37,16 +37,16 @@ import { Modal, StatusBadge } from './parts';
 import { societies, societyBySlug, societyName } from './societies';
 
 /** Every heading inside the profile, left column and right: 24px. */
-const H4 = 'font-serif text-[24px] font-normal leading-[30px] tracking-[-0.02em] md:text-[28px] md:leading-[34px]';
+const H4 = 'font-serif text-[1.5rem] font-normal leading-[1.875rem] tracking-[-0.02em] md:text-[1.75rem] md:leading-[2.125rem]';
 /** The site's running text on an expert's page: IBM Plex Mono, 16 on a phone and 18 above. */
-const SITE_P = 'font-mono text-[16px] leading-[26px] md:text-[18px] md:leading-[30px]';
+const SITE_P = 'font-mono text-[1rem] leading-[1.625rem] md:text-[1.125rem] md:leading-[1.875rem]';
 /** The small text in the site's project and publication cards: e-Ukraine Light, 15. */
-const SITE_SMALL = 'font-ukraine text-[15px] font-light leading-[25px]';
+const SITE_SMALL = 'font-ukraine text-[0.9375rem] font-light leading-[1.5625rem]';
 /** A project's or publication's title: serif, 20 on a phone and 22 above. */
-const CARD_TITLE = 'm-0 font-serif text-[20px] font-normal leading-[28px] tracking-[-0.02em] md:text-[22px]';
+const CARD_TITLE = 'm-0 font-serif text-[1.25rem] font-normal leading-[1.75rem] tracking-[-0.02em] md:text-[1.375rem]';
 /** The post is e-Ukraine Light 16, the place it belongs to is IBM Plex Mono: the same on every profile. */
-const POST = 'font-ukraine text-[16px] font-light leading-[24px]';
-const PLACE = 'font-mono text-[14px] leading-[22px] md:text-[15px]';
+const POST = 'font-ukraine text-[1rem] font-light leading-[1.5rem]';
+const PLACE = 'font-mono text-[0.875rem] leading-[1.375rem] md:text-[0.9375rem]';
 const PARA = 'font-ukraine text-text2-mobile font-light md:text-text2-desktop';
 
 /* ------------------------------------------------------------------ view */
@@ -127,7 +127,7 @@ const ExperienceList = ({ items }: { items: ExperienceItem[] }) => (
       .filter((x) => !isExperienceEmpty(x))
       .map((x, i) => (
         <li key={i} className="grid grid-cols-[3.5rem_1fr] gap-x-2 md:grid-cols-[5rem_1fr] md:gap-x-3">
-          <span className="pt-[2px] text-[14px] leading-[22px] md:pt-[3px] md:text-[16px]">{x.year}</span>
+          <span className="pt-[2px] text-[0.875rem] leading-[1.375rem] md:pt-[3px] md:text-[1rem]">{x.year}</span>
           <span>
             <span className={`block ${POST}`}>{x.position.charAt(0).toUpperCase() + x.position.slice(1)}</span>
             {x.place ? <span className={`mt-1 block ${PLACE}`}>{x.place}</span> : null}
@@ -153,7 +153,7 @@ function changeButton(
       type="button"
       onClick={() => onEdit(id)}
       aria-label={`${filled ? t.change : t.add}: ${part}`}
-      className="satr-underlined-box inline-flex shrink-0 cursor-pointer items-center border-0 bg-transparent p-0 font-mono text-[14px] leading-[20px] tracking-[-0.03em] text-brand-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-black"
+      className="satr-underlined-box inline-flex shrink-0 cursor-pointer items-center border-0 bg-transparent p-0 font-mono text-[0.875rem] leading-[1.25rem] tracking-[-0.03em] text-brand-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-black"
     >
       <span className="satr-underlined">{filled ? t.change : t.add}</span>
     </button>
@@ -189,7 +189,7 @@ function ProfilePhoto({
           className="group relative block w-full cursor-pointer p-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-black"
         >
           {photo}
-          <span className="absolute inset-0 flex items-end justify-center bg-brand-black/45 p-4 font-mono text-[16px] leading-[24px] text-white opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100 [@media(hover:none)]:bg-transparent [@media(hover:none)]:opacity-100">
+          <span className="absolute inset-0 flex items-end justify-center bg-brand-black/45 p-4 font-mono text-[1rem] leading-[1.5rem] text-white opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100 [@media(hover:none)]:bg-transparent [@media(hover:none)]:opacity-100">
             <span className="[@media(hover:none)]:bg-brand-black/70 [@media(hover:none)]:px-2">
               {cabinetCopy[locale].photoDialog.title}
             </span>
@@ -240,8 +240,8 @@ function ProfileName({
           <h1
             className={`m-0 font-serif tracking-[-0.02em] ${
               compact
-                ? 'text-[28px] leading-[34px]'
-                : 'text-[28px] leading-[32px] md:text-[36px] md:leading-[40px]'
+                ? 'text-[1.75rem] leading-[2.125rem]'
+                : 'text-[1.75rem] leading-[2rem] md:text-[2.25rem] md:leading-[2.5rem]'
             }`}
           >
             {name}
@@ -250,7 +250,7 @@ function ProfileName({
         {show !== 'name' ? (
           <>
             {position ? (
-              <p className={`m-0 ${POST} md:text-[18px] md:leading-[26px] ${show === 'both' ? 'mt-4' : ''}`}>
+              <p className={`m-0 ${POST} md:text-[1.125rem] md:leading-[1.625rem] ${show === 'both' ? 'mt-4' : ''}`}>
                 {position.charAt(0).toUpperCase() + position.slice(1)}
               </p>
             ) : null}
@@ -341,7 +341,7 @@ export function ProfileView({
       <ul className="m-0 flex list-none flex-wrap gap-x-6 gap-y-1 p-0">
         {links.map((l) => (
           <li key={l.href}>
-            <a href={l.href} className="satr-hover-underline font-mono text-[16px] leading-[26px]">
+            <a href={l.href} className="satr-hover-underline font-mono text-[1rem] leading-[1.625rem]">
               {l.label}
             </a>
           </li>
@@ -357,7 +357,7 @@ export function ProfileView({
         <ul className="m-0 flex list-none flex-wrap gap-x-2.5 gap-y-2.5 p-0">
           {keywords.map((k) => (
             <li key={k}>
-              <Tag as="span" className="text-[14px]! leading-[22px]! tracking-[-0.03em]! transition-colors hover:bg-brand-black hover:text-white">{k}</Tag>
+              <Tag as="span" className="text-[0.875rem]! leading-[1.375rem]! tracking-[-0.03em]! transition-colors hover:bg-brand-black hover:text-white">{k}</Tag>
             </li>
           ))}
         </ul>
@@ -370,12 +370,12 @@ export function ProfileView({
     <div className="mb-4 flex flex-wrap items-center gap-x-4 gap-y-2">
       <StatusBadge status={unsentNow ? 'draft' : status} locale={locale}>
         {status === 'approved' && !unsentNow ? (
-          <Link href={siteHref} className="self-center text-[14px]! leading-[20px]!">
+          <Link href={siteHref} className="self-center text-[0.875rem]! leading-[1.25rem]!">
             {t.openOnSite}
           </Link>
         ) : null}
         {status === 'pending' && onWithdraw ? (
-          <Link as="button" onClick={onWithdraw} className="self-center text-[14px]! leading-[20px]!">
+          <Link as="button" onClick={onWithdraw} className="self-center text-[0.875rem]! leading-[1.25rem]!">
             {t.withdraw}
           </Link>
         ) : null}
@@ -538,7 +538,7 @@ export function ProfileView({
                 .filter((x) => !isPublicationEmpty(x))
                 .map((x) => (
                   <li key={formatPublication(x)} className={`${CARD} grid grid-cols-[4.5rem_minmax(0,1fr)] gap-x-6`}>
-                    <span className="font-mono text-[16px] leading-[28px]">{x.year}</span>
+                    <span className="font-mono text-[1rem] leading-[1.75rem]">{x.year}</span>
                     <div className="col-start-2">
                       <h3 className={CARD_TITLE}>{x.title}</h3>
                       {x.authors || x.journal || x.year || x.pages ? (
@@ -906,7 +906,7 @@ export function ProfileEditForm({
                   <Link
                     as="button"
                     onClick={() => set(key, rows.filter((_, n) => n !== i))}
-                    className="text-[16px]! leading-[24px]!"
+                    className="text-[1rem]! leading-[1.5rem]!"
                   >
                     {pub.remove}
                   </Link>
@@ -976,7 +976,7 @@ export function ProfileEditForm({
               <Link
                 as="button"
                 onClick={() => set(key, rows.filter((_, n) => n !== i))}
-                className="text-[16px]! leading-[24px]!"
+                className="text-[1rem]! leading-[1.5rem]!"
               >
                 {pub.remove}
               </Link>
@@ -1101,7 +1101,7 @@ export function ProfileEditForm({
                   {draft.imageSrc ? f.photoChange : f.photoAdd}
                 </Button>
                 {draft.imageSrc ? (
-                  <Link as="button" onClick={() => set('imageSrc', '')} className="text-[16px]! leading-[24px]!">
+                  <Link as="button" onClick={() => set('imageSrc', '')} className="text-[1rem]! leading-[1.5rem]!">
                     {t.photoRemove}
                   </Link>
                 ) : null}
@@ -1242,7 +1242,7 @@ export function ProfileEditForm({
                 <div className="flex items-baseline justify-between gap-4">
                   <h3 className="font-serif text-h2-mobile font-normal md:text-h2-desktop">{pub.titles[i]}</h3>
                   {i > 0 ? (
-                    <Link as="button" onClick={() => removePub(i)} className="text-[16px]! leading-[24px]!">
+                    <Link as="button" onClick={() => removePub(i)} className="text-[1rem]! leading-[1.5rem]!">
                       {pub.remove}
                     </Link>
                   ) : null}
@@ -1310,7 +1310,7 @@ export function ProfileEditForm({
                 <Link
                   as="button"
                   onClick={() => set('extraKnowledge', draft.extraKnowledge.filter((_, n) => n !== i))}
-                  className="text-[16px]! leading-[24px]!"
+                  className="text-[1rem]! leading-[1.5rem]!"
                 >
                   {t.picker.removeField}
                 </Link>
@@ -1363,7 +1363,7 @@ export function ProfileEditForm({
                         set('activities', draft.activities.filter((_, n) => n !== i));
                         setActCount((n) => Math.max(1, n - 1));
                       }}
-                      className="text-[16px]! leading-[24px]!"
+                      className="text-[1rem]! leading-[1.5rem]!"
                     >
                       {pub.remove}
                     </Link>
@@ -1504,7 +1504,7 @@ export function ProfileEditForm({
         <div className="fixed inset-x-0 bottom-0 z-40 bg-brand-accent-blue">
           <div className="mx-auto flex max-w-[1744px] flex-wrap items-center justify-between gap-x-6 gap-y-3 px-4 py-3 xl:px-10">
             <div className="flex flex-wrap items-center gap-x-5 gap-y-1">
-              <Link as="button" onClick={() => step.onExit?.(draft)} className="text-[16px]! leading-[24px]!">
+              <Link as="button" onClick={() => step.onExit?.(draft)} className="text-[1rem]! leading-[1.5rem]!">
                 {step.exitLabel}
               </Link>
             </div>
@@ -1697,7 +1697,7 @@ function SocietyPicker({
             {shown.length ? (
               shown.map((x) => (
                 <li key={x.slug} role="option" aria-selected={value.includes(x.slug)}>
-                  <label className="flex cursor-pointer items-start gap-3 px-4 py-2.5 font-ukraine text-[16px] leading-[22px] hover:bg-brand-black/5">
+                  <label className="flex cursor-pointer items-start gap-3 px-4 py-2.5 font-ukraine text-[1rem] leading-[1.375rem] hover:bg-brand-black/5">
                     <input
                       type="checkbox"
                       checked={value.includes(x.slug)}
@@ -1726,7 +1726,7 @@ function SocietyPicker({
                 variant="accent"
                 onClick={() => toggle(x.slug)}
                 aria-label={`${societyName(x, locale)} ✕`}
-                className="min-h-[36px]! py-1.5! text-[14px]! leading-[20px]! tracking-[-0.03em]!"
+                className="min-h-[36px]! py-1.5! text-[0.875rem]! leading-[1.25rem]! tracking-[-0.03em]!"
               >
                 {x.name} ✕
               </Tag>

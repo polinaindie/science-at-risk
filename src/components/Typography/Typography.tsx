@@ -14,7 +14,7 @@ export interface TypographyProps {
 
 function SpecLabel({ token, breakpoint }: { token: TypographyToken; breakpoint: TypographyBreakpoint }) {
   return (
-    <p className="mt-2 font-ukraine text-[18px] font-light leading-normal text-brand-muted">
+    <p className="mt-2 font-ukraine text-[1.125rem] font-light leading-normal text-brand-muted">
       {formatTypographySpec(token, breakpoint)}
     </p>
   );
@@ -33,7 +33,7 @@ function TypographyColumn({
     <section className="flex w-full max-w-[398px] flex-col gap-10" aria-labelledby={`typo-${breakpoint}`}>
       <h2
         id={`typo-${breakpoint}`}
-        className="font-ukraine text-[18px] font-light leading-normal text-brand-muted"
+        className="font-ukraine text-[1.125rem] font-light leading-normal text-brand-muted"
       >
         {title}
       </h2>

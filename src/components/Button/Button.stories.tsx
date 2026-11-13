@@ -64,7 +64,7 @@ export const AllStates: Story = {
   render: () => (
     <div className="flex flex-col gap-12 p-8">
       <section>
-        <p className="mb-4 font-ukraine text-[18px] font-light text-brand-muted">Black</p>
+        <p className="mb-4 font-ukraine text-[1.125rem] font-light text-brand-muted">Black</p>
         <div className="flex flex-wrap items-center gap-6">
           <Button variant="black">Детальніше</Button>
           <Button variant="black" disabled>
@@ -73,7 +73,7 @@ export const AllStates: Story = {
         </div>
       </section>
       <section className="bg-brand-black p-6">
-        <p className="mb-4 font-ukraine text-[18px] font-light text-white/70">White</p>
+        <p className="mb-4 font-ukraine text-[1.125rem] font-light text-white/70">White</p>
         <div className="flex flex-wrap items-center gap-6">
           <Button variant="white">Детальніше</Button>
           <Button variant="white" disabled>
@@ -82,7 +82,7 @@ export const AllStates: Story = {
         </div>
       </section>
       <section>
-        <p className="mb-4 font-ukraine text-[18px] font-light text-brand-muted">Bordered</p>
+        <p className="mb-4 font-ukraine text-[1.125rem] font-light text-brand-muted">Bordered</p>
         <div className="flex flex-wrap items-center gap-6">
           <Button variant="bordered">Детальніше</Button>
           <Button variant="bordered" disabled>
@@ -90,7 +90,7 @@ export const AllStates: Story = {
           </Button>
         </div>
       </section>
-      <p className="max-w-xl font-ukraine text-[18px] font-light text-brand-muted">
+      <p className="max-w-xl font-ukraine text-[1.125rem] font-light text-brand-muted">
         Кнопки — це сквіркли. Не прямокутники з закругленими кутами.
       </p>
     </div>

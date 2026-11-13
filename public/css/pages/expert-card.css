@@ -9,7 +9,7 @@
     font-family: "IBM Plex Mono", monospace;
     font-weight: 400;
     font-size: var(--t-xs);
-    line-height: 25px;
+    line-height: 1.3889rem;
     color: #000;
 }
 

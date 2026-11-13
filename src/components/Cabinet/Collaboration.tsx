@@ -72,11 +72,11 @@ export function MatchCard({
               /* Once the colleague agrees, the button gives way to their email, in the button's own type. */
               <p
                 role="status"
-                className="m-0 font-mono text-[20px] leading-[28px] md:text-[24px] md:leading-[32px] [overflow-wrap:anywhere]"
+                className="m-0 font-mono text-[1.25rem] leading-[1.75rem] md:text-[1.5rem] md:leading-[2rem] [overflow-wrap:anywhere]"
               >
                 {t.acceptedText}{' '}
                 {scientist.email ? (
-                  <Link href={`mailto:${scientist.email}`} className="text-[20px]! leading-[28px]! md:text-[24px]! md:leading-[32px]! [--satr-ul:2px]">
+                  <Link href={`mailto:${scientist.email}`} className="text-[1.25rem]! leading-[1.75rem]! md:text-[1.5rem]! md:leading-[2rem]! [--satr-ul:2px]">
                     {scientist.email}
                   </Link>
                 ) : null}

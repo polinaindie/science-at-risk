@@ -27,7 +27,7 @@ export function Gallery({
   return (
     <figure className={`m-0 w-full max-w-[1038px] ${className}`.trim()}>
       <img src={src} alt={alt} className="block h-auto w-full object-cover" />
-      <figcaption className="mt-4 grid grid-cols-3 items-center font-mono text-[18px] leading-6 tracking-[-0.03em] text-brand-black">
+      <figcaption className="mt-4 grid grid-cols-3 items-center font-mono text-[1.125rem] leading-6 tracking-[-0.03em] text-brand-black">
         <button
           type="button"
           className="justify-self-start border-0 bg-transparent p-0"

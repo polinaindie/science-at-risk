@@ -82,7 +82,7 @@ export function SpecialtyPicker({
         </div>
       ) : (
       <div role="group" aria-label={labels.specialties}>
-        <p className="mb-3 font-ukraine text-[14px] leading-[20px] text-brand-muted">
+        <p className="mb-3 font-ukraine text-[0.875rem] leading-[1.25rem] text-brand-muted">
           {labels.specialties}
           {requiredMark}
         </p>
@@ -100,7 +100,7 @@ export function SpecialtyPicker({
                       variant={on ? 'accent' : 'default'}
                       aria-pressed={on}
                       onClick={() => toggle(s)}
-                      className={`min-h-[36px]! py-1.5! text-[14px]! leading-[20px]! tracking-[-0.03em]! ${on ? '' : 'satr-tag--off'}`}
+                      className={`min-h-[36px]! py-1.5! text-[0.875rem]! leading-[1.25rem]! tracking-[-0.03em]! ${on ? '' : 'satr-tag--off'}`}
                     >
                       {on ? '✓ ' : ''}
                       {knowledgeLabel(s, locale)}

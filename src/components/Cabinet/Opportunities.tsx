@@ -13,7 +13,7 @@ export function CourseCard({ locale, course }: { locale: CabinetLocale; course: 
         <p className="mt-3 font-mono text-text1-mobile text-brand-muted">
           {t.provider}: <span className="text-brand-black">{course.provider}</span>
         </p>
-        <p className="mt-3 font-ukraine text-[16px] leading-[22px] md:text-[18px] md:leading-[26px]">{course.description}</p>
+        <p className="mt-3 font-ukraine text-[1rem] leading-[1.375rem] md:text-[1.125rem] md:leading-[1.625rem]">{course.description}</p>
       </div>
       <div className="flex justify-end md:shrink-0">
         <a href={course.href} target="_blank" rel="noopener noreferrer" className="shrink-0 no-underline">

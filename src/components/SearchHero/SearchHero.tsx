@@ -180,7 +180,7 @@ export function SearchHero({
               defaultValue={defaultQuery}
               key={defaultQuery}
               aria-describedby={exampleQuery ? exampleId : undefined}
-              className="w-full border-0 bg-transparent font-ukraine text-[16px] font-light text-brand-black outline-none focus-visible:ring-2 focus-visible:ring-brand-black focus-visible:ring-offset-2"
+              className="w-full border-0 bg-transparent font-ukraine text-[1rem] font-light text-brand-black outline-none focus-visible:ring-2 focus-visible:ring-brand-black focus-visible:ring-offset-2"
               placeholder={placeholder}
             />
           </label>
