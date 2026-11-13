@@ -21,7 +21,7 @@ export function HomeHero({
       label: 'Find Ukrainian scientists for collaboration',
       href: '/scientists',
     },
-    { label: 'White Papers', href: '/whitepapers' },
+    { label: 'Research', href: '/research' },
   ],
   className = '',
 }: HomeHeroProps) {

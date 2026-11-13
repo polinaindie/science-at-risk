@@ -1,0 +1,53 @@
+{
+  "_note": "All labels of the Research filter, per language. The page language comes from <html lang> (uk | en), or ?lang=uk|en. Document titles are not here: they stay in their original language in research-index.json.",
+  "uk": {
+    "filterLabel": "Фільтр за темою",
+    "all": "Усі теми",
+    "themes": {
+      "scientists": "Науковці",
+      "collections": "Лабораторії й колекції",
+      "policy": "Політика й фінансування",
+      "society": "Наука і суспільство"
+    },
+    "explain": {
+      "scientists": "Як не втратити дослідників: еміграція, безпека, підтримка, діаспора.",
+      "collections": "Що зруйновано під час війни, як це врятувати, підрахувати й відбудувати.",
+      "policy": "Як керувати наукою, розподіляти гроші й перезапустити її після війни.",
+      "society": "Як розповідати про науку, залучати людей і захищати права вчених."
+    },
+    "shown": "Показано {n} з {total}",
+    "noResults": "Нічого не знайдено",
+    "reset": "Скинути фільтри",
+    "details": "Детальніше",
+    "pdf": ".pdf",
+    "detailsAria": "Детальніше: {title}",
+    "pdfAria": "Завантажити PDF: {title}",
+    "download": "Завантажити",
+    "authors": "Дослідження:"
+  },
+  "en": {
+    "filterLabel": "Filter by topic",
+    "all": "All topics",
+    "themes": {
+      "scientists": "Scientists",
+      "collections": "Labs & collections",
+      "policy": "Policy & funding",
+      "society": "Science & society"
+    },
+    "explain": {
+      "scientists": "How not to lose researchers: emigration, safety, support, the diaspora.",
+      "collections": "What the war has destroyed, and how to save, count and rebuild it.",
+      "policy": "How to govern science, allocate funding and restart it after the war.",
+      "society": "How to talk about science, involve people and defend the rights of scientists."
+    },
+    "shown": "Showing {n} of {total}",
+    "noResults": "Nothing found",
+    "reset": "Reset filters",
+    "details": "More details",
+    "pdf": ".pdf",
+    "detailsAria": "More details: {title}",
+    "pdfAria": "Download PDF: {title}",
+    "download": "Download",
+    "authors": "Research:"
+  }
+}

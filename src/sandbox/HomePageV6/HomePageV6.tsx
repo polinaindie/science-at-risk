@@ -35,20 +35,20 @@ export const defaultResearchV6: ResearchSectionProps = {
     title: 'Research',
     text: 'Formalized and organized experience of Ukrainian scientists in the preservation of scientific works, collections and institutions',
     linkLabel: 'Show all studies',
-    linkHref: live('whitepapers.html'),
+    linkHref: live('research.html'),
   },
   papers: [
     {
       title: 'Impact of the War on Different Categories of Ukrainian Scholars',
       description: 'Research: Olena Kozak, Lidia Kuzemska, Yevheniia Polishchuk, Kateryna Chuyeva',
-      href: live('whitepaper/impact-of-the-war-on-different-categories-of-ukrainian-scholars.html'),
+      href: live('research/impact-of-the-war-on-different-categories-of-ukrainian-scholars.html'),
       downloadHref: '/research/impact-of-the-war-on-different-categories-of-ukrainian-scholars.pdf',
     },
     {
       title:
         'Support Mechanisms for Researchers at Risk: Historical Development, Survey Evidence, and Policy Lessons from Wartime Ukraine',
       description: 'Research: Ilona Sviezhentseva, Igor Lyman',
-      href: live('whitepaper/support-mechanisms-for-researchers-at-risk-historical-development-survey-evidence-and-policy-lessons-from-wartimeukraine.html'),
+      href: live('research/support-mechanisms-for-researchers-at-risk-historical-development-survey-evidence-and-policy-lessons-from-wartimeukraine.html'),
       downloadHref: '/research/support-mechanisms-for-researchers-at-risk.pdf',
     },
     {
@@ -56,7 +56,7 @@ export const defaultResearchV6: ResearchSectionProps = {
         'Strategic priority-setting in research in times of crisis: how to optimise decision-making for societal resilience',
       description:
         'Research: Pavel Gol’din, Oleksiy Kolezhuk, Vitaliy Omelyanenko, Anna Vorontsova, Svitlana Tarasenko',
-      href: live('whitepaper/strategic-priority-setting-in-research-in-times-of-crisis-how-to-optimise-decision-making-for-societal-resilience.html'),
+      href: live('research/strategic-priority-setting-in-research-in-times-of-crisis-how-to-optimise-decision-making-for-societal-resilience.html'),
       downloadHref: '/research/strategic-priority-setting-in-research.pdf',
     },
   ],

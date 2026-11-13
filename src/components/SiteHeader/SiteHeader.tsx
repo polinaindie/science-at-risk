@@ -20,7 +20,7 @@ export interface NavEntry {
 export const siteNavItemsUk = (base: string = APP_BASE): NavEntry[] => [
   { label: 'Науковці', href: `${base}scientists.html` },
   { label: 'Товариства', href: `${base}societies.html` },
-  { label: 'Дослідження', href: `${base}whitepapers.html` },
+  { label: 'Дослідження', href: `${base}research.html` },
   { label: 'Історії', href: `${base}stories.html` },
   { label: 'Інфраструктура', href: `${base}infrastructures.html` },
   { label: 'Про нас', href: `${base}about.html` },
@@ -224,7 +224,7 @@ const ROW_H = 42;
 export const siteNavItems = (base: string = APP_BASE): NavEntry[] => [
   { label: 'Scientists', href: `${base}scientists.html` },
   { label: 'Societies', href: `${base}societies.html` },
-  { label: 'Research', href: `${base}whitepapers.html` },
+  { label: 'Research', href: `${base}research.html` },
   { label: 'Stories', href: `${base}stories.html` },
   { label: 'Infrastructure', href: `${base}infrastructures.html` },
   { label: 'About', href: `${base}about.html` },

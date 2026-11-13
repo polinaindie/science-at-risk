@@ -1,0 +1,123 @@
+{
+  "_note": "One entry per research document. 'theme' is its single primary tag: one of the ids in 'themes' (labels live in research-i18n.json). 'slug' = file name in research/, 'pdf' = path from the site root. Order here = order on the page. 'authors' is the line under the title on the card (may be empty).",
+  "themes": [
+    "scientists",
+    "collections",
+    "policy",
+    "society"
+  ],
+  "docs": [
+    {
+      "slug": "impact-of-the-war-on-different-categories-of-ukrainian-scholars",
+      "title": "Impact of the War on Different Categories of Ukrainian Scholars",
+      "theme": "scientists",
+      "pdf": "storage/lp/232/b581142239792c5efada46ef777498298292dedb.pdf",
+      "authors": "Olena Kozak, Lidia Kuzemska, Yevheniia Polishchuk, Kateryna Chuyeva"
+    },
+    {
+      "slug": "support-mechanisms-for-researchers-at-risk-historical-development-survey-evidence-and-policy-lessons-from-wartimeukraine",
+      "title": "Support Mechanisms for Researchers at Risk: Historical Development, Survey Evidence, and Policy Lessons from Wartime Ukraine",
+      "theme": "scientists",
+      "pdf": "storage/lp/229/fb3dde2ac7a6c070b67fe76ea4bb1dd934809229.pdf",
+      "authors": "Ilona Sviezhentseva, Igor Lyman"
+    },
+    {
+      "slug": "strategic-priority-setting-in-research-in-times-of-crisis-how-to-optimise-decision-making-for-societal-resilience",
+      "title": "Strategic priority-setting in research in times of crisis: how to optimise decision-making for societal resilience",
+      "theme": "policy",
+      "pdf": "storage/lp/227/8c409791c970691d49483e6efbb45696dce5205f.pdf",
+      "authors": "Pavel Gol’din, Oleksiy Kolezhuk, Vitaliy Omelyanenko, Anna Vorontsova, Svitlana Tarasenko"
+    },
+    {
+      "slug": "systematization-of-practices-and-recommendations-of-ukrainian-institutions-with-damaged-and-destroyed-research-infrastructure",
+      "title": "Systematization of practices and recommendations of Ukrainian institutions with damaged and destroyed research infrastructure",
+      "theme": "collections",
+      "pdf": "storage/lp/130/2102f61a383500f47105bd0f58cff7c83f57f6e9.pdf",
+      "authors": "Igor Lyman and Maria Moskovko"
+    },
+    {
+      "slug": "the-scientific-diaspora-is-a-unique-capital-for-ukraines-postwar-recovery",
+      "title": "Scientific diaspora — a unique asset for post-war recovery of Ukraine",
+      "theme": "scientists",
+      "pdf": "storage/lp/129/220145c61b3f8d27b543e87677a81f7f5206b535.pdf",
+      "authors": "Oleksandr Skorokhod"
+    },
+    {
+      "slug": "science-advocacy-at-risk",
+      "title": "Science Advocacy in Danger",
+      "theme": "society",
+      "pdf": "storage/lp/128/2d7c95287b9cfd84c339dd44cfbccfd32fe8076f.pdf",
+      "authors": "Olena Zinenko, Nadezhda Korytnikova, Bohdan Hrushetskyi, Oleh Feia, Svitlana Galata"
+    },
+    {
+      "slug": "transforming-the-research-and-innovation-system-for-post-war-recovery",
+      "title": "Transforming the research and innovation system for post-war recovery",
+      "theme": "policy",
+      "pdf": "storage/lp/125/28ae32642520ad8022db551636b69c6de3bc0d4e.pdf",
+      "authors": "Nataliia Haraschenko, Oleksandra Pravdyva, Oleksandr Skorokhod, Nadiia Vasylieva, Olena Pareniuk, Maryna Horokhovatska, Vitalii Omelianenko, Olena Tsyplitska"
+    },
+    {
+      "slug": "doslidnytska-infrastruktura-v-umovakh-povoiennoho-vidnovlennia-vid-poriatunku-do-zrostannia",
+      "title": "Research Infrastructure in the Post-War Recovery: From Rescue to Growth",
+      "theme": "collections",
+      "pdf": "storage/lp/122/bf3358a83842ba39dc853162fc753854991f72e2.pdf",
+      "authors": "Vitalii Omelianenko, Maryna Horokhovatska, Serhii Radio, Nadiia Vasylieva, Oleksandra Pravdyva"
+    },
+    {
+      "slug": "preserving-museum-archival-library-and-scientific-collections-during-the-war",
+      "title": "Preserving Museum, Archival, Library, and Scientific Collections During the War",
+      "theme": "collections",
+      "pdf": "storage/lp/119/4d633138fa82c99d48f77d45494d5f13ae29f056.pdf",
+      "authors": "Pavlo Gol’din, Olena Zhukova, Olha Klymenko, Leonid Horobets, Tetiana Nykyrsa, Viktoria Konstantinova, Yevhen Nikolaiev"
+    },
+    {
+      "slug": "preserving-scientists-during-wars-and-emergencies",
+      "title": "Preserving Scientists During Wars and Emergencies",
+      "theme": "scientists",
+      "pdf": "storage/lp/117/576ea4d1b83b394425759adde0cf9df35ddffa97.pdf",
+      "authors": "Liudmyla Halahan, Nina Chala, Viktoria Konstantinova, Anastasia Lutsenko"
+    },
+    {
+      "slug": "science-popularization-during-wars-and-crises-challenges-and-opportunities",
+      "title": "Science Popularization During Wars and Crises: Challenges and Opportunities",
+      "theme": "society",
+      "pdf": "storage/lp/114/cbb882ff33698f749c262b4e83799a10364be84f.pdf",
+      "authors": "Oleksii Boldyriev, Bohdan Hrushetsky, Hryhorii Rii, Ilona Sviezhentseva, Kateryna Shavanova"
+    },
+    {
+      "slug": "utilization-of-citizen-science-in-times-of-war-crises-and-catastrophes",
+      "title": "Citizen Science Application in Times of War, Crises, and Catastrophes",
+      "theme": "society",
+      "pdf": "storage/lp/112/4920a016aa55fc7cde7fd785ba3be8f5b456fbd8.pdf",
+      "authors": "Olena Kozak, Ilona Sviezhentseva, Oleksiy Boldyriev, Kateryna Shavanova"
+    },
+    {
+      "slug": "scientific-reboot-after-the-war",
+      "title": "Scientific reboot after the war",
+      "theme": "policy",
+      "pdf": "storage/lp/64/3eda0fec54cdc76a63524a2c7890177f5c55e153.pdf",
+      "authors": ""
+    },
+    {
+      "slug": "communicating-science-at-risk",
+      "title": "Communicating Science at Risk",
+      "theme": "society",
+      "pdf": "storage/lp/62/ccde81ae929d6d97cb35e540f3130ef328f58736.pdf",
+      "authors": ""
+    },
+    {
+      "slug": "preserving-science-during-wartime",
+      "title": "Preserving Science during Wartime",
+      "theme": "policy",
+      "pdf": "storage/lp/61/aefda0ce50f3b13890bf7a69c3fb90ce5022b14b.pdf",
+      "authors": ""
+    },
+    {
+      "slug": "forming-a-database-of-damaged-and-destroyed-research-infrastructure-in-ukraine",
+      "title": "Forming a Database of Damaged and Destroyed Research Infrastructure in Ukraine",
+      "theme": "collections",
+      "pdf": "storage/lp/44/679536ba99bd7ce0b34b8c47efb517a3f8e72a20.pdf",
+      "authors": ""
+    }
+  ]
+}

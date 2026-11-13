@@ -33,7 +33,7 @@ export const Ukrainian: Story = {
         label: 'Пошук та залучення вчених до проєктів',
         href: '/uk/scientists',
       },
-      { label: 'White Papers', href: '/uk/whitepapers' },
+      { label: 'Research', href: '/uk/whitepapers' },
     ],
   },
   render: (args) => (
