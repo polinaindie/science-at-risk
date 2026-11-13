@@ -176,22 +176,45 @@
     width: 100%;
     min-height: 2.5rem;
     padding: 0 0 12px;
-    border: 0;
     border-bottom: 2px solid #000;
+}
+/* no box round the line on focus: the field is a text field, the caret shows where the typing goes (the search line has none either) */
+
+/* the line is a text field: its placeholder is the label, or what is chosen */
+.filter-menu__input {
+    flex: 1;
+    min-width: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
     background: transparent;
+    appearance: none;
+    -webkit-appearance: none;
+    outline: none;
     font-family: "e-Ukraine", sans-serif;
     font-size: clamp(0.8889rem, 4.8vw, 1.2222rem);
     font-weight: 300;
     line-height: 1.5556rem;
     color: #000;
-    text-align: left;
+    text-overflow: ellipsis;
     cursor: pointer;
 }
-.filter-menu__btn:focus-visible { outline: 2px solid #000; outline-offset: 4px; }
+.filter-menu__input::placeholder { color: #4d4d4d; opacity: 1; }
+.filter-menu__btn.is-on .filter-menu__input::placeholder { color: #000; }
+.filter-menu__input:focus { cursor: text; }
 
-/* the label stays where it is (no rising); chosen filters show as the number beside it */
-.filter-menu__label { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: #4d4d4d; }
-.filter-menu__btn.is-on .filter-menu__label { color: #000; }
+.filter-menu__toggle {
+    flex-shrink: 0;
+    padding: 0;
+    margin-bottom: 0.6rem;
+    border: 0;
+    background: transparent;
+    color: #000;
+    line-height: 0;
+    cursor: pointer;
+}
+.filter-menu__caret { transition: transform 0.2s; }
+.filter-menu__btn:has(.filter-menu__input[aria-expanded="true"]) .filter-menu__caret { transform: rotate(180deg); }
 
 .filter-menu__count {
     flex-shrink: 0;
@@ -208,8 +231,6 @@
     text-align: center;
 }
 .filter-menu__count[hidden] { display: none; }
-.filter-menu__caret { flex-shrink: 0; margin-bottom: 0.6rem; transition: transform 0.2s; }
-.filter-menu__btn[aria-expanded="true"] .filter-menu__caret { transform: rotate(180deg); }
 
 .filter-menu__panel {
     position: absolute;
@@ -237,6 +258,9 @@
     color: #4d4d4d;
 }
 .filter-menu__group:first-child { padding-top: 4px; }
+.filter-menu__group[hidden], .filter-menu__opt[hidden] { display: none; }
+.filter-menu__none { margin: 0; padding: 12px; font-family: "e-Ukraine", sans-serif; font-size: 0.8889rem; font-weight: 300; color: #4d4d4d; }
+.filter-menu__none[hidden] { display: none; }
 
 .filter-menu__opt {
     display: flex;
@@ -275,11 +299,11 @@
 }
 
 @media (min-width: 1024px) {
-    /* three columns of one width: Field, Speciality, and the search with its button inside it, above the line that runs
+    /* two narrower columns, Field and Speciality, and the search twice as wide with its button inside it, above the line that runs
        under both; each carries its own rule, with room between */
     .search-hero ._searchScientists {
         display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 2fr);
         gap: 24px;
         max-width: none;
         padding-bottom: 0;
@@ -292,5 +316,5 @@
     .search-field__main .satr-float { flex: 1; min-width: 0; padding-bottom: 0; border-bottom: 0; }
     .search-hero ._searchScientists .search-field__main > .btn { padding: 9px 16px; }
     .search-hero ._searchScientists .search-field__clear { margin: 0 0 8px; }
-    .filter-menu__btn { padding-top: 0; font-size: 1rem; }
+    .filter-menu__input { font-size: 1rem; }
 }
