@@ -27,6 +27,9 @@
     --step-3xl: clamp(2rem, 1.7238rem + 1.3260vw, 2.6667rem);
     --step-3xl-lh: clamp(2.3333rem, 2.0571rem + 1.3260vw, 3rem);
     --step-3xl-ls: -0.02em;
+    --step-name: clamp(1.4444rem, 1.3063rem + 0.6630vw, 1.7778rem);
+    --step-name-lh: clamp(1.7778rem, 1.6397rem + 0.6630vw, 2.1111rem);
+    --step-name-ls: -0.02em;
     --step-h1: clamp(1.7778rem, 0.9953rem + 3.7559vw, 4rem);
     --step-h1-lh: clamp(2.1111rem, 1.3678rem + 3.5681vw, 4.2222rem);
     --step-h1-ls: -0.02em;

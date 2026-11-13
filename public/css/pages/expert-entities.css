@@ -36,7 +36,7 @@
 
 .expert-id .expert__header { margin: 0; font-size: var(--t-2xl); line-height: 1.12; overflow-wrap: anywhere; }
 
-.expert-card__content .expert-card__title { font-size: var(--step-xl); line-height: var(--step-xl-lh); }
+.expert-card__content .expert-card__title { font-size: var(--step-name); line-height: var(--step-name-lh); }
 
 /* ---- post: the same faces as the Experience list, by what each line is ---- */
 .expert-id .paragraph,
@@ -66,17 +66,36 @@
     overflow-wrap: break-word;
 }
 
+/* On a card the name and the post are pure black; the description below is the grey one. */
+.expert-card__content .expert-card__subtitle {
+    color: #000;
+    text-align: justify; /* as the institution under it: a post that runs to a second line is flush to both edges */
+    text-justify: inter-word;
+}
+
+/* On a card the institution is set in e-Ukraine Light like the post above it (the profile page keeps the mono). */
+/* ...and in the post's own colour. */
+.expert-card__content .expert-card__subtitle + .expert-card__text {
+    font-family: "e-Ukraine", sans-serif;
+    font-weight: 300;
+    color: #000;
+    text-align: justify; /* the lines run flush to both edges of the card's text column */
+    text-justify: inter-word;
+    hyphens: manual;
+    max-width: none; /* the main stylesheet stops a card's institution at 840px; on a wide screen it now runs the full column, like the description */
+}
+
 /* ---- description (a card; on a page it is the "Research field" text) ---- */
 .expert-card__content .paragraph {
     font-family: "IBM Plex Mono", monospace;
     font-weight: 400;
-    font-size: var(--t-sm);
-    line-height: 1.65;
+    font-size: 1rem; /* 18px at every width, line 1.35 — as scienceatrisk.org sets a card's text (read off its stylesheet) */
+    line-height: 1.35;
     letter-spacing: 0;
     font-variant-ligatures: none;
-    color: #000;
+    color: #4a5459; /* a card's long text is a grey (7.8:1 on white, past AAA), so it sits back behind the name and the post */
     max-width: none; /* the card's text runs the full width of its content */
-    margin: var(--s2) 0 0;
+    margin: var(--s3) 0 0; /* 24px under the institution */
 }
 
 /* the list's markup nests a paragraph in a paragraph, which leaves empty ones behind */

@@ -21,6 +21,8 @@ STEPS = {
     "xl":   (24, 28, 30, 34, "-0.02em"),
     "2xl":  (28, 36, 34, 42, "-0.02em"),
     "3xl":  (36, 48, 42, 54, "-0.02em"),
+    # a scientist's name on a card: a step between xl and 2xl
+    "name": (26, 32, 32, 38, "-0.02em"),
     # the React app's roles (src/styles/globals.css): h1 32/38 -> 72/76, h2 20/28 -> 36/42, h3 15/20 -> 22/28 ...
     # h1 reaches 72 only at 1440: on a 1280 laptop the old site sets ~64, and a 72 there read as gigantic
     "h1":   (32, 72, 38, 76, "-0.02em", 1440),
