@@ -41,7 +41,8 @@
         clearBtn.className = 'search-field__clear';
         clearBtn.setAttribute('aria-label', 'Clear the search');
         clearBtn.innerHTML = '<span aria-hidden="true">×</span>';
-        form.insertBefore(clearBtn, form.querySelector('.btn'));
+        var submitBtn = form.querySelector('.btn');
+        submitBtn.parentNode.insertBefore(clearBtn, submitBtn);
         var syncClear = function () { clearBtn.hidden = !input.value; };
         input.addEventListener('input', syncClear);
         input.addEventListener('syncclear', syncClear);
@@ -71,6 +72,89 @@
         state.q = input.value.trim(); state.page = 1;
         apply();
     });
+
+
+    /* ---- the Field and Speciality menus, in the row with the search: a choice applies at once.
+       Field: any of the fields; Speciality: any of the specialities, grouped by field (a speciality brings its field in). Native checkboxes in a disclosure, so the keyboard and screen readers work as they do. */
+    var menus = {};
+    var closeMenus = function (except) {
+        Object.keys(menus).forEach(function (k) {
+            if (menus[k] === except) return;
+            menus[k].panel.hidden = true; menus[k].btn().setAttribute('aria-expanded', 'false');
+        });
+    };
+    var buildMenu = function (key, label) {
+        var box = document.createElement('div');
+        box.className = 'filter-menu filter-menu--' + key;
+        box.innerHTML = '<button type="button" class="filter-menu__btn" aria-expanded="false" aria-haspopup="true">' +
+            '<span class="filter-menu__label">' + label + '</span><span class="filter-menu__count" hidden></span>' +
+            '<svg class="filter-menu__caret" width="12" height="8" viewBox="0 0 12 8" fill="none" aria-hidden="true"><path d="M1 1.5 6 6.5 11 1.5" stroke="currentColor" stroke-width="1.6"/></svg></button>' +
+            '<div class="filter-menu__panel" role="group" aria-label="' + label + '" hidden></div>';
+        var m = { box: box, panel: box.lastChild, shown: '', def: label };
+        m.btn = function () { return box.querySelector('.filter-menu__btn'); };
+        m.count = function () { return box.querySelector('.filter-menu__count'); };
+        m.panel.addEventListener('change', function (e) {
+            var c = e.target;
+            if (!c.matches('input[type=checkbox]')) return;
+            var v = c.value, list = key === 'field' ? state.fields : state.specs, at = list.indexOf(v);
+            if (c.checked && at === -1) list.push(v);
+            if (!c.checked && at !== -1) list.splice(at, 1);
+            if (key === 'spec' && c.checked && state.fields.indexOf(v.split('/')[0]) === -1) state.fields.push(v.split('/')[0]);
+            if (key === 'field' && !c.checked) state.specs = state.specs.filter(function (k) { return k.split('/')[0] !== v; });
+            state.page = 1;
+            apply();
+        });
+        menus[key] = m;
+        return box;
+    };
+    var drawMenus = function () {
+        if (!menus.field || !tax.length) return;
+        var f = menus.field, sp = menus.spec;
+        if (!f.shown) {
+            f.panel.innerHTML = tax.map(function (x) {
+                return '<label class="filter-menu__opt"><input type="checkbox" value="' + x.slug + '"><span>' + esc(x.en) + '</span><em>' + x.count + '</em></label>';
+            }).join('');
+            f.shown = '1';
+        }
+        /* the specialities on offer: all of them, grouped by field — choosing one chooses its field as well */
+        var on = tax;
+        var sig = 'all';
+        if (sp.shown !== sig) {
+            sp.panel.innerHTML = on.filter(function (x) { return x.specs.length; }).map(function (x) {
+                return '<p class="filter-menu__group">' + esc(x.en) + '</p>' + x.specs.map(function (y) {
+                    return '<label class="filter-menu__opt"><input type="checkbox" value="' + x.slug + '/' + y.slug + '"><span>' + esc(y.en) + '</span><em>' + y.count + '</em></label>';
+                }).join('');
+            }).join('');
+            sp.shown = sig;
+        }
+        [[f, state.fields], [sp, state.specs]].forEach(function (p) {
+            p[0].panel.querySelectorAll('input').forEach(function (c) { c.checked = p[1].indexOf(c.value) !== -1; });
+            /* the label says what is chosen (a long list is cut short by the line; the number counts them) */
+            p[0].box.querySelector('.filter-menu__label').textContent = p[1].length ? p[1].map(function (v) {
+                var x = p[0] === f ? fieldOf(v) : specOf(v);
+                return x ? x.en : '';
+            }).filter(Boolean).join(', ') : p[0].def;
+            p[0].count().hidden = !p[1].length;
+            p[0].count().textContent = p[1].length;
+            p[0].btn().classList.toggle('is-on', !!p[1].length);
+        });
+    };
+    document.addEventListener('click', function (e) {
+        var t = e.target.closest && e.target.closest('.filter-menu');
+        if (!t) { closeMenus(); return; }
+        if (!e.target.closest('.filter-menu__btn')) return;
+        var m = menus[t.classList.contains('filter-menu--field') ? 'field' : 'spec'], open = m.panel.hidden;
+        closeMenus(m);
+        m.panel.hidden = !open; m.btn().setAttribute('aria-expanded', String(open));
+    });
+    if (form) {
+        var slot = form.querySelector('.btn');
+        var wrap = document.createElement('div');
+        wrap.className = 'search-field__filters';
+        wrap.appendChild(buildMenu('field', 'Choose field'));
+        wrap.appendChild(buildMenu('spec', 'Choose specialities'));
+        form.insertBefore(wrap, form.firstChild); /* the two menus stand first, the search after them */
+    }
 
     /* ---- what is applied, over the list; the empty block; the pagination */
     var bar = document.createElement('div');
@@ -109,6 +193,8 @@
 
     var drawControls = function () {
         if (!requests) return;
+        /* Popular requests are the quick way in; once a field or speciality is chosen the menus say what is applied, so they step aside. */
+        if (state.fields.length || state.specs.length) { requests.innerHTML = ''; return; }
         requests.innerHTML = '<div class="hero-aside"><div class="popular-box"><p class="popular-requests__text">Popular requests</p><div class="popular-requests__wrapper">' +
             POPULAR.map(function (x) {
                 var on = state.tag === x[0];
@@ -183,6 +269,7 @@
 
     var apply = function (scroll) {
         drawControls();
+        drawMenus();
         if (input) input.dispatchEvent(new Event('syncclear'));
         var p = new URLSearchParams();
         if (state.q) p.set('search', state.q);
@@ -193,7 +280,7 @@
         history.replaceState(null, '', location.pathname + (p.toString() ? '?' + p.toString() : ''));
         if (!list) return;
         var nothing = document.querySelector('.nothing');
-        if (!(state.q || state.tag || state.fields.length)) {
+        if (!(state.q || state.tag || state.fields.length || state.specs.length)) {
             bar.innerHTML = '';
             list.innerHTML = original.list;
             if (pager) { pager.innerHTML = original.pager; pager.style.display = ''; }
