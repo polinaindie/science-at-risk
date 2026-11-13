@@ -74,140 +74,6 @@
     });
 
 
-    /* ---- the Field and Speciality menus, in the row with the search: a choice applies at once.
-       Field: any of the fields; Speciality: any of the specialities, grouped by field (a speciality brings its field in).
-       Each is a combobox: the line is a text field — type to narrow the options — over a list of native checkboxes, so
-       the keyboard and screen readers work as they do. Enter picks the first match; Esc closes. */
-    var menus = {};
-    var optsOf = function (m) { return Array.prototype.slice.call(m.panel.querySelectorAll('.filter-menu__opt')); };
-    var narrow = function (m, q) {
-        q = q.trim().toLowerCase();
-        var group = null, shown = 0, inGroup = 0;
-        var endGroup = function () { if (group) group.hidden = !inGroup; };
-        Array.prototype.forEach.call(m.panel.children, function (el) {
-            if (el.classList.contains('filter-menu__group')) { endGroup(); group = el; inGroup = 0; return; }
-            if (!el.classList.contains('filter-menu__opt')) return;
-            var hit = !q || el.textContent.toLowerCase().indexOf(q) !== -1;
-            el.hidden = !hit;
-            if (hit) { shown++; inGroup++; }
-        });
-        endGroup();
-        var none = m.panel.querySelector('.filter-menu__none');
-        if (none) none.hidden = !!shown;
-    };
-    var setOpen = function (m, open) {
-        m.panel.hidden = !open;
-        m.input().setAttribute('aria-expanded', String(open));
-        if (!open) { m.input().value = ''; narrow(m, ''); }
-    };
-    var closeMenus = function (except) {
-        Object.keys(menus).forEach(function (k) { if (menus[k] !== except && !menus[k].panel.hidden) setOpen(menus[k], false); });
-    };
-    var buildMenu = function (key, label) {
-        var box = document.createElement('div');
-        var pid = 'filter-' + key + '-panel';
-        box.className = 'filter-menu filter-menu--' + key;
-        box.innerHTML = '<div class="filter-menu__btn">' +
-            '<input type="text" class="filter-menu__input" role="combobox" aria-expanded="false" aria-controls="' + pid + '" aria-autocomplete="list" ' +
-            'aria-label="' + label + '" placeholder="' + label + '" autocomplete="off" spellcheck="false">' +
-            '<span class="filter-menu__count" hidden></span>' +
-            '<button type="button" class="filter-menu__toggle" tabindex="-1" aria-label="Show the list: ' + label + '">' +
-            '<svg class="filter-menu__caret" width="12" height="8" viewBox="0 0 12 8" fill="none" aria-hidden="true"><path d="M1 1.5 6 6.5 11 1.5" stroke="currentColor" stroke-width="1.6"/></svg></button></div>' +
-            '<div class="filter-menu__panel" id="' + pid + '" role="group" aria-label="' + label + '" hidden></div>';
-        var m = { box: box, panel: box.lastChild, shown: '', def: label, key: key };
-        m.input = function () { return box.querySelector('.filter-menu__input'); };
-        m.count = function () { return box.querySelector('.filter-menu__count'); };
-        m.input().addEventListener('input', function () {
-            if (m.panel.hidden) setOpen(m, true);
-            narrow(m, m.input().value);
-        });
-        m.input().addEventListener('keydown', function (e) {
-            if (e.key === 'ArrowDown') {
-                e.preventDefault();
-                if (m.panel.hidden) setOpen(m, true);
-                var first = optsOf(m).filter(function (o) { return !o.hidden; })[0];
-                if (first) first.querySelector('input').focus();
-            } else if (e.key === 'Enter') {
-                e.preventDefault(); /* not a submit of the search */
-                var hit = optsOf(m).filter(function (o) { return !o.hidden; })[0];
-                if (hit) hit.querySelector('input').click();
-            }
-        });
-        m.panel.addEventListener('keydown', function (e) {
-            if (e.key !== 'ArrowDown' && e.key !== 'ArrowUp') return;
-            e.preventDefault();
-            var vis = optsOf(m).filter(function (o) { return !o.hidden; }).map(function (o) { return o.querySelector('input'); });
-            var at = vis.indexOf(document.activeElement), to = at + (e.key === 'ArrowDown' ? 1 : -1);
-            if (to < 0) m.input().focus(); else if (vis[to]) vis[to].focus();
-        });
-        m.panel.addEventListener('change', function (e) {
-            var c = e.target;
-            if (!c.matches('input[type=checkbox]')) return;
-            var v = c.value, list = key === 'field' ? state.fields : state.specs, at = list.indexOf(v);
-            if (c.checked && at === -1) list.push(v);
-            if (!c.checked && at !== -1) list.splice(at, 1);
-            if (key === 'spec' && c.checked && state.fields.indexOf(v.split('/')[0]) === -1) state.fields.push(v.split('/')[0]);
-            if (key === 'field' && !c.checked) state.specs = state.specs.filter(function (k) { return k.split('/')[0] !== v; });
-            state.page = 1;
-            apply();
-        });
-        menus[key] = m;
-        return box;
-    };
-    var drawMenus = function () {
-        if (!menus.field || !tax.length) return;
-        var f = menus.field, sp = menus.spec;
-        var none = '<p class="filter-menu__none" hidden>Nothing found</p>';
-        if (!f.shown) {
-            f.panel.innerHTML = tax.map(function (x) {
-                return '<label class="filter-menu__opt"><input type="checkbox" value="' + x.slug + '"><span>' + esc(x.en) + '</span><em>' + x.count + '</em></label>';
-            }).join('') + none;
-            f.shown = '1';
-        }
-        /* the specialities on offer: all of them, grouped by field — choosing one chooses its field as well */
-        if (!sp.shown) {
-            sp.panel.innerHTML = tax.filter(function (x) { return x.specs.length; }).map(function (x) {
-                return '<p class="filter-menu__group">' + esc(x.en) + '</p>' + x.specs.map(function (y) {
-                    return '<label class="filter-menu__opt"><input type="checkbox" value="' + x.slug + '/' + y.slug + '"><span>' + esc(y.en) + '</span><em>' + y.count + '</em></label>';
-                }).join('');
-            }).join('') + none;
-            sp.shown = '1';
-        }
-        [[f, state.fields], [sp, state.specs]].forEach(function (p) {
-            p[0].panel.querySelectorAll('input').forEach(function (c) { c.checked = p[1].indexOf(c.value) !== -1; });
-            /* what is chosen reads in the line (cut short if long); the number counts them */
-            var names = p[1].map(function (v) {
-                var x = p[0] === f ? fieldOf(v) : specOf(v);
-                return x ? x.en : '';
-            }).filter(Boolean).join(', ') || p[0].def;
-            p[0].input().placeholder = names;
-            p[0].input().setAttribute('aria-label', p[0].def + (p[1].length ? ': ' + names : ''));
-            p[0].count().hidden = !p[1].length;
-            p[0].count().textContent = p[1].length;
-            p[0].box.querySelector('.filter-menu__btn').classList.toggle('is-on', !!p[1].length);
-        });
-    };
-    document.addEventListener('click', function (e) {
-        var t = e.target.closest && e.target.closest('.filter-menu');
-        if (!t) { closeMenus(); return; }
-        var m = menus[t.classList.contains('filter-menu--field') ? 'field' : 'spec'];
-        if (e.target.closest('.filter-menu__toggle')) { var open = m.panel.hidden; closeMenus(m); setOpen(m, open); if (open) m.input().focus(); }
-        else if (e.target.closest('.filter-menu__input') || e.target.closest('.filter-menu__btn')) { closeMenus(m); if (m.panel.hidden) setOpen(m, true); m.input().focus(); }
-    });
-    document.addEventListener('keydown', function (e) {
-        if (e.key !== 'Escape') return;
-        Object.keys(menus).forEach(function (k) {
-            if (!menus[k].panel.hidden) { setOpen(menus[k], false); menus[k].input().focus(); }
-        });
-    });
-    if (form) {
-        var wrap = document.createElement('div');
-        wrap.className = 'search-field__filters';
-        wrap.appendChild(buildMenu('field', 'Choose field'));
-        wrap.appendChild(buildMenu('spec', 'Choose specialities'));
-        form.insertBefore(wrap, form.firstChild); /* the two menus stand first, the search after them */
-    }
-
     /* ---- what is applied, over the list; the empty block; the pagination */
     var bar = document.createElement('div');
     bar.className = 'results-bar';
@@ -245,8 +111,6 @@
 
     var drawControls = function () {
         if (!requests) return;
-        /* Popular requests are the quick way in; once a field or speciality is chosen the menus say what is applied, so they step aside. */
-        if (state.fields.length || state.specs.length) { requests.innerHTML = ''; return; }
         requests.innerHTML = '<div class="hero-aside"><div class="popular-box"><p class="popular-requests__text">Popular requests</p><div class="popular-requests__wrapper">' +
             POPULAR.map(function (x) {
                 var on = state.tag === x[0];
@@ -321,7 +185,6 @@
 
     var apply = function (scroll) {
         drawControls();
-        drawMenus();
         if (input) input.dispatchEvent(new Event('syncclear'));
         var p = new URLSearchParams();
         if (state.q) p.set('search', state.q);
