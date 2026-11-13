@@ -275,12 +275,22 @@
 }
 
 @media (min-width: 1024px) {
-    /* no rule under the whole row: each menu carries its own, and the search block has one under the field and its button */
-    .search-hero ._searchScientists { max-width: none; gap: 24px; padding-bottom: 0; border-bottom: 0; align-items: flex-end; }
-    .search-field__main { align-items: flex-end; gap: 16px; min-width: 300px; padding-bottom: 12px; border-bottom: 2px solid #000; }
+    /* three columns of one width: Field, Speciality, and the search with its button inside it, above the line that runs
+       under both; each carries its own rule, with room between */
+    .search-hero ._searchScientists {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 24px;
+        max-width: none;
+        padding-bottom: 0;
+        border-bottom: 0;
+        align-items: end;
+    }
+    .search-field__filters { display: contents; }
+    .filter-menu { flex: none; width: auto; }
+    .search-field__main { align-items: flex-end; gap: 12px; min-width: 0; padding-bottom: 12px; border-bottom: 2px solid #000; }
     .search-field__main .satr-float { flex: 1; min-width: 0; padding-bottom: 0; border-bottom: 0; }
+    .search-hero ._searchScientists .search-field__main > .btn { padding: 9px 16px; }
     .search-hero ._searchScientists .search-field__clear { margin: 0 0 8px; }
-    .search-field__filters { gap: 24px; }
-    .filter-menu { flex: 0 0 auto; width: 212px; }
     .filter-menu__btn { padding-top: 0; font-size: 1rem; }
 }
