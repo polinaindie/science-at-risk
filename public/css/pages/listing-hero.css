@@ -157,3 +157,44 @@
 @media (min-width: 768px) { .search-hero .search-hero__requests:not(:has(.hero-aside)) { margin-top: 48px; } }
 .search-hero .hero-aside { margin-top: 48px; }
 @media (min-width: 768px) { .search-hero .hero-aside { margin-top: 48px; } }
+
+/* ---- Suggestions under the search field (js/scientists-filter.js): the fields and specialities that match the text.
+   A white card in the Select's style (2px black rule, rounded), e-Ukraine Light for the names, mono for the numbers. ---- */
+.search-hero .search-field { position: relative; }
+
+.suggest {
+    position: absolute;
+    z-index: 30;
+    top: calc(100% + 8px);
+    left: 0;
+    width: min(100%, 560px);
+    margin: 0;
+    padding: 8px;
+    list-style: none;
+    border: 2px solid #000;
+    border-radius: 25px;
+    background: #fff;
+}
+.suggest[hidden] { display: none; }
+
+.suggest li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 8px 14px;
+    border-radius: 14px;
+    font-family: "e-Ukraine", sans-serif;
+    font-size: 0.8889rem;
+    font-weight: 300;
+    line-height: 1.3333rem;
+    color: #000;
+    cursor: pointer;
+}
+.suggest li:hover,
+.suggest li[aria-selected="true"] { background: #e6edf0; }
+
+.suggest__name { display: flex; flex-direction: column; min-width: 0; }
+.suggest__name small { font-family: "IBM Plex Mono", monospace; font-size: 0.7222rem; line-height: 1.1111rem; color: #4d4d4d; }
+.suggest li em { flex-shrink: 0; font-family: "IBM Plex Mono", monospace; font-size: 0.7778rem; font-style: normal; color: #4d4d4d; }
+

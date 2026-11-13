@@ -1,13 +1,10 @@
-/* The search field of the list pages (the home page's has the same parts: src/styles/globals.css `.satr-float`, and the form
-   in HomePageV6): one white pill, full width, with the black squircle button inside at its right end. It is a filled
-   shape rather than a line under the row, so it reads as a field wherever the button is. The label sits in it like a
-   placeholder and goes once there is text. From 768px the form is the pill; on a phone the field is the pill and the
-   button drops under it. */
+/* The search field of the home page (src/styles/globals.css `.satr-float`, and the form in HomePageV6) on the static pages:
+   a floating label inside the field, mono type, a 2px rule under the row and a black squircle button. */
 
 .search-field {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 24px;
     margin-top: 16px;
     font-family: "IBM Plex Mono", monospace;
 }
@@ -15,13 +12,12 @@
 @media (min-width: 768px) {
     .search-field {
         flex-direction: row;
-        align-items: center;
-        gap: 12px;
-        min-height: 3.5556rem;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 24px;
         margin-top: 24px;
-        padding: 0.4444rem 0.4444rem 0.4444rem 1.5556rem;
-        border-radius: 1.7778rem;
-        background: #fff;
+        padding-bottom: 12px;
+        border-bottom: 2px solid #000;
     }
 }
 
@@ -30,19 +26,18 @@
     display: block;
     min-width: 0;
     flex: 1;
-    padding: 0.7778rem 1.1111rem;
-    border-radius: 1.5556rem;
-    background: #fff;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #000;
 }
 
 @media (min-width: 768px) {
-    .search-field .satr-float { padding: 0; border-radius: 0; background: transparent; }
+    .search-field .satr-float { padding-bottom: 0; border-bottom: 0; }
 }
 
 .search-field .satr-float > input {
     width: 100%;
     box-sizing: border-box;
-    padding: 0;
+    padding: 25px 0 0;
     border: 0;
     border-radius: 0;
     background: transparent;
@@ -58,33 +53,33 @@
 
 .search-field .satr-float > input::-webkit-search-cancel-button { -webkit-appearance: none; }
 
-/* the label is the hint: on the line of the field, gone as soon as there is text */
 .search-field .satr-float > .satr-float__label {
     position: absolute;
-    top: 0.7778rem;
-    left: 1.1111rem;
-    right: 1.1111rem;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    top: 25px;
+    left: 0;
+    max-width: 100%;
     pointer-events: none;
     font-family: "e-Ukraine", sans-serif;
     font-size: clamp(0.8889rem, 4.8vw, 1.2222rem);
     font-weight: 300;
     line-height: 1.5556rem;
     color: #4d4d4d;
-    transition: opacity 0.2s;
+    transform-origin: left top;
+    transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), color 0.3s;
 }
 
-.search-field .satr-float > input:not(:placeholder-shown) + .satr-float__label { opacity: 0; }
-
-@media (min-width: 768px) {
-    .search-field .satr-float > .satr-float__label { top: 0; left: 0; right: 0; }
+.search-field .satr-float > input:focus + .satr-float__label,
+.search-field .satr-float > input:not(:placeholder-shown) + .satr-float__label {
+    transform: translateY(-25px) scale(0.8182);
 }
 
 @media (min-width: 1024px) {
-    .search-field .satr-float > input { font-size: 1rem; }
-    .search-field .satr-float > .satr-float__label { font-size: 1rem; }
+    .search-field .satr-float > input { padding-top: 0; font-size: 1rem; }
+    .search-field .satr-float > .satr-float__label { top: 0; font-size: 1rem; }
+    .search-field .satr-float > input:focus + .satr-float__label,
+    .search-field .satr-float > input:not(:placeholder-shown) + .satr-float__label {
+        transform: translateY(-24px) scale(0.7778);
+    }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -93,8 +88,8 @@
 
 .search-field .btn {
     flex-shrink: 0;
-    min-height: 2.6667rem;
-    padding: 0.5rem 1.2222rem;
+    min-height: 47px;
+    padding: 9px 22px;
     font-family: "IBM Plex Mono", monospace;
     font-size: 1rem;
     line-height: 1.5556rem;
@@ -106,7 +101,7 @@
     .search-field .btn { width: 100%; justify-content: center; }
 }
 
-/* Clear (×): drawn by the list scripts once there is something typed — inside the pill, before the button. */
+/* Clear (×): drawn by the list scripts once there is something typed. On a phone it sits at the right end of the field. */
 .search-field__clear {
     flex-shrink: 0;
     width: 32px;
@@ -123,5 +118,8 @@
 .search-field__clear[hidden] { display: none; }
 .search-field__clear:focus-visible { outline: 2px solid #000; outline-offset: 2px; }
 @media (max-width: 767px) {
-    .search-field__clear { position: absolute; top: 0.6667rem; right: 0.6667rem; }
+    .search-field__clear { position: absolute; top: 20px; right: 0; }
+}
+@media (min-width: 768px) {
+    .search-field__clear { margin-bottom: -2px; }
 }

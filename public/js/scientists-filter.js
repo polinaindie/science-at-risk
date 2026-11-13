@@ -74,6 +74,88 @@
     });
 
 
+    /* ---- suggestions while typing: the fields and specialities that match what is typed, under the field.
+       A click (or Enter on the highlighted one) turns it into a filter chip and empties the text; arrows move, Esc closes.
+       The text search itself goes on as before — this is the way into the taxonomy without a menu. */
+    var sug = null, sugItems = [], sugAt = -1;
+    var closeSuggest = function () {
+        if (!sug) return;
+        sug.hidden = true; sugAt = -1; sugItems = [];
+        input.setAttribute('aria-expanded', 'false'); input.removeAttribute('aria-activedescendant');
+    };
+    var markSuggest = function (at) {
+        sugAt = at;
+        Array.prototype.forEach.call(sug.children, function (el, i) { el.setAttribute('aria-selected', String(i === at)); });
+        if (at >= 0) input.setAttribute('aria-activedescendant', sug.children[at].id); else input.removeAttribute('aria-activedescendant');
+    };
+    var drawSuggest = function () {
+        if (!sug || !tax.length) return;
+        var q = input.value.trim().toLowerCase();
+        if (q.length < 2) { closeSuggest(); return; }
+        var hits = [];
+        tax.forEach(function (f) {
+            if (state.fields.indexOf(f.slug) === -1 && f.en.toLowerCase().indexOf(q) !== -1) hits.push({ kind: 'field', slug: f.slug, name: f.en, count: f.count, hint: 'Field', at: f.en.toLowerCase().indexOf(q) });
+            f.specs.forEach(function (x) {
+                var key = f.slug + '/' + x.slug;
+                if (state.specs.indexOf(key) === -1 && x.en.toLowerCase().indexOf(q) !== -1) hits.push({ kind: 'spec', slug: key, name: x.en, count: x.count, hint: f.en, at: x.en.toLowerCase().indexOf(q) });
+            });
+        });
+        /* names that begin with the text first, then the bigger ones */
+        hits.sort(function (a, b) { return (a.at === 0 ? 0 : 1) - (b.at === 0 ? 0 : 1) || b.count - a.count; });
+        sugItems = hits.slice(0, 6);
+        if (!sugItems.length) { closeSuggest(); return; }
+        sug.innerHTML = sugItems.map(function (h, i) {
+            return '<li role="option" id="suggest-' + i + '" aria-selected="false" data-i="' + i + '"><span class="suggest__name">' + esc(h.name) +
+                '<small>' + esc(h.hint) + '</small></span><em>' + h.count + '</em></li>';
+        }).join('');
+        sug.hidden = false; sugAt = -1;
+        input.setAttribute('aria-expanded', 'true');
+    };
+    var pickSuggest = function (i) {
+        var h = sugItems[i];
+        if (!h) return;
+        if (h.kind === 'field') { if (state.fields.indexOf(h.slug) === -1) state.fields.push(h.slug); }
+        else {
+            if (state.specs.indexOf(h.slug) === -1) state.specs.push(h.slug);
+            if (state.fields.indexOf(h.slug.split('/')[0]) === -1) state.fields.push(h.slug.split('/')[0]); /* a speciality brings its field */
+        }
+        clearTimeout(timer);
+        input.value = ''; state.q = ''; state.page = 1;
+        closeSuggest();
+        apply();
+        input.focus();
+    };
+    if (input && form) {
+        sug = document.createElement('ul');
+        sug.className = 'suggest';
+        sug.id = 'suggest-list';
+        sug.setAttribute('role', 'listbox');
+        sug.setAttribute('aria-label', 'Fields and specialities');
+        sug.hidden = true;
+        form.appendChild(sug);
+        input.setAttribute('role', 'combobox');
+        input.setAttribute('aria-autocomplete', 'list');
+        input.setAttribute('aria-expanded', 'false');
+        input.setAttribute('aria-controls', 'suggest-list');
+        input.addEventListener('input', drawSuggest);
+        input.addEventListener('keydown', function (e) {
+            if (sug.hidden || !sugItems.length) return;
+            if (e.key === 'ArrowDown') { e.preventDefault(); markSuggest((sugAt + 1) % sugItems.length); }
+            else if (e.key === 'ArrowUp') { e.preventDefault(); markSuggest((sugAt - 1 + sugItems.length) % sugItems.length); }
+            else if (e.key === 'Enter' && sugAt >= 0) { e.preventDefault(); pickSuggest(sugAt); }
+            else if (e.key === 'Escape') { closeSuggest(); }
+        });
+        /* mousedown, not click: the field loses focus first and would close the list before the click lands */
+        sug.addEventListener('mousedown', function (e) {
+            var li = e.target.closest('li');
+            if (!li) return;
+            e.preventDefault();
+            pickSuggest(parseInt(li.getAttribute('data-i'), 10));
+        });
+        document.addEventListener('click', function (e) { if (!form.contains(e.target)) closeSuggest(); });
+        input.addEventListener('blur', function () { setTimeout(closeSuggest, 120); });
+    }
+
     /* ---- what is applied, over the list; the empty block; the pagination */
     var bar = document.createElement('div');
     bar.className = 'results-bar';
