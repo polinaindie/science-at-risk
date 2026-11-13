@@ -240,7 +240,7 @@ export function HomeScientistsBlock({
           action={mode.action}
           method="get"
           onSubmit={handleSubmit}
-          className="mt-4 flex flex-col gap-6 md:mt-6 md:flex-row md:items-end md:justify-between md:gap-6 md:border-b-2 md:border-brand-black md:pb-3"
+          className="mt-4 flex flex-col gap-6 md:mt-6 md:max-w-[720px] md:flex-row md:items-end md:justify-between md:gap-6 md:border-b-2 md:border-brand-black md:pb-3"
         >
           {/* The label rides up off the line and shrinks as soon as the field
               has focus or text in it, and stays there to be read. The

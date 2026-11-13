@@ -10144,14 +10144,23 @@ a.text-dark:hover, a.text-dark:focus {
     box-sizing: border-box;
 }
 
+/* 112.5% of the browser's size = 18px by default, so nothing moves, but the reader's own text-size setting now scales the
+   whole site (a fixed 18px ignored it; WCAG 1.4.4). Everything below that is in rem is off this root. */
+html {
+    font-size: 112.5%;
+}
+
 html, body {
     height: 100%;
     width: 100%;
     font-family: "IBM Plex Mono";
     font-weight: 400;
-    font-size: 18px;
     color: #000000;
     line-height: 1;
+}
+
+body {
+    font-size: 1rem;
 }
 
 @media (min-width: 768px) {
