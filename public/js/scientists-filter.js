@@ -5,7 +5,7 @@
      text AND field AND (speciality OR speciality …); every word of the text must be found, in the name, degree,
      institution, specialities or description; name matches first, the rest in the list's own order.
      Choosing a field empties the specialities; any change goes back to page 1; 12 scientists a page.
-   Nothing applied = the plain static pages as they came.
+   Nothing applied = the plain static pages as they came. The typed text is applied on Enter or the button; the suggestions, the popular requests and the chips apply at once.
 
    The mirror has no search service, so it is done here from two files written by scripts/build-scientist-taxonomy.py:
      js/scientists-taxonomy.json   the fields and their specialities, with how many scientists each has
@@ -61,11 +61,7 @@
         return f && f.specs.filter(function (s) { return f.slug + '/' + s.slug === key; })[0];
     };
 
-    /* ---- the text: after a pause, at once on Enter or the button */
-    if (input) input.addEventListener('input', function () {
-        clearTimeout(timer);
-        timer = setTimeout(function () { state.q = input.value.trim(); state.page = 1; apply(); }, 400);
-    });
+    /* ---- the text: searched on Enter or the button, not while typing (the suggestions below do answer the typing) */
     if (form) form.addEventListener('submit', function (e) {
         e.preventDefault();
         clearTimeout(timer);
@@ -73,6 +69,22 @@
         apply();
     });
 
+
+    /* the scientists' index (one row per person): loaded once, with each name and institution picked out of the card */
+    var peopleReady = null;
+    var loadPeople = function () {
+        if (!peopleReady) peopleReady = load('scientists-index').then(function (rows) {
+            rows.forEach(function (r) {
+                var m = /expert-card__title"><span>([^<]*)</.exec(r.h), t = /expert-card__text">\s*([^<]+?)\s*</.exec(r.h);
+                var plain = function (x) { var d = document.createElement('textarea'); d.innerHTML = x; return d.value.trim(); }; /* the card's HTML has &quot; and the like */
+                r.name = m ? plain(m[1]) : '';
+                r.n = r.name.toLowerCase();
+                r.inst = t ? plain(t[1]) : '';
+            });
+            return (index = rows);
+        });
+        return peopleReady;
+    };
 
     /* ---- suggestions while typing: the fields and specialities that match what is typed, under the field.
        A click (or Enter on the highlighted one) turns it into a filter chip and empties the text; arrows move, Esc closes.
@@ -92,6 +104,7 @@
         if (!sug || !tax.length) return;
         var q = input.value.trim().toLowerCase();
         if (q.length < 2) { closeSuggest(); return; }
+        loadPeople(); /* start fetching the names as soon as there is something to match them against */
         var hits = [];
         tax.forEach(function (f) {
             if (state.fields.indexOf(f.slug) === -1 && f.en.toLowerCase().indexOf(q) !== -1) hits.push({ kind: 'field', slug: f.slug, name: f.en, count: f.count, hint: 'Field', at: f.en.toLowerCase().indexOf(q) });
@@ -102,18 +115,44 @@
         });
         /* names that begin with the text first, then the bigger ones */
         hits.sort(function (a, b) { return (a.at === 0 ? 0 : 1) - (b.at === 0 ? 0 : 1) || b.count - a.count; });
-        sugItems = hits.slice(0, 6);
-        if (!sugItems.length) { closeSuggest(); return; }
-        sug.innerHTML = sugItems.map(function (h, i) {
-            return '<li role="option" id="suggest-' + i + '" aria-selected="false" data-i="' + i + '"><span class="suggest__name">' + esc(h.name) +
-                '<small>' + esc(h.hint) + '</small></span><em>' + h.count + '</em></li>';
-        }).join('');
-        sug.hidden = false; sugAt = -1;
-        input.setAttribute('aria-expanded', 'true');
+        var show = function (people) {
+            if (input.value.trim().toLowerCase() !== q) return; /* typed on meanwhile */
+            sugItems = hits.slice(0, 4).concat(people).slice(0, 7);
+            if (!sugItems.length) { closeSuggest(); return; }
+            sug.innerHTML = sugItems.map(function (h, i) {
+                return '<li role="option" id="suggest-' + i + '" aria-selected="false" data-i="' + i + '"><span class="suggest__name">' + esc(h.name) +
+                    '<small>' + esc(h.hint) + '</small></span>' + (h.kind === 'person' ? '' : '<em>' + h.count + '</em>') + '</li>';
+            }).join('');
+            sug.hidden = false; sugAt = -1;
+            input.setAttribute('aria-expanded', 'true');
+        };
+        show([]);
+        /* the people: every word typed begins a word of the name; those that begin with the text first */
+        loadPeople().then(function (rows) {
+            var ws = q.split(/\s+/).filter(Boolean);
+            var people = [];
+            for (var i = 0; i < rows.length && people.length < 40; i++) {
+                var r = rows[i], nm = r.n;
+                if (!nm) continue;
+                var ok = ws.every(function (w) { return nm.indexOf(w) === 0 || nm.indexOf(' ' + w) !== -1; });
+                if (ok) people.push({ kind: 'person', slug: r.name, name: r.name, hint: r.inst || 'Scientist', at: nm.indexOf(q) === 0 ? 0 : 1 });
+            }
+            people.sort(function (a, b) { return a.at - b.at; });
+            show(people.slice(0, 3));
+        });
     };
     var pickSuggest = function (i) {
         var h = sugItems[i];
         if (!h) return;
+        if (h.kind === 'person') {
+            clearTimeout(timer);
+            input.value = h.name; state.q = h.name; state.page = 1;
+            input.dispatchEvent(new Event('syncclear'));
+            closeSuggest();
+            apply();
+            input.focus();
+            return;
+        }
         if (h.kind === 'field') { if (state.fields.indexOf(h.slug) === -1) state.fields.push(h.slug); }
         else {
             if (state.specs.indexOf(h.slug) === -1) state.specs.push(h.slug);
@@ -284,10 +323,7 @@
             if (nothing) nothing.classList.remove('nothing--active');
             return;
         }
-        (index ? Promise.resolve(index) : load('scientists-index').then(function (rows) {
-            rows.forEach(function (r) { var m = /expert-card__title"><span>([^<]*)</.exec(r.h); r.n = m ? m[1].toLowerCase() : ''; });
-            return (index = rows);
-        })).then(function () {
+        loadPeople().then(function () {
             var rows = filtered(), pages = Math.max(1, Math.ceil(rows.length / PAGE));
             if (state.page > pages) state.page = pages;
             drawBar(rows.length);

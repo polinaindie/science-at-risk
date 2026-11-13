@@ -143,20 +143,25 @@
 /* The tabs sit close under the heading: the heading's own bottom margin is taken off on the list pages. */
 .search-hero__info-wrap:has(+ .scope-tabs) { margin-bottom: 0; }
 
-/* Room above the search field (from the tabs) and below it (to the popular requests): 48px each on both list pages.
-   The field is a full-width white pill with its button inside (css/pages/search-field.css). */
+/* The rhythm of the blue block, on an 8px grid, the same on both list pages (scientists and societies):
+     tabs -> search text   about 64px (36px margin + the tabs' own padding)   24px margin on a phone
+     search line -> popular requests   48px                                    32px on a phone
+     popular requests -> edge of the block   56px (the main stylesheet gave 80)  40px on a phone
+   Above the text the gap is the larger one, so the tabs, the field and the requests read as one group. */
 .search-hero ._searchScientists,
-.search-hero ._searchSocieties { margin-top: 32px; }
+.search-hero ._searchSocieties { margin-top: 24px; }
 @media (min-width: 768px) {
     .search-hero ._searchScientists,
-    .search-hero ._searchSocieties { margin-top: 48px; }
+    .search-hero ._searchSocieties { margin-top: 36px; }
 }
 .search-hero__requests:has(.hero-aside) { margin-top: 0; }
-/* Societies: the domains sit 48px under the field too (the main stylesheet gives them 80px). */
+/* Societies: the domains sit under the field like the scientists' requests (the main stylesheet gives them 80px). */
 .search-hero .search-hero__requests:not(:has(.hero-aside)) { margin-top: 32px; }
 @media (min-width: 768px) { .search-hero .search-hero__requests:not(:has(.hero-aside)) { margin-top: 48px; } }
-.search-hero .hero-aside { margin-top: 48px; }
+.search-hero .hero-aside { margin-top: 32px; }
 @media (min-width: 768px) { .search-hero .hero-aside { margin-top: 48px; } }
+.search-hero { padding-bottom: 40px; }
+@media (min-width: 768px) { .search-hero { padding-bottom: 56px; } }
 
 /* ---- Suggestions under the search field (js/scientists-filter.js): the fields and specialities that match the text.
    A white card in the Select's style (2px black rule, rounded), e-Ukraine Light for the names, mono for the numbers. ---- */
@@ -195,6 +200,6 @@
 .suggest li[aria-selected="true"] { background: #e6edf0; }
 
 .suggest__name { display: flex; flex-direction: column; min-width: 0; }
-.suggest__name small { font-family: "IBM Plex Mono", monospace; font-size: 0.7222rem; line-height: 1.1111rem; color: #4d4d4d; }
+.suggest__name small { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-family: "IBM Plex Mono", monospace; font-size: 0.7222rem; line-height: 1.1111rem; color: #4d4d4d; }
 .suggest li em { flex-shrink: 0; font-family: "IBM Plex Mono", monospace; font-size: 0.7778rem; font-style: normal; color: #4d4d4d; }
 

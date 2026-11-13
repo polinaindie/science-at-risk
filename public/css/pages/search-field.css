@@ -57,7 +57,11 @@
     position: absolute;
     top: 25px;
     left: 0;
+    right: 0;
     max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap; /* one line: a long hint is cut short, not wrapped over the rule */
     pointer-events: none;
     font-family: "e-Ukraine", sans-serif;
     font-size: clamp(0.8889rem, 4.8vw, 1.2222rem);

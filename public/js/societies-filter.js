@@ -1,4 +1,4 @@
-/* Search and popular domains on the societies list — live, like the scientists list.
+/* Search and popular domains on the societies list, like the scientists list.
 
    The rules (the Go side builds the same on the server, from the same query string):
      ?search=<words>&tag=<domain slug>
@@ -28,7 +28,11 @@
         var n = b.querySelector('.tag__number');
         return [b.getAttribute('data-tag'), b.getAttribute('aria-label'), n ? n.textContent.trim() : ''];
     });
-    var tagName = function (slug) { var m = TAGS.filter(function (x) { return x[0] === slug; })[0]; return m ? m[1] : slug; };
+    var DOMAINS = {}; /* every domain of the societies: slug -> [name, how many] (filled from the index once it is loaded) */
+    var tagName = function (slug) {
+        var m = TAGS.filter(function (x) { return x[0] === slug; })[0];
+        return m ? m[1] : (DOMAINS[slug] ? DOMAINS[slug][0] : slug);
+    };
     var TOTAL = 37;
 
     /* The chips are painted by the squircle worklet, which the page adds later (from unpkg); chips drawn before it has
@@ -43,14 +47,10 @@
         };
     }
 
-    /* ---- the field: live after a pause, at once on Enter or the button; × clears it */
+    /* ---- the field: searched on Enter or the button, not while typing (the suggestions do answer the typing); × clears it */
     if (input) {
         input.value = state.q;
         input.setAttribute('autocomplete', 'off');
-        input.addEventListener('input', function () {
-            clearTimeout(timer);
-            timer = setTimeout(function () { state.q = input.value.trim(); apply(); }, 300);
-        });
     }
     if (form) form.addEventListener('submit', function (e) {
         e.preventDefault();
@@ -84,7 +84,7 @@
                 esc(name) + (n ? '<span class="tag__number">' + esc(n) + '</span>' : '') + '</button>';
         };
         requests.innerHTML = '<p class="popular-requests__text">Popular domains</p><div class="popular-requests__wrapper">' +
-            chip('', 'All', TOTAL, !state.tag) + TAGS.map(function (x) { return chip(x[0], x[1], x[2], state.tag === x[0]); }).join('') + '</div>';
+            TAGS.map(function (x) { return chip(x[0], x[1], x[2], state.tag === x[0]); }).join('') + '</div>';
     };
 
     var drawBar = function (total) {
@@ -106,13 +106,99 @@
         e.preventDefault();
         if (t.hasAttribute('data-popular') || t.hasAttribute('data-set-tag')) {
             var v = t.getAttribute('data-popular') || t.getAttribute('data-set-tag');
-            state.tag = state.tag === v ? '' : v; /* a chip turns on and, clicked again, off; "All" is off */
+            state.tag = state.tag === v ? '' : v; /* a chip turns on and, clicked again, off */
         } else if (t.hasAttribute('data-clear')) { state = { q: '', tag: '' }; }
         else if (t.getAttribute('data-remove') === 'q') state.q = '';
         else if (t.getAttribute('data-remove') === 'tag') state.tag = '';
         setInput();
         apply();
     });
+
+    /* ---- suggestions while typing: the domains that match the text, under the field (as on the scientists list).
+       A click or Enter on the highlighted one turns it into the domain chip and empties the text; arrows move, Esc closes. */
+    var domainsReady = null;
+    var loadDomains = function () {
+        if (!domainsReady) domainsReady = fetch(base + 'js/societies-index.json').then(function (r) { return r.json(); }).then(function (rows) {
+            rows.forEach(function (r) {
+                r.domain.forEach(function (d) {
+                    var k = slugify(d);
+                    if (!DOMAINS[k]) DOMAINS[k] = [d, 0];
+                    DOMAINS[k][1]++;
+                });
+            });
+        });
+        return domainsReady;
+    };
+    var sug = null, sugItems = [], sugAt = -1;
+    var closeSuggest = function () {
+        if (!sug) return;
+        sug.hidden = true; sugAt = -1; sugItems = [];
+        input.setAttribute('aria-expanded', 'false'); input.removeAttribute('aria-activedescendant');
+    };
+    var markSuggest = function (at) {
+        sugAt = at;
+        Array.prototype.forEach.call(sug.children, function (el, i) { el.setAttribute('aria-selected', String(i === at)); });
+        if (at >= 0) input.setAttribute('aria-activedescendant', sug.children[at].id); else input.removeAttribute('aria-activedescendant');
+    };
+    var drawSuggest = function () {
+        if (!sug) return;
+        var q = input.value.trim().toLowerCase();
+        if (q.length < 2) { closeSuggest(); return; }
+        loadDomains().then(function () {
+            if (input.value.trim().toLowerCase() !== q) return; /* typed on meanwhile */
+            var hits = Object.keys(DOMAINS).filter(function (k) { return k !== state.tag && DOMAINS[k][0].toLowerCase().indexOf(q) !== -1; })
+                .map(function (k) { return { slug: k, name: DOMAINS[k][0], count: DOMAINS[k][1], at: DOMAINS[k][0].toLowerCase().indexOf(q) }; });
+            hits.sort(function (a, b) { return (a.at === 0 ? 0 : 1) - (b.at === 0 ? 0 : 1) || b.count - a.count; });
+            sugItems = hits.slice(0, 6);
+            if (!sugItems.length) { closeSuggest(); return; }
+            sug.innerHTML = sugItems.map(function (h, i) {
+                return '<li role="option" id="suggest-' + i + '" aria-selected="false" data-i="' + i + '"><span class="suggest__name">' + esc(h.name) +
+                    '<small>Domain</small></span><em>' + h.count + '</em></li>';
+            }).join('');
+            sug.hidden = false; sugAt = -1;
+            input.setAttribute('aria-expanded', 'true');
+        });
+    };
+    var pickSuggest = function (i) {
+        var h = sugItems[i];
+        if (!h) return;
+        clearTimeout(timer);
+        state.tag = h.slug; state.q = '';
+        setInput();
+        closeSuggest();
+        apply();
+        input.focus();
+    };
+    if (input && form) {
+        sug = document.createElement('ul');
+        sug.className = 'suggest';
+        sug.id = 'suggest-list';
+        sug.setAttribute('role', 'listbox');
+        sug.setAttribute('aria-label', 'Domains');
+        sug.hidden = true;
+        form.appendChild(sug);
+        input.setAttribute('role', 'combobox');
+        input.setAttribute('aria-autocomplete', 'list');
+        input.setAttribute('aria-expanded', 'false');
+        input.setAttribute('aria-controls', 'suggest-list');
+        input.addEventListener('input', drawSuggest);
+        input.addEventListener('keydown', function (e) {
+            if (sug.hidden || !sugItems.length) return;
+            if (e.key === 'ArrowDown') { e.preventDefault(); markSuggest((sugAt + 1) % sugItems.length); }
+            else if (e.key === 'ArrowUp') { e.preventDefault(); markSuggest((sugAt - 1 + sugItems.length) % sugItems.length); }
+            else if (e.key === 'Enter' && sugAt >= 0) { e.preventDefault(); pickSuggest(sugAt); }
+            else if (e.key === 'Escape') { closeSuggest(); }
+        });
+        /* mousedown, not click: the field loses focus first and would close the list before the click lands */
+        sug.addEventListener('mousedown', function (e) {
+            var li = e.target.closest('li');
+            if (!li) return;
+            e.preventDefault();
+            pickSuggest(parseInt(li.getAttribute('data-i'), 10));
+        });
+        document.addEventListener('click', function (e) { if (!form.contains(e.target)) closeSuggest(); });
+        input.addEventListener('blur', function () { setTimeout(closeSuggest, 120); });
+    }
 
     var loadCards = function () {
         if (cards) return Promise.resolve();
@@ -164,7 +250,7 @@
             pagers.forEach(function (el) { el.style.display = ''; });
             return;
         }
-        loadCards().then(function () {
+        Promise.all([loadCards(), loadDomains()]).then(function () {
             var rows = filtered();
             drawBar(rows.length);
             pagers.forEach(function (el) { el.style.display = 'none'; });
