@@ -94,3 +94,32 @@
     font-size: 18px;
     line-height: 28px;
 }
+
+/* The button is full width under the field on a phone. */
+@media (max-width: 767px) {
+    .search-field { position: relative; }
+    .search-field .btn { width: 100%; justify-content: center; }
+}
+
+/* Clear (×): drawn by the list scripts once there is something typed. On a phone it sits at the right end of the field. */
+.search-field__clear {
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 24px;
+    line-height: 32px;
+    color: #000;
+    cursor: pointer;
+}
+.search-field__clear[hidden] { display: none; }
+.search-field__clear:focus-visible { outline: 2px solid #000; outline-offset: 2px; }
+@media (max-width: 767px) {
+    .search-field__clear { position: absolute; top: 20px; right: 0; }
+}
+@media (min-width: 768px) {
+    .search-field__clear { margin-bottom: -2px; }
+}

@@ -34,6 +34,24 @@
     var tax = [], index = null, timer = 0;
     if (input) input.value = state.q;
 
+    /* Clear (×) in the field, shown while something is typed; it empties the text and runs the search again. */
+    if (input && form) {
+        var clearBtn = document.createElement('button');
+        clearBtn.type = 'button';
+        clearBtn.className = 'search-field__clear';
+        clearBtn.setAttribute('aria-label', 'Clear the search');
+        clearBtn.innerHTML = '<span aria-hidden="true">×</span>';
+        form.insertBefore(clearBtn, form.querySelector('.btn'));
+        var syncClear = function () { clearBtn.hidden = !input.value; };
+        input.addEventListener('input', syncClear);
+        input.addEventListener('syncclear', syncClear);
+        clearBtn.addEventListener('click', function () {
+            input.value = ''; syncClear(); input.focus();
+            form.dispatchEvent(new Event('submit', { cancelable: true }));
+        });
+        syncClear();
+    }
+
     var esc = function (t) { var d = document.createElement('div'); d.textContent = t; return d.innerHTML; };
     var load = function (name) { return fetch(base + 'js/' + name + '.json').then(function (r) { return r.json(); }); };
     var fieldOf = function (slug) { return tax.filter(function (f) { return f.slug === slug; })[0]; };
@@ -165,6 +183,7 @@
 
     var apply = function (scroll) {
         drawControls();
+        if (input) input.dispatchEvent(new Event('syncclear'));
         var p = new URLSearchParams();
         if (state.q) p.set('search', state.q);
         if (state.tag) p.set('tag', state.tag);

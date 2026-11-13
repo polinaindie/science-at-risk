@@ -1,6 +1,6 @@
 /* The Scientists | Societies switch under the heading of the two list pages — the same one as the home page's block,
-   drawn by src/components/ScopeTabs (change both together): two words in mono 20/28 (24/32 from 768px), medium, the
-   open one underlined 3px. Links here, so each list stays its own page; aria-current marks the open one. */
+   drawn by src/components/ScopeTabs (change both together): two words in mono 20/28 (24/32 from 768px), regular, the
+   open one medium and underlined 3px. Links here, so each list stays its own page; aria-current marks the open one. */
 
 .scope-tabs {
     display: flex;
@@ -25,7 +25,7 @@
     padding-bottom: 4px;
     border-bottom: 3px solid transparent;
     font-size: 20px;
-    font-weight: 500;
+    font-weight: 400;
     line-height: 28px;
     letter-spacing: normal;
     color: #4d4d4d;
@@ -37,7 +37,7 @@
 }
 
 .scope-tabs__link:hover .scope-tabs__word { color: #000; border-bottom-color: rgba(0, 0, 0, 0.25); }
-.scope-tabs__link[aria-current="page"] .scope-tabs__word { color: #000; border-bottom-color: #000; }
+.scope-tabs__link[aria-current="page"] .scope-tabs__word { color: #000; border-bottom-color: #000; font-weight: 500; }
 .scope-tabs__link:focus-visible { outline: 2px solid #000; outline-offset: 4px; }
 
 /* Societies: the note when a search or a tag finds nothing */
@@ -52,13 +52,15 @@
 
 /* Scientists: what is applied, over the list — the count, each filter as a chip with ×, and "Clear all". */
 .results-bar:empty { display: none; }
+/* With the bar over it the societies list starts as close to the blue block as the scientists list does (3px). */
+.infrastructures__wrapper:has(.results-bar:not(:empty)) { padding-top: 3px; }
 
 .results-bar {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     gap: 12px 16px;
-    padding: 24px 0 8px;
+    padding: 24px 0 32px;
     font-family: "IBM Plex Mono", monospace;
     font-size: 16px;
     line-height: 24px;
@@ -142,8 +144,17 @@
 /* The tabs sit close under the heading: the heading's own bottom margin is taken off on the list pages. */
 .search-hero__info-wrap:has(+ .scope-tabs) { margin-bottom: 0; }
 
-/* The same room above the search field (from the tabs) and below it (to the popular requests): 48px each. */
-.search-hero ._searchScientists { margin-top: 20px; }
+/* Room above the search field (from the tabs) and below it (to the popular requests): 48px each on both list pages.
+   The field and its button stay within 720px, so the eye does not travel across the whole page to the button. */
+.search-hero ._searchScientists,
+.search-hero ._searchSocieties { margin-top: 32px; }
+@media (min-width: 768px) {
+    .search-hero ._searchScientists,
+    .search-hero ._searchSocieties { margin-top: 48px; max-width: 720px; }
+}
 .search-hero__requests:has(.hero-aside) { margin-top: 0; }
+/* Societies: the domains sit 48px under the field too (the main stylesheet gives them 80px). */
+.search-hero .search-hero__requests:not(:has(.hero-aside)) { margin-top: 32px; }
+@media (min-width: 768px) { .search-hero .search-hero__requests:not(:has(.hero-aside)) { margin-top: 48px; } }
 .search-hero .hero-aside { margin-top: 48px; }
 @media (min-width: 768px) { .search-hero .hero-aside { margin-top: 48px; } }

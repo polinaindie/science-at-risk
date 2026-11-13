@@ -49,6 +49,16 @@
       ],
       "port": 8124,
       "autoPort": true
+    },
+    {
+      "name": "public-static",
+      "runtimeExecutable": "sh",
+      "runtimeArgs": [
+        "-c",
+        "python3 -m http.server \"$PORT\" --directory public"
+      ],
+      "port": 8125,
+      "autoPort": true
     }
   ]
 }
