@@ -58,6 +58,13 @@
         state.q = input.value.trim();
         apply();
     });
+    /* the cursor is in the search as the page opens, as on scienceatrisk.org (not where a keyboard would pop up: touch screens) */
+    if (input && window.matchMedia && window.matchMedia('(pointer: fine)').matches) {
+        var focusSearch = function () { if (!document.activeElement || document.activeElement === document.body) input.focus({ preventScroll: true }); };
+        focusSearch();
+        window.addEventListener('load', focusSearch);           /* a refresh: after the page and its scripts have settled */
+        window.addEventListener('pageshow', focusSearch);       /* back/forward restores the page without loading it again */
+    }
     var clearBtn = null;
     if (input && form) {
         clearBtn = document.createElement('button');

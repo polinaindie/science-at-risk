@@ -16,7 +16,7 @@
         justify-content: space-between;
         gap: 24px;
         margin-top: 24px;
-        padding-bottom: 12px;
+        padding-bottom: 24px; /* from the typed text (and the button) down to the rule */
         border-bottom: 2px solid #000;
     }
 }
@@ -34,10 +34,15 @@
     .search-field .satr-float { padding-bottom: 0; border-bottom: 0; }
 }
 
+/* The type of the field follows scienceatrisk.org's own rules, read off its stylesheet (root 18px):
+     typed text   e-Ukraine Light  15px/20px  ->  16px/19px from 768px  ->  22px/26px from 1280px
+     hint (label) IBM Plex Mono Light  13px/18px  ->  22px/26px from 768px
+     hint raised  12px/16px  ->  18px/26px from 768px, moved 25px up (the field's own 25px of padding is its room)
+   The hint changes size as it rises (the transition runs the size and the move together, 0.5s). */
 .search-field .satr-float > input {
     width: 100%;
     box-sizing: border-box;
-    padding: 25px 0 0;
+    padding: 1.3889rem 0 0;
     border: 0;
     border-radius: 0;
     background: transparent;
@@ -45,9 +50,9 @@
     -webkit-appearance: none;
     outline: none;
     font-family: "e-Ukraine", sans-serif;
-    font-size: clamp(0.8889rem, 4.8vw, 1.2222rem);
+    font-size: 0.8333rem;
     font-weight: 300;
-    line-height: 1.5556rem;
+    line-height: 1.1111rem;
     color: #000;
 }
 
@@ -63,27 +68,33 @@
     text-overflow: ellipsis;
     white-space: nowrap; /* one line: a long hint is cut short, not wrapped over the rule */
     pointer-events: none;
-    font-family: "e-Ukraine", sans-serif;
-    font-size: clamp(0.8889rem, 4.8vw, 1.2222rem);
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.7222rem;
     font-weight: 300;
-    line-height: 1.5556rem;
-    color: #4d4d4d;
-    transform-origin: left top;
-    transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), color 0.3s;
+    line-height: 1rem;
+    color: #4d4d4d; /* the live site's 40% black is 2.6:1 on this blue; this is the lightest grey that reaches AA */
+    transition: 0.5s;
 }
 
 .search-field .satr-float > input:focus + .satr-float__label,
 .search-field .satr-float > input:not(:placeholder-shown) + .satr-float__label {
-    transform: translateY(-25px) scale(0.8182);
+    font-size: 0.6667rem;
+    line-height: 0.8889rem;
+    transform: translateY(-25px);
 }
 
-@media (min-width: 1024px) {
-    .search-field .satr-float > input { padding-top: 0; font-size: 1rem; }
-    .search-field .satr-float > .satr-float__label { top: 0; font-size: 1rem; }
+@media (min-width: 768px) {
+    /* the typed text and the hint share one centre line (26px high, as the hint is), and the field stands 11px up, so
+       that line is the centre of the 48px button beside it */
+    .search-field .satr-float { margin-bottom: 11px; }
+    .search-field .satr-float > input { font-size: 0.8889rem; line-height: 1.4444rem; }
+    .search-field .satr-float > .satr-float__label { font-size: 1.2222rem; line-height: 1.4444rem; }
     .search-field .satr-float > input:focus + .satr-float__label,
-    .search-field .satr-float > input:not(:placeholder-shown) + .satr-float__label {
-        transform: translateY(-24px) scale(0.7778);
-    }
+    .search-field .satr-float > input:not(:placeholder-shown) + .satr-float__label { font-size: 1rem; line-height: 1.4444rem; }
+}
+
+@media (min-width: 1280px) {
+    .search-field .satr-float > input { font-size: 1.2222rem; line-height: 1.4444rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -125,5 +136,6 @@
     .search-field__clear { position: absolute; top: 20px; right: 0; }
 }
 @media (min-width: 768px) {
-    .search-field__clear { margin-bottom: -2px; }
+    /* the button is 48px and stands on the bottom of the row, the × is 32px: 8px up puts its centre on the button's */
+    .search-field__clear { margin-bottom: 8px; }
 }
