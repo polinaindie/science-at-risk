@@ -5,7 +5,7 @@ Data fields: `content-model/<type>.md`. UI strings: `i18n/`.
 
 | Content type / page | URL (EN / UK) | Hugo template | Reference | Components |
 |---|---|---|---|---|
-| Home | `/` · `/uk` | `layouts/index.html` | `home.html`, `uk/home.html`, `home-blocks.md` | header, hero-stories, card-story, list-scientists (+ tags), list-research, card-infrastructure, footer (Want to help) |
+| Home | `/` · `/uk` | `layouts/index.html` | live site root (https://polinaindie.github.io/science-at-risk/), `content-model/home-map.md` | header, hero-stories, card-story, list-scientists (+ tags), list-research, card-infrastructure, footer (Want to help) |
 | About, other pages | `/about` · `/uk/about` | `layouts/_default/single.html` | prose in `prose.html`; layout from `public/about.html` (illustration) | breadcrumbs, prose, footer |
 | Research list | `/research` | `layouts/research/list.html` | `states.html` (card-research, filters, pagination); `public/research.html` for content | list-research, search/tag filters, pagination |
 | Research (full page) | `/research/<slug>` | `layouts/research/single.html` | `public/research/*.html` (content), `public/css/pages/research-article.css` | breadcrumbs, summary, key finding, authors, download PDF button (sticky), prose. HTML canonical, PDF is a download. |
