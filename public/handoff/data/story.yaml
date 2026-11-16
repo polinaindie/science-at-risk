@@ -1,0 +1,354 @@
+# story: front matter + Markdown body of content/{en,uk}/stories/<slug>.md. type: story | blog | news
+
+normal:
+  en:
+    slug: "a-conversation-with-maksymovych"
+    translationKey: "story-conversation-with-maksymovych"
+    type: "story"
+    title: "A Conversation with Maksymovych"
+    date: "2023-03-20"
+    excerpt: "The Maksymovych Science Library was heavily damaged by the Russian missile attack on October 10"
+    hero: "storage/lp/55/7c391696a9fb703ce014bb11eb5b52971bce20b0.jpg"
+    hero_alt: "A Conversation with Maksymovych"
+    authors:
+      - "Les Beley"
+    photographers:
+      - "Valentyn Kuzan"
+    body: |-
+      The Maksymovych Science Library was heavily damaged by the Russian missile attack on October 10. The blast wave hit the right wing of the building, and, bouncing off other buildings, also damaged the windows on the other side. The blow to this particular library carries enormous symbolism, perhaps even greater than the damage to the Central Council building.
+
+      {{< figure src="storage/posts/attaches/887d6af263d11b019800bbc1d41b07036929b2de.webp" alt="TODO real alt" >}}
+
+      Here's a little history. Taras Shevchenko Kyiv National University was founded in 1834 as the St. Volodymyr University and was founded not simply out of the good will of the emperor, but as a “center of Russian culture” that was supposed to neutralize the rebellious attitudes of the Poles after their failed uprising of 1830-1831. For this purpose, two important centers of the Polish revival were disbanded — Kremenets Lyceum and Vilnius University. Instead, a university was opened in Kyiv under the watchful eye of the autocrats. A library (more than 34,000 books) was also brought from Kremenets, which became the basis of today’s Maksymovych Library.
+
+      However, contrary to the empire's plans, the university eventually became one of the essential centers of the Ukrainian revival, and the tsar's plan ultimately backfired. It was here in 1845 that the Brotherhood of Saints Cyril and Methodius was formed, which included prominent figures like Mykola Kostomarov, Taras Shevchenko, Panteleimon Kulish, and others.
+
+      {{< figure src="storage/posts/attaches/d44a059f655cbb55d100026584b7d78b4b638656.webp" alt="TODO real alt" >}}
+
+      During Soviet times, a large part of the university library was handed over to the National Library of Ukraine (today’s Vernadskyi National Library of Ukraine), and specialized literature was left for the university, including what was necessary for education. The library was placed next to the red building on the premises built for faculties of humanities. The university was gradually growing, and the library alongside it. In addition to the central premises on Volodymyrska Street, it opened subsidiaries at many faculties.
+
+      Both during the tsarist and Soviet times, the library had a special fund where banned literature was stored. This practice was eventually eliminated in the times of independence. In 1994, the library was named after the first rector of the university, Mykhailo Maksymovych.
+    # Real content from public/story/a-conversation-with-maksymovych.html, body cut to the first 7 blocks. Real alt texts are "A Conversation with Maksymovych №1" (generated), shown as TODO. The page lists the type as "Stories" in its chip. Real UK strings for other stories are in homeCopy.ts (storiesUk).
+
+too_long:
+  en:
+    slug: "story-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+    translationKey: "story-too-long"
+    type: "blog"
+    title: "equipment institute research collection data heritage archive resilience instrument university evidence collaboration scientists community restoration recovery wartime an"
+    date: "2026-11-16"
+    excerpt: "Partnership infrastructure equipment institute research collection data. heritage archive resilience instrument university evidence collaboration scientists community. restoration recovery wartime ana"
+    hero: "storage/lp/too-long/hero.jpg"
+    hero_alt: "laboratory funding partnership infrastructure equipment institute research collection data heritage archive resilience instru"
+    card_image: "storage/lp/too-long/card.jpg"
+    authors:
+      - "research collection data heritage archive resilience instrum"
+      - "equipment institute research collection data heritage archiv"
+      - "partnership infrastructure equipment institute research coll"
+    photographers:
+      - "laboratory funding partnership infrastructure equipment institute research colle"
+      - "wartime analysis laboratory funding partnership infrastructure equipment institu"
+      - "restoration recovery wartime analysis laboratory funding partnership infrastruct"
+    body: |-
+      ## equipment institute research collection data heritage archive resilience instrum
+
+      Partnership infrastructure equipment institute research collection data. heritage archive resilience instrument university evidence collaboration scientists community. restoration recovery wartime analysis laboratory funding partnership infrastructure equipment. institute research collection data heritage archive resilience instrument university. evidence collaboration scientists community restoration recovery wartim
+
+      Laboratory funding partnership infrastructure equipment institute. research collection data heritage archive resilience instrument university evidence. collaboration scientists community restoration recovery wartime analysis laboratory funding. partnership infrastructure equipment institute research collection data heritage archive. resilience instrument university evidence collaboration scientists community restorat
+
+      Wartime analysis laboratory funding partnership. infrastructure equipment institute research collection data heritage archive resilience. instrument university evidence collaboration scientists community restoration recovery wartime. analysis laboratory funding partnership infrastructure equipment institute research collection. data heritage archive resilience instrument university evidence collaboration scientists.x
+
+      Restoration recovery wartime analysis. laboratory funding partnership infrastructure equipment institute research collection data. heritage archive resilience instrument university evidence collaboration scientists community. restoration recovery wartime analysis laboratory funding partnership infrastructure equipment. institute research collection data heritage archive resilience instrument university. evidence coll
+
+      Scientists community restoration. recovery wartime analysis laboratory funding partnership infrastructure equipment institute. research collection data heritage archive resilience instrument university evidence. collaboration scientists community restoration recovery wartime analysis laboratory funding. partner
+
+      {{< figure src="posts/attaches/too-long-01.webp" alt="equipment institute research collection data heritage archive resilience instrument university evidence collaboration scienti" caption="partnership infrastructure equipment institute research collection data heritage archive resilience instrument university evidence collaboration scientists community restoration recovery wartime analy" credit="laboratory funding partnership infrastructure equipment inst" >}}
+
+      ### laboratory funding partnership infrastructure equipment inst
+
+      Wartime analysis laboratory funding partnership. infrastructure equipment institute research collection data heritage archive resilience. instrument university evidence collaboration scientists community restoration recovery wartime. analysis laboratory funding partnership infrastructure equipment institute research collection. data heritage archive resilience instrument university evidence collaboration scientists.x
+
+      Restoration recovery wartime analysis. laboratory funding partnership infrastructure equipment institute research collection data. heritage archive resilience instrument university evidence collaboration scientists community. restoration recovery wartime analysis laboratory funding partnership infrastructure equipment. institute research collection data heritage archive resilience instrument university. evidence coll
+
+      Scientists community restoration. recovery wartime analysis laboratory funding partnership infrastructure equipment institute. research collection data heritage archive resilience instrument university evidence. collaboration scientists community restoration recovery wartime analysis laboratory funding. partnership infrastructure equipment institute research collection data heritage archive. resilience instrument uni
+
+      Evidence collaboration. scientists community restoration recovery wartime analysis laboratory funding partnership. infrastructure equipment institute research collection data heritage archive resilience. instrument university evidence
+
+      {{< gallery >}}
+      {{< figure src="posts/attaches/too-long-10.webp" alt="data heritage archive resilience instrument university evidence collaboration scientists community restoration recovery warti" caption="research collection data heritage archive resilience instrument university evidence collaboration scientists community restoration recovery wartime analysis laboratory funding partnership infrastructu" credit="equipment institute research collection data heritage archiv" >}}
+      {{< figure src="posts/attaches/too-long-11.webp" alt="research collection data heritage archive resilience instrument university evidence collaboration scientists community restor" caption="equipment institute research collection data heritage archive resilience instrument university evidence collaboration scientists community restoration recovery wartime analysis laboratory funding part" credit="partnership infrastructure equipment institute research coll" >}}
+      {{< figure src="posts/attaches/too-long-12.webp" alt="equipment institute research collection data heritage archive resilience instrument university evidence collaboration scienti" caption="partnership infrastructure equipment institute research collection data heritage archive resilience instrument university evidence collaboration scientists community restoration recovery wartime analy" credit="laboratory funding partnership infrastructure equipment inst" >}}
+      {{< figure src="posts/attaches/too-long-13.webp" alt="partnership infrastructure equipment institute research collection data heritage archive resilience instrument university evi" caption="laboratory funding partnership infrastructure equipment institute research collection data heritage archive resilience instrument university evidence collaboration scientists community restoration rec" credit="wartime analysis laboratory funding partnership infrastructu" >}}
+      {{< /gallery >}}
+
+      {{< embed url="https://www.youtube.com/watch?v=kYz1v0ysM3c" title="restoration recovery wartime analysis laboratory funding partnership infrastructure equipment instit" >}}
+
+      {{< quote name="scientists community restoration recovery wartime analysis l" role="evidence collaboration scientists community restoration recovery wartime analysis laboratory funding partnership infrast" >}}Instrument. university evidence collaboration scientists community restoration recovery wartime analysis. laboratory funding partnership infrastructure equipment institute research collection data. heritage archive resilience instrument university evidence collaboration scientists community. restoration recovery wartime analysis laboratory funding partnership infrastructure equipment. institute research collection data heritage archive resilience instrument university. evidence collaboration scientists community restoration recovery wartime analysis laboratory. funding partnership infrastructu{{< /quote >}}
+
+      Archive resilience instrument university evidence collaboration scientists community restoration. recovery wartime analysis laboratory funding partnership infrastructure equipment institute. research collection data heritage archive resilience instrument university evidence. collaboration scientists community restoration recovery wartime analysis laboratory funding. partnership infrastructure equipment institute rese
+
+      Data heritage archive resilience instrument university evidence collaboration. scientists community restoration recovery wartime analysis laboratory funding partnership. infrastructure equipment institute research collection data heritage archive resilience. instrument university evidence collaboration scientists community restoration recovery wartime. analysis laboratory funding partnership infrastructure equipmentx
+
+      Research collection data heritage archive resilience instrument. university evidence collaboration scientists community restoration recovery wartime analysis. laboratory funding partnership infrastructure equipment institute research collection data. heritage archive resilience instrument university evidence collaboration scientists community. restoration recovery wartime analysis laboratory funding partnership infra
+
+      Equipment institute research collection data heritage. archive resilience instrument university evidence collaboration scientists community restoration. recovery wartime analysis laboratory funding partnership infrastructure equipment institute. research collection data heritage archive resilience instrument university evidence. collaboration scientists community restoration recovery wartime analysis laboratory fundi
+
+      Partnership infrastructure equipment institute research. collection data heritage archive resilience instrument university evidence collaboration. scientists community restoration recovery wartime analysis laboratory funding partnership. infrastructure equipment institute research collection data heritage archive resilience. instrument university evidence collaboration scientists community restoration recovery wartim
+
+      Laboratory funding partnership infrastructure. equipment institute research collection data heritage archive resilience instrument. university evidence collaboration scientists community restoration recovery wartime analysis. laboratory funding partnership infrastructure equipment institute research collection data. heritage archive resilience instrument university evidence collaboration scientists community. restora
+
+      Wartime analysis laboratory. funding partnership infrastructure equipment institute research collection data heritage. archive resilience instrument university evidence collaboration scientists community restoration. recovery wartime analysis laboratory funding partnership infrastructure equipment institute. research collection data heritage archive resilience instrument university evidence. collaboration scientistsx
+
+      Restoration recovery. wartime analysis laboratory funding partnership infrastructure equipment institute research. collection data heritage archive resilience instrument university evidence collaboration. scientists community restoration recovery wartime analysis laboratory funding partnership. infrastructure equipment institute research collection data heritage archive resilience. instrument university evidence coll
+
+      Scientists. community restoration recovery wartime analysis laboratory funding partnership infrastructure. equipment institute research collection data heritage archive resilience instrument. university evidence collaboration scientists community restoration recovery wartime analysis. laboratory funding partnership infrastructure equipment institute research collection data. heritage archive resilience instrument uni
+
+      Evidence collaboration scientists community restoration recovery wartime analysis laboratory. funding partnership infrastructure equipment institute research collection data heritage. archive resilience instrument university evidence collaboration scientists community restoration. recovery wartime analysis laboratory funding partnership infrastructure equipment institute. research collection data heritage archive res
+
+      Instrument university evidence collaboration scientists community restoration recovery. wartime analysis laboratory funding partnership infrastructure equipment institute research. collection data heritage archive resilience instrument university evidence collaboration. scientists community restoration recovery wartime analysis laboratory funding partnership. infrastructure equipment institute research collection dat
+
+      Archive resilience instrument university evidence collaboration scientists. community restoration recovery wartime analysis laboratory funding partnership infrastructure. equipment institute research collection data heritage archive resilience instrument. university evidence collaboration scientists community restoration recovery wartime analysis. laboratory funding partnership infrastructure equipment institute rese
+
+      Data heritage archive resilience instrument university. evidence collaboration scientists community restoration recovery wartime analysis laboratory. funding partnership infrastructure equipment institute research collection data heritage. archive resilience instrument university evidence collaboration scientists community restoration. recovery wartime analysis laboratory funding partnership infrastructure equipmentx
+
+      Research collection data heritage archive. resilience instrument university evidence collaboration scientists community restoration recovery. wartime analysis laboratory funding partnership infrastructure equipment institute research. collection data heritage archive resilience instrument university evidence collaboration. scientists community restoration recovery wartime analysis laboratory funding partnership. infr
+
+      Equipment institute research collection. data heritage archive resilience instrument university evidence collaboration scientists. community restoration recovery wartime analysis laboratory funding partnership infrastructure. equipment institute research collection data heritage archive resilience instrument. university evidence collaboration scientists community restoration recovery wartime analysis. laboratory fund
+
+      Partnership infrastructure equipment. institute research collection data heritage archive resilience instrument university. evidence collaboration scientists community restoration recovery wartime analysis laboratory. funding partnership infrastructure equipment institute research collection data heritage. archive resilience instrument university evidence collaboration scientists community restoration. recovery warti
+
+      Laboratory funding. partnership infrastructure equipment institute research collection data heritage archive. resilience instrument university evidence collaboration scientists community restoration recovery. wartime analysis laboratory funding partnership infrastructure equipment institute research. collection data heritage archive resilience instrument university evidence collaboration. scientists community restora
+
+      Wartime. analysis laboratory funding partnership infrastructure equipment institute research collection. data heritage archive resilience instrument university evidence collaboration scientists. community restoration recovery wartime analysis laboratory funding partnership infrastructure. equipment institute research collection data heritage archive resilience instrument. university evidence collaboration scientistsx
+
+      Restoration recovery wartime analysis laboratory funding partnership infrastructure equipment. institute research collection data heritage archive resilience instrument university. evidence collaboration scientists community restoration recovery wartime analysis laboratory. funding partnership infrastructure equipment institute research collection data heritage. archive resilience instrument university evidence colla
+
+      Scientists community restoration recovery wartime analysis laboratory funding. partnership infrastructure equipment institute research collection data heritage archive. resilience instrument university evidence collaboration scientists community restoration recovery. wartime analysis laboratory funding partnership infrastructure equipment institute research. collection data heritage archive resilience instrument univ
+
+      Evidence collaboration scientists community restoration recovery wartime. analysis laboratory funding partnership infrastructure equipment institute research collection. data heritage archive resilience instrument university evidence collaboration scientists. community restoration recovery wartime analysis laboratory funding partnership infrastructure. equipment institute research collection data heritage archive res
+
+      Instrument university evidence collaboration scientists community. restoration recovery wartime analysis laboratory funding partnership infrastructure equipment. institute research collection data heritage archive resilience instrument university. evidence collaboration scientists community restoration recovery wartime analysis laboratory. funding partnership infrastructure equipment institute research collection dat
+
+      Archive resilience instrument university evidence. collaboration scientists community restoration recovery wartime analysis laboratory funding. partnership infrastructure equipment institute research collection data heritage archive. resilience instrument university evidence collaboration scientists community restoration recovery. wartime analysis laboratory funding partnership infrastructure equipment institute rese
+
+      Data heritage archive resilience. instrument university evidence collaboration scientists community restoration recovery wartime. analysis laboratory funding partnership infrastructure equipment institute research collection. data heritage archive resilience instrument university evidence collaboration scientists. community restoration recovery wartime analysis laboratory funding partnership infrastructure. equipment
+
+      Research collection data. heritage archive resilience instrument university evidence collaboration scientists community. restoration recovery wartime analysis laboratory funding partnership infrastructure equipment. institute research collection data heritage archive resilience instrument university. evidence collaboration scientists community restoration recovery wartime analysis laboratory. funding partnership infr
+
+      Equipment institute. research collection data heritage archive resilience instrument university evidence. collaboration scientists community restoration recovery wartime analysis laboratory funding. partnership infrastructure equipment institute research collection data heritage archive. resilience instrument university evidence collaboration scientists community restoration recovery. wartime analysis laboratory fund
+
+      Partnership. infrastructure equipment institute research collection data heritage archive resilience. instrument university evidence collaboration scientists community restoration recovery wartime. analysis laboratory funding partnership infrastructure equipment institute research collection. data heritage archive resilience instrument university evidence c
+
+      Footnote marker[^1][^2][^3][^4][^5][^6][^7][^8][^9][^10][^11][^12][^13][^14][^15][^16][^17][^18][^19][^20][^21][^22][^23][^24][^25][^26][^27][^28][^29][^30].
+
+      Equipment institute research collection data heritage. archive resilience instrument university evidence collaboration scientists community restoration. recovery wartime analysis laboratory funding partnership infrastructure equipment institute. research collection data heritage archive resilience instrument university evidence. collaboration scientists community restoration recovery wartime analy
+
+      [^1]: equipment institute research collection data heritage archive resilience instrument university evidence collaboration scientists community restoration recovery wartime analysis laboratory funding partnership infrastructure equipment institute research collection data heritage archive resilience inst
+      [^2]: partnership infrastructure equipment institute research collection data heritage archive resilience instrument university evidence collaboration scientists community restoration recovery wartime analysis laboratory funding partnership infrastructure equipment institute research collection data herit
+      [^3]: laboratory funding partnership infrastructure equipment institute research collection data heritage archive resilience instrument university evidence collaboration scientists community restoration recovery wartime analysis laboratory funding partnership infrastructure equipment institute research co
+      [^4]: wartime analysis laboratory funding partnership infrastructure equipment institute research collection data heritage archive resilience instrument university evidence collaboration scientists community restoration recovery wartime analysis laboratory funding partnership infrastructure equipment inst
+      [^5]: restoration recovery wartime analysis laboratory funding partnership infrastructure equipment institute research collection data heritage archive resilience instrument university evidence collaboration scientists community restoration recovery wartime analysis laboratory funding partnership infrastr
+      [^6]: scientists community restoration recovery wartime analysis laboratory funding partnership infrastructure equipment institute research collection data heritage archive resilience instrument university evidence collaboration scientists community restoration recovery wartime analysis laboratory funding
+      [^7]: evidence collaboration scientists community restoration recovery wartime analysis laboratory funding partnership infrastructure equipment institute research collection data heritage archive resilience instrument university evidence collaboration scientists community restoration recovery wartime anal
+      [^8]: instrument university evidence collaboration scientists community restoration recovery wartime analysis laboratory funding partnership infrastructure equipment institute research collection data heritage archive resilience instrument university evidence collaboration scientists community restoration
+      [^9]: archive resilience instrument university evidence collaboration scientists community restoration recovery wartime analysis laboratory funding partnership infrastructure equipment institute research collection data heritage archive resilience instrument university evidence collaboration scientists co
+      [^10]: data heritage archive resilience instrument university evidence collaboration scientists community restoration recovery wartime analysis laboratory funding partnership infrastructure equipment institute research collection data heritage archive resilience instrument university evidence collaboration
+      [^11]: research collection data heritage archive resilience instrument university evidence collaboration scientists community restoration recovery wartime analysis laboratory funding partnership infrastructure equipment institute research collection data heritage archive resilience instrument university ev
+      [^12]: equipment institute research collection data heritage archive resilience instrument university evidence collaboration scientists community restoration recovery wartime analysis laboratory funding partnership infrastructure equipment institute research collection data heritage archive resilience inst
+      [^13]: partnership infrastructure equipment institute research collection data heritage archive resilience instrument university evidence collaboration scientists community restoration recovery wartime analysis laboratory funding partnership infrastructure equipment institute research collection data herit
+      [^14]: laboratory funding partnership infrastructure equipment institute research collection data heritage archive resilience instrument university evidence collaboration scientists community restoration recovery wartime analysis laboratory funding partnership infrastructure equipment institute research co
+      [^15]: wartime analysis laboratory funding partnership infrastructure equipment institute research collection data heritage archive resilience instrument university evidence collaboration scientists community restoration recovery wartime analysis laboratory funding partnership infrastructure equipment inst
+      [^16]: restoration recovery wartime analysis laboratory funding partnership infrastructure equipment institute research collection data heritage archive resilience instrument university evidence collaboration scientists community restoration recovery wartime analysis laboratory funding partnership infrastr
+      [^17]: scientists community restoration recovery wartime analysis laboratory funding partnership infrastructure equipment institute research collection data heritage archive resilience instrument university evidence collaboration scientists community restoration recovery wartime analysis laboratory funding
+      [^18]: evidence collaboration scientists community restoration recovery wartime analysis laboratory funding partnership infrastructure equipment institute research collection data heritage archive resilience instrument university evidence collaboration scientists community restoration recovery wartime anal
+      [^19]: instrument university evidence collaboration scientists community restoration recovery wartime analysis laboratory funding partnership infrastructure equipment institute research collection data heritage archive resilience instrument university evidence collaboration scientists community restoration
+      [^20]: archive resilience instrument university evidence collaboration scientists community restoration recovery wartime analysis laboratory funding partnership infrastructure equipment institute research collection data heritage archive resilience instrument university evidence collaboration scientists co
+      [^21]: data heritage archive resilience instrument university evidence collaboration scientists community restoration recovery wartime analysis laboratory funding partnership infrastructure equipment institute research collection data heritage archive resilience instrument university evidence collaboration
+      [^22]: research collection data heritage archive resilience instrument university evidence collaboration scientists community restoration recovery wartime analysis laboratory funding partnership infrastructure equipment institute research collection data heritage archive resilience instrument university ev
+      [^23]: equipment institute research collection data heritage archive resilience instrument university evidence collaboration scientists community restoration recovery wartime analysis laboratory funding partnership infrastructure equipment institute research collection data heritage archive resilience inst
+      [^24]: partnership infrastructure equipment institute research collection data heritage archive resilience instrument university evidence collaboration scientists community restoration recovery wartime analysis laboratory funding partnership infrastructure equipment institute research collection data herit
+      [^25]: laboratory funding partnership infrastructure equipment institute research collection data heritage archive resilience instrument university evidence collaboration scientists community restoration recovery wartime analysis laboratory funding partnership infrastructure equipment institute research co
+      [^26]: wartime analysis laboratory funding partnership infrastructure equipment institute research collection data heritage archive resilience instrument university evidence collaboration scientists community restoration recovery wartime analysis laboratory funding partnership infrastructure equipment inst
+      [^27]: restoration recovery wartime analysis laboratory funding partnership infrastructure equipment institute research collection data heritage archive resilience instrument university evidence collaboration scientists community restoration recovery wartime analysis laboratory funding partnership infrastr
+      [^28]: scientists community restoration recovery wartime analysis laboratory funding partnership infrastructure equipment institute research collection data heritage archive resilience instrument university evidence collaboration scientists community restoration recovery wartime analysis laboratory funding
+      [^29]: evidence collaboration scientists community restoration recovery wartime analysis laboratory funding partnership infrastructure equipment institute research collection data heritage archive resilience instrument university evidence collaboration scientists community restoration recovery wartime anal
+      [^30]: instrument university evidence collaboration scientists community restoration recovery wartime analysis laboratory funding partnership infrastructure equipment institute research collection data heritage archive resilience instrument university evidence collaboration scientists community restoration
+
+      Archive resilience instrument university evidence collaboration scientists. community restoration recovery wartime analysis laboratory funding partnership infrastructure. equipment institute research collection data heritage archive resilience instrument. university evidence collaboration scientists community restoration recovery wartime analysis. laboratory funding partnership infrastructure equipment institute rese
+
+      Data heritage archive resilience instrument university. evidence collaboration scientists community restoration recovery wartime analysis laboratory. funding partnership infrastructure equipment institute research collection data heritage. archive resilience instrument university evidence collaboration scientists community restoration. recovery wartime analysis laboratory funding partnership infrastructure equipmentx
+
+      Research collection data heritage archive. resilience instrument university evidence collaboration scientists community restoration recovery. wartime analysis laboratory funding partnership infrastructure equipment institute research. collection data heritage archive resilience instrument university evidence collaboration. scientists community restoration recovery wartime analysis laboratory funding partnership. infr
+
+      Equipment institute research collection. data heritage archive resilience instrument university evidence collaboration scientists. community restoration recovery wartime analysis laboratory funding partnership infrastructure. equipment institute research collection data heritage archive resilience instrument. university evidence collaboration scientists community restoration recovery wartime analysis. laboratory fund
+
+      Partnership infrastructure equipment. institute research collection data heritage archive resilience instrument university. evidence collaboration scientists community
+    seo:
+      description: "Wartime analysis laboratory funding partnership. infrastructure equipment institute research collection data heritage archive resilience. instrument universityx"
+      og_image: "storage/lp/too-long/og.jpg"
+  uk:
+    slug: "story-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+    translationKey: "story-too-long"
+    type: "blog"
+    title: "обладнання інститут науковці колекція дані спадщина архів стійкість інструмент університет докази співпраця дослідження спільнота відбудова відновлення воєнний аналіз лаб"
+    date: "2026-11-16"
+    excerpt: "Партнерство інфраструктура обладнання інститут науковці колекція дані. спадщина архів стійкість інструмент університет докази співпраця дослідження спільнота. відбудова відновлення воєнний аналіз лабо"
+    hero: "storage/lp/too-long/hero.jpg"
+    hero_alt: "лабораторія фінансування партнерство інфраструктура обладнання інститут науковці колекція дані спадщина архів стійкість інстр"
+    card_image: "storage/lp/too-long/card.jpg"
+    authors:
+      - "науковці колекція дані спадщина архів стійкість інструмент у"
+      - "обладнання інститут науковці колекція дані спадщина архів ст"
+      - "партнерство інфраструктура обладнання інститут науковці коле"
+    photographers:
+      - "лабораторія фінансування партнерство інфраструктура обладнання інститут науковці"
+      - "воєнний аналіз лабораторія фінансування партнерство інфраструктура обладнання ін"
+      - "відбудова відновлення воєнний аналіз лабораторія фінансування партнерство інфрас"
+    body: |-
+      ## обладнання інститут науковці колекція дані спадщина архів стійкість інструмент у
+
+      Партнерство інфраструктура обладнання інститут науковці колекція дані. спадщина архів стійкість інструмент університет докази співпраця дослідження спільнота. відбудова відновлення воєнний аналіз лабораторія фінансування партнерство інфраструктура обладнання. інститут науковці колекція дані спадщина архів стійкість інструмент університет. докази співпраця дослідження спільнота відбудова відновлення воєнний аналіз лаб
+
+      Лабораторія фінансування партнерство інфраструктура обладнання інститут. науковці колекція дані спадщина архів стійкість інструмент університет докази. співпраця дослідження спільнота відбудова відновлення воєнний аналіз лабораторія фінансування. партнерство інфраструктура обладнання інститут науковці колекція дані спадщина архів. стійкість інструмент університет докази співпраця дослідження спільнота відбудова відно
+
+      Воєнний аналіз лабораторія фінансування партнерство. інфраструктура обладнання інститут науковці колекція дані спадщина архів стійкість. інструмент університет докази співпраця дослідження спільнота відбудова відновлення воєнний. аналіз лабораторія фінансування партнерство інфраструктура обладнання інститут науковці колекція. дані спадщина архів стійкість інструмент університет докази співпраця дослідження. спільнота
+
+      Відбудова відновлення воєнний аналіз. лабораторія фінансування партнерство інфраструктура обладнання інститут науковці колекція дані. спадщина архів стійкість інструмент університет докази співпраця дослідження спільнота. відбудова відновлення воєнний аналіз лабораторія фінансування партнерство інфраструктура обладнання. інститут науковці колекція дані спадщина архів стійкість інструмент університет. докази співпраця
+
+      Дослідження спільнота відбудова. відновлення воєнний аналіз лабораторія фінансування партнерство інфраструктура обладнання інститут. науковці колекція дані спадщина архів стійкість інструмент університет докази. співпраця дослідження спільнота відбудова відновлення воєнний аналіз лабораторія фінансування. партн
+
+      {{< figure src="posts/attaches/too-long-01.webp" alt="обладнання інститут науковці колекція дані спадщина архів стійкість інструмент університет докази співпраця дослідження спіль" caption="партнерство інфраструктура обладнання інститут науковці колекція дані спадщина архів стійкість інструмент університет докази співпраця дослідження спільнота відбудова відновлення воєнний аналіз лабора" credit="лабораторія фінансування партнерство інфраструктура обладнан" >}}
+
+      ### лабораторія фінансування партнерство інфраструктура обладнан
+
+      Воєнний аналіз лабораторія фінансування партнерство. інфраструктура обладнання інститут науковці колекція дані спадщина архів стійкість. інструмент університет докази співпраця дослідження спільнота відбудова відновлення воєнний. аналіз лабораторія фінансування партнерство інфраструктура обладнання інститут науковці колекція. дані спадщина архів стійкість інструмент університет докази співпраця дослідження. спільнота
+
+      Відбудова відновлення воєнний аналіз. лабораторія фінансування партнерство інфраструктура обладнання інститут науковці колекція дані. спадщина архів стійкість інструмент університет докази співпраця дослідження спільнота. відбудова відновлення воєнний аналіз лабораторія фінансування партнерство інфраструктура обладнання. інститут науковці колекція дані спадщина архів стійкість інструмент університет. докази співпраця
+
+      Дослідження спільнота відбудова. відновлення воєнний аналіз лабораторія фінансування партнерство інфраструктура обладнання інститут. науковці колекція дані спадщина архів стійкість інструмент університет докази. співпраця дослідження спільнота відбудова відновлення воєнний аналіз лабораторія фінансування. партнерство інфраструктура обладнання інститут науковці колекція дані спадщина архів. стійкість інструмент універ
+
+      Докази співпраця. дослідження спільнота відбудова відновлення воєнний аналіз лабораторія фінансування партнерство. інфраструктура обладнання інститут науковці колекція дані спадщина архів стійкість. інструмент університет докази співп
+
+      {{< gallery >}}
+      {{< figure src="posts/attaches/too-long-10.webp" alt="дані спадщина архів стійкість інструмент університет докази співпраця дослідження спільнота відбудова відновлення воєнний ана" caption="науковці колекція дані спадщина архів стійкість інструмент університет докази співпраця дослідження спільнота відбудова відновлення воєнний аналіз лабораторія фінансування партнерство інфраструктура о" credit="обладнання інститут науковці колекція дані спадщина архів ст" >}}
+      {{< figure src="posts/attaches/too-long-11.webp" alt="науковці колекція дані спадщина архів стійкість інструмент університет докази співпраця дослідження спільнота відбудова відно" caption="обладнання інститут науковці колекція дані спадщина архів стійкість інструмент університет докази співпраця дослідження спільнота відбудова відновлення воєнний аналіз лабораторія фінансування партнерс" credit="партнерство інфраструктура обладнання інститут науковці коле" >}}
+      {{< figure src="posts/attaches/too-long-12.webp" alt="обладнання інститут науковці колекція дані спадщина архів стійкість інструмент університет докази співпраця дослідження спіль" caption="партнерство інфраструктура обладнання інститут науковці колекція дані спадщина архів стійкість інструмент університет докази співпраця дослідження спільнота відбудова відновлення воєнний аналіз лабора" credit="лабораторія фінансування партнерство інфраструктура обладнан" >}}
+      {{< figure src="posts/attaches/too-long-13.webp" alt="партнерство інфраструктура обладнання інститут науковці колекція дані спадщина архів стійкість інструмент університет доказиx" caption="лабораторія фінансування партнерство інфраструктура обладнання інститут науковці колекція дані спадщина архів стійкість інструмент університет докази співпраця дослідження спільнота відбудова відновле" credit="воєнний аналіз лабораторія фінансування партнерство інфрастр" >}}
+      {{< /gallery >}}
+
+      {{< embed url="https://www.youtube.com/watch?v=kYz1v0ysM3c" title="відбудова відновлення воєнний аналіз лабораторія фінансування партнерство інфраструктура обладнанняx" >}}
+
+      {{< quote name="дослідження спільнота відбудова відновлення воєнний аналіз л" role="докази співпраця дослідження спільнота відбудова відновлення воєнний аналіз лабораторія фінансування партнерство інфраст" >}}Інструмент. університет докази співпраця дослідження спільнота відбудова відновлення воєнний аналіз. лабораторія фінансування партнерство інфраструктура обладнання інститут науковці колекція дані. спадщина архів стійкість інструмент університет докази співпраця дослідження спільнота. відбудова відновлення воєнний аналіз лабораторія фінансування партнерство інфраструктура обладнання. інститут науковці колекція дані спадщина архів стійкість інструмент університет. докази співпраця дослідження спільнота відбудова відновлення воєнний аналіз лабораторія. фінансування партнерство інфраструктура обла{{< /quote >}}
+
+      Архів стійкість інструмент університет докази співпраця дослідження спільнота відбудова. відновлення воєнний аналіз лабораторія фінансування партнерство інфраструктура обладнання інститут. науковці колекція дані спадщина архів стійкість інструмент університет докази. співпраця дослідження спільнота відбудова відновлення воєнний аналіз лабораторія фінансування. партнерство інфраструктура обладнання інститут науковці к
+
+      Дані спадщина архів стійкість інструмент університет докази співпраця. дослідження спільнота відбудова відновлення воєнний аналіз лабораторія фінансування партнерство. інфраструктура обладнання інститут науковці колекція дані спадщина архів стійкість. інструмент університет докази співпраця дослідження спільнота відбудова відновлення воєнний. аналіз лабораторія фінансування партнерство інфраструктура обладнання інсти
+
+      Науковці колекція дані спадщина архів стійкість інструмент. університет докази співпраця дослідження спільнота відбудова відновлення воєнний аналіз. лабораторія фінансування партнерство інфраструктура обладнання інститут науковці колекція дані. спадщина архів стійкість інструмент університет докази співпраця дослідження спільнота. відбудова відновлення воєнний аналіз лабораторія фінансування партнерство інфраструктур
+
+      Обладнання інститут науковці колекція дані спадщина. архів стійкість інструмент університет докази співпраця дослідження спільнота відбудова. відновлення воєнний аналіз лабораторія фінансування партнерство інфраструктура обладнання інститут. науковці колекція дані спадщина архів стійкість інструмент університет докази. співпраця дослідження спільнота відбудова відновлення воєнний аналіз лабораторія фінансування. парт
+
+      Партнерство інфраструктура обладнання інститут науковці. колекція дані спадщина архів стійкість інструмент університет докази співпраця. дослідження спільнота відбудова відновлення воєнний аналіз лабораторія фінансування партнерство. інфраструктура обладнання інститут науковці колекція дані спадщина архів стійкість. інструмент університет докази співпраця дослідження спільнота відбудова відновлення воєнний. аналіз ла
+
+      Лабораторія фінансування партнерство інфраструктура. обладнання інститут науковці колекція дані спадщина архів стійкість інструмент. університет докази співпраця дослідження спільнота відбудова відновлення воєнний аналіз. лабораторія фінансування партнерство інфраструктура обладнання інститут науковці колекція дані. спадщина архів стійкість інструмент університет докази співпраця дослідження спільнота. відбудова відн
+
+      Воєнний аналіз лабораторія. фінансування партнерство інфраструктура обладнання інститут науковці колекція дані спадщина. архів стійкість інструмент університет докази співпраця дослідження спільнота відбудова. відновлення воєнний аналіз лабораторія фінансування партнерство інфраструктура обладнання інститут. науковці колекція дані спадщина архів стійкість інструмент університет докази. співпраця дослідження спільнота
+
+      Відбудова відновлення. воєнний аналіз лабораторія фінансування партнерство інфраструктура обладнання інститут науковці. колекція дані спадщина архів стійкість інструмент університет докази співпраця. дослідження спільнота відбудова відновлення воєнний аналіз лабораторія фінансування партнерство. інфраструктура обладнання інститут науковці колекція дані спадщина архів стійкість. інструмент університет докази співпраця
+
+      Дослідження. спільнота відбудова відновлення воєнний аналіз лабораторія фінансування партнерство інфраструктура. обладнання інститут науковці колекція дані спадщина архів стійкість інструмент. університет докази співпраця дослідження спільнота відбудова відновлення воєнний аналіз. лабораторія фінансування партнерство інфраструктура обладнання інститут науковці колекція дані. спадщина архів стійкість інструмент універ
+
+      Докази співпраця дослідження спільнота відбудова відновлення воєнний аналіз лабораторія. фінансування партнерство інфраструктура обладнання інститут науковці колекція дані спадщина. архів стійкість інструмент університет докази співпраця дослідження спільнота відбудова. відновлення воєнний аналіз лабораторія фінансування партнерство інфраструктура обладнання інститут. науковці колекція дані спадщина архів стійкість і
+
+      Інструмент університет докази співпраця дослідження спільнота відбудова відновлення. воєнний аналіз лабораторія фінансування партнерство інфраструктура обладнання інститут науковці. колекція дані спадщина архів стійкість інструмент університет докази співпраця. дослідження спільнота відбудова відновлення воєнний аналіз лабораторія фінансування партнерство. інфраструктура обладнання інститут науковці колекція дані спа
+
+      Архів стійкість інструмент університет докази співпраця дослідження. спільнота відбудова відновлення воєнний аналіз лабораторія фінансування партнерство інфраструктура. обладнання інститут науковці колекція дані спадщина архів стійкість інструмент. університет докази співпраця дослідження спільнота відбудова відновлення воєнний аналіз. лабораторія фінансування партнерство інфраструктура обладнання інститут науковці к
+
+      Дані спадщина архів стійкість інструмент університет. докази співпраця дослідження спільнота відбудова відновлення воєнний аналіз лабораторія. фінансування партнерство інфраструктура обладнання інститут науковці колекція дані спадщина. архів стійкість інструмент університет докази співпраця дослідження спільнота відбудова. відновлення воєнний аналіз лабораторія фінансування партнерство інфраструктура обладнання інсти
+
+      Науковці колекція дані спадщина архів. стійкість інструмент університет докази співпраця дослідження спільнота відбудова відновлення. воєнний аналіз лабораторія фінансування партнерство інфраструктура обладнання інститут науковці. колекція дані спадщина архів стійкість інструмент університет докази співпраця. дослідження спільнота відбудова відновлення воєнний аналіз лабораторія фінансування партнерство. інфраструкту
+
+      Обладнання інститут науковці колекція. дані спадщина архів стійкість інструмент університет докази співпраця дослідження. спільнота відбудова відновлення воєнний аналіз лабораторія фінансування партнерство інфраструктура. обладнання інститут науковці колекція дані спадщина архів стійкість інструмент. університет докази співпраця дослідження спільнота відбудова відновлення воєнний аналіз. лабораторія фінансування парт
+
+      Партнерство інфраструктура обладнання. інститут науковці колекція дані спадщина архів стійкість інструмент університет. докази співпраця дослідження спільнота відбудова відновлення воєнний аналіз лабораторія. фінансування партнерство інфраструктура обладнання інститут науковці колекція дані спадщина. архів стійкість інструмент університет докази співпраця дослідження спільнота відбудова. відновлення воєнний аналіз ла
+
+      Лабораторія фінансування. партнерство інфраструктура обладнання інститут науковці колекція дані спадщина архів. стійкість інструмент університет докази співпраця дослідження спільнота відбудова відновлення. воєнний аналіз лабораторія фінансування партнерство інфраструктура обладнання інститут науковці. колекція дані спадщина архів стійкість інструмент університет докази співпраця. дослідження спільнота відбудова відн
+
+      Воєнний. аналіз лабораторія фінансування партнерство інфраструктура обладнання інститут науковці колекція. дані спадщина архів стійкість інструмент університет докази співпраця дослідження. спільнота відбудова відновлення воєнний аналіз лабораторія фінансування партнерство інфраструктура. обладнання інститут науковці колекція дані спадщина архів стійкість інструмент. університет докази співпраця дослідження спільнота
+
+      Відбудова відновлення воєнний аналіз лабораторія фінансування партнерство інфраструктура обладнання. інститут науковці колекція дані спадщина архів стійкість інструмент університет. докази співпраця дослідження спільнота відбудова відновлення воєнний аналіз лабораторія. фінансування партнерство інфраструктура обладнання інститут науковці колекція дані спадщина. архів стійкість інструмент університет докази співпрацяx
+
+      Дослідження спільнота відбудова відновлення воєнний аналіз лабораторія фінансування. партнерство інфраструктура обладнання інститут науковці колекція дані спадщина архів. стійкість інструмент університет докази співпраця дослідження спільнота відбудова відновлення. воєнний аналіз лабораторія фінансування партнерство інфраструктура обладнання інститут науковці. колекція дані спадщина архів стійкість інструмент універс
+
+      Докази співпраця дослідження спільнота відбудова відновлення воєнний. аналіз лабораторія фінансування партнерство інфраструктура обладнання інститут науковці колекція. дані спадщина архів стійкість інструмент університет докази співпраця дослідження. спільнота відбудова відновлення воєнний аналіз лабораторія фінансування партнерство інфраструктура. обладнання інститут науковці колекція дані спадщина архів стійкість і
+
+      Інструмент університет докази співпраця дослідження спільнота. відбудова відновлення воєнний аналіз лабораторія фінансування партнерство інфраструктура обладнання. інститут науковці колекція дані спадщина архів стійкість інструмент університет. докази співпраця дослідження спільнота відбудова відновлення воєнний аналіз лабораторія. фінансування партнерство інфраструктура обладнання інститут науковці колекція дані спа
+
+      Архів стійкість інструмент університет докази. співпраця дослідження спільнота відбудова відновлення воєнний аналіз лабораторія фінансування. партнерство інфраструктура обладнання інститут науковці колекція дані спадщина архів. стійкість інструмент університет докази співпраця дослідження спільнота відбудова відновлення. воєнний аналіз лабораторія фінансування партнерство інфраструктура обладнання інститут науковці.x
+
+      Дані спадщина архів стійкість. інструмент університет докази співпраця дослідження спільнота відбудова відновлення воєнний. аналіз лабораторія фінансування партнерство інфраструктура обладнання інститут науковці колекція. дані спадщина архів стійкість інструмент університет докази співпраця дослідження. спільнота відбудова відновлення воєнний аналіз лабораторія фінансування партнерство інфраструктура. обладнання інст
+
+      Науковці колекція дані. спадщина архів стійкість інструмент університет докази співпраця дослідження спільнота. відбудова відновлення воєнний аналіз лабораторія фінансування партнерство інфраструктура обладнання. інститут науковці колекція дані спадщина архів стійкість інструмент університет. докази співпраця дослідження спільнота відбудова відновлення воєнний аналіз лабораторія. фінансування партнерство інфраструкту
+
+      Обладнання інститут. науковці колекція дані спадщина архів стійкість інструмент університет докази. співпраця дослідження спільнота відбудова відновлення воєнний аналіз лабораторія фінансування. партнерство інфраструктура обладнання інститут науковці колекція дані спадщина архів. стійкість інструмент університет докази співпраця дослідження спільнота відбудова відновлення. воєнний аналіз лабораторія фінансування парт
+
+      Партнерство. інфраструктура обладнання інститут науковці колекція дані спадщина архів стійкість. інструмент університет докази співпраця дослідження спільнота відбудова відновлення воєнний. аналіз лабораторія фінансування партнерство інфраструктура обладнання інститут науковці колекція. дані спадщина архів стійкість інструмент університет докази співпраця д
+
+      Footnote marker[^1][^2][^3][^4][^5][^6][^7][^8][^9][^10][^11][^12][^13][^14][^15][^16][^17][^18][^19][^20][^21][^22][^23][^24][^25][^26][^27][^28][^29][^30].
+
+      Обладнання інститут науковці колекція дані спадщина. архів стійкість інструмент університет докази співпраця дослідження спільнота відбудова. відновлення воєнний аналіз лабораторія фінансування партнерство інфраструктура обладнання інститут. науковці колекція дані спадщина архів стійкість інструмент університет докази. співпраця дослідження спільнота відбудова відновлення воєнний аналіз лабораторі
+
+      [^1]: обладнання інститут науковці колекція дані спадщина архів стійкість інструмент університет докази співпраця дослідження спільнота відбудова відновлення воєнний аналіз лабораторія фінансування партнерство інфраструктура обладнання інститут науковці колекція дані спадщина архів стійкість інструмент ун
+      [^2]: партнерство інфраструктура обладнання інститут науковці колекція дані спадщина архів стійкість інструмент університет докази співпраця дослідження спільнота відбудова відновлення воєнний аналіз лабораторія фінансування партнерство інфраструктура обладнання інститут науковці колекція дані спадщина ар
+      [^3]: лабораторія фінансування партнерство інфраструктура обладнання інститут науковці колекція дані спадщина архів стійкість інструмент університет докази співпраця дослідження спільнота відбудова відновлення воєнний аналіз лабораторія фінансування партнерство інфраструктура обладнання інститут науковціx
+      [^4]: воєнний аналіз лабораторія фінансування партнерство інфраструктура обладнання інститут науковці колекція дані спадщина архів стійкість інструмент університет докази співпраця дослідження спільнота відбудова відновлення воєнний аналіз лабораторія фінансування партнерство інфраструктура обладнання інс
+      [^5]: відбудова відновлення воєнний аналіз лабораторія фінансування партнерство інфраструктура обладнання інститут науковці колекція дані спадщина архів стійкість інструмент університет докази співпраця дослідження спільнота відбудова відновлення воєнний аналіз лабораторія фінансування партнерство інфраст
+      [^6]: дослідження спільнота відбудова відновлення воєнний аналіз лабораторія фінансування партнерство інфраструктура обладнання інститут науковці колекція дані спадщина архів стійкість інструмент університет докази співпраця дослідження спільнота відбудова відновлення воєнний аналіз лабораторія фінансуван
+      [^7]: докази співпраця дослідження спільнота відбудова відновлення воєнний аналіз лабораторія фінансування партнерство інфраструктура обладнання інститут науковці колекція дані спадщина архів стійкість інструмент університет докази співпраця дослідження спільнота відбудова відновлення воєнний аналіз лабор
+      [^8]: інструмент університет докази співпраця дослідження спільнота відбудова відновлення воєнний аналіз лабораторія фінансування партнерство інфраструктура обладнання інститут науковці колекція дані спадщина архів стійкість інструмент університет докази співпраця дослідження спільнота відбудова відновлен
+      [^9]: архів стійкість інструмент університет докази співпраця дослідження спільнота відбудова відновлення воєнний аналіз лабораторія фінансування партнерство інфраструктура обладнання інститут науковці колекція дані спадщина архів стійкість інструмент університет докази співпраця дослідження спільнота від
+      [^10]: дані спадщина архів стійкість інструмент університет докази співпраця дослідження спільнота відбудова відновлення воєнний аналіз лабораторія фінансування партнерство інфраструктура обладнання інститут науковці колекція дані спадщина архів стійкість інструмент університет докази співпраця дослідження
+      [^11]: науковці колекція дані спадщина архів стійкість інструмент університет докази співпраця дослідження спільнота відбудова відновлення воєнний аналіз лабораторія фінансування партнерство інфраструктура обладнання інститут науковці колекція дані спадщина архів стійкість інструмент університет докази спі
+      [^12]: обладнання інститут науковці колекція дані спадщина архів стійкість інструмент університет докази співпраця дослідження спільнота відбудова відновлення воєнний аналіз лабораторія фінансування партнерство інфраструктура обладнання інститут науковці колекція дані спадщина архів стійкість інструмент ун
+      [^13]: партнерство інфраструктура обладнання інститут науковці колекція дані спадщина архів стійкість інструмент університет докази співпраця дослідження спільнота відбудова відновлення воєнний аналіз лабораторія фінансування партнерство інфраструктура обладнання інститут науковці колекція дані спадщина ар
+      [^14]: лабораторія фінансування партнерство інфраструктура обладнання інститут науковці колекція дані спадщина архів стійкість інструмент університет докази співпраця дослідження спільнота відбудова відновлення воєнний аналіз лабораторія фінансування партнерство інфраструктура обладнання інститут науковціx
+      [^15]: воєнний аналіз лабораторія фінансування партнерство інфраструктура обладнання інститут науковці колекція дані спадщина архів стійкість інструмент університет докази співпраця дослідження спільнота відбудова відновлення воєнний аналіз лабораторія фінансування партнерство інфраструктура обладнання інс
+      [^16]: відбудова відновлення воєнний аналіз лабораторія фінансування партнерство інфраструктура обладнання інститут науковці колекція дані спадщина архів стійкість інструмент університет докази співпраця дослідження спільнота відбудова відновлення воєнний аналіз лабораторія фінансування партнерство інфраст
+      [^17]: дослідження спільнота відбудова відновлення воєнний аналіз лабораторія фінансування партнерство інфраструктура обладнання інститут науковці колекція дані спадщина архів стійкість інструмент університет докази співпраця дослідження спільнота відбудова відновлення воєнний аналіз лабораторія фінансуван
+      [^18]: докази співпраця дослідження спільнота відбудова відновлення воєнний аналіз лабораторія фінансування партнерство інфраструктура обладнання інститут науковці колекція дані спадщина архів стійкість інструмент університет докази співпраця дослідження спільнота відбудова відновлення воєнний аналіз лабор
+      [^19]: інструмент університет докази співпраця дослідження спільнота відбудова відновлення воєнний аналіз лабораторія фінансування партнерство інфраструктура обладнання інститут науковці колекція дані спадщина архів стійкість інструмент університет докази співпраця дослідження спільнота відбудова відновлен
+      [^20]: архів стійкість інструмент університет докази співпраця дослідження спільнота відбудова відновлення воєнний аналіз лабораторія фінансування партнерство інфраструктура обладнання інститут науковці колекція дані спадщина архів стійкість інструмент університет докази співпраця дослідження спільнота від
+      [^21]: дані спадщина архів стійкість інструмент університет докази співпраця дослідження спільнота відбудова відновлення воєнний аналіз лабораторія фінансування партнерство інфраструктура обладнання інститут науковці колекція дані спадщина архів стійкість інструмент університет докази співпраця дослідження
+      [^22]: науковці колекція дані спадщина архів стійкість інструмент університет докази співпраця дослідження спільнота відбудова відновлення воєнний аналіз лабораторія фінансування партнерство інфраструктура обладнання інститут науковці колекція дані спадщина архів стійкість інструмент університет докази спі
+      [^23]: обладнання інститут науковці колекція дані спадщина архів стійкість інструмент університет докази співпраця дослідження спільнота відбудова відновлення воєнний аналіз лабораторія фінансування партнерство інфраструктура обладнання інститут науковці колекція дані спадщина архів стійкість інструмент ун
+      [^24]: партнерство інфраструктура обладнання інститут науковці колекція дані спадщина архів стійкість інструмент університет докази співпраця дослідження спільнота відбудова відновлення воєнний аналіз лабораторія фінансування партнерство інфраструктура обладнання інститут науковці колекція дані спадщина ар
+      [^25]: лабораторія фінансування партнерство інфраструктура обладнання інститут науковці колекція дані спадщина архів стійкість інструмент університет докази співпраця дослідження спільнота відбудова відновлення воєнний аналіз лабораторія фінансування партнерство інфраструктура обладнання інститут науковціx
+      [^26]: воєнний аналіз лабораторія фінансування партнерство інфраструктура обладнання інститут науковці колекція дані спадщина архів стійкість інструмент університет докази співпраця дослідження спільнота відбудова відновлення воєнний аналіз лабораторія фінансування партнерство інфраструктура обладнання інс
+      [^27]: відбудова відновлення воєнний аналіз лабораторія фінансування партнерство інфраструктура обладнання інститут науковці колекція дані спадщина архів стійкість інструмент університет докази співпраця дослідження спільнота відбудова відновлення воєнний аналіз лабораторія фінансування партнерство інфраст
+      [^28]: дослідження спільнота відбудова відновлення воєнний аналіз лабораторія фінансування партнерство інфраструктура обладнання інститут науковці колекція дані спадщина архів стійкість інструмент університет докази співпраця дослідження спільнота відбудова відновлення воєнний аналіз лабораторія фінансуван
+      [^29]: докази співпраця дослідження спільнота відбудова відновлення воєнний аналіз лабораторія фінансування партнерство інфраструктура обладнання інститут науковці колекція дані спадщина архів стійкість інструмент університет докази співпраця дослідження спільнота відбудова відновлення воєнний аналіз лабор
+      [^30]: інструмент університет докази співпраця дослідження спільнота відбудова відновлення воєнний аналіз лабораторія фінансування партнерство інфраструктура обладнання інститут науковці колекція дані спадщина архів стійкість інструмент університет докази співпраця дослідження спільнота відбудова відновлен
+
+      Архів стійкість інструмент університет докази співпраця дослідження. спільнота відбудова відновлення воєнний аналіз лабораторія фінансування партнерство інфраструктура. обладнання інститут науковці колекція дані спадщина архів стійкість інструмент. університет докази співпраця дослідження спільнота відбудова відновлення воєнний аналіз. лабораторія фінансування партнерство інфраструктура обладнання інститут науковці к
+
+      Дані спадщина архів стійкість інструмент університет. докази співпраця дослідження спільнота відбудова відновлення воєнний аналіз лабораторія. фінансування партнерство інфраструктура обладнання інститут науковці колекція дані спадщина. архів стійкість інструмент університет докази співпраця дослідження спільнота відбудова. відновлення воєнний аналіз лабораторія фінансування партнерство інфраструктура обладнання інсти
+
+      Науковці колекція дані спадщина архів. стійкість інструмент університет докази співпраця дослідження спільнота відбудова відновлення. воєнний аналіз лабораторія фінансування партнерство інфраструктура обладнання інститут науковці. колекція дані спадщина архів стійкість інструмент університет докази співпраця. дослідження спільнота відбудова відновлення воєнний аналіз лабораторія фінансування партнерство. інфраструкту
+
+      Обладнання інститут науковці колекція. дані спадщина архів стійкість інструмент університет докази співпраця дослідження. спільнота відбудова відновлення воєнний аналіз лабораторія фінансування партнерство інфраструктура. обладнання інститут науковці колекція дані спадщина архів стійкість інструмент. університет докази співпраця дослідження спільнота відбудова відновлення воєнний аналіз. лабораторія фінансування парт
+
+      Партнерство інфраструктура обладнання. інститут науковці колекція дані спадщина архів стійкість інструмент університет. докази співпраця дослідження спільнота відбудов
+    seo:
+      description: "Воєнний аналіз лабораторія фінансування партнерство. інфраструктура обладнання інститут науковці колекція дані спадщина архів стійкість. інструмент університетx"
+      og_image: "storage/lp/too-long/og.jpg"
+
+empty:
+  en:
+    slug: "empty-example-story"
+    translationKey: "story-empty"
+    type: "news"
+    title: "Example news"
+    date: "2026-11-16"
+    hero: "storage/lp/0/example.jpg"
+    hero_alt: "An example picture"
+    body: "One paragraph of text."

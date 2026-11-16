@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Requests: statuses — Science At Risk</title>
+<link rel="alternate" hreflang="uk" href="uk/request-states.html">
+<link rel="stylesheet" href="../tokens.css">
+<link rel="stylesheet" href="cabinet.css">
+<script src="cabinet.js" defer></script>
+<script src="demo.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to the content</a>
+<header class="hdr"><div class="hdr__in">
+<a class="hdr__logo" href="/" aria-label="Science At Risk">SC!ENCE AT R!SK!</a>
+<nav class="lang" aria-label="Language"><span lang="en" aria-current="true">ENG</span><span aria-hidden="true">/</span><a lang="uk" hreflang="uk" href="uk/request-states.html">УКР</a></nav>
+</div></header>
+<nav class="cnav" aria-label="Cabinet"><div class="cnav__in">
+<ul class="cnav__list"><li><a href="account.html">My profile</a></li><li><a href="requests.html" aria-current="page">My requests</a></li></ul>
+<form method="post" action="/logout"><input type="hidden" name="_csrf" value="csrf-token"><button type="submit">Log out</button></form>
+</div></nav>
+<main id="main" class="wrap wrap--mid" tabindex="-1">
+<h1 class="title">Requests: statuses</h1>
+<p class="lede" style="text-align:left">Each status as the scientist sees it. The buttons below are specimens, not links.</p><section class="state-card" aria-labelledby="st-draft"><h2 id="st-draft">Draft</h2>
+<dl class="facts"><dt>Badge</dt><dd><span class="badge badge--draft">Draft</span></dd>
+<dt>Text the scientist sees</dt><dd>You have changes that have not been sent. The site still shows the last approved version.</dd>
+<dt>Buttons</dt><dd><ul class="btns"><li><span class="btn btn--spec">Continue editing</span></li><li><span class="btn btn--spec btn--ghost">Submit for review</span></li><li><span class="btn btn--spec btn--ghost">Delete the draft</span></li></ul></dd>
+<dt>Editor’s comment</dt><dd><span class="muted">None for this status</span></dd>
+<dt>Counts as an open request</dt><dd>Yes, new changes cannot be submitted</dd></dl></section><section class="state-card" aria-labelledby="st-submitted"><h2 id="st-submitted">Submitted</h2>
+<dl class="facts"><dt>Badge</dt><dd><span class="badge badge--submitted">Submitted</span></dd>
+<dt>Text the scientist sees</dt><dd>We have your request. The team will look at it soon. The site shows the previous version.</dd>
+<dt>Buttons</dt><dd><ul class="btns"><li><span class="btn btn--spec">View the request</span></li><li><span class="btn btn--spec btn--ghost">Withdraw and keep editing</span></li></ul></dd>
+<dt>Editor’s comment</dt><dd><span class="muted">None for this status</span></dd>
+<dt>Counts as an open request</dt><dd>Yes, new changes cannot be submitted</dd></dl></section><section class="state-card" aria-labelledby="st-in_review"><h2 id="st-in_review">In review</h2>
+<dl class="facts"><dt>Badge</dt><dd><span class="badge badge--in_review">In review</span></dd>
+<dt>Text the scientist sees</dt><dd>The team is checking your changes. Editing is paused until the answer.</dd>
+<dt>Buttons</dt><dd><ul class="btns"><li><span class="btn btn--spec">View the request</span></li></ul></dd>
+<dt>Editor’s comment</dt><dd><span class="muted">None for this status</span></dd>
+<dt>Counts as an open request</dt><dd>Yes, new changes cannot be submitted</dd></dl></section><section class="state-card" aria-labelledby="st-changes_requested"><h2 id="st-changes_requested">Changes requested</h2>
+<dl class="facts"><dt>Badge</dt><dd><span class="badge badge--changes_requested">Changes requested</span></dd>
+<dt>Text the scientist sees</dt><dd>The team asks for changes. Read the comment, edit, and submit again.</dd>
+<dt>Buttons</dt><dd><ul class="btns"><li><span class="btn btn--spec">Edit and submit again</span></li><li><span class="btn btn--spec btn--ghost">View the request</span></li></ul></dd>
+<dt>Editor’s comment</dt><dd><div class="comment" style="margin:0"><p class="comment__label">Comment from the editors</p><p>Please add the year to the first publication and shorten the research description to three sentences.</p></div></dd>
+<dt>Counts as an open request</dt><dd>Yes, new changes cannot be submitted</dd></dl></section><section class="state-card" aria-labelledby="st-approved"><h2 id="st-approved">Approved</h2>
+<dl class="facts"><dt>Badge</dt><dd><span class="badge badge--approved">Approved</span></dd>
+<dt>Text the scientist sees</dt><dd>The team approved your changes. They will appear on the site soon.</dd>
+<dt>Buttons</dt><dd><ul class="btns"><li><span class="btn btn--spec">View the request</span></li></ul></dd>
+<dt>Editor’s comment</dt><dd><span class="muted">None for this status</span></dd>
+<dt>Counts as an open request</dt><dd>Yes, new changes cannot be submitted</dd></dl></section><section class="state-card" aria-labelledby="st-rejected"><h2 id="st-rejected">Rejected</h2>
+<dl class="facts"><dt>Badge</dt><dd><span class="badge badge--rejected">Rejected</span></dd>
+<dt>Text the scientist sees</dt><dd>The team could not accept these changes. The site keeps the previous version. Read the comment below.</dd>
+<dt>Buttons</dt><dd><ul class="btns"><li><span class="btn btn--spec">View the request</span></li><li><span class="btn btn--spec btn--ghost">Make new changes</span></li></ul></dd>
+<dt>Editor’s comment</dt><dd><div class="comment" style="margin:0"><p class="comment__label">Comment from the editors</p><p>The text contains claims we cannot check. Please send sources, or remove the last paragraph.</p></div></dd>
+<dt>Counts as an open request</dt><dd>No</dd></dl></section><section class="state-card" aria-labelledby="st-live"><h2 id="st-live">Live</h2>
+<dl class="facts"><dt>Badge</dt><dd><span class="badge badge--live">Live</span></dd>
+<dt>Text the scientist sees</dt><dd>Your changes are on the site.</dd>
+<dt>Buttons</dt><dd><ul class="btns"><li><span class="btn btn--spec">Open on the site</span></li><li><span class="btn btn--spec btn--ghost">Make new changes</span></li></ul></dd>
+<dt>Editor’s comment</dt><dd><span class="muted">None for this status</span></dd>
+<dt>Counts as an open request</dt><dd>No</dd></dl></section><section class="state-card" aria-labelledby="st-empty"><h2 id="st-empty">Empty list</h2><p class="notice__title">No requests yet</p><p>When you send changes for review, they will appear here.</p><p class="muted small" style="margin-top:8px">No request in progress.</p></section>
+</main>
+<footer class="ftr"><div class="ftr__in"><p>Science At Risk! Help for Ukrainian scientists affected by the war.</p><p data-handoff-only><a href="index.html">Map of screens</a></p></div></footer>
+</body>
+</html>

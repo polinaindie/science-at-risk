@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Profile: states — Science At Risk</title>
+<link rel="alternate" hreflang="uk" href="uk/account-states.html">
+<link rel="stylesheet" href="../tokens.css">
+<link rel="stylesheet" href="cabinet.css">
+<script src="cabinet.js" defer></script>
+<script src="demo.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to the content</a>
+<header class="hdr"><div class="hdr__in">
+<a class="hdr__logo" href="/" aria-label="Science At Risk">SC!ENCE AT R!SK!</a>
+<nav class="lang" aria-label="Language"><span lang="en" aria-current="true">ENG</span><span aria-hidden="true">/</span><a lang="uk" hreflang="uk" href="uk/account-states.html">УКР</a></nav>
+</div></header>
+<nav class="cnav" aria-label="Cabinet"><div class="cnav__in">
+<ul class="cnav__list"><li><a href="account.html" aria-current="page">My profile</a></li><li><a href="requests.html">My requests</a></li></ul>
+<form method="post" action="/logout"><input type="hidden" name="_csrf" value="csrf-token"><button type="submit">Log out</button></form>
+</div></nav>
+<main id="main" class="wrap wrap--mid" tabindex="-1">
+<h1 class="title">Profile: states</h1>
+<section class="spec" aria-labelledby="x1"><h2 class="spec__title" id="x1">Draft save indicator</h2><p class="spec__meta">Four states. The line has role="status" so a screen reader hears the change. Without JS only the first state is shown and the Save draft button saves.</p><div class="spec__box"><div class="spec__grid"><div><p class="small muted">data-state="idle"</p><p class="save" role="status" data-save data-state="idle" data-t-idle="Changes are saved as you type." data-t-saving="Saving…" data-t-saved="Saved at {time}" data-t-failed="Not saved. Check your connection and press “Save draft”."><span class="save__icon" aria-hidden="true"></span><span data-save-text>Changes are saved as you type.</span></p></div><div><p class="small muted">data-state="saving"</p><p class="save" role="status" data-save data-state="saving" data-t-idle="Changes are saved as you type." data-t-saving="Saving…" data-t-saved="Saved at {time}" data-t-failed="Not saved. Check your connection and press “Save draft”."><span class="save__icon" aria-hidden="true"></span><span data-save-text>Saving…</span></p></div><div><p class="small muted">data-state="saved"</p><p class="save" role="status" data-save data-state="saved" data-t-idle="Changes are saved as you type." data-t-saving="Saving…" data-t-saved="Saved at {time}" data-t-failed="Not saved. Check your connection and press “Save draft”."><span class="save__icon" aria-hidden="true"></span><span data-save-text>Saved at 14:32</span></p></div><div><p class="small muted">data-state="failed"</p><p class="save" role="status" data-save data-state="failed" data-t-idle="Changes are saved as you type." data-t-saving="Saving…" data-t-saved="Saved at {time}" data-t-failed="Not saved. Check your connection and press “Save draft”."><span class="save__icon" aria-hidden="true"></span><span data-save-text>Not saved. Check your connection and press “Save draft”.</span></p></div></div></div></section>
+<section class="spec" aria-labelledby="x2"><h2 class="spec__title" id="x2">Loading</h2><p class="spec__meta">A skeleton while the server builds the profile (only if needed; normally the page arrives whole).</p><div class="spec__box"><div role="status" aria-busy="true"><p class="sr">Loading your profile…</p><span class="skel skel--title"></span><span class="skel"></span><span class="skel skel--short"></span><span class="skel"></span></div></div></section>
+<section class="spec" aria-labelledby="x3"><h2 class="spec__title" id="x3">Empty profile</h2><p class="spec__meta">The scientist has not filled anything in yet.</p><div class="spec__box spec__box--narrow"><div class="msg" style="text-align:center"><p class="notice__title">Your profile is still empty</p><p>Fill in the first fields and we will keep the draft. When it is ready, submit it for review.</p><a class="btn" href="account.html">Start filling in</a></div></div></section>
+<section class="spec" aria-labelledby="x4"><h2 class="spec__title" id="x4">No access</h2><p class="spec__meta">Someone else’s profile or request. The answer is the same as for a page that does not exist (404).</p><div class="spec__box spec__box--narrow"><div class="msg" style="text-align:center"><p class="notice__title">This page is not available</p><p>You can open only your own profile and your own requests.</p><a class="btn" href="account.html">Go to my profile</a></div></div></section>
+<section class="spec" aria-labelledby="x5"><h2 class="spec__title" id="x5">Session ended</h2><p class="spec__meta">The draft is kept on the server.</p><div class="spec__box spec__box--narrow"><div class="msg" style="text-align:center"><p class="notice__title">Your session has ended</p><p>Log in again. Your saved draft is waiting for you.</p><a class="btn" href="login.html">Log in</a></div></div></section>
+<section class="spec" aria-labelledby="x6"><h2 class="spec__title" id="x6">Load error</h2><p class="spec__meta">The server is not reachable.</p><div class="spec__box spec__box--narrow"><div class="msg" style="text-align:center"><p class="notice__title">We could not load your profile</p><p>Nothing was lost. Try again in a minute.</p><a class="btn" href="account.html">Try again</a></div></div></section>
+<section class="spec" aria-labelledby="x7"><h2 class="spec__title" id="x7">“EN outdated” mark</h2><p class="spec__meta">Shown next to the English version heading when the Ukrainian text changed later.</p><div class="spec__box"><p><span class="badge badge--en badge--en-outdated">EN outdated</span> The English text on the site was written before your latest changes. The team updates it after your request is approved. You do not need to translate anything.</p><p class="row"><span class="badge badge--en">EN up to date</span> The English version matches the Ukrainian one.</p></div></section>
+<section class="spec" aria-labelledby="x8"><h2 class="spec__title" id="x8">One open request</h2><p class="spec__meta">The button is disabled and the reason is written next to it, not only in a tooltip.</p><div class="spec__box"><div class="alert" role="note" id="spec-why" style="margin-bottom:16px"><span class="alert__title">You already have a request in progress.</span> Only one request can be open at a time. Wait for the answer, then send the next changes. We will write to you by email. <a href="request.html">See the request</a></div><button class="btn" type="button" disabled aria-describedby="spec-why">Submit for review</button></div></section>
+</main>
+<footer class="ftr"><div class="ftr__in"><p>Science At Risk! Help for Ukrainian scientists affected by the war.</p><p data-handoff-only><a href="index.html">Map of screens</a></p></div></footer>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Запити: статуси — Science At Risk</title>
+<link rel="alternate" hreflang="en" href="../request-states.html">
+<link rel="stylesheet" href="../../tokens.css">
+<link rel="stylesheet" href="../cabinet.css">
+<script src="../cabinet.js" defer></script>
+<script src="../demo.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Перейти до змісту</a>
+<header class="hdr"><div class="hdr__in">
+<a class="hdr__logo" href="/" aria-label="Science At Risk">SC!ENCE AT R!SK!</a>
+<nav class="lang" aria-label="Мова"><a lang="en" hreflang="en" href="../request-states.html">ENG</a><span aria-hidden="true">/</span><span lang="uk" aria-current="true">УКР</span></nav>
+</div></header>
+<nav class="cnav" aria-label="Кабінет"><div class="cnav__in">
+<ul class="cnav__list"><li><a href="account.html">Мій профіль</a></li><li><a href="requests.html" aria-current="page">Мої запити</a></li></ul>
+<form method="post" action="/logout"><input type="hidden" name="_csrf" value="csrf-token"><button type="submit">Вийти</button></form>
+</div></nav>
+<main id="main" class="wrap wrap--mid" tabindex="-1">
+<h1 class="title">Запити: статуси</h1>
+<p class="lede" style="text-align:left">Кожен статус таким, яким його бачить науковець. Кнопки нижче — зразки, не посилання.</p><section class="state-card" aria-labelledby="st-draft"><h2 id="st-draft">Чернетка</h2>
+<dl class="facts"><dt>Позначка</dt><dd><span class="badge badge--draft">Чернетка</span></dd>
+<dt>Текст, який бачить науковець</dt><dd>Є зміни, які ще не надіслано. На сайті досі остання схвалена версія.</dd>
+<dt>Кнопки</dt><dd><ul class="btns"><li><span class="btn btn--spec">Продовжити редагування</span></li><li><span class="btn btn--spec btn--ghost">Надіслати на погодження</span></li><li><span class="btn btn--spec btn--ghost">Видалити чернетку</span></li></ul></dd>
+<dt>Коментар редактора</dt><dd><span class="muted">Для цього статусу немає</span></dd>
+<dt>Вважається відкритим запитом</dt><dd>Так, нові зміни надіслати не можна</dd></dl></section><section class="state-card" aria-labelledby="st-submitted"><h2 id="st-submitted">Надіслано</h2>
+<dl class="facts"><dt>Позначка</dt><dd><span class="badge badge--submitted">Надіслано</span></dd>
+<dt>Текст, який бачить науковець</dt><dd>Запит у нас. Команда незабаром його розгляне. На сайті попередня версія.</dd>
+<dt>Кнопки</dt><dd><ul class="btns"><li><span class="btn btn--spec">Переглянути запит</span></li><li><span class="btn btn--spec btn--ghost">Відкликати й редагувати далі</span></li></ul></dd>
+<dt>Коментар редактора</dt><dd><span class="muted">Для цього статусу немає</span></dd>
+<dt>Вважається відкритим запитом</dt><dd>Так, нові зміни надіслати не можна</dd></dl></section><section class="state-card" aria-labelledby="st-in_review"><h2 id="st-in_review">На розгляді</h2>
+<dl class="facts"><dt>Позначка</dt><dd><span class="badge badge--in_review">На розгляді</span></dd>
+<dt>Текст, який бачить науковець</dt><dd>Команда перевіряє ваші зміни. Редагування призупинено до відповіді.</dd>
+<dt>Кнопки</dt><dd><ul class="btns"><li><span class="btn btn--spec">Переглянути запит</span></li></ul></dd>
+<dt>Коментар редактора</dt><dd><span class="muted">Для цього статусу немає</span></dd>
+<dt>Вважається відкритим запитом</dt><dd>Так, нові зміни надіслати не можна</dd></dl></section><section class="state-card" aria-labelledby="st-changes_requested"><h2 id="st-changes_requested">Потрібні правки</h2>
+<dl class="facts"><dt>Позначка</dt><dd><span class="badge badge--changes_requested">Потрібні правки</span></dd>
+<dt>Текст, який бачить науковець</dt><dd>Команда просить внести правки. Прочитайте коментар, виправте й надішліть знову.</dd>
+<dt>Кнопки</dt><dd><ul class="btns"><li><span class="btn btn--spec">Виправити й надіслати знову</span></li><li><span class="btn btn--spec btn--ghost">Переглянути запит</span></li></ul></dd>
+<dt>Коментар редактора</dt><dd><div class="comment" style="margin:0"><p class="comment__label">Коментар від редакторів</p><p>Будь ласка, додайте рік до першої публікації й скоротіть опис досліджень до трьох речень.</p></div></dd>
+<dt>Вважається відкритим запитом</dt><dd>Так, нові зміни надіслати не можна</dd></dl></section><section class="state-card" aria-labelledby="st-approved"><h2 id="st-approved">Погоджено</h2>
+<dl class="facts"><dt>Позначка</dt><dd><span class="badge badge--approved">Погоджено</span></dd>
+<dt>Текст, який бачить науковець</dt><dd>Команда погодила ваші зміни. Невдовзі вони з’являться на сайті.</dd>
+<dt>Кнопки</dt><dd><ul class="btns"><li><span class="btn btn--spec">Переглянути запит</span></li></ul></dd>
+<dt>Коментар редактора</dt><dd><span class="muted">Для цього статусу немає</span></dd>
+<dt>Вважається відкритим запитом</dt><dd>Так, нові зміни надіслати не можна</dd></dl></section><section class="state-card" aria-labelledby="st-rejected"><h2 id="st-rejected">Відхилено</h2>
+<dl class="facts"><dt>Позначка</dt><dd><span class="badge badge--rejected">Відхилено</span></dd>
+<dt>Текст, який бачить науковець</dt><dd>Команда не змогла прийняти ці зміни. На сайті лишається попередня версія. Прочитайте коментар нижче.</dd>
+<dt>Кнопки</dt><dd><ul class="btns"><li><span class="btn btn--spec">Переглянути запит</span></li><li><span class="btn btn--spec btn--ghost">Внести нові зміни</span></li></ul></dd>
+<dt>Коментар редактора</dt><dd><div class="comment" style="margin:0"><p class="comment__label">Коментар від редакторів</p><p>У тексті є твердження, які ми не можемо перевірити. Надішліть джерела або приберіть останній абзац.</p></div></dd>
+<dt>Вважається відкритим запитом</dt><dd>Ні</dd></dl></section><section class="state-card" aria-labelledby="st-live"><h2 id="st-live">На сайті</h2>
+<dl class="facts"><dt>Позначка</dt><dd><span class="badge badge--live">На сайті</span></dd>
+<dt>Текст, який бачить науковець</dt><dd>Ваші зміни вже на сайті.</dd>
+<dt>Кнопки</dt><dd><ul class="btns"><li><span class="btn btn--spec">Відкрити на сайті</span></li><li><span class="btn btn--spec btn--ghost">Внести нові зміни</span></li></ul></dd>
+<dt>Коментар редактора</dt><dd><span class="muted">Для цього статусу немає</span></dd>
+<dt>Вважається відкритим запитом</dt><dd>Ні</dd></dl></section><section class="state-card" aria-labelledby="st-empty"><h2 id="st-empty">Порожній список</h2><p class="notice__title">Запитів ще не було</p><p>Коли ви надішлете зміни на погодження, вони з’являться тут.</p><p class="muted small" style="margin-top:8px">Зараз запитів у роботі немає.</p></section>
+</main>
+<footer class="ftr"><div class="ftr__in"><p>Science At Risk! Допомога українським вченим, які постраждали від війни.</p><p data-handoff-only><a href="index.html">Мапа екранів</a></p></div></footer>
+</body>
+</html>

@@ -1,0 +1,84 @@
+/*
+ * prose.css — the .prose article style (stories, research articles, About). Token-only: needs tokens.css.
+ * Source of values: public/css/pages/story-text.css (18px/1.65 body, heading scale, 4px quote bar, figcaption),
+ * story-footnotes.css, research-article.css. Output of editors is Markdown only: the elements below plus four shortcodes:
+ * figure, gallery, embed, quote. No raw HTML, no classes from the editor.
+ */
+.prose {
+  max-width: var(--size-measure);
+  font-family: var(--font-ukraine);
+  font-weight: var(--font-weight-light);
+  font-size: var(--text-prose);
+  line-height: var(--text-prose-lh);
+  color: var(--color-text);
+  overflow-wrap: break-word;
+}
+.prose > * + * { margin-top: var(--space-2); }
+.prose p, .prose ul, .prose ol { margin-bottom: 0; }
+.prose strong, .prose b { font-weight: var(--font-weight-bold); }
+
+/* headings: serif, close below, air above */
+.prose h2, .prose h3, .prose h4 { font-family: var(--font-serif); font-weight: var(--font-weight-normal); letter-spacing: var(--tracking-display); text-wrap: balance; }
+.prose h2 { margin-top: var(--space-5); font-size: var(--text-prose-h2); line-height: var(--text-prose-h2-lh); }
+.prose h3 { margin-top: var(--space-4); font-size: var(--text-prose-h3); line-height: var(--text-prose-h3-lh); }
+.prose h4 { margin-top: var(--space-3); font-size: var(--text-prose-h4); line-height: var(--text-prose-h4-lh); }
+.prose :is(h2, h3, h4) + * { margin-top: var(--space-1); }
+.prose > :first-child { margin-top: 0; }
+@media (min-width: 768px) {
+  .prose h2 { font-size: 1.6667rem; }
+  .prose h3 { font-size: 1.3333rem; }
+  .prose h4 { font-size: 1.2222rem; }
+}
+
+/* links in text: black, underlined (AA without colour) */
+.prose a { color: var(--color-link); text-decoration: underline; text-decoration-thickness: var(--border-hairline); text-underline-offset: var(--space-0); }
+.prose a:hover { text-decoration-thickness: var(--border-rule); }
+.prose a:focus-visible { outline: var(--focus-ring); outline-offset: var(--focus-ring-offset); }
+
+/* lists */
+.prose ul, .prose ol { padding-left: var(--space-4); }
+.prose li + li { margin-top: var(--space-1); }
+.prose li::marker { font-family: var(--font-mono); color: var(--color-text); }
+.prose li > :is(ul, ol) { margin-top: var(--space-1); }
+
+/* plain Markdown blockquote (a citation inside the text, not the pull quote) */
+.prose blockquote { margin-inline: 0; padding-left: var(--space-3); border-left: var(--border-heavy) solid var(--color-line); }
+.prose blockquote > * + * { margin-top: var(--space-1); }
+.prose hr { border: 0; border-top: var(--border-rule) solid var(--color-line); margin-block: var(--space-5); }
+.prose code { font-family: var(--font-mono); font-size: 0.9em; }
+
+/* footnotes (Markdown footnote output) */
+.prose .footnotes { margin-top: var(--space-5); padding-top: var(--space-2); border-top: var(--border-rule) solid var(--color-line); font-size: var(--text-small); }
+.prose .footnotes ol { padding-left: var(--space-4); }
+
+/* ---- shortcode: figure ---- */
+.prose .figure { margin-block: var(--space-4); }
+.prose .figure__img { display: block; width: 100%; height: auto; }
+.prose .figure__caption { margin-top: var(--space-1); font-size: var(--text-caption); line-height: var(--text-caption-lh); color: var(--color-text-muted); }
+
+/* ---- shortcode: gallery (CSS grid, no slider script; each image is a .figure) ---- */
+.prose .gallery { display: grid; grid-template-columns: 1fr; gap: var(--space-2); margin-block: var(--space-4); padding: 0; list-style: none; }
+.prose .gallery > li { margin: 0; }
+.prose .gallery .figure { margin: 0; }
+@media (min-width: 768px) { .prose .gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-3); } }
+.prose .gallery--3 { }
+@media (min-width: 1024px) { .prose .gallery--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+
+/* ---- shortcode: embed (privacy-friendly: poster + link first, iframe only after the visitor chooses) ---- */
+.prose .embed { margin-block: var(--space-4); }
+.prose .embed__frame { position: relative; aspect-ratio: 16 / 9; background: var(--color-black); color: var(--color-white); }
+.prose .embed__frame iframe, .prose .embed__frame video { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.prose .embed__poster { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: var(--space-2); padding: var(--space-3); text-align: center; font-family: var(--font-mono); }
+.prose .embed__consent { margin: 0; font-size: var(--text-small); line-height: var(--text-small-lh); }
+.prose a.embed__play, .prose .embed__play { min-height: var(--tap-min); padding: var(--space-1) var(--space-3); border: var(--border-ring) solid var(--color-white); border-radius: var(--radius-squircle); background: var(--color-white); color: var(--color-black); font: inherit; cursor: pointer; display: inline-flex; align-items: center; text-decoration: none; }
+.prose .embed__play:hover { background: var(--color-blue); }
+.prose .embed__play:focus-visible { outline: var(--focus-ring-width) solid var(--color-white); outline-offset: var(--focus-ring-offset); }
+.prose .embed__fallback { margin-top: var(--space-1); font-size: var(--text-caption); line-height: var(--text-caption-lh); }
+.prose .embed__fallback a { color: inherit; }
+
+/* ---- shortcode: quote (pull quote) ---- */
+.prose .quote { margin: var(--space-5) 0; padding-left: var(--space-3); border-left: var(--border-heavy) solid var(--color-line); }
+.prose .quote__text { margin: 0; font-family: var(--font-serif); font-size: var(--text-prose-h3); line-height: var(--text-prose-h3-lh); letter-spacing: var(--tracking-display); }
+@media (min-width: 768px) { .prose .quote__text { font-size: var(--text-prose-h2); line-height: var(--text-prose-h2-lh); } }
+.prose .quote__cite { margin-top: var(--space-1); font-family: var(--font-mono); font-size: var(--text-small); line-height: var(--text-small-lh); font-style: normal; color: var(--color-text-muted); }
+.prose .quote__text { padding: 0; border: 0; }

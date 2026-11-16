@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Введіть код — Science At Risk</title>
+<link rel="alternate" hreflang="en" href="../login-code.html">
+<link rel="stylesheet" href="../../tokens.css">
+<link rel="stylesheet" href="../cabinet.css">
+<script src="../cabinet.js" defer></script>
+<script src="../demo.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Перейти до змісту</a>
+<header class="hdr"><div class="hdr__in">
+<a class="hdr__logo" href="/" aria-label="Science At Risk">SC!ENCE AT R!SK!</a>
+<nav class="lang" aria-label="Мова"><a lang="en" hreflang="en" href="../login-code.html">ENG</a><span aria-hidden="true">/</span><span lang="uk" aria-current="true">УКР</span></nav>
+</div></header>
+<main id="main" class="wrap wrap--narrow" tabindex="-1">
+<h1 class="title">Введіть код</h1>
+<p class="lede">Якщо ця адреса є в системі, ми надіслали код із 6 цифр на <span class="mask">n•••@example.org</span>. Він діє 10 хв.</p><p class="muted small" style="margin:-16px 0 24px">Це може зайняти кілька хвилин. Якщо листа немає, зазирніть у «Спам».</p><form method="post" action="/login/code" novalidate data-demo-next="account.html"><input type="hidden" name="_csrf" value="csrf-token">
+
+<div class="field field--code">
+<label for="cd-code">Код із листа <span class="req" aria-hidden="true">*</span></label>
+<input id="cd-code" name="code" aria-describedby="cd-code-hint" aria-required="true" autocomplete="one-time-code" inputmode="numeric" maxlength="6" pattern="[0-9]{6}" spellcheck="false" type="text" value="">
+<p class="hint" id="cd-code-hint">6 цифр. Його можна вставити з листа.</p>
+</div>
+<button class="btn btn--block " type="submit">Увійти</button>
+</form>
+<form method="post" action="/login/code/resend" class="row"><input type="hidden" name="_csrf" value="csrf-token"><button class="btn btn--ghost btn--block" type="submit">Надіслати новий код</button></form>
+<p class="small muted row">Новий код можна попросити через 30 с.</p>
+<p class="row"><a class="link" href="login.html">Вказати іншу пошту</a></p><p><a class="link" href="login-password.html">Увійти з паролем</a></p>
+</main>
+<footer class="ftr"><div class="ftr__in"><p>Science At Risk! Допомога українським вченим, які постраждали від війни.</p><p data-handoff-only><a href="index.html">Мапа екранів</a></p></div></footer>
+</body>
+</html>

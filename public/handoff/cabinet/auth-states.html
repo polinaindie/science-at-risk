@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Sign-in errors and states — Science At Risk</title>
+<link rel="alternate" hreflang="uk" href="uk/auth-states.html">
+<link rel="stylesheet" href="../tokens.css">
+<link rel="stylesheet" href="cabinet.css">
+<script src="cabinet.js" defer></script>
+<script src="demo.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to the content</a>
+<header class="hdr"><div class="hdr__in">
+<a class="hdr__logo" href="/" aria-label="Science At Risk">SC!ENCE AT R!SK!</a>
+<nav class="lang" aria-label="Language"><span lang="en" aria-current="true">ENG</span><span aria-hidden="true">/</span><a lang="uk" hreflang="uk" href="uk/auth-states.html">УКР</a></nav>
+</div></header>
+<main id="main" class="wrap wrap--mid" tabindex="-1">
+<h1 class="title">Sign-in errors and states</h1>
+<p class="lede" style="text-align:left">Every sign-in state on one page. Separate pages: <a href="link-expired.html">Invitation link expired</a>, <a href="link-used.html">Link already used</a>, <a href="rate-limited.html">Rate limited</a>.</p>
+<section class="spec" aria-labelledby="s1"><h2 class="spec__title" id="s1">Error in the email field</h2><p class="spec__meta">The message sits under the field and the typed value stays. A summary at the top links to the field.</p><div class="spec__box spec__box--narrow"><form method="post" action="/login" novalidate data-demo-next="login-code.html"><input type="hidden" name="_csrf" value="csrf-token">
+<div class="alert" role="alert"><span class="alert__title">Check the fields below:</span><ul><li><a href="#a1-email">Enter a valid email, like name@example.org.</a></li></ul></div>
+<div class="field " data-invalid="true">
+<label for="a1-email">Email <span class="req" aria-hidden="true">*</span></label>
+<input id="a1-email" name="email" aria-describedby="a1-email-err" aria-invalid="true" aria-required="true" autocomplete="username" inputmode="email" autocapitalize="none" spellcheck="false" type="email" value="name@example">
+<p class="err" id="a1-email-err">Enter a valid email, like name@example.org.</p>
+</div>
+<button class="btn btn--block " type="submit">Send the code</button>
+</form></div></section>
+<section class="spec" aria-labelledby="s2"><h2 class="spec__title" id="s2">Code has the wrong shape</h2><p class="spec__meta">Checked on the server; the field keeps what was typed.</p><div class="spec__box spec__box--narrow"><form method="post" action="/login/code" novalidate data-demo-next="account.html"><input type="hidden" name="_csrf" value="csrf-token">
+<div class="alert" role="alert"><span class="alert__title">Check the fields below:</span><ul><li><a href="#a2-code">The code is 6 digits, no letters.</a></li></ul></div>
+<div class="field field--code" data-invalid="true">
+<label for="a2-code">Code from the letter <span class="req" aria-hidden="true">*</span></label>
+<input id="a2-code" name="code" aria-describedby="a2-code-err" aria-invalid="true" aria-required="true" autocomplete="one-time-code" inputmode="numeric" maxlength="6" pattern="[0-9]{6}" spellcheck="false" type="text" value="12ab">
+<p class="err" id="a2-code-err">The code is 6 digits, no letters.</p>
+</div>
+<button class="btn btn--block " type="submit">Log in</button>
+</form>
+<form method="post" action="/login/code/resend" class="row"><input type="hidden" name="_csrf" value="csrf-token"><button class="btn btn--ghost btn--block" type="submit">Send a new code</button></form>
+<p class="small muted row">You can ask for a new code in 30 seconds.</p></div></section>
+<section class="spec" aria-labelledby="s3"><h2 class="spec__title" id="s3">Wrong code</h2><p class="spec__meta">For an unknown email the answer is the same: the server never says whether an account exists.</p><div class="spec__box spec__box--narrow"><form method="post" action="/login/code" novalidate data-demo-next="account.html"><input type="hidden" name="_csrf" value="csrf-token">
+<div class="alert" role="alert">This code is not right. Check the digits or ask for a new code.</div>
+<div class="field field--code">
+<label for="a3-code">Code from the letter <span class="req" aria-hidden="true">*</span></label>
+<input id="a3-code" name="code" aria-describedby="a3-code-hint" aria-required="true" autocomplete="one-time-code" inputmode="numeric" maxlength="6" pattern="[0-9]{6}" spellcheck="false" type="text" value="482913">
+<p class="hint" id="a3-code-hint">6 digits. You can paste it from the letter.</p>
+</div>
+<button class="btn btn--block " type="submit">Log in</button>
+</form>
+<form method="post" action="/login/code/resend" class="row"><input type="hidden" name="_csrf" value="csrf-token"><button class="btn btn--ghost btn--block" type="submit">Send a new code</button></form>
+<p class="small muted row">You can ask for a new code in 30 seconds.</p></div></section>
+<section class="spec" aria-labelledby="s4"><h2 class="spec__title" id="s4">Expired code</h2><p class="spec__meta">A code works for 10 minutes. A new code is one click away.</p><div class="spec__box spec__box--narrow"><form method="post" action="/login/code" novalidate data-demo-next="account.html"><input type="hidden" name="_csrf" value="csrf-token">
+<div class="alert" role="alert">This code has expired. Codes work for 10 minutes. Ask for a new one.</div>
+<div class="field field--code">
+<label for="a4-code">Code from the letter <span class="req" aria-hidden="true">*</span></label>
+<input id="a4-code" name="code" aria-describedby="a4-code-hint" aria-required="true" autocomplete="one-time-code" inputmode="numeric" maxlength="6" pattern="[0-9]{6}" spellcheck="false" type="text" value="">
+<p class="hint" id="a4-code-hint">6 digits. You can paste it from the letter.</p>
+</div>
+<button class="btn btn--block " type="submit">Log in</button>
+</form>
+<form method="post" action="/login/code/resend" class="row"><input type="hidden" name="_csrf" value="csrf-token"><button class="btn btn--ghost btn--block" type="submit">Send a new code</button></form>
+<p class="small muted row">You can ask for a new code in 30 seconds.</p></div></section>
+<section class="spec" aria-labelledby="s5"><h2 class="spec__title" id="s5">Wrong password</h2><p class="spec__meta">The email is kept; the password is never put back into the page.</p><div class="spec__box spec__box--narrow"><form method="post" action="/login/password" novalidate data-demo-next="account.html"><input type="hidden" name="_csrf" value="csrf-token">
+<div class="alert" role="alert">The email or the password is not right. Try again, or reset the password.</div>
+<div class="field ">
+<label for="a5-email">Email <span class="req" aria-hidden="true">*</span></label>
+<input id="a5-email" name="email" aria-required="true" autocomplete="username" inputmode="email" autocapitalize="none" spellcheck="false" type="email" value="name@example.org">
+
+</div>
+<div class="field field--reveal">
+<label for="a5-pass">Password <span class="req" aria-hidden="true">*</span></label>
+<input id="a5-pass" name="password" aria-required="true" autocomplete="current-password" spellcheck="false" type="password" value=""><button type="button" class="reveal" data-reveal aria-controls="a5-pass" aria-pressed="false" data-show="Show" data-hide="Hide" hidden>Show</button>
+
+</div>
+<button class="btn btn--block " type="submit">Log in</button>
+</form></div></section>
+<section class="spec" aria-labelledby="s6"><h2 class="spec__title" id="s6">New password: errors</h2><p class="spec__meta">Passwords are not put back into the fields; the message is under the field.</p><div class="spec__box spec__box--narrow"><form method="post" action="/invite/TOKEN" novalidate data-demo-next="account.html"><input type="hidden" name="_csrf" value="csrf-token">
+<div class="alert" role="alert"><span class="alert__title">Check the fields below:</span><ul><li><a href="#a6-pass">The password does not meet the requirements yet.</a></li><li><a href="#a6-rep">The passwords do not match.</a></li></ul></div>
+<div class="field field--reveal" data-invalid="true">
+<label for="a6-pass">New password <span class="req" aria-hidden="true">*</span></label>
+<input id="a6-pass" name="password" aria-describedby="a6-pass-err" aria-invalid="true" aria-required="true" autocomplete="new-password" spellcheck="false" minlength="10" type="password" value=""><button type="button" class="reveal" data-reveal aria-controls="a6-pass" aria-pressed="false" data-show="Show" data-hide="Hide" hidden>Show</button>
+<p class="err" id="a6-pass-err">The password does not meet the requirements yet.</p>
+</div>
+<div class="rules"><p id="a6-rules">The password needs:</p><ul aria-labelledby="a6-rules"><li>at least 10 characters</li><li>a letter</li><li>a digit</li></ul></div>
+<div class="field field--reveal" data-invalid="true">
+<label for="a6-rep">Repeat the password <span class="req" aria-hidden="true">*</span></label>
+<input id="a6-rep" name="password_repeat" aria-describedby="a6-rep-err" aria-invalid="true" aria-required="true" autocomplete="new-password" spellcheck="false" type="password" value=""><button type="button" class="reveal" data-reveal aria-controls="a6-rep" aria-pressed="false" data-show="Show" data-hide="Hide" hidden>Show</button>
+<p class="err" id="a6-rep-err">The passwords do not match.</p>
+</div>
+<button class="btn btn--block " type="submit">Save password and log in</button>
+</form></div></section>
+<section class="spec" aria-labelledby="s7"><h2 class="spec__title" id="s7">Reset link expired</h2><p class="spec__meta">Works once, for 60 minutes.</p><div class="spec__box spec__box--narrow"><div class="msg"><p class="notice__title">This link has expired</p><p class="lede">Reset links work for 60 minutes. Ask for a new one.</p><a class="btn" href="reset-request.html">Ask for a new link</a></div></div></section>
+<section class="spec" aria-labelledby="s8"><h2 class="spec__title" id="s8">Password saved</h2><p class="spec__meta">After a reset the person lands on log in with this message.</p><div class="spec__box spec__box--narrow"><div class="notice" role="status"><p>Password saved. Log in with it.</p></div></div></section>
+<section class="spec" aria-labelledby="s9"><h2 class="spec__title" id="s9">Server error</h2><p class="spec__meta">A general message without details.</p><div class="spec__box spec__box--narrow"><div class="alert" role="alert"><span class="alert__title">Something went wrong on our side.</span> Nothing you typed was lost. Try again in a minute.</div></div></section>
+</main>
+<footer class="ftr"><div class="ftr__in"><p>Science At Risk! Help for Ukrainian scientists affected by the war.</p><p data-handoff-only><a href="index.html">Map of screens</a></p></div></footer>
+</body>
+</html>

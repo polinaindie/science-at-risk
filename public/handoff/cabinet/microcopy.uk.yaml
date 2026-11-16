@@ -1,0 +1,287 @@
+# Cabinet microcopy, Ukrainian (primary for scientists).
+# One flat dictionary: dotted keys, double-quoted values. {name} = a placeholder the server fills in.
+# "# new" marks a text written for this handoff; unmarked texts come from src/components/Cabinet/cabinetCopy.ts or src/components/Auth/authCopy.ts.
+# Same keys, same order in both files: run  node check-microcopy.mjs
+
+# ---- Common
+common.skip: "Перейти до змісту" # new
+common.site: "Science At Risk" # new
+common.lang.label: "Мова" # new
+common.lang.en: "ENG" # new
+common.lang.uk: "УКР" # new
+common.nav.label: "Кабінет"
+nav.profile: "Мій профіль"
+nav.requests: "Мої запити" # new
+nav.logout: "Вийти"
+common.footer: "Science At Risk! Допомога українським вченим, які постраждали від війни."
+common.loading: "Зачекайте"
+common.optional: "необов’язково" # new
+common.required: "* обов’язкове поле"
+common.show: "Показати"
+common.hide: "Сховати"
+common.back: "Назад" # new
+
+# ---- Log in: email
+login.title: "Вхід"
+login.lede: "Вкажіть свою пошту. Ми надішлемо код із 6 цифр для входу." # new
+login.email: "Електронна пошта"
+login.emailHint: "Адреса, на яку надійшло запрошення." # new
+login.submit: "Надіслати код" # new
+login.usePassword: "Увійти з паролем" # new
+login.lostInvite: "Загубили запрошення або воно застаріло? Попросіть нове" # new
+login.noInviteTitle: "Вхід лише за запрошенням"
+login.noInvite: "Кабінет призначений для учасників закритої спільноти."
+login.errors.emailRequired: "Введіть email."
+login.errors.emailInvalid: "Введіть коректний email, наприклад name@example.org."
+login.notice.passwordSaved: "Пароль збережено. Увійдіть з ним." # new
+
+# ---- Log in: 6-digit code
+code.title: "Введіть код" # new
+code.lede: "Якщо ця адреса є в системі, ми надіслали код із 6 цифр на {email}. Він діє {minutes} хв." # new
+code.label: "Код із листа" # new
+code.hint: "6 цифр. Його можна вставити з листа." # new
+code.submit: "Увійти" # new
+code.resend: "Надіслати новий код" # new
+code.resendWait: "Новий код можна попросити через {seconds} с." # new
+code.otherEmail: "Вказати іншу пошту" # new
+code.spam: "Це може зайняти кілька хвилин. Якщо листа немає, зазирніть у «Спам»."
+code.errors.required: "Введіть код із 6 цифр." # new
+code.errors.format: "Код складається з 6 цифр, без літер." # new
+code.errors.wrong: "Цей код не підходить. Перевірте цифри або попросіть новий." # new
+code.errors.expired: "Строк дії коду минув. Код діє {minutes} хв. Попросіть новий." # new
+
+# ---- Log in: password
+pwd.title: "Вхід із паролем" # new
+pwd.lede: "Вкажіть email і пароль, які ви обрали для кабінету."
+pwd.password: "Пароль"
+pwd.submit: "Увійти"
+pwd.forgot: "Забули пароль?"
+pwd.useCode: "Отримати код на пошту" # new
+pwd.errors.required: "Введіть пароль."
+pwd.errors.invalid: "Email або пароль неправильні. Спробуйте ще раз або скиньте пароль."
+
+# ---- Invitation: choose your own password
+invite.title: "Створіть свій пароль"
+invite.lede: "Ви вперше в кабінеті. Оберіть пароль, яким користуватиметесь надалі."
+invite.for: "Це запрошення для {email}." # new
+invite.valid: "Посилання діє один раз і {days} днів." # new
+invite.password: "Новий пароль"
+invite.repeat: "Повторіть пароль"
+invite.rulesTitle: "У паролі має бути:"
+invite.rule.length: "щонайменше 10 символів"
+invite.rule.letter: "літера"
+invite.rule.digit: "цифра"
+invite.submit: "Зберегти пароль і увійти" # new
+invite.errors.required: "Придумайте пароль."
+invite.errors.tooWeak: "Пароль ще не відповідає вимогам."
+invite.errors.repeatRequired: "Повторіть пароль."
+invite.errors.mismatch: "Паролі не збігаються."
+
+# ---- Invitation: ask again
+inviteResend.title: "Попросити запрошення ще раз" # new
+inviteResend.lede: "Вкажіть пошту, на яку надіслано запрошення. Якщо вона є в нашому списку, ми надішлемо нове посилання." # new
+inviteResend.submit: "Надіслати запрошення ще раз" # new
+inviteResend.sentTitle: "Перевірте пошту"
+inviteResend.sentText: "Якщо ця адреса є в нашому списку, ми надіслали нове запрошення. Попереднє посилання вже не діє." # new
+inviteResend.spam: "Це може зайняти кілька хвилин. Якщо листа немає, зазирніть у «Спам»."
+
+# ---- Password reset
+reset.title: "Скидання пароля" # new
+reset.lede: "Вкажіть пошту. Якщо вона є в системі, ми надішлемо посилання, щоб створити новий пароль." # new
+reset.submit: "Надіслати посилання" # new
+reset.back: "Назад до входу"
+reset.sentTitle: "Перевірте пошту"
+reset.sentText: "Якщо ця адреса є в системі, ми надіслали посилання. Воно діє один раз і {minutes} хв." # new
+reset.spam: "Це може зайняти кілька хвилин. Якщо листа немає, зазирніть у «Спам»."
+reset.another: "Спробувати іншу адресу"
+resetNew.title: "Новий пароль" # new
+resetNew.lede: "Придумайте пароль, яким користуватиметесь надалі." # new
+resetNew.submit: "Зберегти новий пароль" # new
+
+# ---- Link and error states
+link.expired.title: "Строк дії посилання минув" # new
+link.expired.text: "Запрошення діє {days} днів. Попросіть нове, і ми надішлемо його на пошту." # new
+link.expired.cta: "Попросити нове запрошення" # new
+link.used.title: "Це посилання вже використано" # new
+link.used.text: "Посилання діє лише раз. Якщо пароль уже створено, увійдіть. Якщо ні, попросіть нове посилання." # new
+link.used.login: "Увійти" # new
+link.used.again: "Попросити нове посилання" # new
+link.resetExpired.title: "Строк дії посилання минув" # new
+link.resetExpired.text: "Посилання для скидання діє {minutes} хв. Попросіть нове." # new
+link.resetExpired.cta: "Попросити нове посилання" # new
+rate.title: "Забагато спроб" # new
+rate.text: "Для безпеки ми призупинили вхід із цього пристрою. Спробуйте ще раз за {minutes} хв." # new
+rate.hint: "Листи можуть йти кілька хвилин. Зазирніть і в «Спам»." # new
+rate.back: "Назад до входу" # new
+error.generic.title: "Щось пішло не так на нашому боці" # new
+error.generic.text: "Те, що ви ввели, не втрачено. Спробуйте ще раз за хвилину." # new
+form.summary: "Перевірте поля нижче:" # new
+states.specimen.typed: "Те, що людина ввела, лишається в полі." # new
+
+# ---- Account: profile form
+account.title: "Мій профіль"
+account.lede: "Перевірте дані й змініть те, що застаріло. Чернетку ми зберігаємо, поки ви пишете." # new
+account.publicNotice: "Публічний профіль на сайті не зміниться, доки команда не погодить ваш запит." # new
+account.group.photo: "Фото"
+account.group.contacts: "Контактні дані"
+account.group.science: "Науковий профіль"
+account.group.links: "Контакти й посилання"
+account.field.photo: "Змінити фото"
+account.field.nameUk: "Прізвище, ім’я, по батькові"
+account.field.nameEn: "Прізвище та ім’я англійською"
+account.field.email: "Адреса електронної пошти"
+account.field.phone: "Номер мобільного телефону"
+account.field.degree: "Науковий ступінь"
+account.field.rank: "Вчене звання"
+account.field.institution: "Офіційна повна назва установи"
+account.field.activity: "Суть основної діяльності"
+account.field.area: "Сфера наукових досліджень"
+account.field.orcid: "Посилання на ORCID"
+account.field.linkedin: "Посилання на LinkedIn"
+account.hint.photo: "Квадратне фото, JPEG або PNG, до 10 MB. Бажано 420×420 px, однотонний фон."
+account.hint.phone: "На сайті не публікується."
+account.hint.email: "Береться з вашого акаунта. Щоб поредагувати, напишіть нам на email."
+account.hint.nameUk: "Береться з вашого акаунта. Щоб поредагувати, напишіть нам на email."
+account.hint.nameEn: "Лише латиницею, прізвище та ім’я: Volodymyr Shevchenko."
+account.hint.experience: "Один рядок на посаду: «рік – посада, місце роботи»."
+account.error.required: "Заповніть це поле."
+account.error.orcid: "Це має бути посилання на вашу сторінку в orcid.org, наприклад https://orcid.org/0000-0000-0000-0000."
+account.error.linkedin: "Це має бути посилання на сторінку в linkedin.com."
+account.error.url: "Посилання починається з https://"
+account.select: "Оберіть"
+save.idle: "Зміни зберігаються, поки ви пишете." # new
+save.saving: "Зберігаємо…" # new
+save.saved: "Збережено о {time}" # new
+save.failed: "Не збережено. Перевірте з’єднання й натисніть «Зберегти чернетку»." # new
+save.button: "Зберегти чернетку" # new
+save.label: "Стан чернетки" # new
+submit.button: "Надіслати на погодження" # new
+submit.help: "Команда перевіряє всі зміни разом і напише вам на пошту." # new
+submit.done: "Запит надіслано. Ми напишемо вам на пошту, коли команда його розгляне." # new
+submit.blocked.title: "У вас уже є запит у роботі" # new
+submit.blocked.text: "Одночасно може бути лише один запит. Дочекайтеся відповіді, а потім надішлете наступні зміни. Ми напишемо вам на пошту." # new
+submit.blocked.link: "Переглянути запит" # new
+submit.blocked.locked: "Редагування призупинено, поки команда перевіряє ваші зміни." # new
+en.title: "Англійська версія" # new
+en.outdated.badge: "EN застаріла" # new
+en.outdated.text: "Англійський текст на сайті написано до ваших останніх змін. Команда оновить його після погодження запиту. Перекладати нічого не потрібно." # new
+en.current.badge: "EN актуальна" # new
+en.current.text: "Англійська версія відповідає українській." # new
+en.nameOnly: "Профіль ви пишете українською. Англійською ви редагуєте лише своє ім’я латиницею." # new
+state.loading: "Завантажуємо ваш профіль…" # new
+state.empty.title: "Профіль ще порожній" # new
+state.empty.text: "Заповніть перші поля, і ми збережемо чернетку. Коли буде готово, надішліть її на погодження." # new
+state.empty.cta: "Почати заповнення" # new
+state.noaccess.title: "Ця сторінка недоступна" # new
+state.noaccess.text: "Ви можете відкривати лише власний профіль і власні запити." # new
+state.noaccess.cta: "До мого профілю" # new
+state.session.title: "Сеанс завершився" # new
+state.session.text: "Увійдіть знову. Збережена чернетка на вас чекає." # new
+state.session.cta: "Увійти" # new
+state.error.title: "Не вдалося завантажити профіль" # new
+state.error.text: "Нічого не втрачено. Спробуйте ще раз за хвилину." # new
+state.error.cta: "Спробувати ще раз" # new
+
+# ---- Requests
+requests.title: "Мої запити" # new
+requests.lede: "Кожні надіслані зміни стають запитом. Тут видно, на якому він етапі. Відповіді приходять і на пошту." # new
+requests.open: "У роботі" # new
+requests.archive: "Архів" # new
+requests.openNone: "Зараз запитів у роботі немає." # new
+requests.empty.title: "Запитів ще не було" # new
+requests.empty.text: "Коли ви надішлете зміни на погодження, вони з’являться тут." # new
+requests.number: "Запит {id}" # new
+requests.sent: "Надіслано {date}" # new
+requests.updated: "Оновлено {date}" # new
+requests.view: "Переглянути" # new
+requests.commentTitle: "Коментар від редакторів" # new
+requests.changedTitle: "Що ви змінили" # new
+requests.changedNone: "Змін не зафіксовано." # new
+requests.nextTitle: "Що далі" # new
+requests.back: "Усі запити" # new
+requests.emailNote: "Відповідь також прийде на пошту. Перевіряти цю сторінку не потрібно." # new
+status.label: "Статус" # new
+status.draft.label: "Чернетка" # new
+status.draft.text: "Є зміни, які ще не надіслано. На сайті досі остання схвалена версія."
+status.submitted.label: "Надіслано" # new
+status.submitted.text: "Запит у нас. Команда незабаром його розгляне. На сайті попередня версія." # new
+status.in_review.label: "На розгляді" # new
+status.in_review.text: "Команда перевіряє ваші зміни. Редагування призупинено до відповіді." # new
+status.changes_requested.label: "Потрібні правки" # new
+status.changes_requested.text: "Команда просить внести правки. Прочитайте коментар, виправте й надішліть знову." # new
+status.approved.label: "Погоджено" # new
+status.approved.text: "Команда погодила ваші зміни. Невдовзі вони з’являться на сайті." # new
+status.rejected.label: "Відхилено" # new
+status.rejected.text: "Команда не змогла прийняти ці зміни. На сайті лишається попередня версія. Прочитайте коментар нижче." # new
+status.live.label: "На сайті" # new
+status.live.text: "Ваші зміни вже на сайті." # new
+action.edit: "Продовжити редагування" # new
+action.discard: "Видалити чернетку" # new
+action.withdraw: "Відкликати й редагувати далі" # new
+action.editResubmit: "Виправити й надіслати знову" # new
+action.view: "Переглянути запит" # new
+action.viewOnSite: "Відкрити на сайті" # new
+action.startNew: "Внести нові зміни" # new
+action.none: "Дій зараз немає. Дочекайтеся відповіді команди." # new
+states.badge: "Позначка" # new
+states.text: "Текст, який бачить науковець" # new
+states.buttons: "Кнопки" # new
+states.comment: "Коментар редактора" # new
+states.commentShown: "Видно науковцю" # new
+states.commentHidden: "Для цього статусу немає" # new
+states.counts: "Вважається відкритим запитом" # new
+states.counts.yes: "Так, нові зміни надіслати не можна" # new
+states.counts.no: "Ні" # new
+profile.openOnSite: "Відкрити на сайті"
+
+# ---- Sample data (fake)
+sample.comment.changes: "Будь ласка, додайте рік до першої публікації й скоротіть опис досліджень до трьох речень." # new
+sample.comment.rejected: "У тексті є твердження, які ми не можемо перевірити. Надішліть джерела або приберіть останній абзац." # new
+sample.changed.1: "Посада й установа" # new
+sample.changed.2: "Опис досліджень" # new
+sample.changed.3: "Посилання на ORCID" # new
+
+# ---- Letters
+email.greeting: "Вітаємо!"
+email.signature: "Команда Science At Risk"
+email.footer: "Science At Risk! Допомога українським вченим, які постраждали від війни."
+email.linkFallback: "Якщо кнопка не працює, скопіюйте цю адресу в браузер:"
+email.logo: "SC!ENCE AT R!SK!" # new
+email.invitation.subject: "Вас запрошено до кабінету Science At Risk" # new
+email.invitation.preheader: "Ваше особисте посилання, щоб створити пароль. Діє один раз, 14 днів." # new
+email.invitation.lead: "Вас запрошено до кабінету Science At Risk — закритої спільноти українських науковців і тих, хто їх підтримує."
+email.invitation.steps.1: "Відкрийте посилання нижче." # new
+email.invitation.steps.2: "Придумайте власний пароль." # new
+email.invitation.steps.3: "Увійдіть до кабінету й перевірте свій профіль." # new
+email.invitation.cta: "Створити пароль" # new
+email.invitation.expiry: "Посилання діє один раз і 14 днів." # new
+email.invitation.expired: "Якщо строк дії посилання минув, попросіть нове запрошення:" # new
+email.invitation.notYou: "Якщо ви не очікували цього листа, проігноруйте його. Нічого не зміниться." # new
+email.code.subject: "Ваш код для входу до Science At Risk" # new
+email.code.preheader: "Код діє 10 хвилин." # new
+email.code.lead: "Скористайтеся цим кодом, щоб увійти до кабінету." # new
+email.code.label: "Ваш код" # new
+email.code.expiry: "Код діє один раз і 10 хвилин. Нікому його не називайте. Команда ніколи його не просить." # new
+email.code.notYou: "Якщо ви не намагалися увійти, проігноруйте цей лист. Без коду ніхто не зможе увійти." # new
+email.reset.subject: "Скидання пароля Science At Risk" # new
+email.reset.preheader: "Посилання діє один раз і 60 хвилин." # new
+email.reset.lead: "Ми отримали запит на скидання пароля до вашого кабінету. Натисніть кнопку, щоб створити новий." # new
+email.reset.cta: "Створити новий пароль" # new
+email.reset.expiry: "Посилання діє один раз і 60 хвилин." # new
+email.reset.notYou: "Якщо ви цього не просили, проігноруйте лист. Ваш пароль лишиться без змін." # new
+email.changes.subject: "Команда просить внести правки до вашого профілю" # new
+email.changes.preheader: "Прочитайте коментар і надішліть зміни знову." # new
+email.changes.lead: "Команда розглянула ваш запит {id} і просить внести кілька правок." # new
+email.changes.cta: "Відкрити запит" # new
+email.changes.after: "Профіль на сайті не змінився. Щоб побачити запит, потрібно увійти до кабінету." # new
+email.rejected.subject: "Ваш запит на зміни профілю не прийнято" # new
+email.rejected.preheader: "На сайті лишається попередня версія." # new
+email.rejected.lead: "Команда розглянула ваш запит {id} і не змогла його прийняти." # new
+email.rejected.cta: "Відкрити запит" # new
+email.rejected.after: "Профіль на сайті лишається таким, як був. Нові зміни можна внести будь-коли." # new
+email.live.subject: "Ваші зміни вже на сайті" # new
+email.live.preheader: "Нову версію вашого профілю опубліковано." # new
+email.live.lead: "Ваш запит {id} погоджено, і нова версія профілю вже на сайті." # new
+email.live.cta: "Відкрити мій профіль на сайті" # new
+email.live.after: "Дякуємо, що підтримуєте профіль актуальним." # new
+email.comment.label: "Коментар від редакторів" # new

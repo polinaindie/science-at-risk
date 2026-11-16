@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prose article style</title>
+<!-- DEV NOTE: IBM Plex Mono and Noto Serif are loaded from Google Fonts here exactly as the other drafts do; self-host them in production (see tokens-audit.md). -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;700&family=Noto+Serif:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="prose.css">
+<style>
+  @font-face { font-family: "e-Ukraine"; font-weight: 300; font-style: normal; font-display: swap; src: url("../fonts/e-ukraine/e-ukraine.woff2") format("woff2"), url("../fonts/e-ukraine/e-ukraine.woff") format("woff"); }
+  @font-face { font-family: "e-Ukraine"; font-weight: 700; font-style: normal; font-display: swap; src: url("../fonts/e-ukraine/e-Ukraine-Bold.woff2") format("woff2"), url("../fonts/e-ukraine/e-Ukraine-Bold.woff") format("woff"); }
+  *, *::before, *::after { box-sizing: border-box; }
+  body { margin: 0; font-family: var(--font-mono); color: var(--color-text); background: var(--color-bg); }
+  .page { max-width: var(--size-wrapper-max); margin-inline: auto; padding: var(--space-4) var(--space-wrapper) var(--space-7); }
+  @media (min-width: 1280px) { .page { padding-inline: var(--space-wrapper-xl); } }
+  .page__title { margin: 0 0 var(--space-2); font-family: var(--font-serif); font-weight: var(--font-weight-normal); font-size: var(--text-h1); line-height: var(--text-h1-lh); letter-spacing: var(--text-h1-ls); }
+  .page__lede { max-width: var(--size-measure); margin: 0 0 var(--space-5); font-size: var(--text-body); line-height: var(--text-body-lh); }
+  .page__lede a { color: var(--color-link); }
+  .page a:focus-visible { outline: var(--focus-ring); outline-offset: var(--focus-ring-offset); }
+</style>
+</head>
+<body>
+<main class="page" id="main">
+  <h1 class="page__title">Prose article style</h1>
+  <p class="page__lede">The <code>.prose</code> class styles Markdown output of stories, research articles and About. Editors write Markdown and four shortcodes (<code>figure</code>, <code>gallery</code>, <code>embed</code>, <code>quote</code>); no raw HTML. CSS: <a href="prose.css">prose.css</a>, tokens: <a href="tokens.css">tokens.css</a>. The page title above is the page's single H1; inside an article the editor's headings start at h2.</p>
+
+  <article class="prose">
+    <h2>Heading level two</h2>
+    <!-- Markdown: ## Heading level two -->
+    <p>Body text is e-Ukraine Light at 18px with a 1.65 line height, black on white, in a measure of about 38rem. Paragraphs have even gaps; <strong>strong text</strong> uses the bold cut, and <a href="#links">links in text are black and underlined</a>. Cyrillic sample: Дослідження впливу війни на українських науковців, їхні ґрунтовні архіви та лабораторії.</p>
+
+    <h3>Heading level three</h3>
+    <p>Headings are Noto Serif 400 and sit close to the text they introduce, with air above them.</p>
+
+    <h4>Heading level four</h4>
+    <p>Level four is one step below level three (the only invented size here).</p>
+
+    <h3 id="lists">Lists</h3>
+    <ul>
+      <li>Unordered item with a mono marker</li>
+      <li>Second item with a longer line that wraps onto a second row on a phone to show the hanging indent</li>
+      <li>Third item
+        <ul><li>Nested item</li><li>Another nested item</li></ul>
+      </li>
+    </ul>
+    <ol>
+      <li>First ordered step</li>
+      <li>Second ordered step</li>
+    </ol>
+
+    <h3>Blockquote</h3>
+    <!-- Markdown: > Quoted passage from a source. -->
+    <blockquote>
+      <p>A plain Markdown blockquote: a citation inside the running text, marked with a 3px rule.</p>
+    </blockquote>
+
+    <h2>Shortcodes</h2>
+
+    <h3>figure</h3>
+    <!-- Markdown: {{< figure src="/uploads/lab.jpg" alt="Researchers sort damaged samples on a table" caption="Sorting samples after the shelling. Photo: Institute archive" >}}
+         Hugo shortcode template renders: -->
+    <figure class="figure">
+      <img class="figure__img" src="../assets/mirror/story.jpg" alt="Researchers sort damaged samples on a table" width="1200" height="800" loading="lazy">
+      <figcaption class="figure__caption">Sorting samples after the shelling. Photo: Institute archive</figcaption>
+    </figure>
+    <!-- alt is required (empty alt only for purely decorative images: then omit caption). caption is optional; render <figcaption> only if set. -->
+
+    <h3>gallery</h3>
+    <!-- Markdown: {{< gallery >}}
+                     {{< figure src="/uploads/a.jpg" alt="…" caption="…" >}}
+                     {{< figure src="/uploads/b.jpg" alt="…" caption="…" >}}
+                   {{< /gallery >}}
+         Each image is a figure; the grid is CSS only (1 column on phones, 2 from 768px, class gallery--3 for 3 from 1024px). No slider script. -->
+    <ul class="gallery">
+      <li>
+        <figure class="figure">
+          <img class="figure__img" src="../assets/mirror/expert.jpg" alt="A scientist at a microscope" width="800" height="600" loading="lazy">
+          <figcaption class="figure__caption">At the microscope</figcaption>
+        </figure>
+      </li>
+      <li>
+        <figure class="figure">
+          <img class="figure__img" src="../assets/mirror/infra.jpg" alt="A laboratory corridor" width="800" height="600" loading="lazy">
+          <figcaption class="figure__caption">The laboratory corridor</figcaption>
+        </figure>
+      </li>
+    </ul>
+
+    <h3>embed</h3>
+    <!-- Markdown: {{< embed url="https://www.youtube.com/watch?v=VIDEO_ID" title="Interview with the director" >}}
+         Privacy: no third-party request until the visitor clicks play. Without JavaScript the play link is just a link to the
+         video (the fallback). With ~10 lines of JS the click replaces .embed__poster with
+         <iframe src="https://www.youtube-nocookie.com/embed/VIDEO_ID" title="…" allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin">.
+         Self-hosted files: use <video controls preload="none" poster="…"> inside .embed__frame instead. -->
+    <div class="embed">
+      <div class="embed__frame">
+        <div class="embed__poster">
+          <p class="embed__consent">This video is hosted on YouTube. It loads only after you press play, and YouTube may then set cookies.</p>
+          <a class="embed__play" href="https://www.youtube.com/watch?v=VIDEO_ID" data-embed-src="https://www.youtube-nocookie.com/embed/VIDEO_ID" data-embed-title="Interview with the director">Play video</a>
+        </div>
+      </div>
+      <p class="embed__fallback">Interview with the director. <a href="https://www.youtube.com/watch?v=VIDEO_ID">Watch on YouTube</a></p>
+    </div>
+
+    <h3>quote</h3>
+    <!-- Markdown: {{< quote author="Maria Ivanova" role="Director of the Institute" >}}We saved the collection because we never stopped counting it.{{< /quote >}} -->
+    <figure class="quote">
+      <blockquote class="quote__text"><p>We saved the collection because we never stopped counting it.</p></blockquote>
+      <figcaption class="quote__cite">Maria Ivanova, Director of the Institute</figcaption>
+    </figure>
+
+    <p>Text continues after the shortcodes with the normal rhythm. Footnote reference<sup><a href="#fn1" id="fnref1">1</a></sup>.</p>
+    <div class="footnotes">
+      <ol>
+        <li id="fn1">The footnote text, as a real numbered list. <a href="#fnref1" aria-label="Back to the text">↩</a></li>
+      </ol>
+    </div>
+  </article>
+</main>
+</body>
+</html>
