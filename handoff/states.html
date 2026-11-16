@@ -81,7 +81,7 @@ a { color: inherit; }
 .hover-line:is(:hover, .is-hover) { background-size: 100% var(--border-rule); }
 
 /* ---- tags and chips ---- */
-.tag { display: inline-flex; align-items: center; min-height: var(--space-4); padding: 0 var(--space-2); border-radius: var(--radius-squircle); background: var(--color-blue); color: var(--color-black); font-size: var(--text-small); line-height: var(--text-small-lh); text-decoration: none; }
+.tag { display: inline-flex; white-space: nowrap; align-items: center; min-height: var(--space-4); padding: 0 var(--space-2); border-radius: var(--radius-squircle); background: var(--color-blue); color: var(--color-black); font-size: var(--text-small); line-height: var(--text-small-lh); text-decoration: none; }
 a.tag:is(:hover, .is-hover) { background: var(--color-black); color: var(--color-white); }
 .tag--new { background: var(--color-blue); }
 .chip { position: relative; display: inline-flex; align-items: center; gap: var(--space-1); min-height: var(--tap-min); padding: var(--space-1) var(--space-2); border: var(--border-ring) solid var(--color-black); border-radius: var(--radius-squircle); background: var(--color-surface); color: var(--color-black); font-family: var(--font-mono); font-size: var(--text-chip); line-height: var(--text-chip-lh); text-decoration: none; cursor: pointer; }
