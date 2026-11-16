@@ -89,7 +89,8 @@ export function MobileNav({
     ? 'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black'
     : 'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white';
   const divider = onDark ? 'border-black/40' : 'border-white/40';
-  const linkClass = `font-mono text-h3-desktop ${linkColor} no-underline hover:opacity-70 ${focusRing}`;
+  const underline = onDark ? 'satr-hover-underline' : 'satr-hover-underline satr-hover-underline--white';
+  const linkClass = `${underline} font-mono text-h3-desktop ${linkColor} no-underline ${focusRing}`;
   const menuLabel = isUa ? 'Меню' : 'Menu';
   const closeLabel = isUa ? 'Закрити меню' : 'Close menu';
   const navLabel = isUa ? 'Основна навігація' : 'Primary';
