@@ -1,0 +1,362 @@
+[
+ {
+  "slug": "natural-sciences",
+  "en": "Natural sciences",
+  "uk": "Природничі науки",
+  "count": 117,
+  "specs": [
+   {
+    "slug": "ecology",
+    "en": "Ecology",
+    "uk": "Екологія",
+    "count": 35
+   },
+   {
+    "slug": "chemistry",
+    "en": "Chemistry",
+    "uk": "Хімія",
+    "count": 33
+   },
+   {
+    "slug": "physics-and-astronomy",
+    "en": "Physics and astronomy",
+    "uk": "Фізика та астрономія",
+    "count": 32
+   },
+   {
+    "slug": "applied-physics-and-nanomaterials",
+    "en": "Applied physics and nanomaterials",
+    "uk": "Прикладна фізика та наноматеріали",
+    "count": 20
+   },
+   {
+    "slug": "earth-sciences",
+    "en": "Earth sciences",
+    "uk": "Науки про Землю",
+    "count": 1
+   }
+  ]
+ },
+ {
+  "slug": "biology",
+  "en": "Biology",
+  "uk": "Біологія",
+  "count": 75,
+  "specs": [
+   {
+    "slug": "biology-and-biochemistry",
+    "en": "Biology and biochemistry",
+    "uk": "Біологія та біохімія",
+    "count": 61
+   }
+  ]
+ },
+ {
+  "slug": "humanities",
+  "en": "Humanities",
+  "uk": "Гуманітарні науки",
+  "count": 46,
+  "specs": [
+   {
+    "slug": "history-and-archaeology",
+    "en": "History and archaeology",
+    "uk": "Історія та археологія",
+    "count": 28
+   },
+   {
+    "slug": "philology",
+    "en": "Philology",
+    "uk": "Філологія",
+    "count": 15
+   },
+   {
+    "slug": "cultural-studies",
+    "en": "Cultural studies",
+    "uk": "Культурологія",
+    "count": 4
+   },
+   {
+    "slug": "philosophy",
+    "en": "Philosophy",
+    "uk": "Філософія",
+    "count": 1
+   }
+  ]
+ },
+ {
+  "slug": "social-and-behavioural-sciences",
+  "en": "Social and behavioural sciences",
+  "uk": "Соціальні та поведінкові науки",
+  "count": 39,
+  "specs": [
+   {
+    "slug": "economics",
+    "en": "Economics",
+    "uk": "Економіка",
+    "count": 18
+   },
+   {
+    "slug": "psychology",
+    "en": "Psychology",
+    "uk": "Психологія",
+    "count": 5
+   },
+   {
+    "slug": "political-science",
+    "en": "Political science",
+    "uk": "Політологія",
+    "count": 4
+   },
+   {
+    "slug": "sociology",
+    "en": "Sociology",
+    "uk": "Соціологія",
+    "count": 1
+   }
+  ]
+ },
+ {
+  "slug": "information-technology",
+  "en": "Information technology",
+  "uk": "Інформаційні технології",
+  "count": 25,
+  "specs": [
+   {
+    "slug": "computer-science",
+    "en": "Computer science",
+    "uk": "Комп’ютерні науки",
+    "count": 24
+   }
+  ]
+ },
+ {
+  "slug": "management-and-administration",
+  "en": "Management and administration",
+  "uk": "Управління та адміністрування",
+  "count": 23,
+  "specs": [
+   {
+    "slug": "management",
+    "en": "Management",
+    "uk": "Менеджмент",
+    "count": 14
+   },
+   {
+    "slug": "entrepreneurship-and-trade",
+    "en": "Entrepreneurship and trade",
+    "uk": "Підприємництво та торгівля",
+    "count": 4
+   }
+  ]
+ },
+ {
+  "slug": "health-care",
+  "en": "Health care",
+  "uk": "Охорона здоров’я",
+  "count": 21,
+  "specs": [
+   {
+    "slug": "medicine",
+    "en": "Medicine",
+    "uk": "Медицина",
+    "count": 20
+   },
+   {
+    "slug": "public-health",
+    "en": "Public health",
+    "uk": "Громадське здоров’я",
+    "count": 3
+   }
+  ]
+ },
+ {
+  "slug": "manufacturing-and-technology",
+  "en": "Manufacturing and technology",
+  "uk": "Виробництво та технології",
+  "count": 17,
+  "specs": [
+   {
+    "slug": "environmental-protection-technology",
+    "en": "Environmental protection technology",
+    "uk": "Технології захисту навколишнього середовища",
+    "count": 11
+   },
+   {
+    "slug": "food-technology",
+    "en": "Food technology",
+    "uk": "Харчові технології",
+    "count": 6
+   }
+  ]
+ },
+ {
+  "slug": "education",
+  "en": "Education",
+  "uk": "Освіта",
+  "count": 16,
+  "specs": [
+   {
+    "slug": "pedagogical-sciences",
+    "en": "Pedagogical sciences",
+    "uk": "Педагогічні науки",
+    "count": 2
+   }
+  ]
+ },
+ {
+  "slug": "chemical-engineering-and-bioengineering",
+  "en": "Chemical engineering and bioengineering",
+  "uk": "Хімічна інженерія та біоінженерія",
+  "count": 14,
+  "specs": [
+   {
+    "slug": "biotechnology-and-bioengineering",
+    "en": "Biotechnology and bioengineering",
+    "uk": "Біотехнології та біоінженерія",
+    "count": 10
+   },
+   {
+    "slug": "chemical-technology-and-engineering",
+    "en": "Chemical technology and engineering",
+    "uk": "Хімічні технології та інженерія",
+    "count": 8
+   }
+  ]
+ },
+ {
+  "slug": "culture-and-arts",
+  "en": "Culture and arts",
+  "uk": "Культура і мистецтво",
+  "count": 13,
+  "specs": [
+   {
+    "slug": "museum-studies-heritage-studies",
+    "en": "Museum studies, heritage studies",
+    "uk": "Музеєзнавство, пам’яткознавство",
+    "count": 5
+   },
+   {
+    "slug": "information-library-and-archival-studies",
+    "en": "Information, library and archival studies",
+    "uk": "Інформаційна, бібліотечна та архівна справа",
+    "count": 3
+   },
+   {
+    "slug": "fine-arts-decorative-arts-restoration",
+    "en": "Fine arts, decorative arts, restoration",
+    "uk": "Образотворче мистецтво, декоративне мистецтво, реставрація",
+    "count": 2
+   }
+  ]
+ },
+ {
+  "slug": "agricultural-sciences-and-food",
+  "en": "Agricultural sciences and food",
+  "uk": "Аграрні науки та продовольство",
+  "count": 11,
+  "specs": [
+   {
+    "slug": "forestry",
+    "en": "Forestry",
+    "uk": "Лісове господарство",
+    "count": 3
+   }
+  ]
+ },
+ {
+  "slug": "international-relations",
+  "en": "International relations",
+  "uk": "Міжнародні відносини",
+  "count": 11,
+  "specs": []
+ },
+ {
+  "slug": "mathematics-and-statistics",
+  "en": "Mathematics and statistics",
+  "uk": "Математика та статистика",
+  "count": 10,
+  "specs": [
+   {
+    "slug": "mathematics",
+    "en": "Mathematics",
+    "uk": "Математика",
+    "count": 8
+   },
+   {
+    "slug": "applied-mathematics",
+    "en": "Applied mathematics",
+    "uk": "Прикладна математика",
+    "count": 3
+   },
+   {
+    "slug": "statistics",
+    "en": "Statistics",
+    "uk": "Статистика",
+    "count": 2
+   }
+  ]
+ },
+ {
+  "slug": "mechanical-engineering",
+  "en": "Mechanical engineering",
+  "uk": "Механічна інженерія",
+  "count": 9,
+  "specs": []
+ },
+ {
+  "slug": "journalism",
+  "en": "Journalism",
+  "uk": "Журналістика",
+  "count": 7,
+  "specs": []
+ },
+ {
+  "slug": "electrical-engineering",
+  "en": "Electrical engineering",
+  "uk": "Електрична інженерія",
+  "count": 7,
+  "specs": [
+   {
+    "slug": "electric-power-electrical-engineering-and-electromechanics",
+    "en": "Electric power, electrical engineering and electromechanics",
+    "uk": "Електроенергетика, електротехніка та електромеханіка",
+    "count": 3
+   }
+  ]
+ },
+ {
+  "slug": "law",
+  "en": "Law",
+  "uk": "Право",
+  "count": 5,
+  "specs": []
+ },
+ {
+  "slug": "electronics-automation-and-electronic-communications",
+  "en": "Electronics, automation and electronic communications",
+  "uk": "Електроніка, автоматизація та електронні комунікації",
+  "count": 3,
+  "specs": [
+   {
+    "slug": "electronic-communications-and-radio-engineering",
+    "en": "Electronic communications and radio engineering",
+    "uk": "Електронні комунікації та радіотехніка",
+    "count": 3
+   }
+  ]
+ },
+ {
+  "slug": "services",
+  "en": "Services",
+  "uk": "Сфера обслуговування",
+  "count": 3,
+  "specs": [
+   {
+    "slug": "tourism-and-recreation",
+    "en": "Tourism and recreation",
+    "uk": "Туризм і рекреація",
+    "count": 3
+   }
+  ]
+ }
+]

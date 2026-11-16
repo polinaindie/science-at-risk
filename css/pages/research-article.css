@@ -1,0 +1,39 @@
+/* Research article pages: easier to read at the column's own width. The site's e-Ukraine paragraph ran at 18/1.2 with the
+   paragraphs glued together; here the line is 1.65 with an even gap, and the text has a few accents:
+   the author line over a 2px black rule, the numbered findings with their title in bold, and percentages in bold. (The classes paper-lead / paper-point / paper-point__title are set in the HTML.) */
+.paper .paragraph {
+    margin: 0 0 1.25rem;
+    font-size: 1.0625rem;
+    line-height: 1.65;
+    letter-spacing: 0;
+}
+@media (min-width: 768px) { .paper .paragraph { font-size: 1.125rem; } }
+.paper .paragraph strong { font-weight: 700; }
+.paper .paragraph a { text-decoration: underline; text-underline-offset: 3px; }
+
+/* the author line: a small label over the names, then a black 2px rule */
+.paper .mb-5 {
+    margin-bottom: 2.5rem !important;
+    padding-bottom: 1.5rem;
+    border-bottom: 2px solid #000;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.8889rem;
+    line-height: 1.5;
+}
+.paper .mb-5 .paragraph { margin: 0.5rem 0 0; }
+
+/* a numbered finding / recommendation: its title in bold */
+.paper .paper-point { margin-top: 2rem; padding-left: 1.125rem; } /* the indent the bar used to give */
+.paper .paper-point__title { display: block; margin-bottom: 0.25rem; font-weight: 700; }
+
+/* the download block stays in view while the article scrolls (under the sticky header; the mobile layout puts it on top) */
+@media (min-width: 768px) {
+  .paper-aside { position: sticky; top: 120px; }
+}
+
+/* the download block: the button takes the whole width of the column, the file size is on the right under it */
+@media (min-width: 768px) {
+  .paper-aside { align-items: stretch; }
+  .paper-aside__download { width: 100%; text-align: center; }
+  .paper-aside__text { text-align: right; }
+}

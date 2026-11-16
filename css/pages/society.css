@@ -1,0 +1,193 @@
+.scientific-societies .content h2 {
+    margin-bottom: 12px;
+    font-family: "IBM Plex Mono", sans-serif;
+    color: #000;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.55556rem;
+    letter-spacing: -0.03em;
+}
+
+@media (max-width: 768px) {
+    .scientific-societies .content h2 {
+        font-size: 0.722rem;
+        letter-spacing: -0.022rem;
+    }
+}
+
+.scientific-societies .content p,
+.scientific-societies .content li,
+.scientific-societies .content table {
+    margin-bottom: 8px;
+    font-family: "e-Ukraine", sans-serif;
+    color: #000;
+    font-weight: 300;
+    font-size: .9rem;
+    line-height: 1.44444rem;
+}
+
+@media (max-width: 768px) {
+    .scientific-societies .content p,
+    .scientific-societies .content li,
+    .scientific-societies .content table {
+        font-size: 0.778rem;
+        line-height: 1.222rem;
+    }
+}
+
+.scientific-societies .content a {
+    font-family: "IBM Plex Mono", sans-serif;
+    color: #000;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.55556rem;
+    letter-spacing: -0.03em;
+}
+
+@media (max-width: 768px) {
+    .scientific-societies .content a {
+        font-size: 0.722rem;
+        line-height: 1rem;
+        letter-spacing: 0.022rem;
+    }
+}
+
+.scientific-societies .content li:last-child {
+    margin-bottom: 0;
+}
+
+.scientific-societies .content ul {
+    margin-bottom: 4rem;
+}
+
+.scientific-societies .content tr td {
+    padding-left: 2.444rem;
+    padding-bottom: 1.333rem;
+}
+
+@media (max-width: 768px) {
+    .scientific-societies .content tr {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .scientific-societies .content tr td {
+        width: 100%;
+        padding-left: 0;
+        padding-bottom: 0.444rem;
+    }
+
+    .scientific-societies .content tr td:last-child {
+        padding-bottom: 1.333rem;
+    }
+}
+
+.scientific-societies .content tr td:first-child {
+    width: 5rem;
+    padding-left: 0;
+}
+
+@media (max-width: 768px) {
+    .scientific-societies .content tr td:first-child {
+        width: 5.056rem;
+    }
+}
+
+.scientific-societies .content tr:last-child td {
+    padding-bottom: 0;
+}
+
+.scientific-societies .content .indent-top {
+    margin-top: 64px;
+}
+
+@media (max-width: 768px) {
+    .scientific-societies .content .indent-top {
+        margin-top: 3.111rem;
+    }
+}
+
+.scientific-societies .content {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 3.111rem;
+    padding-bottom: 3.111rem;
+}
+
+@media (max-width: 560px) {
+    .scientific-societies .content {
+        flex-direction: column-reverse;
+    }
+}
+
+.scientific-societies .main {
+    width: 100%;
+    max-width: 62.833rem;
+    padding-right: 2.444rem;
+}
+
+@media (max-width: 1440px) {
+    .scientific-societies .main {
+        max-width: 45.944rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .scientific-societies .main {
+        max-width: 25.333rem;
+        padding-right: 1.333rem;
+    }
+}
+
+.scientific-societies .aside {
+    width: 100%;
+    max-width: 23.167rem;
+}
+
+@media (max-width: 768px) {
+    .scientific-societies .aside {
+        max-width: 15.556rem;
+    }
+}
+
+@media (max-width: 560px) {
+    .scientific-societies .aside {
+        margin-bottom: 2.444rem;
+    }
+}
+
+.scientific-societies .aside h2 {
+    margin-top: 1.778rem;
+    margin-bottom: 0.444rem;
+}
+
+.scientific-societies .aside h2:first-child {
+    margin-top: 0;
+}
+
+.scientific-societies .aside p {
+    margin-bottom: 0.444rem;
+}
+
+.scientific-societies__links {
+    display: flex;
+    align-items: center;
+    margin-top: 1.778rem;
+}
+
+.scientific-societies__link {
+    margin-right: 1.778rem;
+}
+
+.scientific-societies__link:last-child {
+    margin-right: 0;
+}
+
+.scientific-societies .search-hero {
+    padding-bottom: 3.111rem;
+}
+
+.scientific-societies .search-hero__info-wrap {
+    max-width: 50rem;
+    margin-bottom: 0;
+}

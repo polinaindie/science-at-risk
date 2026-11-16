@@ -1,0 +1,412 @@
+@import url("expert-entities.css");
+
+/* A scientist's profile on the mirrored static pages: layout, sections, lists. The entities' type, the scale and the tokens are in expert-entities.css. */
+
+:focus-visible { outline: 2px solid #000; outline-offset: 3px; }
+
+/* ---- Layout: two columns, the left one stays in view ---- */
+.page > .wrapper {
+    /* the same content width as the header: 16px sides, 40px and a 1744px cap from 1280px */
+    box-sizing: border-box;
+    width: 100%;
+    max-width: none;
+    margin-inline: auto;
+    padding-inline: var(--s2);
+}
+
+@media (min-width: 1280px) {
+    .page > .wrapper { max-width: 1744px; padding-inline: 40px; }
+}
+
+.expert-profile { margin: 0; padding: 0; }
+
+.expert-profile > .col-lg-4,
+.expert-profile > .col-lg-8 { width: auto; max-width: none; padding: 0; float: none; flex: none; }
+
+@media (min-width: 768px) {
+
+    .expert-profile {
+        display: grid;
+        grid-template-columns: minmax(220px, 5fr) minmax(0, 7fr);
+        column-gap: var(--s5);
+        align-items: stretch;
+    }
+    .expert-profile > .col-lg-8 { align-self: start; }
+    .expert-profile > .col-lg-4 > .aside { align-self: start; }
+}
+
+@media (min-width: 1024px) {
+    .expert-profile { grid-template-columns: minmax(240px, 4fr) minmax(0, 8fr); }
+}
+
+/* The reading column shares the page colour and aligns with the photo's top edge. */
+.expert-profile > .col-lg-8 { background: var(--paper); padding: 0; }
+
+/* ---- Identity at the top of the right column: its type is in expert-entities.css ---- */
+.expert-id { margin: 0; max-width: 62ch; } /* the same measure as the paragraphs below (18px mono) */
+
+/* keywords sit right under the institution; the chips' own 5px padding is pulled back so they start on the text edge */
+.expert__tags {
+    order: 0;
+    flex-wrap: wrap;
+    margin: 11px 0 0 -5px;
+    padding-left: 0;
+    max-width: calc(62ch + 10px); /* chips stay inside the 62ch measure (their own 5px side padding is outside it) */
+}
+.expert__tags:not(:has(li)) { display: none; }
+
+/* The first section follows the keywords. */
+.expert__tags + .aside__mobile + .expertTitle,
+.expert__tags + .expertTitle { margin-top: var(--s3); }
+
+/* The left column stays in view: on short screens the photo shrinks to the screen height
+   and, as a last resort, the column scrolls on its own. */
+@media (min-width: 768px) {
+    .expert-profile > .col-lg-4 > .aside {
+        position: sticky;
+        top: var(--s3);
+        max-height: calc(100vh - 104px);
+        transition: top 0.25s ease;
+        overflow-y: auto;
+        overflow-x: hidden;
+        scrollbar-width: thin;
+    }
+    .expert-profile > .col-lg-4 > .aside > picture.aside__img {
+        width: min(100%, clamp(180px, 32vh, 360px));
+        padding-top: min(100%, clamp(180px, 32vh, 360px));
+        margin-inline: 0;
+    }
+}
+
+/* The right column reads: name, degree, institution, languages, keywords, then the sections.
+   The phone block's children join this flow; its Connect and links live in the left column on wide screens. */
+.expert-profile > .col-lg-8 { display: flex; flex-direction: column; }
+.aside__mobile.aside__mobile { display: contents !important; }
+.aside__mobile .aside__title, .aside__mobile .aside__lang-text { order: 1; }
+.aside__mobile .aside__lang-text { margin: 0 0 var(--s3); }
+.expertTitle, .col-lg-8 .expertParagraph, .projects { order: 5; }
+
+@media (min-width: 768px) {
+    .aside__mobile .aside__contact, .aside__mobile .aside__links { display: none; }
+}
+
+/* ---- Section titles: H2 28/34, the cabinet's serif, no rules ---- */
+.expertTitle.expertTitle--h4 {
+    margin: var(--s5) 0 var(--s2);
+    font-family: "Noto Serif", serif;
+    font-weight: 400;
+    font-size: var(--step-xl);
+    line-height: var(--step-xl-lh);
+    letter-spacing: -0.02em;
+    text-transform: none;
+    color: #000;
+    text-wrap: balance;
+}
+
+/* ---- Running text: IBM Plex Mono, one size for every paragraph ---- */
+.col-lg-8 .expertParagraph {
+    font-family: "IBM Plex Mono", monospace;
+    font-weight: 400;
+    font-size: var(--t-md);
+    line-height: 1.7;
+    letter-spacing: 0;
+    font-variant-ligatures: none;
+    text-align: left;
+    color: #000;
+    max-width: 62ch;
+    margin: 0 0 1.1em;
+}
+
+
+/* ---- Publications: year in its own column, article titles H3 20-22/28 ---- */
+.project-card__title {
+    font-size: var(--step-lg);
+    line-height: var(--step-lg-lh);
+}
+
+.project-card__wrapper:has(.project-card__year) {
+    display: grid;
+    grid-template-columns: 4.5em minmax(0, 1fr);
+    column-gap: var(--s3);
+}
+
+.project-card__wrapper:has(.project-card__year) > * { grid-column: 2; }
+
+.project-card__year {
+    grid-column: 1 !important;
+    grid-row: 1 / span 4;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: var(--t-sm);
+    line-height: 1.5556rem;
+    font-weight: 400;
+}
+
+/* e-Ukraine ships Light (300) and Bold (700) only; its 400 file does not load, so 400 renders heavy. */
+.project-card__text {
+    font-size: 0.8333rem;
+    font-weight: 300;
+    line-height: 1.65;
+}
+
+/* More air in each publication: space around the card, between title, authors and role. */
+.project-card { padding: var(--s4) 0; }
+.project-card__header { margin-bottom: var(--s2); }
+.project-card__text + .project-card__text { margin-top: var(--s2); }
+.projects { margin-top: var(--s3); }
+
+/* ---- Left column and the Connect button ---- */
+.aside__title { font-size: var(--t-xs); line-height: 1.5; letter-spacing: 0; }
+
+/* In the right column the languages label is a section title, like Research field and Experience */
+.aside__mobile .aside__title {
+    margin: var(--s5) 0 var(--s2);
+    font-family: "Noto Serif", serif;
+    font-weight: 400;
+    font-size: var(--step-xl);
+    line-height: var(--step-xl-lh);
+    letter-spacing: -0.02em;
+    text-transform: none;
+    color: #000;
+    text-wrap: balance;
+}
+.aside__lang-text, .aside__item-link { font-size: var(--t-sm); line-height: 1.5; }
+
+.aside__links + .aside__contact { margin-top: var(--s2); }
+.aside > .aside__contact { min-height: 48px; padding-inline: var(--s4); }
+
+/* On wide screens the button is exactly as wide as the photo above it. */
+@media (min-width: 768px) {
+    .expert-profile > .col-lg-4 > .aside > .aside__contact { display: flex; width: min(100%, clamp(180px, 32vh, 360px)); }
+}
+
+/* The links row had negative side margins that pushed it past the column: keep it inside, text on the photo's edge. */
+.aside__links { margin: var(--s2) 0 0; padding: 0; max-width: 100%; }
+.aside__links-item { padding: 4px var(--s3) 4px 0; }
+
+.expert-profile .btn,
+.expert-cta .btn,
+.tag { border-radius: var(--r); }
+
+/* ---- Minimum 14px: captions, chips, errors (breadcrumbs: css/breadcrumbs.css) ---- */
+.tag, .tag *, .help-form small, .help-form [class*="error"] { font-size: var(--t-xs); line-height: 1.4; }
+.tags .tag { background: #fff; }
+
+/* ---- Pause and coda before the footer ---- */
+.page { padding-bottom: var(--s7); }
+
+/* ---- Sticky call to action on phones ---- */
+.expert-cta { display: none; }
+
+/* ---- Phones: photo and identity first, then one sheet with Connect right below ---- */
+@media (max-width: 767px) {
+    .col-lg-8 .expertParagraph { font-size: var(--t-sm); max-width: none; line-height: 1.65; }
+
+    .expert-profile { display: block; }
+    .expert-profile > .col-lg-4 { display: block; width: 100%; margin-bottom: var(--s3); }
+    /* the left column's own languages, Connect and links repeat in the sheet on phones */
+    .expert-profile .aside.aside { display: block !important; }
+    .aside > .aside__title, .aside > .aside__lang-text, .aside > .aside__contact, .aside > .aside__links { display: none; }
+    .aside > picture.aside__img { width: 160px; padding-top: 160px; margin: 0; }
+    .aside > picture.aside__img img { object-fit: cover; border-radius: var(--r); }
+    .expert-id { margin: 0; }
+    .expert-id .expert__header { font-size: var(--t-xl); line-height: 1.15; }
+
+    .expert-profile > .col-lg-8 { display: grid; grid-template-columns: minmax(0, 1fr); width: 100%; padding: 0; }
+    .expert-profile > .col-lg-8 > picture.aside__img { display: none !important; }
+
+    /* the phone block's children join the grid: Connect, keywords, then languages and links */
+    .aside__mobile.aside__mobile { display: contents !important; }
+    .aside__mobile .aside__contact { order: 1; margin: 0 0 var(--s2); width: 100%; min-height: 48px; }
+    .aside__mobile .aside__title, .aside__mobile .aside__lang-text, .aside__mobile .aside__links { order: 3; }
+    .expertTitle, .col-lg-8 .expertParagraph, .projects { order: 5; }
+
+    .expert-cta {
+        display: block;
+        position: fixed;
+        inset: auto 0 0 0;
+        z-index: 40;
+        padding: var(--s1) var(--s2);
+        background: var(--paper);
+        border-top: 1px solid #000;
+    }
+    .expert-cta .btn { width: 100%; min-height: 48px; }
+    .page { padding-bottom: calc(var(--s7) + 48px); }
+}
+
+/* ---- Ground colour ---- */
+.base-wrap.header-expert,
+.page.expert { background-color: var(--ground); }
+
+/* ---- Header: leaves on scroll down, returns on scroll up ---- */
+.satr-chrome.satr-chrome--header {
+    position: fixed;
+    z-index: 60;
+    transition: transform 0.25s ease, background-color 0.2s ease;
+    will-change: transform;
+}
+
+.satr-chrome.satr-chrome--header.is-stuck { background-color: var(--ground); }
+.satr-chrome.satr-chrome--header.is-hidden { transform: translateY(-100%); }
+
+@media (prefers-reduced-motion: reduce) {
+    .satr-chrome.satr-chrome--header { transition: none; }
+}
+
+/* ---- Breadcrumbs ride with the photo and the button in the sticky column ---- */
+.aside > .breadcrumbs { margin: 0 0 var(--s2); }
+.aside .breadcrumbs__list { flex-wrap: wrap; white-space: normal; overflow: visible; row-gap: 2px; }
+
+/* While the header is showing (scrolling up), the column steps below it. */
+@media (min-width: 768px) {
+    body:has(.satr-chrome--header.is-stuck:not(.is-hidden)) .expert-profile > .col-lg-4 > .aside { top: 80px; }
+}
+
+/* ---- Contact modal: languages line, icon-only close, fields in the order Name, Email, Text ---- */
+.help-form__langs { margin-top: var(--s1); margin-bottom: var(--s4); }
+
+/* Close: a bare white X, 2px strokes, no button shape */
+.expertHelp .help-form__btn-close {
+    justify-content: center;
+    align-items: center;
+    width: 44px; /* a 44 x 44 touch area around a smaller cross */
+    min-width: 44px;
+    height: 44px;
+    padding: 0;
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    -webkit-clip-path: none;
+    clip-path: none;
+    box-shadow: none;
+}
+.expertHelp .help-form__btn-close svg { width: 20px; height: 20px; }
+.expertHelp .help-form__btn-close svg path {
+    stroke: #fff;
+    stroke-width: 2px;
+    vector-effect: non-scaling-stroke; /* always exactly 2px, whatever the icon size */
+    stroke-linecap: butt; /* flat ends, nothing rounded */
+}
+
+/* In the top right corner, its edge on the page's content edge (16px, 40px from 1280px) */
+@media (min-width: 768px) {
+    .expertHelp .help-form__btn-close { top: -36px; right: 4px; } /* the cross stays 16px from the black panel's top and right edges (44px area, 20px cross) */
+}
+@media (min-width: 1280px) {
+    .expertHelp .help-form__btn-close { top: -22px; right: 28px; } /* 40px from both edges, like the header */
+}
+
+.expertHelp .wrapper > .row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--s4) var(--s5);
+    align-items: end;
+    margin: 0;
+}
+
+.expertHelp .wrapper > .row .help-form__input { margin-bottom: 0; }
+
+.expertHelp .wrapper > .row > * {
+    order: 0 !important;
+    width: auto;
+    max-width: none;
+    padding: 0;
+    margin: 0;
+}
+
+.expertHelp .wrapper > .row > .contacts-page__form-captcha,
+.expertHelp .wrapper > .row > :last-child { grid-column: 1 / -1; }
+
+@media (min-width: 768px) {
+    .expertHelp .wrapper > .row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    /* Name and Email side by side; Text under them across the full width */
+    .expertHelp .wrapper > .row > :nth-child(3) { grid-column: 1 / -1; }
+}
+
+/* ---- Identity repeated under the photo once the big one has scrolled away (wide screens) ---- */
+.aside-mini { display: none; }
+
+@media (min-width: 768px) {
+    .aside-mini {
+        display: grid;
+        grid-template-rows: 0fr;
+        opacity: 0;
+        width: min(100%, clamp(180px, 32vh, 360px));
+        transition: grid-template-rows 0.25s ease, opacity 0.2s ease, margin-top 0.25s ease;
+    }
+    .aside-mini.is-on { grid-template-rows: 1fr; opacity: 1; }
+    .aside-mini__inner { overflow: hidden; min-height: 0; padding-top: 0; }
+    /* photo to text is 16px, like photo to links when the block is hidden */
+    .aside-mini.is-on + .aside__links { margin-top: var(--s2); }
+    .aside-mini.is-on + .aside__contact { margin-top: var(--s2); } /* a profile without links: the button still stands 16px under the institution */
+    .aside-mini :where(p) { margin: 0; overflow-wrap: anywhere; }
+    /* who (name, degree, institution), then the links 24px below */
+    .aside-mini__name { font-family: "Noto Serif", serif; font-weight: 400; font-size: var(--t-xl); line-height: 1.15; letter-spacing: -0.02em; }
+    .aside-mini__line { font-size: var(--t-sm); line-height: 1.5; margin-top: var(--s2); }
+    .aside-mini__name + .aside-mini__line { font-family: "e-Ukraine", sans-serif; font-weight: 300; line-height: 1.3333rem; }
+    .aside-mini__place { font-family: "IBM Plex Mono", monospace; font-weight: 400; font-size: var(--t-xs); line-height: 1.2222rem; margin-top: 4px; color: #4a5459; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .aside-mini { transition: none; }
+}
+
+/* ---- Experience as a timeline, the way the cabinet prints it: year column, the post, then the place ---- */
+.exp-list { order: 5; list-style: none; margin: var(--s1) 0 0; padding: 0; display: grid; gap: var(--s3); max-width: 62ch; }
+.exp-item { display: grid; grid-template-columns: var(--exp-year-w, 6ch) minmax(0, 1fr); column-gap: var(--s2); }
+.exp-year { font-family: "IBM Plex Mono", monospace; font-size: var(--t-sm); line-height: 1.2222rem; padding-top: 2px; }
+.exp-pos { display: block; font-family: "e-Ukraine", sans-serif; font-weight: 300; font-size: var(--t-sm); line-height: 1.3333rem; }
+.exp-place { display: block; margin-top: 4px; font-family: "IBM Plex Mono", monospace; font-size: var(--t-xs); line-height: 1.2222rem; }
+
+@media (min-width: 768px) {
+    .exp-item { column-gap: var(--s3); }
+    .exp-year { padding-top: 3px; }
+}
+
+/* Links and the button sit close under the photo */
+@media (min-width: 768px) {
+    .expert-profile > .col-lg-4 > .aside > picture.aside__img { margin-bottom: var(--s2); }
+}
+
+/* The languages themselves are running text: IBM Plex Mono, like the paragraphs */
+.aside__mobile .aside__lang-text {
+    font-family: "IBM Plex Mono", monospace;
+    font-weight: 400;
+    font-size: var(--t-md);
+    line-height: 1.65;
+    font-variant-ligatures: none;
+}
+
+/* ---- Hint under the Write button: the languages to write in, in the cabinet's alert style (yellow, square) ---- */
+.contact-tip { display: none; }
+@media (min-width: 768px) {
+    /* room under the button for the note, so the column's own scroll does not clip it */
+    .expert-profile > .col-lg-4 > .aside { padding-bottom: 56px; }
+    .contact-tip {
+        display: block;
+        position: absolute;
+        box-sizing: border-box;
+        padding: var(--s1) 12px;
+        background: #f0eebe;
+        color: #000;
+        border-radius: 0;
+        font-family: "IBM Plex Mono", monospace;
+        font-size: var(--t-xs);
+        line-height: 1.1111rem;
+        letter-spacing: -0.03em;
+        pointer-events: none;
+        opacity: 0;
+        transform: translateY(-4px);
+        transition: opacity 0.15s ease, transform 0.15s ease;
+        z-index: 5;
+    }
+    .contact-tip.is-on { opacity: 1; transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .contact-tip { transition: none; transform: none; }
+}
+
+/* Languages in the contact form: each one on the cabinet's alert yellow, separated by commas */
+.help-form__lang { background: #f0eebe; color: #000; padding: 1px 6px; }
+
+/* The last item of a list has no rule under it, and no padding below, so the next heading's own space is the only gap */
+.projects__item:last-child .project-card { border-bottom: 0; padding-bottom: 0; }

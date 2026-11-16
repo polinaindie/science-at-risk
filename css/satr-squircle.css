@@ -11,11 +11,11 @@
   position: relative;
   display: inline-block;
   isolation: isolate;
-  padding: 7px 18px;
+  padding: 5px 14px;
   color: var(--link-ink);
   font-family: 'IBM Plex Mono', monospace;
-  font-size: 16px;
-  line-height: 24px;
+  font-size: 15px;
+  line-height: 22px;
   white-space: nowrap;
   text-decoration: none;
   transition: color 0.2s;
@@ -76,3 +76,11 @@ body .expertTitle.expertTitle--h4 {
     line-height: 34px;
   }
 }
+
+/* ---- The header stays at the top of every static page ----
+   js/satr-squircle.js adds .satr-sticky (not on the home page, which has two headers of its own, and not on the scientist
+   profile, which has its own header that leaves on scroll down). Without the script the header is where it always was. */
+.satr-chrome.satr-chrome--header.satr-sticky { position: fixed; z-index: 60; transition: background-color 0.2s ease; }
+@media (prefers-reduced-motion: reduce) { .satr-chrome.satr-chrome--header.satr-sticky { transition: none; } }
+/* Stuck (scrolled): the same 26px of room under the menu as over it, so the text under the bar does not touch it. */
+.satr-chrome.satr-chrome--header.satr-sticky.is-stuck > header > div:first-child { padding-bottom: 26px; height: 94px !important; }

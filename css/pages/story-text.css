@@ -1,0 +1,51 @@
+/* Blog / story text: easier to read. The site's e-Ukraine paragraph ran at 16/1.19 (tight) with 32px above and below
+   every paragraph, headings had a 48px gap under them; here the type has the same size and line height as the research
+   articles (18/20px, line 1.65), even paragraph gaps, and headings sit close to the text they introduce.
+   Scoped to .story so nothing else changes. */
+.story .paragraph {
+    margin: 0 0 1.25rem;
+    font-size: 1rem; /* 18px */
+    line-height: 1.65;
+    letter-spacing: 0;
+}
+.story .paragraph.mt-0 { margin-top: 0; }
+.story .paragraph strong, .story .paragraph b { font-weight: 700; }
+
+/* headings: a clear scale over the 18/20px text (body 18px; h1 48 = x2.7, h2 30 = x1.7, h3 24 = x1.3; steps of ~1.25),
+   air above, close below. The original h2 28px / h3 24px were set for 16px text; at 20px they were x1.4 and x1.2,
+   too near the body and to each other. */
+.story .col-md-9 .heading--h2 { margin: 3rem 0 1rem; font-size: 1.4444rem; line-height: 1.25; }
+.story .col-md-9 .heading--h3 { margin: 2.25rem 0 0.75rem; font-size: 1.25rem; line-height: 1.3; }
+@media (min-width: 768px) {
+  .story .col-md-9 .heading--h2 { font-size: 1.6667rem; }
+  .story .col-md-9 .heading--h3 { font-size: 1.3333rem; }
+}
+.story .col-md-9 .heading--h2:first-child, .story .col-md-9 .heading--h3:first-child { margin-top: 0; }
+
+/* a quote and a picture keep their own rhythm */
+.story .quote { margin: 2.5rem 0; }
+.story figure.image { margin: 2rem 0; }
+.story figure.image figcaption { margin-top: 0.5rem; font-size: 0.9rem; line-height: 1.5; color: #333; }
+
+/* the quote: its text sits in .quote__name (16/19 in the original, in a block with 4px bar): the same size as the paragraphs */
+.story .quote { padding-left: 1.5rem; }
+.story .quote__author { margin-top: 0; }
+.story .quote__name { font-size: 1rem; line-height: 1.6; }
+.story .quote__position { font-size: 0.9444rem; line-height: 1.5; margin-top: 0.5rem; }
+
+/* the type of the story (Stories / Blogs / News) over the title, as on its card in the list: small underlined text */
+.story__type { display: inline-block; margin-bottom: 1rem; font-family: "IBM Plex Mono", monospace; font-size: 0.7778rem; line-height: 1.3; color: #000; text-decoration: underline; text-underline-offset: 4px; }
+.story__type:hover { text-decoration-thickness: 2px; }
+
+/* a long intro / author bio that the pages had set as an h2/h3 (up to 800 characters in 28px serif) is a plain paragraph now
+   (class story-lead): the same typeface, weight and size as the rest of the text, so it needs no rule of its own. */
+
+/* the share line at the end of a story: a 2px rule over it, and the type a step larger */
+.story .link { margin-top: 3rem; padding-top: 1.5rem; border-top: 2px solid #000; align-items: baseline; justify-content: space-between; }
+.story .link__title { margin: 0 1.5rem 0 0; font-size: 1rem; line-height: 1.5; }
+.story .link__wrap { gap: 1.5rem; margin-left: auto; }
+.story .link__item { margin-right: 0; } /* the links sit at the right edge of the block */
+.story .link__item a, .story .link__item .hover { font-size: 1rem; line-height: 1.5; }
+
+/* the type of a story on its card (the "Other stories" at the foot of a story): small underlined text over the title */
+.story-card__type { display: inline-block; margin-bottom: 12px; font-family: "IBM Plex Mono", monospace; font-size: 0.7778rem; line-height: 1.3; color: #000; text-decoration: underline; text-underline-offset: 4px; }
