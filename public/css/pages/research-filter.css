@@ -35,7 +35,6 @@
     visibility: hidden;
     transition: opacity 0.15s;
 }
-.research-filter__tag:nth-last-child(-n+2) .research-filter__tip { left: auto; right: 0; }
 .research-filter__tag:hover .research-filter__tip,
 .research-filter__tag:focus-visible .research-filter__tip { opacity: 1; visibility: visible; }
 @media (prefers-reduced-motion: reduce) { .research-filter__tip { transition: none; } }

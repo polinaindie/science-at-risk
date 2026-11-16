@@ -390,7 +390,7 @@ export function CabinetDemo({
         <SubmitConfirmModal locale={locale} onClose={() => setConfirmed(false)} />
       ) : null}
 
-      {chrome && !editing && !onboarding ? <Footer locale={locale} account="member" cabinetHref={`${base}cabinet`} /> : null}
+      {chrome && !editing && !onboarding ? <Footer locale={locale} /> : null}
     </div>
   );
 }

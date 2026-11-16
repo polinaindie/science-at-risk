@@ -16,7 +16,7 @@ export interface NavEntry {
   href: string;
 }
 
-/** The same seven sections in Ukrainian. */
+/** The same sections in Ukrainian. */
 export const siteNavItemsUk = (base: string = APP_BASE): NavEntry[] => [
   { label: 'Науковці', href: `${base}scientists.html` },
   { label: 'Товариства', href: `${base}societies.html` },
@@ -24,7 +24,6 @@ export const siteNavItemsUk = (base: string = APP_BASE): NavEntry[] => [
   { label: 'Історії', href: `${base}stories.html` },
   { label: 'Інфраструктура', href: `${base}infrastructures.html` },
   { label: 'Про нас', href: `${base}about.html` },
-  { label: 'Контакти', href: `${base}contacts.html` },
 ];
 
 /** Where the cabinet lives. Placeholders: the backend owns these routes. */
@@ -228,7 +227,6 @@ export const siteNavItems = (base: string = APP_BASE): NavEntry[] => [
   { label: 'Stories', href: `${base}stories.html` },
   { label: 'Infrastructure', href: `${base}infrastructures.html` },
   { label: 'About', href: `${base}about.html` },
-  { label: 'Contacts', href: `${base}contacts.html` },
 ];
 
 /**

@@ -40,3 +40,22 @@
   function init() { document.querySelectorAll('.swiper-gallery').forEach(gallery); updated(); repaint(); setTimeout(repaint, 1200); }
   if (document.readyState === 'complete') init(); else window.addEventListener('load', init);
 })();
+
+/* Escape closes the help form (the X and the dimmed page already do) */
+document.addEventListener('keydown', function (e) {
+  if (e.key !== 'Escape') return;
+  var open = document.querySelector('.person-card__help.active [data-popup-close]');
+  if (open) open.click();
+});
+
+/* The help form is moved to the end of <body> so that it is a dialog over the whole page (inside the sticky block it would
+   sit under the photos and the header). Without the script it stays where it is. */
+(function () {
+  function lift() {
+    var pop = document.querySelector('.infra-contact [data-popup="help"]');
+    if (!pop) return;
+    pop.classList.add('infra-popup');
+    document.body.appendChild(pop);
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', lift); else lift();
+})();

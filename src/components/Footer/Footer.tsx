@@ -31,14 +31,6 @@ export interface FooterProps {
   maxLength?: number;
   overLimitMessage?: string;
   onSubmit?: (data: FooterSubmitData) => void;
-  /** The bottom row: the way into the cabinet, repeated from the header. */
-  account?: 'guest' | 'member';
-  loginLabel?: string;
-  loginHref?: string;
-  cabinetLabel?: string;
-  cabinetHref?: string;
-  logoutLabel?: string;
-  logoutHref?: string;
   className?: string;
 }
 
@@ -59,9 +51,6 @@ const RIGHT_TITLE =
   'mb-4 max-w-[280px] font-mono text-h3-mobile text-white xl:max-w-[383px] xl:text-h3-desktop min-[1440px]:max-w-[280px]';
 const RIGHT_LINK =
   'satr-hover-underline satr-hover-underline--white mt-4 block font-mono text-h3-mobile text-white no-underline xl:text-h3-desktop';
-
-const ACCOUNT_LINK =
-  'satr-hover-underline satr-hover-underline--white font-mono text-h3-mobile text-white no-underline xl:text-h3-desktop';
 
 /**
  * The foot of the page, as scienceatrisk.org has it: the ask across the top,
@@ -84,13 +73,6 @@ export function Footer({
   maxLength = 7000,
   overLimitMessage = footerCopy[locale].overLimit,
   onSubmit,
-  account = 'guest',
-  loginLabel = footerCopy[locale].login,
-  loginHref = `${import.meta.env.BASE_URL}${locale === 'uk' ? 'uk/' : ''}login.html`,
-  cabinetLabel = footerCopy[locale].cabinet,
-  cabinetHref = '/cabinet',
-  logoutLabel = footerCopy[locale].logout,
-  logoutHref = '/logout',
   className = '',
 }: FooterProps) {
   const [count, setCount] = useState(0);
@@ -220,27 +202,6 @@ export function Footer({
               </a>
             </div>
           </div>
-        </div>
-
-        {/* The bottom row. */}
-        <div
-          className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-3 border-t border-white/25 pt-6"
-          data-satr-account={account}
-        >
-          {account === 'member' ? (
-            <>
-              <a href={cabinetHref} className={ACCOUNT_LINK}>
-                {cabinetLabel}
-              </a>
-              <a href={logoutHref} className={ACCOUNT_LINK}>
-                {logoutLabel}
-              </a>
-            </>
-          ) : (
-            <a href={loginHref} className={ACCOUNT_LINK}>
-              {loginLabel}
-            </a>
-          )}
         </div>
       </div>
     </footer>

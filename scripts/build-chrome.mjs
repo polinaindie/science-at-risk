@@ -46,20 +46,10 @@ try {
     vite.ssrLoadModule('/src/components/Footer/index.ts'),
   ]);
 
-  const renderFooter = (ua, base) =>
+  const renderFooter = (ua) =>
     renderToStaticMarkup(
-      createElement(
-        footerMod.Footer,
-        ua
-          ? {
-              // The whole footer in Ukrainian: its own copy knows the words.
-              locale: 'uk',
-              loginHref: `${base}uk/login.html`,
-              cabinetHref: `${base}cabinet`,
-              logoutHref: `${base}logout`,
-            }
-          : { loginHref: `${base}login.html`, cabinetHref: `${base}cabinet`, logoutHref: `${base}logout` },
-      ),
+      // The whole footer in Ukrainian: its own copy knows the words.
+      createElement(footerMod.Footer, ua ? { locale: 'uk' } : {}),
     ).replace(/<link rel="preload"[^>]*>/g, '');
 
   // <div ...data-satr-chrome="header"...> ... <header>…</header> ... </div>
@@ -78,7 +68,7 @@ try {
     const base = '../'.repeat(depth);
 
     const headRe = /<!-- satr-chrome:head -->[\s\S]*?<!-- \/satr-chrome:head -->/;
-    const head = `<!-- satr-chrome:head --><link rel="stylesheet" href="${base}css/satr-chrome.css"><link rel="stylesheet" href="${base}css/satr-squircle.css"><script src="${base}js/satr-chrome.js" defer></script><script src="${base}js/satr-squircle.js" defer></script><!-- /satr-chrome:head -->`;
+    const head = `<!-- satr-chrome:head --><link rel="stylesheet" href="${base}css/satr-chrome.css"><link rel="stylesheet" href="${base}css/satr-squircle.css"><script src="${base}js/satr-chrome.js" defer></script><script src="${base}js/satr-squircle.js" defer></script><script src="${base}js/satr-email.js" defer></script><!-- /satr-chrome:head -->`;
 
     const next = html
       .replace(headRe, () => head)
@@ -102,7 +92,7 @@ try {
         );
         return open + bar.replace(/<link rel="preload"[^>]*>/g, '');
       })
-      .replace(footerRe, (_m, open) => open + renderFooter(/<html[^>]*lang="uk"/.test(html), base));
+      .replace(footerRe, (_m, open) => open + renderFooter(/<html[^>]*lang="uk"/.test(html)));
 
     if (next !== html) {
       changed += 1;

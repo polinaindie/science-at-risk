@@ -68,6 +68,16 @@
                 tip.textContent = t.explain[id];
                 b.setAttribute('aria-describedby', tip.id);
                 b.appendChild(tip);
+                /* keep the tooltip inside the screen: shift it sideways by however much it overflows */
+                var place = function () {
+                    tip.style.transform = '';
+                    var r = tip.getBoundingClientRect(), vw = document.documentElement.clientWidth, m = 16, dx = 0;
+                    if (r.right > vw - m) dx = vw - m - r.right;
+                    if (r.left + dx < m) dx = m - r.left;
+                    if (dx) tip.style.transform = 'translateX(' + Math.round(dx) + 'px)';
+                };
+                b.addEventListener('mouseenter', place);
+                b.addEventListener('focus', place);
             }
             b.addEventListener('click', function () { toggle(id); });
             tagsBox.appendChild(b);

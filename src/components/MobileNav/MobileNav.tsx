@@ -3,6 +3,10 @@ import type { ReactNode } from 'react';
 export interface NavItem {
   label: string;
   href: string;
+  /** An address shipped encoded (see public/js/satr-email.js); the page script fills in the text and the mailto. */
+  email?: string;
+  /** A line above the link, for an address (EN, UK). */
+  note?: [string, string];
 }
 
 export interface MobileNavProps {
@@ -53,6 +57,7 @@ const defaultSocial: NavItem[] = [
   { label: 'X (Twitter)', href: 'https://twitter.com/ScienceAtRisk' },
   { label: 'Linkedin', href: 'https://www.linkedin.com/company/scienceatrisk' },
   { label: 'Facebook', href: 'https://www.facebook.com' },
+  { label: '[email protected]', href: '#', note: ['For general inquiries', 'Для загальних запитів'], email: '5b302e3528332f363a3c3a2132353e1b3c363a323775383436' },
 ];
 
 /**
@@ -91,7 +96,7 @@ export function MobileNav({
 
   return (
     <div
-      className={`flex h-full w-full max-w-[330px] flex-col overflow-y-auto ${surface} px-8 py-7 ${className}`.trim()}
+      className={`flex h-full w-full max-w-[420px] flex-col overflow-y-auto ${surface} px-8 py-7 ${className}`.trim()}
       role="dialog"
       aria-modal="true"
       aria-label={menuLabel}
@@ -127,14 +132,35 @@ export function MobileNav({
       </nav>
       <hr className={`my-5 border-0 border-t ${divider}`} />
       <ul className="m-0 flex list-none flex-col gap-5 p-0">
-        {social.map((item) => (
-          <li key={item.label}>
-            <a href={item.href} className={linkClass}>
+        {social
+          .filter((item) => !item.email)
+          .map((item) => (
+            <li key={item.label}>
+              <a href={item.href} className={linkClass}>
+                {item.label}
+              </a>
+            </li>
+          ))}
+      </ul>
+      {/* Addresses stand apart, under their own rule; from `md` up (no cabinet block here) they sit at the foot. */}
+      {social
+        .filter((item) => item.email)
+        .map((item) => (
+          <div key={item.label} className="md:mt-auto">
+            <hr className={`my-5 border-0 border-t ${divider}`} />
+            {item.note && (
+              <p className="m-0 mb-1 font-mono text-text1-mobile opacity-70">{isUa ? item.note[1] : item.note[0]}</p>
+            )}
+            <a
+              href={item.href}
+              className={`${linkClass} break-all text-[17px] min-[420px]:text-h3-desktop`}
+              data-satr-email={item.email}
+              data-satr-email-text=""
+            >
               {item.label}
             </a>
-          </li>
+          </div>
         ))}
-      </ul>
       {/* The way into the cabinet, last under its own rule. From `md` up the bar carries it, so the menu does not repeat it. */}
       <div className={`md:hidden sticky bottom-0 mt-auto -mb-7 pb-7 pt-5 ${surface}`}>
       <hr className={`mb-5 border-0 border-t ${divider}`} />

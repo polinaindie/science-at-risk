@@ -129,7 +129,7 @@ const researchUk: ResearchSectionProps = {
   papers: [
     {
       title: 'Вплив війни на різні категорії українських науковців',
-      description: 'Дослідження: Олена Козак, Лідія Куземська, Євгенія Поліщук, Катерина Чуєва',
+      description: 'Автор(и): Олена Козак, Лідія Куземська, Євгенія Поліщук, Катерина Чуєва',
       href: live('research/impact-of-the-war-on-different-categories-of-ukrainian-scholars.html'),
       downloadHref: '/research/impact-of-the-war-on-different-categories-of-ukrainian-scholars.pdf',
       ctaLabel: 'Докладніше',
@@ -138,7 +138,7 @@ const researchUk: ResearchSectionProps = {
     {
       title:
         'Механізми підтримки науковців, які опинилися під загрозою: історичний розвиток, дані опитування та уроки політики з воєнної України',
-      description: 'Дослідження: Ілона Свєженцева, Ігор Лиман',
+      description: 'Автор(и): Ілона Свєженцева, Ігор Лиман',
       href: live('research/support-mechanisms-for-researchers-at-risk-historical-development-survey-evidence-and-policy-lessons-from-wartimeukraine.html'),
       downloadHref: '/research/support-mechanisms-for-researchers-at-risk.pdf',
       ctaLabel: 'Докладніше',
@@ -148,7 +148,7 @@ const researchUk: ResearchSectionProps = {
       title:
         'Стратегічне визначення пріоритетів у дослідженнях під час кризи: як оптимізувати ухвалення рішень заради стійкості суспільства',
       description:
-        'Дослідження: Павло Гольдін, Олексій Колежук, Віталій Омельяненко, Анна Воронцова, Світлана Тарасенко',
+        'Автор(и): Павло Гольдін, Олексій Колежук, Віталій Омельяненко, Анна Воронцова, Світлана Тарасенко',
       href: live('research/strategic-priority-setting-in-research-in-times-of-crisis-how-to-optimise-decision-making-for-societal-resilience.html'),
       downloadHref: '/research/strategic-priority-setting-in-research.pdf',
       ctaLabel: 'Докладніше',
