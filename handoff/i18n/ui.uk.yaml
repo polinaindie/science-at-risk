@@ -1,0 +1,385 @@
+# Hugo i18n table, Ukrainian. Same keys as ui.en.yaml. Plural entries use one/few/many/other.
+# Marks: no mark = the string already exists in the repo (cited in the section header);
+#        "# DRAFT-UK" = written for this hand-off, needs a native editor; "# TODO translate" = left in English on purpose.
+# Keys are flat dotted ids (Hugo does not flatten nested YAML in every version).
+
+
+# ----------------------------------------------------------------------
+# Header, navigation, menu (public/js/satr-chrome.js markup, public/uk.html chrome)
+# ----------------------------------------------------------------------
+site.name: "Science At Risk"
+nav.scientists: "Науковці"
+nav.societies: "Товариства"
+nav.research: "Дослідження"
+nav.stories: "Історії"
+nav.infrastructure: "Інфраструктура"
+nav.about: "Про нас"
+nav.primary_aria: "Основна навігація"
+nav.menu_open: "Відкрити меню"
+nav.menu_close: "Закрити меню"
+nav.menu_dialog: "Меню"
+nav.login: "Увійти"
+nav.cabinet: "Мій кабінет"
+nav.logout: "Вийти"
+nav.general_inquiries: "Для загальних запитів"
+nav.language_en: "ENG"
+nav.language_uk: "УКР"
+nav.language_switch_aria: "Змінити мову"  # DRAFT-UK
+nav.skip_to_content: "Перейти до вмісту"  # DRAFT-UK
+nav.back_to_top: "Повернутися нагору"
+social.twitter: "X (Twitter)"
+social.linkedin: "Linkedin"
+social.facebook: "Facebook"
+
+# ----------------------------------------------------------------------
+# Footer and the "Want to help?" form (src/components/Footer/footerCopy.ts, public/*.html footer)
+# ----------------------------------------------------------------------
+footer.title: "Хочете допомогти?"
+footer.subtitle: "Заповніть форму або зв’яжіться з нами"
+footer.submit: "Надіслати"
+footer.partners_title: "Проєкт підтримують:"
+footer.implementer_title: "Відповідальні за реалізацію проєкту:"
+footer.implementer_label: "ГО «Куншт»"
+footer.over_limit: "Будь ласка, скоротіть ваше звернення."
+footer.thanks: "Дякуємо, ми отримали ваше повідомлення."
+footer.partner_1: "Відділ преси, освіти та культури Посольства США в Україні"
+footer.partner_2: "Фонд Альфреда П. Слоуна"
+footer.partner_3: "Міністерство освіти і науки України"
+footer.partner_4: "Національний фонд досліджень України"
+form.field_name: "Ім’я"
+form.field_email: "Електронна пошта"
+form.field_topic: "Тема"
+form.field_text: "Повідомлення"
+
+# ----------------------------------------------------------------------
+# Connect (write to a scientist) and Want to help (write to a coordinator): one form family. Existing strings: public/expert/*.html, public/infrastructure/*.html, satr-chrome.js. Everything about errors, rate limit and backend down is NEW: the static site has no such states.
+# ----------------------------------------------------------------------
+connect.button_named: "Написати: {{ .Name }}"  # DRAFT-UK
+connect.button: "Зв’язатися"  # DRAFT-UK
+connect.title: "Зв’язатися з науковцем"  # DRAFT-UK
+connect.lede: "Заповніть форму, щоб написати науковцеві напряму"  # DRAFT-UK
+connect.languages: "Науковець спілкується мовами:"  # DRAFT-UK
+connect.languages_tip: "Пишіть такою мовою: {{ .Languages }}"  # DRAFT-UK
+help.title: "Хочете допомогти?"
+help.lede: "Заповніть форму або зв’яжіться з нами"
+help.button: "Зв’язатися та допомогти"  # DRAFT-UK
+help.note: "Допомога йде через координатора. Напишіть йому, і він підкаже, як долучитися."  # DRAFT-UK
+help.or_email: "Або напишіть на пошту:"  # DRAFT-UK
+help.needed: "Потрібно"  # DRAFT-UK
+help.updated: "Потребу оновлено: {{ .Date }}"  # DRAFT-UK
+form.label_name: "Ім’я"
+form.label_email: "Електронна пошта"
+form.label_message: "Повідомлення"
+form.counter: "({{ .Count }} / {{ .Max }})"
+form.submit: "Надіслати"
+form.close: "Закрити"  # DRAFT-UK
+form.sending: "Надсилаємо…"  # DRAFT-UK
+form.recaptcha_note: "Цю форму захищено reCAPTCHA."  # DRAFT-UK
+form.error_required: "Заповніть це поле."  # DRAFT-UK
+form.error_name_required: "Вкажіть ваше ім’я."  # DRAFT-UK
+form.error_email_required: "Вкажіть вашу електронну пошту."
+form.error_email_invalid: "Вкажіть дійсну адресу, наприклад name@example.org."
+form.error_message_required: "Напишіть повідомлення."  # DRAFT-UK
+form.error_too_long: "Будь ласка, скоротіть ваше звернення."
+form.error_captcha: "Підтвердьте, що ви не робот."  # DRAFT-UK
+form.success_title: "Повідомлення надіслано"  # DRAFT-UK
+form.success: "Дякуємо, ми отримали ваше повідомлення."
+form.success_connect: "Дякуємо. Ваше повідомлення піде до {{ .Name }}, відповідь надійде на вашу пошту."  # DRAFT-UK
+form.error_rate_limit: "Ви надіслали кілька повідомлень поспіль. Зачекайте кілька хвилин і спробуйте знову."  # DRAFT-UK
+form.error_backend_down: "Не вдалося надіслати повідомлення: сервіс не відповідає. Ваш текст збережено у формі. Спробуйте за кілька хвилин або напишіть на {{ .Email }}."  # DRAFT-UK
+form.error_unknown: "Щось пішло не так. Спробуйте ще раз."  # DRAFT-UK
+form.error_offline: "Немає з’єднання. Перевірте мережу й спробуйте ще раз."  # DRAFT-UK
+form.retry: "Спробувати ще раз"  # DRAFT-UK
+
+# ----------------------------------------------------------------------
+# Scientists list and search (public/scientists.html, public/js/scientists-filter.js)
+# ----------------------------------------------------------------------
+scientists.title: "Знайдіть партнерів в українській науці"
+scientists.scope_aria: "Шукати серед"
+scientists.scope_scientists: "Науковці"
+scientists.scope_societies: "Товариства"
+scientists.search_placeholder: "Введіть ім’я, наукову галузь або спеціальність"  # DRAFT-UK
+scientists.search_button: "Знайти науковців"
+scientists.popular: "Популярні спеціальності"  # DRAFT-UK
+scientists.popular_requests: "Популярні запити"
+scientists.clear_search: "Очистити пошук"  # DRAFT-UK
+scientists.suggest_aria: "Галузі та спеціальності"  # DRAFT-UK
+scientists.loading_title: "Шукаємо науковців."  # DRAFT-UK
+scientists.loading_text: "Це може тривати кілька секунд"  # DRAFT-UK
+scientists.count:  # DRAFT-UK
+  one: "{{ .Count }} науковець"
+  few: "{{ .Count }} науковці"
+  many: "{{ .Count }} науковців"
+  other: "{{ .Count }} науковця"
+scientists.more_details: "Детальніше"  # DRAFT-UK
+scientists.remove_filter: "Прибрати: {{ .Name }}"  # DRAFT-UK
+scientists.clear_all: "Очистити все"  # DRAFT-UK
+scientists.empty_title: "За вашим запитом нічого не знайдено"  # DRAFT-UK
+scientists.empty_text: "Спробуйте інше слово або перегляньте популярні запити."  # DRAFT-UK
+scientists.empty_filtered: "Немає науковців за фільтрами: {{ .Filters }}. Приберіть фільтр або спробуйте інше слово — або перегляньте найбільші галузі знань."  # DRAFT-UK
+scientists.all_link: "До повної бази науковців"
+
+# ----------------------------------------------------------------------
+# Societies list (public/societies.html, public/js/societies-filter.js)
+# ----------------------------------------------------------------------
+societies.title: "Знайдіть партнерів в українській науці"
+societies.search_placeholder: "Назва товариства або галузь, наприклад: Медицина"  # DRAFT-UK
+societies.search_button: "Знайти товариства"
+societies.popular: "Популярні галузі"
+societies.domain_aria: "Галузі"  # DRAFT-UK
+societies.domain_label: "Галузь науки"
+societies.count:  # DRAFT-UK
+  one: "{{ .Count }} товариство"
+  few: "{{ .Count }} товариства"
+  many: "{{ .Count }} товариств"
+  other: "{{ .Count }} товариства"
+societies.more_details: "Детальніше"  # DRAFT-UK
+societies.empty_title: "Товариств не знайдено"  # DRAFT-UK
+societies.empty_text: "Спробуйте інше слово або скиньте фільтри."  # DRAFT-UK
+societies.all_link: "До всіх наукових товариств"
+
+# ----------------------------------------------------------------------
+# Society page (public/society/*.html)
+# ----------------------------------------------------------------------
+society.keywords: "Ключові слова"  # DRAFT-UK
+society.basic_info: "Основна інформація"  # DRAFT-UK
+society.regions: "Регіони представництва або діяльності"  # DRAFT-UK
+society.projects: "Основні проєкти товариства"  # DRAFT-UK
+society.collaboration: "Яка співпраця була б найцікавішою або пріоритетною?"  # DRAFT-UK
+society.donors: "Основні донори товариства"  # DRAFT-UK
+society.members: "Кількість членів"  # DRAFT-UK
+society.website: "Вебсайт"  # DRAFT-UK
+society.facebook: "Facebook"
+
+# ----------------------------------------------------------------------
+# Research (public/js/research-i18n.json; the page itself public/research/*.html)
+# ----------------------------------------------------------------------
+research.title: "Дослідження"
+research.filter_label: "Фільтр за темою"
+research.all: "Усі теми"
+research.theme_scientists: "Науковці"
+research.theme_collections: "Лабораторії й колекції"
+research.theme_policy: "Політика й фінансування"
+research.theme_society: "Наука і суспільство"
+research.explain_scientists: "Як не втратити дослідників: еміграція, безпека, підтримка, діаспора."
+research.explain_collections: "Що зруйновано під час війни, як це врятувати, підрахувати й відбудувати."
+research.explain_policy: "Як керувати наукою, розподіляти гроші й перезапустити її після війни."
+research.explain_society: "Як розповідати про науку, залучати людей і захищати права вчених."
+research.shown: "Показано {{ .Count }} з {{ .Total }}"
+research.no_results: "Нічого не знайдено"
+research.reset: "Скинути фільтри"
+research.details: "Детальніше"
+research.details_aria: "Детальніше: {{ .Title }}"
+research.pdf: ".pdf"
+research.pdf_aria: "Завантажити PDF: {{ .Title }}"
+research.download: "Завантажити"
+research.authors: "Автор(и):"
+research.new: "Нове"
+research.show_all: "Усі дослідження"
+research.file_size: "{{ .Format }}, {{ .Size }}"
+units.mb: "МБ"  # DRAFT-UK
+units.kb: "КБ"  # DRAFT-UK
+
+# ----------------------------------------------------------------------
+# Stories (public/stories*.html, public/story/*.html)
+# ----------------------------------------------------------------------
+stories.title: "Історії"
+stories.type_aria: "Тип"  # DRAFT-UK
+stories.type_all: "Усі"  # DRAFT-UK
+stories.type_stories: "Історії"
+stories.type_blogs: "Блоги"  # DRAFT-UK
+stories.type_news: "Новини"  # DRAFT-UK
+stories.read: "Читати"
+stories.read_story: "Читати історію"
+stories.other_stories: "Інші історії"
+stories.previous: "< Назад"
+stories.next: "Далі >"
+story.author: "Автор:"  # DRAFT-UK
+story.photographer: "Фотограф:"  # DRAFT-UK
+story.share: "Поділитися:"  # DRAFT-UK
+story.share_facebook: "Facebook"
+story.share_twitter: "Twitter"
+story.share_whatsapp: "WhatsApp"
+story.footnotes: "Примітки"  # DRAFT-UK
+story.video_aria: "Відео: {{ .Title }}"  # DRAFT-UK
+story.gallery_aria: "Фотогалерея"  # DRAFT-UK
+
+# ----------------------------------------------------------------------
+# Infrastructure list and page (public/infrastructures.html, public/infrastructure/*.html)
+# ----------------------------------------------------------------------
+infra.title: "Інфраструктура"  # DRAFT-UK
+infra.lede: "Наукова інфраструктура, пошкоджена під час війни"
+infra.all_projects: "Усі проєкти"
+infra.recovery: "Відновлення інфраструктури"
+infra.institution: "Установа та об’єкт"  # DRAFT-UK
+infra.domain: "Галузь науки"
+infra.amount: "Потрібна сума"
+infra.city: "Місто"  # DRAFT-UK
+infra.type: "Тип інфраструктури"  # DRAFT-UK
+infra.property: "Форма власності"  # DRAFT-UK
+infra.website: "Вебсайт"  # DRAFT-UK
+infra.visit_website: "Перейти на сайт"  # DRAFT-UK
+infra.fundraising: "Сума збору"  # DRAFT-UK
+infra.for_what: "На що"  # DRAFT-UK
+infra.more_details: "Докладніше"
+infra.coordinator: "Координатор"  # DRAFT-UK
+infra.gallery_counter: "{{ .Current }} / {{ .Total }}"
+infra.gallery_back: "Назад"
+infra.gallery_next: "Далі"  # DRAFT-UK
+
+# ----------------------------------------------------------------------
+# Scientist profile (public/expert/*.html, src/components/Cabinet/cabinetCopy.ts headings)
+# ----------------------------------------------------------------------
+profile.research_field: "Сфера досліджень"
+profile.duties: "Обов’язки"
+profile.experience: "Досвід"
+profile.expert_experience: "Експертний досвід"
+profile.projects: "Проєкти"
+profile.other_projects: "Інші проєкти"
+profile.publications: "Публікації"
+profile.societies: "Наукові товариства"
+profile.languages: "Робочі мови"
+profile.keywords_aria: "Ключові слова"
+profile.link_orcid: "Orcid"
+profile.link_linkedin: "Linkedin"
+profile.link_facebook: "Facebook"
+profile.read: "Читати"  # DRAFT-UK
+profile.role: "Роль: {{ .Role }}"  # DRAFT-UK
+profile.photo_alt: "{{ .Name }}"  # DRAFT-UK
+profile.not_filled: "Ще не заповнено"
+profile.en_outdated_badge: "Англійська версія може бути застарілою"  # DRAFT-UK
+profile.en_outdated_note: "Цю сторінку востаннє оновлено українською {{ .Date }}. Англійський текст відтоді не змінювався."  # DRAFT-UK
+profile.en_outdated_link: "Прочитати актуальну українську версію"  # DRAFT-UK
+profile.uk_missing: "Цю сторінку ще не перекладено українською."  # DRAFT-UK
+profile.en_missing: "Цю сторінку ще не перекладено англійською."  # DRAFT-UK
+
+# ----------------------------------------------------------------------
+# Breadcrumbs, pagination, generic empty state
+# ----------------------------------------------------------------------
+crumbs.aria: "Навігаційний ланцюжок"  # DRAFT-UK
+crumbs.main: "Головна"  # DRAFT-UK
+crumbs.scientists: "Науковці"
+crumbs.societies: "Наукові товариства"  # DRAFT-UK
+crumbs.research: "Дослідження"
+crumbs.stories: "Історії"
+crumbs.infrastructure: "Інфраструктура"  # DRAFT-UK
+pagination.aria: "Пагінація"
+pagination.previous: "Попередня"
+pagination.next: "Наступна"
+pagination.page: "Сторінка {{ .Page }}"  # DRAFT-UK
+pagination.page_current: "Сторінка {{ .Page }}, поточна"  # DRAFT-UK
+empty.title: "Нічого не знайдено"
+empty.text: "Спробуйте інше слово або скиньте фільтри й шукайте знову."  # DRAFT-UK
+empty.reset: "Скинути фільтри"
+
+# ----------------------------------------------------------------------
+# 404 and error pages (NEW: the static drafts have none)
+# ----------------------------------------------------------------------
+error404.title: "Сторінку не знайдено"  # DRAFT-UK
+error404.text: "Можливо, адресу введено з помилкою або сторінку переміщено."  # DRAFT-UK
+error404.home: "Перейти на головну"  # DRAFT-UK
+error404.search: "Знайти науковця"  # DRAFT-UK
+error500.title: "Щось пішло не так"  # DRAFT-UK
+error500.text: "Спробуйте ще раз за кілька хвилин."  # DRAFT-UK
+
+# ----------------------------------------------------------------------
+# Language banner and cookies
+# ----------------------------------------------------------------------
+lang.fallback_notice: "Ця сторінка доступна лише англійською."  # DRAFT-UK
+cookies.text: "Ми використовуємо файли cookie для статистики."  # DRAFT-UK
+cookies.accept: "Прийняти"  # DRAFT-UK
+cookies.decline: "Відхилити"  # DRAFT-UK
+
+# ----------------------------------------------------------------------
+# Date and number formats (Hugo layouts: use with time.Format / .Format; month names are localised by Hugo)
+# ----------------------------------------------------------------------
+date.short: "02.01.06"
+date.long: "2 January 2006"  # DRAFT-UK
+date.published: "Опубліковано {{ .Date }}"  # DRAFT-UK
+number.thousands_separator: " "  # DRAFT-UK
+number.currency: "{{ .Amount }} грн"
+
+# ----------------------------------------------------------------------
+# Auth pages (public/login.html etc.; src/components/Auth/authCopy.ts, both languages exist there)
+# ----------------------------------------------------------------------
+auth.login.title: "Вхід"
+auth.login.lede: "Вкажіть email і пароль, які ви обрали для кабінету."
+auth.login.email: "Електронна пошта"
+auth.login.password: "Пароль"
+auth.login.show: "Показати"
+auth.login.hide: "Сховати"
+auth.login.submit: "Увійти"
+auth.login.forgot: "Забули пароль?"
+auth.login.first_time: "Вперше тут? Увійдіть з одноразовим паролем із листа."
+auth.login.no_invite_title: "Вхід лише за запрошенням"
+auth.login.no_invite: "Кабінет призначений для учасників закритої спільноти."
+auth.login.errors.email_required: "Введіть email."
+auth.login.errors.email_invalid: "Введіть коректний email, наприклад name@example.org."
+auth.login.errors.password_required: "Введіть пароль."
+auth.login.errors.invalid: "Email або пароль неправильні. Спробуйте ще раз або скиньте пароль."
+auth.first_login.title: "Перший вхід"
+auth.first_login.lede: "Вкажіть email, на який надійшло запрошення, і одноразовий пароль із того листа."
+auth.first_login.email: "Електронна пошта"
+auth.first_login.otp: "Одноразовий пароль"
+auth.first_login.otp_hint: "Скопіюйте його з листа. Він діє один раз."
+auth.first_login.submit: "Продовжити"
+auth.first_login.lost: "Загубили лист або пароль не підходить?"
+auth.first_login.have_account: "Вже обрали пароль? Увійти"
+auth.first_login.errors.email_required: "Введіть email."
+auth.first_login.errors.email_invalid: "Введіть коректний email, наприклад name@example.org."
+auth.first_login.errors.otp_required: "Введіть одноразовий пароль із листа."
+auth.first_login.errors.invalid: "Email або одноразовий пароль неправильні. Перевірте лист або попросіть новий."
+auth.first_login.errors.expired: "Термін дії одноразового пароля минув. Попросіть новий лист."
+auth.set_password.title: "Створіть свій пароль"
+auth.set_password.lede: "Ви вперше в кабінеті. Оберіть пароль, яким користуватиметесь надалі."
+auth.set_password.password: "Новий пароль"
+auth.set_password.repeat: "Повторіть пароль"
+auth.set_password.show: "Показати"
+auth.set_password.hide: "Сховати"
+auth.set_password.requirements_title: "У паролі має бути:"
+auth.set_password.rules.length: "щонайменше 10 символів"
+auth.set_password.rules.letter: "літера"
+auth.set_password.rules.digit: "цифра"
+auth.set_password.strength.label: "Надійність"
+auth.set_password.strength.levels_1: "Слабкий"
+auth.set_password.strength.levels_2: "Посередній"
+auth.set_password.strength.levels_3: "Добрий"
+auth.set_password.strength.levels_4: "Надійний"
+auth.set_password.submit: "Зберегти пароль"
+auth.set_password.errors.required: "Придумайте пароль."
+auth.set_password.errors.too_weak: "Пароль ще не відповідає вимогам."
+auth.set_password.errors.repeat_required: "Повторіть пароль."
+auth.set_password.errors.mismatch: "Паролі не збігаються."
+auth.forgot.title: "Забули пароль?"
+auth.forgot.lede: "Вкажіть email. Якщо вас запрошено, ми надішлемо новий лист із посиланням і одноразовим паролем."
+auth.forgot.email: "Електронна пошта"
+auth.forgot.submit: "Надіслати лист"
+auth.forgot.back: "Назад до входу"
+auth.forgot.errors.email_required: "Введіть email."
+auth.forgot.errors.email_invalid: "Введіть коректний email, наприклад name@example.org."
+auth.sent.title: "Перевірте пошту"
+auth.sent.text: "Якщо ця адреса є в системі, ми надіслали лист."
+auth.sent.spam: "Це може зайняти кілька хвилин. Якщо листа немає, зазирніть у «Спам»."
+auth.sent.back: "Назад до входу"
+auth.sent.again: "Спробувати іншу адресу"
+auth.saved.title: "Пароль збережено"
+auth.saved.text: "Ви в кабінеті. Вітаємо в спільноті."
+auth.saved.cta: "Перейти до кабінету"
+auth.loading: "Зачекайте"
+auth.email.subject_invite: "Вас запрошено до кабінету Science At Risk"
+auth.email.subject_new_link: "Нове посилання до кабінету Science At Risk"
+auth.email.preheader_invite: "Ваш одноразовий пароль і посилання для входу."
+auth.email.preheader_new_link: "Ви попросили нове посилання. Одноразовий пароль у листі."
+auth.email.greeting: "Вітаємо!"
+auth.email.invite_lead: "Вас запрошено до кабінету Science At Risk — закритої спільноти українських науковців і тих, хто їх підтримує."
+auth.email.new_link_lead: "Ви попросили нове посилання до кабінету Science At Risk. Попередній одноразовий пароль уже не діє."
+auth.email.steps_1: "Відкрийте посилання нижче."
+auth.email.steps_2: "Введіть цей email і одноразовий пароль."
+auth.email.steps_3: "Придумайте власний пароль."
+auth.email.otp_label: "Ваш одноразовий пароль"
+auth.email.cta: "Увійти"
+auth.email.expiry: "Пароль діє один раз і втрачає чинність за 24 години."
+auth.email.link_fallback: "Якщо кнопка не працює, скопіюйте цю адресу в браузер:"
+auth.email.not_you: "Якщо ви не просили цього листа, просто проігноруйте його. Нічого не зміниться, а без пароля ніхто не зможе увійти."
+auth.email.signature: "Команда Science At Risk"
+auth.email.footer: "Science At Risk! Допомога українським вченим, які постраждали від війни."

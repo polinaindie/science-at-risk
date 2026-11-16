@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Мій профіль — Science At Risk</title>
+<link rel="alternate" hreflang="en" href="../account.html">
+<link rel="stylesheet" href="../../tokens.css">
+<link rel="stylesheet" href="../cabinet.css">
+<script src="../cabinet.js" defer></script>
+<script src="../demo.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Перейти до змісту</a>
+<header class="hdr"><div class="hdr__in">
+<a class="hdr__logo" href="/" aria-label="Science At Risk">SC!ENCE AT R!SK!</a>
+<nav class="lang" aria-label="Мова"><a lang="en" hreflang="en" href="../account.html">ENG</a><span aria-hidden="true">/</span><span lang="uk" aria-current="true">УКР</span></nav>
+</div></header>
+<nav class="cnav" aria-label="Кабінет"><div class="cnav__in">
+<ul class="cnav__list"><li><a href="account.html" aria-current="page">Мій профіль</a></li><li><a href="requests.html">Мої запити</a></li></ul>
+<form method="post" action="/logout"><input type="hidden" name="_csrf" value="csrf-token"><button type="submit">Вийти</button></form>
+</div></nav>
+<main id="main" class="wrap wrap--mid" tabindex="-1">
+<h1 class="title">Мій профіль</h1>
+<p class="lede" style="text-align:left">Перевірте дані й змініть те, що застаріло. Чернетку ми зберігаємо, поки ви пишете.</p><div class="notice" role="note"><p>Публічний профіль на сайті не зміниться, доки команда не погодить ваш запит.</p></div><p class="small muted" style="text-align:left;margin:-8px 0 24px">* обов’язкове поле</p><form method="post" action="/account" enctype="multipart/form-data" novalidate data-autosave data-demo-next="requests.html"><input type="hidden" name="_csrf" value="csrf-token">
+<fieldset class="group"><legend>Фото</legend>
+<div class="field"><label for="f-photo">Змінити фото</label><input id="f-photo" name="photo" type="file" accept="image/jpeg,image/png" aria-describedby="f-photo-hint"><p class="hint" id="f-photo-hint">Квадратне фото, JPEG або PNG, до 10 MB. Бажано 420×420 px, однотонний фон.</p></div></fieldset>
+<fieldset class="group"><legend>Контактні дані</legend>
+<div class="field ">
+<label for="f-nameUk">Прізвище, ім’я, по батькові</label>
+<input id="f-nameUk" name="name_uk" aria-describedby="f-nameUk-hint" readonly  type="text" value="Шевченко Олена Іванівна">
+<p class="hint" id="f-nameUk-hint">Береться з вашого акаунта. Щоб поредагувати, напишіть нам на email.</p>
+</div>
+<div class="field ">
+<label for="f-email">Адреса електронної пошти</label>
+<input id="f-email" name="email" aria-describedby="f-email-hint" readonly  type="text" value="n•••@example.org">
+<p class="hint" id="f-email-hint">Береться з вашого акаунта. Щоб поредагувати, напишіть нам на email.</p>
+</div>
+<div class="field ">
+<label for="f-nameEn">Прізвище та ім’я англійською <span class="req" aria-hidden="true">*</span></label>
+<input id="f-nameEn" name="name_en" aria-describedby="f-nameEn-hint" aria-required="true"  type="text" value="Olena Shevchenko">
+<p class="hint" id="f-nameEn-hint">Лише латиницею, прізвище та ім’я: Volodymyr Shevchenko.</p>
+</div>
+<div class="field ">
+<label for="f-phone">Номер мобільного телефону</label>
+<input id="f-phone" name="phone" aria-describedby="f-phone-hint" autocomplete="tel"  type="tel" value="+380 50 000 00 00">
+<p class="hint" id="f-phone-hint">На сайті не публікується.</p>
+</div>
+</fieldset>
+<fieldset class="group"><legend>Науковий профіль</legend>
+<div class="field"><label for="f-degree">Науковий ступінь</label><select id="f-degree" name="f-degree"><option value="">Оберіть</option><option value="0" selected>Кандидат наук / Доктор філософії</option><option value="1">Доктор наук</option><option value="2">Інше</option></select></div>
+<div class="field"><label for="f-rank">Вчене звання</label><select id="f-rank" name="f-rank"><option value="">Оберіть</option><option value="0">Немає</option><option value="1">Доцент</option><option value="2" selected>Старший дослідник</option><option value="3">Професор</option></select></div>
+<div class="field ">
+<label for="f-inst">Офіційна повна назва установи <span class="req" aria-hidden="true">*</span></label>
+<input id="f-inst" name="institution" aria-required="true"  type="text" value="Інститут прикладних досліджень, Київ">
+
+</div>
+<div class="field ">
+<label for="f-act">Суть основної діяльності <span class="req" aria-hidden="true">*</span></label>
+<textarea id="f-act" name="activity" aria-required="true"  rows="5">Я досліджую вплив воєнних дій на екосистеми річок. Керую невеликою групою в інституті.</textarea>
+
+</div>
+<div class="field ">
+<label for="f-area">Сфера наукових досліджень <span class="req" aria-hidden="true">*</span></label>
+<textarea id="f-area" name="area" aria-required="true"  rows="3">гідроекологія; якість води; моніторинг річок</textarea>
+
+</div>
+</fieldset>
+<fieldset class="group"><legend>Контакти й посилання</legend>
+<div class="field ">
+<label for="f-orcid">Посилання на ORCID</label>
+<input id="f-orcid" name="orcid" inputmode="url" type="url" value="https://orcid.org/0000-0000-0000-0000">
+
+</div>
+<div class="field ">
+<label for="f-linkedin">Посилання на LinkedIn</label>
+<input id="f-linkedin" name="linkedin" inputmode="url" type="url" value="">
+
+</div>
+</fieldset>
+<section class="group" aria-labelledby="en-h" style="text-align:left;margin-bottom:0"><h2 class="h2" id="en-h" style="margin-top:0">Англійська версія <span class="badge badge--en badge--en-outdated">EN застаріла</span></h2>
+<p>Англійський текст на сайті написано до ваших останніх змін. Команда оновить його після погодження запиту. Перекладати нічого не потрібно.</p><p class="muted small" style="margin-top:8px">Профіль ви пишете українською. Англійською ви редагуєте лише своє ім’я латиницею.</p></section>
+<div class="bar"><p class="save" role="status" data-save data-state="idle" data-t-idle="Зміни зберігаються, поки ви пишете." data-t-saving="Зберігаємо…" data-t-saved="Збережено о {time}" data-t-failed="Не збережено. Перевірте з’єднання й натисніть «Зберегти чернетку»."><span class="save__icon" aria-hidden="true"></span><span data-save-text>Зміни зберігаються, поки ви пишете.</span></p>
+<button class="btn btn--ghost" type="submit" name="intent" value="save">Зберегти чернетку</button>
+<button class="btn" type="submit" name="intent" value="submit" style="order:3">Надіслати на погодження</button>
+<p class="small muted bar__help">Команда перевіряє всі зміни разом і напише вам на пошту.</p></div>
+</form>
+</main>
+<footer class="ftr"><div class="ftr__in"><p>Science At Risk! Допомога українським вченим, які постраждали від війни.</p><p data-handoff-only><a href="index.html">Мапа екранів</a></p></div></footer>
+</body>
+</html>

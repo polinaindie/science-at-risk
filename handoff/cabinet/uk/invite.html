@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Створіть свій пароль — Science At Risk</title>
+<link rel="alternate" hreflang="en" href="../invite.html">
+<link rel="stylesheet" href="../../tokens.css">
+<link rel="stylesheet" href="../cabinet.css">
+<script src="../cabinet.js" defer></script>
+<script src="../demo.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Перейти до змісту</a>
+<header class="hdr"><div class="hdr__in">
+<a class="hdr__logo" href="/" aria-label="Science At Risk">SC!ENCE AT R!SK!</a>
+<nav class="lang" aria-label="Мова"><a lang="en" hreflang="en" href="../invite.html">ENG</a><span aria-hidden="true">/</span><span lang="uk" aria-current="true">УКР</span></nav>
+</div></header>
+<main id="main" class="wrap wrap--narrow" tabindex="-1">
+<h1 class="title">Створіть свій пароль</h1>
+<p class="lede">Ви вперше в кабінеті. Оберіть пароль, яким користуватиметесь надалі.</p><div class="notice" role="status"><p>Це запрошення для <span class="mask">n•••@example.org</span>. Посилання діє один раз і 14 днів.</p></div><form method="post" action="/invite/TOKEN" novalidate data-demo-next="account.html"><input type="hidden" name="_csrf" value="csrf-token">
+
+<div class="field field--reveal">
+<label for="np-pass">Новий пароль <span class="req" aria-hidden="true">*</span></label>
+<input id="np-pass" name="password" aria-required="true" autocomplete="new-password" spellcheck="false" minlength="10" type="password" value=""><button type="button" class="reveal" data-reveal aria-controls="np-pass" aria-pressed="false" data-show="Показати" data-hide="Сховати" hidden>Показати</button>
+
+</div>
+<div class="rules"><p id="np-rules">У паролі має бути:</p><ul aria-labelledby="np-rules"><li>щонайменше 10 символів</li><li>літера</li><li>цифра</li></ul></div>
+<div class="field field--reveal">
+<label for="np-rep">Повторіть пароль <span class="req" aria-hidden="true">*</span></label>
+<input id="np-rep" name="password_repeat" aria-required="true" autocomplete="new-password" spellcheck="false" type="password" value=""><button type="button" class="reveal" data-reveal aria-controls="np-rep" aria-pressed="false" data-show="Показати" data-hide="Сховати" hidden>Показати</button>
+
+</div>
+<button class="btn btn--block " type="submit">Зберегти пароль і увійти</button>
+</form>
+</main>
+<footer class="ftr"><div class="ftr__in"><p>Science At Risk! Допомога українським вченим, які постраждали від війни.</p><p data-handoff-only><a href="index.html">Мапа екранів</a></p></div></footer>
+</body>
+</html>

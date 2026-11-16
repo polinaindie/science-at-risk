@@ -1,0 +1,381 @@
+# Hugo i18n table, English. Same keys as ui.uk.yaml. Plural entries use one/few/many/other.
+# Marks: no mark = the string already exists in the repo (cited in the section header);
+#        "# DRAFT-UK" = written for this hand-off, needs a native editor; "# TODO translate" = left in English on purpose.
+# Keys are flat dotted ids (Hugo does not flatten nested YAML in every version).
+
+
+# ----------------------------------------------------------------------
+# Header, navigation, menu (public/js/satr-chrome.js markup, public/uk.html chrome)
+# ----------------------------------------------------------------------
+site.name: "Science At Risk"
+nav.scientists: "Scientists"
+nav.societies: "Societies"
+nav.research: "Research"
+nav.stories: "Stories"
+nav.infrastructure: "Infrastructure"
+nav.about: "About"
+nav.primary_aria: "Primary"
+nav.menu_open: "Open menu"
+nav.menu_close: "Close menu"
+nav.menu_dialog: "Menu"
+nav.login: "Log in"
+nav.cabinet: "My cabinet"
+nav.logout: "Log out"
+nav.general_inquiries: "For general inquiries"
+nav.language_en: "ENG"  # language switch labels; the current one is plain, the other one is a link
+nav.language_uk: "УКР"
+nav.language_switch_aria: "Switch language"
+nav.skip_to_content: "Skip to content"  # NEW: not on the current pages
+nav.back_to_top: "Back to top"  # src/components/BackToTop (the UK default exists there; EN is new)
+social.twitter: "X (Twitter)"
+social.linkedin: "Linkedin"
+social.facebook: "Facebook"
+
+# ----------------------------------------------------------------------
+# Footer and the "Want to help?" form (src/components/Footer/footerCopy.ts, public/*.html footer)
+# ----------------------------------------------------------------------
+footer.title: "Want to help?"  # source has a line break: "Want\nto help?"; render with <br>
+footer.subtitle: "Fill out the form or contact us"
+footer.submit: "Send"
+footer.partners_title: "The project is supported by:"
+footer.implementer_title: "Responsible for project implementation:"
+footer.implementer_label: "NGO \"Kunsht\""
+footer.over_limit: "Please shorten your inquiry."
+footer.thanks: "Thanks — we received your message."
+footer.partner_1: "Press, Education and Culture Department of the US Embassy in Ukraine"
+footer.partner_2: "Alfred P. Sloan Foundation"
+footer.partner_3: "Ministry of Education and Science of Ukraine"
+footer.partner_4: "National research fund"
+form.field_name: "Name"
+form.field_email: "Email"
+form.field_topic: "Topic"
+form.field_text: "Text"
+
+# ----------------------------------------------------------------------
+# Connect (write to a scientist) and Want to help (write to a coordinator): one form family. Existing strings: public/expert/*.html, public/infrastructure/*.html, satr-chrome.js. Everything about errors, rate limit and backend down is NEW: the static site has no such states.
+# ----------------------------------------------------------------------
+connect.button_named: "Write to {{ .Name }}"  # left column button on a profile, {{ .Name }} = first name
+connect.button: "Connect"  # mobile / sticky button
+connect.title: "Contact a scientist"
+connect.lede: "Fill out this form to contact the scientist directly"
+connect.languages: "The scientist communicates in:"
+connect.languages_tip: "Write in: {{ .Languages }}"  # hover note under the button, expert-profile.js
+help.title: "Want to help?"  # infrastructure pages; <br> after "Want" on mobile
+help.lede: "Fill out the form or contact us"
+help.button: "Contact and help"
+help.note: "Help goes through the coordinator. Write to them and they will tell you how to join in."
+help.or_email: "Or write by email:"
+help.needed: "Needed"  # label on the amount plate
+help.updated: "Need updated: {{ .Date }}"  # shown only when data-updated is set
+form.label_name: "Name"
+form.label_email: "Email"
+form.label_message: "Text"
+form.counter: "({{ .Count }} / {{ .Max }})"  # max = 7000 (satr-chrome.js)
+form.submit: "Send"
+form.close: "Close"  # aria-label of the X
+form.sending: "Sending…"
+form.recaptcha_note: "This form is protected by reCAPTCHA."  # only if the real site keeps reCAPTCHA (it does today: data-sitekey on every form)
+form.error_required: "Fill in this field."
+form.error_name_required: "Enter your name."
+form.error_email_required: "Enter your email."
+form.error_email_invalid: "Enter a valid email, like name@example.org."
+form.error_message_required: "Write your message."
+form.error_too_long: "Please shorten your inquiry."  # existing: column__err-text; the limit is 7000 characters
+form.error_captcha: "Confirm that you are not a robot."
+form.success_title: "Message sent"
+form.success: "Thanks — we received your message."  # existing in footerCopy; the scientist/coordinator gets it by e-mail, the sender is not shown a reply address
+form.success_connect: "Thanks. Your message goes to {{ .Name }}; replies come to your email."
+form.error_rate_limit: "You have sent several messages in a row. Wait a few minutes and try again."  # HTTP 429
+form.error_backend_down: "We could not send your message because the service is not answering. Your text is still here. Try again in a few minutes, or write to {{ .Email }}."  # network error / 5xx; keep the typed text
+form.error_unknown: "Something went wrong. Please try again."
+form.error_offline: "You are offline. Check the connection and try again."
+form.retry: "Try again"
+
+# ----------------------------------------------------------------------
+# Scientists list and search (public/scientists.html, public/js/scientists-filter.js)
+# ----------------------------------------------------------------------
+scientists.title: "Find partners in Ukrainian science"  # UK: homeCopy.ts scientistsUk.title
+scientists.scope_aria: "Search in"
+scientists.scope_scientists: "Scientists"
+scientists.scope_societies: "Societies"
+scientists.search_placeholder: "Enter name, scientific field or speciality"  # UK home block has a shorter one: "Введіть наукову галузь або ім’я"
+scientists.search_button: "Find scientists"
+scientists.popular: "Popular specialities"  # home block uses "Популярні запити" (Popular requests)
+scientists.popular_requests: "Popular requests"
+scientists.clear_search: "Clear the search"
+scientists.suggest_aria: "Fields and specialities"
+scientists.loading_title: "We are looking for scientists."
+scientists.loading_text: "This may take a few seconds"
+scientists.count:  # Hugo plural form; UK needs one/few/many/other
+  one: "{{ .Count }} scientist"
+  other: "{{ .Count }} scientists"
+scientists.more_details: "More details"
+scientists.remove_filter: "Remove: {{ .Name }}"
+scientists.clear_all: "Clear all"
+scientists.empty_title: "We didn't find anything for your query"
+scientists.empty_text: "Try another keyword, or see popular queries."
+scientists.empty_filtered: "No scientists for {{ .Filters }}. Remove a filter or try another keyword — or see the biggest fields of knowledge."
+scientists.all_link: "To the full database of scientists"
+
+# ----------------------------------------------------------------------
+# Societies list (public/societies.html, public/js/societies-filter.js)
+# ----------------------------------------------------------------------
+societies.title: "Find partners in Ukrainian science"
+societies.search_placeholder: "Society name or domain, e.g. Medicine"  # UK home block: "Введіть галузь або назву товариства"
+societies.search_button: "Find societies"
+societies.popular: "Popular domains"
+societies.domain_aria: "Domains"
+societies.domain_label: "Science domain"
+societies.count:
+  one: "{{ .Count }} society"
+  other: "{{ .Count }} societies"
+societies.more_details: "More details"
+societies.empty_title: "No societies found"
+societies.empty_text: "Try another keyword or clear the filters."
+societies.all_link: "To all scientific societies"
+
+# ----------------------------------------------------------------------
+# Society page (public/society/*.html)
+# ----------------------------------------------------------------------
+society.keywords: "Keywords"
+society.basic_info: "Basic information"
+society.regions: "Regions of active representation or activity"
+society.projects: "Main projects of the society"  # EN page says "of the company" (a translation slip)
+society.collaboration: "Which collaboration would be the most interesting/priority?"
+society.donors: "The main donors of the society"
+society.members: "Number of members"  # EN page: "The number of members of the society as of filling out the application"
+society.website: "Website"
+society.facebook: "Facebook"
+
+# ----------------------------------------------------------------------
+# Research (public/js/research-i18n.json; the page itself public/research/*.html)
+# ----------------------------------------------------------------------
+research.title: "Research"
+research.filter_label: "Filter by topic"
+research.all: "All topics"
+research.theme_scientists: "Scientists"
+research.theme_collections: "Labs & collections"
+research.theme_policy: "Policy & funding"
+research.theme_society: "Science & society"
+research.explain_scientists: "How not to lose researchers: emigration, safety, support, the diaspora."
+research.explain_collections: "What the war has destroyed, and how to save, count and rebuild it."
+research.explain_policy: "How to govern science, allocate funding and restart it after the war."
+research.explain_society: "How to talk about science, involve people and defend the rights of scientists."
+research.shown: "Showing {{ .Count }} of {{ .Total }}"  # research-i18n "shown" uses {n} and {total}
+research.no_results: "Nothing found"
+research.reset: "Reset filters"
+research.details: "More details"
+research.details_aria: "More details: {{ .Title }}"
+research.pdf: ".pdf"
+research.pdf_aria: "Download PDF: {{ .Title }}"
+research.download: "Download"
+research.authors: "Author(-s):"
+research.new: "New"
+research.show_all: "Show all studies"  # home block link: EN "Show all studies", UK "Усі дослідження"
+research.file_size: "{{ .Format }}, {{ .Size }}"  # "pdf, 9.88 MB"; units: see units.*
+units.mb: "MB"
+units.kb: "KB"
+
+# ----------------------------------------------------------------------
+# Stories (public/stories*.html, public/story/*.html)
+# ----------------------------------------------------------------------
+stories.title: "Stories"
+stories.type_aria: "Type"
+stories.type_all: "All"
+stories.type_stories: "Stories"
+stories.type_blogs: "Blogs"
+stories.type_news: "News"
+stories.read: "Read"  # UK home card
+stories.read_story: "Read Story"
+stories.other_stories: "Other stories"
+stories.previous: "< Previous"
+stories.next: "Next >"
+story.author: "Author:"  # label has a colon on the live page; the infrastructure pages dropped colons, stories did not (open question)
+story.photographer: "Photographer:"
+story.share: "Share with help:"  # EN string "Share with help" is an odd phrase
+story.share_facebook: "Facebook"
+story.share_twitter: "Twitter"
+story.share_whatsapp: "WhatsApp"
+story.footnotes: "Footnotes"  # NEW: the list has no visible heading today
+story.video_aria: "Video: {{ .Title }}"
+story.gallery_aria: "Photo gallery"
+
+# ----------------------------------------------------------------------
+# Infrastructure list and page (public/infrastructures.html, public/infrastructure/*.html)
+# ----------------------------------------------------------------------
+infra.title: "Infrastructure"  # menu says "Infrastructure"; the list page and old crumbs said "Damaged infrastructure" (open question)
+infra.lede: "Scientific infrastructure damaged during the war"
+infra.all_projects: "All projects"
+infra.recovery: "Restoration of infrastructure"
+infra.institution: "Institution and object"
+infra.domain: "Science Domain"
+infra.amount: "Required amount"
+infra.city: "City"
+infra.type: "Type of infrastructure"
+infra.property: "Type of property"
+infra.website: "Website"
+infra.visit_website: "Visit website"
+infra.fundraising: "Fundraising amount"
+infra.for_what: "For what"
+infra.more_details: "More details"
+infra.coordinator: "Coordinator"
+infra.gallery_counter: "{{ .Current }} / {{ .Total }}"
+infra.gallery_back: "Back"
+infra.gallery_next: "Next"
+
+# ----------------------------------------------------------------------
+# Scientist profile (public/expert/*.html, src/components/Cabinet/cabinetCopy.ts headings)
+# ----------------------------------------------------------------------
+profile.research_field: "Research field"
+profile.duties: "Duties"
+profile.experience: "Experience"
+profile.expert_experience: "Expert experience"
+profile.projects: "Projects"
+profile.other_projects: "Other projects"
+profile.publications: "Publications"
+profile.societies: "Scientific societies"
+profile.languages: "Working languages"
+profile.keywords_aria: "Keywords"
+profile.link_orcid: "Orcid"  # left column link labels on a profile
+profile.link_linkedin: "Linkedin"
+profile.link_facebook: "Facebook"
+profile.read: "Read"
+profile.role: "Role: {{ .Role }}"
+profile.photo_alt: "{{ .Name }}"  # alt = the name; see content-model/scientist.md
+profile.not_filled: "Not filled in yet"  # cabinet only
+profile.en_outdated_badge: "English version may be out of date"  # PROPOSAL, see content-model/README.md
+profile.en_outdated_note: "This page was last updated in Ukrainian on {{ .Date }}. The English text has not been updated since."
+profile.en_outdated_link: "Read the up-to-date Ukrainian version"
+profile.uk_missing: "This page is not translated into Ukrainian yet."  # banner on the UK page when only EN exists
+profile.en_missing: "This page is not translated into English yet."
+
+# ----------------------------------------------------------------------
+# Breadcrumbs, pagination, generic empty state
+# ----------------------------------------------------------------------
+crumbs.aria: "Breadcrumbs"
+crumbs.main: "Main"  # live EN label is "Main"
+crumbs.scientists: "Scientists"
+crumbs.societies: "Scientific societies"
+crumbs.research: "Research"
+crumbs.stories: "Stories"
+crumbs.infrastructure: "Infrastructure"
+pagination.aria: "Pagination"
+pagination.previous: "Previous"
+pagination.next: "Next"
+pagination.page: "Page {{ .Page }}"
+pagination.page_current: "Page {{ .Page }}, current page"
+empty.title: "Nothing found"
+empty.text: "Try another keyword or clear filters and search again."
+empty.reset: "Reset filters"
+
+# ----------------------------------------------------------------------
+# 404 and error pages (NEW: the static drafts have none)
+# ----------------------------------------------------------------------
+error404.title: "Page not found"
+error404.text: "The address may be misspelled, or the page has moved."
+error404.home: "Go to the home page"
+error404.search: "Find a scientist"
+error500.title: "Something went wrong"
+error500.text: "Please try again in a few minutes."
+
+# ----------------------------------------------------------------------
+# Language banner and cookies
+# ----------------------------------------------------------------------
+lang.fallback_notice: "This page is only available in English."  # shown on the section index when the switcher had to fall back
+cookies.text: "We use cookies for statistics."  # only if the real site shows a banner (GA is on the pages today)
+cookies.accept: "Accept"
+cookies.decline: "Decline"
+
+# ----------------------------------------------------------------------
+# Date and number formats (Hugo layouts: use with time.Format / .Format; month names are localised by Hugo)
+# ----------------------------------------------------------------------
+date.short: "02.01.06"  # stories/cards: 20.03.23 (DD.MM.YY); same in both languages
+date.long: "2 January 2006"  # infrastructure "Need updated": EN 12 November 2026; UK is "2 January 2006" too, Hugo prints the month in Ukrainian (genitive)
+date.published: "Published {{ .Date }}"
+number.thousands_separator: " "  # amounts on pages: "~ 3 478 972 UAH" (space); UK "~ 3 478 972 грн"
+number.currency: "{{ .Amount }} UAH"  # ~ prefix is part of the data, not of the string
+
+# ----------------------------------------------------------------------
+# Auth pages (public/login.html etc.; src/components/Auth/authCopy.ts, both languages exist there)
+# ----------------------------------------------------------------------
+auth.login.title: "Log in"
+auth.login.lede: "Enter the email and the password you chose for the cabinet."
+auth.login.email: "Email"
+auth.login.password: "Password"
+auth.login.show: "Show"
+auth.login.hide: "Hide"
+auth.login.submit: "Log in"
+auth.login.forgot: "Forgot password?"
+auth.login.first_time: "First time here? Log in with the one-time password from your letter."
+auth.login.no_invite_title: "Entry is by invitation only"
+auth.login.no_invite: "The cabinet is for members of a closed community."
+auth.login.errors.email_required: "Enter your email."
+auth.login.errors.email_invalid: "Enter a valid email, like name@example.org."
+auth.login.errors.password_required: "Enter your password."
+auth.login.errors.invalid: "The email or the password is not right. Try again, or reset the password."
+auth.first_login.title: "First log in"
+auth.first_login.lede: "Use the email address your invitation was sent to and the one-time password from that letter."
+auth.first_login.email: "Email"
+auth.first_login.otp: "One-time password"
+auth.first_login.otp_hint: "Copy it from the letter. It works once."
+auth.first_login.submit: "Continue"
+auth.first_login.lost: "Lost the letter or the password does not work?"
+auth.first_login.have_account: "Already chose a password? Log in"
+auth.first_login.errors.email_required: "Enter your email."
+auth.first_login.errors.email_invalid: "Enter a valid email, like name@example.org."
+auth.first_login.errors.otp_required: "Enter the one-time password from the letter."
+auth.first_login.errors.invalid: "The email or the one-time password is not right. Check the letter, or ask for a new one."
+auth.first_login.errors.expired: "This one-time password has expired. Ask for a new letter."
+auth.set_password.title: "Choose your password"
+auth.set_password.lede: "This is your first time in the cabinet. Pick a password you will use from now on."
+auth.set_password.password: "New password"
+auth.set_password.repeat: "Repeat the password"
+auth.set_password.show: "Show"
+auth.set_password.hide: "Hide"
+auth.set_password.requirements_title: "The password needs:"
+auth.set_password.rules.length: "at least 10 characters"
+auth.set_password.rules.letter: "a letter"
+auth.set_password.rules.digit: "a digit"
+auth.set_password.strength.label: "Strength"
+auth.set_password.strength.levels_1: "Weak"
+auth.set_password.strength.levels_2: "Fair"
+auth.set_password.strength.levels_3: "Good"
+auth.set_password.strength.levels_4: "Strong"
+auth.set_password.submit: "Save password"
+auth.set_password.errors.required: "Choose a password."
+auth.set_password.errors.too_weak: "The password does not meet the requirements yet."
+auth.set_password.errors.repeat_required: "Repeat the password."
+auth.set_password.errors.mismatch: "The passwords do not match."
+auth.forgot.title: "Forgot your password?"
+auth.forgot.lede: "Enter your email. If you were invited, we will send a new letter with a link and a one-time password."
+auth.forgot.email: "Email"
+auth.forgot.submit: "Send the letter"
+auth.forgot.back: "Back to log in"
+auth.forgot.errors.email_required: "Enter your email."
+auth.forgot.errors.email_invalid: "Enter a valid email, like name@example.org."
+auth.sent.title: "Check your email"
+auth.sent.text: "If this address is in the system, we have sent a letter."
+auth.sent.spam: "It can take a few minutes. If it does not come, look in Spam."
+auth.sent.back: "Back to log in"
+auth.sent.again: "Try another address"
+auth.saved.title: "Password saved"
+auth.saved.text: "You are in. Welcome to the community."
+auth.saved.cta: "Go to my cabinet"
+auth.loading: "Please wait"
+auth.email.subject_invite: "You are invited to the Science At Risk cabinet"
+auth.email.subject_new_link: "A new link to the Science At Risk cabinet"
+auth.email.preheader_invite: "Your one-time password and the link to log in."
+auth.email.preheader_new_link: "You asked for a new link. Your one-time password is inside."
+auth.email.greeting: "Hello,"
+auth.email.invite_lead: "You are invited to the cabinet of Science At Risk, a closed community of Ukrainian scientists and those who support them."
+auth.email.new_link_lead: "You asked for a new link to the Science At Risk cabinet. The old one-time password no longer works."
+auth.email.steps_1: "Open the link below."
+auth.email.steps_2: "Enter this email and the one-time password."
+auth.email.steps_3: "Choose a password of your own."
+auth.email.otp_label: "Your one-time password"
+auth.email.cta: "Log in"
+auth.email.expiry: "The password works once and expires in 24 hours."
+auth.email.link_fallback: "If the button does not work, copy this address into your browser:"
+auth.email.not_you: "If you did not ask for this letter, you can ignore it. Nothing will change, and nobody can log in without the password."
+auth.email.signature: "The Science At Risk team"
+auth.email.footer: "Science At Risk! Help for Ukrainian scientists affected by the war."

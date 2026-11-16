@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>My profile — Science At Risk</title>
+<link rel="alternate" hreflang="uk" href="uk/account-request-open.html">
+<link rel="stylesheet" href="../tokens.css">
+<link rel="stylesheet" href="cabinet.css">
+<script src="cabinet.js" defer></script>
+<script src="demo.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to the content</a>
+<header class="hdr"><div class="hdr__in">
+<a class="hdr__logo" href="/" aria-label="Science At Risk">SC!ENCE AT R!SK!</a>
+<nav class="lang" aria-label="Language"><span lang="en" aria-current="true">ENG</span><span aria-hidden="true">/</span><a lang="uk" hreflang="uk" href="uk/account-request-open.html">УКР</a></nav>
+</div></header>
+<nav class="cnav" aria-label="Cabinet"><div class="cnav__in">
+<ul class="cnav__list"><li><a href="account.html" aria-current="page">My profile</a></li><li><a href="requests.html">My requests</a></li></ul>
+<form method="post" action="/logout"><input type="hidden" name="_csrf" value="csrf-token"><button type="submit">Log out</button></form>
+</div></nav>
+<main id="main" class="wrap wrap--mid" tabindex="-1">
+<h1 class="title">My profile</h1>
+<p class="lede" style="text-align:left"><span class="badge badge--in_review">In review</span> The team is checking your changes. Editing is paused until the answer.</p><div class="notice" role="note"><p>The public profile on the site will not change until the team approves your request.</p></div><form method="post" action="/account" enctype="multipart/form-data" novalidate data-demo-next="requests.html"><input type="hidden" name="_csrf" value="csrf-token">
+<fieldset class="group"><legend>Photo</legend>
+<div class="field"><label for="f-photo">Change photo</label><input id="f-photo" name="photo" type="file" accept="image/jpeg,image/png" aria-describedby="f-photo-hint" disabled><p class="hint" id="f-photo-hint">A square picture, JPEG or PNG, up to 10 MB. About 420×420 px on a plain background.</p></div></fieldset>
+<fieldset class="group"><legend>Contact details</legend>
+<div class="field ">
+<label for="f-nameUk">Full name in Ukrainian</label>
+<input id="f-nameUk" name="name_uk" aria-describedby="f-nameUk-hint" readonly  type="text" value="Шевченко Олена Іванівна">
+<p class="hint" id="f-nameUk-hint">Taken from your account. To change it, email us.</p>
+</div>
+<div class="field ">
+<label for="f-email">Email</label>
+<input id="f-email" name="email" aria-describedby="f-email-hint" readonly  type="text" value="n•••@example.org">
+<p class="hint" id="f-email-hint">Taken from your account. To change it, email us.</p>
+</div>
+<div class="field ">
+<label for="f-nameEn">Full name in English <span class="req" aria-hidden="true">*</span></label>
+<input id="f-nameEn" name="name_en" aria-describedby="f-nameEn-hint" aria-required="true" readonly  type="text" value="Olena Shevchenko">
+<p class="hint" id="f-nameEn-hint">Latin letters only, surname and first name: Volodymyr Shevchenko.</p>
+</div>
+<div class="field ">
+<label for="f-phone">Mobile phone</label>
+<input id="f-phone" name="phone" aria-describedby="f-phone-hint" autocomplete="tel" readonly  type="tel" value="+380 50 000 00 00">
+<p class="hint" id="f-phone-hint">Not published on the site.</p>
+</div>
+</fieldset>
+<fieldset class="group"><legend>Scientific profile</legend>
+<div class="field"><label for="f-degree">Scientific degree</label><select id="f-degree" name="f-degree" disabled><option value="">Choose</option><option value="0" selected>Candidate of Sciences / PhD</option><option value="1">Doctor of Sciences</option><option value="2">Other</option></select></div>
+<div class="field"><label for="f-rank">Academic title</label><select id="f-rank" name="f-rank" disabled><option value="">Choose</option><option value="0">None</option><option value="1">Associate Professor</option><option value="2" selected>Senior Researcher</option><option value="3">Professor</option></select></div>
+<div class="field ">
+<label for="f-inst">Official full name of the institution <span class="req" aria-hidden="true">*</span></label>
+<input id="f-inst" name="institution" aria-required="true" readonly  type="text" value="Institute of Applied Research, Kyiv">
+
+</div>
+<div class="field ">
+<label for="f-act">Main activity <span class="req" aria-hidden="true">*</span></label>
+<textarea id="f-act" name="activity" aria-required="true" readonly  rows="5">I study how military action affects river ecosystems. I lead a small group at the institute.</textarea>
+
+</div>
+<div class="field ">
+<label for="f-area">Description of the field of scientific research <span class="req" aria-hidden="true">*</span></label>
+<textarea id="f-area" name="area" aria-required="true" readonly  rows="3">hydroecology; water quality; river monitoring</textarea>
+
+</div>
+</fieldset>
+<fieldset class="group"><legend>Contacts and links</legend>
+<div class="field ">
+<label for="f-orcid">ORCID link</label>
+<input id="f-orcid" name="orcid" readonly inputmode="url" type="url" value="https://orcid.org/0000-0000-0000-0000">
+
+</div>
+<div class="field ">
+<label for="f-linkedin">LinkedIn link</label>
+<input id="f-linkedin" name="linkedin" readonly inputmode="url" type="url" value="">
+
+</div>
+</fieldset>
+<section class="group" aria-labelledby="en-h" style="text-align:left;margin-bottom:0"><h2 class="h2" id="en-h" style="margin-top:0">English version <span class="badge badge--en badge--en-outdated">EN outdated</span></h2>
+<p>The English text on the site was written before your latest changes. The team updates it after your request is approved. You do not need to translate anything.</p><p class="muted small" style="margin-top:8px">You write the profile in Ukrainian. Only your name in Latin letters is yours to edit in English.</p></section>
+<div class="bar bar--locked"><p class="alert bar__help" role="note" id="blocked-why" style="margin:0"><span class="alert__title">You already have a request in progress.</span> Only one request can be open at a time. Wait for the answer, then send the next changes. We will write to you by email. <a href="request.html">See the request</a></p>
+<p class="save" role="status" data-state="idle" data-t-idle="Changes are saved as you type." data-t-saving="Saving…" data-t-saved="Saved at {time}" data-t-failed="Not saved. Check your connection and press “Save draft”."><span class="save__icon" aria-hidden="true"></span><span data-save-text>Changes are saved as you type.</span></p>
+<button class="btn" type="submit" name="intent" value="submit" disabled aria-describedby="blocked-why">Submit for review</button></div>
+</form>
+</main>
+<footer class="ftr"><div class="ftr__in"><p>Science At Risk! Help for Ukrainian scientists affected by the war.</p><p data-handoff-only><a href="index.html">Map of screens</a></p></div></footer>
+</body>
+</html>

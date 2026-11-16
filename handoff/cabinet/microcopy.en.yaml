@@ -1,0 +1,287 @@
+# Cabinet microcopy, English.
+# One flat dictionary: dotted keys, double-quoted values. {name} = a placeholder the server fills in.
+# "# new" marks a text written for this handoff; unmarked texts come from src/components/Cabinet/cabinetCopy.ts or src/components/Auth/authCopy.ts.
+# Same keys, same order in both files: run  node check-microcopy.mjs
+
+# ---- Common
+common.skip: "Skip to the content" # new
+common.site: "Science At Risk" # new
+common.lang.label: "Language" # new
+common.lang.en: "ENG" # new
+common.lang.uk: "УКР" # new
+common.nav.label: "Cabinet"
+nav.profile: "My profile"
+nav.requests: "My requests" # new
+nav.logout: "Log out"
+common.footer: "Science At Risk! Help for Ukrainian scientists affected by the war."
+common.loading: "Please wait"
+common.optional: "optional" # new
+common.required: "* required"
+common.show: "Show"
+common.hide: "Hide"
+common.back: "Back" # new
+
+# ---- Log in: email
+login.title: "Log in"
+login.lede: "Enter your email. We will send you a 6-digit code to log in." # new
+login.email: "Email"
+login.emailHint: "The address your invitation came to." # new
+login.submit: "Send the code" # new
+login.usePassword: "Log in with a password" # new
+login.lostInvite: "Lost the invitation or it is too old? Ask for a new one" # new
+login.noInviteTitle: "Entry is by invitation only"
+login.noInvite: "The cabinet is for members of a closed community."
+login.errors.emailRequired: "Enter your email."
+login.errors.emailInvalid: "Enter a valid email, like name@example.org."
+login.notice.passwordSaved: "Password saved. Log in with it." # new
+
+# ---- Log in: 6-digit code
+code.title: "Enter the code" # new
+code.lede: "If this address is in the system, we sent a 6-digit code to {email}. It works for {minutes} minutes." # new
+code.label: "Code from the letter" # new
+code.hint: "6 digits. You can paste it from the letter." # new
+code.submit: "Log in" # new
+code.resend: "Send a new code" # new
+code.resendWait: "You can ask for a new code in {seconds} seconds." # new
+code.otherEmail: "Use another email" # new
+code.spam: "It can take a few minutes. If it does not come, look in Spam."
+code.errors.required: "Enter the 6-digit code." # new
+code.errors.format: "The code is 6 digits, no letters." # new
+code.errors.wrong: "This code is not right. Check the digits or ask for a new code." # new
+code.errors.expired: "This code has expired. Codes work for {minutes} minutes. Ask for a new one." # new
+
+# ---- Log in: password
+pwd.title: "Log in with a password" # new
+pwd.lede: "Enter the email and the password you chose for the cabinet."
+pwd.password: "Password"
+pwd.submit: "Log in"
+pwd.forgot: "Forgot password?"
+pwd.useCode: "Get a code by email instead" # new
+pwd.errors.required: "Enter your password."
+pwd.errors.invalid: "The email or the password is not right. Try again, or reset the password."
+
+# ---- Invitation: choose your own password
+invite.title: "Choose your password"
+invite.lede: "This is your first time in the cabinet. Pick a password you will use from now on."
+invite.for: "This invitation is for {email}." # new
+invite.valid: "The link works once and is valid for {days} days." # new
+invite.password: "New password"
+invite.repeat: "Repeat the password"
+invite.rulesTitle: "The password needs:"
+invite.rule.length: "at least 10 characters"
+invite.rule.letter: "a letter"
+invite.rule.digit: "a digit"
+invite.submit: "Save password and log in" # new
+invite.errors.required: "Choose a password."
+invite.errors.tooWeak: "The password does not meet the requirements yet."
+invite.errors.repeatRequired: "Repeat the password."
+invite.errors.mismatch: "The passwords do not match."
+
+# ---- Invitation: ask again
+inviteResend.title: "Ask for the invitation again" # new
+inviteResend.lede: "Enter the email the invitation was sent to. If it is in our list, we will send a new link." # new
+inviteResend.submit: "Send the invitation again" # new
+inviteResend.sentTitle: "Check your email"
+inviteResend.sentText: "If this address is in our list, we sent a new invitation. The previous link no longer works." # new
+inviteResend.spam: "It can take a few minutes. If it does not come, look in Spam."
+
+# ---- Password reset
+reset.title: "Reset your password" # new
+reset.lede: "Enter your email. If it is in the system, we will send a link to choose a new password." # new
+reset.submit: "Send the link" # new
+reset.back: "Back to log in"
+reset.sentTitle: "Check your email"
+reset.sentText: "If this address is in the system, we sent a link. It works once and for {minutes} minutes." # new
+reset.spam: "It can take a few minutes. If it does not come, look in Spam."
+reset.another: "Try another address"
+resetNew.title: "Choose a new password" # new
+resetNew.lede: "Choose a password you will use from now on." # new
+resetNew.submit: "Save new password" # new
+
+# ---- Link and error states
+link.expired.title: "This link has expired" # new
+link.expired.text: "Invitation links work for {days} days. Ask for a new one and we will send it to your email." # new
+link.expired.cta: "Ask for a new invitation" # new
+link.used.title: "This link was already used" # new
+link.used.text: "A link works only once. If you already chose a password, log in. If not, ask for a new link." # new
+link.used.login: "Log in" # new
+link.used.again: "Ask for a new link" # new
+link.resetExpired.title: "This link has expired" # new
+link.resetExpired.text: "Reset links work for {minutes} minutes. Ask for a new one." # new
+link.resetExpired.cta: "Ask for a new link" # new
+rate.title: "Too many attempts" # new
+rate.text: "For safety we paused log in from this device. Try again in {minutes} minutes." # new
+rate.hint: "Letters can take a few minutes. Look in Spam as well." # new
+rate.back: "Back to log in" # new
+error.generic.title: "Something went wrong on our side" # new
+error.generic.text: "Nothing you typed was lost. Try again in a minute." # new
+form.summary: "Check the fields below:" # new
+states.specimen.typed: "The text the person typed stays in the field." # new
+
+# ---- Account: profile form
+account.title: "My profile"
+account.lede: "Check your details and change what is out of date. We keep a draft while you type." # new
+account.publicNotice: "The public profile on the site will not change until the team approves your request." # new
+account.group.photo: "Photo"
+account.group.contacts: "Contact details"
+account.group.science: "Scientific profile"
+account.group.links: "Contacts and links"
+account.field.photo: "Change photo"
+account.field.nameUk: "Full name in Ukrainian"
+account.field.nameEn: "Full name in English"
+account.field.email: "Email"
+account.field.phone: "Mobile phone"
+account.field.degree: "Scientific degree"
+account.field.rank: "Academic title"
+account.field.institution: "Official full name of the institution"
+account.field.activity: "Main activity"
+account.field.area: "Description of the field of scientific research"
+account.field.orcid: "ORCID link"
+account.field.linkedin: "LinkedIn link"
+account.hint.photo: "A square picture, JPEG or PNG, up to 10 MB. About 420×420 px on a plain background."
+account.hint.phone: "Not published on the site."
+account.hint.email: "Taken from your account. To change it, email us."
+account.hint.nameUk: "Taken from your account. To change it, email us."
+account.hint.nameEn: "Latin letters only, surname and first name: Volodymyr Shevchenko."
+account.hint.experience: "One line per post: “year – position, place of work”."
+account.error.required: "Fill this in."
+account.error.orcid: "This should be a link to your orcid.org page, like https://orcid.org/0000-0000-0000-0000."
+account.error.linkedin: "This should be a link to a page on linkedin.com."
+account.error.url: "A link starts with https://"
+account.select: "Choose"
+save.idle: "Changes are saved as you type." # new
+save.saving: "Saving…" # new
+save.saved: "Saved at {time}" # new
+save.failed: "Not saved. Check your connection and press “Save draft”." # new
+save.button: "Save draft" # new
+save.label: "Draft status" # new
+submit.button: "Submit for review" # new
+submit.help: "The team checks all your changes together and writes to you by email." # new
+submit.done: "Request sent. We will write to you by email when the team has looked at it." # new
+submit.blocked.title: "You already have a request in progress" # new
+submit.blocked.text: "Only one request can be open at a time. Wait for the answer, then send the next changes. We will write to you by email." # new
+submit.blocked.link: "See the request" # new
+submit.blocked.locked: "Editing is paused while the team reviews your changes." # new
+en.title: "English version" # new
+en.outdated.badge: "EN outdated" # new
+en.outdated.text: "The English text on the site was written before your latest changes. The team updates it after your request is approved. You do not need to translate anything." # new
+en.current.badge: "EN up to date" # new
+en.current.text: "The English version matches the Ukrainian one." # new
+en.nameOnly: "You write the profile in Ukrainian. Only your name in Latin letters is yours to edit in English." # new
+state.loading: "Loading your profile…" # new
+state.empty.title: "Your profile is still empty" # new
+state.empty.text: "Fill in the first fields and we will keep the draft. When it is ready, submit it for review." # new
+state.empty.cta: "Start filling in" # new
+state.noaccess.title: "This page is not available" # new
+state.noaccess.text: "You can open only your own profile and your own requests." # new
+state.noaccess.cta: "Go to my profile" # new
+state.session.title: "Your session has ended" # new
+state.session.text: "Log in again. Your saved draft is waiting for you." # new
+state.session.cta: "Log in" # new
+state.error.title: "We could not load your profile" # new
+state.error.text: "Nothing was lost. Try again in a minute." # new
+state.error.cta: "Try again" # new
+
+# ---- Requests
+requests.title: "My requests" # new
+requests.lede: "Every time you send changes, they become a request. Here you can see where it is. Answers come to your email too." # new
+requests.open: "In progress" # new
+requests.archive: "Archive" # new
+requests.openNone: "No request in progress." # new
+requests.empty.title: "No requests yet" # new
+requests.empty.text: "When you send changes for review, they will appear here." # new
+requests.number: "Request {id}" # new
+requests.sent: "Sent {date}" # new
+requests.updated: "Updated {date}" # new
+requests.view: "View" # new
+requests.commentTitle: "Comment from the editors" # new
+requests.changedTitle: "What you changed" # new
+requests.changedNone: "No changes recorded." # new
+requests.nextTitle: "What happens next" # new
+requests.back: "All requests" # new
+requests.emailNote: "The answer also comes to your email. You do not need to check this page." # new
+status.label: "Status" # new
+status.draft.label: "Draft" # new
+status.draft.text: "You have changes that have not been sent. The site still shows the last approved version."
+status.submitted.label: "Submitted" # new
+status.submitted.text: "We have your request. The team will look at it soon. The site shows the previous version." # new
+status.in_review.label: "In review" # new
+status.in_review.text: "The team is checking your changes. Editing is paused until the answer." # new
+status.changes_requested.label: "Changes requested" # new
+status.changes_requested.text: "The team asks for changes. Read the comment, edit, and submit again." # new
+status.approved.label: "Approved" # new
+status.approved.text: "The team approved your changes. They will appear on the site soon." # new
+status.rejected.label: "Rejected" # new
+status.rejected.text: "The team could not accept these changes. The site keeps the previous version. Read the comment below." # new
+status.live.label: "Live" # new
+status.live.text: "Your changes are on the site." # new
+action.edit: "Continue editing" # new
+action.discard: "Delete the draft" # new
+action.withdraw: "Withdraw and keep editing" # new
+action.editResubmit: "Edit and submit again" # new
+action.view: "View the request" # new
+action.viewOnSite: "Open on the site" # new
+action.startNew: "Make new changes" # new
+action.none: "No actions now. Wait for the answer of the team." # new
+states.badge: "Badge" # new
+states.text: "Text the scientist sees" # new
+states.buttons: "Buttons" # new
+states.comment: "Editor’s comment" # new
+states.commentShown: "Shown to the scientist" # new
+states.commentHidden: "None for this status" # new
+states.counts: "Counts as an open request" # new
+states.counts.yes: "Yes, new changes cannot be submitted" # new
+states.counts.no: "No" # new
+profile.openOnSite: "Open on the site"
+
+# ---- Sample data (fake)
+sample.comment.changes: "Please add the year to the first publication and shorten the research description to three sentences." # new
+sample.comment.rejected: "The text contains claims we cannot check. Please send sources, or remove the last paragraph." # new
+sample.changed.1: "Position and institution" # new
+sample.changed.2: "Research description" # new
+sample.changed.3: "ORCID link" # new
+
+# ---- Letters
+email.greeting: "Hello,"
+email.signature: "The Science At Risk team"
+email.footer: "Science At Risk! Help for Ukrainian scientists affected by the war."
+email.linkFallback: "If the button does not work, copy this address into your browser:"
+email.logo: "SC!ENCE AT R!SK!" # new
+email.invitation.subject: "You are invited to the Science At Risk cabinet" # new
+email.invitation.preheader: "Your personal link to choose a password. It works once, for 14 days." # new
+email.invitation.lead: "You are invited to the cabinet of Science At Risk, a closed community of Ukrainian scientists and those who support them."
+email.invitation.steps.1: "Open the link below." # new
+email.invitation.steps.2: "Choose a password of your own." # new
+email.invitation.steps.3: "Log in to your cabinet and check your profile." # new
+email.invitation.cta: "Choose a password" # new
+email.invitation.expiry: "The link works once and is valid for 14 days." # new
+email.invitation.expired: "If the link has expired, ask for a new invitation:" # new
+email.invitation.notYou: "If you did not expect this letter, ignore it. Nothing will change." # new
+email.code.subject: "Your code to log in to Science At Risk" # new
+email.code.preheader: "The code works for 10 minutes." # new
+email.code.lead: "Use this code to log in to the cabinet." # new
+email.code.label: "Your code" # new
+email.code.expiry: "The code works once and for 10 minutes. Do not tell it to anyone. The team will never ask for it." # new
+email.code.notYou: "If you did not try to log in, ignore this letter. Nobody can log in without the code." # new
+email.reset.subject: "Reset your Science At Risk password" # new
+email.reset.preheader: "The link works once and for 60 minutes." # new
+email.reset.lead: "We got a request to reset the password for your cabinet. Use the button to choose a new one." # new
+email.reset.cta: "Choose a new password" # new
+email.reset.expiry: "The link works once and for 60 minutes." # new
+email.reset.notYou: "If you did not ask for this, ignore the letter. Your password stays as it is." # new
+email.changes.subject: "The team asks for changes to your profile" # new
+email.changes.preheader: "Read the comment and send your changes again." # new
+email.changes.lead: "The team looked at your request {id} and asks for a few changes." # new
+email.changes.cta: "Open the request" # new
+email.changes.after: "Your profile on the site has not changed. You will need to log in to see the request." # new
+email.rejected.subject: "Your profile request was not accepted" # new
+email.rejected.preheader: "The site keeps the previous version." # new
+email.rejected.lead: "The team looked at your request {id} and could not accept it." # new
+email.rejected.cta: "Open the request" # new
+email.rejected.after: "The profile on the site stays as it was. You can make new changes at any time." # new
+email.live.subject: "Your changes are on the site" # new
+email.live.preheader: "The new version of your profile is published." # new
+email.live.lead: "Your request {id} is approved, and the new version of your profile is on the site." # new
+email.live.cta: "Open my profile on the site" # new
+email.live.after: "Thank you for keeping your profile up to date." # new
+email.comment.label: "Comment from the editors" # new

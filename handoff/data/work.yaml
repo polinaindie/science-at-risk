@@ -1,0 +1,65 @@
+# work: one item of the lists publications / projects / other_projects inside a scientist profile (not a page).
+
+normal:
+  items:
+    - kind: "publication"
+      year: "2017"
+      title: "Orientation and Location of the Cyclotide Kalata B1 in Lipid Bilayers Revealed by Solid-State NMR"
+      authors: "Stephan L. Grage, Marc-Antoine Sani, Olivier Cheneval, Sónia Troeira Henriques, Constantin Schalck, Ralf Heinzmann, Joshua S. Mylne, Pavel K. Mykhailiuk, Sergii Afonin, Igor V. Komarov, Frances Separovic, David J. Craik, Anne S. Ulrich"
+      journal: "Biophys. J."
+      pages: "112, 630–642"
+      role: "Author"
+      url: "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5340158/"
+    - kind: "project"
+      year: ""
+      title: "Example project title (synthetic: the Komarov page has no project)"
+      description: "One or two sentences about the project."
+      role: "Project manager"
+      url: ""
+
+too_long:
+  en:
+    items:
+      - kind: "publication"
+        year: "2024"
+        title: "Equipment institute research collection data heritage archive resilience. instrument university evidence collaboration scientists community restoration recovery wartime. analysis laboratory funding partnership infrastructure equipment institute research collection. data"
+        authors: "partnership infrastructure equipment institute research collection data heritage archive resilience instrument university evidence collaboration scientists community restoration recovery wartime analysis laboratory funding partnership infrastructure equipment institute research collection data heritage archive resilience instrument university evidence collaboration scientists community restoration recovery wartime analysis laboratory funding partnership infrastructure equipment institute research collection data heritage archive resilience instrument university evidence collaboration scientist"
+        journal: "laboratory funding partnership infrastructure equipment institute research collection data heritage archive resilience instrument university evidence collaboration scientists community restoration rec"
+        pages: "1111111111111111111111111111111111111111"
+        role: "wartime analysis laboratory funding partnership infrastructu"
+        url: "https://example.org/path/segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-seg"
+      - kind: "project"
+        year: "2024"
+        title: "Restoration recovery wartime analysis. laboratory funding partnership infrastructure equipment institute research collection data. heritage archive resilience instrument university evidence collaboration scientists community. restoration recovery wartime analysis labora"
+        description: "Scientists community restoration. recovery wartime analysis laboratory funding partnership infrastructure equipment institute. research collection data heritage archive resilience instrument university evidence. collaboration scientists community restoration recovery wartime analysis laboratory funding. partnership infrastructure equipment institute research collection data heritage archive. resilience instrument university evidence collaboration scientists community restoration recovery. wartime analysis laboratory funding partnership infrastructure equipment institute research. collection data heritage archive resilience instrument university evidence collaboration. scientists community restoration recovery wartime analysis laboratory funding partnership. infrastructure equipment institute research collection data heritage archive resilience. instrument university evidence collaboratio"
+        role: "evidence collaboration scientists community restoration reco"
+        url: "https://example.org/path/segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-seg"
+  uk:
+    items:
+      - kind: "publication"
+        year: "2024"
+        title: "Обладнання інститут науковці колекція дані спадщина архів стійкість. інструмент університет докази співпраця дослідження спільнота відбудова відновлення воєнний. аналіз лабораторія фінансування партнерство інфраструктура обладнання інститут науковці колекція. дані спадщ"
+        authors: "партнерство інфраструктура обладнання інститут науковці колекція дані спадщина архів стійкість інструмент університет докази співпраця дослідження спільнота відбудова відновлення воєнний аналіз лабораторія фінансування партнерство інфраструктура обладнання інститут науковці колекція дані спадщина архів стійкість інструмент університет докази співпраця дослідження спільнота відбудова відновлення воєнний аналіз лабораторія фінансування партнерство інфраструктура обладнання інститут науковці колекція дані спадщина архів стійкість інструмент університет докази співпраця дослідження спільнота відбу"
+        journal: "лабораторія фінансування партнерство інфраструктура обладнання інститут науковці колекція дані спадщина архів стійкість інструмент університет докази співпраця дослідження спільнота відбудова відновле"
+        pages: "1111111111111111111111111111111111111111"
+        role: "воєнний аналіз лабораторія фінансування партнерство інфрастр"
+        url: "https://example.org/path/segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-seg"
+      - kind: "project"
+        year: "2024"
+        title: "Відбудова відновлення воєнний аналіз. лабораторія фінансування партнерство інфраструктура обладнання інститут науковці колекція дані. спадщина архів стійкість інструмент університет докази співпраця дослідження спільнота. відбудова відновлення воєнний аналіз лабораторія"
+        description: "Дослідження спільнота відбудова. відновлення воєнний аналіз лабораторія фінансування партнерство інфраструктура обладнання інститут. науковці колекція дані спадщина архів стійкість інструмент університет докази. співпраця дослідження спільнота відбудова відновлення воєнний аналіз лабораторія фінансування. партнерство інфраструктура обладнання інститут науковці колекція дані спадщина архів. стійкість інструмент університет докази співпраця дослідження спільнота відбудова відновлення. воєнний аналіз лабораторія фінансування партнерство інфраструктура обладнання інститут науковці. колекція дані спадщина архів стійкість інструмент університет докази співпраця. дослідження спільнота відбудова відновлення воєнний аналіз лабораторія фінансування партнерство. інфраструктура обладнання інститут науковці колекція дані спадщина архів стійкість. інструмент університет докази співпраця дослідження сп"
+        role: "докази співпраця дослідження спільнота відбудова відновлення"
+        url: "https://example.org/path/segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-seg"
+
+empty:
+  items:
+    - kind: "publication"
+      year: "2020"
+      title: "Example title"
+      authors: "A. Author"
+      journal: "Example J."
+      role: "Author"
+    - kind: "project"
+      title: "Example project"
+      description: "Short description."
+      role: "Participant"

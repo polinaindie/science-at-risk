@@ -1,0 +1,181 @@
+# institution: front matter of content/{en,uk}/infrastructure/<slug>.md
+
+normal:
+  en:
+    slug: "instytut-problem-kriobiolohii-i-kriomedytsyny"
+    translationKey: "institution-cryobiology"
+    short_name: "Institute for Problems of Cryobiology and Cryomedicine"
+    full_name: ""
+    body: |-
+      [The ](instytut-problem-kriobiolohii-i-kriomedytsyny.html)Institute conducts fundamental and applied research in the following areas: a study of the mechanisms of cryo-damage, cryoprotection, the natural resistance of biological objects to cold and their repair after exposure to cold; creation of effective methods of artificial cryoprotection of biological systems of different levels of the organization and, on their basis, development of technologies for cryopreservation of physical objects and technical means of their implementation; use of hypothermia, cryotherapy, and cryopreserved physical objects in the treatment of various diseases; cell, and tissue.
+
+      The hostilities damaged the double-glazed windows and soft roofs in the administrative and laboratory building, the boiler room, and the water supply system.
+    city: "Kharkiv"
+    domains:
+      - "life-sciences-and-biomedicine"
+    infrastructure_type: "Equipment and facilities, has the status of a national treasure"
+    property_type: "state-owned"
+    website: "https://www.cryo.org.ua/"
+    needed_uah: 500000
+    purpose: "The funds are needed to repair the building"
+    gallery: []
+    coordinator:
+      name: "Oleksandr Petrenko"
+      role: "Coordinator"
+      photo: ""
+      email: "coordinator@example.org"
+    updated: ""
+    date: "2024-01-31"
+    # Real content from public/infrastructure/instytut-problem-kriobiolohii-i-kriomedytsyny.html. The coordinator e-mail on the page is encoded; an example address is used here. This page has no separate full name (the long name is the h1): short_name must be written for it. Real UK strings that exist (src/sandbox/HomePageV6/homeCopy.ts): title "Інститут проблем кріобіології і кріомедицини", amount "~ 500 000 грн", domain label "Галузь науки".
+
+too_long:
+  en:
+    slug: "instytut-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+    translationKey: "institution-too-long"
+    short_name: "equipment institute research collection data heritage archiv"
+    full_name: "partnership infrastructure equipment institute research collection data heritage archive resilience instrument university evidence collaboration scientists comm"
+    body: |-
+      Laboratory funding partnership infrastructure equipment institute. research collection data heritage archive resilience instrument university evidence. collaboration scientists community restoration recovery wartime analysis laboratory funding. partnership infrastructure equipment institute research collection data heritage archive. resilience instrument university evidence collaboration scientists community restorat
+
+      Wartime analysis laboratory funding partnership. infrastructure equipment institute research collection data heritage archive resilience. instrument university evidence collaboration scientists community restoration recovery wartime. analysis laboratory funding partnership infrastructure equipment institute research collection. data heritage archive resilience instrument university evidence collaboration scientists.x
+
+      Restoration recovery wartime analysis. laboratory funding partnership infrastructure equipment institute research collection data. heritage archive resilience instrument university evidence collaboration scientists community. restoration recovery wartime analysis laboratory funding partnership infrastructure equipment. institute research collection data heritage archive resilience instrument university. evidence coll
+
+      Scientists community restoration. recovery wartime analysis laboratory funding partnership infrastructure equipment institute. research collection data heritage archive resilience instrument university evidence. collaboration scientists community restoration recovery wartime analysis laboratory funding. partnership infrastructure equipment institute research collection data heritage archive. resilience instrument uni
+
+      Evidence collaboration. scientists community restoration recovery wartime analysis laboratory funding partnership. infrastructure equipment institute research collection data heritage archive resilience. instrument university evidence collaboration scientists community restoration recovery wartime. analysis laboratory funding partnership infrastructure equipment institute research collection. data heritage archive re
+
+      Instrument. university evidence collaboration scientists community restoration recovery wartime analysis. laboratory funding partnership infrastructure equipment institute research collection data. heritage archive resilience instrument university evidence collaboration scientists community. restoration recovery wartime analysis laboratory funding partnership infrastructure equipment. institute research collection da
+
+      Archive resilience instrument university evidence collaboration scientists community restoration. recovery wartime analysis laboratory funding partnership infrastructure equipment institute. research collection data heritage archive resilience instrument university evidence. collaboration scientists community restoration recovery wartime analysis laboratory funding. partnership infrastructure equipment institute rese
+
+      Data heritage archive resilience instrument un
+    city: "wartime analysis laboratory funding part"
+    domains:
+      - "life-sciences-and-biomedicine"
+      - "physical-sciences"
+      - "technology"
+      - "pharmacy"
+    infrastructure_type: "restoration recovery wartime analysis laboratory funding partnership infrastructure equipment institute research collection data heritage archive resilience instrument university evidence collaboration scientists community restoration recovery wartim"
+    property_type: "scientists community restoration recover"
+    website: "https://example.org/path/segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-seg"
+    needed_uah: 9999999999
+    needed_note: "evidence collaboration scientists community restoration recovery wartime analysis laboratory funding partnership infrast"
+    purpose: "Instrument. university evidence collaboration scientists community restoration recovery wartime analysis. laboratory funding partnership infrastructure equipment institute research collection data. heritage archive resilience instrument university evidence collaboration scientists community. restoration recovery wartime analysis laboratory funding partnership infrastructure equipment. institute re"
+    gallery:
+      - src: "storage/infrastructure/too-long/00.jpg"
+        alt: "research collection data heritage archive resilience instrument university evidence collaboration scientists community restor"
+      - src: "storage/infrastructure/too-long/01.jpg"
+        alt: "equipment institute research collection data heritage archive resilience instrument university evidence collaboration scienti"
+      - src: "storage/infrastructure/too-long/02.jpg"
+        alt: "partnership infrastructure equipment institute research collection data heritage archive resilience instrument university evi"
+      - src: "storage/infrastructure/too-long/03.jpg"
+        alt: "laboratory funding partnership infrastructure equipment institute research collection data heritage archive resilience instru"
+      - src: "storage/infrastructure/too-long/04.jpg"
+        alt: "wartime analysis laboratory funding partnership infrastructure equipment institute research collection data heritage archivex"
+      - src: "storage/infrastructure/too-long/05.jpg"
+        alt: "restoration recovery wartime analysis laboratory funding partnership infrastructure equipment institute research collection d"
+      - src: "storage/infrastructure/too-long/06.jpg"
+        alt: "scientists community restoration recovery wartime analysis laboratory funding partnership infrastructure equipment institutex"
+      - src: "storage/infrastructure/too-long/07.jpg"
+        alt: "evidence collaboration scientists community restoration recovery wartime analysis laboratory funding partnership infrastructu"
+      - src: "storage/infrastructure/too-long/08.jpg"
+        alt: "instrument university evidence collaboration scientists community restoration recovery wartime analysis laboratory funding pa"
+      - src: "storage/infrastructure/too-long/09.jpg"
+        alt: "archive resilience instrument university evidence collaboration scientists community restoration recovery wartime analysis la"
+      - src: "storage/infrastructure/too-long/10.jpg"
+        alt: "data heritage archive resilience instrument university evidence collaboration scientists community restoration recovery warti"
+      - src: "storage/infrastructure/too-long/11.jpg"
+        alt: "research collection data heritage archive resilience instrument university evidence collaboration scientists community restor"
+    coordinator:
+      name: "archive resilience instrument university evidence collaborat"
+      role: "data heritage archive resilience instrument university evidence collaboration scientists community r"
+      photo: "storage/coordinator/too-long.jpg"
+      email: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa@example.org"
+    updated: "2026-11-16"
+    seo:
+      description: "Research collection data heritage archive resilience instrument. university evidence collaboration scientists community restoration recovery wartime analysis. l"
+      og_image: "storage/infrastructure/too-long/00.jpg"
+    date: "2026-01-01"
+  uk:
+    slug: "instytut-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+    translationKey: "institution-too-long"
+    short_name: "обладнання інститут науковці колекція дані спадщина архів ст"
+    full_name: "партнерство інфраструктура обладнання інститут науковці колекція дані спадщина архів стійкість інструмент університет докази співпраця дослідження спільнота від"
+    body: |-
+      Лабораторія фінансування партнерство інфраструктура обладнання інститут. науковці колекція дані спадщина архів стійкість інструмент університет докази. співпраця дослідження спільнота відбудова відновлення воєнний аналіз лабораторія фінансування. партнерство інфраструктура обладнання інститут науковці колекція дані спадщина архів. стійкість інструмент університет докази співпраця дослідження спільнота відбудова відно
+
+      Воєнний аналіз лабораторія фінансування партнерство. інфраструктура обладнання інститут науковці колекція дані спадщина архів стійкість. інструмент університет докази співпраця дослідження спільнота відбудова відновлення воєнний. аналіз лабораторія фінансування партнерство інфраструктура обладнання інститут науковці колекція. дані спадщина архів стійкість інструмент університет докази співпраця дослідження. спільнота
+
+      Відбудова відновлення воєнний аналіз. лабораторія фінансування партнерство інфраструктура обладнання інститут науковці колекція дані. спадщина архів стійкість інструмент університет докази співпраця дослідження спільнота. відбудова відновлення воєнний аналіз лабораторія фінансування партнерство інфраструктура обладнання. інститут науковці колекція дані спадщина архів стійкість інструмент університет. докази співпраця
+
+      Дослідження спільнота відбудова. відновлення воєнний аналіз лабораторія фінансування партнерство інфраструктура обладнання інститут. науковці колекція дані спадщина архів стійкість інструмент університет докази. співпраця дослідження спільнота відбудова відновлення воєнний аналіз лабораторія фінансування. партнерство інфраструктура обладнання інститут науковці колекція дані спадщина архів. стійкість інструмент універ
+
+      Докази співпраця. дослідження спільнота відбудова відновлення воєнний аналіз лабораторія фінансування партнерство. інфраструктура обладнання інститут науковці колекція дані спадщина архів стійкість. інструмент університет докази співпраця дослідження спільнота відбудова відновлення воєнний. аналіз лабораторія фінансування партнерство інфраструктура обладнання інститут науковці колекція. дані спадщина архів стійкістьx
+
+      Інструмент. університет докази співпраця дослідження спільнота відбудова відновлення воєнний аналіз. лабораторія фінансування партнерство інфраструктура обладнання інститут науковці колекція дані. спадщина архів стійкість інструмент університет докази співпраця дослідження спільнота. відбудова відновлення воєнний аналіз лабораторія фінансування партнерство інфраструктура обладнання. інститут науковці колекція дані сп
+
+      Архів стійкість інструмент університет докази співпраця дослідження спільнота відбудова. відновлення воєнний аналіз лабораторія фінансування партнерство інфраструктура обладнання інститут. науковці колекція дані спадщина архів стійкість інструмент університет докази. співпраця дослідження спільнота відбудова відновлення воєнний аналіз лабораторія фінансування. партнерство інфраструктура обладнання інститут науковці к
+
+      Дані спадщина архів стійкість інструмент уніве
+    city: "воєнний аналіз лабораторія фінансуванняx"
+    domains:
+      - "life-sciences-and-biomedicine"
+      - "physical-sciences"
+      - "technology"
+      - "pharmacy"
+    infrastructure_type: "відбудова відновлення воєнний аналіз лабораторія фінансування партнерство інфраструктура обладнання інститут науковці колекція дані спадщина архів стійкість інструмент університет докази співпраця дослідження спільнота відбудова відновлення воєнний а"
+    property_type: "дослідження спільнота відбудова відновле"
+    website: "https://example.org/path/segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-seg"
+    needed_uah: 9999999999
+    needed_note: "докази співпраця дослідження спільнота відбудова відновлення воєнний аналіз лабораторія фінансування партнерство інфраст"
+    purpose: "Інструмент. університет докази співпраця дослідження спільнота відбудова відновлення воєнний аналіз. лабораторія фінансування партнерство інфраструктура обладнання інститут науковці колекція дані. спадщина архів стійкість інструмент університет докази співпраця дослідження спільнота. відбудова відновлення воєнний аналіз лабораторія фінансування партнерство інфраструктура обладнання. інститут науко"
+    gallery:
+      - src: "storage/infrastructure/too-long/00.jpg"
+        alt: "науковці колекція дані спадщина архів стійкість інструмент університет докази співпраця дослідження спільнота відбудова відно"
+      - src: "storage/infrastructure/too-long/01.jpg"
+        alt: "обладнання інститут науковці колекція дані спадщина архів стійкість інструмент університет докази співпраця дослідження спіль"
+      - src: "storage/infrastructure/too-long/02.jpg"
+        alt: "партнерство інфраструктура обладнання інститут науковці колекція дані спадщина архів стійкість інструмент університет доказиx"
+      - src: "storage/infrastructure/too-long/03.jpg"
+        alt: "лабораторія фінансування партнерство інфраструктура обладнання інститут науковці колекція дані спадщина архів стійкість інстр"
+      - src: "storage/infrastructure/too-long/04.jpg"
+        alt: "воєнний аналіз лабораторія фінансування партнерство інфраструктура обладнання інститут науковці колекція дані спадщина архівx"
+      - src: "storage/infrastructure/too-long/05.jpg"
+        alt: "відбудова відновлення воєнний аналіз лабораторія фінансування партнерство інфраструктура обладнання інститут науковці колекці"
+      - src: "storage/infrastructure/too-long/06.jpg"
+        alt: "дослідження спільнота відбудова відновлення воєнний аналіз лабораторія фінансування партнерство інфраструктура обладнання інс"
+      - src: "storage/infrastructure/too-long/07.jpg"
+        alt: "докази співпраця дослідження спільнота відбудова відновлення воєнний аналіз лабораторія фінансування партнерство інфраструкту"
+      - src: "storage/infrastructure/too-long/08.jpg"
+        alt: "інструмент університет докази співпраця дослідження спільнота відбудова відновлення воєнний аналіз лабораторія фінансування п"
+      - src: "storage/infrastructure/too-long/09.jpg"
+        alt: "архів стійкість інструмент університет докази співпраця дослідження спільнота відбудова відновлення воєнний аналіз лабораторі"
+      - src: "storage/infrastructure/too-long/10.jpg"
+        alt: "дані спадщина архів стійкість інструмент університет докази співпраця дослідження спільнота відбудова відновлення воєнний ана"
+      - src: "storage/infrastructure/too-long/11.jpg"
+        alt: "науковці колекція дані спадщина архів стійкість інструмент університет докази співпраця дослідження спільнота відбудова відно"
+    coordinator:
+      name: "архів стійкість інструмент університет докази співпраця досл"
+      role: "дані спадщина архів стійкість інструмент університет докази співпраця дослідження спільнота відбудов"
+      photo: "storage/coordinator/too-long.jpg"
+      email: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa@example.org"
+    updated: "2026-11-16"
+    seo:
+      description: "Науковці колекція дані спадщина архів стійкість інструмент. університет докази співпраця дослідження спільнота відбудова відновлення воєнний аналіз. лабораторія"
+      og_image: "storage/infrastructure/too-long/00.jpg"
+    date: "2026-01-01"
+
+empty:
+  en:
+    slug: "empty-example-institution"
+    translationKey: "institution-empty"
+    short_name: "Example Institute"
+    body: "The building was damaged."
+    city: "Kyiv"
+    domains:
+      - "technology"
+    purpose: "Repair the roof."
+    coordinator:
+      name: "Ann Example"
+      email: "coordinator@example.org"

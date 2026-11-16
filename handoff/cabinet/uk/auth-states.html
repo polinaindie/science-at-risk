@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Помилки й стани входу — Science At Risk</title>
+<link rel="alternate" hreflang="en" href="../auth-states.html">
+<link rel="stylesheet" href="../../tokens.css">
+<link rel="stylesheet" href="../cabinet.css">
+<script src="../cabinet.js" defer></script>
+<script src="../demo.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Перейти до змісту</a>
+<header class="hdr"><div class="hdr__in">
+<a class="hdr__logo" href="/" aria-label="Science At Risk">SC!ENCE AT R!SK!</a>
+<nav class="lang" aria-label="Мова"><a lang="en" hreflang="en" href="../auth-states.html">ENG</a><span aria-hidden="true">/</span><span lang="uk" aria-current="true">УКР</span></nav>
+</div></header>
+<main id="main" class="wrap wrap--mid" tabindex="-1">
+<h1 class="title">Помилки й стани входу</h1>
+<p class="lede" style="text-align:left">Кожен стан входу на одній сторінці. Окремі сторінки: <a href="link-expired.html">Прострочене запрошення</a>, <a href="link-used.html">Використане посилання</a>, <a href="rate-limited.html">Забагато спроб</a>.</p>
+<section class="spec" aria-labelledby="s1"><h2 class="spec__title" id="s1">Помилка в полі пошти</h2><p class="spec__meta">Текст під полем, ввідне значення збережено. Підсумок угорі з посиланням на поле.</p><div class="spec__box spec__box--narrow"><form method="post" action="/login" novalidate data-demo-next="login-code.html"><input type="hidden" name="_csrf" value="csrf-token">
+<div class="alert" role="alert"><span class="alert__title">Перевірте поля нижче:</span><ul><li><a href="#a1-email">Введіть коректний email, наприклад name@example.org.</a></li></ul></div>
+<div class="field " data-invalid="true">
+<label for="a1-email">Електронна пошта <span class="req" aria-hidden="true">*</span></label>
+<input id="a1-email" name="email" aria-describedby="a1-email-err" aria-invalid="true" aria-required="true" autocomplete="username" inputmode="email" autocapitalize="none" spellcheck="false" type="email" value="name@example">
+<p class="err" id="a1-email-err">Введіть коректний email, наприклад name@example.org.</p>
+</div>
+<button class="btn btn--block " type="submit">Надіслати код</button>
+</form></div></section>
+<section class="spec" aria-labelledby="s2"><h2 class="spec__title" id="s2">Код має неправильний вигляд</h2><p class="spec__meta">Перевірка на сервері, поле зберігає введене.</p><div class="spec__box spec__box--narrow"><form method="post" action="/login/code" novalidate data-demo-next="account.html"><input type="hidden" name="_csrf" value="csrf-token">
+<div class="alert" role="alert"><span class="alert__title">Перевірте поля нижче:</span><ul><li><a href="#a2-code">Код складається з 6 цифр, без літер.</a></li></ul></div>
+<div class="field field--code" data-invalid="true">
+<label for="a2-code">Код із листа <span class="req" aria-hidden="true">*</span></label>
+<input id="a2-code" name="code" aria-describedby="a2-code-err" aria-invalid="true" aria-required="true" autocomplete="one-time-code" inputmode="numeric" maxlength="6" pattern="[0-9]{6}" spellcheck="false" type="text" value="12ab">
+<p class="err" id="a2-code-err">Код складається з 6 цифр, без літер.</p>
+</div>
+<button class="btn btn--block " type="submit">Увійти</button>
+</form>
+<form method="post" action="/login/code/resend" class="row"><input type="hidden" name="_csrf" value="csrf-token"><button class="btn btn--ghost btn--block" type="submit">Надіслати новий код</button></form>
+<p class="small muted row">Новий код можна попросити через 30 с.</p></div></section>
+<section class="spec" aria-labelledby="s3"><h2 class="spec__title" id="s3">Код неправильний</h2><p class="spec__meta">Для невідомої пошти відповідь така сама: сервер не розкриває, чи є обліковий запис.</p><div class="spec__box spec__box--narrow"><form method="post" action="/login/code" novalidate data-demo-next="account.html"><input type="hidden" name="_csrf" value="csrf-token">
+<div class="alert" role="alert">Цей код не підходить. Перевірте цифри або попросіть новий.</div>
+<div class="field field--code">
+<label for="a3-code">Код із листа <span class="req" aria-hidden="true">*</span></label>
+<input id="a3-code" name="code" aria-describedby="a3-code-hint" aria-required="true" autocomplete="one-time-code" inputmode="numeric" maxlength="6" pattern="[0-9]{6}" spellcheck="false" type="text" value="482913">
+<p class="hint" id="a3-code-hint">6 цифр. Його можна вставити з листа.</p>
+</div>
+<button class="btn btn--block " type="submit">Увійти</button>
+</form>
+<form method="post" action="/login/code/resend" class="row"><input type="hidden" name="_csrf" value="csrf-token"><button class="btn btn--ghost btn--block" type="submit">Надіслати новий код</button></form>
+<p class="small muted row">Новий код можна попросити через 30 с.</p></div></section>
+<section class="spec" aria-labelledby="s4"><h2 class="spec__title" id="s4">Код прострочено</h2><p class="spec__meta">Код діє 10 хвилин. Тут зручно одразу попросити новий.</p><div class="spec__box spec__box--narrow"><form method="post" action="/login/code" novalidate data-demo-next="account.html"><input type="hidden" name="_csrf" value="csrf-token">
+<div class="alert" role="alert">Строк дії коду минув. Код діє 10 хв. Попросіть новий.</div>
+<div class="field field--code">
+<label for="a4-code">Код із листа <span class="req" aria-hidden="true">*</span></label>
+<input id="a4-code" name="code" aria-describedby="a4-code-hint" aria-required="true" autocomplete="one-time-code" inputmode="numeric" maxlength="6" pattern="[0-9]{6}" spellcheck="false" type="text" value="">
+<p class="hint" id="a4-code-hint">6 цифр. Його можна вставити з листа.</p>
+</div>
+<button class="btn btn--block " type="submit">Увійти</button>
+</form>
+<form method="post" action="/login/code/resend" class="row"><input type="hidden" name="_csrf" value="csrf-token"><button class="btn btn--ghost btn--block" type="submit">Надіслати новий код</button></form>
+<p class="small muted row">Новий код можна попросити через 30 с.</p></div></section>
+<section class="spec" aria-labelledby="s5"><h2 class="spec__title" id="s5">Невірний пароль</h2><p class="spec__meta">Пошта збережена, пароль ніколи не повертається в сторінку.</p><div class="spec__box spec__box--narrow"><form method="post" action="/login/password" novalidate data-demo-next="account.html"><input type="hidden" name="_csrf" value="csrf-token">
+<div class="alert" role="alert">Email або пароль неправильні. Спробуйте ще раз або скиньте пароль.</div>
+<div class="field ">
+<label for="a5-email">Електронна пошта <span class="req" aria-hidden="true">*</span></label>
+<input id="a5-email" name="email" aria-required="true" autocomplete="username" inputmode="email" autocapitalize="none" spellcheck="false" type="email" value="name@example.org">
+
+</div>
+<div class="field field--reveal">
+<label for="a5-pass">Пароль <span class="req" aria-hidden="true">*</span></label>
+<input id="a5-pass" name="password" aria-required="true" autocomplete="current-password" spellcheck="false" type="password" value=""><button type="button" class="reveal" data-reveal aria-controls="a5-pass" aria-pressed="false" data-show="Показати" data-hide="Сховати" hidden>Показати</button>
+
+</div>
+<button class="btn btn--block " type="submit">Увійти</button>
+</form></div></section>
+<section class="spec" aria-labelledby="s6"><h2 class="spec__title" id="s6">Нові паролі: помилки</h2><p class="spec__meta">Паролі не повертаються в поле; текст помилки стоїть під полем.</p><div class="spec__box spec__box--narrow"><form method="post" action="/invite/TOKEN" novalidate data-demo-next="account.html"><input type="hidden" name="_csrf" value="csrf-token">
+<div class="alert" role="alert"><span class="alert__title">Перевірте поля нижче:</span><ul><li><a href="#a6-pass">Пароль ще не відповідає вимогам.</a></li><li><a href="#a6-rep">Паролі не збігаються.</a></li></ul></div>
+<div class="field field--reveal" data-invalid="true">
+<label for="a6-pass">Новий пароль <span class="req" aria-hidden="true">*</span></label>
+<input id="a6-pass" name="password" aria-describedby="a6-pass-err" aria-invalid="true" aria-required="true" autocomplete="new-password" spellcheck="false" minlength="10" type="password" value=""><button type="button" class="reveal" data-reveal aria-controls="a6-pass" aria-pressed="false" data-show="Показати" data-hide="Сховати" hidden>Показати</button>
+<p class="err" id="a6-pass-err">Пароль ще не відповідає вимогам.</p>
+</div>
+<div class="rules"><p id="a6-rules">У паролі має бути:</p><ul aria-labelledby="a6-rules"><li>щонайменше 10 символів</li><li>літера</li><li>цифра</li></ul></div>
+<div class="field field--reveal" data-invalid="true">
+<label for="a6-rep">Повторіть пароль <span class="req" aria-hidden="true">*</span></label>
+<input id="a6-rep" name="password_repeat" aria-describedby="a6-rep-err" aria-invalid="true" aria-required="true" autocomplete="new-password" spellcheck="false" type="password" value=""><button type="button" class="reveal" data-reveal aria-controls="a6-rep" aria-pressed="false" data-show="Показати" data-hide="Сховати" hidden>Показати</button>
+<p class="err" id="a6-rep-err">Паролі не збігаються.</p>
+</div>
+<button class="btn btn--block " type="submit">Зберегти пароль і увійти</button>
+</form></div></section>
+<section class="spec" aria-labelledby="s7"><h2 class="spec__title" id="s7">Посилання для скидання прострочене</h2><p class="spec__meta">Діє 60 хвилин, один раз.</p><div class="spec__box spec__box--narrow"><div class="msg"><p class="notice__title">Строк дії посилання минув</p><p class="lede">Посилання для скидання діє 60 хв. Попросіть нове.</p><a class="btn" href="reset-request.html">Попросити нове посилання</a></div></div></section>
+<section class="spec" aria-labelledby="s8"><h2 class="spec__title" id="s8">Пароль збережено</h2><p class="spec__meta">Після скидання пароля людина потрапляє на вхід з повідомленням.</p><div class="spec__box spec__box--narrow"><div class="notice" role="status"><p>Пароль збережено. Увійдіть з ним.</p></div></div></section>
+<section class="spec" aria-labelledby="s9"><h2 class="spec__title" id="s9">Помилка сервера</h2><p class="spec__meta">Загальне повідомлення без деталей.</p><div class="spec__box spec__box--narrow"><div class="alert" role="alert"><span class="alert__title">Щось пішло не так на нашому боці.</span> Те, що ви ввели, не втрачено. Спробуйте ще раз за хвилину.</div></div></section>
+</main>
+<footer class="ftr"><div class="ftr__in"><p>Science At Risk! Допомога українським вченим, які постраждали від війни.</p><p data-handoff-only><a href="index.html">Мапа екранів</a></p></div></footer>
+</body>
+</html>
