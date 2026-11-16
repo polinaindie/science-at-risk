@@ -14767,7 +14767,8 @@ ul {
 .infrastructure__text a,
 .paragraph a {
     text-decoration: underline;
-    color: #FDBE0D;
+    text-underline-offset: 3px;
+    color: #000000; /* was #FDBE0D: 1.7:1 on white, below WCAG AA; black is 21:1 */
 }
 
 @media (min-width: 768px) {
