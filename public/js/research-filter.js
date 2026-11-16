@@ -21,8 +21,8 @@
     var lang = (params.get('lang') || document.documentElement.lang || 'en').slice(0, 2).toLowerCase();
 
     Promise.all([
-        fetch(base + 'js/research-index.json').then(function (r) { return r.json(); }),
-        fetch(base + 'js/research-i18n.json').then(function (r) { return r.json(); })
+        fetch(base + 'js/research-index.json', { cache: 'no-cache' }).then(function (r) { return r.json(); }),
+        fetch(base + 'js/research-i18n.json', { cache: 'no-cache' }).then(function (r) { return r.json(); })
     ]).then(function (res) { init(res[0], res[1][lang] || res[1].en); })
       .catch(function () { /* data did not load: the static list stays as it is */ });
 

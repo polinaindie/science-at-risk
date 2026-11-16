@@ -88,3 +88,42 @@
   const run = () => document.querySelectorAll('[data-satr-squircle="outline"]').forEach(init);
   document.readyState === 'loading' ? document.addEventListener('DOMContentLoaded', run) : run();
 })();
+
+/* The header stays at the top of every static page (see css/satr-squircle.css). Over the top of the page it is
+   transparent, as the page's own colour shows through; once the page has scrolled it takes the colour of whatever is
+   under its lower edge, so the text that passes beneath never shows through the menu. */
+(() => {
+  const header = document.querySelector('.satr-chrome--header');
+  if (!header || header.hasAttribute('data-satr-ink') || document.querySelector('.expert-profile')) return;
+  header.classList.add('satr-sticky');
+
+  const opaque = (c) => {
+    const m = c.match(/rgba?\(([^)]+)\)/);
+    if (!m) return false;
+    const p = m[1].split(',').map(Number);
+    return p.length < 4 || p[3] > 0.95;
+  };
+  const groundUnder = () => {
+    let el = document.elementFromPoint(Math.round(window.innerWidth / 2), header.offsetHeight + 2);
+    while (el && el !== document.documentElement) {
+      const c = getComputedStyle(el).backgroundColor;
+      if (opaque(c)) return c;
+      el = el.parentElement;
+    }
+    return getComputedStyle(document.body).backgroundColor;
+  };
+  let ticking = false;
+  const update = () => {
+    ticking = false;
+    const stuck = window.scrollY > 24;
+    header.classList.toggle('is-stuck', stuck);
+    header.style.backgroundColor = stuck ? groundUnder() : '';
+  };
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      ticking = true;
+      requestAnimationFrame(update);
+    }
+  }, { passive: true });
+  update();
+})();
