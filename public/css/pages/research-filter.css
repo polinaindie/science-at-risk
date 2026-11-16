@@ -49,6 +49,11 @@
 /* the chips sit close under the heading text (the page had 64px of room for the list that started there) */
 .body-whitepaper .papers-hero { padding-bottom: 40px; }
 
-/* hover on a chip: a heavier ring, not the black fill and the dimming of .btn--bordered (the tooltip must stay solid) */
+/* hover on a chip: the black fill with white text, without the dimming of .btn--bordered (the tooltip must stay solid) */
 .isDefault .research-filter__tag:hover { opacity: 1; }
-.isDefault .research-filter__tag:not([aria-pressed="true"]):hover { --squircle-outline: 2px; color: #000; }
+.isDefault .research-filter__tag:not([aria-pressed="true"]):hover { --squircle-outline: 0px; --squircle-fill: #000; --squircle-color: #000; color: #fff; }
+
+/* "New": the site's blue chip above the title of a document marked new (data: "new": true) */
+.research-card__new { display: inline-flex; margin-bottom: 12px; padding: 3px 12px; font-family: "IBM Plex Mono", monospace; font-size: 0.7778rem; line-height: 1.3; }
+.isDefault .research-card__new { --squircle-fill: #B5C6CD; --squircle-color: #B5C6CD; background: #B5C6CD paint(squircle); }
+@supports not (background: paint(squircle)) { .isDefault .research-card__new { background: #B5C6CD; border-radius: 15px; } }

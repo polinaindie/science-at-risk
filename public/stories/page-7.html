@@ -37,6 +37,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.9/fullpage.min.css"/>
     <link href="../css/style.min.css" rel="stylesheet">
     <link href="../css/breadcrumbs.css" rel="stylesheet">
+    <link href="../css/pages/stories-tags.css" rel="stylesheet">
+    <script src="../js/stories-tags.js"></script>
         
     <link rel="apple-touch-icon" sizes="57x57" href="../images/favicon_client/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="../images/favicon_client/apple-icon-60x60.png">
@@ -98,30 +100,7 @@
                     <div class="col-md-8 col-12">
                         <h1 class="pageStories__title">Stories</h1>
                     </div>
-                    <div class="col-md-4 col-12">
-                        <div class="pageStories__select riskCustom-select">
-                            <button data-selectOpen type="button" class="riskCustom-select__btn btn btn--bordered">
-                                                                                                            Stories
-                                                                                                    <svg width="10" height="7" viewBox="0 0 10 7" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M1 1L5 5L9 1" stroke="black" stroke-width="1.5"/>
-                                </svg>
-                            </button>
-                            <div class="riskCustom-select__wrap">
-                                <div class="riskCustom-select__wrap-squircle">
-                                    <ul class="riskCustom-select__list">
-                                        
-                                                                                    <li class="riskCustom-select__item">
-                                                <a href="../stories-theme-stories.html" class="riskCustom-select__link"><span class="hover hover--black">Stories</span></a>
-                                            </li>
-                                                                                    <li class="riskCustom-select__item">
-                                                <a href="../stories-theme-blogs.html" class="riskCustom-select__link"><span class="hover hover--black">Blogs</span></a>
-                                            </li>
-                                                                            </ul>
-                                </div>
-                            </div>
-                            <div data-selectClose class="riskCustom-select__bg"></div>
-                        </div>
-                    </div>
+                    <div class="col-12"><nav class="stories-tags" aria-label="Type"><div class="stories-tags__tag btn btn--bordered position-relative">All<span class="stories-tags__count">72</span><a class="absoluteLink" href="../stories.html" aria-current="page" aria-label="All, 72"></a></div><div class="stories-tags__tag btn btn--bordered position-relative">Stories<span class="stories-tags__count">46</span><a class="absoluteLink" href="../stories-theme-stories.html" aria-label="Stories, 46"></a></div><div class="stories-tags__tag btn btn--bordered position-relative">Blogs<span class="stories-tags__count">16</span><a class="absoluteLink" href="../stories-theme-blogs.html" aria-label="Blogs, 16"></a></div><div class="stories-tags__tag btn btn--bordered position-relative">News<span class="stories-tags__count">10</span><a class="absoluteLink" href="../stories-theme-news.html" aria-label="News, 10"></a></div></nav></div>
                 </div>
             </div>
         </header>
@@ -137,6 +116,7 @@
             </picture>
         </header>
                 <main class="story-card__main">
+            <span class="story-card__type">Stories</span>
             <h2 class="story-card__title"><span class="hover hover--black">Magnetic Attraction of Occupiers</span></h2>
             <p class="story-card__text">The Seraphim Subbotin Institute of Geophysics is quite large and branched out throughout the country.</p>
         </main>
@@ -155,6 +135,7 @@
             </picture>
         </header>
                 <main class="story-card__main">
+            <span class="story-card__type">Stories</span>
             <h2 class="story-card__title"><span class="hover hover--black">Attempts to Sink Shipbuilding</span></h2>
             <p class="story-card__text">During the full-scale invasion, Mykolaiv became one of the hottest spots on the southern front.</p>
         </main>
@@ -173,6 +154,7 @@
             </picture>
         </header>
                 <main class="story-card__main">
+            <span class="story-card__type">Stories</span>
             <h2 class="story-card__title"><span class="hover hover--black">Strategic Object “Library”</span></h2>
             <p class="story-card__text">The very city center, a historical building, not a single military object in the vicinity.</p>
         </main>
@@ -191,6 +173,7 @@
             </picture>
         </header>
                 <main class="story-card__main">
+            <span class="story-card__type">Stories</span>
             <h2 class="story-card__title"><span class="hover hover--black">Stolen museum. Kherson</span></h2>
             <p class="story-card__text">What did the Russians steal from the Kherson Local History Museum during the retreat from the city and how did the director-collaborator contribute to this?</p>
         </main>
@@ -209,6 +192,7 @@
             </picture>
         </header>
                 <main class="story-card__main">
+            <span class="story-card__type">Blogs</span>
             <h2 class="story-card__title"><span class="hover hover--black">Impact of War on Science and Academic Communities: Vulnerability and Responsibility of Scientists</span></h2>
             <p class="story-card__text">Scientists, often at the forefront of knowledge and innovation, face not only immediate threats to their lives and health, but also restrictions on their academic freedoms and the ability to conduct research and create innovations.</p>
         </main>
@@ -227,6 +211,7 @@
             </picture>
         </header>
                 <main class="story-card__main">
+            <span class="story-card__type">Blogs</span>
             <h2 class="story-card__title"><span class="hover hover--black">Post-crisis science recovery: Olena Zhukova&#039;s Blog</span></h2>
             <p class="story-card__text">Why do we need changes in the organization of scientific teams, integration into the global scientific community, and what factors affect the speed of scientific recovery in crises?</p>
         </main>
@@ -245,6 +230,7 @@
             </picture>
         </header>
                 <main class="story-card__main">
+            <span class="story-card__type">Blogs</span>
             <h2 class="story-card__title"><span class="hover hover--black">Scientific team, or why “a solitary scientist in the ivory tower” works less and less: blog of Olena Pareniuk</span></h2>
             <p class="story-card__text">It’s become clear since the mid-20th century that projects like the creation of an atomic bomb, the conceptualization of the internet, or the building of the Large Hadron Collider, are impossible to achieve by the intellectual efforts of only one person.</p>
         </main>
@@ -263,6 +249,7 @@
             </picture>
         </header>
                 <main class="story-card__main">
+            <span class="story-card__type">Blogs</span>
             <h2 class="story-card__title"><span class="hover hover--black">Ukraine needs to develop a network of professional science communicators: a blog by Ilona Sviezhentseva</span></h2>
             <p class="story-card__text">It is the society that orders and sponsors all the research, therefore science has to be intelligeble to citizens instead of hiding in the walls of institutes and universities.</p>
         </main>
@@ -281,6 +268,7 @@
             </picture>
         </header>
                 <main class="story-card__main">
+            <span class="story-card__type">Blogs</span>
             <h2 class="story-card__title"><span class="hover hover--black">Science at risk in stories: Svitlana Galata&#039;s blog</span></h2>
             <p class="story-card__text">Each of these stories can become a separate book, a movie script, or a base for recommendations on how to prepare for danger and what to do in critical situations.</p>
         </main>

@@ -27,7 +27,10 @@
       .catch(function () { /* data did not load: the static list stays as it is */ });
 
     function init(data, t) {
-        var THEMES = data.themes, DOCS = data.docs;
+        var THEMES = data.themes;
+        /* the file is in newest-first order, and that is the order on the page */
+        var DOCS = data.docs;
+        var isNew = function (d) { return d['new'] === true; };
         var chosen = readUrl();
 
         var esc = function (s) { var d = document.createElement('div'); d.textContent = s; return d.innerHTML; };
@@ -96,6 +99,7 @@
             var href = base + 'research/' + d.slug + '.html', pdf = base + d.pdf;
             return '<div class="paper-card"><article class="paper-card__wrap"><div class="row align-items-start justify-content-between">' +
                 '<div class="col-xl-6 col-md-7"><div class="paper-card__info">' +
+                (isNew(d) ? '<span class="tag research-card__new">' + esc(t['new']) + '</span>' : '') +
                 '<h2 class="paper-card__title"><span>' + esc(d.title) + '</span></h2>' +
                 (d.authors ? '<p class="paper-card__text">' + esc(t.authors + ' ' + d.authors) + '</p>' : '') +
                 '</div></div>' +

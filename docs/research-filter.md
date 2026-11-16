@@ -14,6 +14,11 @@ The page is not paged any more: all documents are drawn from the JSON. `research
    Order in the file = order on the page.
 3. Counts, the "Showing N of M" line and the card label update by themselves.
 
+## Order and the "New" badge
+The order in `research-index.json` is the order on the page: newest first, so add a new document at the top.
+`"new": true` on a document gives it the blue "New" chip over its title; delete the flag when it is no longer new.
+There are no dates in the data (they are internal).
+
 ## Change a document's tag
 Change its `"theme"` to one of: `scientists`, `collections`, `policy`, `society`.
 

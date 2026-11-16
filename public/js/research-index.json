@@ -1,5 +1,5 @@
 {
-  "_note": "One entry per research document. 'theme' is its single primary tag: one of the ids in 'themes' (labels live in research-i18n.json). 'slug' = file name in research/, 'pdf' = path from the site root. Order here = order on the page. 'authors' is the line under the title on the card (may be empty).",
+  "_note": "One entry per research document. 'theme' is its single primary tag: one of the ids in 'themes' (labels live in research-i18n.json). 'slug' = file name in research/, 'pdf' = path from the site root. The order here is the order on the page: newest first, so put a new document at the top. \"new\": true gives a document the blue \"New\" chip; remove it when it is no longer new.",
   "themes": [
     "scientists",
     "collections",
@@ -12,7 +12,8 @@
       "title": "Impact of the War on Different Categories of Ukrainian Scholars",
       "theme": "scientists",
       "pdf": "storage/lp/232/b581142239792c5efada46ef777498298292dedb.pdf",
-      "authors": "Olena Kozak, Lidia Kuzemska, Yevheniia Polishchuk, Kateryna Chuyeva"
+      "authors": "Olena Kozak, Lidia Kuzemska, Yevheniia Polishchuk, Kateryna Chuyeva",
+      "new": true
     },
     {
       "slug": "support-mechanisms-for-researchers-at-risk-historical-development-survey-evidence-and-policy-lessons-from-wartimeukraine",

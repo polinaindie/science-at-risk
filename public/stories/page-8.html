@@ -36,6 +36,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.9/fullpage.min.css"/>
     <link href="../css/style.min.css" rel="stylesheet">
     <link href="../css/breadcrumbs.css" rel="stylesheet">
+    <link href="../css/pages/stories-tags.css" rel="stylesheet">
+    <script src="../js/stories-tags.js"></script>
         
     <link rel="apple-touch-icon" sizes="57x57" href="../images/favicon_client/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="../images/favicon_client/apple-icon-60x60.png">
@@ -97,30 +99,7 @@
                     <div class="col-md-8 col-12">
                         <h1 class="pageStories__title">Stories</h1>
                     </div>
-                    <div class="col-md-4 col-12">
-                        <div class="pageStories__select riskCustom-select">
-                            <button data-selectOpen type="button" class="riskCustom-select__btn btn btn--bordered">
-                                                                                                            Stories
-                                                                                                    <svg width="10" height="7" viewBox="0 0 10 7" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M1 1L5 5L9 1" stroke="black" stroke-width="1.5"/>
-                                </svg>
-                            </button>
-                            <div class="riskCustom-select__wrap">
-                                <div class="riskCustom-select__wrap-squircle">
-                                    <ul class="riskCustom-select__list">
-                                        
-                                                                                    <li class="riskCustom-select__item">
-                                                <a href="../stories-theme-stories.html" class="riskCustom-select__link"><span class="hover hover--black">Stories</span></a>
-                                            </li>
-                                                                                    <li class="riskCustom-select__item">
-                                                <a href="../stories-theme-blogs.html" class="riskCustom-select__link"><span class="hover hover--black">Blogs</span></a>
-                                            </li>
-                                                                            </ul>
-                                </div>
-                            </div>
-                            <div data-selectClose class="riskCustom-select__bg"></div>
-                        </div>
-                    </div>
+                    <div class="col-12"><nav class="stories-tags" aria-label="Type"><div class="stories-tags__tag btn btn--bordered position-relative">All<span class="stories-tags__count">72</span><a class="absoluteLink" href="../stories.html" aria-current="page" aria-label="All, 72"></a></div><div class="stories-tags__tag btn btn--bordered position-relative">Stories<span class="stories-tags__count">46</span><a class="absoluteLink" href="../stories-theme-stories.html" aria-label="Stories, 46"></a></div><div class="stories-tags__tag btn btn--bordered position-relative">Blogs<span class="stories-tags__count">16</span><a class="absoluteLink" href="../stories-theme-blogs.html" aria-label="Blogs, 16"></a></div><div class="stories-tags__tag btn btn--bordered position-relative">News<span class="stories-tags__count">10</span><a class="absoluteLink" href="../stories-theme-news.html" aria-label="News, 10"></a></div></nav></div>
                 </div>
             </div>
         </header>
@@ -136,6 +115,7 @@
             </picture>
         </header>
                 <main class="story-card__main">
+            <span class="story-card__type">Blogs</span>
             <h2 class="story-card__title"><span class="hover hover--black">Science advocacy during wars and crises: Olena Zinenko&#039;s blog</span></h2>
             <p class="story-card__text">Science holds a social value,  yet it often remains uncommunicated—lacking explanation and discussion.</p>
         </main>
@@ -154,6 +134,7 @@
             </picture>
         </header>
                 <main class="story-card__main">
+            <span class="story-card__type">Blogs</span>
             <h2 class="story-card__title"><span class="hover hover--black">Post-War Infrastructure Recovery: Vitaliy Omelianenko&#039;s Blog</span></h2>
             <p class="story-card__text">Research Infrastructures (RIs) are key to the country&#039;s development. They provide scientists access to specialized tools, equipment, and laboratories necessary for high-quality research.</p>
         </main>
@@ -172,6 +153,7 @@
             </picture>
         </header>
                 <main class="story-card__main">
+            <span class="story-card__type">Blogs</span>
             <h2 class="story-card__title"><span class="hover hover--black">Citizen Science in Ukraine: Olena Kozak&#039;s Blog</span></h2>
             <p class="story-card__text">Citizen science holds tremendous potential, which, unfortunately, is only partially utilized in Ukraine.</p>
         </main>
@@ -190,6 +172,7 @@
             </picture>
         </header>
                 <main class="story-card__main">
+            <span class="story-card__type">Blogs</span>
             <h2 class="story-card__title"><span class="hover hover--black">Restoration of Science: Olena Tsyplitska&#039;s Blog</span></h2>
             <p class="story-card__text">In Science At Risk, my colleagues and I are working on the &quot;Reboot&quot; direction. This direction requires not only analytical skills, but also visionary abilities – the ability to assess the current state of affairs and envision potential prospects and development scenarios.</p>
         </main>
@@ -208,6 +191,7 @@
             </picture>
         </header>
                 <main class="story-card__main">
+            <span class="story-card__type">Blogs</span>
             <h2 class="story-card__title"><span class="hover hover--black">Grygoriy Rii&#039;s Blog: How to Communicate Issues of Endangered Science</span></h2>
             <p class="story-card__text">Timely and accurately communicating of scientific knowledge, popularizing high-quality scientific research during cataclysms and wars among citizens help calm society, refute false information, and counter hostile disinformation.</p>
         </main>
@@ -226,6 +210,7 @@
             </picture>
         </header>
                 <main class="story-card__main">
+            <span class="story-card__type">Blogs</span>
             <h2 class="story-card__title"><span class="hover hover--black">Preservation of museum and scientific collections: Leonid Gorobets&#039; blog</span></h2>
             <p class="story-card__text">On the one hand, the results obtained are disheartening — so much needs to be changed. On the other — this is the only way we can find solutions to these challenges.</p>
         </main>
@@ -244,6 +229,7 @@
             </picture>
         </header>
                 <main class="story-card__main">
+            <span class="story-card__type">Blogs</span>
             <h2 class="story-card__title"><span class="hover hover--black">Science at Risk: A platform for the preservation and restoration of Ukrainian science</span></h2>
             <p class="story-card__text">Russian troops are destroying Ukrainian science. The Science at Risk platform was created to address the problems and needs of Ukrainian scientists to the international community.</p>
         </main>
@@ -262,6 +248,7 @@
             </picture>
         </header>
                 <main class="story-card__main">
+            <span class="story-card__type">Blogs</span>
             <h2 class="story-card__title"><span class="hover hover--black">Science at Risk in Washington</span></h2>
             <p class="story-card__text">Presentation of a Platform for Preserving and Restoring Ukrainian Science</p>
         </main>
@@ -280,6 +267,7 @@
             </picture>
         </header>
                 <main class="story-card__main">
+            <span class="story-card__type">Blogs</span>
             <h2 class="story-card__title"><span class="hover hover--black">Presentation of the Science at Risk platform in New York</span></h2>
             <p class="story-card__text">At the end of May, the team of the popular science media outlet Kunsht and Ukrainian researchers presented a platform for scientists in New York.</p>
         </main>
