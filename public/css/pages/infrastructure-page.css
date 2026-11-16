@@ -1,0 +1,125 @@
+/* Infrastructure page: what the institution needs, how much and how to help is in view at once.
+   Order in the text column: short name, full name, the plate (amount, purpose, Contact and help), the photos, the text,
+   the facts. On a phone the plate comes right under the photos and the button is full width.
+   (Set here because these pages load the site's stylesheet from scienceatrisk.org.) */
+
+/* ---- the text column is a column of its own order ---- */
+.infrastructure__wrapper > .row > .col-md-6:first-child { display: flex; flex-direction: column; }
+.infrastructure__wrapper > .row > .col-md-6:first-child > * { order: 6; }
+.infrastructure__wrapper > .row > .col-md-6:first-child > .infrastructure__header { order: 1; }
+.infrastructure__wrapper > .row > .col-md-6:first-child > .infra-fullname { order: 2; }
+.infrastructure__wrapper > .row > .col-md-6:first-child > .infrastructure__text { order: 3; }
+.infrastructure__wrapper > .row > .col-md-6:first-child > .infrastructure__slider-wrap { order: 5; margin: 1rem 0 2rem; }
+@media (max-width: 767px) {
+  .infrastructure__wrapper > .row > .col-md-6:first-child > .infrastructure__slider-wrap { order: 5; }
+  .infrastructure__wrapper > .row > .col-md-6:first-child > .infrastructure__text { order: 4; }
+}
+
+/* ---- header: the short name large, the full name smaller under it ---- */
+.infra-fullname { margin: 0.5rem 0 1.5rem; font-family: "IBM Plex Mono", monospace; font-size: 0.8889rem; line-height: 1.45; color: #333; }
+.infrastructure__header { margin-bottom: 0.5rem; }
+
+/* ---- the gallery: bigger Back / Next, the counter as 1 / 4, a caption ---- */
+.infrastructure__nav-btn { min-height: 3rem; padding: 0.5rem 0.25rem; font-size: 1.125rem; line-height: 1.5rem; }
+.infrastructure__navigation .counter { font-family: "IBM Plex Mono", monospace; font-size: 1.125rem; }
+.infra-caption { margin: 0.5rem 0 0; font-size: 0.9444rem; line-height: 1.5; color: #333; min-height: 1.5em; }
+.infra-caption:empty { display: none; }
+
+/* ---- the facts: one list, labels in one column, no name (it is the heading), no stray commas ---- */
+.infrastructure__info .row > div { flex: 0 0 100%; max-width: 100%; display: grid; grid-template-columns: 12.5rem 1fr; gap: 1rem; align-items: baseline; padding: 0.75rem 0; border-top: 1px solid rgba(0, 0, 0, 0.2); }
+.infrastructure__info .row > div:first-child { border-top: 2px solid #000; }
+.infrastructure__info .infrastructure__sec-title, .infrastructure__info .infrastructure__sec-text { margin: 0; }
+.infrastructure__info .infrastructure__sec-title { white-space: nowrap; }
+@media (max-width: 767px) { .infrastructure__info .row > div { grid-template-columns: 1fr; gap: 0.25rem; } }
+.infra-chips { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.infra-link { color: #000; text-decoration: underline; text-underline-offset: 3px; }
+
+/* ---- how to help + the coordinator ---- */
+.infra-help-note { margin: 0 0 1rem; font-size: 1rem; line-height: 1.55; }
+.infra-updated { margin: 0 0 1rem; font-family: "IBM Plex Mono", monospace; font-size: 0.7778rem; color: #333; }
+@media (min-width: 992px) { .infra-contact__box { position: sticky; top: 7.5rem; } .infra-contact .person-card { position: static; } }
+.infra-contact .person-card__btn { width: 100%; }
+.infra-contact .person-card__btn.btn { justify-content: center; }
+.infra-contact__alt { margin: 1rem 0 0; font-size: 0.8889rem; line-height: 1.45; color: #333; }
+.infra-contact__alt a { color: #333; text-decoration: underline; text-underline-offset: 3px; }
+
+/* alignment touches */
+.infrastructure__info .row { margin-left: 0; margin-right: 0; }
+.infrastructure__info .row > div { padding-left: 0; padding-right: 0; }
+
+.infra-contact .person-card__right { padding: 0; }
+
+
+@media (max-width: 767px) {
+    .infrastructure__nav-btn { min-height: 2.75rem; }
+}
+
+
+/* ---- one block on the right: the need (amount, purpose) + how to help + the coordinator + the button ---- */
+.infra-contact__box { padding: 2rem; background-color: #F0EEBE; border-radius: 0; }
+.infra-contact__box .person-card { padding: 0; min-height: 0; background: transparent; overflow: visible; }
+.infra-contact__box .person-card .wrapper { padding: 0; max-width: none; }
+.infra-plate { margin: 0 0 1.5rem; padding: 0 0 1.5rem; border-bottom: 2px solid #000; }
+.infra-plate__amount { margin: 0 0 0.5rem; font-family: "Noto Serif", serif; font-size: 2.125rem; line-height: 1.15; letter-spacing: -0.02em; }
+.infra-plate__label { display: block; margin-bottom: 0.25rem; font-family: "IBM Plex Mono", monospace; font-size: 0.9444rem; letter-spacing: 0; line-height: 1.3; }
+.infra-plate__purpose { margin: 0; font-size: 1rem; line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; }
+.infra-help-note { margin: 0 0 1.25rem; }
+.infra-contact__box .person-card__right { margin-top: 1.5rem; }
+.infra-contact__box .person-card__btn { width: 100%; }
+
+/* a phone: the block comes right under the photos (the columns dissolve into one ordered column) */
+@media (max-width: 767px) {
+  .infrastructure__wrapper > .row { display: flex; flex-direction: column; flex-wrap: nowrap; }
+  .infrastructure__wrapper > .row > .col-md-6, .infrastructure__wrapper > .row > .col-md-6:first-child { display: contents; }
+  .infra-contact__box { order: 3; margin: 1.25rem 0 2rem; }
+  .infra-contact__box .person-card__right { display: block !important; }
+}
+
+/* the coordinator in the block: a small photo beside the name and role, so the button stays in view */
+.infra-contact__box .person-card__left { display: flex; gap: 1rem; align-items: center; }
+.infra-contact__box .person-card__img { flex: none; width: 6rem; height: 6rem; }
+.infra-contact__box .person-card__img img { width: 100%; height: 100%; object-fit: cover; }
+.infra-contact__box .person-card__title { margin-bottom: 0.25rem; font-size: 1.5rem; line-height: 1.2; }
+.infra-contact__box .person-card__position { margin-bottom: 0; }
+.infra-contact__box .person-card__info { margin: 0; }
+
+/* the domains: the site's blue tag (squircle), as on the scientists' cards */
+.infra-chips .tag { font-family: "IBM Plex Mono", monospace; font-size: 0.8889rem; line-height: 1.45; width: auto; }
+.isSafari .infra-chips .tag, .infra-chips .tag.no-paint { background: #B5C6CD; border-radius: 15px; }
+
+/* all the rules are black; more room between the text column and the block */
+.infrastructure__info .row > div { border-top: 1px solid #000; }
+.infrastructure__info .row > div:first-child { border-top: 2px solid #000; }
+@media (min-width: 768px) {
+  .infrastructure__wrapper > .row > .col-md-6:first-child { padding-right: 2.5rem; }
+}
+
+/* the block is a narrow column on a desktop: about 26% of the content (30% and 42% on narrower screens) */
+@media (min-width: 768px) {
+  .infrastructure__wrapper > .row > .col-md-6:first-child { flex: 0 0 58%; max-width: 58%; }
+  .infrastructure__wrapper > .row > .infra-contact { flex: 0 0 42%; max-width: 42%; }
+}
+@media (min-width: 992px) {
+  .infrastructure__wrapper > .row > .col-md-6:first-child { flex: 0 0 70%; max-width: 70%; }
+  .infrastructure__wrapper > .row > .infra-contact { flex: 0 0 30%; max-width: 30%; }
+}
+@media (min-width: 1200px) {
+  .infrastructure__wrapper > .row > .col-md-6:first-child { flex: 0 0 74%; max-width: 74%; }
+  .infrastructure__wrapper > .row > .infra-contact { flex: 0 0 26%; max-width: 26%; }
+}
+@media (min-width: 768px) {
+  .infra-contact__box { padding: 1.5rem; }
+  .infra-plate__amount { font-size: 1.75rem; }
+  .infra-contact__box .person-card__left { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
+  .infra-contact__box .person-card__title { font-size: 1.375rem; }
+}
+.infra-contact__alt { overflow-wrap: anywhere; }
+
+/* the gallery takes the whole width of the text column (the site's own CSS indents it on a wide screen and makes it 4:3) */
+.infrastructure__wrapper .infrastructure__slider-wrap { padding-left: 0; width: 100%; }
+.infrastructure__wrapper .infrastructure__img { padding-top: 56%; }
+.infrastructure__wrapper .infrastructure__img img { object-fit: cover; }
+
+/* the heading is the short name now, so it is a full-size page heading (the site's .font-mini was for the long names) */
+.infrastructure__wrapper .infrastructure__header.font-mini { font-size: 1.7778rem !important; line-height: 1.19 !important; letter-spacing: -0.02em; }
+@media (min-width: 768px) { .infrastructure__wrapper .infrastructure__header.font-mini { font-size: 2.6667rem !important; line-height: 1.125 !important; } }

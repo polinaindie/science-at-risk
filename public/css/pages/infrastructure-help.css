@@ -1,0 +1,26 @@
+/* Infrastructure pages: "Contact and help" is a primary button (.btn--black, the black squircle) with the arrow in white,
+   not a text link. These pages load the site's own stylesheet from scienceatrisk.org, so the button is set here. */
+.isDefault .infrastructure__help.btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.5rem 1.33333rem 0.55556rem;
+    border: 0;
+    cursor: pointer;
+}
+.isSafari .infrastructure__help.btn { display: inline-flex; padding: 0.5rem 1.33333rem 0.55556rem; border: 0; border-radius: 15px; background: #000; color: #fff; }
+
+/* The gallery sits in the text column under the heading; the column that held it is gone, so the text column is the page. */
+.infrastructure__wrapper .infrastructure__slider-wrap { margin: 1.5rem 0 2rem; max-width: 100%; }
+
+/* The coordinator's card sits in the right column, level with the text (it used to be a full-width band at the foot of the
+   page). It is the same .person-card with its form: the form slides over the whole screen, as it already does on a phone. */
+.infra-contact .person-card { padding: 0; min-height: 0; overflow: visible; background-color: transparent; }
+@media (min-width: 992px) { .infra-contact .person-card { position: sticky; top: 7.5rem; } }
+.infra-contact .person-card__wrapper { display: block; }
+.infra-contact .person-card__left { display: block; }
+.infra-contact .person-card__btn.d-lg-none { display: none !important; }
+.infra-contact .person-card__right { display: block !important; margin-top: 1.5rem; }
+.infra-contact .person-card__btn { margin-top: 0; width: auto; }
+.infra-contact .person-card__help { position: fixed; }
+.infra-contact .person-card__info { margin-top: 0; }
+.infra-contact { align-self: stretch; } /* as tall as the text, so the card can stay in view while it scrolls */
