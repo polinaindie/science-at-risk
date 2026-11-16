@@ -101,7 +101,7 @@ a.tag:is(:hover, .is-hover) { background: var(--color-black); color: var(--color
 /* ---- scientist card ---- */
 .card-scientist { position: relative; display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-2); padding: var(--space-3) 0; border-bottom: var(--border-rule) solid var(--color-line); }
 @media (min-width: 768px) { .card-scientist { grid-template-columns: var(--space-7) minmax(0, 1fr); } .card-scientist__photo { width: var(--space-7); } }
-.card-scientist__photo { width: var(--space-7); aspect-ratio: 3 / 4; object-fit: cover; background: var(--color-blue); }
+.card-scientist__photo { width: var(--space-7); aspect-ratio: 1 / 1; object-fit: cover; background: var(--color-blue); }
 .card-scientist__photo--empty { display: flex; align-items: center; justify-content: center; font-family: var(--font-serif); font-size: var(--text-name); color: var(--color-text-muted); }
 .card-scientist__name { font-family: var(--font-serif); font-weight: var(--font-weight-normal); font-size: var(--text-name); line-height: var(--text-name-lh); letter-spacing: var(--text-name-ls); overflow-wrap: anywhere; }
 .card-scientist__name a { text-decoration: none; }
