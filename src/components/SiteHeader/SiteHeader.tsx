@@ -421,7 +421,10 @@ export function SiteHeader({
           aria-hidden
           onClick={() => setMenuOpen(false)}
         />
-        <div className="relative h-full">
+        {/* A fixed width: the panel must not size itself to its widest line
+            (the address, which a script fills in on static pages), or the same
+            menu is a different width on every page. */}
+        <div className="relative h-full w-full max-w-[420px]">
           <MobileNav
             items={items}
             tone={inverted ? 'dark' : 'light'}
