@@ -1,0 +1,24 @@
+/*
+ * squircle.css — the rounded shape of buttons, chips and tags.
+ *
+ * Progressive enhancement, no JavaScript: where the browser supports
+ * `corner-shape` the corners become a squircle (borders, hover and focus follow
+ * the shape by themselves); elsewhere they stay a plain `--radius-squircle`
+ * radius. The live site's own squircle is drawn by a script (Figma corner
+ * smoothing 0.9); this is the close, script-free equivalent. Ask design before
+ * replacing one with the other.
+ *
+ * (The `html` prefix only raises specificity above the component rules.)
+ * Add the class `is-squircle` to any other element that should have it.
+ */
+@supports (corner-shape: squircle) {
+  html .btn,
+  html .chip,
+  html .tag,
+  html .pagination__link--step,
+  html .is-squircle {
+    corner-shape: squircle;
+    /* the squircle curve needs a larger radius than a circle to look the same */
+    border-radius: calc(var(--radius-squircle) * 1.6);
+  }
+}
