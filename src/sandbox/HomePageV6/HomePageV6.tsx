@@ -145,10 +145,16 @@ const SECTIONS = [
   { ground: 'satr-on-dark bg-brand-black', inverted: true },
 ] as const;
 
-/** Sets the info blocks' titles whole and at the deck's size. Their call to
- *  action needs nothing here: the shared link underlines itself, line by
- *  line. */
-const INFO_LINK = '[&_h2]:hyphens-none [&_h2]:text-[clamp(32px,4.2vw,60px)]';
+/** Sets the info blocks' titles whole. Their call to action needs nothing
+ *  here: the shared link underlines itself, line by line. */
+const INFO_LINK = '[&_h2]:hyphens-none';
+
+/** One size for every block title on the page (not the hero's story title): the
+ *  same on screen whether or not the deck has scaled the block down, which is
+ *  why it is divided by `--satr-fit`. Serif only, so the footer's mono subtitle
+ *  keeps its own size. */
+const BLOCK_H2 =
+  '[&_h2.font-serif]:text-[length:calc(clamp(32px,4.2vw,60px)/var(--satr-fit,1))] [&_h2.font-serif]:leading-[calc(1.07*clamp(32px,4.2vw,60px)/var(--satr-fit,1))]';
 
 /** The deck shrinks a block that is taller than the screen, and its type with
  *  it: at 1024x820 Research comes out at 0.63, which put the papers' authors
@@ -590,22 +596,22 @@ export function HomePageV6({
     },
     {
       ground: SECTIONS[1].ground,
-      className: 'flex flex-col [justify-content:safe_flex-end]',
+      className: `flex flex-col [justify-content:safe_flex-end] ${BLOCK_H2}`,
       content: <HomeScientistsBlock {...(uk ? homeCopyUk.scientists : {})} {...scientists} />,
     },
     {
       ground: SECTIONS[2].ground,
-      className: `flex flex-col ${INFO_BOTTOM} ${INFO_LINK} ${FIT_FLOOR}`,
+      className: `flex flex-col ${INFO_BOTTOM} ${INFO_LINK} ${BLOCK_H2} ${FIT_FLOOR}`,
       content: <ResearchSection infoAtBottom {...research} />,
     },
     {
       ground: SECTIONS[3].ground,
-      className: `flex flex-col ${INFO_BOTTOM} ${INFO_LINK} ${FIT_FLOOR}`,
+      className: `flex flex-col ${INFO_BOTTOM} ${INFO_LINK} ${BLOCK_H2} ${FIT_FLOOR}`,
       content: <InfrastructuresSection infoAtBottom {...infrastructure} />,
     },
     {
       ground: SECTIONS[4].ground,
-      className: 'flex flex-col [justify-content:safe_flex-end]',
+      className: `flex flex-col [justify-content:safe_flex-end] ${BLOCK_H2}`,
       content: <Footer locale={locale} {...footer} />,
     },
   ];
