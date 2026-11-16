@@ -4,7 +4,7 @@ Files: `public/js/research-filter.js`, `public/css/pages/research-filter.css`,
 `public/js/research-index.json` (documents + tags), `public/js/research-i18n.json` (all labels, uk/en).
 Page: `public/research.html` (a `<div data-research-filter>` above the list, the script at the end).
 
-URL: `?theme=scientists,policy` (OR); nothing = all topics. Language: `<html lang>` .
+URL: `?theme=scientists` (one theme at a time); nothing = all topics. Language: `<html lang>` .
 The page is not paged any more: all documents are drawn from the JSON. `research/page-2.html` redirects to `research.html`.
 
 ## Add a document

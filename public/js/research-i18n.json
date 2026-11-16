@@ -23,7 +23,7 @@
     "detailsAria": "Детальніше: {title}",
     "pdfAria": "Завантажити PDF: {title}",
     "download": "Завантажити",
-    "authors": "Дослідження:"
+    "authors": "Автори:"
   },
   "en": {
     "filterLabel": "Filter by topic",
@@ -48,6 +48,6 @@
     "detailsAria": "More details: {title}",
     "pdfAria": "Download PDF: {title}",
     "download": "Download",
-    "authors": "Research:"
+    "authors": "Research by"
   }
 }
