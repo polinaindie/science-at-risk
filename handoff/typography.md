@@ -5,7 +5,7 @@ Components never name a font. They ask for a **role**; the role is defined once 
 | Role | Variable | Tailwind class (React) | Font | Use for |
 |---|---|---|---|---|
 | heading | `--font-heading` | `font-heading` | Noto Serif 400 | h1–h4, person names, big numbers, pull quotes |
-| text | `--font-text` (+ `--font-weight-text`) | `font-text` | e-Ukraine Light 300 | everything read as sentences: article body, card descriptions, profile text, lead paragraphs, authors lines, text typed into fields |
+| text | `--font-text` (+ `--font-weight-text`) | `font-text` | IBM Plex Mono 300 | everything read as sentences: article body, card descriptions, profile text, lead paragraphs, authors lines, text typed into fields |
 | ui | `--font-ui` | `font-ui` | IBM Plex Mono | everything operated or scanned: nav, buttons, chips, tags, labels, breadcrumbs, dates, counts, captions, hints, errors |
 
 Rule of thumb: a sentence a person reads to the end is `text`; a word or number that is scanned or clicked is `ui`.
@@ -46,7 +46,7 @@ The sizes the React app renders are 12.5% larger than the numbers above (root si
 
 ## Weights
 
-`text` has one weight, Light 300 (the only e-Ukraine file shipped, see open question 26), and Bold 700 for `strong`.
+`text` has one weight, Light 300 (the only IBM Plex Mono file shipped, see open question 26), and Bold 700 for `strong`.
 `heading` is 400. `ui` uses 400 and 500 (tabs) and 300 for field labels.
 
 ## Not unified yet (see `open-questions.md`, 39–40)

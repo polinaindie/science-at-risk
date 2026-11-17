@@ -11,7 +11,7 @@
   position: relative;
   display: inline-block;
   isolation: isolate;
-  padding: 5px 14px;
+  padding: 7px 14px;
   color: var(--link-ink);
   font-family: var(--font-ui, 'IBM Plex Mono', monospace);
   font-size: 15px;
@@ -84,3 +84,37 @@ body .expertTitle.expertTitle--h4 {
 @media (prefers-reduced-motion: reduce) { .satr-chrome.satr-chrome--header.satr-sticky { transition: none; } }
 /* Stuck (scrolled): the same 26px of room under the menu as over it, so the text under the bar does not touch it. */
 .satr-chrome.satr-chrome--header.satr-sticky.is-stuck > header > div:first-child { padding-bottom: 26px; height: 94px !important; }
+
+/* The chips (.tag) are cut to a squircle by satr-squircle.js (clip-path), not by the paint worklet from unpkg: the mask and
+   the rounded corners of style.min.css give way, and the fill is the one the chip's own state sets (--squircle-fill). */
+.tag[data-satr-sq]:not(#_) {
+  -webkit-mask-image: none;
+  mask-image: none;
+  border-radius: 0;
+  background: var(--squircle-fill, #fff);
+}
+
+/* ---- The menu, as on scienceatrisk.org ----
+   The burger is three bars drawn here; opened, it turns into an X (the bars rotate, the middle one goes) above the panel,
+   in the panel's ink. The panel fades in and out over 0.3s: from `md` up a card hanging from the burger's corner, on a phone
+   the whole screen. `hidden` goes on after the fade out and `data-open` comes on a frame after it appears (React:
+   SiteHeader; static pages: satr-chrome.js). */
+.satr-burger { position: relative; display: block; width: 30px; height: 22px; }
+.satr-burger i {
+  position: absolute; left: 0; width: 30px; height: 2px; background: currentColor;
+  transition: top 0.3s cubic-bezier(0.23, 1, 0.32, 1), transform 0.3s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.2s, background-color 0.3s;
+}
+.satr-burger i:nth-child(1) { top: 2px; }
+.satr-burger i:nth-child(2) { top: 10px; }
+.satr-burger i:nth-child(3) { top: 18px; }
+[data-satr-menu-button][aria-expanded="true"] { color: #fff; }
+[data-satr-menu-button][data-tone="dark"][aria-expanded="true"] { color: #000; }
+[data-satr-menu-button][aria-expanded="true"] .satr-burger i:nth-child(1) { top: 10px; transform: rotate(45deg); }
+[data-satr-menu-button][aria-expanded="true"] .satr-burger i:nth-child(2) { opacity: 0; }
+[data-satr-menu-button][aria-expanded="true"] .satr-burger i:nth-child(3) { top: 10px; transform: rotate(-45deg); }
+
+[data-satr-menu] [data-satr-menu-panel] { opacity: 0; transition: opacity 0.3s; }
+[data-satr-menu][data-open] [data-satr-menu-panel] { opacity: 1; }
+@media (prefers-reduced-motion: reduce) {
+  [data-satr-menu] [data-satr-menu-panel], .satr-burger i { transition: none; }
+}

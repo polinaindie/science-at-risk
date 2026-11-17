@@ -24,8 +24,8 @@
   --c-line: var(--color-line-soft, rgba(0, 0, 0, 0.25));
   --f-ui: var(--font-ui, 'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace);
   --f-head: var(--font-heading, 'Noto Serif', Georgia, 'Times New Roman', serif);
-  --f-text: var(--font-text, 'e-Ukraine', sans-serif);
-  --f-field: var(--font-text, 'e-Ukraine', 'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace);
+  --f-text: var(--font-text, 'IBM Plex Mono', monospace);
+  --f-field: var(--font-text, 'IBM Plex Mono', 'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace);
   --r-btn: var(--radius-squircle, 15px);
 }
 
@@ -137,7 +137,7 @@ a:hover { text-decoration-thickness: 2px; }
 }
 .field textarea { min-height: 132px; padding: 8px 0; resize: vertical; border: 2px solid var(--c-ink); padding: 10px 12px; }
 .field select { appearance: auto; padding-right: 8px; }
-.field input::placeholder { color: #6b6b6b; }
+.field input::placeholder { color: #4d4d4d; }
 .field input:focus, .field textarea:focus, .field select:focus {
   outline: none; box-shadow: 0 3px 0 0 var(--c-ink);
 }

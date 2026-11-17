@@ -30,11 +30,22 @@
         var THEMES = data.themes;
         /* the file is in newest-first order, and that is the order on the page */
         var DOCS = data.docs;
+        var PEOPLE = data.people || {};
         var isNew = function (d) { return d['new'] === true; };
         var chosen = readUrl();
 
         var esc = function (s) { var d = document.createElement('div'); d.textContent = s; return d.innerHTML; };
         var fmt = function (s, v) { return s.replace(/\{(\w+)\}/g, function (_, k) { return v[k]; }); };
+        /* 2026-07-30 -> 30.07.26, the way the stories list writes a date */
+        var fmtDate = function (iso) { var m = /^(\d{4})-(\d\d)-(\d\d)$/.exec(iso || ''); return m ? m[3] + '.' + m[2] + '.' + m[1].slice(2) : ''; };
+        /* "A, B and C": a name that is a scientist on the site becomes a link to the profile */
+        var authorsHtml = function (text) {
+            return text.split(/(,\s*|\s+and\s+)/).map(function (part, i) {
+                if (i % 2) return esc(part);
+                var slug = PEOPLE[part.trim()];
+                return slug ? '<a class="research-card__author hover hover--underline" href="' + base + 'expert/' + slug + '.html">' + esc(part) + '</a>' : esc(part);
+            }).join('');
+        };
         var count = function (theme) { return DOCS.filter(function (d) { return d.theme === theme; }).length; };
 
         /* the page is no longer paged: all documents are on it */
@@ -42,8 +53,14 @@
 
         root.className = 'research-filter';
         root.innerHTML =
-            '<div class="research-filter__tags popular-requests__wrapper" role="group" aria-label="' + esc(t.filterLabel) + '"></div>';
+            '<div class="research-filter__tags popular-requests__wrapper" role="group" aria-label="' + esc(t.filterLabel) + '"></div>' +
+            '<div class="research-filter__explain" hidden><h2 class="research-filter__explain-title"></h2><p class="research-filter__explain-text"></p></div>';
         var tagsBox = root.querySelector('.research-filter__tags');
+        /* what the chosen topic covers, as a line under the chips: shown where there is no hover (phones, tablets),
+           in place of the tooltip */
+        var explain = root.querySelector('.research-filter__explain');
+        var explainTitle = explain.querySelector('.research-filter__explain-title');
+        var explainText = explain.querySelector('.research-filter__explain-text');
 
         list.setAttribute('role', 'region');
         list.setAttribute('aria-label', t.filterLabel);
@@ -109,9 +126,15 @@
             var href = base + 'research/' + d.slug + '.html', pdf = base + d.pdf;
             return '<div class="paper-card"><article class="paper-card__wrap"><div class="row align-items-start justify-content-between">' +
                 '<div class="col-xl-6 col-md-7"><div class="paper-card__info">' +
+                /* date, "New" and, on a phone, the file type at the right end of the same line; a card with no date or
+                   "New" still has the line there, only for the file type, and it is hidden from tablet up */
+                '<div class="research-card__meta' + (d.date || isNew(d) ? '' : ' research-card__meta--pdf-only') + '">' +
+                (d.date ? '<time class="research-card__date" datetime="' + esc(d.date) + '">' + esc(fmtDate(d.date)) + '</time>' : '') +
                 (isNew(d) ? '<span class="tag research-card__new">' + esc(t['new']) + '</span>' : '') +
+                '<span class="research-card__pdf" aria-hidden="true">' + esc(t.pdf) + '</span>' +
+                '</div>' +
                 '<h2 class="paper-card__title"><span>' + esc(d.title) + '</span></h2>' +
-                (d.authors ? '<p class="paper-card__text">' + esc(t.authors + ' ' + d.authors) + '</p>' : '') +
+                (d.authors ? '<p class="paper-card__text">' + esc(t.authors) + ' ' + authorsHtml(d.authors) + '</p>' : '') +
                 '</div></div>' +
                 '<div class="offset-xl-3 offset-md-2 col-md-3"><div class="paper-card__right"><p class="paper-card__right-text">' + esc(t.pdf) + '</p></div></div>' +
                 '</div></article>' +
@@ -123,12 +146,27 @@
                 '</div></div>';
         }
 
+        /* In the sideways row on a phone the chosen chip is always in view: on the way in (a link with ?theme=) as well as
+           when it is chosen. Only the row moves, never the page; the chip is brought in with the gutter beside it. */
+        var started = false;
+        function showChosen(smooth) {
+            var on = tagsBox.querySelector('[aria-pressed="true"]');
+            if (!on || tagsBox.scrollWidth <= tagsBox.clientWidth) return;
+            var box = tagsBox.getBoundingClientRect(), r = on.getBoundingClientRect(), gutter = 16, dx = 0;
+            if (r.left < box.left + gutter) dx = r.left - box.left - gutter;
+            else if (r.right > box.right - gutter) dx = r.right - box.right + gutter;
+            if (dx) tagsBox.scrollTo({ left: tagsBox.scrollLeft + dx, behavior: smooth ? 'smooth' : 'auto' });
+        }
+
         function render() {
             var all = chosen.length === 0;
             [allBtn].concat(THEMES.map(function (id) { return btns[id]; })).forEach(function (b) {
                 var id = b.getAttribute('data-theme');
                 b.setAttribute('aria-pressed', (id === '' ? all : chosen.indexOf(id) > -1) ? 'true' : 'false');
             });
+
+            showChosen(started);
+            started = true;
 
             var shown = all ? DOCS : DOCS.filter(function (d) { return chosen.indexOf(d.theme) > -1; });
             if (shown.length) {
@@ -138,6 +176,9 @@
                     '<button type="button" class="btn btn--bordered' + '">' + esc(t.reset) + '</button></div>';
                 list.querySelector('button').addEventListener('click', function () { toggle(''); });
             }
+            explainTitle.textContent = chosen.length ? t.themes[chosen[0]] : '';
+            explainText.textContent = chosen.length ? t.explain[chosen[0]] : '';
+            explain.hidden = !chosen.length;
             status.textContent = fmt(t.shown, { n: shown.length, total: DOCS.length });
         }
 

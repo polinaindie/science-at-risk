@@ -5,7 +5,7 @@
  * globals.css) and for the static pages in public/. Plain CSS with BEM names,
  * so the backend team can lift it as it is. Colours, fonts and sizes are the
  * site's own: black on white, IBM Plex Mono for the interface, Noto Serif for
- * headings, e-Ukraine inside fields, #f0eebe for what needs attention.
+ * headings, IBM Plex Mono inside fields, #f0eebe for what needs attention.
  */
 
 /* Every rule is written `.satr-auth .satr-auth__x` on purpose: on the static

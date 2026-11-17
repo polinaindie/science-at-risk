@@ -1,0 +1,247 @@
+{
+  "_note": "The one list of science domains for the whole site (scientists, societies, infrastructures, home). \"uk\" are the Ukrainian names. \"aliases\" maps the free wording that used to be on infrastructures and societies to these names.",
+  "domains": [
+    {
+      "slug": "natural-sciences",
+      "en": "Natural sciences",
+      "uk": "Природничі науки"
+    },
+    {
+      "slug": "biology",
+      "en": "Biology",
+      "uk": "Біологія"
+    },
+    {
+      "slug": "humanities",
+      "en": "Humanities",
+      "uk": "Гуманітарні науки"
+    },
+    {
+      "slug": "social-and-behavioural-sciences",
+      "en": "Social and behavioural sciences",
+      "uk": "Соціальні та поведінкові науки"
+    },
+    {
+      "slug": "information-technology",
+      "en": "Information technology",
+      "uk": "Інформаційні технології"
+    },
+    {
+      "slug": "management-and-administration",
+      "en": "Management and administration",
+      "uk": "Управління та адміністрування"
+    },
+    {
+      "slug": "health-care",
+      "en": "Health care",
+      "uk": "Охорона здоров’я"
+    },
+    {
+      "slug": "manufacturing-and-technology",
+      "en": "Manufacturing and technology",
+      "uk": "Виробництво та технології"
+    },
+    {
+      "slug": "education",
+      "en": "Education",
+      "uk": "Освіта"
+    },
+    {
+      "slug": "chemical-engineering-and-bioengineering",
+      "en": "Chemical engineering and bioengineering",
+      "uk": "Хімічна інженерія та біоінженерія"
+    },
+    {
+      "slug": "culture-and-arts",
+      "en": "Culture and arts",
+      "uk": "Культура і мистецтво"
+    },
+    {
+      "slug": "agricultural-sciences-and-food",
+      "en": "Agricultural sciences and food",
+      "uk": "Аграрні науки та продовольство"
+    },
+    {
+      "slug": "international-relations",
+      "en": "International relations",
+      "uk": "Міжнародні відносини"
+    },
+    {
+      "slug": "mathematics-and-statistics",
+      "en": "Mathematics and statistics",
+      "uk": "Математика та статистика"
+    },
+    {
+      "slug": "mechanical-engineering",
+      "en": "Mechanical engineering",
+      "uk": "Механічна інженерія"
+    },
+    {
+      "slug": "journalism",
+      "en": "Journalism",
+      "uk": "Журналістика"
+    },
+    {
+      "slug": "electrical-engineering",
+      "en": "Electrical engineering",
+      "uk": "Електрична інженерія"
+    },
+    {
+      "slug": "law",
+      "en": "Law",
+      "uk": "Право"
+    },
+    {
+      "slug": "electronics-automation-and-electronic-communications",
+      "en": "Electronics, automation and electronic communications",
+      "uk": "Електроніка, автоматизація та електронні комунікації"
+    },
+    {
+      "slug": "services",
+      "en": "Services",
+      "uk": "Сфера обслуговування"
+    }
+  ],
+  "aliases": {
+    "physical sciences": [
+      "Natural sciences"
+    ],
+    "life sciences and biomedicine": [
+      "Biology",
+      "Health care"
+    ],
+    "life science and biomedicine": [
+      "Biology",
+      "Health care"
+    ],
+    "life sciences": [
+      "Biology"
+    ],
+    "agricultural sciences": [
+      "Agricultural sciences and food"
+    ],
+    "agricultural and food science": [
+      "Agricultural sciences and food"
+    ],
+    "agricultural technologies": [
+      "Agricultural sciences and food"
+    ],
+    "food safety and quality": [
+      "Agricultural sciences and food"
+    ],
+    "materials science": [
+      "Natural sciences"
+    ],
+    "chemistry": [
+      "Natural sciences"
+    ],
+    "physics": [
+      "Natural sciences"
+    ],
+    "biomedicine": [
+      "Biology",
+      "Health care"
+    ],
+    "pharmacy": [
+      "Health care"
+    ],
+    "technologies": [
+      "Manufacturing and technology"
+    ],
+    "technology": [
+      "Manufacturing and technology"
+    ],
+    "arts and humanities": [
+      "Humanities",
+      "Culture and arts"
+    ],
+    "мистецтво та гуманітарні науки": [
+      "Humanities",
+      "Culture and arts"
+    ],
+    "mathematical sciences": [
+      "Mathematics and statistics"
+    ],
+    "earth sciences": [
+      "Natural sciences"
+    ],
+    "culture and art": [
+      "Culture and arts"
+    ],
+    "museum studies": [
+      "Culture and arts"
+    ],
+    "radiological safety in the exclusion zone": [
+      "Natural sciences"
+    ],
+    "medicine": [
+      "Health care"
+    ],
+    "psychology": [
+      "Social and behavioural sciences"
+    ],
+    "ecology": [
+      "Natural sciences"
+    ],
+    "economics": [
+      "Social and behavioural sciences"
+    ],
+    "microbiology": [
+      "Biology"
+    ],
+    "education": [
+      "Education"
+    ],
+    "open science": [
+      "Information technology"
+    ],
+    "history and archaeology": [
+      "Humanities"
+    ],
+    "history and archeology": [
+      "Humanities"
+    ],
+    "mathematics": [
+      "Mathematics and statistics"
+    ],
+    "biophysics": [
+      "Natural sciences"
+    ],
+    "publishing": [
+      "Journalism"
+    ],
+    "public administration": [
+      "Management and administration"
+    ],
+    "biology": [
+      "Biology"
+    ],
+    "bioinformatics": [
+      "Information technology"
+    ],
+    "parasitology": [
+      "Biology"
+    ],
+    "mineralogy": [
+      "Natural sciences"
+    ],
+    "neurophysiology": [
+      "Biology"
+    ],
+    "philology": [
+      "Humanities"
+    ],
+    "cultural heritage": [
+      "Culture and arts"
+    ],
+    "science popularization": [
+      "Education"
+    ],
+    "nuclear energy": [
+      "Electrical engineering"
+    ],
+    "palaeontology": [
+      "Natural sciences"
+    ]
+  }
+}

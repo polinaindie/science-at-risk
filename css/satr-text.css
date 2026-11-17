@@ -1,7 +1,7 @@
 /*
  * satr-text.css — the type roles applied to the static pages. Needs tokens.css linked first.
  *
- * Three roles (defined in tokens.css): heading = serif, text = e-Ukraine Light, ui = IBM Plex Mono.
+ * Three roles (defined in tokens.css): heading = Noto Serif, text = IBM Plex Mono, ui = IBM Plex Mono.
  *   - the page default is `ui`; every running-text element below is `text`;
  *   - sizes are NOT changed here, only the family, the weight and the tracking, so layouts keep their rhythm;
  *   - `:not(#_)` raises specificity above the page stylesheets (some of them nest three classes) without !important.
@@ -30,11 +30,11 @@ body { font-family: var(--font-ui); }
   letter-spacing: 0;
 }
 
-/* Bold inside running text stays bold (e-Ukraine has a real 700). */
+/* Bold inside running text stays bold (IBM Plex Mono has a real 700). */
 :is(.paragraph, .story-lead, .paper-lead, .main-text, .project-card__text):not(#_) :is(strong, b) { font-weight: 700; }
 
 /* One outlier: this element is a control, so it fell back to the browser's 13.33px, under the 14px floor. */
-.project-card__text:not(#_) { font-size: 15px; line-height: 22px; }
+.project-card__text:not(#_) { font-size: 16px; line-height: 25px; }
 
 /* Headings: family is the `heading` role wherever the page draws them (header, menu and footer are components with their own
    classes and are left alone); the SIZE comes from the heading scale in tokens.css, by role, not by page. */
@@ -57,3 +57,75 @@ body { font-family: var(--font-ui); }
     .person-card__title, .aside__title):not(#_) {
   font-size: var(--heading-3); line-height: var(--heading-3-lh); letter-spacing: var(--heading-3-ls);
 }
+
+/* Controls do not inherit the page font by default (the browser uses Arial/system-ui): make them follow the role. */
+button, input, select, textarea { font-family: inherit; }
+
+/* Readability floor for mono running text (see the readability rules in tokens.css).
+   - paragraphs of content pages: line-height at least 1.55; short labels set as <p> keep their own height;
+   - links, tags and field labels do not go under 14px on a phone. */
+:is(main, .wrapper, .content) :is(p, li):not(.satr-chrome *):not([class*="type"], [class*="label"], [class*="count"], [class*="updated"], [class*="hint"], [class*="date"], [class*="note"]):not(#_) {
+  line-height: 1.55;
+}
+@media (max-width: 767px) {
+  :is(.hero__list-link, .hover--underline, .expert-card__tag, .infrastructures__text-left, .satr-float__label):not(.satr-chrome *):not(#_) { font-size: max(14px, 0.7778rem); }
+  :is(.paragraph, p, li, .content) a:not(.satr-chrome *):not(#_) { font-size: max(14px, 1em); }
+  a[href^="mailto:"]:not(.satr-chrome *):not(#_) { font-size: max(14px, 1em); }
+}
+
+/* The column labels ("Science domain", "Required amount") were 13px under 1024px: 14px is the floor. */
+.infrastructures__text-right,
+.infrastructures__text-left { font-size: var(--step-xs, 0.7778rem); line-height: var(--step-xs-lh, 1.2222rem); }
+
+/* Chips are 13px from 768 to 1279 in the main stylesheet (.tag); under 768 the rule above lifts them, here too. */
+@media (min-width: 768px) and (max-width: 1279.98px) {
+  .tag:not(.satr-chrome *):not(#_) { font-size: max(14px, 0.7778rem); }
+}
+
+/* The search-hero title ("Find partners in / Ukrainian science") is always two lines, at every width. A measure of
+   9.6em stops it running on in one line on a wide screen; on a narrow one the size gives way to what fits it
+   (viewport less the 16px gutters, over the 9.7em the two lines need) instead of breaking into four. */
+.search-hero__info-wrap { max-width: none; }
+.search-hero__title:not(#_) {
+  max-width: 9.6em;
+  text-wrap: balance;
+  font-size: min(var(--heading-1), calc((100vw - 32px) / 9.7));
+}
+
+/* The science domains in the infrastructure and society lists are the site's blue tags, as on the scientists' cards and
+   on an infrastructure's own page (.infra-chips there), not a line of text. */
+.infrastructures-card__text-left .infra-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.infrastructures-card__text-left .infra-chips .tag { width: auto; font-family: var(--font-ui, "IBM Plex Mono", monospace); font-size: max(14px, 0.8889rem); line-height: 1.45; }
+.isSafari .infrastructures-card__text-left .infra-chips .tag, .infrastructures-card__text-left .infra-chips .tag.no-paint { background: var(--color-blue); border-radius: 15px; }
+
+/* Phone, tablet and a small laptop: the domain tags and the amount are stacked. Side by side they need 230px + the amount
+   (and 92px of padding from 1024) and the column is narrower than that under 1280px, so the amount ran out past the edge
+   of the screen. */
+@media (max-width: 1279.98px) {
+  .infrastructures-card__right { flex-direction: column; align-items: stretch; gap: 16px; padding-left: 0; }
+  .infrastructures-card__text-left, .infrastructures-card__text-right { margin: 0; max-width: none; }
+}
+
+/* From 768 to 1279 the cards are stacked (above), so the column titles over the list ("Science Domain", "Required
+   amount") are not columns any more: the header row goes and each card carries its own labels, as on a phone. */
+@media (max-width: 1279.98px) {
+  .infrastructures__header { display: none !important; }
+  .infrastructures-card__right .d-md-none { display: block !important; }
+  .infrastructures-card__right [class*="infrastructures__text-"] { margin: 0 0 4px; max-width: none; text-align: left; }
+}
+
+/* AA contrast: the mirrored stylesheet dims some text with `opacity: .5`, which makes black on white #808080 (3.9:1), and
+   on the blue and yellow grounds less. The dimmed text is the muted ink instead (--color-text-muted, 8.4:1 on white,
+   4.8:1 on the blue), at full opacity. */
+.breadcrumbs__link--disabled, .breadcrumbs li:last-child span,
+.data, .story-card__data, .image__figcaption, .storyAside__add-text {
+  opacity: 1;
+  color: var(--color-text-muted);
+}
+
+/* Society page, tablet: the links are 13px between 768 and 1279 in the mirrored sheet (14px is the floor), and a long
+   address (the president's e-mail) may break instead of running past the edge of the screen. */
+@media (min-width: 768px) and (max-width: 1279.98px) {
+  :is(.scientific-societies__link, .scientific-societies .content a, .hero__list-link, .hover--underline):not(.satr-chrome *):not(#_) { font-size: max(14px, 0.7778rem); }
+}
+.scientific-societies { overflow-wrap: anywhere; }

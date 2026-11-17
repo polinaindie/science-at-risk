@@ -69,7 +69,7 @@ content model, UI dictionary keys, cabinet screens, letter structure, accessibil
 2. Only the cabinet exists in UK as drawn pages. Other page templates are reviewed in EN; UK is covered by long-string rules and `data/*too_long*`, not by drawn pages.
 4. The cabinet profile form is a subset of fields (see `cabinet/README.md`).
 5. Page templates were checked at three widths only for the handoff pages above; the mirrored pages in `public/` still fail the checks listed in `hugo-migration-checklist.md`.
-6. Fonts: Noto Serif and IBM Plex Mono are loaded from Google Fonts in the drafts and are not in the repo; e-Ukraine has no licence text in the files and is only the Light cut. See `open-questions.md`.
+6. Fonts: Noto Serif and IBM Plex Mono are loaded from Google Fonts in the drafts and are not in the repo; IBM Plex Mono has no licence text in the files and is only the Light cut. See `open-questions.md`.
 
 ## Regenerating generated files
 

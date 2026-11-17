@@ -19,7 +19,7 @@ Static HTML and CSS samples of every cabinet screen and letter. Open `index.html
 
 Pages link `../tokens.css` (the shared tokens file) before `cabinet.css`. `cabinet.css` has a "token bridge" at the top: every value is `var(--color-…, fallback)`, so pages render before `tokens.css` exists. The bridge already uses the real names from `tokens.css` (`--color-text`, `--color-bg`, `--color-attention`, `--font-mono`, `--radius-squircle` and so on). Note tokens.css sets `html { font-size: 112.5% }`; cabinet.css uses px so it is unaffected.
 
-Fonts: pages use font stacks only (IBM Plex Mono, Noto Serif, e-Ukraine, then system). The site's font loading is not repeated here.
+Fonts: pages use font stacks only (IBM Plex Mono, Noto Serif, IBM Plex Mono, then system). The site's font loading is not repeated here.
 
 ## Routes the samples assume
 

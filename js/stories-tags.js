@@ -11,3 +11,18 @@
         });
     };
 })();
+
+/* The open type (aria-current) is always in view in the sideways row on a phone, also when the page is opened on it. */
+(function () {
+    function show() {
+        var row = document.querySelector('.stories-tags');
+        var on = row && row.querySelector('a[aria-current="page"]');
+        if (!on || row.scrollWidth <= row.clientWidth) return;
+        var chip = on.parentNode, box = row.getBoundingClientRect(), r = chip.getBoundingClientRect(), gutter = 16, dx = 0;
+        if (r.left < box.left + gutter) dx = r.left - box.left - gutter;
+        else if (r.right > box.right - gutter) dx = r.right - box.right + gutter;
+        if (dx) row.scrollLeft += dx;
+    }
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', show); else show();
+    window.addEventListener('load', show);
+})();
