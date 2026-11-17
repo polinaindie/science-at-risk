@@ -503,7 +503,7 @@ export function HomeHeroV4Final({
                   width of Back and Next either side. */}
               <nav
                 aria-label={storiesLabel}
-                className="grid shrink-0 grid-cols-[1fr_auto_1fr] items-center gap-[12px]"
+                className="grid shrink-0 grid-cols-[1fr_auto_1fr] items-center gap-[12px] md:max-lg:border-t-2 md:max-lg:border-solid md:max-lg:border-brand-black md:max-lg:pt-[16px]"
               >
                 <button
                   type="button"
