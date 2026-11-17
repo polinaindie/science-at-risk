@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;700&family=Noto+Serif:wght@400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../css/tokens.css"><link rel="stylesheet" href="../css/type-scale.css">
-<link rel="stylesheet" href="squircle.css">
+<link rel="stylesheet" href="../css/satr-components.css">
 <style>
 /* Component CSS of states.html. Token-only: every colour, size step, space, radius and border comes from tokens.css.
    Forced-state classes (.is-hover, .is-focus, .is-active, .is-disabled) mirror the real pseudo-classes so every state is visible
@@ -335,5 +335,17 @@ textarea.field__input { min-height: calc(var(--space-7) + var(--space-3)); resiz
 
 </main>
 <footer><div class="site-footer theme-dark"><div class="wrapper"><div class="site-footer__grid"><div><p class="site-footer__title">The project is supported by</p><ul class="site-footer__list"><li><a class="site-footer__link" href="#">Alfred P. Sloan Foundation</a></li><li><a class="site-footer__link" href="#">Ministry of Education and Science of Ukraine</a></li></ul></div><div><p class="site-footer__title">Responsible for implementation</p><ul class="site-footer__list"><li><a class="site-footer__link" href="#">NGO “Kunsht”</a></li></ul></div></div><p class="site-footer__legal">Science At Risk</p></div></div></footer>
+<script src="../js/satr-shape.js"></script>
+<script>
+/* Interim scaffold: marks the hand-written components so satr-shape.js draws the real squircle on them.
+   Real markup carries data-squircle itself (see squircle.html). */
+document.querySelectorAll('.btn, .chip, .tag, .pagination__link--step').forEach(function (el) {
+  /* A CSS border would be cut off at the corners by the clip. Bordered elements keep a plain radius here until their
+     markup is generated from the React components (ring on a background layer, see squircle.html). */
+  if (parseFloat(getComputedStyle(el).borderTopWidth) > 0) { el.style.borderRadius = '15px'; return; }
+  el.setAttribute('data-squircle', '');
+});
+window.satrShape.init();
+</script>
 </body>
 </html>

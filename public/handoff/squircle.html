@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Squircle — Science at Risk hand-off</title>
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/type-scale.css">
+<link rel="stylesheet" href="../css/satr-components.css">
+<style>
+  body { margin: 0; padding: var(--space-3); font-family: var(--font-ukraine); font-weight: 300; max-width: 52rem; }
+  h1, h2 { font-family: var(--font-serif); font-weight: 400; }
+  pre { background: #f2f2f2; padding: var(--space-2); overflow-x: auto; font-size: 14px; line-height: 1.5; }
+  .row { display: flex; flex-wrap: wrap; gap: var(--space-2); align-items: center; margin: var(--space-2) 0; }
+</style>
+</head>
+<body>
+<h1>Squircle</h1>
+<p>The squircle is part of the identity. It is not <code>border-radius</code>: each corner is one bezier with Figma corner smoothing 0.9. <code>../js/satr-shape.js</code> draws it (no dependencies) and gives the same path as the React site, character for character. Without JavaScript the element keeps its CSS <code>border-radius</code> (a plain rounded rectangle).</p>
+
+<h2>Live examples</h2>
+<div class="row">
+  <button class="satr-squircle satr-squircle--black" data-squircle="bg"><span class="satr-squircle__bg" aria-hidden="true"></span>More details</button>
+  <button class="satr-squircle satr-squircle--white" data-squircle="bg" style="background:#b5c6cd"><span class="satr-squircle__bg" aria-hidden="true"></span>Download</button>
+  <button class="satr-squircle satr-squircle--bordered" data-squircle="bg" data-ring="2"><span class="satr-squircle__bg" aria-hidden="true"></span>Hover me (ring fills)</button>
+  <a class="satr-tag satr-tag--accent" data-squircle href="#"><span>Biology</span></a>
+  <a class="satr-tag" data-squircle href="#"><span>Chemistry</span><span class="satr-tag__number">12</span></a>
+</div>
+
+<h2>Markup contract</h2>
+<pre>&lt;!-- filled shape: tags, chips --&gt;
+&lt;a class="satr-tag" data-squircle href="…"&gt;&lt;span&gt;Biology&lt;/span&gt;&lt;/a&gt;
+
+&lt;!-- shape on a background layer: buttons (the ring must not clip the label) --&gt;
+&lt;button class="satr-squircle satr-squircle--bordered" data-squircle="bg" data-ring="2"&gt;
+  &lt;span class="satr-squircle__bg" aria-hidden="true"&gt;&lt;/span&gt;Download
+&lt;/button&gt;
+
+&lt;script src="/js/satr-shape.js" defer&gt;&lt;/script&gt;</pre>
+<p><code>data-radius</code> in px (default 16). <code>data-ring</code> in px draws a hollow outline that fills on hover. Elements added later (for example by the search results): <code>window.satrShape.init(container)</code>.</p>
+
+<h2>Hugo</h2>
+<pre>{{/* layouts/partials/squircle-button.html — params: label, variant (black|white|bordered) */}}
+&lt;button class="satr-squircle satr-squircle--{{ .variant }}" data-squircle="bg"
+  {{ if eq .variant "bordered" }}data-ring="2"{{ end }}&gt;
+  &lt;span class="satr-squircle__bg" aria-hidden="true"&gt;&lt;/span&gt;{{ .label }}
+&lt;/button&gt;</pre>
+<p>Load the script once in the base template, before <code>&lt;/body&gt;</code>, with <code>defer</code>.</p>
+<script src="../js/satr-shape.js" defer></script>
+</body>
+</html>

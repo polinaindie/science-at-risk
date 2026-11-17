@@ -45,7 +45,7 @@ Collected from all parts of the package. Details and the assumption made in the 
 |---|---|---|
 | 26 | e-Ukraine: the files have no licence text (only the designer's name and `plan.diia.gov.ua`); the shipped file is the Light 300 cut, there is no real 400. Confirm the licence for the site and the weights. | Des |
 | 27 | Noto Serif and IBM Plex Mono are not in the repo and load from Google Fonts at runtime (privacy). Self-host? Which weights are real? Both are SIL OFL upstream — not confirmed from a file here. | Des + Dev |
-| 28 | Squircle: `squircle.css` uses native `corner-shape: squircle` (no JS; a plain 15 px radius where the browser doesn't support it). It is close to, not identical with, the live site's script-drawn shape (Figma smoothing 0.9). Accept, or keep the script? | Des |
+| 28 | Squircle: shipped as `../js/satr-shape.js` (same geometry as the React site, smoothing 0.9); without JS a plain `border-radius`. Is the no-JS fallback acceptable, or should the shape also be pre-drawn in CSS for the few fixed-size elements? | Des + Dev |
 | 29 | Error colour: static pages use yellow with `!`; the React code has red `#b00020`. The package follows the static pages. | Des |
 | 30 | Paragraph-link gold `#fdbe0d` is deprecated; links are black and underlined now. Confirm. | Des |
 | 31 | Merge `#4a5459` / `#4d4d4d`; fix `#4a5459` on `#b5c6cd` (4.4:1, fails AA). | Des |

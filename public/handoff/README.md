@@ -15,7 +15,7 @@ cd public && python3 -m http.server 8080
 
 | Path | What | Status |
 |---|---|---|
-| `squircle.css` | Rounded shape of buttons, chips, tags: native `corner-shape: squircle`, radius fallback. Linked from `states.html`. | **Reference** |
+| `squircle.html` + `../js/satr-shape.js` | The squircle (identity): dependency-free script, markup contract, Hugo partial. Same path as the React site. | **Reference** |
 | `tokens.css` | All design tokens (`--color-*`, `--space-*`, `--radius-*`, `--shadow-*`, `--font-*`, `--text-*`, `--tap-min`). Breakpoints are comments (`--bp-*`) because CSS variables can't be used in media queries. | **Reference** |
 | `states.html` | Every component with its states on one page: cards, nav, EN/UK switcher, footer, breadcrumbs, buttons/links, search + tag filters (empty, many, pagination), Connect and Want to help forms (default, focus, field error, captcha, rate limit, success, backend unavailable), EN-outdated, 404. | **Reference** |
 | `prose.html`, `prose.css` | `.prose` article style and the four allowed shortcodes (`figure`, `gallery`, `embed`, `quote`). Each has its Markdown call in an HTML comment. | **Reference** |
@@ -40,7 +40,6 @@ content model, UI dictionary keys, cabinet screens, letter structure, accessibil
   `csrf` meta, Google Analytics and reCAPTCHA. Use them for content, not for markup;
 - everything in `src/` (React, Tailwind, Storybook);
 - `cabinet/demo.js` (click-through demo without a server) and the fake autosave;
-- the squircle script on the live site: here it is `squircle.css` (native `corner-shape`, radius fallback);
 - the placeholder images (`/uploads/*` in `prose.html` don't exist);
 - sample text and slugs in `data/` (the `normal` variants use real copy, the others are synthetic).
 

@@ -68,7 +68,7 @@ Findings for developers: (1) two of three families are fetched from Google at ru
 
 ## 5. Other findings relevant to hand-off
 
-- The squircle is `paint(squircle)` via `css-houdini-squircle` from `unpkg.com` (Chromium only; Safari/Firefox get a plain radius, with `.isSafari` hacks). Hand-off uses `--radius-squircle: 15px` as the baseline. Decide whether the true squircle is worth a runtime dependency on a third-party CDN.
+- The squircle is `paint(squircle)` via `css-houdini-squircle` from `unpkg.com` (Chromium only; Safari/Firefox get a plain radius, with `.isSafari` hacks). Hand-off now uses `js/satr-shape.js` (same path as the React site).
 - Third-party runtime assets on every page: Google Fonts, cdnjs (Swiper 9.1.0, fullPage.js 4.0.9), unpkg, Google reCAPTCHA.
 - Two spacing scales coexist: 8-based `--s1..--s7` (expert pages) and Tailwind 4px multiples (chrome). Tokens use the 8-based one plus a 4px half-step.
 - Two muted greys (`#4d4d4d`, `#4a5459`); `#4a5459` on `#b5c6cd` is 4.4:1 and fails AA.

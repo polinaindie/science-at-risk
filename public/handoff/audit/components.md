@@ -61,7 +61,7 @@ Only shadow: `shadow-[0_2px_0_0_#000]` in FieldSelect.
 ## 7. Squircle machinery
 React: `useSquircleClipPath.ts` + `squirclePath.ts` (Figma corner smoothing 0.9) + `SquircleDefs.tsx`.
 Static pages: `public/js/satr-squircle.js` (vanilla port) + `public/css/satr-squircle.css`.
-`handoff/squircle.css` (native `corner-shape`) is a different shape and will be replaced by the real script in stage 4.
+Stage 4: the hand-off's native `corner-shape` file is gone; `public/js/satr-shape.js` draws the same path as React (checked equal for a ring button, a filled button and a tag).
 
 ## 8. Existing machinery to reuse
 `scripts/build-chrome.mjs` and `build-auth.mjs` render React components to static HTML (`renderToStaticMarkup`)
