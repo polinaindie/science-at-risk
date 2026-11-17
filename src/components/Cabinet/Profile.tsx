@@ -39,7 +39,7 @@ import { societies, societyBySlug, societyName } from './societies';
 /** Every heading inside the profile, left column and right: 24px. */
 const H4 = 'font-heading text-[1.5rem] font-normal leading-[1.875rem] tracking-[-0.02em] md:text-[1.75rem] md:leading-[2.125rem]';
 /** The site's running text on an expert's page: IBM Plex Mono, 16 on a phone and 18 above. */
-const SITE_P = 'font-ui text-[1rem] leading-[1.625rem] md:text-[1.125rem] md:leading-[1.875rem]';
+const SITE_P = 'font-text text-[1rem] leading-[1.625rem] md:text-[1.125rem] md:leading-[1.875rem]';
 /** The small text in the site's project and publication cards: e-Ukraine Light, 15. */
 const SITE_SMALL = 'font-text text-[0.9375rem] font-light leading-[1.5625rem]';
 /** A project's or publication's title: serif, 20 on a phone and 22 above. */

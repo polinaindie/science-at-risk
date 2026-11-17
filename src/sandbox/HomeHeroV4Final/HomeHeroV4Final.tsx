@@ -342,7 +342,7 @@ export function HomeHeroV4Final({
               className="block h-auto w-full"
             />
           </h1>
-          <p className="m-0 font-ui text-h3-mobile text-brand-black md:text-h3-desktop">
+          <p className="m-0 font-text text-h3-mobile text-brand-black md:text-h3-desktop">
             {tagline}
           </p>
         </div>
@@ -409,7 +409,7 @@ export function HomeHeroV4Final({
                         </a>
                       </h2>
                       {item.description ? (
-                        <p className="m-0 font-ui text-[0.9375rem] leading-[1.375rem] text-brand-black md:text-[1.125rem] md:leading-[1.4375rem]">
+                        <p className="m-0 font-text text-[0.9375rem] leading-[1.375rem] text-brand-black md:text-[1.125rem] md:leading-[1.4375rem]">
                           {item.description}
                         </p>
                       ) : null}

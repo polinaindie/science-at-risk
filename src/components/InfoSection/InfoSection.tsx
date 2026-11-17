@@ -31,7 +31,7 @@ export function InfoSection({
           than broken: the document declares its language, so the break lands
           where the language says it may. */}
       <h2 className="font-heading text-h1 hyphens-auto">{title}</h2>
-      <p className={`mt-4 max-w-2xl font-ui ${fitTextClass}`}>{text}</p>
+      <p className={`mt-4 max-w-2xl font-text ${fitTextClass}`}>{text}</p>
       <Link href={linkHref} className="mt-6">
         {linkLabel}
       </Link>

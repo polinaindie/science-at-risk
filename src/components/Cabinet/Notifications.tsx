@@ -205,7 +205,7 @@ export function NotificationCard({
                 {isRequest ? n.senderEmail : t.teamName}
               </p>
               <div className="mt-5 border-t-2 border-brand-line-muted pt-5">
-                <div className={`flex flex-col gap-4 font-ui text-text1-mobile md:text-text1-desktop ${WRAP}`}>
+                <div className={`flex flex-col gap-4 font-text text-text1-mobile md:text-text1-desktop ${WRAP}`}>
                   {(n.body || (isRequest ? t.requestText : ''))
                     .split(/\s*\n\s*/)
                     .filter(Boolean)
@@ -240,7 +240,7 @@ export function NotificationCard({
                 </div>
               </div>
               <div
-                className={`mt-5 border-t-2 border-brand-line-muted pt-5 font-ui text-text1-mobile md:text-text1-desktop ${WRAP}`}
+                className={`mt-5 border-t-2 border-brand-line-muted pt-5 font-text text-text1-mobile md:text-text1-desktop ${WRAP}`}
               >
                 {n.kind === 'colleague' ? (
                   <>

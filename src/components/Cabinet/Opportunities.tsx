@@ -10,7 +10,7 @@ export function CourseCard({ locale, course }: { locale: CabinetLocale; course: 
     <article className="flex flex-col gap-6 border-b-2 border-brand-black py-6 md:flex-row md:items-end md:justify-between md:py-8">
       <div className="min-w-0 md:max-w-[70%]">
         <h3 className="font-heading text-h2-mobile md:text-h2-desktop">{course.title}</h3>
-        <p className="mt-3 font-ui text-text1-mobile text-brand-muted">
+        <p className="mt-3 font-text text-text1-mobile text-brand-muted">
           {t.provider}: <span className="text-brand-black">{course.provider}</span>
         </p>
         <p className="mt-3 font-text text-[1rem] leading-[1.375rem] md:text-[1.125rem] md:leading-[1.625rem]">{course.description}</p>

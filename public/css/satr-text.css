@@ -20,7 +20,10 @@ body { font-family: var(--font-ui); }
   .infrastructures-card__text, .infrastructures-card__text-left, .infrastructures-card__text-right,
   .paper-card__text, .paper-card__right-text, .paper-aside__text,
   .aside__lang-text, .popular-requests__text, .nothing__text, .list-card__text,
-  .card-work__texts, input, textarea, select
+  .card-work__texts, [class*="-hero__text"], .expertParagraph, .infra-plate__purpose, .infra-help-note,
+  .satr-auth__lede, .satr-auth p, .person-card__position, .exp-place,
+  .hero__text, .info__info-text, .search__text, .infrastructures-hero p,
+  input, textarea, select
 ):not(#_) {
   font-family: var(--font-text);
   font-weight: var(--font-weight-text);
@@ -32,3 +35,7 @@ body { font-family: var(--font-ui); }
 
 /* One outlier: this element is a control, so it fell back to the browser's 13.33px, under the 14px floor. */
 .project-card__text:not(#_) { font-size: 15px; line-height: 22px; }
+
+/* Headings are the `heading` role wherever the page draws them (the header, menu and footer markup are components with their
+   own classes and are left alone). */
+:is(h1, h2, h3):not(.satr-chrome *):not(#_) { font-family: var(--font-heading); font-weight: var(--font-weight-normal, 400); }

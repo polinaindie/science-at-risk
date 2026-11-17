@@ -40,7 +40,7 @@ export function MatchCard({
             <h3 className="font-heading text-h2-mobile text-brand-black md:text-h2-desktop">
               {scientist.name}
             </h3>
-            <p className="mt-3 font-ui text-h3-mobile md:text-text1-desktop">
+            <p className="mt-3 font-text text-h3-mobile md:text-text1-desktop">
               {scientist.subtitle}
             </p>
             <p className="mt-2 font-text text-text2-mobile font-light md:text-text2-desktop">

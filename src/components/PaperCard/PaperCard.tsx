@@ -56,7 +56,7 @@ export function PaperCard({
             <span className="satr-hover-underline">{title}</span>
           </Heading>
           {description ? (
-            <p className="mt-4 font-ui text-text1-desktop">{description}</p>
+            <p className="mt-4 font-text text-text1-desktop">{description}</p>
           ) : null}
           {usefulFor ? (
             <p className="mt-3 font-text text-text2-mobile font-light md:text-text2-desktop">

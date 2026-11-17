@@ -170,7 +170,7 @@ function PopularTags({ label, tags }: { label: string; tags: HomeScientistsTag[]
 
   return (
     <div ref={boxRef} className="max-w-full md:ml-auto" style={{ width }}>
-      <p className="mb-3 font-ui text-text1-mobile text-brand-black md:text-[1rem] md:leading-[1.5rem]">
+      <p className="mb-3 font-text text-text1-mobile text-brand-black md:text-[1rem] md:leading-[1.5rem]">
         {label}
       </p>
       <div ref={listRef} className="flex flex-wrap gap-2.5" role="list">
@@ -287,7 +287,7 @@ export function HomeScientistsBlock({
               className="items-end"
               render={(m) => (
                 <>
-                  <p className={`m-0 font-ui text-brand-black ${fitTextClass}`}>{m.note}</p>
+                  <p className={`m-0 font-text text-brand-black ${fitTextClass}`}>{m.note}</p>
                   <Link href={m.noteHref} className="mt-6">
                     {m.noteLinkLabel}
                   </Link>

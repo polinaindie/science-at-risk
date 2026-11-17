@@ -24,6 +24,7 @@
   --c-line: var(--color-line-soft, rgba(0, 0, 0, 0.25));
   --f-ui: var(--font-ui, 'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace);
   --f-head: var(--font-heading, 'Noto Serif', Georgia, 'Times New Roman', serif);
+  --f-text: var(--font-text, 'e-Ukraine', sans-serif);
   --f-field: var(--font-text, 'e-Ukraine', 'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace);
   --r-btn: var(--radius-squircle, 15px);
 }
@@ -288,3 +289,6 @@ fieldset.group > legend {
 }
 .state-card { margin-top: 32px; padding: 20px; border: 1px solid var(--c-ink); text-align: left; }
 .state-card h2 { margin: 0 0 12px; font-size: 18px; line-height: 26px; }
+
+/* Type roles (tokens.css): sentences are the `text` role, the rest of the page is `ui`. Hints, small and muted lines are meta. */
+p:not(.hint):not(.small):not(.muted), .lede { font-family: var(--f-text); font-weight: var(--font-weight-text, 300); }
