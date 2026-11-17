@@ -31,6 +31,8 @@ export interface FooterProps {
   maxLength?: number;
   overLimitMessage?: string;
   onSubmit?: (data: FooterSubmitData) => void;
+  /** Where the OpenTech logo file lives; the static pages pass a path relative to their depth. */
+  logoSrc?: string;
   className?: string;
 }
 
@@ -73,6 +75,7 @@ export function Footer({
   maxLength = 7000,
   overLimitMessage = footerCopy[locale].overLimit,
   onSubmit,
+  logoSrc = `${import.meta.env.BASE_URL}images/opentech-logo-white.svg`,
   className = '',
 }: FooterProps) {
   const [count, setCount] = useState(0);
@@ -202,6 +205,21 @@ export function Footer({
               </a>
             </div>
           </div>
+        </div>
+
+        {/* The base line: a rule, the copyright on the left, OpenTech's wordmark on the right
+            (stacked on a phone). */}
+        <div className="mt-[48px] flex flex-col gap-6 border-t border-solid border-white pt-6 md:mt-[56px] md:flex-row md:items-center md:justify-between md:gap-8">
+          <p className="font-ui text-text1-mobile text-white/70">
+            © {new Date().getFullYear()} Science at Risk
+          </p>
+          <img
+            src={logoSrc}
+            alt="OpenTech"
+            width={3360}
+            height={381}
+            className="block h-auto w-[180px] max-w-full md:w-[240px]"
+          />
         </div>
       </div>
     </footer>

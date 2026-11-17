@@ -46,10 +46,10 @@ try {
     vite.ssrLoadModule('/src/components/Footer/index.ts'),
   ]);
 
-  const renderFooter = (ua) =>
+  const renderFooter = (ua, base) =>
     renderToStaticMarkup(
       // The whole footer in Ukrainian: its own copy knows the words.
-      createElement(footerMod.Footer, ua ? { locale: 'uk' } : {}),
+      createElement(footerMod.Footer, { ...(ua ? { locale: 'uk' } : {}), logoSrc: `${base}images/opentech-logo-white.svg` }),
     ).replace(/<link rel="preload"[^>]*>/g, '');
 
   // <div ...data-satr-chrome="header"...> ... <header>…</header> ... </div>
@@ -92,7 +92,7 @@ try {
         );
         return open + bar.replace(/<link rel="preload"[^>]*>/g, '');
       })
-      .replace(footerRe, (_m, open) => open + renderFooter(/<html[^>]*lang="uk"/.test(html)));
+      .replace(footerRe, (_m, open) => open + renderFooter(/<html[^>]*lang="uk"/.test(html), base));
 
     if (next !== html) {
       changed += 1;
