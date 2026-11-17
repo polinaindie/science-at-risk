@@ -1,0 +1,539 @@
+/*
+ * satr-components.css — the live site's component classes (.satr-*), plain CSS, no Tailwind.
+ * Read by the React app (src/styles/globals.css imports it) and by the hand-off pages.
+ * Needs tokens.css and type-scale.css linked first. Edit here: both change.
+ * Wrapped in @layer components so it keeps the same place in the cascade it had inside globals.css.
+ */
+/* Squircle buttons — Figma: not rounded rectangles (node 292:1540) */
+@layer components {
+  /*
+   * The site's own h1 ramp, four steps rather than two. scienceatrisk.org sets
+   * it in rem off an 18px root — 1.77778 / 2.66667 / 3.55556 / 4 — which is
+   * 32, 48, 64 and 72px at 0, 1024, 1280 and 1440. Our tokens only held the
+   * two ends and jumped from 32 straight to 72 at 768, which is what made a
+   * block title read as gigantic on an ordinary laptop: 72px where the site
+   * gives 64. It now follows --step-h1 (public/css/type-scale.css): 32px at
+   * 375 gliding to 72px at 1440, about 66 at 1280, with no jumps.
+   */
+  .text-h1 {
+    font-size: var(--step-h1);
+    line-height: var(--step-h1-lh);
+    letter-spacing: var(--step-h1-ls);
+  }
+
+  /*
+   * Floating label, as scienceatrisk.org has it. The label sits on the text
+   * line of an empty field and, once the field is focused or has something in
+   * it, rises clear of it and shrinks. The field reserves that height from the
+   * start, so nothing below it moves when the label travels.
+   *
+   * The two sets of numbers are the reference's own: the hero's search line
+   * (`.search-hero__column`) carries a 22px label that drops to 18px over
+   * 0.5s and rises 25px; the form fields (`.column`) carry theirs 22px up in
+   * 0.3s and drop to 12px. `:placeholder-shown` is what tells an empty field
+   * from a filled one, so every field using this needs a placeholder — a
+   * single space is enough, and shows nothing.
+   */
+  /*
+   * Light type on a dark ground, rendered the same way whatever the compositor
+   * is doing underneath it.
+   *
+   * Chrome drops subpixel antialiasing for anything it has put on a layer of
+   * its own, and it makes and destroys those layers around transforms and
+   * transitions. So the white type on the stories panel was rendered one way
+   * at rest and another while the panel moved, and changed weight at both ends
+   * of every move — which is the shimmer. Asking for grayscale antialiasing
+   * outright takes the compositor out of it: the type is rendered identically
+   * either way. It also suits light-on-dark on its own merits, where subpixel
+   * rendering makes glyphs bloom.
+   */
+  .satr-on-dark {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  .satr-float {
+    position: relative;
+    display: block;
+  }
+
+  .satr-float > input,
+  .satr-float > textarea {
+    padding-top: 22px;
+  }
+
+  .satr-float > .satr-float__label {
+    position: absolute;
+    top: 22px;
+    left: 0;
+    pointer-events: none;
+    font-weight: 300;
+    /* The resting size belongs here and not to a utility class: a utility
+       would win over the rule below it and the label would rise without ever
+       shrinking. */
+    font-size: 18px;
+    line-height: 26px;
+    /* One transform, and nothing else. Shrinking the label by animating
+       `font-size` re-lays the text out on every frame and the browser snaps it
+       between whole pixel sizes, which is the stutter you see on the way up.
+       A `translate` and a `scale` are one property the compositor can carry on
+       its own, so the label travels and shrinks in a single smooth move. The
+       origin is the corner it stays anchored to. */
+    transform-origin: left top;
+    transition:
+      transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+      color 0.3s;
+  }
+
+  .satr-float > input:focus + .satr-float__label,
+  .satr-float > textarea:focus + .satr-float__label,
+  .satr-float > input:not(:placeholder-shown) + .satr-float__label,
+  .satr-float > textarea:not(:placeholder-shown) + .satr-float__label {
+    /* 14px out of 18 — not smaller, so the raised label stays legible (WCAG). */
+    transform: translateY(-22px) scale(0.7778);
+  }
+
+  .satr-float--hero > input {
+    padding-top: 25px;
+  }
+
+  .satr-float--hero > .satr-float__label {
+    top: 25px;
+    /* 22px, down to 16px on the narrowest phones so a thirty-character label
+       still fits on its line. Never under 16: below it iOS zooms the page in
+       on focus. */
+    font-size: clamp(16px, 4.8vw, 22px);
+    line-height: 28px;
+    transition:
+      transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+      color 0.3s;
+  }
+
+  .satr-float--hero > input:focus + .satr-float__label,
+  .satr-float--hero > input:not(:placeholder-shown) + .satr-float__label {
+    /* 18px out of 22, and 25px clear of the line. */
+    transform: translateY(-25px) scale(0.8182);
+  }
+
+  /* Beside the wordmark from `lg` up the field reads at body size, 18px, on
+     the button's own centre line (Figma node 225:8812), and lifts to 12px
+     into the open space above the row rather than reserving room for it. */
+  @media (min-width: 64rem) {
+    .satr-float--hero > input {
+      padding-top: 0;
+    }
+
+    .satr-float--hero > .satr-float__label {
+      top: 0;
+      font-size: 18px;
+    }
+
+    .satr-float--hero > input:focus + .satr-float__label,
+    .satr-float--hero > input:not(:placeholder-shown) + .satr-float__label {
+      transform: translateY(-24px) scale(0.7778);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .satr-float > .satr-float__label,
+    .satr-float--hero > .satr-float__label {
+      transition: none;
+    }
+  }
+
+  .satr-squircle {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 47px;
+    padding: 0.5rem 1.25rem;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-family: var(--font-mono);
+    font-size: 18px;
+    line-height: 28px;
+    letter-spacing: -0.03em;
+    color: inherit;
+    isolation: isolate;
+    /* Fallback box shape before useSquircleClipPath's ResizeObserver has
+       measured the element (first paint, or no-JS) — the true squircle
+       (superellipse corners) is applied as an inline `clip-path` computed
+       in JS from src/styles/squirclePath.ts. A CSS Paint API worklet
+       (`paint(squircle)`, matching the mirror exactly) was tried first but
+       measurably failed to paint for elements already in the React tree
+       at registration time in this environment. */
+    border-radius: 15px;
+  }
+
+  /* Select trigger uses a visibly smaller, non-pill radius (mirror:
+     `.riskCustom-select__wrap-squircle`), unlike buttons/tags which clamp
+     to a full pill at these heights. Passed to useSquircleClipPath's
+     `radius` — this class only covers the pre-measurement fallback. */
+  .satr-squircle--select {
+    border-radius: 12px;
+  }
+
+  /* Decorative shape layer — a real element (not ::before), so
+     useSquircleClipPath can attach a ref to it. Kept separate from the
+     button's own box so the bordered variant's ring `clip-path` clips
+     only this layer, never the label text. */
+  .satr-squircle__bg {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background-color: currentColor;
+    border-radius: inherit;
+  }
+
+  .satr-squircle--black {
+    color: #fff;
+  }
+
+  .satr-squircle--black .satr-squircle__bg {
+    background-color: #000;
+  }
+
+  .satr-squircle--black:hover:not(:disabled) .satr-squircle__bg {
+    background-color: #333;
+  }
+
+  .satr-squircle--white {
+    color: #000;
+  }
+
+  .satr-squircle--white .satr-squircle__bg {
+    background-color: #fff;
+  }
+
+  .satr-squircle--white:hover:not(:disabled) .satr-squircle__bg {
+    background-color: #e8e8e8;
+  }
+
+  /* Bordered/outline variant — the ring is `clip-path` (evenodd,
+     outer-minus-inner) carved out of a solid fill via useSquircleClipPath's
+     `strokeWidth`, not a CSS `border` (a border can't follow the squircle's
+     curved corners — clipping a straight-edged border to a curved path
+     just notches the corners instead of rounding them). Hover sets
+     strokeWidth to 0, filling the whole shape. */
+  .satr-squircle--bordered {
+    color: #000;
+  }
+
+  .satr-squircle--bordered .satr-squircle__bg {
+    background-color: #000;
+  }
+
+  .satr-squircle--bordered:hover:not(:disabled) {
+    color: #fff;
+  }
+
+  /* Red outline for a destructive action; add to the bordered variant. */
+  .satr-squircle--bordered.satr-squircle--danger {
+    color: #b00020;
+  }
+
+  .satr-squircle--bordered.satr-squircle--danger .satr-squircle__bg {
+    background-color: #b00020;
+  }
+
+  .satr-squircle--bordered.satr-squircle--danger:hover:not(:disabled) {
+    color: #fff;
+  }
+
+  .satr-squircle:disabled {
+    cursor: not-allowed;
+    opacity: 0.4;
+  }
+
+  .satr-link {
+    display: inline;
+    font-family: var(--font-mono);
+    font-size: 18px;
+    line-height: 28px;
+    letter-spacing: -0.03em;
+    color: #000;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+  }
+
+  .satr-link:hover {
+    opacity: 0.7;
+  }
+
+  .satr-link:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+
+  .satr-link--uppercase {
+    text-transform: uppercase;
+  }
+
+  /* Mirror: tags (squircle chips) — button or link */
+  .satr-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    min-height: 44px;
+    padding: 7px 12px 6px;
+    border: none;
+    cursor: pointer;
+    font-family: var(--font-mono);
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: -0.03em;
+    color: #000;
+    text-decoration: none;
+    white-space: nowrap;
+    background-color: #fff;
+    /* Fallback before useSquircleClipPath measures the element (see
+       .satr-squircle above for why this isn't a CSS Paint API worklet). */
+    border-radius: 9999px;
+  }
+
+  .satr-tag:focus-visible {
+    outline: 2px solid #000;
+    outline-offset: 2px;
+  }
+
+  @media (min-width: 768px) {
+    .satr-tag {
+      padding: 8px 12px;
+      font-size: 18px;
+      line-height: 28px;
+    }
+  }
+
+  /* A chip you can switch on, while it is off: a light grey ground, so it shows on a white page. Hover still turns it black. */
+  button.satr-tag.satr-tag--off {
+    background-color: #ececec;
+  }
+
+  /* Chips that go somewhere turn over on hover: black ground, white type, the
+     count flips with them. A chip that is only a label (`span`) stays put.
+     Squircle controls get no underline — theirs is the change of ground. */
+  a.satr-tag,
+  button.satr-tag {
+    transition:
+      background-color 0.2s,
+      color 0.2s;
+  }
+
+  a.satr-tag:hover,
+  button.satr-tag:hover {
+    background-color: #000;
+    color: #fff;
+  }
+
+  a.satr-tag:hover .satr-tag__number,
+  button.satr-tag:hover .satr-tag__number {
+    background-color: #fff;
+    color: #000;
+  }
+
+  /* A link that is underlined at rest: a 1px line. On hover the line runs out
+     and draws itself again from left to right, as on the live site
+     (`.hover--underline`: keyframes `underline`, .6s, forwards). */
+  .satr-underlined {
+    text-decoration: none;
+    background-image: linear-gradient(currentColor, currentColor);
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    background-size: 100% var(--satr-ul, 1px);
+  }
+
+  /* A link laid out as a block (inline-block, for its margins) carries the
+     line on the text inside it rather than on its own box: drawn on the box,
+     a link that wraps is underlined once, under its last line and across the
+     whole box. On the inline text every line gets its own stretch, and the
+     hover line runs through them in reading order. */
+  .satr-underlined:hover,
+  .satr-underlined-box:hover > .satr-underlined {
+    animation: satr-underline 0.6s forwards;
+  }
+
+  @keyframes satr-underline {
+    0% {
+      background-size: 100% var(--satr-ul, 1px);
+    }
+    15% {
+      background-size: 0 var(--satr-ul, 1px);
+    }
+    100% {
+      background-size: 100% var(--satr-ul, 1px);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .satr-underlined:hover,
+    .satr-underlined-box:hover > .satr-underlined {
+      animation: none;
+    }
+  }
+
+  /* An icon or a mark on its own: dims on hover, like .satr-link. */
+  .satr-dim {
+    transition: opacity 0.2s;
+  }
+
+  .satr-dim:hover {
+    opacity: 0.6;
+  }
+
+  .satr-tag--accent {
+    background-color: #b5c6cd;
+  }
+
+  /* Editorial rubric — plain mono label, not a chip */
+  .satr-tag-label {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: var(--text-breadcrumbs);
+    line-height: var(--text-breadcrumbs-lh);
+    letter-spacing: var(--text-breadcrumbs-ls);
+    color: #000;
+  }
+
+  .satr-tag__number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 28px;
+    min-height: 28px;
+    margin-left: 2px;
+    padding: 2px 6px;
+    border-radius: 50%;
+    background: #000;
+    color: #fff;
+    font-size: 14px;
+    line-height: 1;
+    letter-spacing: -0.03em;
+  }
+
+  .satr-tag__circle {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: #000;
+    flex-shrink: 0;
+  }
+
+  @media (min-width: 1280px) {
+    .satr-tag__circle {
+      width: 31px;
+      height: 31px;
+    }
+  }
+
+  .satr-hover-underline {
+    text-decoration: none;
+    background-image: linear-gradient(#000, #000);
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    background-size: 0% var(--satr-ul, 1px);
+    transition: background-size 0.3s;
+  }
+
+  .satr-hover-underline:hover {
+    background-size: 100% var(--satr-ul, 1px);
+  }
+
+  .satr-hover-underline--white {
+    background-image: linear-gradient(#fff, #fff);
+  }
+
+  /* Mirror: hero__text */
+  .satr-hero-context {
+    margin-bottom: 0.88889rem;
+    color: var(--color-black);
+  }
+
+  @media (min-width: 768px) {
+    .satr-hero-context {
+      margin-bottom: 1rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .satr-hero-context {
+      margin-bottom: 1.33333rem;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .satr-hero-context {
+      margin-bottom: 1.55556rem;
+    }
+  }
+
+  /* Mirror: hero__list-links — gap between wordmark and first 2px rule */
+  .satr-hero-section-rule {
+    margin-top: 1.33333rem;
+    border-top: 2px solid var(--color-black);
+  }
+
+  @media (min-width: 768px) {
+    .satr-hero-section-rule {
+      margin-top: 1.11111rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .satr-hero-section-rule {
+      margin-top: 1.33333rem;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .satr-hero-section-rule {
+      margin-top: 1.77778rem;
+    }
+  }
+
+  @keyframes satr-hero-story-progress {
+    from {
+      width: 0%;
+    }
+
+    to {
+      width: 100%;
+    }
+  }
+
+  .satr-hero-story-progress {
+    animation: satr-hero-story-progress var(--satr-hero-progress-duration, 7000ms) linear forwards;
+  }
+}
+
+@layer components {
+  /* Countdown rule under the hero's active story header (V2 sandbox). */
+  .satr-hero-timer {
+    width: 0;
+    animation-name: satr-hero-timer;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+  }
+
+  @keyframes satr-hero-timer {
+    from {
+      width: 0;
+    }
+    to {
+      width: 100%;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .satr-hero-timer {
+      width: 100%;
+      animation: none;
+    }
+  }
+}
