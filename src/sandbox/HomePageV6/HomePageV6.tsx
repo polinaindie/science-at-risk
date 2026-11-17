@@ -163,6 +163,12 @@ const BLOCK_H2 =
 const FLOW_CARD_H2 =
   '[&_article_h2.font-heading]:text-[length:clamp(24px,2.6vw,32px)] [&_article_h2.font-heading]:leading-[1.15]';
 
+/** On a phone or tablet (under `lg`, no deck) the blocks after the first two get the room the Scientists block has: 112px above, 90px
+ *  below. Research and Infrastructure are a `section` straight under the block, the footer's padding sits on the
+ *  `div` inside it. */
+const FLOW_PAD_SECTION = 'max-lg:[&>section]:pb-20 max-lg:[&>section]:pt-[112px]';
+const FLOW_PAD_FOOTER = 'max-lg:[&>footer>div]:pb-20 max-lg:[&>footer>div]:pt-[112px]';
+
 /** The deck shrinks a block that is taller than the screen, and its type with
  *  it: at 1024x820 Research comes out at 0.63, which put the papers' authors
  *  and file types at 11px. From `lg` — where the deck can be on — the body
@@ -659,8 +665,8 @@ export function HomePageV6({
               sectionRefs.current[i] = node;
             }}
             className={`${
-              deck ? 'absolute inset-0 overflow-hidden' : 'min-h-[100svh]'
-            } transition-colors duration-300 ${block.ground}${deck ? '' : ` ${block.className} ${FLOW_CARD_H2}`}`}
+              deck ? 'absolute inset-0 overflow-hidden' : 'lg:min-h-[100svh]'
+            } transition-colors duration-300 ${block.ground}${deck ? '' : ` ${block.className} ${FLOW_CARD_H2}${i === 2 || i === 3 ? ` ${FLOW_PAD_SECTION}` : i === 4 ? ` ${FLOW_PAD_FOOTER}` : ''}`}`}
             style={
               deck
                 ? {

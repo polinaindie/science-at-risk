@@ -4,6 +4,7 @@ import { SquircleDefs } from '@/styles/SquircleDefs';
 import { useSquircleClipPath } from '@/styles/useSquircleClipPath';
 import { Wrapper, rowClass } from '@/components/Layout';
 import { MobileNav } from '@/components/MobileNav';
+import { useSwipe } from '@/components/useSwipe';
 
 /** The live site's pages are copied under `public/`, so they sit beside this app
  *  wherever it is served from — `BASE_URL` is `/` locally and `/science-at-risk/`
@@ -252,6 +253,68 @@ export function HomeHeroV4Final({
     return () => document.removeEventListener('keydown', onKey);
   }, [menuOpen]);
 
+  // Phone: the story turns with a horizontal swipe. It slides in from the side it was pushed to, so the gesture
+  // shows what it does, and the story gives a small nudge to the left to say it can be pushed.
+  const storyRef = useRef<HTMLElement>(null);
+  const direction = useRef(0);
+  const swipe = useSwipe({
+    onLeft: () => {
+      direction.current = 1;
+      setIndex((i) => (i + 1) % Math.max(stories.length, 1));
+    },
+    onRight: () => {
+      direction.current = -1;
+      setIndex((i) => (i - 1 + stories.length) % Math.max(stories.length, 1));
+    },
+  });
+  const firstRender = useRef(true);
+  useLayoutEffect(() => {
+    if (firstRender.current) {
+      firstRender.current = false;
+      return;
+    }
+    const el = storyRef.current;
+    if (!el || !direction.current || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    el.animate(
+      [{ transform: `translateX(${direction.current * 36}px)`, opacity: 0.35 }, { transform: 'translateX(0)', opacity: 1 }],
+      { duration: 260, easing: 'ease-out' },
+    );
+    direction.current = 0;
+  }, [index]);
+  // The nudge: when the story first comes into view on a phone, it leans left a little and settles, once per page
+  // load, to say it can be pushed.
+  useEffect(() => {
+    const el = storyRef.current;
+    const narrow = window.matchMedia('(max-width: 767px)').matches;
+    const calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!el || !narrow || calm || stories.length < 2) return;
+    let timer = 0;
+    const watcher = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+        watcher.disconnect();
+        timer = window.setTimeout(() => {
+          el.animate(
+            [
+              { transform: 'translateX(0)' },
+              { transform: 'translateX(-44px)', offset: 0.35 },
+              { transform: 'translateX(0)', offset: 0.7 },
+              { transform: 'translateX(-20px)', offset: 0.82 },
+              { transform: 'translateX(0)' },
+            ],
+            { duration: 1100, easing: 'ease-in-out' },
+          );
+        }, 600);
+      },
+      { threshold: 0.5 },
+    );
+    watcher.observe(el);
+    return () => {
+      watcher.disconnect();
+      window.clearTimeout(timer);
+    };
+  }, [stories.length]);
+
   if (!stories.length) return null;
   const story = stories[index % stories.length];
   const step = (by: number) => setIndex((i) => (i + by + stories.length) % stories.length);
@@ -367,7 +430,9 @@ export function HomeHeroV4Final({
              as off the rule: the 34px every block keeps clear under it,
              and 7 more to make the 41 above. */
           <article
-            className={`group/story ${rowClass} mt-[24px] gap-y-[32px] md:mt-[34px] lg:mt-[41px] lg:grid-cols-[minmax(0,667.8fr)_minmax(0,39.1fr)_minmax(0,653.1fr)] lg:gap-0 ${
+            ref={storyRef}
+            {...swipe}
+            className={`group/story ${rowClass} mt-[24px] gap-y-[24px] md:mt-[34px] md:gap-y-[32px] lg:mt-[41px] lg:grid-cols-[minmax(0,667.8fr)_minmax(0,39.1fr)_minmax(0,653.1fr)] lg:gap-0 ${
               fill ? 'lg:mb-[7px] lg:min-h-0 lg:flex-1 lg:grid-rows-[minmax(0,1fr)] lg:[container-type:size]' : ''
             }`}
           >
@@ -404,7 +469,7 @@ export function HomeHeroV4Final({
                   {(fill ? [story] : stories).map((item) => (
                     <div
                       key={item.href}
-                      className={`col-start-1 row-start-1 flex flex-col gap-[16px] lg:max-w-[489px] ${item === story ? '' : 'invisible'}`}
+                      className={`col-start-1 row-start-1 flex flex-col gap-[16px] lg:max-w-[489px] ${item === story ? '' : 'invisible max-md:hidden'}`}
                     >
                       <h2
                         data-story-title={item === story ? '' : undefined}
@@ -423,7 +488,7 @@ export function HomeHeroV4Final({
                         <SquircleLink
                           href={item.href}
                           aria-label={`${readLabel}: ${item.title}`}
-                          className={`mt-[16px] self-start ${focusRing}`}
+                          className={`mt-[16px] self-start max-md:self-stretch ${focusRing}`}
                         >
                           {readLabel}
                         </SquircleLink>
@@ -485,6 +550,8 @@ export function HomeHeroV4Final({
             the pager — and that height is a container the title is sized
             against, below. */}
         <article
+          ref={storyRef}
+          {...swipe}
           className={`mt-6 flex flex-col-reverse gap-8 md:mt-[34px] lg:grid lg:grid-cols-12 lg:items-center lg:gap-x-6 ${
             fill ? 'lg:min-h-0 lg:flex-1 lg:grid-rows-[minmax(0,1fr)] lg:[container-type:size]' : ''
           }`}
@@ -501,7 +568,7 @@ export function HomeHeroV4Final({
               <div
                 key={item.href}
                 className={`col-start-1 row-start-1 flex flex-col justify-between gap-8 lg:gap-10 ${
-                  item === story ? '' : 'invisible'
+                  item === story ? '' : 'invisible max-md:hidden'
                 }`}
               >
                 <div className="flex flex-col gap-3 lg:gap-4">
@@ -540,8 +607,8 @@ export function HomeHeroV4Final({
                     ) : null}
                   </div>
                 </div>
-                <a href={item.href} aria-label={`${readLabel}: ${item.title}`} className={`self-start ${focusRing}`}>
-                  <Button variant="black" tabIndex={-1}>
+                <a href={item.href} aria-label={`${readLabel}: ${item.title}`} className={`self-start max-md:self-stretch ${focusRing}`}>
+                  <Button variant="black" tabIndex={-1} className="max-md:w-full">
                     {readLabel}
                   </Button>
                 </a>

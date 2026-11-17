@@ -160,7 +160,7 @@ export function Footer({
                 </span>
               </div>
 
-              <Button type="submit" variant="white" className="mt-[42px] w-full md:w-auto">
+              <Button type="submit" variant="white" className="mt-[42px] w-full lg:w-auto">
                 {submitLabel}
               </Button>
 

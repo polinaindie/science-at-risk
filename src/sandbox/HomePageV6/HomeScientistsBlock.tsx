@@ -273,7 +273,7 @@ export function HomeScientistsBlock({
   };
 
   return (
-    <section className={`py-14 ${className}`.trim()} aria-labelledby={`${id}-title`}>
+    <section className={`pb-20 pt-[112px] lg:py-14 ${className}`.trim()} aria-labelledby={`${id}-title`}>
       <Wrapper>
         <h2 id={`${id}-title`} className="m-0 max-w-[18ch] font-heading text-h1 text-brand-black">
           {title}
