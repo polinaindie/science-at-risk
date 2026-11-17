@@ -196,7 +196,7 @@ export function SettingsScreen({ locale, email, onChangePassword, onChangeEmail,
           <div className="-mt-1">
             <ul aria-label={t.password.rulesTitle} className="m-0 flex list-none flex-wrap gap-x-6 gap-y-1 p-0 font-ui text-breadcrumbs">
               {(['length', 'letter', 'digit'] as const).map((k) => (
-                <li key={k} data-met={rules[k]} className={rules[k] ? 'text-[#238636]' : ''}>
+                <li key={k} data-met={rules[k]} className={rules[k] ? 'text-brand-success' : ''}>
                   <span aria-hidden className={rules[k] ? 'font-bold' : ''}>
                     {rules[k] ? '✓ ' : '○ '}
                   </span>

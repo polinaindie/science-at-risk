@@ -30,8 +30,8 @@
   --color-brand-disabled: var(--color-grey-300);
   --color-brand-line: var(--color-black);
   --color-brand-line-muted: var(--color-black-a25);
-  /* Paragraph links in article body (mirror) */
-  --color-brand-link: var(--color-gold);
+  --color-brand-error: var(--color-error);
+  --color-brand-success: var(--color-success-ink);
 
   --text-h1-desktop: var(--step-h1);
   --text-h1-desktop--line-height: var(--step-h1-lh);

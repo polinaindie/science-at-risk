@@ -601,7 +601,7 @@ export function HomeHeroV4Final({
                       </a>
                     </h2>
                     {item.description ? (
-                      <p className="m-0 max-w-[395px] font-text text-[1rem] leading-[1.6] text-[#717171]">
+                      <p className="m-0 max-w-[395px] font-text text-[1rem] leading-[1.6] text-brand-muted">
                         {item.description}
                       </p>
                     ) : null}

@@ -68,12 +68,12 @@ export function TextField({
   const muted = isDark ? 'text-white/85' : 'text-brand-muted';
   const disabledLine = 'border-brand-disabled';
   // Disabled text is exempt from WCAG, but it still has to be readable (e.g. a read-only email).
-  const disabledText = 'text-[#6b6b6b]';
+  const disabledText = 'text-brand-muted';
   // The label lives over the field and rides up out of it, as it does on the
   // reference; the field reserves that height from the start so nothing below
   // it moves when the label travels.
   const shell = `satr-float w-full max-w-[530px] ${className}`.trim();
-  const controlClass = `w-full border-0 border-b-2 bg-transparent font-text text-text2-desktop outline-none placeholder:opacity-0 focus:placeholder:opacity-100 ${isDark ? 'placeholder:text-white/70' : 'placeholder:text-[#6b6b6b]'} ${
+  const controlClass = `w-full border-0 border-b-2 bg-transparent font-text text-text2-desktop outline-none placeholder:opacity-0 focus:placeholder:opacity-100 ${isDark ? 'placeholder:text-white/70' : 'placeholder:text-brand-muted'} ${
     disabled ? `${disabledLine} ${disabledText}` : `${line} ${text}`
   }`;
 

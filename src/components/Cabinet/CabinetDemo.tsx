@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { SiteHeader } from '@/components/SiteHeader';
-import { Footer } from '@/components/Footer';
 import { Button } from '@/components/Button';
 import { cabinetCopy, type CabinetLocale, type CabinetSection, type ProfileStatus } from './cabinetCopy';
 import {
@@ -390,7 +389,6 @@ export function CabinetDemo({
         <SubmitConfirmModal locale={locale} onClose={() => setConfirmed(false)} />
       ) : null}
 
-      {chrome && !editing && !onboarding ? <Footer locale={locale} /> : null}
     </div>
   );
 }

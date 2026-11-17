@@ -59,9 +59,9 @@ export function FieldSelect({
         onClick={() => setOpen((v) => !v)}
         className={`mt-1 flex w-full items-center justify-between gap-3 border-0 border-b-2 border-brand-black bg-transparent pb-2 text-left font-text text-text2-desktop text-brand-black ${
           open ? 'shadow-[0_2px_0_0_#000]' : ''
-        } disabled:border-brand-disabled disabled:text-[#6b6b6b]`}
+        } disabled:border-brand-disabled disabled:text-brand-muted`}
       >
-        <span className={selected ? '' : 'text-[#6b6b6b]'}>{selected?.label ?? (placeholder || ' ')}</span>
+        <span className={selected ? '' : 'text-brand-muted'}>{selected?.label ?? (placeholder || ' ')}</span>
         <img
           src={`${import.meta.env.BASE_URL}assets/ui/chevron.svg`}
           alt=""

@@ -255,7 +255,7 @@ function ProfileName({
               </p>
             ) : null}
             {profile.institution ? (
-              <p className={`m-0 mt-1 text-[#4a5459] ${PLACE}`}>{profile.institution}</p>
+              <p className={`m-0 mt-1 text-brand-muted ${PLACE}`}>{profile.institution}</p>
             ) : null}
           </>
         ) : null}
@@ -626,8 +626,8 @@ export interface ProfileEditFormProps {
   onCancel?: () => void;
 }
 
-/** Two columns where the answers are short; one where they are not. */
-const PAIR = 'grid grid-cols-1 gap-x-8 gap-y-12 min-[480px]:grid-cols-2';
+/** Two columns where both fit at 18rem each (a long label such as the full name must stay on one line); one where they do not. */
+const PAIR = 'grid gap-x-8 gap-y-12 grid-cols-[repeat(auto-fit,minmax(min(100%,18rem),1fr))]';
 
 function Group({
   title,
@@ -831,7 +831,7 @@ export function ProfileEditForm({
           type="button"
           onClick={() => setRemoving(key)}
           aria-label={`${t.linkRemove.aria}: ${label}`}
-          className="mb-1 flex size-9 shrink-0 items-center justify-center border-2 border-[#c62828] bg-white text-[#c62828] transition-colors hover:bg-[#c62828] hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-black"
+          className="mb-1 flex size-9 shrink-0 items-center justify-center border-2 border-brand-error bg-white text-brand-error transition-colors hover:bg-brand-error hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-black"
         >
           <svg aria-hidden width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.6">
             <path d="M2 4h12M6 4V2.5h4V4M3.5 4l.7 9.5h7.6L12.5 4M6.5 7v4M9.5 7v4" />
@@ -1501,21 +1501,22 @@ export function ProfileEditForm({
       </div>
 
       {step ? (
-        <div className="fixed inset-x-0 bottom-0 z-40 border-t-2 border-brand-black bg-brand-accent-blue">
+        <div className="fixed inset-x-0 bottom-0 z-40 border-t-2 border-brand-black bg-brand-white">
           <div className="mx-auto flex max-w-[1744px] flex-wrap items-center justify-between gap-x-6 gap-y-3 px-4 py-3 xl:px-10">
             <div className="flex flex-wrap items-center gap-x-5 gap-y-1">
               <Link as="button" onClick={() => step.onExit?.(draft)} className="text-[1rem]! leading-[1.5rem]!">
                 {step.exitLabel}
               </Link>
             </div>
-            <div className="flex flex-wrap items-center gap-3">
+            {/* on a phone the two buttons share the whole width of the bar, side by side */}
+            <div className="flex flex-wrap items-center gap-3 max-md:w-full max-md:flex-nowrap">
               {step.onBack ? (
-                <Button variant="bordered" type="button" onClick={step.onBack}>
+                <Button variant="bordered" type="button" onClick={step.onBack} className="max-md:flex-1">
                   {step.backLabel}
                 </Button>
               ) : null}
               {step.hideNext ? null : (
-                <Button variant="black" type="submit" disabled={step.nextDisabled} aria-busy={step.nextDisabled || undefined} className="disabled:opacity-60">
+                <Button variant="black" type="submit" disabled={step.nextDisabled} aria-busy={step.nextDisabled || undefined} className="disabled:opacity-60 max-md:flex-1">
                   {step.nextLabel}
                 </Button>
               )}
