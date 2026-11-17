@@ -122,3 +122,10 @@ button, input, select, textarea { font-family: inherit; }
   opacity: 1;
   color: var(--color-text-muted);
 }
+
+/* Society page, tablet: the links are 13px between 768 and 1279 in the mirrored sheet (14px is the floor), and a long
+   address (the president's e-mail) may break instead of running past the edge of the screen. */
+@media (min-width: 768px) and (max-width: 1279.98px) {
+  :is(.scientific-societies__link, .scientific-societies .content a, .hero__list-link, .hover--underline):not(.satr-chrome *):not(#_) { font-size: max(14px, 0.7778rem); }
+}
+.scientific-societies { overflow-wrap: anywhere; }
