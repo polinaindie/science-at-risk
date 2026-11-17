@@ -66,4 +66,5 @@ Collected from all parts of the package. Details and the assumption made in the 
 | 38 | `satr-shape.js` leaves a plain rounded rectangle until it runs. Is a flash of the rectangle on slow connections acceptable? | Des |
 | 39 | Running-text sizes differ by component (card text 15px, article 18px, profile page 16px, search field 22px). Define two body sizes (text 18, text-small 15) and map every component to one? | Des |
 | 40 | Scientist profile pages run on a 16px root and the rest of the site on 18px. Bring them to 18px (changes their layout) or keep? | Des + Dev |
+| 41 | Heading scale: h1 content 72, h1 detail 48, h2 36, h3/card 28 (design numbers; React renders them 12.5% larger, question 36). Card and person names went from 32 to 28 on list pages. Accept, or keep names at 32 as a separate role? | Des |
 

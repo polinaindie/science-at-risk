@@ -111,6 +111,18 @@
         real size and the reference; it is not a bug to fix in the hand-off.
      ==================================================================================================== */
 
+  /* ---- HEADING SCALE — one ladder for every page, static and React. A heading takes its size from its ROLE, not from the page.
+       heading-1       page title (lists, stories, about, research article, society)            = --step-h1   32 -> 72
+       heading-entity  title of a profile/detail page and of utility pages (scientist, infrastructure, log in) = --step-3xl 36 -> 48
+       heading-2       section title (Research field, Other stories, form titles)               = --step-h2   20 -> 36
+       heading-3       sub-section and card title (scientist, paper, story, project, notification) = --step-xl 24 -> 28
+       label           h4 used as a caption ("Author:", "City"): the `ui` role at 18px, not a heading size
+       The "Want to help?" block title in the footer is the display size = heading-1. ---- */
+  --heading-1: var(--step-h1);        --heading-1-lh: var(--step-h1-lh);        --heading-1-ls: var(--step-h1-ls);
+  --heading-entity: var(--step-3xl);  --heading-entity-lh: var(--step-3xl-lh);  --heading-entity-ls: var(--step-3xl-ls);
+  --heading-2: var(--step-h2);        --heading-2-lh: var(--step-h2-lh);        --heading-2-ls: var(--step-h2-ls);
+  --heading-3: var(--step-xl);        --heading-3-lh: var(--step-xl-lh);        --heading-3-ls: var(--step-xl-ls);
+
   /* ---- semantic text roles: component CSS uses these (size / line-height / tracking come as a trio) ---- */
   --text-h1: var(--step-h1);              --text-h1-lh: var(--step-h1-lh);           --text-h1-ls: var(--step-h1-ls);
   --text-h2: var(--step-h2);              --text-h2-lh: var(--step-h2-lh);           --text-h2-ls: var(--step-h2-ls);

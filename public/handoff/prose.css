@@ -19,9 +19,9 @@
 
 /* headings: serif, close below, air above */
 .prose h2, .prose h3, .prose h4 { font-family: var(--font-heading); font-weight: var(--font-weight-normal); letter-spacing: var(--tracking-display); text-wrap: balance; }
-.prose h2 { margin-top: var(--space-5); font-size: var(--text-prose-h2); line-height: var(--text-prose-h2-lh); }
-.prose h3 { margin-top: var(--space-4); font-size: var(--text-prose-h3); line-height: var(--text-prose-h3-lh); }
-.prose h4 { margin-top: var(--space-3); font-size: var(--text-prose-h4); line-height: var(--text-prose-h4-lh); }
+.prose h2 { margin-top: var(--space-5); font-size: var(--heading-2); line-height: var(--heading-2-lh); letter-spacing: var(--heading-2-ls); }
+.prose h3 { margin-top: var(--space-4); font-size: var(--heading-3); line-height: var(--heading-3-lh); letter-spacing: var(--heading-3-ls); }
+.prose h4 { margin-top: var(--space-3); font-size: var(--step-lg); line-height: var(--step-lg-lh); letter-spacing: var(--step-lg-ls); }  /* h4 in an article: one step under heading-3 */
 .prose :is(h2, h3, h4) + * { margin-top: var(--space-1); }
 .prose > :first-child { margin-top: 0; }
 @media (min-width: 768px) {

@@ -68,7 +68,7 @@ try {
     const base = '../'.repeat(depth);
 
     const headRe = /<!-- satr-chrome:head -->[\s\S]*?<!-- \/satr-chrome:head -->/;
-    const head = `<!-- satr-chrome:head --><link rel="stylesheet" href="${base}css/satr-chrome.css"><link rel="stylesheet" href="${base}css/satr-squircle.css"><link rel="stylesheet" href="${base}css/tokens.css"><link rel="stylesheet" href="${base}css/satr-text.css"><script src="${base}js/satr-chrome.js" defer></script><script src="${base}js/satr-squircle.js" defer></script><script src="${base}js/satr-email.js" defer></script><!-- /satr-chrome:head -->`;
+    const head = `<!-- satr-chrome:head --><link rel="stylesheet" href="${base}css/satr-chrome.css"><link rel="stylesheet" href="${base}css/satr-squircle.css"><link rel="stylesheet" href="${base}css/tokens.css"><link rel="stylesheet" href="${base}css/type-scale-static.css"><link rel="stylesheet" href="${base}css/satr-base.css"><link rel="stylesheet" href="${base}css/satr-text.css"><script src="${base}js/satr-chrome.js" defer></script><script src="${base}js/satr-squircle.js" defer></script><script src="${base}js/satr-email.js" defer></script><!-- /satr-chrome:head -->`;
 
     const next = html
       .replace(headRe, () => head)

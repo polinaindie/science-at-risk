@@ -37,13 +37,13 @@ import { Modal, StatusBadge } from './parts';
 import { societies, societyBySlug, societyName } from './societies';
 
 /** Every heading inside the profile, left column and right: 24px. */
-const H4 = 'font-heading text-[1.5rem] font-normal leading-[1.875rem] tracking-[-0.02em] md:text-[1.75rem] md:leading-[2.125rem]';
+const H4 = 'font-heading text-heading-2 font-normal';
 /** The site's running text on an expert's page: IBM Plex Mono, 16 on a phone and 18 above. */
 const SITE_P = 'font-text text-[1rem] leading-[1.625rem] md:text-[1.125rem] md:leading-[1.875rem]';
 /** The small text in the site's project and publication cards: e-Ukraine Light, 15. */
 const SITE_SMALL = 'font-text text-[0.9375rem] font-light leading-[1.5625rem]';
 /** A project's or publication's title: serif, 20 on a phone and 22 above. */
-const CARD_TITLE = 'm-0 font-heading text-[1.25rem] font-normal leading-[1.75rem] tracking-[-0.02em] md:text-[1.375rem]';
+const CARD_TITLE = 'm-0 font-heading text-heading-3 font-normal';
 /** The post is e-Ukraine Light 16, the place it belongs to is IBM Plex Mono: the same on every profile. */
 const POST = 'font-text text-[1rem] font-light leading-[1.5rem]';
 const PLACE = 'font-ui text-[0.875rem] leading-[1.375rem] md:text-[0.9375rem]';
@@ -241,7 +241,7 @@ function ProfileName({
             className={`m-0 font-heading tracking-[-0.02em] ${
               compact
                 ? 'text-[1.75rem] leading-[2.125rem]'
-                : 'text-[1.75rem] leading-[2rem] md:text-[2.25rem] md:leading-[2.5rem]'
+                : 'text-heading-entity'
             }`}
           >
             {name}

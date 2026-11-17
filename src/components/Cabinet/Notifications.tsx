@@ -198,7 +198,7 @@ export function NotificationCard({
 
           {n.kind === 'request' || n.kind === 'team' ? (
             <>
-              <h3 className={`m-0 mt-4 font-heading text-[1.375rem] leading-[1.75rem] tracking-[-0.02em] md:text-[1.625rem] md:leading-[2rem] ${WRAP}`}>
+              <h3 className={`m-0 mt-4 font-heading text-heading-3 ${WRAP}`}>
                 {n.subject}
               </h3>
               <p className={`m-0 mt-2 font-ui text-breadcrumbs text-brand-muted ${WRAP}`}>
@@ -220,7 +220,7 @@ export function NotificationCard({
           ) : (
             <>
               {n.subject ? (
-                <h3 className={`m-0 mt-4 font-heading text-[1.375rem] leading-[1.75rem] tracking-[-0.02em] md:text-[1.625rem] md:leading-[2rem] ${WRAP}`}>
+                <h3 className={`m-0 mt-4 font-heading text-heading-3 ${WRAP}`}>
                   {n.subject}
                 </h3>
               ) : null}
@@ -230,7 +230,7 @@ export function NotificationCard({
                   {n.subject ? (
                     <p className="m-0 font-ui text-text1-mobile font-bold md:text-text1-desktop">{n.senderName}</p>
                   ) : (
-                    <h3 className="m-0 font-heading text-[1.375rem] leading-[1.75rem] tracking-[-0.02em] md:text-[1.625rem] md:leading-[2rem]">
+                    <h3 className="m-0 font-heading text-heading-3">
                       {n.senderName}
                     </h3>
                   )}

@@ -109,7 +109,7 @@ export function Footer({
               the grid — the fields stay a readable measure however wide the
               screen gets. */}
           <div className="w-full md:max-w-[360px] lg:max-w-[460px] xl:max-w-[486px] min-[1440px]:max-w-[530px]">
-            <h2 className="font-ui text-h3-mobile text-white md:text-h3-desktop">{subtitle}</h2>
+            <p className="font-text text-h3-mobile text-white md:text-h3-desktop">{subtitle}</p>
 
             <form className="mt-8" onSubmit={handleSubmit} noValidate>
               {/* Name and email share a line from `lg` up, as they do there. */}

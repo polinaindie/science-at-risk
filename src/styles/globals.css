@@ -75,6 +75,23 @@
   --text-text2-mobile--line-height: var(--step-text2-lh);
   --text-text2-mobile--letter-spacing: 0;
 
+  /* Heading scale: sizes come from tokens.css (--heading-*). */
+  --text-heading-1: var(--heading-1);
+  --text-heading-1--line-height: var(--heading-1-lh);
+  --text-heading-1--letter-spacing: var(--heading-1-ls);
+
+  --text-heading-entity: var(--heading-entity);
+  --text-heading-entity--line-height: var(--heading-entity-lh);
+  --text-heading-entity--letter-spacing: var(--heading-entity-ls);
+
+  --text-heading-2: var(--heading-2);
+  --text-heading-2--line-height: var(--heading-2-lh);
+  --text-heading-2--letter-spacing: var(--heading-2-ls);
+
+  --text-heading-3: var(--heading-3);
+  --text-heading-3--line-height: var(--heading-3-lh);
+  --text-heading-3--letter-spacing: var(--heading-3-ls);
+
   --text-breadcrumbs: 14px;
   --text-breadcrumbs--line-height: 1.4;
   --text-breadcrumbs--letter-spacing: -0.03em;
