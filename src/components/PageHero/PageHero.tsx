@@ -35,9 +35,9 @@ export function PageHero({
       {breadcrumbs?.length ? <Breadcrumbs items={breadcrumbs} /> : null}
       <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
         <div className="max-w-3xl">
-          <h1 className="font-serif text-h1">{title}</h1>
+          <h1 className="font-heading text-h1">{title}</h1>
           {text ? (
-            <p className="mt-4 max-w-xl font-mono text-h3-desktop">{text}</p>
+            <p className="mt-4 max-w-xl font-ui text-h3-desktop">{text}</p>
           ) : null}
         </div>
         {selectOptions?.length ? (

@@ -20,7 +20,7 @@ export function ShareLinks({
   className = '',
 }: ShareLinksProps) {
   return (
-    <div className={`font-mono text-text1-desktop ${className}`.trim()}>
+    <div className={`font-ui text-text1-desktop ${className}`.trim()}>
       <p className="mb-4">{title}</p>
       <ul className="m-0 flex list-none flex-wrap gap-8 p-0">
         {items.map((item) => (

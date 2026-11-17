@@ -44,8 +44,8 @@ export const typographyTokens: TypographyToken[] = [
     desktop: { size: 72, lineHeight: 76, letterSpacing: -0.02 },
     mobile: { size: 32, lineHeight: 38, letterSpacing: -0.02 },
     className: {
-      desktop: 'font-serif font-normal text-h1-desktop',
-      mobile: 'font-serif font-normal text-h1-mobile',
+      desktop: 'font-heading font-normal text-h1-desktop',
+      mobile: 'font-heading font-normal text-h1-mobile',
     },
   },
   {
@@ -56,8 +56,8 @@ export const typographyTokens: TypographyToken[] = [
     desktop: { size: 36, lineHeight: 42, letterSpacing: -0.02 },
     mobile: { size: 20, lineHeight: 28, letterSpacing: -0.02 },
     className: {
-      desktop: 'font-serif font-normal text-h2-desktop',
-      mobile: 'font-serif font-normal text-h2-mobile',
+      desktop: 'font-heading font-normal text-h2-desktop',
+      mobile: 'font-heading font-normal text-h2-mobile',
     },
   },
   {
@@ -68,8 +68,8 @@ export const typographyTokens: TypographyToken[] = [
     desktop: { size: 22, lineHeight: 28, letterSpacing: -0.03 },
     mobile: { size: 15, lineHeight: 20, letterSpacing: -0.03 },
     className: {
-      desktop: 'font-mono font-normal text-h3-desktop',
-      mobile: 'font-mono font-normal text-h3-mobile',
+      desktop: 'font-ui font-normal text-h3-desktop',
+      mobile: 'font-ui font-normal text-h3-mobile',
     },
   },
   {
@@ -80,8 +80,8 @@ export const typographyTokens: TypographyToken[] = [
     desktop: { size: 18, lineHeight: 28, letterSpacing: -0.03 },
     mobile: { size: 13, lineHeight: 18, letterSpacing: -0.03 },
     className: {
-      desktop: 'font-mono font-normal text-text1-desktop',
-      mobile: 'font-mono font-normal text-text1-mobile',
+      desktop: 'font-ui font-normal text-text1-desktop',
+      mobile: 'font-ui font-normal text-text1-mobile',
     },
   },
   {
@@ -92,8 +92,8 @@ export const typographyTokens: TypographyToken[] = [
     desktop: { size: 18, lineHeight: 26, letterSpacing: 0 },
     mobile: { size: 14, lineHeight: 22, letterSpacing: 0 },
     className: {
-      desktop: 'font-ukraine font-light text-text2-desktop',
-      mobile: 'font-ukraine font-light text-text2-mobile',
+      desktop: 'font-text font-light text-text2-desktop',
+      mobile: 'font-text font-light text-text2-mobile',
     },
   },
   {
@@ -104,8 +104,8 @@ export const typographyTokens: TypographyToken[] = [
     desktop: { size: 12, lineHeight: 16, letterSpacing: -0.03 },
     mobile: { size: 12, lineHeight: 16, letterSpacing: -0.03 },
     className: {
-      desktop: 'font-mono font-normal text-breadcrumbs',
-      mobile: 'font-mono font-normal text-breadcrumbs',
+      desktop: 'font-ui font-normal text-breadcrumbs',
+      mobile: 'font-ui font-normal text-breadcrumbs',
     },
   },
 ];

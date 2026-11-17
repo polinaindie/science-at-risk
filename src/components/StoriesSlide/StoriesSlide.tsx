@@ -40,7 +40,7 @@ export function StoriesSlide({
 }: StoriesSlideProps) {
   const alt = imageAlt ?? title;
   const navButton =
-    'min-h-11 border-0 bg-transparent p-0 font-mono text-h3-mobile text-white md:text-h3-desktop focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white';
+    'min-h-11 border-0 bg-transparent p-0 font-ui text-h3-mobile text-white md:text-h3-desktop focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white';
 
   return (
     <section
@@ -52,12 +52,12 @@ export function StoriesSlide({
             <img src={imageSrc} alt={alt} className="absolute inset-0 size-full object-cover" />
           </div>
           <div className="mt-4 md:ml-7 md:mt-0 md:max-w-[302px] lg:ml-5 xl:ml-[1.89rem] xl:max-w-[326px] 2xl:max-w-[414px]">
-            <p className="mb-1 font-mono text-text1-mobile text-white md:text-text1-desktop">{suptitle}</p>
-            <h2 className="mb-3 font-serif text-h2-mobile text-white md:mb-5 md:text-h2-desktop lg:mb-4">
+            <p className="mb-1 font-ui text-text1-mobile text-white md:text-text1-desktop">{suptitle}</p>
+            <h2 className="mb-3 font-heading text-h2-mobile text-white md:mb-5 md:text-h2-desktop lg:mb-4">
               <span className="satr-hover-underline satr-hover-underline--white">{title}</span>
             </h2>
             {text ? (
-              <p className="mb-7 font-ukraine text-text2-mobile font-light text-white md:mb-8 md:text-text2-desktop lg:mb-7">
+              <p className="mb-7 font-text text-text2-mobile font-light text-white md:mb-8 md:text-text2-desktop lg:mb-7">
                 {text}
               </p>
             ) : null}
@@ -80,7 +80,7 @@ export function StoriesSlide({
           </button>
           <a
             href={otherHref}
-            className="satr-hover-underline satr-hover-underline--white font-mono text-h3-mobile text-white md:text-h3-desktop"
+            className="satr-hover-underline satr-hover-underline--white font-ui text-h3-mobile text-white md:text-h3-desktop"
           >
             {otherLabel}
           </a>

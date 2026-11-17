@@ -28,7 +28,7 @@ export function Quote({
         aria-hidden
       />
       <div className="flex max-w-[991px] flex-col gap-6">
-        <p className="font-serif text-h2-desktop text-brand-black">{children}</p>
+        <p className="font-heading text-h2-desktop text-brand-black">{children}</p>
         {withAuthor ? (
           <footer className="flex items-center gap-4">
             <img
@@ -39,11 +39,11 @@ export function Quote({
               className="size-[60px] rounded-full object-cover"
             />
             <div>
-              <cite className="not-italic font-ukraine text-text2-desktop font-light text-brand-black">
+              <cite className="not-italic font-text text-text2-desktop font-light text-brand-black">
                 {author}
               </cite>
               {role ? (
-                <p className="mt-1 font-mono text-text1-desktop text-brand-black">{role}</p>
+                <p className="mt-1 font-ui text-text1-desktop text-brand-black">{role}</p>
               ) : null}
             </div>
           </footer>

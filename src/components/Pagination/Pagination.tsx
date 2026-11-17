@@ -42,7 +42,7 @@ export function Pagination({
 
   return (
     <nav
-      className={`flex flex-wrap items-center gap-4 font-mono text-h3-desktop text-brand-black ${className}`.trim()}
+      className={`flex flex-wrap items-center gap-4 font-ui text-h3-desktop text-brand-black ${className}`.trim()}
       aria-label={label}
     >
       <button

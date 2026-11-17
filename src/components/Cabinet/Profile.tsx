@@ -37,17 +37,17 @@ import { Modal, StatusBadge } from './parts';
 import { societies, societyBySlug, societyName } from './societies';
 
 /** Every heading inside the profile, left column and right: 24px. */
-const H4 = 'font-serif text-[1.5rem] font-normal leading-[1.875rem] tracking-[-0.02em] md:text-[1.75rem] md:leading-[2.125rem]';
+const H4 = 'font-heading text-[1.5rem] font-normal leading-[1.875rem] tracking-[-0.02em] md:text-[1.75rem] md:leading-[2.125rem]';
 /** The site's running text on an expert's page: IBM Plex Mono, 16 on a phone and 18 above. */
-const SITE_P = 'font-mono text-[1rem] leading-[1.625rem] md:text-[1.125rem] md:leading-[1.875rem]';
+const SITE_P = 'font-ui text-[1rem] leading-[1.625rem] md:text-[1.125rem] md:leading-[1.875rem]';
 /** The small text in the site's project and publication cards: e-Ukraine Light, 15. */
-const SITE_SMALL = 'font-ukraine text-[0.9375rem] font-light leading-[1.5625rem]';
+const SITE_SMALL = 'font-text text-[0.9375rem] font-light leading-[1.5625rem]';
 /** A project's or publication's title: serif, 20 on a phone and 22 above. */
-const CARD_TITLE = 'm-0 font-serif text-[1.25rem] font-normal leading-[1.75rem] tracking-[-0.02em] md:text-[1.375rem]';
+const CARD_TITLE = 'm-0 font-heading text-[1.25rem] font-normal leading-[1.75rem] tracking-[-0.02em] md:text-[1.375rem]';
 /** The post is e-Ukraine Light 16, the place it belongs to is IBM Plex Mono: the same on every profile. */
-const POST = 'font-ukraine text-[1rem] font-light leading-[1.5rem]';
-const PLACE = 'font-mono text-[0.875rem] leading-[1.375rem] md:text-[0.9375rem]';
-const PARA = 'font-ukraine text-text2-mobile font-light md:text-text2-desktop';
+const POST = 'font-text text-[1rem] font-light leading-[1.5rem]';
+const PLACE = 'font-ui text-[0.875rem] leading-[1.375rem] md:text-[0.9375rem]';
+const PARA = 'font-text text-text2-mobile font-light md:text-text2-desktop';
 
 /* ------------------------------------------------------------------ view */
 
@@ -122,7 +122,7 @@ const CardList = ({ children }: { children: ReactNode }) => <ul className="m-0 m
 
 /** A career as a timeline: the year in its own column, the post, then the place. */
 const ExperienceList = ({ items }: { items: ExperienceItem[] }) => (
-  <ul className="m-0 mt-2 list-none space-y-6 p-0 font-mono">
+  <ul className="m-0 mt-2 list-none space-y-6 p-0 font-ui">
     {items
       .filter((x) => !isExperienceEmpty(x))
       .map((x, i) => (
@@ -153,7 +153,7 @@ function changeButton(
       type="button"
       onClick={() => onEdit(id)}
       aria-label={`${filled ? t.change : t.add}: ${part}`}
-      className="satr-underlined-box inline-flex shrink-0 cursor-pointer items-center border-0 bg-transparent p-0 font-mono text-[0.875rem] leading-[1.25rem] tracking-[-0.03em] text-brand-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-black"
+      className="satr-underlined-box inline-flex shrink-0 cursor-pointer items-center border-0 bg-transparent p-0 font-ui text-[0.875rem] leading-[1.25rem] tracking-[-0.03em] text-brand-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-black"
     >
       <span className="satr-underlined">{filled ? t.change : t.add}</span>
     </button>
@@ -189,7 +189,7 @@ function ProfilePhoto({
           className="group relative block w-full cursor-pointer p-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-black"
         >
           {photo}
-          <span className="absolute inset-0 flex items-end justify-center bg-brand-black/45 p-4 font-mono text-[1rem] leading-[1.5rem] text-white opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100 [@media(hover:none)]:bg-transparent [@media(hover:none)]:opacity-100">
+          <span className="absolute inset-0 flex items-end justify-center bg-brand-black/45 p-4 font-ui text-[1rem] leading-[1.5rem] text-white opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100 [@media(hover:none)]:bg-transparent [@media(hover:none)]:opacity-100">
             <span className="[@media(hover:none)]:bg-brand-black/70 [@media(hover:none)]:px-2">
               {cabinetCopy[locale].photoDialog.title}
             </span>
@@ -238,7 +238,7 @@ function ProfileName({
       <div className="min-w-0">
         {show !== 'position' ? (
           <h1
-            className={`m-0 font-serif tracking-[-0.02em] ${
+            className={`m-0 font-heading tracking-[-0.02em] ${
               compact
                 ? 'text-[1.75rem] leading-[2.125rem]'
                 : 'text-[1.75rem] leading-[2rem] md:text-[2.25rem] md:leading-[2.5rem]'
@@ -341,7 +341,7 @@ export function ProfileView({
       <ul className="m-0 flex list-none flex-wrap gap-x-6 gap-y-1 p-0">
         {links.map((l) => (
           <li key={l.href}>
-            <a href={l.href} className="satr-hover-underline font-mono text-[1rem] leading-[1.625rem]">
+            <a href={l.href} className="satr-hover-underline font-ui text-[1rem] leading-[1.625rem]">
               {l.label}
             </a>
           </li>
@@ -415,7 +415,7 @@ export function ProfileView({
       {unsentNow ? (
         <div className="fixed inset-x-0 bottom-0 z-40 border-t-2 border-brand-black bg-white">
           <div className="mx-auto flex max-w-[1744px] flex-wrap items-center justify-between gap-3 px-4 py-3 xl:px-10">
-            <p className="font-mono text-text1-mobile" aria-live="polite">
+            <p className="font-ui text-text1-mobile" aria-live="polite">
               <span aria-hidden className="mr-2 inline-block size-3 border-2 border-brand-black bg-brand-accent-yellow align-middle" />
               {t.unsent.bar}
             </p>
@@ -538,7 +538,7 @@ export function ProfileView({
                 .filter((x) => !isPublicationEmpty(x))
                 .map((x) => (
                   <li key={formatPublication(x)} className={`${CARD} grid grid-cols-[4.5rem_minmax(0,1fr)] gap-x-6`}>
-                    <span className="font-mono text-[1rem] leading-[1.75rem]">{x.year}</span>
+                    <span className="font-ui text-[1rem] leading-[1.75rem]">{x.year}</span>
                     <div className="col-start-2">
                       <h3 className={CARD_TITLE}>{x.title}</h3>
                       {x.authors || x.journal || x.year || x.pages ? (
@@ -644,8 +644,8 @@ function Group({
   if (bare) return <div className="mt-12 space-y-12 first:mt-0">{children}</div>;
   return (
     <fieldset className="m-0 mt-16 min-w-0 border-0 p-0 first:mt-0">
-      <legend className="p-0 font-serif text-h2-mobile md:text-h2-desktop">{title}</legend>
-      {note ? <p className="mt-2 font-mono text-breadcrumbs text-brand-muted">{note}</p> : null}
+      <legend className="p-0 font-heading text-h2-mobile md:text-h2-desktop">{title}</legend>
+      {note ? <p className="mt-2 font-ui text-breadcrumbs text-brand-muted">{note}</p> : null}
       <div className="mt-8 space-y-12">{children}</div>
     </fieldset>
   );
@@ -798,7 +798,7 @@ export function ProfileEditForm({
 
   const err = (text?: string | false) =>
     text ? (
-      <p role="alert" className="mt-2 bg-brand-accent-yellow px-3 py-2 font-mono text-text1-mobile">
+      <p role="alert" className="mt-2 bg-brand-accent-yellow px-3 py-2 font-ui text-text1-mobile">
         {text}
       </p>
     ) : null;
@@ -818,7 +818,7 @@ export function ProfileEditForm({
         onBlur={() => touch(key)}
         {...extra}
       />
-      {note || hint ? <p className="mt-2 font-mono text-breadcrumbs text-brand-muted">{note ?? `${t.example} ${hint}`}</p> : null}
+      {note || hint ? <p className="mt-2 font-ui text-breadcrumbs text-brand-muted">{note ?? `${t.example} ${hint}`}</p> : null}
       {err(missing(key) ? t.errors.required : shown(key) && formatIssue(key))}
     </div>
   );
@@ -853,7 +853,7 @@ export function ProfileEditForm({
         className="max-w-none"
         {...extra}
       />
-      {hint ? <p className="mt-2 mb-0 font-mono text-breadcrumbs text-brand-muted">{hint}</p> : null}
+      {hint ? <p className="mt-2 mb-0 font-ui text-breadcrumbs text-brand-muted">{hint}</p> : null}
       {err(missing(key) && t.errors.required)}
     </div>
   );
@@ -869,7 +869,7 @@ export function ProfileEditForm({
     };
     return (
       <div className="space-y-6">
-        <h3 className="font-serif text-h2-mobile font-normal md:text-h2-desktop">{title} *</h3>
+        <h3 className="font-heading text-h2-mobile font-normal md:text-h2-desktop">{title} *</h3>
         {rows.map((r, i) => {
           const issue = expIssues(key, i);
           const k = (part: string) => `${key}${i}.${part}`;
@@ -897,7 +897,7 @@ export function ProfileEditForm({
                 ))}
               </div>
               {i === 0 ? (
-                <p className="mt-2 font-mono text-breadcrumbs text-brand-muted">
+                <p className="mt-2 font-ui text-breadcrumbs text-brand-muted">
                   {t.example} {t.experience.yearHint} · {t.experience.positionHint} · {t.experience.placeHint}
                 </p>
               ) : null}
@@ -932,7 +932,7 @@ export function ProfileEditForm({
     const pr = t.project;
     return (
       <div className="space-y-12">
-        <h3 className="font-serif text-h2-mobile font-normal md:text-h2-desktop">{title}</h3>
+        <h3 className="font-heading text-h2-mobile font-normal md:text-h2-desktop">{title}</h3>
         {rows.map((r, i) => {
           const issue = projIssues(key, i);
           const k = (part: string) => `${key}${i}.${part}`;
@@ -962,7 +962,7 @@ export function ProfileEditForm({
                 />
               )}
               {part !== 'url' ? (
-                <p className="mt-2 font-mono text-breadcrumbs text-brand-muted">{t.example} {pr.hints[part]}</p>
+                <p className="mt-2 font-ui text-breadcrumbs text-brand-muted">{t.example} {pr.hints[part]}</p>
               ) : null}
               {err(shown(k(part)) && issue[part])}
             </div>
@@ -1060,18 +1060,18 @@ export function ProfileEditForm({
           e.preventDefault();
           cancel();
         }}
-        className="mb-4 inline-flex items-center gap-2 font-mono text-breadcrumbs text-brand-black no-underline hover:opacity-70 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-black"
+        className="mb-4 inline-flex items-center gap-2 font-ui text-breadcrumbs text-brand-black no-underline hover:opacity-70 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-black"
       >
         <svg aria-hidden width="14" height="10" viewBox="0 0 14 10" fill="none" stroke="currentColor" strokeWidth="1.6">
           <path d="M13 5H1.5M5.5 1 1.5 5l4 4" />
         </svg>
         {cabinetCopy[locale].nav.items.profile}
       </a>
-      <h1 className="font-serif text-h2-mobile md:text-h2-desktop">
+      <h1 className="font-heading text-h2-mobile md:text-h2-desktop">
         {only ? `${t.partTitle}: ${partName}` : t.title}
       </h1>
       {only ? null : <p className={`mt-3 max-w-[760px] ${PARA}`}>{t.lede}</p>}
-      <p className="mt-2 mb-10 font-mono text-breadcrumbs text-brand-muted">{t.required}</p>
+      <p className="mt-2 mb-10 font-ui text-breadcrumbs text-brand-muted">{t.required}</p>
       </>}
 
       <div>
@@ -1117,7 +1117,7 @@ export function ProfileEditForm({
                   }}
                 />
               ) : null}
-              <p className="mt-2 max-w-[420px] font-mono text-breadcrumbs text-brand-muted">
+              <p className="mt-2 max-w-[420px] font-ui text-breadcrumbs text-brand-muted">
                 {t.hints.photo}
               </p>
               {err(tried && !draft.imageSrc && t.errors.required)}
@@ -1134,7 +1134,7 @@ export function ProfileEditForm({
             {!step && initial.nameUk.trim() ? (
               <div>
                 <TextField label={f.nameUk} value={draft.nameUk} readOnly disabled className="max-w-none" />
-                <p className="mt-2 font-mono text-breadcrumbs text-brand-muted">{t.hints.nameUk}</p>
+                <p className="mt-2 font-ui text-breadcrumbs text-brand-muted">{t.hints.nameUk}</p>
               </div>
             ) : (
               text('nameUk', f.nameUk, undefined, undefined, { autoComplete: 'name' })
@@ -1158,7 +1158,7 @@ export function ProfileEditForm({
           <div className={PAIR}>
             <div>
               <TextField label={f.email} value={draft.email} readOnly disabled className="max-w-none" />
-              <p className="mt-2 font-mono text-breadcrumbs text-brand-muted">{t.hints.email}</p>
+              <p className="mt-2 font-ui text-breadcrumbs text-brand-muted">{t.hints.email}</p>
             </div>
             {text('phone', f.phone, undefined, t.hints.phone, { type: 'tel', autoComplete: 'tel' })}
           </div>
@@ -1233,14 +1233,14 @@ export function ProfileEditForm({
                   type={k === 'url' ? 'url' : undefined}
                   className="max-w-none"
                 />
-                {note ? <p className="mt-2 font-mono text-breadcrumbs text-brand-muted">{note}</p> : null}
+                {note ? <p className="mt-2 font-ui text-breadcrumbs text-brand-muted">{note}</p> : null}
                 {err(shown(key(k)) && issues[k])}
               </div>
             );
             return (
               <div key={i} className="space-y-12">
                 <div className="flex items-baseline justify-between gap-4">
-                  <h3 className="font-serif text-h2-mobile font-normal md:text-h2-desktop">{pub.titles[i]}</h3>
+                  <h3 className="font-heading text-h2-mobile font-normal md:text-h2-desktop">{pub.titles[i]}</h3>
                   {i > 0 ? (
                     <Link as="button" onClick={() => removePub(i)} className="text-[1rem]! leading-[1.5rem]!">
                       {pub.remove}
@@ -1426,7 +1426,7 @@ export function ProfileEditForm({
               const k = (part: string) => `rec${i}.${part}`;
               return (
                 <div key={i} className="space-y-6">
-                  <h3 className="font-serif text-h2-mobile font-normal md:text-h2-desktop">{t.recommenders.rows[i]} *</h3>
+                  <h3 className="font-heading text-h2-mobile font-normal md:text-h2-desktop">{t.recommenders.rows[i]} *</h3>
                   <div className={PAIR}>
                     <div>
                       <TextField
@@ -1457,14 +1457,14 @@ export function ProfileEditForm({
                 </div>
               );
             })}
-            <p className="font-mono text-breadcrumbs text-brand-muted">{t.recommenders.privateNote}</p>
+            <p className="font-ui text-breadcrumbs text-brand-muted">{t.recommenders.privateNote}</p>
           </Group>
         ) : null}
 
         {on('consents') ? (
           <Group bare={!!want} title={t.groups.consents}>
             <div>
-              <label className="flex cursor-pointer items-start gap-3 font-ukraine text-text2-mobile font-light md:text-text2-desktop">
+              <label className="flex cursor-pointer items-start gap-3 font-text text-text2-mobile font-light md:text-text2-desktop">
                 <input
                   type="checkbox"
                   checked={draft.consents.personalData}
@@ -1477,10 +1477,10 @@ export function ProfileEditForm({
               {err(tried && !draft.consents.personalData && t.errors.consent)}
             </div>
             <fieldset className="m-0 min-w-0 border-0 p-0">
-              <legend className="font-ukraine text-text2-mobile font-light md:text-text2-desktop">{t.consents.publish} *</legend>
+              <legend className="font-text text-text2-mobile font-light md:text-text2-desktop">{t.consents.publish} *</legend>
               <div className="mt-4 flex flex-wrap gap-6">
                 {(['yes', 'no'] as const).map((v) => (
-                  <label key={v} className="flex cursor-pointer items-center gap-3 font-ukraine text-text2-mobile font-light md:text-text2-desktop">
+                  <label key={v} className="flex cursor-pointer items-center gap-3 font-text text-text2-mobile font-light md:text-text2-desktop">
                     <input
                       type="radio"
                       name="consent-publish"
@@ -1493,7 +1493,7 @@ export function ProfileEditForm({
                   </label>
                 ))}
               </div>
-              <p className="mt-3 font-mono text-breadcrumbs text-brand-muted">{t.consents.publishNote}</p>
+              <p className="mt-3 font-ui text-breadcrumbs text-brand-muted">{t.consents.publishNote}</p>
               {err(tried && !draft.consents.publish && t.errors.consent)}
             </fieldset>
           </Group>
@@ -1526,7 +1526,7 @@ export function ProfileEditForm({
         <>
       <div className="fixed inset-x-0 bottom-0 z-40 border-t-2 border-brand-black bg-white">
         <div className="mx-auto flex max-w-[1744px] flex-wrap items-center justify-between gap-3 px-4 py-3 xl:px-10">
-          <p className="font-mono text-text1-mobile" aria-live="polite">
+          <p className="font-ui text-text1-mobile" aria-live="polite">
             <span
               aria-hidden
               className={`mr-2 inline-block size-3 border-2 border-brand-black align-middle ${dirty ? 'bg-brand-accent-yellow' : ''}`}
@@ -1697,7 +1697,7 @@ function SocietyPicker({
             {shown.length ? (
               shown.map((x) => (
                 <li key={x.slug} role="option" aria-selected={value.includes(x.slug)}>
-                  <label className="flex cursor-pointer items-start gap-3 px-4 py-2.5 font-ukraine text-[1rem] leading-[1.375rem] hover:bg-brand-black/5">
+                  <label className="flex cursor-pointer items-start gap-3 px-4 py-2.5 font-text text-[1rem] leading-[1.375rem] hover:bg-brand-black/5">
                     <input
                       type="checkbox"
                       checked={value.includes(x.slug)}
@@ -1709,12 +1709,12 @@ function SocietyPicker({
                 </li>
               ))
             ) : (
-              <li className="px-4 py-3 font-mono text-breadcrumbs text-brand-muted">{copy.none}</li>
+              <li className="px-4 py-3 font-ui text-breadcrumbs text-brand-muted">{copy.none}</li>
             )}
           </ul>
         ) : null}
       </div>
-      <p className="mt-3 font-mono text-breadcrumbs text-brand-muted">
+      <p className="mt-3 font-ui text-breadcrumbs text-brand-muted">
         {copy.hint} {copy.selected(value.length)}
       </p>
       {chosen.length ? (

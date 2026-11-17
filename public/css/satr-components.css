@@ -152,7 +152,7 @@
     border: none;
     background: transparent;
     cursor: pointer;
-    font-family: var(--font-mono);
+    font-family: var(--font-ui);
     font-size: 18px;
     line-height: 28px;
     letter-spacing: -0.03em;
@@ -250,7 +250,7 @@
 
   .satr-link {
     display: inline;
-    font-family: var(--font-mono);
+    font-family: var(--font-ui);
     font-size: 18px;
     line-height: 28px;
     letter-spacing: -0.03em;
@@ -285,7 +285,7 @@
     padding: 7px 12px 6px;
     border: none;
     cursor: pointer;
-    font-family: var(--font-mono);
+    font-family: var(--font-ui);
     font-size: 14px;
     line-height: 20px;
     letter-spacing: -0.03em;
@@ -394,7 +394,7 @@
   /* Editorial rubric — plain mono label, not a chip */
   .satr-tag-label {
     display: inline-block;
-    font-family: var(--font-mono);
+    font-family: var(--font-ui);
     font-size: var(--text-breadcrumbs);
     line-height: var(--text-breadcrumbs-lh);
     letter-spacing: var(--text-breadcrumbs-ls);

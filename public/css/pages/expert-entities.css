@@ -27,7 +27,7 @@
 /* ---- name ---- */
 .expert__header,
 .expert-card__content .expert-card__title {
-    font-family: "Noto Serif", serif;
+    font-family: var(--font-heading, "Noto Serif", serif);
     font-weight: 400;
     letter-spacing: -0.02em;
     text-transform: none;
@@ -41,7 +41,7 @@
 /* ---- post: the same faces as the Experience list, by what each line is ---- */
 .expert-id .paragraph,
 .expert-card__content .expert-card__subtitle {
-    font-family: "e-Ukraine", sans-serif;
+    font-family: var(--font-text, "e-Ukraine", sans-serif);
     font-weight: 300;
     font-size: var(--t-md);
     line-height: 1.4444rem;
@@ -56,7 +56,7 @@
 /* ---- institution: lighter than the post ---- */
 .expert-id .expert__affiliation,
 .expert-card__content .expert-card__subtitle + .expert-card__text {
-    font-family: "IBM Plex Mono", monospace;
+    font-family: var(--font-ui, "IBM Plex Mono", monospace);
     font-weight: 400;
     font-size: var(--t-xs);
     line-height: 1.2222rem;
@@ -76,7 +76,7 @@
 /* On a card the institution is set in e-Ukraine Light like the post above it (the profile page keeps the mono). */
 /* ...and in the post's own colour. */
 .expert-card__content .expert-card__subtitle + .expert-card__text {
-    font-family: "e-Ukraine", sans-serif;
+    font-family: var(--font-text, "e-Ukraine", sans-serif);
     font-weight: 300;
     color: #000;
     text-align: justify; /* the lines run flush to both edges of the card's text column */
@@ -87,7 +87,7 @@
 
 /* ---- description (a card; on a page it is the "Research field" text) ---- */
 .expert-card__content .paragraph {
-    font-family: "IBM Plex Mono", monospace;
+    font-family: var(--font-ui, "IBM Plex Mono", monospace);
     font-weight: 400;
     font-size: 1rem; /* 18px at every width, line 1.35 — as scienceatrisk.org sets a card's text (read off its stylesheet) */
     line-height: 1.35;

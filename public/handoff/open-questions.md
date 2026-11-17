@@ -64,4 +64,6 @@ Collected from all parts of the package. Details and the assumption made in the 
 | 36 | Fluid type renders 12.5% larger than the numbers in the generator (html is 18px, scale written for 16px). The hand-off follows the site. Confirm this is the intended size, or correct both. | Des |
 | 37 | `cabinet/cabinet.css` has its own sizes (16px base, own buttons and fields) and is **not** the look of the React cabinet (`satr-auth.css`, Tailwind). Which is the reference for the Go cabinet? | Des + Dev |
 | 38 | `satr-shape.js` leaves a plain rounded rectangle until it runs. Is a flash of the rectangle on slow connections acceptable? | Des |
+| 39 | Running-text sizes differ by component (card text 15px, article 18px, profile page 16px, search field 22px). Define two body sizes (text 18, text-small 15) and map every component to one? | Des |
+| 40 | Scientist profile pages run on a 16px root and the rest of the site on 18px. Bring them to 18px (changes their layout) or keep? | Des + Dev |
 

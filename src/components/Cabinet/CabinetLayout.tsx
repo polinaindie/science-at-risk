@@ -90,7 +90,7 @@ export function CabinetLayout({
     <div className={ground === 'blue' ? 'bg-brand-accent-blue' : ''}>
     <div className={`${wrapperClass} pt-8 pb-8 lg:pb-12`}>
       {name ? (
-        <p className="m-0 font-serif text-h2-mobile md:text-h2-desktop">{name}</p>
+        <p className="m-0 font-heading text-h2-mobile md:text-h2-desktop">{name}</p>
       ) : null}
       <div className={`${name ? 'mt-6' : ''} ${name ? 'lg:mt-10' : ''} lg:grid lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-[42px]`}>
       <div className="min-w-0">
@@ -118,14 +118,14 @@ export function CabinetLayout({
                   <span>{t.nav.items[key]}</span>
                   {count > 0 ? (
                     <span
-                      className="grid min-w-6 place-items-center rounded-full bg-brand-accent-yellow px-1.5 font-mono text-breadcrumbs text-brand-black"
+                      className="grid min-w-6 place-items-center rounded-full bg-brand-accent-yellow px-1.5 font-ui text-breadcrumbs text-brand-black"
                       aria-label={t.notifications.unreadCount(count)}
                     >
                       {count > 99 ? '99+' : count}
                     </span>
                   ) : null}
                   {isNew && !count ? (
-                    <span className="bg-brand-accent-yellow px-2 py-0.5 font-mono text-breadcrumbs font-normal text-brand-black">
+                    <span className="bg-brand-accent-yellow px-2 py-0.5 font-ui text-breadcrumbs font-normal text-brand-black">
                       {t.nav.new}
                     </span>
                   ) : null}

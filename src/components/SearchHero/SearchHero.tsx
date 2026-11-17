@@ -104,7 +104,7 @@ export function SearchHero({
 
   const tagsBlock = popularTags.length ? (
     <div>
-      <p className="mb-3 font-mono text-text1-desktop">{popularLabel}</p>
+      <p className="mb-3 font-ui text-text1-desktop">{popularLabel}</p>
       <div className="flex flex-wrap gap-2.5" role="list">
         {popularTags.map((tag) => {
           const isSelected =
@@ -158,7 +158,7 @@ export function SearchHero({
     >
       {breadcrumbs?.length ? <Breadcrumbs items={breadcrumbs} /> : null}
       <div className="max-w-[420px]">
-        <Heading className="font-serif text-h1" id={id}>
+        <Heading className="font-heading text-h1" id={id}>
           {title}
         </Heading>
       </div>
@@ -172,7 +172,7 @@ export function SearchHero({
       ) : null}
       <form className={scopes?.length ? 'mt-4' : 'mt-8'} onSubmit={handleSubmit} aria-labelledby={id}>
         <div className="flex flex-col gap-4 border-b-2 border-brand-black pb-6 md:flex-row md:items-end md:gap-6">
-          <label className="flex-1 font-mono text-breadcrumbs text-brand-black">
+          <label className="flex-1 font-ui text-breadcrumbs text-brand-black">
             <span className="mb-1 block">{placeholder}</span>
             <input
               ref={inputRef}
@@ -180,7 +180,7 @@ export function SearchHero({
               defaultValue={defaultQuery}
               key={defaultQuery}
               aria-describedby={exampleQuery ? exampleId : undefined}
-              className="w-full border-0 bg-transparent font-ukraine text-[1rem] font-light text-brand-black outline-none focus-visible:ring-2 focus-visible:ring-brand-black focus-visible:ring-offset-2"
+              className="w-full border-0 bg-transparent font-text text-[1rem] font-light text-brand-black outline-none focus-visible:ring-2 focus-visible:ring-brand-black focus-visible:ring-offset-2"
               placeholder={placeholder}
             />
           </label>
@@ -191,12 +191,12 @@ export function SearchHero({
       </form>
 
       {exampleQuery ? (
-        <p id={exampleId} className="mt-4 font-ukraine text-text2-mobile font-light md:text-text2-desktop">
-          <span className="font-mono text-breadcrumbs text-brand-muted">{exampleLabel}: </span>
+        <p id={exampleId} className="mt-4 font-text text-text2-mobile font-light md:text-text2-desktop">
+          <span className="font-ui text-breadcrumbs text-brand-muted">{exampleLabel}: </span>
           <button
             type="button"
             onClick={useExample}
-            className="satr-hover-underline border-0 bg-transparent p-0 text-left font-ukraine text-text2-mobile font-light text-brand-black md:text-text2-desktop"
+            className="satr-hover-underline border-0 bg-transparent p-0 text-left font-text text-text2-mobile font-light text-brand-black md:text-text2-desktop"
           >
             “{exampleQuery}”
           </button>
@@ -206,11 +206,11 @@ export function SearchHero({
       {note ? (
         <div className="mt-8 grid gap-8 md:grid-cols-12 md:items-end">
           <div className="md:col-span-4">
-            <p className="font-ukraine text-text2-mobile font-light md:text-text2-desktop">{note}</p>
+            <p className="font-text text-text2-mobile font-light md:text-text2-desktop">{note}</p>
             {noteHref && noteLinkLabel ? (
               <a
                 href={noteHref}
-                className="satr-hover-underline mt-4 inline-block font-mono text-text1-desktop"
+                className="satr-hover-underline mt-4 inline-block font-ui text-text1-desktop"
               >
                 {noteLinkLabel}
               </a>

@@ -23,8 +23,8 @@ export function Nothing({
 }: NothingProps) {
   return (
     <div className={`py-16 text-center ${className}`.trim()} role="status">
-      <h2 className="font-serif text-h2-desktop text-brand-black">{title}</h2>
-      <p className="mx-auto mt-4 max-w-md font-ukraine text-text2-desktop font-light text-brand-black">
+      <h2 className="font-heading text-h2-desktop text-brand-black">{title}</h2>
+      <p className="mx-auto mt-4 max-w-md font-text text-text2-desktop font-light text-brand-black">
         {text}
       </p>
       {suggestions.length ? (

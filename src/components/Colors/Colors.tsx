@@ -12,8 +12,8 @@ function ColorSwatch({ token }: { token: ColorToken }) {
         data-node-id={token.nodeId}
       />
       <div className="flex flex-col gap-1">
-        <p className="font-mono text-h3-desktop text-brand-black">{token.hex}</p>
-        <p className="font-ukraine text-[1.125rem] font-light leading-normal text-brand-muted">
+        <p className="font-ui text-h3-desktop text-brand-black">{token.hex}</p>
+        <p className="font-text text-[1.125rem] font-light leading-normal text-brand-muted">
           {token.usage}
         </p>
       </div>

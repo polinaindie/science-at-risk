@@ -1,0 +1,5 @@
+/*
+ * satr-base.css — the site's root size. The whole type scale is in rem and the live site renders it with 1rem = 18px.
+ * Link it after tokens.css and type-scale.css on pages that follow the scale (the hand-off pages). WCAG 1.4.4: never px.
+ */
+html { font-size: 112.5%; }

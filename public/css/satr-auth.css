@@ -25,7 +25,7 @@
   padding: 24px 0 96px;
   text-align: center;
   color: var(--auth-ink);
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: var(--font-ui, 'IBM Plex Mono', monospace);
 }
 
 .satr-auth *,
@@ -40,7 +40,7 @@
 
 .satr-auth .satr-auth__title {
   margin: 0 0 16px;
-  font-family: 'Noto Serif', serif;
+  font-family: var(--font-heading, 'Noto Serif', serif);
   font-weight: 400;
   font-size: 32px;
   line-height: 38px;
@@ -158,7 +158,7 @@
   border-radius: 15px;
   background: #000;
   color: #fff;
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: var(--font-ui, 'IBM Plex Mono', monospace);
   font-size: 18px;
   line-height: 28px;
   letter-spacing: -0.03em;
@@ -341,7 +341,7 @@
 /* The confirmation screens. */
 .satr-auth .satr-auth__mark {
   margin: 0 0 24px;
-  font-family: 'Noto Serif', serif;
+  font-family: var(--font-heading, 'Noto Serif', serif);
   font-size: 56px;
   line-height: 56px;
   letter-spacing: -0.02em;

@@ -59,26 +59,26 @@ export function ListCard({
     >
       <header className="mb-3 flex items-start justify-between gap-4">
         <div className="min-w-0">
-          <Heading className="font-serif text-h2-mobile text-brand-black md:text-h2-desktop">
+          <Heading className="font-heading text-h2-mobile text-brand-black md:text-h2-desktop">
             <span className="satr-hover-underline">{title}</span>
           </Heading>
           {entity ? (
-            <p className="mt-2 font-mono text-breadcrumbs text-brand-muted">{entity}</p>
+            <p className="mt-2 font-ui text-breadcrumbs text-brand-muted">{entity}</p>
           ) : null}
         </div>
         {displayPrice ? (
-          <p className="hidden shrink-0 font-mono text-text1-desktop md:block">{displayPrice}</p>
+          <p className="hidden shrink-0 font-ui text-text1-desktop md:block">{displayPrice}</p>
         ) : null}
       </header>
       <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
         {text ? (
-          <p className="max-w-[397px] font-ukraine text-text2-desktop font-light">{text}</p>
+          <p className="max-w-[397px] font-text text-text2-desktop font-light">{text}</p>
         ) : null}
         <div className="flex items-center justify-between gap-4">
           {displayPrice ? (
             <div className="md:hidden">
-              <p className="font-mono text-breadcrumbs text-brand-muted">{amountLabel}</p>
-              <p className="font-mono text-text1-desktop">{displayPrice}</p>
+              <p className="font-ui text-breadcrumbs text-brand-muted">{amountLabel}</p>
+              <p className="font-ui text-text1-desktop">{displayPrice}</p>
             </div>
           ) : null}
           <div className="opacity-100 transition-opacity md:opacity-0 md:group-hover:opacity-100">

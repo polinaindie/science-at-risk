@@ -46,14 +46,14 @@ export function StoryCard({
               </Tag>
             </p>
           ) : null}
-          <Heading className="font-serif text-h2-mobile md:text-h2-desktop">
+          <Heading className="font-heading text-h2-mobile md:text-h2-desktop">
             <span className="satr-hover-underline">{title}</span>
           </Heading>
         </header>
         {excerpt ? (
-          <p className="font-ukraine text-text2-mobile font-light md:text-text2-desktop">{excerpt}</p>
+          <p className="font-text text-text2-mobile font-light md:text-text2-desktop">{excerpt}</p>
         ) : null}
-        {date ? <p className="mt-3 font-mono text-breadcrumbs text-brand-muted">{date}</p> : null}
+        {date ? <p className="mt-3 font-ui text-breadcrumbs text-brand-muted">{date}</p> : null}
       </a>
     </article>
   );

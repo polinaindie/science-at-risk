@@ -30,8 +30,8 @@ export function InfoSection({
           overflowing word lies across the list beside it. Hyphenated rather
           than broken: the document declares its language, so the break lands
           where the language says it may. */}
-      <h2 className="font-serif text-h1 hyphens-auto">{title}</h2>
-      <p className={`mt-4 max-w-2xl font-mono ${fitTextClass}`}>{text}</p>
+      <h2 className="font-heading text-h1 hyphens-auto">{title}</h2>
+      <p className={`mt-4 max-w-2xl font-ui ${fitTextClass}`}>{text}</p>
       <Link href={linkHref} className="mt-6">
         {linkLabel}
       </Link>

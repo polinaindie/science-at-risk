@@ -43,7 +43,7 @@ export function StatusBadge({
       role="status"
       title={t.text || undefined}
       // Only the draft chip is outlined: it is white, and on a white page it would vanish.
-      className={`inline-flex items-center gap-2 px-3 py-1 font-mono text-text1-mobile ${STATUS_GROUND[status]} ${
+      className={`inline-flex items-center gap-2 px-3 py-1 font-ui text-text1-mobile ${STATUS_GROUND[status]} ${
         status === 'draft' ? 'border-2 border-brand-black' : ''
       }`}
       data-status={status}
@@ -82,7 +82,7 @@ export function StatusStrip({
         <span className="mt-1 flex md:mt-2">
           <StatusMark status={status} />
         </span>
-        <p className="font-mono text-text1-mobile md:text-text1-desktop">
+        <p className="font-ui text-text1-mobile md:text-text1-desktop">
           <strong className="font-bold">{t.text ? `${t.label}.` : t.label}</strong>{t.text ? ` ${t.text}` : null}
         </p>
       </div>
@@ -107,13 +107,13 @@ export function ApprovedBanner({
       role="status"
       className="flex flex-col gap-3 bg-brand-black px-5 py-4 text-white md:flex-row md:items-center md:justify-between"
     >
-      <p className="font-mono text-text1-mobile md:text-text1-desktop">
+      <p className="font-ui text-text1-mobile md:text-text1-desktop">
         <strong className="font-bold">{t.title}.</strong> {t.text}
       </p>
       <div className="flex shrink-0 items-center gap-5">
         <a
           href={siteHref}
-          className="satr-hover-underline satr-hover-underline--white font-mono text-text1-mobile text-white no-underline"
+          className="satr-hover-underline satr-hover-underline--white font-ui text-text1-mobile text-white no-underline"
         >
           {t.link}
         </a>
@@ -121,7 +121,7 @@ export function ApprovedBanner({
           <button
             type="button"
             onClick={onClose}
-            className="satr-underlined font-mono text-text1-mobile text-white"
+            className="satr-underlined font-ui text-text1-mobile text-white"
           >
             {t.close}
           </button>
@@ -169,8 +169,8 @@ export function Modal({
         tabIndex={-1}
         className="relative max-h-full w-full max-w-[560px] overflow-y-auto bg-white p-6 outline-none md:p-10"
       >
-        <h2 className="font-serif text-h2-mobile md:text-h2-desktop">{title}</h2>
-        <div className="mt-4 font-ukraine text-text2-mobile font-light md:text-text2-desktop">
+        <h2 className="font-heading text-h2-mobile md:text-h2-desktop">{title}</h2>
+        <div className="mt-4 font-text text-text2-mobile font-light md:text-text2-desktop">
           {children}
         </div>
         <div className="mt-8 flex flex-wrap gap-3">{actions}</div>
@@ -206,11 +206,11 @@ export function Toast({
     <div className="pointer-events-none fixed inset-x-0 top-24 z-[60] flex justify-end px-4 md:px-10">
       <div
         role={kind === 'error' ? 'alert' : 'status'}
-        className={`pointer-events-auto flex max-w-[560px] items-start gap-4 border-2 border-brand-black px-5 py-4 font-ukraine text-text2-mobile md:text-text2-desktop ${
+        className={`pointer-events-auto flex max-w-[560px] items-start gap-4 border-2 border-brand-black px-5 py-4 font-text text-text2-mobile md:text-text2-desktop ${
           kind === 'error' ? 'bg-white' : 'bg-brand-accent-blue'
         }`}
       >
-        <span aria-hidden className="mt-0.5 font-mono">{kind === 'error' ? '!' : '✓'}</span>
+        <span aria-hidden className="mt-0.5 font-ui">{kind === 'error' ? '!' : '✓'}</span>
         <span className="min-w-0">{children}</span>
         {action ? (
           <button type="button" onClick={action.onClick} className="shrink-0 font-bold underline underline-offset-4">
@@ -239,8 +239,8 @@ export function EmptyState({
 }) {
   return (
     <div className="border-2 border-dashed border-brand-black px-6 py-12 text-center md:py-16">
-      <h3 className="font-serif text-h2-mobile md:text-h2-desktop">{title}</h3>
-      <p className="mx-auto mt-3 max-w-[520px] font-ukraine text-text2-mobile font-light md:text-text2-desktop">
+      <h3 className="font-heading text-h2-mobile md:text-h2-desktop">{title}</h3>
+      <p className="mx-auto mt-3 max-w-[520px] font-text text-text2-mobile font-light md:text-text2-desktop">
         {text}
       </p>
       {action ? <div className="mt-6 flex justify-center">{action}</div> : null}
@@ -252,9 +252,9 @@ export function EmptyState({
 export function PageTitle({ title, lede, wide = false }: { title: string; lede?: string; wide?: boolean }) {
   return (
     <header className="mb-8">
-      <h1 className={`font-serif text-h1-mobile ${wide ? 'md:text-h1-desktop' : 'md:text-h2-desktop lg:text-h1-desktop'}`}>{title}</h1>
+      <h1 className={`font-heading text-h1-mobile ${wide ? 'md:text-h1-desktop' : 'md:text-h2-desktop lg:text-h1-desktop'}`}>{title}</h1>
       {lede ? (
-        <p className="mt-4 max-w-[760px] font-ukraine text-text2-mobile font-light md:text-text2-desktop">
+        <p className="mt-4 max-w-[760px] font-text text-text2-mobile font-light md:text-text2-desktop">
           {lede}
         </p>
       ) : null}
@@ -266,6 +266,6 @@ export { Button };
 
 /** The look of every cabinet tab: the side menu and the notification filter share it. */
 export const tabClass = (current: boolean) =>
-  `flex w-fit items-center gap-3 whitespace-nowrap py-3 font-mono text-h3-mobile text-brand-black no-underline [--satr-ul:2px] md:text-h3-desktop lg:py-2.5 ${
+  `flex w-fit items-center gap-3 whitespace-nowrap py-3 font-ui text-h3-mobile text-brand-black no-underline [--satr-ul:2px] md:text-h3-desktop lg:py-2.5 ${
     current ? 'satr-underlined font-bold' : 'satr-hover-underline'
   }`;

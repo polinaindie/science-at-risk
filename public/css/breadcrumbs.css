@@ -7,7 +7,7 @@
 .breadcrumbs__link,
 .breadcrumbs__divider,
 .breadcrumbs span {
-    font-family: "IBM Plex Mono", monospace;
+    font-family: var(--font-ui, "IBM Plex Mono", monospace);
     font-size: 0.7778rem;
     font-weight: 400;
     line-height: 1.4;

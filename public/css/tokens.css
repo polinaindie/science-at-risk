@@ -20,12 +20,8 @@
  * (--color-black, --color-blue) only when the colour is the point (a ground colour, a tag).
  */
 
-/* ======================================================================================================
-   1. ROOT SIZE
-   The whole type scale is in rem and the live site renders it with 1rem = 18px (html 112.5%).
-   Without this the scale renders 11% smaller than on the site. WCAG 1.4.4: never set it in px.
-   ====================================================================================================== */
-html { font-size: 112.5%; }
+/* 1. ROOT SIZE: see satr-base.css (html 112.5% = 18px). It is a separate file so a page can take the tokens without
+      changing its root size (the scientist profile pages still run on 16px; open question 36). */
 
 :root {
 
@@ -88,6 +84,18 @@ html { font-size: 112.5%; }
   --font-serif: "Noto Serif", serif;                       /* [G] headings, names, big numbers. Weight 400 only */
   --font-mono: "IBM Plex Mono", monospace;     /* [G] interface, labels, chips, buttons, body of lists */
   --font-ukraine: "e-Ukraine", sans-serif;               /* [G] running text, typed text in fields, article body (weight 300) */
+  /* ---- FONT ROLES — the only three families a component may ask for. Change a role here and every page follows. ----
+       heading : Noto Serif, 400            h1-h4, names on cards, big numbers, pull quotes
+       text    : e-Ukraine Light, 300       everything that is read as sentences: article body, card descriptions,
+                                            profile text, lead paragraphs, text typed into fields
+       ui      : IBM Plex Mono              everything that is operated or scanned: nav, buttons, chips, tags, labels,
+                                            breadcrumbs, dates, counts, captions, hints, errors
+       Rule of thumb: if it is a sentence a person reads to the end, it is `text`; if it is a word or number
+       a person scans or clicks, it is `ui`. Never set a family by name in a component: use a role. */
+  --font-heading: var(--font-serif);
+  --font-text: var(--font-ukraine);
+  --font-ui: var(--font-mono);
+  --font-weight-text: var(--font-weight-light);
   --font-weight-light: 300;                                         /* e-Ukraine body, field text, IBM Plex labels */
   --font-weight-normal: 400;                                        /* everything else */
   --font-weight-bold: 700;                                          /* strong, "!" marks, e-Ukraine Bold */

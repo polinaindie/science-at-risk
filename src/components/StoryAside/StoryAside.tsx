@@ -28,12 +28,12 @@ export function StoryAside({
     <aside className={`flex flex-col gap-6 ${className}`.trim()}>
       {items.map((item) => (
         <div key={item.label}>
-          <p className="font-mono text-breadcrumbs text-brand-black">{item.label}</p>
-          <p className="mt-1 font-ukraine text-text2-desktop font-light">{item.value}</p>
+          <p className="font-ui text-breadcrumbs text-brand-black">{item.label}</p>
+          <p className="mt-1 font-text text-text2-desktop font-light">{item.value}</p>
         </div>
       ))}
       {note ? (
-        <p className="font-ukraine text-text2-desktop font-light text-brand-muted">{note}</p>
+        <p className="font-text text-text2-desktop font-light text-brand-muted">{note}</p>
       ) : null}
       {ctaLabel ? (
         <a href={ctaHref}>

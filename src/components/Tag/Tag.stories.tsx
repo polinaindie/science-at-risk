@@ -43,7 +43,7 @@ export const PopularRequests: Story = {
   args: { children: 'Teaching', count: 101 },
   render: () => (
     <div className="bg-brand-accent-blue p-8">
-      <p className="mb-4 font-mono text-text1-desktop">Popular requests</p>
+      <p className="mb-4 font-ui text-text1-desktop">Popular requests</p>
       <div className="flex flex-wrap gap-2.5">
         <Tag as="a" href="/scientists?tag=teaching" count={101}>
           Teaching

@@ -17,7 +17,7 @@ export function Loader({
       role="status"
       aria-live="polite"
     >
-      <p className="font-mono text-h3-desktop text-brand-black">{text}</p>
+      <p className="font-ui text-h3-desktop text-brand-black">{text}</p>
     </div>
   );
 }

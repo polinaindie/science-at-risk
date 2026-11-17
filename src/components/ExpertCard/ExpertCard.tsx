@@ -60,7 +60,7 @@ export function ExpertCard({
         ) : null}
         <div className="min-w-0 flex-1">
           <header className="mb-4 flex items-start justify-between gap-4">
-            <Heading className="font-serif text-h2-mobile text-brand-black md:text-h2-desktop">
+            <Heading className="font-heading text-h2-mobile text-brand-black md:text-h2-desktop">
               <span className="satr-hover-underline">{name}</span>
             </Heading>
             <div className="hidden opacity-0 transition-opacity group-hover:opacity-100 md:block">
@@ -68,15 +68,15 @@ export function ExpertCard({
             </div>
           </header>
           {subtitle ? (
-            <p className="mb-4 font-mono text-h3-mobile md:text-text1-desktop">{subtitle}</p>
+            <p className="mb-4 font-ui text-h3-mobile md:text-text1-desktop">{subtitle}</p>
           ) : null}
           {organization ? (
-            <p className="mb-2 font-ukraine text-text2-mobile font-light md:text-text2-desktop">
+            <p className="mb-2 font-text text-text2-mobile font-light md:text-text2-desktop">
               {organization}
             </p>
           ) : null}
           {description ? (
-            <p className="mb-6 max-w-[840px] font-ukraine text-text2-mobile font-light md:text-text2-desktop">
+            <p className="mb-6 max-w-[840px] font-text text-text2-mobile font-light md:text-text2-desktop">
               {description}
             </p>
           ) : null}

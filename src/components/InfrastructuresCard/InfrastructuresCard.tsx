@@ -42,7 +42,7 @@ export function InfrastructuresCard({
 }: InfrastructuresCardProps) {
   const Heading = headingLevel === 3 ? 'h3' : 'h2';
   const labelClass =
-    `mb-1 font-mono text-text1-mobile md:text-text1-desktop ${showMetaLabels ? '' : 'md:hidden'}`.trim();
+    `mb-1 font-ui text-text1-mobile md:text-text1-desktop ${showMetaLabels ? '' : 'md:hidden'}`.trim();
 
   return (
     <article
@@ -52,11 +52,11 @@ export function InfrastructuresCard({
     >
       <div className="flex flex-col gap-4 md:flex-row md:justify-between">
         <div className="md:w-7/12">
-          <Heading className="font-serif text-h2-mobile text-brand-black md:text-h2-desktop">
+          <Heading className="font-heading text-h2-mobile text-brand-black md:text-h2-desktop">
             <span className="satr-hover-underline">{title}</span>
           </Heading>
           {description ? (
-            <p className="mt-2 font-ukraine text-text2-desktop font-light">{description}</p>
+            <p className="mt-2 font-text text-text2-desktop font-light">{description}</p>
           ) : null}
         </div>
         <div className="flex min-w-0 flex-col gap-4 md:w-5/12 md:flex-row md:flex-wrap md:pl-10 lg:pl-24">
@@ -89,14 +89,14 @@ export function InfrastructuresCard({
                   {domain}
                 </Tag>
               ) : (
-                <p className="font-ukraine text-text2-desktop font-light">{domain}</p>
+                <p className="font-text text-text2-desktop font-light">{domain}</p>
               )}
             </div>
           ) : null}
           {amount ? (
             <div className="md:min-w-[140px] md:text-right">
               <p className={labelClass}>{amountLabel}</p>
-              <p className="font-ukraine text-text2-desktop font-light">{amount}</p>
+              <p className="font-text text-text2-desktop font-light">{amount}</p>
             </div>
           ) : null}
         </div>

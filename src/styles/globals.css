@@ -1,6 +1,7 @@
 @import './fonts.css';
 @import 'tailwindcss';
 @import '../../public/css/tokens.css';
+@import '../../public/css/satr-base.css';
 @import '../../public/css/type-scale.css';
 @import '../../public/css/satr-auth.css';
 @import '../../public/css/satr-squircle.css';
@@ -10,6 +11,10 @@
   --font-serif: 'Noto Serif', serif;
   --font-mono: 'IBM Plex Mono', monospace;
   --font-ukraine: 'e-Ukraine', sans-serif;
+  /* The three roles components ask for (utilities font-heading, font-text, font-ui). Values: tokens.css. */
+  --font-heading: var(--font-heading);
+  --font-text: var(--font-text);
+  --font-ui: var(--font-ui);
 
   --color-brand-black: var(--color-black);
   --color-brand-white: var(--color-white);
@@ -103,7 +108,7 @@
 @layer base {
   html,
   body {
-    font-family: var(--font-mono);
+    font-family: var(--font-ui);
     font-weight: 400;
     font-size: 18px;
     color: var(--color-brand-black);
@@ -118,7 +123,7 @@
   h5,
   h6 {
     margin: 0;
-    font-family: var(--font-serif);
+    font-family: var(--font-heading);
     font-weight: 400;
   }
 

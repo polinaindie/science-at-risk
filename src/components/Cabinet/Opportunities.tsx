@@ -9,11 +9,11 @@ export function CourseCard({ locale, course }: { locale: CabinetLocale; course: 
   return (
     <article className="flex flex-col gap-6 border-b-2 border-brand-black py-6 md:flex-row md:items-end md:justify-between md:py-8">
       <div className="min-w-0 md:max-w-[70%]">
-        <h3 className="font-serif text-h2-mobile md:text-h2-desktop">{course.title}</h3>
-        <p className="mt-3 font-mono text-text1-mobile text-brand-muted">
+        <h3 className="font-heading text-h2-mobile md:text-h2-desktop">{course.title}</h3>
+        <p className="mt-3 font-ui text-text1-mobile text-brand-muted">
           {t.provider}: <span className="text-brand-black">{course.provider}</span>
         </p>
-        <p className="mt-3 font-ukraine text-[1rem] leading-[1.375rem] md:text-[1.125rem] md:leading-[1.625rem]">{course.description}</p>
+        <p className="mt-3 font-text text-[1rem] leading-[1.375rem] md:text-[1.125rem] md:leading-[1.625rem]">{course.description}</p>
       </div>
       <div className="flex justify-end md:shrink-0">
         <a href={course.href} target="_blank" rel="noopener noreferrer" className="shrink-0 no-underline">
@@ -60,7 +60,7 @@ export function GrantCard({
       <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
         <div className="min-w-0 md:max-w-[70%]">
           {date ? (
-            <p className="mb-3 flex flex-wrap items-center gap-x-4 gap-y-2 font-mono text-text1-mobile">
+            <p className="mb-3 flex flex-wrap items-center gap-x-4 gap-y-2 font-ui text-text1-mobile">
               {date ? (
                 <span>
                   {t.deadline}: <strong className="font-bold">{date}</strong>
@@ -77,10 +77,10 @@ export function GrantCard({
               ) : null}
             </p>
           ) : null}
-          <h3 className="font-serif text-h2-mobile md:text-h2-desktop">{grant.title}</h3>
+          <h3 className="font-heading text-h2-mobile md:text-h2-desktop">{grant.title}</h3>
           {/* The label stands over the tags, so a grant with several fields has room for all of them. */}
           <div className="mt-4">
-            <p className="m-0 mb-2 font-mono text-breadcrumbs text-brand-muted">{fields.length > 1 ? t.fields : t.field}</p>
+            <p className="m-0 mb-2 font-ui text-breadcrumbs text-brand-muted">{fields.length > 1 ? t.fields : t.field}</p>
             <ul className="m-0 flex list-none flex-wrap gap-2 p-0">
               {fields.map((f) => (
                 <li key={f}>

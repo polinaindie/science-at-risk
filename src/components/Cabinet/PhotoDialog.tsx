@@ -97,9 +97,9 @@ export function PhotoDialog({
             title={src ? t.preview : undefined}
           />
         ) : null}
-        {src ? <p className="m-0 font-mono text-breadcrumbs text-brand-muted">{t.preview}</p> : null}
+        {src ? <p className="m-0 font-ui text-breadcrumbs text-brand-muted">{t.preview}</p> : null}
         <p className="m-0 font-bold">{t.drop}</p>
-        <p className="m-0 font-mono text-breadcrumbs text-brand-muted">{t.or}</p>
+        <p className="m-0 font-ui text-breadcrumbs text-brand-muted">{t.or}</p>
         <Button variant="bordered" type="button" onClick={() => input.current?.click()}>
           {src ? t.another : t.choose}
         </Button>
@@ -117,11 +117,11 @@ export function PhotoDialog({
           }}
         />
       </div>
-      <p role="alert" className={error ? 'mt-3 bg-brand-accent-yellow px-3 py-2 font-mono text-text1-mobile' : 'sr-only'}>
+      <p role="alert" className={error ? 'mt-3 bg-brand-accent-yellow px-3 py-2 font-ui text-text1-mobile' : 'sr-only'}>
         {error}
       </p>
 
-      <h3 className="mt-4 mb-2 font-mono text-[1rem] font-bold">{t.tipsTitle}</h3>
+      <h3 className="mt-4 mb-2 font-ui text-[1rem] font-bold">{t.tipsTitle}</h3>
       <ul className="m-0 list-disc space-y-1 pl-5 text-[1rem] leading-[1.375rem]">
         {t.tips.map((x) => (
           <li key={x}>{x}</li>

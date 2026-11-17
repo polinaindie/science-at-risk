@@ -261,7 +261,7 @@ export function HomeHeroV4Final({
     </a>
   );
   const pagerStep =
-    'cursor-pointer border-0 bg-transparent p-0 font-mono text-[0.9375rem] leading-[1.625rem] md:text-[1.375rem] text-brand-black';
+    'cursor-pointer border-0 bg-transparent p-0 font-ui text-[0.9375rem] leading-[1.625rem] md:text-[1.375rem] text-brand-black';
 
   return (
     <section
@@ -278,7 +278,7 @@ export function HomeHeroV4Final({
           <a
             href={live('')}
             aria-label="Science At Risk"
-            className={`satr-dim font-serif text-[1.625rem] leading-[2.625rem] tracking-[-0.02em] text-brand-black no-underline ${focusRing}`}
+            className={`satr-dim font-heading text-[1.625rem] leading-[2.625rem] tracking-[-0.02em] text-brand-black no-underline ${focusRing}`}
           >
             !!!
           </a>
@@ -292,7 +292,7 @@ export function HomeHeroV4Final({
                 <li key={item.href}>
                   <a
                     href={item.href}
-                    className={`satr-hover-underline whitespace-nowrap font-mono text-[1rem] leading-[1.625rem] tracking-[-0.005em] text-brand-black ${focusRing}`}
+                    className={`satr-hover-underline whitespace-nowrap font-ui text-[1rem] leading-[1.625rem] tracking-[-0.005em] text-brand-black ${focusRing}`}
                   >
                     {item.label}
                   </a>
@@ -302,7 +302,7 @@ export function HomeHeroV4Final({
           </nav>
 
           <div className="flex items-center gap-4">
-            <p className="m-0 whitespace-nowrap font-mono text-text1-mobile text-brand-black md:text-[1.125rem] md:leading-[1.4375rem]">
+            <p className="m-0 whitespace-nowrap font-ui text-text1-mobile text-brand-black md:text-[1.125rem] md:leading-[1.4375rem]">
               {isUk ? other : current}
               <span aria-hidden>/</span>
               {isUk ? current : other}
@@ -342,7 +342,7 @@ export function HomeHeroV4Final({
               className="block h-auto w-full"
             />
           </h1>
-          <p className="m-0 font-mono text-h3-mobile text-brand-black md:text-h3-desktop">
+          <p className="m-0 font-ui text-h3-mobile text-brand-black md:text-h3-desktop">
             {tagline}
           </p>
         </div>
@@ -374,7 +374,7 @@ export function HomeHeroV4Final({
               className="col-span-12 flex flex-col justify-between gap-[24px] lg:col-span-1 lg:col-start-3 lg:row-start-1 lg:min-h-0"
             >
               <div className="flex flex-col gap-[16px]">
-                <p className="m-0 font-mono text-text1-mobile text-brand-black md:text-text1-desktop">
+                <p className="m-0 font-ui text-text1-mobile text-brand-black md:text-text1-desktop">
                   {storiesLabel}
                 </p>
                 {/* Every story's copy in the one cell, only the current one
@@ -402,14 +402,14 @@ export function HomeHeroV4Final({
                     >
                       <h2
                         data-story-title={item === story ? '' : undefined}
-                        className="m-0 font-serif text-[1.75rem] font-normal leading-[1.1667] tracking-[-0.02em] text-brand-black md:text-[2rem] lg:line-clamp-5 lg:text-[2.25rem]"
+                        className="m-0 font-heading text-[1.75rem] font-normal leading-[1.1667] tracking-[-0.02em] text-brand-black md:text-[2rem] lg:line-clamp-5 lg:text-[2.25rem]"
                       >
                         <a href={item.href} className={`satr-hover-underline text-brand-black ${focusRing}`}>
                           {item.title}
                         </a>
                       </h2>
                       {item.description ? (
-                        <p className="m-0 font-mono text-[0.9375rem] leading-[1.375rem] text-brand-black md:text-[1.125rem] md:leading-[1.4375rem]">
+                        <p className="m-0 font-ui text-[0.9375rem] leading-[1.375rem] text-brand-black md:text-[1.125rem] md:leading-[1.4375rem]">
                           {item.description}
                         </p>
                       ) : null}
@@ -436,20 +436,20 @@ export function HomeHeroV4Final({
               >
                 <button
                   type="button"
-                  className={`cursor-pointer justify-self-start border-0 bg-transparent p-0 font-mono text-text1-mobile text-brand-black md:text-text1-desktop ${focusRing}`}
+                  className={`cursor-pointer justify-self-start border-0 bg-transparent p-0 font-ui text-text1-mobile text-brand-black md:text-text1-desktop ${focusRing}`}
                   onClick={() => step(-1)}
                 >
                   <span className="satr-hover-underline">{backLabel}</span>
                 </button>
                 <a
                   href={otherHref}
-                  className={`satr-underlined whitespace-nowrap font-mono text-text1-mobile text-brand-black md:text-text1-desktop ${focusRing}`}
+                  className={`satr-underlined whitespace-nowrap font-ui text-text1-mobile text-brand-black md:text-text1-desktop ${focusRing}`}
                 >
                   {otherLabel}
                 </a>
                 <button
                   type="button"
-                  className={`cursor-pointer justify-self-end border-0 bg-transparent p-0 font-mono text-text1-mobile text-brand-black md:text-text1-desktop ${focusRing}`}
+                  className={`cursor-pointer justify-self-end border-0 bg-transparent p-0 font-ui text-text1-mobile text-brand-black md:text-text1-desktop ${focusRing}`}
                   onClick={() => step(1)}
                 >
                   <span className="satr-hover-underline">{nextLabel}</span>
@@ -499,7 +499,7 @@ export function HomeHeroV4Final({
                 }`}
               >
                 <div className="flex flex-col gap-3 lg:gap-4">
-                  <p className="m-0 font-mono text-text1-mobile text-brand-black md:text-text1-desktop">
+                  <p className="m-0 font-ui text-text1-mobile text-brand-black md:text-text1-desktop">
                     {storiesLabel}
                   </p>
                   <div className="flex flex-col gap-4">
@@ -511,7 +511,7 @@ export function HomeHeroV4Final({
                         gaps) have to fit the row, so the title comes down
                         from its size on a screen too short for it. */}
                     <h2
-                      className={`m-0 font-serif text-[clamp(1.75rem,1.1rem+2.6vw,2.75rem)] font-normal leading-[1.15] tracking-[-0.02em] text-brand-black lg:line-clamp-4 ${
+                      className={`m-0 font-heading text-[clamp(1.75rem,1.1rem+2.6vw,2.75rem)] font-normal leading-[1.15] tracking-[-0.02em] text-brand-black lg:line-clamp-4 ${
                         fill
                           ? 'lg:text-[length:min(clamp(1.75rem,1.1rem+2.6vw,2.75rem),calc((100cqh-215px)/4.6))]'
                           : ''
@@ -522,7 +522,7 @@ export function HomeHeroV4Final({
                       </a>
                     </h2>
                     {item.description ? (
-                      <p className="m-0 max-w-[395px] font-ukraine text-[1rem] font-light leading-[normal] text-[#717171]">
+                      <p className="m-0 max-w-[395px] font-text text-[1rem] font-light leading-[normal] text-[#717171]">
                         {item.description}
                       </p>
                     ) : null}
@@ -561,7 +561,7 @@ export function HomeHeroV4Final({
           </button>
           <a
             href={otherHref}
-            className={`satr-underlined font-mono text-[0.9375rem] leading-[1.625rem] md:text-[1.375rem] tracking-[-0.03em] text-brand-black ${focusRing}`}
+            className={`satr-underlined font-ui text-[0.9375rem] leading-[1.625rem] md:text-[1.375rem] tracking-[-0.03em] text-brand-black ${focusRing}`}
           >
             {otherLabel}
           </a>

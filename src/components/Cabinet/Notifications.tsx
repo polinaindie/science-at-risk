@@ -30,7 +30,7 @@ function Avatar({ name, src, href, label }: { name: string; src?: string; href?:
       ref={squircle.ref}
       style={squircle.style}
       aria-hidden
-      className="grid size-16 shrink-0 place-items-center bg-brand-accent-blue font-mono text-text1-mobile font-bold"
+      className="grid size-16 shrink-0 place-items-center bg-brand-accent-blue font-ui text-text1-mobile font-bold"
     >
       {initials}
     </span>
@@ -138,7 +138,7 @@ export function NotificationCard({
                   e.stopPropagation();
                   setMenu((v) => !v);
                 }}
-                className="flex size-11 items-center justify-end font-mono text-h3-mobile font-bold md:text-h3-desktop"
+                className="flex size-11 items-center justify-end font-ui text-h3-mobile font-bold md:text-h3-desktop"
               >
                 <span aria-hidden>⋯</span>
               </button>
@@ -153,7 +153,7 @@ export function NotificationCard({
                       setMenu(false);
                       onDelete?.(n.id);
                     }}
-                    className="block min-h-11 whitespace-nowrap px-4 text-left font-mono text-text1-mobile md:text-text1-desktop"
+                    className="block min-h-11 whitespace-nowrap px-4 text-left font-ui text-text1-mobile md:text-text1-desktop"
                   >
                     {t.deleteAction}
                   </button>
@@ -182,14 +182,14 @@ export function NotificationCard({
           <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
             {isLetter ? null : (
               <h3
-                className={`m-0 font-mono text-text1-mobile font-bold md:text-text1-desktop ${WRAP}`}
+                className={`m-0 font-ui text-text1-mobile font-bold md:text-text1-desktop ${WRAP}`}
               >
                 {title}
               </h3>
             )}
             <time
               dateTime={n.date}
-              className="whitespace-nowrap font-mono text-breadcrumbs text-brand-muted"
+              className="whitespace-nowrap font-ui text-breadcrumbs text-brand-muted"
             >
               {formatNotificationDate(n.date, locale, 'full')}
             </time>
@@ -198,14 +198,14 @@ export function NotificationCard({
 
           {n.kind === 'request' || n.kind === 'team' ? (
             <>
-              <h3 className={`m-0 mt-4 font-serif text-[1.375rem] leading-[1.75rem] tracking-[-0.02em] md:text-[1.625rem] md:leading-[2rem] ${WRAP}`}>
+              <h3 className={`m-0 mt-4 font-heading text-[1.375rem] leading-[1.75rem] tracking-[-0.02em] md:text-[1.625rem] md:leading-[2rem] ${WRAP}`}>
                 {n.subject}
               </h3>
-              <p className={`m-0 mt-2 font-mono text-breadcrumbs text-brand-muted ${WRAP}`}>
+              <p className={`m-0 mt-2 font-ui text-breadcrumbs text-brand-muted ${WRAP}`}>
                 {isRequest ? n.senderEmail : t.teamName}
               </p>
               <div className="mt-5 border-t-2 border-brand-line-muted pt-5">
-                <div className={`flex flex-col gap-4 font-mono text-text1-mobile md:text-text1-desktop ${WRAP}`}>
+                <div className={`flex flex-col gap-4 font-ui text-text1-mobile md:text-text1-desktop ${WRAP}`}>
                   {(n.body || (isRequest ? t.requestText : ''))
                     .split(/\s*\n\s*/)
                     .filter(Boolean)
@@ -220,7 +220,7 @@ export function NotificationCard({
           ) : (
             <>
               {n.subject ? (
-                <h3 className={`m-0 mt-4 font-serif text-[1.375rem] leading-[1.75rem] tracking-[-0.02em] md:text-[1.625rem] md:leading-[2rem] ${WRAP}`}>
+                <h3 className={`m-0 mt-4 font-heading text-[1.375rem] leading-[1.75rem] tracking-[-0.02em] md:text-[1.625rem] md:leading-[2rem] ${WRAP}`}>
                   {n.subject}
                 </h3>
               ) : null}
@@ -228,19 +228,19 @@ export function NotificationCard({
                 <Avatar name={n.senderName ?? ''} src={n.senderImage} href={n.senderHref} label={t.profileOf(n.senderName ?? '')} />
                 <div className={`min-w-0 ${WRAP}`}>
                   {n.subject ? (
-                    <p className="m-0 font-mono text-text1-mobile font-bold md:text-text1-desktop">{n.senderName}</p>
+                    <p className="m-0 font-ui text-text1-mobile font-bold md:text-text1-desktop">{n.senderName}</p>
                   ) : (
-                    <h3 className="m-0 font-serif text-[1.375rem] leading-[1.75rem] tracking-[-0.02em] md:text-[1.625rem] md:leading-[2rem]">
+                    <h3 className="m-0 font-heading text-[1.375rem] leading-[1.75rem] tracking-[-0.02em] md:text-[1.625rem] md:leading-[2rem]">
                       {n.senderName}
                     </h3>
                   )}
                   {n.senderPosition ? (
-                    <p className="m-0 mt-1 font-mono text-breadcrumbs text-brand-muted">{n.senderPosition}</p>
+                    <p className="m-0 mt-1 font-ui text-breadcrumbs text-brand-muted">{n.senderPosition}</p>
                   ) : null}
                 </div>
               </div>
               <div
-                className={`mt-5 border-t-2 border-brand-line-muted pt-5 font-mono text-text1-mobile md:text-text1-desktop ${WRAP}`}
+                className={`mt-5 border-t-2 border-brand-line-muted pt-5 font-ui text-text1-mobile md:text-text1-desktop ${WRAP}`}
               >
                 {n.kind === 'colleague' ? (
                   <>
@@ -495,7 +495,7 @@ export function NotificationsScreen({
               {t.markAllRead}
             </Link>
           ) : (
-            <p className="m-0 font-mono text-text1-mobile md:text-text1-desktop">{t.allRead}</p>
+            <p className="m-0 font-ui text-text1-mobile md:text-text1-desktop">{t.allRead}</p>
           )
         ) : null}
       </div>
@@ -530,7 +530,7 @@ export function NotificationsScreen({
               {t.more}
             </Button>
           ) : visible.length > 0 ? (
-            <p className="m-0 font-mono text-text1-mobile text-brand-muted md:text-text1-desktop">{t.allShown}</p>
+            <p className="m-0 font-ui text-text1-mobile text-brand-muted md:text-text1-desktop">{t.allShown}</p>
           ) : null}
         </>
       )}

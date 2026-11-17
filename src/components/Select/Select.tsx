@@ -47,7 +47,7 @@ export function Select({
   return (
     <div className={`relative inline-block ${className}`.trim()}>
       {label ? (
-        <span className="mb-2 block font-mono text-breadcrumbs text-brand-muted">{label}</span>
+        <span className="mb-2 block font-ui text-breadcrumbs text-brand-muted">{label}</span>
       ) : null}
       <button
         type="button"
@@ -60,7 +60,7 @@ export function Select({
       >
         <span ref={squircle.ref} className="satr-squircle__bg" style={squircle.style} aria-hidden />
         <SquircleDefs clipId={squircle.clipId} pathD={squircle.pathD} />
-        <span className="font-mono text-text1-desktop">{selected?.label ?? placeholder}</span>
+        <span className="font-ui text-text1-desktop">{selected?.label ?? placeholder}</span>
         <img
           src="/assets/ui/chevron.svg"
           alt=""
@@ -79,7 +79,7 @@ export function Select({
             <li key={opt.value} role="option" aria-selected={opt.value === value}>
               <button
                 type="button"
-                className="w-full border-0 bg-transparent py-2 text-left font-ukraine text-text2-desktop font-light text-brand-black hover:opacity-70"
+                className="w-full border-0 bg-transparent py-2 text-left font-text text-text2-desktop font-light text-brand-black hover:opacity-70"
                 onClick={() => setValue(opt.value)}
               >
                 {opt.label}

@@ -26,7 +26,7 @@ export function KeywordList({
 
   return (
     <section className={className.trim()} aria-labelledby="keyword-list-title">
-      <h4 id="keyword-list-title" className="mb-3 font-mono text-h3-desktop">
+      <h4 id="keyword-list-title" className="mb-3 font-ui text-h3-desktop">
         {title}
       </h4>
       <ul className="m-0 flex list-none flex-wrap gap-2.5 p-0">

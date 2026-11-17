@@ -23,7 +23,7 @@ export function ProjectCard({
       className={`group border-b-2 border-brand-black py-6 md:py-3 ${className}`.trim()}
     >
       <header className="mb-4 flex items-start justify-between gap-4">
-        <h2 className="font-serif text-h2-desktop text-brand-black">
+        <h2 className="font-heading text-h2-desktop text-brand-black">
           <span className="satr-hover-underline">{title}</span>
         </h2>
         {showHoverCta ? (
@@ -36,7 +36,7 @@ export function ProjectCard({
       </header>
       <div className="flex max-w-[690px] flex-col gap-4">
         {texts.map((t) => (
-          <p key={t.slice(0, 24)} className="font-ukraine text-text2-desktop font-light">
+          <p key={t.slice(0, 24)} className="font-text text-text2-desktop font-light">
             {t}
           </p>
         ))}

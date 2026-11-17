@@ -78,11 +78,11 @@ export function SpecialtyPicker({
             onChange={(e) => onOther(e.target.value)}
             aria-invalid={specialtiesInvalid || undefined}
           />
-          <p className="mt-3 font-mono text-breadcrumbs text-brand-muted">{labels.otherHint}</p>
+          <p className="mt-3 font-ui text-breadcrumbs text-brand-muted">{labels.otherHint}</p>
         </div>
       ) : (
       <div role="group" aria-label={labels.specialties}>
-        <p className="mb-3 font-ukraine text-[0.875rem] leading-[1.25rem] text-brand-muted">
+        <p className="mb-3 font-text text-[0.875rem] leading-[1.25rem] text-brand-muted">
           {labels.specialties}
           {requiredMark}
         </p>
@@ -109,10 +109,10 @@ export function SpecialtyPicker({
                 );
               })}
             </ul>
-            <p className="mt-3 font-mono text-breadcrumbs text-brand-muted">{labels.specialtiesHint}</p>
+            <p className="mt-3 font-ui text-breadcrumbs text-brand-muted">{labels.specialtiesHint}</p>
           </>
         ) : (
-          <p className="m-0 font-mono text-breadcrumbs text-brand-muted">{labels.firstField}</p>
+          <p className="m-0 font-ui text-breadcrumbs text-brand-muted">{labels.firstField}</p>
         )}
       </div>
       )}

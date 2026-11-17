@@ -73,7 +73,7 @@ export function TextField({
   // reference; the field reserves that height from the start so nothing below
   // it moves when the label travels.
   const shell = `satr-float w-full max-w-[530px] ${className}`.trim();
-  const controlClass = `w-full border-0 border-b-2 bg-transparent font-ukraine text-text2-desktop font-light outline-none placeholder:opacity-0 focus:placeholder:opacity-100 ${isDark ? 'placeholder:text-white/70' : 'placeholder:text-[#6b6b6b]'} ${
+  const controlClass = `w-full border-0 border-b-2 bg-transparent font-text text-text2-desktop font-light outline-none placeholder:opacity-0 focus:placeholder:opacity-100 ${isDark ? 'placeholder:text-white/70' : 'placeholder:text-[#6b6b6b]'} ${
     disabled ? `${disabledLine} ${disabledText}` : `${line} ${text}`
   }`;
 
@@ -106,7 +106,7 @@ export function TextField({
       )}
       <label
         htmlFor={fieldId}
-        className={`satr-float__label font-ukraine ${disabled ? disabledText : muted}`}
+        className={`satr-float__label font-text ${disabled ? disabledText : muted}`}
       >
         {label}
       </label>

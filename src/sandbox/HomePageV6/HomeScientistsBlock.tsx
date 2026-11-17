@@ -170,7 +170,7 @@ function PopularTags({ label, tags }: { label: string; tags: HomeScientistsTag[]
 
   return (
     <div ref={boxRef} className="max-w-full md:ml-auto" style={{ width }}>
-      <p className="mb-3 font-mono text-text1-mobile text-brand-black md:text-[1rem] md:leading-[1.5rem]">
+      <p className="mb-3 font-ui text-text1-mobile text-brand-black md:text-[1rem] md:leading-[1.5rem]">
         {label}
       </p>
       <div ref={listRef} className="flex flex-wrap gap-2.5" role="list">
@@ -220,7 +220,7 @@ export function HomeScientistsBlock({
   return (
     <section className={`py-14 ${className}`.trim()} aria-labelledby={`${id}-title`}>
       <Wrapper>
-        <h2 id={`${id}-title`} className="m-0 max-w-[18ch] font-serif text-h1 text-brand-black">
+        <h2 id={`${id}-title`} className="m-0 max-w-[18ch] font-heading text-h1 text-brand-black">
           {title}
         </h2>
 
@@ -257,11 +257,11 @@ export function HomeScientistsBlock({
               name="search"
               type="search"
               placeholder=" "
-              className="w-full appearance-none border-0 bg-transparent font-ukraine text-[length:clamp(16px,4.8vw,22px)] font-light leading-[1.75rem] text-brand-black outline-none lg:text-[1.125rem]"
+              className="w-full appearance-none border-0 bg-transparent font-text text-[length:clamp(16px,4.8vw,22px)] font-light leading-[1.75rem] text-brand-black outline-none lg:text-[1.125rem]"
             />
             {/* Wraps rather than truncates: a reader who widens the letter
                 spacing still gets the whole label, not an ellipsis. */}
-            <span className="satr-float__label max-w-full font-ukraine text-brand-muted">
+            <span className="satr-float__label max-w-full font-text text-brand-muted">
               {mode.placeholder}
             </span>
           </label>
@@ -287,7 +287,7 @@ export function HomeScientistsBlock({
               className="items-end"
               render={(m) => (
                 <>
-                  <p className={`m-0 font-mono text-brand-black ${fitTextClass}`}>{m.note}</p>
+                  <p className={`m-0 font-ui text-brand-black ${fitTextClass}`}>{m.note}</p>
                   <Link href={m.noteHref} className="mt-6">
                     {m.noteLinkLabel}
                   </Link>

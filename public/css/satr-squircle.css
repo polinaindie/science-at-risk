@@ -13,7 +13,7 @@
   isolation: isolate;
   padding: 5px 14px;
   color: var(--link-ink);
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: var(--font-ui, 'IBM Plex Mono', monospace);
   font-size: 15px;
   line-height: 22px;
   white-space: nowrap;
@@ -63,7 +63,7 @@
    scientific research:", "Professional experience:"…) are headings, so they
    take the heading face rather than the mono of body labels. */
 body .expertTitle.expertTitle--h4 {
-  font-family: "Noto Serif", serif;
+  font-family: var(--font-heading, "Noto Serif", serif);
   font-weight: 400;
   font-size: 20px;
   line-height: 28px;

@@ -90,7 +90,7 @@ export function MobileNav({
     : 'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white';
   const divider = onDark ? 'border-black/40' : 'border-white/40';
   const underline = onDark ? 'satr-hover-underline' : 'satr-hover-underline satr-hover-underline--white';
-  const linkClass = `${underline} font-mono text-h3-desktop ${linkColor} no-underline ${focusRing}`;
+  const linkClass = `${underline} font-ui text-h3-desktop ${linkColor} no-underline ${focusRing}`;
   const menuLabel = isUa ? 'Меню' : 'Menu';
   const closeLabel = isUa ? 'Закрити меню' : 'Close menu';
   const navLabel = isUa ? 'Основна навігація' : 'Primary';
@@ -150,7 +150,7 @@ export function MobileNav({
           <div key={item.label} className="md:mt-auto">
             <hr className={`my-5 border-0 border-t ${divider}`} />
             {item.note && (
-              <p className="m-0 mb-1 font-mono text-text1-mobile opacity-70">{isUa ? item.note[1] : item.note[0]}</p>
+              <p className="m-0 mb-1 font-ui text-text1-mobile opacity-70">{isUa ? item.note[1] : item.note[0]}</p>
             )}
             <a
               href={item.href}

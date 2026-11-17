@@ -259,7 +259,7 @@ export function CabinetDemo({
       type="button"
       onClick={onClick}
       aria-pressed={on}
-      className={`border-2 border-brand-black px-3 py-1 font-mono text-breadcrumbs ${on ? 'bg-brand-black text-white' : 'bg-white'}`}
+      className={`border-2 border-brand-black px-3 py-1 font-ui text-breadcrumbs ${on ? 'bg-brand-black text-white' : 'bg-white'}`}
     >
       {label}
     </button>
@@ -288,7 +288,7 @@ export function CabinetDemo({
 
       {controls ? (
         <div className="border-y-2 border-dashed border-brand-black bg-brand-accent-yellow/40 px-4 py-3 xl:px-10">
-          <div className="mx-auto flex max-w-[1744px] flex-wrap items-center gap-x-6 gap-y-2 font-mono text-breadcrumbs">
+          <div className="mx-auto flex max-w-[1744px] flex-wrap items-center gap-x-6 gap-y-2 font-ui text-breadcrumbs">
             <strong>{t.demo.label}</strong>
             <span className="flex items-center gap-2">
               {t.demo.status}:

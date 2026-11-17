@@ -37,17 +37,17 @@ export function MatchCard({
         />
         <div className="flex min-w-0 flex-1 flex-col gap-8 xl:flex-row xl:items-start xl:justify-between xl:gap-10">
           <div className="min-w-0 flex-1">
-            <h3 className="font-serif text-h2-mobile text-brand-black md:text-h2-desktop">
+            <h3 className="font-heading text-h2-mobile text-brand-black md:text-h2-desktop">
               {scientist.name}
             </h3>
-            <p className="mt-3 font-mono text-h3-mobile md:text-text1-desktop">
+            <p className="mt-3 font-ui text-h3-mobile md:text-text1-desktop">
               {scientist.subtitle}
             </p>
-            <p className="mt-2 font-ukraine text-text2-mobile font-light md:text-text2-desktop">
+            <p className="mt-2 font-text text-text2-mobile font-light md:text-text2-desktop">
               {scientist.organization}
             </p>
 
-            <p className="mt-5 mb-2 font-mono text-breadcrumbs text-brand-muted">{t.shared}</p>
+            <p className="mt-5 mb-2 font-ui text-breadcrumbs text-brand-muted">{t.shared}</p>
             <ul className="m-0 flex list-none flex-wrap gap-2.5 p-0">
               {scientist.sharedTags.map((tag) => (
                 <li key={tag}>
@@ -72,7 +72,7 @@ export function MatchCard({
               /* Once the colleague agrees, the button gives way to their email, in the button's own type. */
               <p
                 role="status"
-                className="m-0 font-mono text-[1.25rem] leading-[1.75rem] md:text-[1.5rem] md:leading-[2rem] [overflow-wrap:anywhere]"
+                className="m-0 font-ui text-[1.25rem] leading-[1.75rem] md:text-[1.5rem] md:leading-[2rem] [overflow-wrap:anywhere]"
               >
                 {t.acceptedText}{' '}
                 {scientist.email ? (
@@ -85,11 +85,11 @@ export function MatchCard({
               <>
                 <span
                   role="status"
-                  className="inline-flex items-center gap-2 border-2 border-brand-black bg-brand-accent-blue px-4 py-2 font-mono text-text1-mobile"
+                  className="inline-flex items-center gap-2 border-2 border-brand-black bg-brand-accent-blue px-4 py-2 font-ui text-text1-mobile"
                 >
                   <span aria-hidden>✓</span> {t.requested}
                 </span>
-                <span className="font-mono text-text1-mobile text-brand-muted">
+                <span className="font-ui text-text1-mobile text-brand-muted">
                   {t.requestSent}
                 </span>
               </>
@@ -101,7 +101,7 @@ export function MatchCard({
                 {request === 'error' ? (
                   <p
                     role="alert"
-                    className="bg-brand-accent-yellow px-3 py-2 font-mono text-text1-mobile"
+                    className="bg-brand-accent-yellow px-3 py-2 font-ui text-text1-mobile"
                   >
                     {t.errorText}
                   </p>
@@ -275,7 +275,7 @@ export function CollaborationScreen({
               className="max-w-none"
             />
             {subjectEmpty ? (
-              <p role="alert" className="mt-2 bg-brand-accent-yellow px-3 py-1 font-mono text-text1-mobile">
+              <p role="alert" className="mt-2 bg-brand-accent-yellow px-3 py-1 font-ui text-text1-mobile">
                 {t.writeSubjectEmpty}
               </p>
             ) : null}
@@ -293,13 +293,13 @@ export function CollaborationScreen({
               className="max-w-none"
             />
             {draftEmpty ? (
-              <p role="alert" className="mt-2 bg-brand-accent-yellow px-3 py-1 font-mono text-text1-mobile">
+              <p role="alert" className="mt-2 bg-brand-accent-yellow px-3 py-1 font-ui text-text1-mobile">
                 {t.writeEmpty}
               </p>
             ) : null}
           </div>
           {failed ? (
-            <p role="alert" className="mt-4 bg-brand-accent-yellow px-3 py-2 font-mono text-text1-mobile">
+            <p role="alert" className="mt-4 bg-brand-accent-yellow px-3 py-2 font-ui text-text1-mobile">
               {t.errorText}
             </p>
           ) : null}

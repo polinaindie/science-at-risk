@@ -50,26 +50,26 @@ export function PaperCard({
       <div className="flex flex-col gap-4 md:flex-row md:justify-between">
         <div className="md:w-7/12 xl:w-6/12">
           {topic ? (
-            <p className="mb-2 font-mono text-breadcrumbs text-brand-muted">{topic}</p>
+            <p className="mb-2 font-ui text-breadcrumbs text-brand-muted">{topic}</p>
           ) : null}
-          <Heading className="font-serif text-h2-mobile text-brand-black md:text-h2-desktop">
+          <Heading className="font-heading text-h2-mobile text-brand-black md:text-h2-desktop">
             <span className="satr-hover-underline">{title}</span>
           </Heading>
           {description ? (
-            <p className="mt-4 font-mono text-text1-desktop">{description}</p>
+            <p className="mt-4 font-ui text-text1-desktop">{description}</p>
           ) : null}
           {usefulFor ? (
-            <p className="mt-3 font-ukraine text-text2-mobile font-light md:text-text2-desktop">
-              <span className="font-mono text-breadcrumbs text-brand-muted">Useful for: </span>
+            <p className="mt-3 font-text text-text2-mobile font-light md:text-text2-desktop">
+              <span className="font-ui text-breadcrumbs text-brand-muted">Useful for: </span>
               {usefulFor}
             </p>
           ) : null}
           {proof ? (
-            <p className="mt-2 font-mono text-breadcrumbs text-brand-muted">{proof}</p>
+            <p className="mt-2 font-ui text-breadcrumbs text-brand-muted">{proof}</p>
           ) : null}
         </div>
         <div className="flex items-start gap-4 md:w-3/12 md:justify-end">
-          <p className="font-ukraine text-text2-desktop font-light">{fileType}</p>
+          <p className="font-text text-text2-desktop font-light">{fileType}</p>
         </div>
       </div>
       <div className="absolute bottom-[26px] right-0 z-20 hidden gap-3 opacity-0 transition-opacity group-hover:opacity-100 md:flex">

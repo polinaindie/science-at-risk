@@ -46,8 +46,8 @@ export function HelpForm({
         >
           <img src="/assets/ui/close.svg" alt="" width={22} height={22} />
         </button>
-        <h2 className="font-serif text-h2-desktop text-white">{title}</h2>
-        <p className="mt-3 font-mono text-h3-desktop text-white">{text}</p>
+        <h2 className="font-heading text-h2-desktop text-white">{title}</h2>
+        <p className="mt-3 font-ui text-h3-desktop text-white">{text}</p>
         <form
           className="mt-8 flex flex-col gap-5"
           onSubmit={(e: FormEvent<HTMLFormElement>) => {

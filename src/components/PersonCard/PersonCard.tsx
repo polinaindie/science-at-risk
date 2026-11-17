@@ -35,9 +35,9 @@ export function PersonCard({
           className="h-[343px] w-full object-cover md:size-[260px] md:shrink-0"
         />
         <div>
-          <h2 className="font-serif text-h2-desktop text-brand-black">{name}</h2>
+          <h2 className="font-heading text-h2-desktop text-brand-black">{name}</h2>
           {position ? (
-            <p className="mt-2 font-mono text-text1-desktop text-brand-black">{position}</p>
+            <p className="mt-2 font-ui text-text1-desktop text-brand-black">{position}</p>
           ) : null}
           <div className="mt-8 flex flex-wrap gap-3">
             {contactHref ? (

@@ -154,7 +154,7 @@ const INFO_LINK = '[&_h2]:hyphens-none';
  *  why it is divided by `--satr-fit`. Serif only, so the footer's mono subtitle
  *  keeps its own size. */
 const BLOCK_H2 =
-  '[&_h2.font-serif]:text-[length:calc(clamp(32px,4.2vw,60px)/var(--satr-fit,1))] [&_h2.font-serif]:leading-[calc(1.07*clamp(32px,4.2vw,60px)/var(--satr-fit,1))]';
+  '[&_h2.font-heading]:text-[length:calc(clamp(32px,4.2vw,60px)/var(--satr-fit,1))] [&_h2.font-heading]:leading-[calc(1.07*clamp(32px,4.2vw,60px)/var(--satr-fit,1))]';
 
 /** The deck shrinks a block that is taller than the screen, and its type with
  *  it: at 1024x820 Research comes out at 0.63, which put the papers' authors
@@ -164,7 +164,7 @@ const BLOCK_H2 =
  *  is their usual 18px. The fit then solves for the taller block; the
  *  headings, which have size to spare, give up the difference. */
 const FIT_FLOOR =
-  'lg:[&_p.font-ukraine]:text-[length:max(18px,calc(16px/var(--satr-fit,1)))] lg:[&_p.font-ukraine]:leading-[max(26px,calc(23px/var(--satr-fit,1)))] lg:[&_p[class*=text1-desktop]]:text-[length:max(18px,calc(16px/var(--satr-fit,1)))] lg:[&_p[class*=text1-desktop]]:leading-[max(28px,calc(25px/var(--satr-fit,1)))]';
+  'lg:[&_p.font-text]:text-[length:max(18px,calc(16px/var(--satr-fit,1)))] lg:[&_p.font-text]:leading-[max(26px,calc(23px/var(--satr-fit,1)))] lg:[&_p[class*=text1-desktop]]:text-[length:max(18px,calc(16px/var(--satr-fit,1)))] lg:[&_p[class*=text1-desktop]]:leading-[max(28px,calc(25px/var(--satr-fit,1)))]';
 
 /** These blocks stand on the foot of the screen rather than in the middle of
  *  it: the title sits at the bottom of its column and the list's last rule is

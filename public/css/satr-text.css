@@ -1,0 +1,34 @@
+/*
+ * satr-text.css — the type roles applied to the static pages. Needs tokens.css linked first.
+ *
+ * Three roles (defined in tokens.css): heading = serif, text = e-Ukraine Light, ui = IBM Plex Mono.
+ *   - the page default is `ui`; every running-text element below is `text`;
+ *   - sizes are NOT changed here, only the family, the weight and the tracking, so layouts keep their rhythm;
+ *   - `:not(#_)` raises specificity above the page stylesheets (some of them nest three classes) without !important.
+ *     It is a shim for the mirrored pages: in Hugo templates use the role variable on the component itself.
+ * To move a sentence-type element to another role, change the list here; to change a role for the whole site, change tokens.css.
+ */
+body { font-family: var(--font-ui); }
+
+:is(
+  .paragraph, .story-lead, .paper-lead, .expertParagraph--lead,
+  .main-text, .help-form__text, .project-card__text,
+  .expert-card__text, .expert-card__subtitle,
+  .story-card__text, .storyAside__text, .storyAside__text-wrap, .stories__text,
+  .infrastructure__text, .infrastructure__sec-text,
+  .infrastructures__text-left, .infrastructures__text-right,
+  .infrastructures-card__text, .infrastructures-card__text-left, .infrastructures-card__text-right,
+  .paper-card__text, .paper-card__right-text, .paper-aside__text,
+  .aside__lang-text, .popular-requests__text, .nothing__text, .list-card__text,
+  .card-work__texts, input, textarea, select
+):not(#_) {
+  font-family: var(--font-text);
+  font-weight: var(--font-weight-text);
+  letter-spacing: 0;
+}
+
+/* Bold inside running text stays bold (e-Ukraine has a real 700). */
+:is(.paragraph, .story-lead, .paper-lead, .main-text, .project-card__text):not(#_) :is(strong, b) { font-weight: 700; }
+
+/* One outlier: this element is a control, so it fell back to the browser's 13.33px, under the 14px floor. */
+.project-card__text:not(#_) { font-size: 15px; line-height: 22px; }

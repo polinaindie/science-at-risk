@@ -188,7 +188,7 @@ export function OnboardingWizard({
   const tick = (
     <span
       aria-live="polite"
-      className={`font-mono text-breadcrumbs text-brand-muted transition-opacity ${savedTick ? 'opacity-100' : 'opacity-0'}`}
+      className={`font-ui text-breadcrumbs text-brand-muted transition-opacity ${savedTick ? 'opacity-100' : 'opacity-0'}`}
     >
       ✓ {t.saved}
     </span>
@@ -200,10 +200,10 @@ export function OnboardingWizard({
     if (exited)
       return (
         <div className="mx-auto max-w-[640px] text-center">
-          <h1 ref={headingRef} tabIndex={-1} className="font-serif text-h1-mobile outline-none md:text-h2-desktop lg:text-h1-desktop">
+          <h1 ref={headingRef} tabIndex={-1} className="font-heading text-h1-mobile outline-none md:text-h2-desktop lg:text-h1-desktop">
             {t.exited.title}
           </h1>
-          <p className="mt-4 font-ukraine text-text2-mobile font-light md:text-text2-desktop">{t.exited.text}</p>
+          <p className="mt-4 font-text text-text2-mobile font-light md:text-text2-desktop">{t.exited.text}</p>
           <div className="mt-8">
             <Button variant="black" type="button" onClick={() => setExited(false)}>
               {t.exited.back}
@@ -215,11 +215,11 @@ export function OnboardingWizard({
     if (index < 0)
       return (
         <div className="mx-auto w-full max-w-[980px] text-center">
-          <p className="m-0 mb-6 font-mono text-text1-mobile text-brand-muted md:text-text1-desktop">Science at Risk</p>
-          <h1 ref={headingRef} tabIndex={-1} className="mx-auto max-w-[760px] font-serif text-h1-mobile outline-none md:text-h2-desktop lg:text-h1-desktop">
+          <p className="m-0 mb-6 font-ui text-text1-mobile text-brand-muted md:text-text1-desktop">Science at Risk</p>
+          <h1 ref={headingRef} tabIndex={-1} className="mx-auto max-w-[760px] font-heading text-h1-mobile outline-none md:text-h2-desktop lg:text-h1-desktop">
             {t.welcome.title}
           </h1>
-          <p className="mx-auto mt-5 max-w-[620px] font-ukraine text-text2-mobile font-light md:text-text2-desktop">{t.welcome.lede}</p>
+          <p className="mx-auto mt-5 max-w-[620px] font-text text-text2-mobile font-light md:text-text2-desktop">{t.welcome.lede}</p>
           <div className="mt-14 flex flex-col items-center gap-4">
             <Button variant="black" type="button" onClick={() => goTo(0)} className="min-w-[240px] justify-center">
               {t.welcome.start}
@@ -234,14 +234,14 @@ export function OnboardingWizard({
     const heading = (
       <header className="mb-10">
         <div className="mb-3 flex items-center justify-between gap-4 lg:hidden">
-          <p className="m-0 font-mono text-text1-mobile text-brand-muted">{t.progress(index + 1, STEP_ORDER.length)}</p>
+          <p className="m-0 font-ui text-text1-mobile text-brand-muted">{t.progress(index + 1, STEP_ORDER.length)}</p>
           {tick}
         </div>
-        <h1 ref={headingRef} tabIndex={-1} className="font-serif text-h1-mobile outline-none md:text-h2-desktop lg:text-h1-desktop">
+        <h1 ref={headingRef} tabIndex={-1} className="font-heading text-h1-mobile outline-none md:text-h2-desktop lg:text-h1-desktop">
           {copy.title}
         </h1>
-        <p className="mt-4 max-w-[760px] font-ukraine text-text2-mobile font-light md:text-text2-desktop">{copy.lede}</p>
-        <p className="mt-3 font-mono text-breadcrumbs text-brand-muted">{edit.required}</p>
+        <p className="mt-4 max-w-[760px] font-text text-text2-mobile font-light md:text-text2-desktop">{copy.lede}</p>
+        <p className="mt-3 font-ui text-breadcrumbs text-brand-muted">{edit.required}</p>
       </header>
     );
 
@@ -281,13 +281,13 @@ export function OnboardingWizard({
       <div>
         {heading}
         <div ref={missingRef} className={`mb-10 max-w-[820px] border-2 border-brand-black p-5 ${missing.length ? 'bg-brand-accent-yellow' : 'bg-white'}`}>
-          <h2 className="m-0 font-mono text-h3-mobile md:text-h3-desktop">
+          <h2 className="m-0 font-ui text-h3-mobile md:text-h3-desktop">
             {missing.length ? t.review.missingTitle : t.review.missingOk}
           </h2>
           {missing.length ? (
             <ul className="m-0 mt-4 flex list-none flex-col gap-2 p-0">
               {missing.map((m) => (
-                <li key={m} className="flex flex-wrap items-baseline justify-between gap-x-4 font-ukraine text-text2-mobile font-light md:text-text2-desktop">
+                <li key={m} className="flex flex-wrap items-baseline justify-between gap-x-4 font-text text-text2-mobile font-light md:text-text2-desktop">
                   <span>{t.review.missing[m] ?? t.steps[m].title}</span>
                   <Link as="button" onClick={() => goTo(STEP_ORDER.indexOf(m))} className="text-[1rem]! leading-[1.5rem]!">
                     {t.review.fix}
@@ -297,13 +297,13 @@ export function OnboardingWizard({
             </ul>
           ) : null}
           {blocked && missing.length ? (
-            <p role="alert" className="m-0 mt-4 font-mono text-text1-mobile">
+            <p role="alert" className="m-0 mt-4 font-ui text-text1-mobile">
               {t.review.blocked}
             </p>
           ) : null}
         </div>
 
-        <h2 className="mb-4 font-serif text-h2-mobile md:text-h2-desktop">{t.review.previewTitle}</h2>
+        <h2 className="mb-4 font-heading text-h2-mobile md:text-h2-desktop">{t.review.previewTitle}</h2>
         <div className="mb-16 bg-brand-accent-blue p-5 md:p-8">
           <ProfileView
             locale={locale}
@@ -314,8 +314,8 @@ export function OnboardingWizard({
         </div>
 
         <div className="max-w-[820px]">
-          <h2 className="font-serif text-h2-mobile md:text-h2-desktop">{t.review.consentsTitle}</h2>
-          <p className="mb-8 mt-2 font-mono text-breadcrumbs text-brand-muted">{t.review.consentsLede}</p>
+          <h2 className="font-heading text-h2-mobile md:text-h2-desktop">{t.review.consentsTitle}</h2>
+          <p className="mb-8 mt-2 font-ui text-breadcrumbs text-brand-muted">{t.review.consentsLede}</p>
           <ProfileEditForm
             key={`${locale}-consents`}
             locale={locale}
@@ -346,7 +346,7 @@ export function OnboardingWizard({
   const stepper =
     index >= 0 && !exited ? (
       <nav aria-label={t.stepperLabel} className="hidden lg:block">
-        <p className="m-0 mb-4 font-mono text-text1-mobile text-brand-muted">{t.progress(index + 1, STEP_ORDER.length)}</p>
+        <p className="m-0 mb-4 font-ui text-text1-mobile text-brand-muted">{t.progress(index + 1, STEP_ORDER.length)}</p>
         <ol className="m-0 flex list-none flex-col gap-1 p-0">
           {STEP_ORDER.map((id, i) => {
             const current = i === index;
@@ -360,7 +360,7 @@ export function OnboardingWizard({
                   disabled={locked}
                   aria-current={current ? 'step' : undefined}
                   onClick={() => goTo(i)}
-                  className={`flex w-full cursor-pointer items-center gap-3 border-0 bg-transparent p-0 py-2.5 text-left font-mono text-text1-mobile text-brand-black md:text-text1-desktop disabled:cursor-default disabled:opacity-45 ${current ? 'font-bold' : ''}`}
+                  className={`flex w-full cursor-pointer items-center gap-3 border-0 bg-transparent p-0 py-2.5 text-left font-ui text-text1-mobile text-brand-black md:text-text1-desktop disabled:cursor-default disabled:opacity-45 ${current ? 'font-bold' : ''}`}
                 >
                   <StepMark state={done ? 'done' : current ? 'current' : 'todo'}>
                     {done ? (

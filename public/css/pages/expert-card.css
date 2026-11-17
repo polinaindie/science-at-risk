@@ -6,7 +6,7 @@
 /* The societies a scientist belongs to, where the profile names them: under the keywords */
 .expert-card__content .expert-card__societies {
     margin: var(--s2) 0 0;
-    font-family: "IBM Plex Mono", monospace;
+    font-family: var(--font-ui, "IBM Plex Mono", monospace);
     font-weight: 400;
     font-size: var(--t-xs);
     line-height: 1.3889rem;
@@ -15,7 +15,7 @@
 
 .expert-card__societies-label {
     margin-right: 4px;
-    font-family: "IBM Plex Mono", monospace;
+    font-family: var(--font-ui, "IBM Plex Mono", monospace);
     font-size: var(--t-xs);
     font-weight: 400;
     color: #4a5459;

@@ -48,9 +48,9 @@ const partnersFor = (locale: FooterLocale): FooterPartner[] =>
  *  measure — the reference caps them at 280px so a supporter's full legal name
  *  breaks into a stack rather than running the width of the screen. */
 const RIGHT_TITLE =
-  'mb-4 max-w-[280px] font-mono text-h3-mobile text-white xl:max-w-[383px] xl:text-h3-desktop min-[1440px]:max-w-[280px]';
+  'mb-4 max-w-[280px] font-ui text-h3-mobile text-white xl:max-w-[383px] xl:text-h3-desktop min-[1440px]:max-w-[280px]';
 const RIGHT_LINK =
-  'satr-hover-underline satr-hover-underline--white mt-4 block font-mono text-h3-mobile text-white no-underline xl:text-h3-desktop';
+  'satr-hover-underline satr-hover-underline--white mt-4 block font-ui text-h3-mobile text-white no-underline xl:text-h3-desktop';
 
 /**
  * The foot of the page, as scienceatrisk.org has it: the ask across the top,
@@ -102,14 +102,14 @@ export function Footer({
       <div
         className={`${wrapperClass} py-[60px] md:py-[50px] lg:py-[40px] xl:py-[30px] min-[1440px]:py-[40px]`}
       >
-        <h2 className="mb-4 font-serif text-h1 whitespace-pre-line text-white">{title}</h2>
+        <h2 className="mb-4 font-heading text-h1 whitespace-pre-line text-white">{title}</h2>
 
         <div className="md:flex md:justify-between">
           {/* The form well. Its width is the reference's ladder, not a share of
               the grid — the fields stay a readable measure however wide the
               screen gets. */}
           <div className="w-full md:max-w-[360px] lg:max-w-[460px] xl:max-w-[486px] min-[1440px]:max-w-[530px]">
-            <h2 className="font-mono text-h3-mobile text-white md:text-h3-desktop">{subtitle}</h2>
+            <h2 className="font-ui text-h3-mobile text-white md:text-h3-desktop">{subtitle}</h2>
 
             <form className="mt-8" onSubmit={handleSubmit} noValidate>
               {/* Name and email share a line from `lg` up, as they do there. */}
@@ -147,7 +147,7 @@ export function Footer({
               {/* The count, and the one thing that can be wrong with it, on the
                   same line — the reference puts the warning on the left and the
                   tally on the right under the field. */}
-              <div className="mt-2 flex items-baseline justify-between gap-4 font-mono text-text1-mobile">
+              <div className="mt-2 flex items-baseline justify-between gap-4 font-ui text-text1-mobile">
                 <p
                   className={over ? 'text-brand-accent-yellow' : 'sr-only'}
                   role={over ? 'alert' : undefined}
@@ -165,7 +165,7 @@ export function Footer({
               </Button>
 
               {status ? (
-                <p role="status" className="mt-4 font-mono text-text1-mobile text-white/85">
+                <p role="status" className="mt-4 font-ui text-text1-mobile text-white/85">
                   {status}
                 </p>
               ) : null}

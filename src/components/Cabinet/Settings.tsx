@@ -20,9 +20,9 @@ const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 function Block({ title, text, last = false, children }: { title: string; text?: string; last?: boolean; children: ReactNode }) {
   return (
     <section className={`border-t-2 border-brand-black pt-8 md:pt-10 ${last ? '' : 'pb-8 md:pb-10'}`}>
-      <h2 className="font-serif text-h2-mobile md:text-h2-desktop">{title}</h2>
+      <h2 className="font-heading text-h2-mobile md:text-h2-desktop">{title}</h2>
       {text ? (
-        <p className="mt-3 max-w-[620px] font-ukraine text-text2-mobile font-light md:text-text2-desktop">{text}</p>
+        <p className="mt-3 max-w-[620px] font-text text-text2-mobile font-light md:text-text2-desktop">{text}</p>
       ) : null}
       <div className="mt-6">{children}</div>
     </section>
@@ -62,13 +62,13 @@ function PasswordField({
         <button
           type="button"
           onClick={() => setShown((v) => !v)}
-          className="satr-underlined absolute bottom-2 right-0 font-mono text-breadcrumbs"
+          className="satr-underlined absolute bottom-2 right-0 font-ui text-breadcrumbs"
         >
           {shown ? hide : show}
         </button>
       </div>
       {error ? (
-        <p role="alert" className="mt-2 font-mono text-breadcrumbs text-[#b00020]">
+        <p role="alert" className="mt-2 font-ui text-breadcrumbs text-[#b00020]">
           {error}
         </p>
       ) : null}
@@ -151,9 +151,9 @@ export function SettingsScreen({ locale, email, onChangePassword, onChangeEmail,
       <PageTitle title={t.title} wide />
 
       <Block title={t.email.title} text={t.email.text}>
-        <p className="m-0 font-mono text-text1-mobile md:text-text1-desktop">{email}</p>
+        <p className="m-0 font-ui text-text1-mobile md:text-text1-desktop">{email}</p>
         {emailSent ? (
-          <p role="status" className="mt-4 max-w-[620px] bg-brand-accent-yellow px-4 py-3 font-ukraine text-text2-mobile font-light">
+          <p role="status" className="mt-4 max-w-[620px] bg-brand-accent-yellow px-4 py-3 font-text text-text2-mobile font-light">
             {t.email.sent(emailSent)}
           </p>
         ) : null}
@@ -168,7 +168,7 @@ export function SettingsScreen({ locale, email, onChangePassword, onChangeEmail,
               aria-invalid={emailError ? true : undefined}
             />
             {emailError ? (
-              <p role="alert" className="-mt-4 font-mono text-breadcrumbs text-[#b00020]">
+              <p role="alert" className="-mt-4 font-ui text-breadcrumbs text-[#b00020]">
                 {emailError}
               </p>
             ) : null}
@@ -194,7 +194,7 @@ export function SettingsScreen({ locale, email, onChangePassword, onChangeEmail,
           <div className="flex flex-col gap-3">
           <PasswordField label={t.password.next} value={next} onChange={setNext} error={errs.next} autoComplete="new-password" show={t.password.show} hide={t.password.hide} />
           <div className="-mt-1">
-            <ul aria-label={t.password.rulesTitle} className="m-0 flex list-none flex-wrap gap-x-6 gap-y-1 p-0 font-mono text-breadcrumbs">
+            <ul aria-label={t.password.rulesTitle} className="m-0 flex list-none flex-wrap gap-x-6 gap-y-1 p-0 font-ui text-breadcrumbs">
               {(['length', 'letter', 'digit'] as const).map((k) => (
                 <li key={k} data-met={rules[k]} className={rules[k] ? 'text-[#238636]' : ''}>
                   <span aria-hidden className={rules[k] ? 'font-bold' : ''}>
@@ -219,7 +219,7 @@ export function SettingsScreen({ locale, email, onChangePassword, onChangeEmail,
         <ul className="m-0 flex list-none flex-col gap-4 p-0">
           {(['requests', 'team', 'opportunities'] as const).map((k) => (
             <li key={k}>
-              <label className="flex cursor-pointer items-start gap-3 font-ukraine text-text2-mobile font-light md:text-text2-desktop">
+              <label className="flex cursor-pointer items-start gap-3 font-text text-text2-mobile font-light md:text-text2-desktop">
                 <input
                   type="checkbox"
                   checked={letters[k]}
@@ -232,11 +232,11 @@ export function SettingsScreen({ locale, email, onChangePassword, onChangeEmail,
           ))}
         </ul>
         <fieldset className="mt-8 border-0 p-0">
-          <legend className="font-mono text-text1-mobile md:text-text1-desktop">{cabinetCopy[locale].settings.language.title}</legend>
-          <p className="mt-2 font-ukraine text-text2-mobile font-light md:text-text2-desktop">{t.language.text}</p>
+          <legend className="font-ui text-text1-mobile md:text-text1-desktop">{cabinetCopy[locale].settings.language.title}</legend>
+          <p className="mt-2 font-text text-text2-mobile font-light md:text-text2-desktop">{t.language.text}</p>
           <div className="mt-4 flex flex-wrap gap-6">
             {(['uk', 'en'] as const).map((k) => (
-              <label key={k} className="flex cursor-pointer items-center gap-3 font-ukraine text-text2-mobile font-light md:text-text2-desktop">
+              <label key={k} className="flex cursor-pointer items-center gap-3 font-text text-text2-mobile font-light md:text-text2-desktop">
                 <input type="radio" name="letter-lang" checked={lang === k} onChange={() => setLang(k)} className="size-5 accent-black" />
                 {t.language[k]}
               </label>
@@ -247,7 +247,7 @@ export function SettingsScreen({ locale, email, onChangePassword, onChangeEmail,
 
       <Block title={t.delete.title} text={t.delete.text} last>
         {deleted ? (
-          <p role="status" className="max-w-[620px] bg-brand-accent-yellow px-4 py-3 font-ukraine text-text2-mobile font-light">
+          <p role="status" className="max-w-[620px] bg-brand-accent-yellow px-4 py-3 font-text text-text2-mobile font-light">
             <strong className="font-medium">{t.delete.doneTitle}.</strong> {t.delete.doneText}
           </p>
         ) : (
