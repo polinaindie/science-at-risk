@@ -10,15 +10,15 @@
     font-weight: 400;
     font-size: var(--t-xs);
     line-height: 1.3889rem;
-    color: #000;
+    color: var(--color-black);
 }
 
 .expert-card__societies-label {
-    margin-right: 4px;
+    margin-right: var(--space-0);
     font-family: var(--font-ui, "IBM Plex Mono", monospace);
     font-size: var(--t-xs);
     font-weight: 400;
-    color: #4a5459;
+    color: var(--color-grey-700);
 }
 
 .expert-card__societies a {

@@ -3,7 +3,7 @@
 
      name ............ Noto Serif 400            page 36/1.12, card 22/28 (28/34 from 768px)
      post (degree) ... IBM Plex Mono 18/26
-     institution ..... IBM Plex Mono 400, 14 (15 from 768px) / 22, #4a5459
+     institution ..... IBM Plex Mono 400, 14 (15 from 768px) / 22, --color-grey-700
      description ..... IBM Plex Mono 400, 16/1.65
    Scale: 14 / 16 / 18 / 22 / 28 / 36 / 48 px; spacing: 8 / 16 / 24 / 32 / 48 / 64 / 96; one radius. */
 @import url("../type-scale-static.css");
@@ -14,7 +14,7 @@
     /* the fluid ladder (css/type-scale.css, built by scripts/build-type-scale.py): the values below are its desktop ones */
     --t-xs: var(--step-xs); --t-sm: var(--step-sm); --t-md: var(--step-md); --t-lg: var(--step-lg); --t-xl: var(--step-xl); --t-2xl: var(--step-2xl); --t-3xl: var(--step-3xl);
     --r: 8px;
-    --ground: #bccbd2; /* was #b5c6cd: black text 12.6:1 instead of 11.9:1 */
+    --ground: var(--color-blue);
     --paper: var(--ground); /* the reading column shares the page colour */
 }
 
@@ -26,7 +26,7 @@
     font-weight: 400;
     letter-spacing: -0.02em;
     text-transform: none;
-    color: #000;
+    color: var(--color-black);
 }
 
 .expert-id .expert__header { margin: 0; font-size: var(--t-2xl); line-height: 1.12; overflow-wrap: anywhere; }
@@ -41,7 +41,7 @@
     font-size: var(--t-md);
     line-height: 1.4444rem;
     letter-spacing: 0;
-    color: #000;
+    color: var(--color-black);
     max-width: none;
 }
 
@@ -56,14 +56,14 @@
     font-size: var(--t-xs);
     line-height: 1.2222rem;
     letter-spacing: 0;
-    margin: 4px 0 0;
-    color: #4a5459; /* 5.3:1 on the page colour, 7.5:1 on white */
+    margin: var(--space-0) 0 0;
+    color: var(--color-grey-700); /* 4.8:1 on the blue ground, 8.5:1 on white */
     overflow-wrap: break-word;
 }
 
 /* On a card the name and the post are pure black; the description below is the grey one. */
 .expert-card__content .expert-card__subtitle {
-    color: #000;
+    color: var(--color-black);
     text-align: justify; /* as the institution under it: a post that runs to a second line is flush to both edges */
     text-justify: inter-word;
 }
@@ -73,7 +73,7 @@
 .expert-card__content .expert-card__subtitle + .expert-card__text {
     font-family: var(--font-text, "IBM Plex Mono", monospace);
     font-weight: var(--font-weight-text);
-    color: #000;
+    color: var(--color-black);
     text-align: justify; /* the lines run flush to both edges of the card's text column */
     text-justify: inter-word;
     hyphens: manual;
@@ -88,7 +88,7 @@
     line-height: 1.35;
     letter-spacing: 0;
     font-variant-ligatures: none;
-    color: #4a5459; /* a card's long text is a grey (7.8:1 on white, past AAA), so it sits back behind the name and the post */
+    color: var(--color-grey-700); /* a card's long text is a grey (8.5:1 on white, past AAA), so it sits back behind the name and the post */
     max-width: none; /* the card's text runs the full width of its content */
     margin: var(--s3) 0 0; /* 24px under the institution */
 }

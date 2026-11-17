@@ -2,7 +2,7 @@
 
 /* A scientist's profile on the mirrored static pages: layout, sections, lists. The entities' type, the scale and the tokens are in expert-entities.css. */
 
-:focus-visible { outline: 2px solid #000; outline-offset: 3px; }
+:focus-visible { outline: 2px solid var(--color-black); outline-offset: 3px; }
 
 /* ---- Layout: two columns, the left one stays in view ---- */
 .page > .wrapper {
@@ -103,7 +103,7 @@
     line-height: var(--step-xl-lh);
     letter-spacing: -0.02em;
     text-transform: none;
-    color: #000;
+    color: var(--color-black);
     text-wrap: balance;
 }
 
@@ -116,7 +116,7 @@
     letter-spacing: 0;
     font-variant-ligatures: none;
     text-align: left;
-    color: #000;
+    color: var(--color-black);
     max-width: 62ch;
     margin: 0 0 1.1em;
 }
@@ -170,7 +170,7 @@
     line-height: var(--step-xl-lh);
     letter-spacing: -0.02em;
     text-transform: none;
-    color: #000;
+    color: var(--color-black);
     text-wrap: balance;
 }
 .aside__lang-text, .aside__item-link { font-size: var(--t-sm); line-height: 1.5; }
@@ -200,7 +200,7 @@
 /* ---- Sticky call to action on phones ---- */
 .expert-cta { display: none; }
 
-/* ---- Phones: photo and identity first, then one sheet with Connect right below ---- */
+/* ---- Phones: photo and identity first, then one sheet; Connect is the fixed bar below ---- */
 @media (max-width: 767px) {
     .col-lg-8 .expertParagraph { font-size: var(--t-sm); max-width: none; line-height: 1.65; }
 
@@ -209,33 +209,34 @@
     /* the left column's own languages, Connect and links repeat in the sheet on phones */
     .expert-profile .aside.aside { display: block !important; }
     .aside > .aside__title, .aside > .aside__lang-text, .aside > .aside__contact, .aside > .aside__links { display: none; }
-    /* like the live site: the photo is a square across the screen (50px side margins from 480px) */
-    .aside > picture.aside__img { width: auto; padding-top: 0; aspect-ratio: 1 / 1; margin: 0 0 var(--s2); }
-    @media (min-width: 480px) { .aside > picture.aside__img { margin-inline: 2.77778rem; } }
-    .aside > picture.aside__img img { object-fit: cover; border-radius: var(--r); }
+    /* the photo is a square from edge to edge of the screen (out of the wrapper's 16px gutters), square corners */
+    .aside > picture.aside__img { width: auto; padding-top: 0; aspect-ratio: 1 / 1; margin: 0 -16px var(--s2); }
+    .aside > picture.aside__img img { object-fit: cover; border-radius: 0; }
     .expert-id { margin: 0; }
     .expert-id .expert__header { font-size: var(--t-xl); line-height: 1.15; }
 
     .expert-profile > .col-lg-8 { display: grid; grid-template-columns: minmax(0, 1fr); width: 100%; padding: 0; }
     .expert-profile > .col-lg-8 > picture.aside__img { display: none !important; }
 
-    /* the phone block's children join the grid: Connect, keywords, then languages and links */
+    /* the phone block's children join the grid: keywords, then languages and links */
     .aside__mobile.aside__mobile { display: contents !important; }
-    .aside__mobile .aside__contact { order: 1; margin: 0 0 var(--s2); width: 100%; min-height: 48px; }
+    /* Connect is the fixed bar at the foot of the screen (.expert-cta), so the one in the sheet is not repeated */
+    .aside__mobile .aside__contact { display: none; }
     .aside__mobile .aside__title, .aside__mobile .aside__lang-text, .aside__mobile .aside__links { order: 3; }
     .expertTitle, .col-lg-8 .expertParagraph, .projects { order: 5; }
 
     .expert-cta {
         display: block;
-        position: fixed;
-        inset: auto 0 0 0;
+        /* sticky, not fixed: it stays at the foot of the screen while the profile scrolls and goes up with the page
+           at the footer instead of lying over it */
+        position: sticky;
+        bottom: 0;
         z-index: 40;
         padding: var(--s1) var(--s2);
         background: var(--paper);
-        border-top: 1px solid #000;
+        border-top: 1px solid var(--color-black);
     }
     .expert-cta .btn { width: 100%; min-height: 48px; }
-    .page { padding-bottom: calc(var(--s7) + 48px); }
 }
 
 /* ---- Ground colour ---- */
@@ -287,7 +288,7 @@
 }
 .expertHelp .help-form__btn-close svg { width: 20px; height: 20px; }
 .expertHelp .help-form__btn-close svg path {
-    stroke: #fff;
+    stroke: var(--color-white);
     stroke-width: 2px;
     vector-effect: non-scaling-stroke; /* always exactly 2px, whatever the icon size */
     stroke-linecap: butt; /* flat ends, nothing rounded */
@@ -349,7 +350,7 @@
     .aside-mini__name { font-family: var(--font-heading, "Noto Serif", serif); font-weight: 400; font-size: var(--t-xl); line-height: 1.15; letter-spacing: -0.02em; }
     .aside-mini__line { font-size: var(--t-sm); line-height: 1.5; margin-top: var(--s2); }
     .aside-mini__name + .aside-mini__line { font-family: var(--font-text, "IBM Plex Mono", monospace); font-weight: var(--font-weight-text); line-height: 1.3333rem; }
-    .aside-mini__place { font-family: var(--font-ui, "IBM Plex Mono", monospace); font-weight: 400; font-size: var(--t-xs); line-height: 1.2222rem; margin-top: 4px; color: #4a5459; }
+    .aside-mini__place { font-family: var(--font-ui, "IBM Plex Mono", monospace); font-weight: 400; font-size: var(--t-xs); line-height: 1.2222rem; margin-top: 4px; color: var(--color-grey-700); }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -392,8 +393,8 @@
         position: absolute;
         box-sizing: border-box;
         padding: var(--s1) 12px;
-        background: #f0eebe;
-        color: #000;
+        background: var(--color-yellow);
+        color: var(--color-black);
         border-radius: 0;
         font-family: var(--font-ui, "IBM Plex Mono", monospace);
         font-size: var(--t-xs);
@@ -415,3 +416,6 @@
 
 /* The last item of a list has no rule under it, and no padding below, so the next heading's own space is the only gap */
 .projects__item:last-child .project-card { border-bottom: 0; padding-bottom: 0; }
+
+/* WCAG 2.2 AA (target size): the profile links (ORCID, LinkedIn…) are at least 24px tall, whatever the type size. */
+.aside__links-item .aside__item-link.hover { display: inline-flex !important; /* the mirrored `.hover` is `inline !important` */ align-items: center; min-height: 24px; }

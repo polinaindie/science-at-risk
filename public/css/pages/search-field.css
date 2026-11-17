@@ -4,8 +4,8 @@
 .search-field {
     display: flex;
     flex-direction: column;
-    gap: 24px;
-    margin-top: 16px;
+    gap: var(--space-3);
+    margin-top: var(--space-2);
     font-family: var(--font-ui, "IBM Plex Mono", monospace);
 }
 
@@ -14,10 +14,10 @@
         flex-direction: row;
         align-items: flex-end;
         justify-content: space-between;
-        gap: 24px;
-        margin-top: 24px;
-        padding-bottom: 24px; /* from the typed text (and the button) down to the rule */
-        border-bottom: 2px solid #000;
+        gap: var(--space-3);
+        margin-top: var(--space-3);
+        padding-bottom: var(--space-3); /* from the typed text (and the button) down to the rule */
+        border-bottom: 2px solid var(--color-black);
     }
 }
 
@@ -27,7 +27,7 @@
     min-width: 0;
     flex: 1;
     padding-bottom: 12px;
-    border-bottom: 2px solid #000;
+    border-bottom: 2px solid var(--color-black);
 }
 
 @media (min-width: 768px) {
@@ -53,7 +53,7 @@
     font-size: 0.8333rem;
     font-weight: var(--font-weight-text);
     line-height: 1.1111rem;
-    color: #000;
+    color: var(--color-black);
 }
 
 .search-field .satr-float > input::-webkit-search-cancel-button { -webkit-appearance: none; }
@@ -72,7 +72,7 @@
     font-size: 0.7222rem;
     font-weight: 300;
     line-height: 1rem;
-    color: #4d4d4d; /* the live site's 40% black is 2.6:1 on this blue; this is the lightest grey that reaches AA */
+    color: var(--color-grey-700); /* the live site's 40% black is 2.6:1 on this blue; this is the lightest grey that reaches AA */
     transition: 0.5s;
 }
 
@@ -127,11 +127,11 @@
     font-family: var(--font-ui, "IBM Plex Mono", monospace);
     font-size: 1.3333rem;
     line-height: 1.7778rem;
-    color: #000;
+    color: var(--color-black);
     cursor: pointer;
 }
 .search-field__clear[hidden] { display: none; }
-.search-field__clear:focus-visible { outline: 2px solid #000; outline-offset: 2px; }
+.search-field__clear:focus-visible { outline: 2px solid var(--color-black); outline-offset: 2px; }
 @media (max-width: 767px) {
     .search-field__clear { position: absolute; top: 20px; right: 0; }
 }

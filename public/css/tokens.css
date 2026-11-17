@@ -31,18 +31,15 @@
   --color-black: #000000;            /* [G] brand-black: text, rules, primary button, chips (selected) */
   --color-white: #ffffff;            /* [G] brand-white: page ground, cards on tinted ground, text on black */
   --color-grey-900: #333333;         /* [A] hover/busy of the black button; captions on white (was #333 in 6 files) */
-  --color-grey-200: #e8e8e8;         /* [G] hover of the white button (satr-components.css) */
   --color-grey-100: #ececec;         /* [G] filter chip in the off state */
   --color-error: #b00020;            /* [G] the React site's error/danger red (danger button, cabinet). Static pages use yellow + "!" instead: open question 29 */
   --color-grey-700: #4d4d4d;         /* [G] brand-muted: secondary text. AA: 8.4:1 on white, 4.8:1 on --color-blue */
-  --color-grey-600: #4a5459;         /* [P] expert entities: institution line, small labels (cool grey. 7.8:1 on white; only 4.4:1 on --color-blue = FAILS AA there, use --color-grey-700 on blue) */
   --color-grey-300: #c8c8c8;         /* [G] brand-disabled: disabled borders/controls (decorative, not for text) */
   --color-blue: #b5c6cd;             /* [G] accent-blue: ground of Scientists/Societies, "New" flag, empty-state tags */
-  --color-blue-deep: #bccbd2;        /* [P] expert profile ground (--ground): black on it 12.6:1 instead of 11.9:1 */
   --color-blue-wash: #e6edf0;        /* [P] hovered/selected row in the search suggestion list */
   --color-yellow: #f0eebe;           /* [G] accent-yellow: ground of Research/Stories, ATTENTION (errors, alerts) */
   --color-green: #37b066;            /* [G] accent-green: success marks. Black text on it ≈ 7:1; white text FAILS */
-  --color-gold: #fdbe0d;             /* [G] brand-link: legacy paragraph-link colour of the mirror. DEPRECATED, see --color-link */
+  --color-success-ink: #238636;       /* [P] a met rule in the password hint, as text on white (5:1); the green above is for marks, not for type */
 
   /* ---- translucent colours: the only places the site uses alpha ---- */
   --color-black-a25: rgba(0, 0, 0, 0.25);        /* [G] brand-line-muted: soft rules, hairlines between rows */
@@ -57,7 +54,7 @@
      ==================================================================================================== */
   --color-text: var(--color-black);              /* body and heading text */
   --color-text-muted: var(--color-grey-700);     /* hints, inactive language, breadcrumb current, captions */
-  --color-text-subtle: var(--color-grey-600);    /* institution line, small meta labels */
+  --color-text-subtle: var(--color-grey-700);    /* institution line, small meta labels (the one muted ink: AA on white, blue and yellow) */
   --color-bg: var(--color-white);                /* page ground */
   --color-surface: var(--color-white);           /* chips, cards, inputs sitting on a tinted ground */
   --color-line: var(--color-black);              /* the 2px section rules, the field underline */

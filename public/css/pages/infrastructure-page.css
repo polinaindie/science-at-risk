@@ -16,32 +16,32 @@
 }
 
 /* ---- header: the short name large, the full name smaller under it ---- */
-.infra-fullname { margin: 0.5rem 0 1.5rem; font-family: var(--font-ui, "IBM Plex Mono", monospace); font-size: 0.8889rem; line-height: 1.45; color: #333; }
+.infra-fullname { margin: 0.5rem 0 1.5rem; font-family: var(--font-ui, "IBM Plex Mono", monospace); font-size: 0.8889rem; line-height: 1.45; color: var(--color-grey-900); }
 .infrastructure__header { margin-bottom: 0.5rem; }
 
 /* ---- the gallery: bigger Back / Next, the counter as 1 / 4, a caption ---- */
 .infrastructure__nav-btn { min-height: 3rem; padding: 0.5rem 0.25rem; font-size: 1.125rem; line-height: 1.5rem; }
 .infrastructure__navigation .counter { font-family: var(--font-ui, "IBM Plex Mono", monospace); font-size: 1.125rem; }
-.infra-caption { margin: 0.5rem 0 0; font-size: 0.9444rem; line-height: 1.5; color: #333; min-height: 1.5em; }
+.infra-caption { margin: 0.5rem 0 0; font-size: 0.9444rem; line-height: 1.5; color: var(--color-grey-900); min-height: 1.5em; }
 .infra-caption:empty { display: none; }
 
 /* ---- the facts: one list, labels in one column, no name (it is the heading), no stray commas ---- */
 .infrastructure__info .row > div { flex: 0 0 100%; max-width: 100%; display: grid; grid-template-columns: 12.5rem 1fr; gap: 1rem; align-items: baseline; padding: 0.75rem 0; border-top: 1px solid rgba(0, 0, 0, 0.2); }
-.infrastructure__info .row > div:first-child { border-top: 2px solid #000; }
+.infrastructure__info .row > div:first-child { border-top: 2px solid var(--color-black); }
 .infrastructure__info .infrastructure__sec-title, .infrastructure__info .infrastructure__sec-text { margin: 0; }
 .infrastructure__info .infrastructure__sec-title { white-space: nowrap; }
 @media (max-width: 767px) { .infrastructure__info .row > div { grid-template-columns: 1fr; gap: 0.25rem; } }
 .infra-chips { display: flex; flex-wrap: wrap; gap: 0.5rem; }
-.infra-link { color: #000; text-decoration: underline; text-underline-offset: 3px; }
+.infra-link { color: var(--color-black); text-decoration: underline; text-underline-offset: 3px; }
 
 /* ---- how to help + the coordinator ---- */
 .infra-help-note { margin: 0 0 1rem; font-size: 1rem; line-height: 1.55; }
-.infra-updated { margin: 0 0 1rem; font-family: var(--font-ui, "IBM Plex Mono", monospace); font-size: 0.7778rem; color: #333; }
+.infra-updated { margin: 0 0 1rem; font-family: var(--font-ui, "IBM Plex Mono", monospace); font-size: 0.7778rem; color: var(--color-grey-900); }
 @media (min-width: 992px) { .infra-contact__box { position: sticky; top: 7.5rem; } .infra-contact .person-card { position: static; } }
 .infra-contact .person-card__btn { width: 100%; }
 .infra-contact .person-card__btn.btn { justify-content: center; }
-.infra-contact__alt { margin: 1rem 0 0; font-size: 0.8889rem; line-height: 1.45; color: #333; }
-.infra-contact__alt a { color: #333; text-decoration: underline; text-underline-offset: 3px; }
+.infra-contact__alt { margin: 1rem 0 0; font-size: 0.8889rem; line-height: 1.45; color: var(--color-grey-900); }
+.infra-contact__alt a { color: var(--color-grey-900); text-decoration: underline; text-underline-offset: 3px; }
 
 /* alignment touches */
 .infrastructure__info .row { margin-left: 0; margin-right: 0; }
@@ -56,10 +56,10 @@
 
 
 /* ---- one block on the right: the need (amount, purpose) + how to help + the coordinator + the button ---- */
-.infra-contact__box { padding: 2rem; background-color: #F0EEBE; border-radius: 0; }
+.infra-contact__box { padding: 2rem; background-color: var(--color-yellow); border-radius: 0; }
 .infra-contact__box .person-card { padding: 0; min-height: 0; background: transparent; overflow: visible; }
 .infra-contact__box .person-card .wrapper { padding: 0; max-width: none; }
-.infra-plate { margin: 0 0 1.5rem; padding: 0 0 1.5rem; border-bottom: 2px solid #000; }
+.infra-plate { margin: 0 0 1.5rem; padding: 0 0 1.5rem; border-bottom: 2px solid var(--color-black); }
 .infra-plate__amount { margin: 0 0 0.5rem; font-family: var(--font-heading, "Noto Serif", serif); font-size: 2.125rem; line-height: 1.15; letter-spacing: -0.02em; }
 .infra-plate__label { display: block; margin-bottom: 0.25rem; font-family: var(--font-ui, "IBM Plex Mono", monospace); font-size: 0.9444rem; letter-spacing: 0; line-height: 1.3; }
 .infra-plate__purpose { margin: 0; font-size: 1rem; line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; }
@@ -67,11 +67,11 @@
 .infra-contact__box .person-card__right { margin-top: 1.5rem; }
 .infra-contact__box .person-card__btn { width: 100%; }
 
-/* a phone: the block comes right under the photos (the columns dissolve into one ordered column) */
+/* a phone: the columns dissolve into one ordered column, and the contact block is the last of it */
 @media (max-width: 767px) {
   .infrastructure__wrapper > .row { display: flex; flex-direction: column; flex-wrap: nowrap; }
   .infrastructure__wrapper > .row > .col-md-6, .infrastructure__wrapper > .row > .col-md-6:first-child { display: contents; }
-  .infra-contact__box { order: 3; margin: 1.25rem 0 2rem; }
+  .infra-contact__box { order: 7; margin: 1.25rem 0 2rem; } /* last: after the text, photos and the facts, right before the footer */
   .infra-contact__box .person-card__right { display: block !important; }
 }
 
@@ -85,11 +85,11 @@
 
 /* the domains: the site's blue tag (squircle), as on the scientists' cards */
 .infra-chips .tag { font-family: var(--font-ui, "IBM Plex Mono", monospace); font-size: 0.8889rem; line-height: 1.45; width: auto; }
-.isSafari .infra-chips .tag, .infra-chips .tag.no-paint { background: #B5C6CD; border-radius: 15px; }
+.isSafari .infra-chips .tag, .infra-chips .tag.no-paint { background: var(--color-blue); border-radius: 15px; }
 
 /* all the rules are black; more room between the text column and the block */
-.infrastructure__info .row > div { border-top: 1px solid #000; }
-.infrastructure__info .row > div:first-child { border-top: 2px solid #000; }
+.infrastructure__info .row > div { border-top: 1px solid var(--color-black); }
+.infrastructure__info .row > div:first-child { border-top: 2px solid var(--color-black); }
 @media (min-width: 768px) {
   .infrastructure__wrapper > .row > .col-md-6:first-child { padding-right: 2.5rem; }
 }

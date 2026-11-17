@@ -93,6 +93,8 @@
      if it never did) the chip was blank or only a rounded rectangle. Chips the page adds later (filters redraw lists)
      are picked up as they appear. */
   const TAG_RADIUS = 16;
+  /* the chips, the panel that says what a research topic covers and the download bar of an article (phones): the same shape */
+  const SQUIRCLE_BOXES = '.tag, .research-filter__explain, .paper-cta .btn';
   const sized = new ResizeObserver((entries) => entries.forEach((e) => drawTag(e.target)));
   function drawTag(el) {
     const w = el.offsetWidth;
@@ -103,12 +105,12 @@
   function initTag(el) {
     if (el.hasAttribute('data-satr-sq')) return;
     el.setAttribute('data-satr-sq', '');
-    sized.observe(el);
+    sized.observe(el, { box: 'border-box' }); /* the box the clip is cut from: padding that changes at a breakpoint changes it too */
     drawTag(el);
   }
   const scanTags = (root) => {
-    if (root.matches && root.matches('.tag')) initTag(root);
-    if (root.querySelectorAll) root.querySelectorAll('.tag').forEach(initTag);
+    if (root.matches && root.matches(SQUIRCLE_BOXES)) initTag(root);
+    if (root.querySelectorAll) root.querySelectorAll(SQUIRCLE_BOXES).forEach(initTag);
   };
   const startTags = () => {
     scanTags(document);

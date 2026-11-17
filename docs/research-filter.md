@@ -25,6 +25,8 @@ Change its `"theme"` to one of: `scientists`, `collections`, `policy`, `society`
 ## Add or rename a tag
 Add the id to `themes` in `research-index.json`, and its name (`themes`) and sentence (`explain`) in **both**
 languages in `research-i18n.json`. Renaming = edit the text there only.
+The `explain` sentence is shown as a tooltip on hover and keyboard focus; where there is no hover (`hover: none`) or under 768px it
+is a line under the chips (`.research-filter__explain`) that shows the sentence of the chosen topic and is empty for "All topics".
 
 ## Go side
 Same query string, same JSON; the markup and classes (`research-filter__*`, `research-card__*`) can be rendered on the server.

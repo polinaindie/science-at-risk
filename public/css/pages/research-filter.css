@@ -4,12 +4,12 @@
 .research-filter { margin-bottom: 32px; }
 .research-filter__tags { display: flex; flex-wrap: wrap; gap: 8px; }
 /* the outlined squircle is the site's .btn--bordered; a chosen tag is that button as it looks on hover (filled black) */
-.research-filter__tag { display: inline-flex; align-items: center; gap: 10px; font-family: var(--font-ui, "IBM Plex Mono", monospace); font-size: 0.8889rem; line-height: 1.3333rem; background-color: transparent; border: 0; color: #000; cursor: pointer; }
-.isDefault .research-filter__tag[aria-pressed="true"] { --squircle-outline: 0px; color: #fff; }
+.research-filter__tag { display: inline-flex; align-items: center; gap: 10px; font-family: var(--font-ui, "IBM Plex Mono", monospace); font-size: 0.8889rem; line-height: 1.3333rem; background-color: transparent; border: 0; color: var(--color-black); cursor: pointer; }
+.isDefault .research-filter__tag[aria-pressed="true"] { --squircle-outline: 0px; color: var(--color-white); }
 .research-filter__count { font-size: 0.7778rem; color: inherit; opacity: 0.7; }
-.research-filter__tag:focus-visible { outline: 3px solid #000; outline-offset: 3px; }
-@supports not ((-webkit-mask-image: paint(squircle)) or (mask-image: paint(squircle))) { .isDefault .research-filter__tag[aria-pressed="true"] { background: #000; } }
-.isSafari .research-filter__tag[aria-pressed="true"] { background: #000; color: #fff; }
+.research-filter__tag:focus-visible { outline: 3px solid var(--color-black); outline-offset: 3px; }
+@supports not ((-webkit-mask-image: paint(squircle)) or (mask-image: paint(squircle))) { .isDefault .research-filter__tag[aria-pressed="true"] { background: var(--color-black); } }
+.isSafari .research-filter__tag[aria-pressed="true"] { background: var(--color-black); color: var(--color-white); }
 
 /* What a topic covers: a tooltip under the chip, on hover and on keyboard focus (also read as its description). */
 .research-filter__tag { position: relative; }
@@ -22,8 +22,8 @@
     max-width: min(320px, calc(100vw - 32px));
     padding: 10px 14px;
     border-radius: 12px;
-    background: #000;
-    color: #fff;
+    background: var(--color-black);
+    color: var(--color-white);
     font-size: 0.8889rem;
     font-weight: 400;
     line-height: 1.4;
@@ -39,10 +39,41 @@
 .research-filter__tag:focus-visible .research-filter__tip { opacity: 1; visibility: visible; }
 @media (prefers-reduced-motion: reduce) { .research-filter__tip { transition: none; } }
 
+/* Phone: the topics are one line that scrolls sideways, no scrollbar, running out to the edge of the screen where the
+   last chip is cut off, so it reads as a row to swipe. The wrapper's 16px gutter is taken back on both sides and given
+   to the row as padding, so at rest the first chip still lines up with the text. */
+@media (max-width: 767.98px) {
+    .research-filter__tags {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        margin-inline: -16px;
+        padding: var(--space-0) var(--space-2);
+        scroll-padding-inline: 16px;
+        scrollbar-width: none;
+        -webkit-overflow-scrolling: touch;
+        overscroll-behavior-x: contain;
+    }
+    .research-filter__tags::-webkit-scrollbar { display: none; }
+    .research-filter__tag { flex: 0 0 auto; white-space: nowrap; }
+}
+
+/* No hover (a phone, a tablet) or a narrow window: the tooltip gives way to a line under the chips with what the
+   chosen topic covers. Elsewhere the line stays out of the page and the tooltip does the job. */
+.research-filter__explain { display: none; }
+@media (hover: none), (max-width: 767px) {
+    .research-filter__tip { display: none; }
+    /* a black squircle panel (the shape is cut by js/satr-squircle.js), so the topic reads as a note on the filter and not as
+       the first card; the border-radius is what shows before the script has run */
+    .research-filter__explain:not([hidden]) { display: block; margin: 24px 0 8px; padding: 20px; border-radius: 16px; background: var(--color-black); color: var(--color-white); }
+    /* the chosen topic as a heading (the page's section-title role), its sentence under it */
+    .research-filter__explain-title:not(#_) { margin: 0; color: var(--color-white); font-size: var(--heading-2); line-height: var(--heading-2-lh); letter-spacing: var(--heading-2-ls); }
+    .research-filter__explain-text { margin: 8px 0 0; font-family: var(--font-ui, "IBM Plex Mono", monospace); font-size: 1rem; line-height: 1.5; }
+}
+
 .research-filter__status { margin: 24px 0 0; }
 .research-filter__status.sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 
-.research-filter__empty { padding: 32px 0; border-top: 2px solid #000; font-family: var(--font-ui, "IBM Plex Mono", monospace); }
+.research-filter__empty { padding: 32px 0; border-top: 2px solid var(--color-black); font-family: var(--font-ui, "IBM Plex Mono", monospace); }
 .research-filter__empty p { margin: 0 0 16px; font-size: 1.1111rem; }
 
 /* the chips sit close under the heading text (the page had 64px of room for the list that started there) */
@@ -50,15 +81,26 @@
 
 /* hover on a chip: the black fill with white text, without the dimming of .btn--bordered (the tooltip must stay solid) */
 .isDefault .research-filter__tag:hover { opacity: 1; }
-.isDefault .research-filter__tag:not([aria-pressed="true"]):hover { --squircle-outline: 0px; --squircle-fill: #000; --squircle-color: #000; color: #fff; }
+.isDefault .research-filter__tag:not([aria-pressed="true"]):hover { --squircle-outline: 0px; --squircle-fill: #000; --squircle-color: #000; color: var(--color-white); }
 
 /* date, then "New", on one line above the title */
 .research-card__meta { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; margin-bottom: 12px; }
-.research-card__date { font-family: var(--font-ui, "IBM Plex Mono", monospace); font-size: 0.8333rem; line-height: 1.3; letter-spacing: 0; color: #4d4d4d; }
+.research-card__date { font-family: var(--font-ui, "IBM Plex Mono", monospace); font-size: 0.8333rem; line-height: 1.3; letter-spacing: 0; color: var(--color-grey-700); }
 /* "New": the site's blue chip above the title of a document marked new (data: "new": true) */
 .research-card__new { display: inline-flex; padding: 3px 12px; font-family: var(--font-ui, "IBM Plex Mono", monospace); font-size: 0.7778rem; line-height: 1.3; }
-.isDefault .research-card__new { --squircle-fill: #B5C6CD; --squircle-color: #B5C6CD; background: #B5C6CD paint(squircle); }
-@supports not (background: paint(squircle)) { .isDefault .research-card__new { background: #B5C6CD; border-radius: 15px; } }
+.isDefault .research-card__new { --squircle-fill: #B5C6CD; --squircle-color: #B5C6CD; background: var(--color-blue) paint(squircle); }
+@supports not (background: paint(squircle)) { .isDefault .research-card__new { background: var(--color-blue); border-radius: 15px; } }
 
 /* an author who is a scientist on the site: a link above the card's whole-card link */
 .research-card__author { position: relative; z-index: 2; }
+
+/* Phones: the file type (.pdf) stands at the right end of the date line, level with the date, and the column that had it
+   under the authors is not shown. From a tablet up the layout is the old one: the meta line has no file type. */
+.research-card__pdf { display: none; }
+@media (max-width: 767.98px) {
+  .research-card__pdf { display: block; margin-left: auto; font-family: var(--font-ui, "IBM Plex Mono", monospace); font-size: 0.8889rem; line-height: 1.3; color: var(--color-black); }
+  .paper-card__right { display: none; }
+}
+@media (min-width: 768px) {
+  .research-card__meta--pdf-only { display: none; }
+}
