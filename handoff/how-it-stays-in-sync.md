@@ -22,6 +22,6 @@ There is one source of truth for each thing. The hand-off never holds its own co
 
 ## What does not follow automatically
 
-- `static-components.html` (cards, breadcrumbs, search, pagination, empty state, loader, Connect form) is cut out of the pages in `public/` by `scripts/build-handoff-static.mjs`, with the pages' own CSS: change the page or its CSS, run `npm run handoff`. `states.html`'s EN-outdated and 404 are proposals the live site does not have; they are drawn by hand.
+- `static-components.html` and `static-connect.html` (cards, breadcrumbs, search, pagination, empty state, loader, Connect form) are cut out of the pages in `public/` by `scripts/build-handoff-static.mjs`, with the pages' own CSS: change the page or its CSS, run `npm run handoff`. `states.html`'s EN-outdated and 404 are proposals the live site does not have; they are drawn by hand.
 - A Hugo partial: it follows a component only through the check. The check tells you when it drifts; a person fixes it.
 - Nothing is pushed by saving a file. Publishing is always the command above.
