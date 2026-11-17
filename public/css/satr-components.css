@@ -189,27 +189,27 @@
   }
 
   .satr-squircle--black {
-    color: #fff;
+    color: var(--color-white);
   }
 
   .satr-squircle--black .satr-squircle__bg {
-    background-color: #000;
+    background-color: var(--color-black);
   }
 
   .satr-squircle--black:hover:not(:disabled) .satr-squircle__bg {
-    background-color: #333;
+    background-color: var(--color-grey-900);
   }
 
   .satr-squircle--white {
-    color: #000;
+    color: var(--color-black);
   }
 
   .satr-squircle--white .satr-squircle__bg {
-    background-color: #fff;
+    background-color: var(--color-white);
   }
 
   .satr-squircle--white:hover:not(:disabled) .satr-squircle__bg {
-    background-color: #e8e8e8;
+    background-color: var(--color-grey-200);
   }
 
   /* Bordered/outline variant — the ring is `clip-path` (evenodd,
@@ -219,28 +219,28 @@
      just notches the corners instead of rounding them). Hover sets
      strokeWidth to 0, filling the whole shape. */
   .satr-squircle--bordered {
-    color: #000;
+    color: var(--color-black);
   }
 
   .satr-squircle--bordered .satr-squircle__bg {
-    background-color: #000;
+    background-color: var(--color-black);
   }
 
   .satr-squircle--bordered:hover:not(:disabled) {
-    color: #fff;
+    color: var(--color-white);
   }
 
   /* Red outline for a destructive action; add to the bordered variant. */
   .satr-squircle--bordered.satr-squircle--danger {
-    color: #b00020;
+    color: var(--color-error);
   }
 
   .satr-squircle--bordered.satr-squircle--danger .satr-squircle__bg {
-    background-color: #b00020;
+    background-color: var(--color-error);
   }
 
   .satr-squircle--bordered.satr-squircle--danger:hover:not(:disabled) {
-    color: #fff;
+    color: var(--color-white);
   }
 
   .satr-squircle:disabled {
@@ -254,7 +254,7 @@
     font-size: 18px;
     line-height: 28px;
     letter-spacing: -0.03em;
-    color: #000;
+    color: var(--color-black);
     text-decoration: underline;
     text-underline-offset: 4px;
     background: none;
@@ -289,17 +289,17 @@
     font-size: 14px;
     line-height: 20px;
     letter-spacing: -0.03em;
-    color: #000;
+    color: var(--color-black);
     text-decoration: none;
     white-space: nowrap;
-    background-color: #fff;
+    background-color: var(--color-white);
     /* Fallback before useSquircleClipPath measures the element (see
        .satr-squircle above for why this isn't a CSS Paint API worklet). */
     border-radius: 9999px;
   }
 
   .satr-tag:focus-visible {
-    outline: 2px solid #000;
+    outline: 2px solid var(--color-black);
     outline-offset: 2px;
   }
 
@@ -313,7 +313,7 @@
 
   /* A chip you can switch on, while it is off: a light grey ground, so it shows on a white page. Hover still turns it black. */
   button.satr-tag.satr-tag--off {
-    background-color: #ececec;
+    background-color: var(--color-grey-100);
   }
 
   /* Chips that go somewhere turn over on hover: black ground, white type, the
@@ -328,14 +328,14 @@
 
   a.satr-tag:hover,
   button.satr-tag:hover {
-    background-color: #000;
-    color: #fff;
+    background-color: var(--color-black);
+    color: var(--color-white);
   }
 
   a.satr-tag:hover .satr-tag__number,
   button.satr-tag:hover .satr-tag__number {
-    background-color: #fff;
-    color: #000;
+    background-color: var(--color-white);
+    color: var(--color-black);
   }
 
   /* A link that is underlined at rest: a 1px line. On hover the line runs out
@@ -388,7 +388,7 @@
   }
 
   .satr-tag--accent {
-    background-color: #b5c6cd;
+    background-color: var(--color-blue);
   }
 
   /* Editorial rubric — plain mono label, not a chip */
@@ -398,7 +398,7 @@
     font-size: var(--text-breadcrumbs);
     line-height: var(--text-breadcrumbs-lh);
     letter-spacing: var(--text-breadcrumbs-ls);
-    color: #000;
+    color: var(--color-black);
   }
 
   .satr-tag__number {
@@ -410,8 +410,8 @@
     margin-left: 2px;
     padding: 2px 6px;
     border-radius: 50%;
-    background: #000;
-    color: #fff;
+    background: var(--color-black);
+    color: var(--color-white);
     font-size: 14px;
     line-height: 1;
     letter-spacing: -0.03em;
@@ -421,7 +421,7 @@
     width: 22px;
     height: 22px;
     border-radius: 50%;
-    background: #000;
+    background: var(--color-black);
     flex-shrink: 0;
   }
 
@@ -434,7 +434,7 @@
 
   .satr-hover-underline {
     text-decoration: none;
-    background-image: linear-gradient(#000, #000);
+    background-image: linear-gradient(var(--color-black), var(--color-black));
     background-position: 0 100%;
     background-repeat: no-repeat;
     background-size: 0% var(--satr-ul, 1px);
@@ -446,7 +446,7 @@
   }
 
   .satr-hover-underline--white {
-    background-image: linear-gradient(#fff, #fff);
+    background-image: linear-gradient(var(--color-white), var(--color-white));
   }
 
   /* Mirror: hero__text */
