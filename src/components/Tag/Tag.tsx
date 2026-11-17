@@ -69,7 +69,7 @@ export function Tag(props: TagProps) {
   if (as === 'span') {
     return (
       <>
-        <span ref={squircle.ref} className={classes} style={squircle.style}>
+        <span ref={squircle.ref} className={classes} style={squircle.style} data-squircle="">
           {content}
         </span>
         <SquircleDefs clipId={squircle.clipId} pathD={squircle.pathD} />
@@ -91,7 +91,7 @@ export function Tag(props: TagProps) {
     } = props as TagAsLink;
     return (
       <>
-        <a ref={squircle.ref} href={href} className={classes} style={squircle.style} {...linkProps}>
+        <a ref={squircle.ref} href={href} className={classes} style={squircle.style} data-squircle="" {...linkProps}>
           {content}
         </a>
         <SquircleDefs clipId={squircle.clipId} pathD={squircle.pathD} />
@@ -117,6 +117,7 @@ export function Tag(props: TagProps) {
         type={type}
         className={classes}
         style={squircle.style}
+        data-squircle=""
         {...buttonProps}
       >
         {content}

@@ -38,6 +38,9 @@ export function Button({
     <button
       type={type}
       className={`satr-squircle ${variantClass[variant]} ${className}`.trim()}
+      // Read by public/js/satr-shape.js on the static pages; React draws the shape itself.
+      data-squircle="bg"
+      data-ring={variant === 'bordered' ? 2 : undefined}
       onMouseEnter={(e) => {
         setHovered(true);
         onMouseEnter?.(e);

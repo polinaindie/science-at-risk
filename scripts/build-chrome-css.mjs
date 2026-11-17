@@ -25,6 +25,11 @@ const sources = [
   'Footer/Footer.tsx',
   'TextField/TextField.tsx',
   'Auth/Auth.tsx',
+  'Button/Button.tsx',
+  'Tag/Tag.tsx',
+  'Link/Link.tsx',
+  'ScopeTabs/ScopeTabs.tsx',
+  'SquircleLink/SquircleLink.tsx',
 ].map((f) =>
   path.join(root, 'src/components', f),
 );

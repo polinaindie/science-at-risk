@@ -10,7 +10,8 @@
     "build-storybook": "storybook build",
     "typecheck": "tsc -b",
     "chrome": "node scripts/build-chrome.mjs",
-    "auth": "node scripts/build-auth.mjs && node scripts/build-chrome-css.mjs && node scripts/build-chrome.mjs"
+    "auth": "node scripts/build-auth.mjs && node scripts/build-chrome-css.mjs && node scripts/build-chrome.mjs",
+    "handoff": "node scripts/build-handoff.mjs"
   },
   "dependencies": {
     "react": "^19.3.0",
