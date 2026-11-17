@@ -12,9 +12,9 @@ The site is Hugo: every page is a `.md` file with **front matter** (the fields i
 | Links | `[text](https://…)`. Internal pages: `[text]({{< relref "…" >}})` so EN/UK links survive a move. |
 | Footnotes | `text[^1]` and `[^1]: note` (Markdown footnote syntax) |
 | Picture | `{{< figure src="…" alt="…" caption="…" >}}` (alt is required) |
-| Several pictures | `{{< gallery >}}` (see `prose.html`) |
+| Several pictures | `{{< gallery >}}` with `figure` lines inside, closed by `{{< /gallery >}}` |
 | Video | `{{< embed url="https://www.youtube.com/watch?v=…" title="…" >}}` |
-| Pull quote | `{{< quote name="…" role="…" >}}text{{< /quote >}}` |
+| Pull quote | `{{< quote author="…" role="…" >}}text{{< /quote >}}` |
 | Link in the site's style | `{{< link href="/research" label="All research" >}}` |
 | Chip that links to a list | `{{< tag href="/scientists?tag=biology" label="Biology" >}}` (add `accent="true"` for the blue "New" style) |
 
@@ -29,7 +29,7 @@ Their markup is shown in `prose.html` (figure, gallery, embed, quote) and `state
 
 ## Two languages
 
-One file per language: `…/slug.md` (EN) and `…/slug.uk.md` (UK), joined by the same `translationKey` in front matter.
+One file per language: `content/en/<section>/<slug>.md` and `content/uk/<section>/<slug>.md`, with the same slug and the same `translationKey` in front matter (`content-model/README.md`).
 If a UK file is missing, the EN page is not shown in the UK lists (open question 5).
 
 ## Developers
