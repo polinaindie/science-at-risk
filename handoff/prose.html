@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;700&family=Noto+Serif:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../css/tokens.css"><link rel="stylesheet" href="../css/type-scale.css"><link rel="stylesheet" href="../css/satr-base.css">
-<link rel="stylesheet" href="prose.css">
+<link rel="stylesheet" href="prose.css"><link rel="stylesheet" href="crumbs.css">
 <style>
   *, *::before, *::after { box-sizing: border-box; }
   body { margin: 0; font-family: var(--font-mono); color: var(--color-text); background: var(--color-bg); }
@@ -23,7 +23,8 @@
 </head>
 <body>
 <main class="page" id="main">
-  <h1 class="page__title">Prose article style</h1>
+  <nav class="hf-crumbs" aria-label="Breadcrumb"><ol><li><a href="../">Science at Risk</a></li><li><a href="index.html">Hand-off</a></li><li aria-current="page">Prose article style</li></ol></nav>
+<h1 class="page__title">Prose article style</h1>
   <p class="page__lede">The <code>.prose</code> class styles Markdown output of stories, research articles and About. Editors write Markdown and four shortcodes (<code>figure</code>, <code>gallery</code>, <code>embed</code>, <code>quote</code>); no raw HTML. CSS: <a href="prose.css">prose.css</a>, tokens: <a href="../css/tokens.css">tokens.css</a>. The page title above is the page's single H1; inside an article the editor's headings start at h2.</p>
 
   <article class="prose">

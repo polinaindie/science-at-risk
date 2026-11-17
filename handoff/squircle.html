@@ -6,7 +6,7 @@
 <title>Squircle — Science at Risk hand-off</title>
 <link rel="stylesheet" href="../css/tokens.css">
 <link rel="stylesheet" href="../css/type-scale.css"><link rel="stylesheet" href="../css/satr-base.css">
-<link rel="stylesheet" href="../css/satr-components.css">
+<link rel="stylesheet" href="../css/satr-components.css"><link rel="stylesheet" href="crumbs.css">
 <style>
   body { margin: 0; padding: var(--space-3); font-family: var(--font-text); font-weight: 300; max-width: 52rem; }
   h1, h2 { font-family: var(--font-heading); font-weight: 400; }
@@ -16,6 +16,7 @@
 </head>
 <body>
 <main>
+<nav class="hf-crumbs" aria-label="Breadcrumb"><ol><li><a href="../">Science at Risk</a></li><li><a href="index.html">Hand-off</a></li><li aria-current="page">Squircle</li></ol></nav>
 <h1>Squircle</h1>
 <p>The squircle is part of the identity. It is not <code>border-radius</code>: each corner is one bezier with Figma corner smoothing 0.9. <code>../js/satr-shape.js</code> draws it (no dependencies) and gives the same path as the React site, character for character. Without JavaScript the element keeps its CSS <code>border-radius</code> (a plain rounded rectangle).</p>
 
