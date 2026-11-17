@@ -15,6 +15,7 @@
 </style>
 </head>
 <body>
+<main>
 <h1>Squircle</h1>
 <p>The squircle is part of the identity. It is not <code>border-radius</code>: each corner is one bezier with Figma corner smoothing 0.9. <code>../js/satr-shape.js</code> draws it (no dependencies) and gives the same path as the React site, character for character. Without JavaScript the element keeps its CSS <code>border-radius</code> (a plain rounded rectangle).</p>
 
@@ -28,7 +29,7 @@
 </div>
 
 <h2>Markup contract</h2>
-<pre>&lt;!-- filled shape: tags, chips --&gt;
+<pre tabindex="0">&lt;!-- filled shape: tags, chips --&gt;
 &lt;a class="satr-tag" data-squircle href="…"&gt;&lt;span&gt;Biology&lt;/span&gt;&lt;/a&gt;
 
 &lt;!-- shape on a background layer: buttons (the ring must not clip the label) --&gt;
@@ -40,12 +41,13 @@
 <p><code>data-radius</code> in px (default 16). <code>data-ring</code> in px draws a hollow outline that fills on hover. Elements added later (for example by the search results): <code>window.satrShape.init(container)</code>.</p>
 
 <h2>Hugo</h2>
-<pre>{{/* layouts/partials/squircle-button.html — params: label, variant (black|white|bordered) */}}
+<pre tabindex="0">{{/* layouts/partials/squircle-button.html — params: label, variant (black|white|bordered) */}}
 &lt;button class="satr-squircle satr-squircle--{{ .variant }}" data-squircle="bg"
   {{ if eq .variant "bordered" }}data-ring="2"{{ end }}&gt;
   &lt;span class="satr-squircle__bg" aria-hidden="true"&gt;&lt;/span&gt;{{ .label }}
 &lt;/button&gt;</pre>
 <p>Load the script once in the base template, before <code>&lt;/body&gt;</code>, with <code>defer</code>.</p>
+</main>
 <script src="../js/satr-shape.js" defer></script>
 </body>
 </html>
