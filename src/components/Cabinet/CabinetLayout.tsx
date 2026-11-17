@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import { useEffect, useRef, type ReactNode } from 'react';
 import { wrapperClass } from '@/components/Layout';
 import { cabinetCopy, type CabinetLocale, type CabinetSection } from './cabinetCopy';
 import type { ProfileStatus } from './cabinetCopy';
@@ -75,6 +75,32 @@ export function CabinetLayout({
 }: CabinetLayoutProps) {
   const t = cabinetCopy[locale];
 
+  // On a phone the tabs are one line that scrolls sideways: the open one is always in view, on the way in and when it changes.
+  const tabsRef = useRef<HTMLUListElement>(null);
+  useEffect(() => {
+    const show = () => {
+      const row = tabsRef.current;
+      const on = row?.querySelector('[aria-current="page"]');
+      if (!row || !on || row.scrollWidth <= row.clientWidth) return;
+      const box = row.getBoundingClientRect();
+      const r = on.getBoundingClientRect();
+      const gutter = 16;
+      let dx = 0;
+      if (r.left < box.left + gutter) dx = r.left - box.left - gutter;
+      else if (r.right > box.right - gutter) dx = r.right - box.right + gutter;
+      if (dx) row.scrollLeft += dx;
+    };
+    show();
+    // The row settles after the first paint (the page's width, then the web font that changes the tabs' widths), so it is placed again.
+    const frame = requestAnimationFrame(show);
+    const late = window.setTimeout(show, 300);
+    void document.fonts?.ready.then(show);
+    return () => {
+      cancelAnimationFrame(frame);
+      window.clearTimeout(late);
+    };
+  }, [section]);
+
   // Account settings is a page of its own, reached from the account menu: no tabs around it.
   if (section === 'settings' && !sideNav) {
     return (
@@ -103,7 +129,7 @@ export function CabinetLayout({
       <div className="flex flex-col lg:sticky lg:top-[calc(68px+2rem)] lg:h-[calc(100dvh-168px)]">
       <div className="lg:flex-1">
       <nav aria-label={t.nav.label}>
-        <ul className="m-0 flex list-none gap-6 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden border-b-2 border-brand-line-muted p-0 md:gap-10 lg:flex-col lg:gap-1 lg:overflow-visible lg:border-b-0">
+        <ul ref={tabsRef} className="m-0 flex list-none gap-6 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden border-b-2 border-brand-line-muted p-0 md:gap-10 lg:flex-col lg:gap-1 lg:overflow-visible lg:border-b-0">
           {ORDER.map((key) => {
             const current = key === section;
             const count = key === 'notifications' ? unread : 0;
