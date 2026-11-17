@@ -150,6 +150,23 @@ try {
     }
   }
   console.log(`${cases.length - failed} of ${cases.length} partial cases match the React markup.`);
+
+  // Shortcodes for Markdown: each must hand its partial every parameter the partial reads.
+  const scDir = path.join(root, 'public/handoff/hugo/layouts/shortcodes');
+  const { readdir } = await import('node:fs/promises');
+  for (const f of await readdir(scDir)) {
+    const code = (await readFile(path.join(scDir, f), 'utf8')).replace(/\{\{\/\*[\s\S]*?\*\/\}\}/g, '');
+    const partial = code.match(/partial "([\w-]+\.html)"/)[1];
+    const ptxt = (await readFile(path.join(dir, partial), 'utf8')).replace(/\{\{\/\*[\s\S]*?\*\/\}\}/g, '');
+    const actions = [...ptxt.matchAll(/\{\{([\s\S]*?)\}\}/g)].map((m) => m[1].replace(/"[^"]*"/g, '""'));
+    const used = new Set(actions.flatMap((a) => [...a.matchAll(/\$?\.(\w+)/g)].map((m) => m[1])));
+    const passed = new Set([...code.matchAll(/"(\w+)" /g)].map((m) => m[1]));
+    const missing = [...used].filter((k) => !passed.has(k));
+    if (missing.length) {
+      failed++;
+      console.log(`FAIL shortcode ${f}: does not pass ${missing.join(', ')} to ${partial}`);
+    } else console.log(`shortcode ${f} passes all ${used.size} parameters of ${partial}`);
+  }
 } finally {
   await vite.close();
 }

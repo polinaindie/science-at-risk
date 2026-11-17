@@ -1,0 +1,3 @@
+{{/* Markdown: {{< link href="/research" label="All projects" >}}  (uppercase="true" optional)
+     The site's text link. Wraps partials/satr-link.html. A link only: a button is a form control, not content. */}}
+{{ partial "satr-link.html" (dict "label" (.Get "label") "href" (.Get "href") "button" false "uppercase" (eq (.Get "uppercase") "true") "disabled" false) }}
