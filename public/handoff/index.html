@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Hand-off package</title>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;700&family=Noto+Serif:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../css/tokens.css"><link rel="stylesheet" href="../css/type-scale.css"><link rel="stylesheet" href="../css/satr-base.css">
+<link rel="stylesheet" href="../css/tokens.css"><link rel="stylesheet" href="../css/type-scale.css"><link rel="stylesheet" href="../css/satr-base.css"><link rel="stylesheet" href="crumbs.css">
 <style>
 *, *::before, *::after { box-sizing: border-box; }
 body { margin: 0; font-family: var(--font-ui); font-size: 18px; line-height: 28px; color: var(--color-text); background: var(--color-bg); }
@@ -23,6 +23,7 @@ a:hover { text-decoration-thickness: 2px; }
 </head>
 <body>
 <main>
+  <nav class="hf-crumbs" aria-label="Breadcrumb"><ol><li><a href="../">Science at Risk</a></li><li aria-current="page">Hand-off</li></ol></nav>
   <h1>Hand-off package</h1>
   <p>For the developers building the Hugo + Go site. A reference for look and behaviour, not code to ship: port the markup and CSS to Hugo partials, not React.</p>
 

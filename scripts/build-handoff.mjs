@@ -28,13 +28,14 @@ const vite = await createServer({ root, appType: 'custom', server: { middlewareM
 
 try {
   const load = (p) => vite.ssrLoadModule(p);
-  const [{ Button }, { Link }, { Tag }, { TextField }, { ScopeTabs }, { SquircleLink }] = await Promise.all([
+  const [{ Button }, { Link }, { Tag }, { TextField }, { ScopeTabs }, { SquircleLink }, { SiteHeader }] = await Promise.all([
     load('/src/components/Button/index.ts'),
     load('/src/components/Link/index.ts'),
     load('/src/components/Tag/index.ts'),
     load('/src/components/TextField/index.ts'),
     load('/src/components/ScopeTabs/index.ts'),
     load('/src/components/SquircleLink/index.ts'),
+    load('/src/components/SiteHeader/index.ts'),
   ]);
 
   const md = (el) => renderToStaticMarkup(el).replace(/<link rel="preload"[^>]*>/g, '');
@@ -100,6 +101,15 @@ try {
         item('Disabled', h(TextField, { label: 'E-mail', defaultValue: 'olena@example.org', disabled: true })),
         item('Multiline', h(TextField, { label: 'Message', multiline: true })),
         item('On black', h(TextField, { label: 'Your name', tone: 'dark' }), { ground: '#000', dark: true }),
+      ],
+    ),
+    group(
+      's-nav',
+      'Navigation (live component)',
+      'Rendered from <code>src/components/SiteHeader</code>, the header of every page: wordmark, EN/UK switch, Log in, menu button. The menu opens full screen (press the button; Esc closes it). The language switch links to the same page in the other language (<code>hreflang</code>); the current language is <code>aria-current=true</code>.',
+      [
+        item('Header, English, guest', h('div', { 'data-satr-chrome': 'header' }, h(SiteHeader, { base: '../', progress: 1, menuId: 'hf-menu-en', locale: 'EN', localeHref: '#uk', loginHref: '#login', cabinetHref: '#cabinet', logoutHref: '#logout' }))),
+        item('Header, Ukrainian, guest', h('div', { 'data-satr-chrome': 'header' }, h(SiteHeader, { base: '../', progress: 1, menuId: 'hf-menu-ua', locale: 'UA', localeHref: '#en', loginHref: '#login', cabinetHref: '#cabinet', logoutHref: '#logout' }))),
       ],
     ),
     group('g-tabs', 'Scope switch (live component)', 'Rendered from <code>src/components/ScopeTabs</code>, links form.', [

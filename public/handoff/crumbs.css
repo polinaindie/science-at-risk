@@ -1,0 +1,8 @@
+/* Breadcrumbs of the hand-off package: Site › Hand-off › this page. Tokens only; links in the page's own ink. */
+.hf-crumbs { margin: 0 0 24px; font-family: var(--font-ui, "IBM Plex Mono", monospace); font-size: 14px; line-height: 20px; letter-spacing: -0.03em; }
+.hf-crumbs ol { display: flex; flex-wrap: wrap; gap: 4px 8px; list-style: none; margin: 0; padding: 0; }
+.hf-crumbs li { display: inline-flex; align-items: center; gap: 8px; margin: 0; padding: 0; min-height: 24px; }
+.hf-crumbs li + li::before { content: "/"; color: var(--color-text-muted, #4d4d4d); }
+.hf-crumbs a { color: var(--color-text, #000); text-decoration: underline; text-underline-offset: 3px; }
+.hf-crumbs a:hover { text-decoration-thickness: 2px; }
+.hf-crumbs [aria-current] { color: var(--color-text-muted, #4d4d4d); }
