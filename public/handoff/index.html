@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hand-off package</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;700&family=Noto+Serif:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/tokens.css"><link rel="stylesheet" href="../css/type-scale.css"><link rel="stylesheet" href="../css/satr-base.css">
+<style>
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; font-family: var(--font-ui); font-size: 18px; line-height: 28px; color: var(--color-text); background: var(--color-bg); }
+main { max-width: 960px; margin: 0 auto; padding: 48px 16px 80px; }
+h1 { font-family: var(--font-heading); font-weight: 400; font-size: clamp(32px, 5vw, 56px); line-height: 1.1; margin: 0 0 16px; }
+h2 { font-family: var(--font-heading); font-weight: 400; font-size: 28px; line-height: 34px; margin: 48px 0 8px; padding-top: 16px; border-top: 2px solid var(--color-text); }
+p { margin: 0 0 8px; max-width: 70ch; }
+ul { list-style: none; margin: 16px 0 0; padding: 0; }
+li { padding: 12px 0; border-bottom: 1px solid var(--color-line-soft); display: grid; gap: 4px 24px; grid-template-columns: minmax(0, 18rem) 1fr; }
+li span { color: var(--color-text-muted); font-size: 16px; line-height: 24px; }
+a { color: inherit; text-underline-offset: 4px; }
+a:hover { text-decoration-thickness: 2px; }
+@media (max-width: 640px) { li { grid-template-columns: minmax(0, 1fr); } }
+</style>
+</head>
+<body>
+<main>
+  <h1>Hand-off package</h1>
+  <p>For the developers building the Hugo + Go site. A reference for look and behaviour, not code to ship: port the markup and CSS to Hugo partials, not React.</p>
+
+  <h2>Start here</h2>
+  <ul>
+    <li><a href="README.md">README.md</a><span>What is in the package, what is the reference and what is illustration.</span></li>
+    <li><a href="template-map.md">template-map.md</a><span>Content type → template → components. Read first.</span></li>
+    <li><a href="open-questions.md">open-questions.md</a><span>Everything that needs a developer or editor decision. Read second.</span></li>
+    <li><a href="hugo-migration-checklist.md">hugo-migration-checklist.md</a><span>The 8-step list from the drafts to Hugo.</span></li>
+  </ul>
+
+  <h2>Look and states</h2>
+  <ul>
+    <li><a href="states.html">states.html</a><span>Every component with its states on one page.</span></li>
+    <li><a href="squircle.html">squircle.html</a><span>The squircle: script, markup contract, Hugo partial.</span></li>
+    <li><a href="prose.html">prose.html</a><span>Article style and the allowed shortcodes.</span></li>
+    <li><a href="cabinet/index.html">cabinet/</a><span>Scientist cabinet screens, EN and UK, with letters and microcopy. <a href="cabinet/README.md">README</a></span></li>
+    <li><a href="../">The live site</a><span>The reference for Home and the static pages.</span></li>
+  </ul>
+
+  <h2>Content and text</h2>
+  <ul>
+    <li><a href="content-model/README.md">content-model/</a><span>Fields per type: scientist, institution, society, research, story, work, page, Home.</span></li>
+    <li><a href="data/README.md">data/</a><span>Example data in YAML: normal, too long, empty.</span></li>
+    <li><a href="i18n/README.md">i18n/</a><span>UI dictionary EN/UK, 312 keys.</span></li>
+    <li><a href="markdown-for-editors.md">markdown-for-editors.md</a><span>What editors may write in Markdown.</span></li>
+  </ul>
+
+  <h2>Hugo and upkeep</h2>
+  <ul>
+    <li><a href="hugo/README.md">hugo/</a><span>Partials for button, link, tag, field, scope tabs, Log in; shortcodes.</span></li>
+    <li><a href="how-it-stays-in-sync.md">how-it-stays-in-sync.md</a><span>What follows the site automatically and what needs a sync.</span></li>
+    <li><a href="typography.md">typography.md</a><span>The three font roles.</span></li>
+    <li><a href="tokens-audit.md">tokens-audit.md</a><span>Hard-coded colours and inline styles in the drafts.</span></li>
+    <li><a href="audit/components.md">audit/components.md</a><span>Component audit.</span></li>
+  </ul>
+</main>
+</body>
+</html>
