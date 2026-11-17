@@ -10,7 +10,12 @@ node scripts/verify-hugo-partials.mjs   # 20 of 20 cases must match the React ma
 `eq`, `range` and variables, and the check above interprets exactly that subset. A first real `hugo` build is still the
 developer's first test.
 
-## Calling them
+## Shortcodes for Markdown content
+
+`layouts/shortcodes/link.html` and `tag.html` wrap `satr-link` and `satr-tag` so editors can write
+`{{< link href="/research" label="All research" >}}` in a `.md` file. See `../markdown-for-editors.md`. There is no button shortcode on purpose.
+
+## Calling the partials from a template
 
 Pass **every** parameter listed in the partial's header comment, `false`/`""` included. In Go templates `eq` on a missing key
 is an error in some versions, so do not rely on a missing key meaning "default".

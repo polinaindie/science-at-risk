@@ -1,0 +1,59 @@
+/*
+ * satr-text.css — the type roles applied to the static pages. Needs tokens.css linked first.
+ *
+ * Three roles (defined in tokens.css): heading = serif, text = e-Ukraine Light, ui = IBM Plex Mono.
+ *   - the page default is `ui`; every running-text element below is `text`;
+ *   - sizes are NOT changed here, only the family, the weight and the tracking, so layouts keep their rhythm;
+ *   - `:not(#_)` raises specificity above the page stylesheets (some of them nest three classes) without !important.
+ *     It is a shim for the mirrored pages: in Hugo templates use the role variable on the component itself.
+ * To move a sentence-type element to another role, change the list here; to change a role for the whole site, change tokens.css.
+ */
+body { font-family: var(--font-ui); }
+
+:is(
+  .paragraph, .story-lead, .paper-lead, .expertParagraph--lead,
+  .main-text, .help-form__text, .project-card__text,
+  .expert-card__text, .expert-card__subtitle,
+  .story-card__text, .storyAside__text, .storyAside__text-wrap, .stories__text,
+  .infrastructure__text, .infrastructure__sec-text,
+  .infrastructures__text-left, .infrastructures__text-right,
+  .infrastructures-card__text, .infrastructures-card__text-left, .infrastructures-card__text-right,
+  .paper-card__text, .paper-card__right-text, .paper-aside__text,
+  .aside__lang-text, .popular-requests__text, .nothing__text, .list-card__text,
+  .card-work__texts, [class*="-hero__text"], .expertParagraph, .infra-plate__purpose, .infra-help-note,
+  .satr-auth__lede, .satr-auth p, .person-card__position, .exp-place,
+  .hero__text, .info__info-text, .search__text, .infrastructures-hero p,
+  input, textarea, select
+):not(#_) {
+  font-family: var(--font-text);
+  font-weight: var(--font-weight-text);
+  letter-spacing: 0;
+}
+
+/* Bold inside running text stays bold (e-Ukraine has a real 700). */
+:is(.paragraph, .story-lead, .paper-lead, .main-text, .project-card__text):not(#_) :is(strong, b) { font-weight: 700; }
+
+/* One outlier: this element is a control, so it fell back to the browser's 13.33px, under the 14px floor. */
+.project-card__text:not(#_) { font-size: 15px; line-height: 22px; }
+
+/* Headings: family is the `heading` role wherever the page draws them (header, menu and footer are components with their own
+   classes and are left alone); the SIZE comes from the heading scale in tokens.css, by role, not by page. */
+:is(h1, h2, h3):not(.satr-chrome *):not(#_) { font-family: var(--font-heading); font-weight: var(--font-weight-normal, 400); }
+
+/* heading-1: the title of a content page */
+:is(.story__main-title, .search-hero__title, .papers-hero__title, .infrastructures-hero__title, .pageStories__title, .paper__main-title):not(#_) {
+  font-size: var(--heading-1); line-height: var(--heading-1-lh); letter-spacing: var(--heading-1-ls);
+}
+/* heading-entity: the title of a profile / detail page */
+:is(.expert__header, .infrastructure__header, .satr-auth__title):not(#_) {
+  font-size: var(--heading-entity); line-height: var(--heading-entity-lh); letter-spacing: var(--heading-entity-ls);
+}
+/* heading-2: a section of a page */
+:is(h2.heading, .expertTitle, .help-form__title, .infrastructures-hero h2, .wrapper.content h2):not(#_) {
+  font-size: var(--heading-2); line-height: var(--heading-2-lh); letter-spacing: var(--heading-2-ls);
+}
+/* heading-3: a sub-section or a card */
+:is(h3.heading, .expert-card__title, .paper-card__title, .infrastructures-card__title, .story-card__title, .project-card__title,
+    .person-card__title, .aside__title):not(#_) {
+  font-size: var(--heading-3); line-height: var(--heading-3-lh); letter-spacing: var(--heading-3-ls);
+}

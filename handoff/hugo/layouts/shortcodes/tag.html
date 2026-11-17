@@ -1,0 +1,3 @@
+{{/* Markdown: {{< tag href="/scientists?tag=biology" label="Biology" >}}  (accent="true" for the blue "New" style)
+     A chip that links to a list. Wraps partials/satr-tag.html. */}}
+{{ partial "satr-tag.html" (dict "label" (.Get "label") "kind" "a" "href" (.Get "href") "accent" (eq (.Get "accent") "true") "off" false "count" "" "circle" false) }}

@@ -1,6 +1,6 @@
 .scientific-societies .content h2 {
     margin-bottom: 12px;
-    font-family: "IBM Plex Mono", sans-serif;
+    font-family: var(--font-ui, "IBM Plex Mono", sans-serif);
     color: #000;
     font-weight: 400;
     font-size: 1rem;
@@ -19,7 +19,7 @@
 .scientific-societies .content li,
 .scientific-societies .content table {
     margin-bottom: 8px;
-    font-family: "e-Ukraine", sans-serif;
+    font-family: var(--font-text, "e-Ukraine", sans-serif);
     color: #000;
     font-weight: 300;
     font-size: .9rem;
@@ -36,7 +36,7 @@
 }
 
 .scientific-societies .content a {
-    font-family: "IBM Plex Mono", sans-serif;
+    font-family: var(--font-ui, "IBM Plex Mono", sans-serif);
     color: #000;
     font-weight: 400;
     font-size: 1rem;

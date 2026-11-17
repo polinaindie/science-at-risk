@@ -93,7 +93,7 @@
 /* ---- Section titles: H2 28/34, the cabinet's serif, no rules ---- */
 .expertTitle.expertTitle--h4 {
     margin: var(--s5) 0 var(--s2);
-    font-family: "Noto Serif", serif;
+    font-family: var(--font-heading, "Noto Serif", serif);
     font-weight: 400;
     font-size: var(--step-xl);
     line-height: var(--step-xl-lh);
@@ -105,7 +105,7 @@
 
 /* ---- Running text: IBM Plex Mono, one size for every paragraph ---- */
 .col-lg-8 .expertParagraph {
-    font-family: "IBM Plex Mono", monospace;
+    font-family: var(--font-ui, "IBM Plex Mono", monospace);
     font-weight: 400;
     font-size: var(--t-md);
     line-height: 1.7;
@@ -135,7 +135,7 @@
 .project-card__year {
     grid-column: 1 !important;
     grid-row: 1 / span 4;
-    font-family: "IBM Plex Mono", monospace;
+    font-family: var(--font-ui, "IBM Plex Mono", monospace);
     font-size: var(--t-sm);
     line-height: 1.5556rem;
     font-weight: 400;
@@ -160,7 +160,7 @@
 /* In the right column the languages label is a section title, like Research field and Experience */
 .aside__mobile .aside__title {
     margin: var(--s5) 0 var(--s2);
-    font-family: "Noto Serif", serif;
+    font-family: var(--font-heading, "Noto Serif", serif);
     font-weight: 400;
     font-size: var(--step-xl);
     line-height: var(--step-xl-lh);
@@ -340,10 +340,10 @@
     .aside-mini.is-on + .aside__contact { margin-top: var(--s2); } /* a profile without links: the button still stands 16px under the institution */
     .aside-mini :where(p) { margin: 0; overflow-wrap: anywhere; }
     /* who (name, degree, institution), then the links 24px below */
-    .aside-mini__name { font-family: "Noto Serif", serif; font-weight: 400; font-size: var(--t-xl); line-height: 1.15; letter-spacing: -0.02em; }
+    .aside-mini__name { font-family: var(--font-heading, "Noto Serif", serif); font-weight: 400; font-size: var(--t-xl); line-height: 1.15; letter-spacing: -0.02em; }
     .aside-mini__line { font-size: var(--t-sm); line-height: 1.5; margin-top: var(--s2); }
-    .aside-mini__name + .aside-mini__line { font-family: "e-Ukraine", sans-serif; font-weight: 300; line-height: 1.3333rem; }
-    .aside-mini__place { font-family: "IBM Plex Mono", monospace; font-weight: 400; font-size: var(--t-xs); line-height: 1.2222rem; margin-top: 4px; color: #4a5459; }
+    .aside-mini__name + .aside-mini__line { font-family: var(--font-text, "e-Ukraine", sans-serif); font-weight: 300; line-height: 1.3333rem; }
+    .aside-mini__place { font-family: var(--font-ui, "IBM Plex Mono", monospace); font-weight: 400; font-size: var(--t-xs); line-height: 1.2222rem; margin-top: 4px; color: #4a5459; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -353,9 +353,9 @@
 /* ---- Experience as a timeline, the way the cabinet prints it: year column, the post, then the place ---- */
 .exp-list { order: 5; list-style: none; margin: var(--s1) 0 0; padding: 0; display: grid; gap: var(--s3); max-width: 62ch; }
 .exp-item { display: grid; grid-template-columns: var(--exp-year-w, 6ch) minmax(0, 1fr); column-gap: var(--s2); }
-.exp-year { font-family: "IBM Plex Mono", monospace; font-size: var(--t-sm); line-height: 1.2222rem; padding-top: 2px; }
-.exp-pos { display: block; font-family: "e-Ukraine", sans-serif; font-weight: 300; font-size: var(--t-sm); line-height: 1.3333rem; }
-.exp-place { display: block; margin-top: 4px; font-family: "IBM Plex Mono", monospace; font-size: var(--t-xs); line-height: 1.2222rem; }
+.exp-year { font-family: var(--font-ui, "IBM Plex Mono", monospace); font-size: var(--t-sm); line-height: 1.2222rem; padding-top: 2px; }
+.exp-pos { display: block; font-family: var(--font-text, "e-Ukraine", sans-serif); font-weight: 300; font-size: var(--t-sm); line-height: 1.3333rem; }
+.exp-place { display: block; margin-top: 4px; font-family: var(--font-ui, "IBM Plex Mono", monospace); font-size: var(--t-xs); line-height: 1.2222rem; }
 
 @media (min-width: 768px) {
     .exp-item { column-gap: var(--s3); }
@@ -369,7 +369,7 @@
 
 /* The languages themselves are running text: IBM Plex Mono, like the paragraphs */
 .aside__mobile .aside__lang-text {
-    font-family: "IBM Plex Mono", monospace;
+    font-family: var(--font-ui, "IBM Plex Mono", monospace);
     font-weight: 400;
     font-size: var(--t-md);
     line-height: 1.65;
@@ -389,7 +389,7 @@
         background: #f0eebe;
         color: #000;
         border-radius: 0;
-        font-family: "IBM Plex Mono", monospace;
+        font-family: var(--font-ui, "IBM Plex Mono", monospace);
         font-size: var(--t-xs);
         line-height: 1.1111rem;
         letter-spacing: -0.03em;

@@ -6,7 +6,7 @@
  */
 .prose {
   max-width: var(--size-measure);
-  font-family: var(--font-ukraine);
+  font-family: var(--font-text);
   font-weight: var(--font-weight-light);
   font-size: var(--text-prose);
   line-height: var(--text-prose-lh);
@@ -18,10 +18,10 @@
 .prose strong, .prose b { font-weight: var(--font-weight-bold); }
 
 /* headings: serif, close below, air above */
-.prose h2, .prose h3, .prose h4 { font-family: var(--font-serif); font-weight: var(--font-weight-normal); letter-spacing: var(--tracking-display); text-wrap: balance; }
-.prose h2 { margin-top: var(--space-5); font-size: var(--text-prose-h2); line-height: var(--text-prose-h2-lh); }
-.prose h3 { margin-top: var(--space-4); font-size: var(--text-prose-h3); line-height: var(--text-prose-h3-lh); }
-.prose h4 { margin-top: var(--space-3); font-size: var(--text-prose-h4); line-height: var(--text-prose-h4-lh); }
+.prose h2, .prose h3, .prose h4 { font-family: var(--font-heading); font-weight: var(--font-weight-normal); letter-spacing: var(--tracking-display); text-wrap: balance; }
+.prose h2 { margin-top: var(--space-5); font-size: var(--heading-2); line-height: var(--heading-2-lh); letter-spacing: var(--heading-2-ls); }
+.prose h3 { margin-top: var(--space-4); font-size: var(--heading-3); line-height: var(--heading-3-lh); letter-spacing: var(--heading-3-ls); }
+.prose h4 { margin-top: var(--space-3); font-size: var(--step-lg); line-height: var(--step-lg-lh); letter-spacing: var(--step-lg-ls); }  /* h4 in an article: one step under heading-3 */
 .prose :is(h2, h3, h4) + * { margin-top: var(--space-1); }
 .prose > :first-child { margin-top: 0; }
 @media (min-width: 768px) {
@@ -38,14 +38,14 @@
 /* lists */
 .prose ul, .prose ol { padding-left: var(--space-4); }
 .prose li + li { margin-top: var(--space-1); }
-.prose li::marker { font-family: var(--font-mono); color: var(--color-text); }
+.prose li::marker { font-family: var(--font-ui); color: var(--color-text); }
 .prose li > :is(ul, ol) { margin-top: var(--space-1); }
 
 /* plain Markdown blockquote (a citation inside the text, not the pull quote) */
 .prose blockquote { margin-inline: 0; padding-left: var(--space-3); border-left: var(--border-heavy) solid var(--color-line); }
 .prose blockquote > * + * { margin-top: var(--space-1); }
 .prose hr { border: 0; border-top: var(--border-rule) solid var(--color-line); margin-block: var(--space-5); }
-.prose code { font-family: var(--font-mono); font-size: 0.9em; }
+.prose code { font-family: var(--font-ui); font-size: 0.9em; }
 
 /* footnotes (Markdown footnote output) */
 .prose .footnotes { margin-top: var(--space-5); padding-top: var(--space-2); border-top: var(--border-rule) solid var(--color-line); font-size: var(--text-small); }
@@ -68,8 +68,8 @@
 .prose .embed { margin-block: var(--space-4); }
 .prose .embed__frame { position: relative; aspect-ratio: 16 / 9; background: var(--color-black); color: var(--color-white); }
 .prose .embed__frame iframe, .prose .embed__frame video { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
-.prose .embed__poster { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: var(--space-2); padding: var(--space-3); text-align: center; font-family: var(--font-mono); }
-.prose .embed__consent { margin: 0; font-size: var(--text-small); line-height: var(--text-small-lh); }
+.prose .embed__poster { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: var(--space-2); padding: var(--space-3); text-align: center; font-family: var(--font-ui); }
+.prose .embed__consent { font-family: var(--font-text); font-weight: var(--font-weight-text); margin: 0; font-size: var(--text-small); line-height: var(--text-small-lh); }
 .prose a.embed__play, .prose .embed__play { min-height: var(--tap-min); padding: var(--space-1) var(--space-3); border: var(--border-ring) solid var(--color-white); border-radius: var(--radius-squircle); background: var(--color-white); color: var(--color-black); font: inherit; cursor: pointer; display: inline-flex; align-items: center; text-decoration: none; }
 .prose .embed__play:hover { background: var(--color-blue); }
 .prose .embed__play:focus-visible { outline: var(--focus-ring-width) solid var(--color-white); outline-offset: var(--focus-ring-offset); }
@@ -78,7 +78,7 @@
 
 /* ---- shortcode: quote (pull quote) ---- */
 .prose .quote { margin: var(--space-5) 0; padding-left: var(--space-3); border-left: var(--border-heavy) solid var(--color-line); }
-.prose .quote__text { margin: 0; font-family: var(--font-serif); font-size: var(--text-prose-h3); line-height: var(--text-prose-h3-lh); letter-spacing: var(--tracking-display); }
+.prose .quote__text { margin: 0; font-family: var(--font-heading); font-size: var(--text-prose-h3); line-height: var(--text-prose-h3-lh); letter-spacing: var(--tracking-display); }
 @media (min-width: 768px) { .prose .quote__text { font-size: var(--text-prose-h2); line-height: var(--text-prose-h2-lh); } }
-.prose .quote__cite { margin-top: var(--space-1); font-family: var(--font-mono); font-size: var(--text-small); line-height: var(--text-small-lh); font-style: normal; color: var(--color-text-muted); }
+.prose .quote__cite { margin-top: var(--space-1); font-family: var(--font-ui); font-size: var(--text-small); line-height: var(--text-small-lh); font-style: normal; color: var(--color-text-muted); }
 .prose .quote__text { padding: 0; border: 0; }
