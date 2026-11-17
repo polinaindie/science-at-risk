@@ -39,3 +39,10 @@ Data fields: `content-model/<type>.md`. UI strings: `i18n/`.
 | text-field, form states | yes | forms, cabinet |
 | en-outdated badge | yes | scientist (and cabinet account) |
 | prose + shortcodes | `prose.html` | about, story, research, institution |
+
+## Live components as Hugo partials
+
+`hugo/layouts/partials/`: `satr-button`, `satr-link`, `satr-tag`, `satr-tag-label`, `satr-field`, `satr-scope-tabs`,
+`satr-squircle-link`. Parameters, assets and the check: `hugo/README.md`. Use them wherever the page needs a button, link,
+chip/tag, floating-label field or the Scientists/Societies switch; the BEM blocks above (cards, pagination, breadcrumbs)
+are not React on the live site and stay as drawn in `states.html`.
