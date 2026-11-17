@@ -59,7 +59,7 @@ export function InfrastructuresCard({
             <p className="mt-2 font-text text-text2-desktop">{description}</p>
           ) : null}
         </div>
-        <div className="flex min-w-0 flex-col gap-4 md:w-5/12 md:flex-row md:flex-wrap md:pl-10 lg:pl-24">
+        <div className="flex min-w-0 flex-col gap-4 md:w-5/12 md:flex-row md:flex-wrap md:pl-6 lg:pl-10 xl:pl-24">
           {domain ? (
             <div className="relative z-20 min-w-0 flex-1">
               <p className={labelClass}>{domainLabel}</p>

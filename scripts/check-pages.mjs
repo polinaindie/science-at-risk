@@ -2,6 +2,7 @@
 /**
  * check-pages.mjs — look at the pages a change touched, not the whole site.
  *
+ *   --widths 320,375,768   override viewports; --full saves full-page screenshots (for responsive sweeps)
  *   --max N   cap on pages taken from --changed (default 12): a sweeping change touches hundreds of static pages, so one per
  *             template (expert, story, society...) is kept first, then an even sample. Pass --max 9999 to check them all.
  *   node scripts/check-pages.mjs --changed          pages derived from `git diff` (uncommitted + last commit with --since HEAD~1)
@@ -29,7 +30,7 @@ const HEADING_FONT = 'Noto Serif';
 const BODY_FONT = 'IBM Plex Mono';
 const MIN_PX = 14;
 const MIN_LH = 1.4;
-const VIEWPORTS = [{ width: 1280, height: 900 }, { width: 390, height: 844 }];
+let VIEWPORTS = [{ width: 1280, height: 900 }, { width: 390, height: 844 }];
 
 /** Named page sets: one representative page per template. Add the page you just worked on. */
 const PRESETS = {
@@ -59,7 +60,7 @@ const RULES = [
 
 function args() {
   const a = process.argv.slice(2);
-  const o = { base: 'http://localhost:5173', pages: [], changed: false, since: null, max: 12, out: '.check-pages', shots: true };
+  const o = { base: 'http://localhost:5173', pages: [], changed: false, since: null, max: 12, out: '.check-pages', shots: true, full: false };
   for (let i = 0; i < a.length; i++) {
     const x = a[i];
     if (x === '--base') o.base = a[++i];
@@ -69,6 +70,8 @@ function args() {
     else if (x === '--max') o.max = Number(a[++i]);
     else if (x === '--out') o.out = a[++i];
     else if (x === '--no-shots') o.shots = false;
+    else if (x === '--full') o.full = true;
+    else if (x === '--widths') VIEWPORTS = a[++i].split(',').map((w) => ({ width: Number(w), height: Number(w) < 700 ? 844 : 900 }));
     else o.pages.push(x);
   }
   return o;
@@ -157,7 +160,7 @@ for (const path of pages) {
       if (r.overflow > 0) problems.push(`horizontal scroll: ${r.overflow}px`);
       if (o.shots) {
         const name = (path === '/' ? 'home' : path.replace(/^\//, '').replace(/\.html$/, '').replace(/[\/]/g, '_')).slice(0, 80);
-        await page.screenshot({ path: `${o.out}/${name}-${vp.width}.png`, fullPage: false });
+        await page.screenshot({ path: `${o.out}/${name}-${vp.width}.png`, fullPage: o.full });
       }
       const mark = problems.length ? 'FAIL' : 'ok  ';
       console.log(`${mark} ${path} @${vp.width}  ${Object.entries(r.counts).map(([k, v]) => `${k} ${v}`).join(' | ')}`);

@@ -156,6 +156,13 @@ const INFO_LINK = '[&_h2]:hyphens-none';
 const BLOCK_H2 =
   '[&_h2.font-heading]:text-[length:calc(clamp(32px,4.2vw,60px)/var(--satr-fit,1))] [&_h2.font-heading]:leading-[calc(1.07*clamp(32px,4.2vw,60px)/var(--satr-fit,1))]';
 
+/** Outside the deck (an ordinary scrolling page) the cards in Research and
+ *  Infrastructure sit in a column a little over a third of the width, and the
+ *  block-title size above made their headings 43px at 1024 — seven lines for a
+ *  long institute name. A card's heading gets its own, smaller fluid size. */
+const FLOW_CARD_H2 =
+  '[&_article_h2.font-heading]:text-[length:clamp(24px,2.6vw,32px)] [&_article_h2.font-heading]:leading-[1.15]';
+
 /** The deck shrinks a block that is taller than the screen, and its type with
  *  it: at 1024x820 Research comes out at 0.63, which put the papers' authors
  *  and file types at 11px. From `lg` — where the deck can be on — the body
@@ -653,7 +660,7 @@ export function HomePageV6({
             }}
             className={`${
               deck ? 'absolute inset-0 overflow-hidden' : 'min-h-[100svh]'
-            } transition-colors duration-300 ${block.ground}${deck ? '' : ` ${block.className}`}`}
+            } transition-colors duration-300 ${block.ground}${deck ? '' : ` ${block.className} ${FLOW_CARD_H2}`}`}
             style={
               deck
                 ? {

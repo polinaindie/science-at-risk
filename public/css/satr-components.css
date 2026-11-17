@@ -291,7 +291,8 @@
     letter-spacing: -0.03em;
     color: var(--color-black);
     text-decoration: none;
-    white-space: nowrap;
+    white-space: normal;
+    max-width: 100%;
     background-color: var(--color-white);
     /* Fallback before useSquircleClipPath measures the element (see
        .satr-squircle above for why this isn't a CSS Paint API worklet). */

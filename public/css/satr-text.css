@@ -72,3 +72,7 @@ button, input, select, textarea { font-family: inherit; }
   :is(.paragraph, p, li, .content) a:not(.satr-chrome *):not(#_) { font-size: max(14px, 1em); }
   a[href^="mailto:"]:not(.satr-chrome *):not(#_) { font-size: max(14px, 1em); }
 }
+
+/* The column labels ("Science domain", "Required amount") were 13px under 1024px: 14px is the floor. */
+.infrastructures__text-right,
+.infrastructures__text-left { font-size: var(--step-xs, 0.7778rem); line-height: var(--step-xs-lh, 1.2222rem); }

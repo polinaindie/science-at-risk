@@ -111,7 +111,7 @@ function ScopeStack({
   className?: string;
 }) {
   return (
-    <Tag className={`grid ${className}`.trim()}>
+    <Tag className={`grid grid-cols-[minmax(0,1fr)] ${className}`.trim()}>
       {SCOPES.map((value) => (
         <Tag
           key={value}
@@ -175,7 +175,7 @@ function PopularTags({ label, tags }: { label: string; tags: HomeScientistsTag[]
       </p>
       <div ref={listRef} className="flex flex-wrap gap-2.5" role="list">
         {tags.map((tag) => (
-          <span role="listitem" key={tag.href}>
+          <span role="listitem" key={tag.href} className="max-w-full">
             <Tag as="a" href={tag.href} count={tag.count}>
               {tag.label}
             </Tag>
