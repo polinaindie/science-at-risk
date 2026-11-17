@@ -24,6 +24,7 @@ cd public && python3 -m http.server 8080
 | `data/` | Example data in YAML, three variants each: `normal`, `too_long`, `empty` (+ `en_outdated` for scientist). Hugo front-matter style. | **Reference** |
 | `i18n/` | `ui.en.yaml`, `ui.uk.yaml`: 312 identical keys, Hugo `i18n` format with plurals. | **Source of truth** for UI text, UK needs a native editor |
 | `cabinet/` | Scientist cabinet (`/login`, `/account`): 54 HTML pages in EN and `uk/`, 6 letters (HTML + TXT), `microcopy.*.yaml`, its own `README.md`. | **Reference** |
+| `hugo/` | Hugo partials for the live components (button, link, tag, field, scope tabs, Log in), verified against the React markup. | **Reference** |
 | `template-map.md` | Content type → template → components. | Read first |
 | `open-questions.md` | Everything that needs a developer or editor decision. | Read second |
 | `hugo-migration-checklist.md` | The 8-step "vibe-code → Hugo" list, with the real findings from this repo. | Work list |

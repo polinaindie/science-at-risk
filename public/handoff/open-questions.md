@@ -56,3 +56,12 @@ Collected from all parts of the package. Details and the assumption made in the 
 |---|---|---|
 | 33 | A native editor must read: 105 `# DRAFT-UK` keys in `i18n/ui.uk.yaml`, and all cabinet texts and letters. | Ed |
 | 34 | No real Ukrainian body text exists in the repo, so the `normal` variants in `data/` are English only. | Ed |
+
+## Added with the live-component hand-off
+| # | Question | Owner |
+|---|---|---|
+| 35 | The live components use Tailwind utility classes, so partial markup carries them and pages need `satr-chrome.css` (compiled Tailwind subset). Accept, or rewrite the 7 components as named BEM rules? | Dev + Des |
+| 36 | Fluid type renders 12.5% larger than the numbers in the generator (html is 18px, scale written for 16px). The hand-off follows the site. Confirm this is the intended size, or correct both. | Des |
+| 37 | `cabinet/cabinet.css` has its own sizes (16px base, own buttons and fields) and is **not** the look of the React cabinet (`satr-auth.css`, Tailwind). Which is the reference for the Go cabinet? | Des + Dev |
+| 38 | `satr-shape.js` leaves a plain rounded rectangle until it runs. Is a flash of the rectangle on slow connections acceptable? | Des |
+

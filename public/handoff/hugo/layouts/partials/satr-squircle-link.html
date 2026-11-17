@@ -1,0 +1,3 @@
+{{/* Outlined "Log in" link of the header. Source of truth: src/components/SquircleLink. Needs css/satr-squircle.css and js/satr-squircle.js.
+     Params: href, label, inverted (bool, on a black bar). */}}
+<a href="{{ .href }}" class="satr-squircle-link{{ if .inverted }} satr-squircle-link--inverted{{ end }}" data-satr-squircle="outline" data-radius="14" data-ring="1.5"><span class="satr-squircle-link__bg" aria-hidden="true"></span>{{ .label }}</a>
