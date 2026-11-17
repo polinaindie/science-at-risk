@@ -1501,7 +1501,7 @@ export function ProfileEditForm({
       </div>
 
       {step ? (
-        <div className="fixed inset-x-0 bottom-0 z-40 bg-brand-accent-blue">
+        <div className="fixed inset-x-0 bottom-0 z-40 border-t-2 border-brand-black bg-brand-accent-blue">
           <div className="mx-auto flex max-w-[1744px] flex-wrap items-center justify-between gap-x-6 gap-y-3 px-4 py-3 xl:px-10">
             <div className="flex flex-wrap items-center gap-x-5 gap-y-1">
               <Link as="button" onClick={() => step.onExit?.(draft)} className="text-[1rem]! leading-[1.5rem]!">
