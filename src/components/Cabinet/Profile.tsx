@@ -40,14 +40,14 @@ import { societies, societyBySlug, societyName } from './societies';
 const H4 = 'font-heading text-heading-2 font-normal';
 /** The site's running text on an expert's page: IBM Plex Mono, 16 on a phone and 18 above. */
 const SITE_P = 'font-text text-[1rem] leading-[1.625rem] md:text-[1.125rem] md:leading-[1.875rem]';
-/** The small text in the site's project and publication cards: e-Ukraine Light, 15. */
-const SITE_SMALL = 'font-text text-[0.9375rem] font-light leading-[1.5625rem]';
+/** The small text in the site's project and publication cards: IBM Plex Mono, 15. */
+const SITE_SMALL = 'font-text text-[0.9375rem] leading-[1.5625rem]';
 /** A project's or publication's title: serif, 20 on a phone and 22 above. */
 const CARD_TITLE = 'm-0 font-heading text-heading-3 font-normal';
-/** The post is e-Ukraine Light 16, the place it belongs to is IBM Plex Mono: the same on every profile. */
-const POST = 'font-text text-[1rem] font-light leading-[1.5rem]';
+/** The post is IBM Plex Mono 16, the place it belongs to is IBM Plex Mono: the same on every profile. */
+const POST = 'font-text text-[1rem] leading-[1.5rem]';
 const PLACE = 'font-ui text-[0.875rem] leading-[1.375rem] md:text-[0.9375rem]';
-const PARA = 'font-text text-text2-mobile font-light md:text-text2-desktop';
+const PARA = 'font-text text-text2-mobile md:text-text2-desktop';
 
 /* ------------------------------------------------------------------ view */
 
@@ -1464,7 +1464,7 @@ export function ProfileEditForm({
         {on('consents') ? (
           <Group bare={!!want} title={t.groups.consents}>
             <div>
-              <label className="flex cursor-pointer items-start gap-3 font-text text-text2-mobile font-light md:text-text2-desktop">
+              <label className="flex cursor-pointer items-start gap-3 font-text text-text2-mobile md:text-text2-desktop">
                 <input
                   type="checkbox"
                   checked={draft.consents.personalData}
@@ -1477,10 +1477,10 @@ export function ProfileEditForm({
               {err(tried && !draft.consents.personalData && t.errors.consent)}
             </div>
             <fieldset className="m-0 min-w-0 border-0 p-0">
-              <legend className="font-text text-text2-mobile font-light md:text-text2-desktop">{t.consents.publish} *</legend>
+              <legend className="font-text text-text2-mobile md:text-text2-desktop">{t.consents.publish} *</legend>
               <div className="mt-4 flex flex-wrap gap-6">
                 {(['yes', 'no'] as const).map((v) => (
-                  <label key={v} className="flex cursor-pointer items-center gap-3 font-text text-text2-mobile font-light md:text-text2-desktop">
+                  <label key={v} className="flex cursor-pointer items-center gap-3 font-text text-text2-mobile md:text-text2-desktop">
                     <input
                       type="radio"
                       name="consent-publish"

@@ -57,7 +57,7 @@ export function StoriesSlide({
               <span className="satr-hover-underline satr-hover-underline--white">{title}</span>
             </h2>
             {text ? (
-              <p className="mb-7 font-text text-text2-mobile font-light text-white md:mb-8 md:text-text2-desktop lg:mb-7">
+              <p className="mb-7 font-text text-text2-mobile text-white md:mb-8 md:text-text2-desktop lg:mb-7">
                 {text}
               </p>
             ) : null}

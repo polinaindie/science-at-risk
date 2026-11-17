@@ -19,9 +19,9 @@
 .scientific-societies .content li,
 .scientific-societies .content table {
     margin-bottom: 8px;
-    font-family: var(--font-text, "e-Ukraine", sans-serif);
+    font-family: var(--font-text, "IBM Plex Mono", monospace);
     color: #000;
-    font-weight: 300;
+    font-weight: var(--font-weight-text);
     font-size: .9rem;
     line-height: 1.44444rem;
 }

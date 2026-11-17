@@ -82,23 +82,24 @@
      4. FONTS
      ==================================================================================================== */
   --font-serif: "Noto Serif", serif;                       /* [G] headings, names, big numbers. Weight 400 only */
-  --font-mono: "IBM Plex Mono", monospace;     /* [G] interface, labels, chips, buttons, body of lists */
-  --font-ukraine: "e-Ukraine", sans-serif;               /* [G] running text, typed text in fields, article body (weight 300) */
-  /* ---- FONT ROLES — the only three families a component may ask for. Change a role here and every page follows. ----
-       heading : Noto Serif, 400            h1-h4, names on cards, big numbers, pull quotes
-       text    : e-Ukraine Light, 300       everything that is read as sentences: article body, card descriptions,
-                                            profile text, lead paragraphs, text typed into fields
-       ui      : IBM Plex Mono              everything that is operated or scanned: nav, buttons, chips, tags, labels,
-                                            breadcrumbs, dates, counts, captions, hints, errors
-       Rule of thumb: if it is a sentence a person reads to the end, it is `text`; if it is a word or number
-       a person scans or clicks, it is `ui`. Never set a family by name in a component: use a role. */
+  --font-mono: "IBM Plex Mono", monospace;     /* [G] everything that is not a heading: running text, interface, labels, chips, buttons */
+  /* ---- FONT ROLES — the site has TWO families: Noto Serif and IBM Plex Mono. Components ask for a role, never a family. ----
+       heading : Noto Serif, 400        h1-h4, names on cards, big numbers, pull quotes
+       text    : IBM Plex Mono, 400     everything that is read as sentences: article body, card descriptions,
+                                        profile text, lead paragraphs, text typed into fields.
+                                        Readability rules for mono running text: weight 400 (300 is too thin at body size),
+                                        16px minimum (18px for article body), line-height 1.5 minimum (1.65 for articles),
+                                        tracking 0 (never the -0.03em used on short labels), lines of about 60-70 characters.
+       ui      : IBM Plex Mono          everything that is operated or scanned: nav, buttons, chips, tags, labels,
+                                        breadcrumbs, dates, counts, captions, hints, errors
+       `text` and `ui` are the same family; they differ in weight, tracking and line-height, so they can be tuned apart. */
   --font-heading: var(--font-serif);
-  --font-text: var(--font-ukraine);
+  --font-text: var(--font-mono);
   --font-ui: var(--font-mono);
-  --font-weight-text: var(--font-weight-light);
-  --font-weight-light: 300;                                         /* e-Ukraine body, field text, IBM Plex labels */
+  --font-weight-text: var(--font-weight-normal);
+  --font-weight-light: 300;                                         /* IBM Plex Mono body, field text, IBM Plex labels */
   --font-weight-normal: 400;                                        /* everything else */
-  --font-weight-bold: 700;                                          /* strong, "!" marks, e-Ukraine Bold */
+  --font-weight-bold: 700;                                          /* strong, "!" marks, IBM Plex Mono */
   --tracking-tight: -0.03em;                                        /* [G] mono text and h3 */
   --tracking-display: -0.02em;                                      /* [G] serif headings */
   --tracking-normal: 0;

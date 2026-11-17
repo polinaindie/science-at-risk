@@ -72,7 +72,7 @@ export function ListCard({
       </header>
       <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
         {text ? (
-          <p className="max-w-[397px] font-text text-text2-desktop font-light">{text}</p>
+          <p className="max-w-[397px] font-text text-text2-desktop">{text}</p>
         ) : null}
         <div className="flex items-center justify-between gap-4">
           {displayPrice ? (

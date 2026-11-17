@@ -1,4 +1,4 @@
-/* Blog / story text: easier to read. The site's e-Ukraine paragraph ran at 16/1.19 (tight) with 32px above and below
+/* Blog / story text: easier to read. The site's IBM Plex Mono paragraph ran at 16/1.19 (tight) with 32px above and below
    every paragraph, headings had a 48px gap under them; here the type has the same size and line height as the research
    articles (18/20px, line 1.65), even paragraph gaps, and headings sit close to the text they introduce.
    Scoped to .story so nothing else changes. */

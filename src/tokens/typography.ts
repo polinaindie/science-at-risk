@@ -16,7 +16,7 @@ export type TypographyTokenId =
 export interface TypographyToken {
   id: TypographyTokenId;
   label: string;
-  fontFamily: 'Noto Serif' | 'IBM Plex Mono' | 'e-Ukraine';
+  fontFamily: 'Noto Serif' | 'IBM Plex Mono';
   fontWeight: 300 | 400;
   desktop: {
     size: number;
@@ -87,13 +87,13 @@ export const typographyTokens: TypographyToken[] = [
   {
     id: 'text2',
     label: 'Text 2',
-    fontFamily: 'e-Ukraine',
-    fontWeight: 300,
-    desktop: { size: 18, lineHeight: 26, letterSpacing: 0 },
+    fontFamily: 'IBM Plex Mono',
+    fontWeight: 400,
+    desktop: { size: 16, lineHeight: 26, letterSpacing: 0 },
     mobile: { size: 14, lineHeight: 22, letterSpacing: 0 },
     className: {
-      desktop: 'font-text font-light text-text2-desktop',
-      mobile: 'font-text font-light text-text2-mobile',
+      desktop: 'font-text text-text2-desktop',
+      mobile: 'font-text text-text2-mobile',
     },
   },
   {

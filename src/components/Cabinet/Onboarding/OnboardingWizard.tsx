@@ -203,7 +203,7 @@ export function OnboardingWizard({
           <h1 ref={headingRef} tabIndex={-1} className="font-heading text-h1-mobile outline-none md:text-h2-desktop lg:text-h1-desktop">
             {t.exited.title}
           </h1>
-          <p className="mt-4 font-text text-text2-mobile font-light md:text-text2-desktop">{t.exited.text}</p>
+          <p className="mt-4 font-text text-text2-mobile md:text-text2-desktop">{t.exited.text}</p>
           <div className="mt-8">
             <Button variant="black" type="button" onClick={() => setExited(false)}>
               {t.exited.back}
@@ -219,7 +219,7 @@ export function OnboardingWizard({
           <h1 ref={headingRef} tabIndex={-1} className="mx-auto max-w-[760px] font-heading text-h1-mobile outline-none md:text-h2-desktop lg:text-h1-desktop">
             {t.welcome.title}
           </h1>
-          <p className="mx-auto mt-5 max-w-[620px] font-text text-text2-mobile font-light md:text-text2-desktop">{t.welcome.lede}</p>
+          <p className="mx-auto mt-5 max-w-[620px] font-text text-text2-mobile md:text-text2-desktop">{t.welcome.lede}</p>
           <div className="mt-14 flex flex-col items-center gap-4">
             <Button variant="black" type="button" onClick={() => goTo(0)} className="min-w-[240px] justify-center">
               {t.welcome.start}
@@ -240,7 +240,7 @@ export function OnboardingWizard({
         <h1 ref={headingRef} tabIndex={-1} className="font-heading text-h1-mobile outline-none md:text-h2-desktop lg:text-h1-desktop">
           {copy.title}
         </h1>
-        <p className="mt-4 max-w-[760px] font-text text-text2-mobile font-light md:text-text2-desktop">{copy.lede}</p>
+        <p className="mt-4 max-w-[760px] font-text text-text2-mobile md:text-text2-desktop">{copy.lede}</p>
         <p className="mt-3 font-ui text-breadcrumbs text-brand-muted">{edit.required}</p>
       </header>
     );
@@ -287,7 +287,7 @@ export function OnboardingWizard({
           {missing.length ? (
             <ul className="m-0 mt-4 flex list-none flex-col gap-2 p-0">
               {missing.map((m) => (
-                <li key={m} className="flex flex-wrap items-baseline justify-between gap-x-4 font-text text-text2-mobile font-light md:text-text2-desktop">
+                <li key={m} className="flex flex-wrap items-baseline justify-between gap-x-4 font-text text-text2-mobile md:text-text2-desktop">
                   <span>{t.review.missing[m] ?? t.steps[m].title}</span>
                   <Link as="button" onClick={() => goTo(STEP_ORDER.indexOf(m))} className="text-[1rem]! leading-[1.5rem]!">
                     {t.review.fix}

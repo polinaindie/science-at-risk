@@ -170,7 +170,7 @@ export function Modal({
         className="relative max-h-full w-full max-w-[560px] overflow-y-auto bg-white p-6 outline-none md:p-10"
       >
         <h2 className="font-heading text-h2-mobile md:text-h2-desktop">{title}</h2>
-        <div className="mt-4 font-text text-text2-mobile font-light md:text-text2-desktop">
+        <div className="mt-4 font-text text-text2-mobile md:text-text2-desktop">
           {children}
         </div>
         <div className="mt-8 flex flex-wrap gap-3">{actions}</div>
@@ -240,7 +240,7 @@ export function EmptyState({
   return (
     <div className="border-2 border-dashed border-brand-black px-6 py-12 text-center md:py-16">
       <h3 className="font-heading text-h2-mobile md:text-h2-desktop">{title}</h3>
-      <p className="mx-auto mt-3 max-w-[520px] font-text text-text2-mobile font-light md:text-text2-desktop">
+      <p className="mx-auto mt-3 max-w-[520px] font-text text-text2-mobile md:text-text2-desktop">
         {text}
       </p>
       {action ? <div className="mt-6 flex justify-center">{action}</div> : null}
@@ -254,7 +254,7 @@ export function PageTitle({ title, lede, wide = false }: { title: string; lede?:
     <header className="mb-8">
       <h1 className={`font-heading text-h1-mobile ${wide ? 'md:text-h1-desktop' : 'md:text-h2-desktop lg:text-h1-desktop'}`}>{title}</h1>
       {lede ? (
-        <p className="mt-4 max-w-[760px] font-text text-text2-mobile font-light md:text-text2-desktop">
+        <p className="mt-4 max-w-[760px] font-text text-text2-mobile md:text-text2-desktop">
           {lede}
         </p>
       ) : null}

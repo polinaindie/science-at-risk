@@ -58,7 +58,6 @@ connect.button_named: "Написати: {{ .Name }}"  # DRAFT-UK
 connect.button: "Зв’язатися"  # DRAFT-UK
 connect.title: "Зв’язатися з науковцем"  # DRAFT-UK
 connect.lede: "Заповніть форму, щоб написати науковцеві напряму"  # DRAFT-UK
-connect.languages: "Науковець спілкується мовами:"  # DRAFT-UK
 connect.languages_tip: "Пишіть такою мовою: {{ .Languages }}"  # DRAFT-UK
 help.title: "Хочете допомогти?"
 help.lede: "Заповніть форму або зв’яжіться з нами"

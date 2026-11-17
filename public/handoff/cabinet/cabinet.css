@@ -24,8 +24,8 @@
   --c-line: var(--color-line-soft, rgba(0, 0, 0, 0.25));
   --f-ui: var(--font-ui, 'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace);
   --f-head: var(--font-heading, 'Noto Serif', Georgia, 'Times New Roman', serif);
-  --f-text: var(--font-text, 'e-Ukraine', sans-serif);
-  --f-field: var(--font-text, 'e-Ukraine', 'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace);
+  --f-text: var(--font-text, 'IBM Plex Mono', monospace);
+  --f-field: var(--font-text, 'IBM Plex Mono', 'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace);
   --r-btn: var(--radius-squircle, 15px);
 }
 

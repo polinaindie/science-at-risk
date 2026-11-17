@@ -10,7 +10,6 @@
 @theme {
   --font-serif: 'Noto Serif', serif;
   --font-mono: 'IBM Plex Mono', monospace;
-  --font-ukraine: 'e-Ukraine', sans-serif;
   /* The three roles components ask for (utilities font-heading, font-text, font-ui). Values: tokens.css. */
   --font-heading: var(--font-heading);
   --font-text: var(--font-text);

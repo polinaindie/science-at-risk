@@ -9,7 +9,7 @@ const KINDS = {
   live: { file: 'live', url: `${SITE}/scientists/olena-shevchenko`, id: true, idv: 'R-2026-0307' },
 };
 const F = `'IBM Plex Mono',Menlo,Consolas,'Courier New',monospace`;
-const S = `'Noto Serif',Georgia,'Times New Roman',serif`;
+const S = `'Noto Serif', Georgia, 'Times New Roman', serif`;
 const raw = (L, k, v = {}) => { let s = dict[L][k]; if (s === undefined) throw new Error(k); return s.replace(/\{(\w+)\}/g, (m, n) => (n in v ? v[n] : m)); };
 
 function build(L, key) {

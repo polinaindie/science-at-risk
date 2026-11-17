@@ -57,7 +57,7 @@ export function FieldSelect({
         aria-labelledby={`${id}-label`}
         aria-invalid={invalid || undefined}
         onClick={() => setOpen((v) => !v)}
-        className={`mt-1 flex w-full items-center justify-between gap-3 border-0 border-b-2 border-brand-black bg-transparent pb-2 text-left font-text text-text2-desktop font-light text-brand-black ${
+        className={`mt-1 flex w-full items-center justify-between gap-3 border-0 border-b-2 border-brand-black bg-transparent pb-2 text-left font-text text-text2-desktop text-brand-black ${
           open ? 'shadow-[0_2px_0_0_#000]' : ''
         } disabled:border-brand-disabled disabled:text-[#6b6b6b]`}
       >
@@ -85,7 +85,7 @@ export function FieldSelect({
                   onChange?.(o.value);
                   close();
                 }}
-                className={`w-full border-0 bg-transparent px-2 py-2 text-left font-text text-text2-desktop font-light text-brand-black hover:bg-brand-accent-blue ${
+                className={`w-full border-0 bg-transparent px-2 py-2 text-left font-text text-text2-desktop text-brand-black hover:bg-brand-accent-blue ${
                   o.value === value ? 'font-bold' : ''
                 }`}
               >

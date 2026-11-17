@@ -1,7 +1,7 @@
 /*
  * satr-text.css — the type roles applied to the static pages. Needs tokens.css linked first.
  *
- * Three roles (defined in tokens.css): heading = serif, text = e-Ukraine Light, ui = IBM Plex Mono.
+ * Three roles (defined in tokens.css): heading = Noto Serif, text = IBM Plex Mono, ui = IBM Plex Mono.
  *   - the page default is `ui`; every running-text element below is `text`;
  *   - sizes are NOT changed here, only the family, the weight and the tracking, so layouts keep their rhythm;
  *   - `:not(#_)` raises specificity above the page stylesheets (some of them nest three classes) without !important.
@@ -30,11 +30,11 @@ body { font-family: var(--font-ui); }
   letter-spacing: 0;
 }
 
-/* Bold inside running text stays bold (e-Ukraine has a real 700). */
+/* Bold inside running text stays bold (IBM Plex Mono has a real 700). */
 :is(.paragraph, .story-lead, .paper-lead, .main-text, .project-card__text):not(#_) :is(strong, b) { font-weight: 700; }
 
 /* One outlier: this element is a control, so it fell back to the browser's 13.33px, under the 14px floor. */
-.project-card__text:not(#_) { font-size: 15px; line-height: 22px; }
+.project-card__text:not(#_) { font-size: 16px; line-height: 25px; }
 
 /* Headings: family is the `heading` role wherever the page draws them (header, menu and footer are components with their own
    classes and are left alone); the SIZE comes from the heading scale in tokens.css, by role, not by page. */
@@ -56,4 +56,19 @@ body { font-family: var(--font-ui); }
 :is(h3.heading, .expert-card__title, .paper-card__title, .infrastructures-card__title, .story-card__title, .project-card__title,
     .person-card__title, .aside__title):not(#_) {
   font-size: var(--heading-3); line-height: var(--heading-3-lh); letter-spacing: var(--heading-3-ls);
+}
+
+/* Controls do not inherit the page font by default (the browser uses Arial/system-ui): make them follow the role. */
+button, input, select, textarea { font-family: inherit; }
+
+/* Readability floor for mono running text (see the readability rules in tokens.css).
+   - paragraphs of content pages: line-height at least 1.55; short labels set as <p> keep their own height;
+   - links, tags and field labels do not go under 14px on a phone. */
+:is(main, .wrapper, .content) :is(p, li):not(.satr-chrome *):not([class*="type"], [class*="label"], [class*="count"], [class*="updated"], [class*="hint"], [class*="date"], [class*="note"]):not(#_) {
+  line-height: 1.55;
+}
+@media (max-width: 767px) {
+  :is(.hero__list-link, .hover--underline, .expert-card__tag, .infrastructures__text-left, .satr-float__label):not(.satr-chrome *):not(#_) { font-size: max(14px, 0.7778rem); }
+  :is(.paragraph, p, li, .content) a:not(.satr-chrome *):not(#_) { font-size: max(14px, 1em); }
+  a[href^="mailto:"]:not(.satr-chrome *):not(#_) { font-size: max(14px, 1em); }
 }

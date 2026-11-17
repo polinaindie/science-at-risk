@@ -33,6 +33,8 @@ export interface HomeHeroV4FinalProps {
   /** Shown one at a time; Back / Next step through them and wrap. */
   stories?: HomeHeroV4FinalStory[];
   storiesLabel?: string;
+  /** Where the tag above a story goes: the stories list filtered by that tag. */
+  storiesTagHref?: string;
   readLabel?: string;
   otherLabel?: string;
   otherHref?: string;
@@ -178,6 +180,7 @@ export function HomeHeroV4Final({
   tagline = 'Centre of Excellence on Science at Risk, Ukraine',
   stories = defaultHomeHeroV4FinalStories,
   storiesLabel = 'Stories',
+  storiesTagHref = live('stories-theme-stories.html'),
   readLabel = 'Read Story',
   otherLabel = 'Other stories',
   otherHref = live('stories.html'),
@@ -193,7 +196,8 @@ export function HomeHeroV4Final({
   const id = useId();
   const menuId = `${id}-menu`;
   const [menuOpen, setMenuOpen] = useState(false);
-  const [index, setIndex] = useState(0);
+  /* A different story on every visit or refresh. */
+  const [index, setIndex] = useState(() => Math.floor(Math.random() * Math.max(stories.length, 1)));
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const copyRef = useRef<HTMLDivElement>(null);
   const isUk = locale === 'uk';
@@ -375,7 +379,9 @@ export function HomeHeroV4Final({
             >
               <div className="flex flex-col gap-[16px]">
                 <p className="m-0 font-ui text-text1-mobile text-brand-black md:text-text1-desktop">
-                  {storiesLabel}
+                  <a href={storiesTagHref} className={`satr-underlined ${focusRing}`}>
+                    {storiesLabel}
+                  </a>
                 </p>
                 {/* Every story's copy in the one cell, only the current one
                     shown, so Back / Next stay put whatever the length of the
@@ -409,7 +415,7 @@ export function HomeHeroV4Final({
                         </a>
                       </h2>
                       {item.description ? (
-                        <p className="m-0 font-text text-[0.9375rem] leading-[1.375rem] text-brand-black md:text-[1.125rem] md:leading-[1.4375rem]">
+                        <p className="m-0 font-text text-[0.9375rem] leading-[1.5rem] text-brand-black md:text-[1rem] md:leading-[1.625rem]">
                           {item.description}
                         </p>
                       ) : null}
@@ -417,7 +423,7 @@ export function HomeHeroV4Final({
                         <SquircleLink
                           href={item.href}
                           aria-label={`${readLabel}: ${item.title}`}
-                          className={`mt-[16px] self-start opacity-0 transition-opacity duration-200 group-focus-within/story:opacity-100 group-hover/story:opacity-100 [@media(hover:none)]:opacity-100 ${focusRing}`}
+                          className={`mt-[16px] self-start ${focusRing}`}
                         >
                           {readLabel}
                         </SquircleLink>
@@ -500,7 +506,13 @@ export function HomeHeroV4Final({
               >
                 <div className="flex flex-col gap-3 lg:gap-4">
                   <p className="m-0 font-ui text-text1-mobile text-brand-black md:text-text1-desktop">
-                    {storiesLabel}
+                    <a
+                      href={storiesTagHref}
+                      tabIndex={item === story ? undefined : -1}
+                      className={`satr-underlined ${focusRing}`}
+                    >
+                      {storiesLabel}
+                    </a>
                   </p>
                   <div className="flex flex-col gap-4">
                     {/* The site's titles run to a hundred-odd characters; beside
@@ -522,7 +534,7 @@ export function HomeHeroV4Final({
                       </a>
                     </h2>
                     {item.description ? (
-                      <p className="m-0 max-w-[395px] font-text text-[1rem] font-light leading-[normal] text-[#717171]">
+                      <p className="m-0 max-w-[395px] font-text text-[1rem] leading-[1.6] text-[#717171]">
                         {item.description}
                       </p>
                     ) : null}

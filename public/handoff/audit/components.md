@@ -37,7 +37,7 @@ line-muted rgba(0,0,0,.25), link #fdbe0d (deprecated in hand-off).
 (Cabinet/Profile 42, HomeHeroV4Final 23, SiteHeader 11, OnboardingWizard 11, Footer 7).
 
 Fonts: Noto Serif 400 and IBM Plex Mono 300/400/500 from Google Fonts at runtime (not self-hosted).
-e-Ukraine: 300 and 400 both point to the same Light file, 700 is Bold. Usage: 149 `font-mono`, 57 `font-ukraine`, 49 `font-serif`.
+IBM Plex Mono: 300 and 400 both point to the same Light file, 700 is Bold. Usage: 149 `font-mono`, 57 `font-ukraine`, 49 `font-serif`.
 
 ## 4. Rem-base mismatch (important)
 `html { font-size: 18px }` in globals.css, but `type-scale.css` is generated for 1rem = 16px. Measured on the dev server

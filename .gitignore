@@ -28,3 +28,6 @@ npm-debug.log*
 
 # also ignore a symlinked node_modules (the trailing-slash rule above matches only directories)
 node_modules
+
+# check-pages screenshots
+.check-pages/

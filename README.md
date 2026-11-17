@@ -33,7 +33,7 @@ src/
   tokens/         # Design tokens (typography, colors)
   styles/         # fonts.css, globals.css (@theme)
 public/
-  fonts/          # e-Ukraine
+  fonts/          # IBM Plex Mono
   assets/ui/      # Figma exports (squircles, icons)
   assets/mirror/  # Sample photos for Storybook demos
 scienceatrisk.org/  # Full offline mirror of the live site

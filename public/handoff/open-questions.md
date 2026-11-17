@@ -43,7 +43,7 @@ Collected from all parts of the package. Details and the assumption made in the 
 ## Design and fonts
 | # | Question | Owner |
 |---|---|---|
-| 26 | e-Ukraine: the files have no licence text (only the designer's name and `plan.diia.gov.ua`); the shipped file is the Light 300 cut, there is no real 400. Confirm the licence for the site and the weights. | Des |
+| 26 | IBM Plex Mono: the files have no licence text (only the designer's name and `plan.diia.gov.ua`); the shipped file is the Light 300 cut, there is no real 400. Confirm the licence for the site and the weights. | Des |
 | 27 | Noto Serif and IBM Plex Mono are not in the repo and load from Google Fonts at runtime (privacy). Self-host? Which weights are real? Both are SIL OFL upstream — not confirmed from a file here. | Des + Dev |
 | 28 | Squircle: shipped as `../js/satr-shape.js` (same geometry as the React site, smoothing 0.9); without JS a plain `border-radius`. Is the no-JS fallback acceptable, or should the shape also be pre-drawn in CSS for the few fixed-size elements? | Des + Dev |
 | 29 | Error colour: static pages use yellow with `!`; the React code has red `#b00020`. The package follows the static pages. | Des |

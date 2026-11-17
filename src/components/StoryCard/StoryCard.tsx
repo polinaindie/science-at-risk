@@ -51,7 +51,7 @@ export function StoryCard({
           </Heading>
         </header>
         {excerpt ? (
-          <p className="font-text text-text2-mobile font-light md:text-text2-desktop">{excerpt}</p>
+          <p className="font-text text-text2-mobile md:text-text2-desktop">{excerpt}</p>
         ) : null}
         {date ? <p className="mt-3 font-ui text-breadcrumbs text-brand-muted">{date}</p> : null}
       </a>

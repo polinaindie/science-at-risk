@@ -36,7 +36,7 @@ export function ProjectCard({
       </header>
       <div className="flex max-w-[690px] flex-col gap-4">
         {texts.map((t) => (
-          <p key={t.slice(0, 24)} className="font-text text-text2-desktop font-light">
+          <p key={t.slice(0, 24)} className="font-text text-text2-desktop">
             {t}
           </p>
         ))}

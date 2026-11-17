@@ -2,7 +2,7 @@
    (src/components/Cabinet/Profile.tsx) all read the same.
 
      name ............ Noto Serif 400            page 36/1.12, card 22/28 (28/34 from 768px)
-     post (degree) ... e-Ukraine Light 18/26
+     post (degree) ... IBM Plex Mono 18/26
      institution ..... IBM Plex Mono 400, 14 (15 from 768px) / 22, #4a5459
      description ..... IBM Plex Mono 400, 16/1.65
    Scale: 14 / 16 / 18 / 22 / 28 / 36 / 48 px; spacing: 8 / 16 / 24 / 32 / 48 / 64 / 96; one radius. */
@@ -18,12 +18,7 @@
     --paper: var(--ground); /* the reading column shares the page colour */
 }
 
-/* e-Ukraine from this site: the main stylesheet is loaded from another domain, where the browser refuses its font files. */
-@font-face { font-family: "e-Ukraine"; font-weight: 300; font-style: normal; font-display: swap;
-    src: url("../../fonts/client/e-ukraine/e-ukraine.woff") format("woff"), url("../../fonts/client/e-ukraine/e-ukraine.otf") format("opentype"); }
-@font-face { font-family: "e-Ukraine"; font-weight: 700; font-style: normal; font-display: swap;
-    src: url("../../fonts/client/e-ukraine/e-Ukraine-Bold.woff") format("woff"), url("../../fonts/client/e-ukraine/e-Ukraine-Bold.otf") format("opentype"); }
-
+/* IBM Plex Mono from this site: the main stylesheet is loaded from another domain, where the browser refuses its font files. */
 /* ---- name ---- */
 .expert__header,
 .expert-card__content .expert-card__title {
@@ -41,8 +36,8 @@
 /* ---- post: the same faces as the Experience list, by what each line is ---- */
 .expert-id .paragraph,
 .expert-card__content .expert-card__subtitle {
-    font-family: var(--font-text, "e-Ukraine", sans-serif);
-    font-weight: 300;
+    font-family: var(--font-text, "IBM Plex Mono", monospace);
+    font-weight: var(--font-weight-text);
     font-size: var(--t-md);
     line-height: 1.4444rem;
     letter-spacing: 0;
@@ -73,11 +68,11 @@
     text-justify: inter-word;
 }
 
-/* On a card the institution is set in e-Ukraine Light like the post above it (the profile page keeps the mono). */
+/* On a card the institution is set in IBM Plex Mono like the post above it (the profile page keeps the mono). */
 /* ...and in the post's own colour. */
 .expert-card__content .expert-card__subtitle + .expert-card__text {
-    font-family: var(--font-text, "e-Ukraine", sans-serif);
-    font-weight: 300;
+    font-family: var(--font-text, "IBM Plex Mono", monospace);
+    font-weight: var(--font-weight-text);
     color: #000;
     text-align: justify; /* the lines run flush to both edges of the card's text column */
     text-justify: inter-word;

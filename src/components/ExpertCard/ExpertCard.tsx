@@ -71,12 +71,12 @@ export function ExpertCard({
             <p className="mb-4 font-ui text-h3-mobile md:text-text1-desktop">{subtitle}</p>
           ) : null}
           {organization ? (
-            <p className="mb-2 font-text text-text2-mobile font-light md:text-text2-desktop">
+            <p className="mb-2 font-text text-text2-mobile md:text-text2-desktop">
               {organization}
             </p>
           ) : null}
           {description ? (
-            <p className="mb-6 max-w-[840px] font-text text-text2-mobile font-light md:text-text2-desktop">
+            <p className="mb-6 max-w-[840px] font-text text-text2-mobile md:text-text2-desktop">
               {description}
             </p>
           ) : null}

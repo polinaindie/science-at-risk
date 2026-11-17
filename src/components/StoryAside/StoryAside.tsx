@@ -29,11 +29,11 @@ export function StoryAside({
       {items.map((item) => (
         <div key={item.label}>
           <p className="font-ui text-breadcrumbs text-brand-black">{item.label}</p>
-          <p className="mt-1 font-text text-text2-desktop font-light">{item.value}</p>
+          <p className="mt-1 font-text text-text2-desktop">{item.value}</p>
         </div>
       ))}
       {note ? (
-        <p className="font-text text-text2-desktop font-light text-brand-muted">{note}</p>
+        <p className="font-text text-text2-desktop text-brand-muted">{note}</p>
       ) : null}
       {ctaLabel ? (
         <a href={ctaHref}>

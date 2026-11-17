@@ -1,4 +1,4 @@
-/* Research article pages: easier to read at the column's own width. The site's e-Ukraine paragraph ran at 18/1.2 with the
+/* Research article pages: easier to read at the column's own width. The site's IBM Plex Mono paragraph ran at 18/1.2 with the
    paragraphs glued together; here the line is 1.65 with an even gap, and the text has a few accents:
    the author line over a 2px black rule, the numbered findings with their title in bold, and percentages in bold. (The classes paper-lead / paper-point / paper-point__title are set in the HTML.) */
 .paper .paragraph {

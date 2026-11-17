@@ -4,30 +4,6 @@
 /*----------------------------------*/
 /*  fonts */
 /*----------------------------------*/
-@font-face {
-    font-family: "e-ukraine";
-    src: local("☺"), local("e-ukraine"), local("e-ukraine"), url("../fonts/client/e-ukraine.woff2") format("woff2"), url("../fonts/client/e-ukraine.woff") format("woff");
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'e-Ukraine';
-    src: url("../fonts/client/e-ukraine/e-ukraine.woff") format("woff"), url("../fonts/client/e-ukraine/e-ukraine.woff2") format("woff2"), url("../fonts/client/e-ukraine/e-ukraine.otf") format("opentype");
-    font-weight: 300;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'e-Ukraine';
-    src: url("../fonts/client/e-ukraine/e-Ukraine-Bold.woff") format("woff"), url("../fonts/client/e-ukraine/e-Ukraine-Bold.woff2") format("woff2"), url("../fonts/client/e-ukraine/e-Ukraine-Bold.otf") format("opentype");
-    font-weight: 700;
-    font-style: normal;
-    font-display: swap;
-}
-
 .sr-only {
     position: absolute;
     width: 1px;
@@ -10885,7 +10861,7 @@ ul {
 
 .main-text--ukraine, .aside__link, .aside__lang-text, .list-card__price, .list-card__text, .infrastructures-card__text, .infrastructures-card__right, .paper-card__right-text, .story .paragraph, .paper .paragraph, .project-card__text, .footer__link, .loader__text, .nothing__text, .stories__text, .infrastructure__text, .infrastructure__sec-text, .person-card__link, .paper__section-text, .story-card__text, .quote__name, .storyAside__text {
     font-weight: 300;
-    font-family: "e-Ukraine";
+    font-family: "IBM Plex Mono";
     font-size: 0.77778rem;
     line-height: 1.22222rem;
 }
@@ -10906,7 +10882,7 @@ ul {
 
 .main-text--ukraineBig, .search-hero__column input {
     font-weight: 300;
-    font-family: "e-Ukraine";
+    font-family: "IBM Plex Mono";
     font-size: 0.83333rem;
     line-height: 1.11111rem;
 }
@@ -11219,7 +11195,7 @@ ul {
 }
 
 .expert-card__text {
-    font-family: "e-Ukraine";
+    font-family: "IBM Plex Mono";
     margin: 0.88889rem 0;
     font-size: 0.77778rem;
     line-height: 1.22222rem;
@@ -12169,7 +12145,7 @@ ul {
 }
 
 .expertTitle {
-    font-family: "e-Ukraine";
+    font-family: "IBM Plex Mono";
     font-weight: 400;
     color: #000000;
     letter-spacing: -0.03em;

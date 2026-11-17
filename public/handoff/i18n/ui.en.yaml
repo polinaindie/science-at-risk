@@ -58,7 +58,6 @@ connect.button_named: "Write to {{ .Name }}"  # left column button on a profile,
 connect.button: "Connect"  # mobile / sticky button
 connect.title: "Contact a scientist"
 connect.lede: "Fill out this form to contact the scientist directly"
-connect.languages: "The scientist communicates in:"
 connect.languages_tip: "Write in: {{ .Languages }}"  # hover note under the button, expert-profile.js
 help.title: "Want to help?"  # infrastructure pages; <br> after "Want" on mobile
 help.lede: "Fill out the form or contact us"

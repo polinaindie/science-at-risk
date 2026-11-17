@@ -56,7 +56,7 @@ export function InfrastructuresCard({
             <span className="satr-hover-underline">{title}</span>
           </Heading>
           {description ? (
-            <p className="mt-2 font-text text-text2-desktop font-light">{description}</p>
+            <p className="mt-2 font-text text-text2-desktop">{description}</p>
           ) : null}
         </div>
         <div className="flex min-w-0 flex-col gap-4 md:w-5/12 md:flex-row md:flex-wrap md:pl-10 lg:pl-24">
@@ -89,14 +89,14 @@ export function InfrastructuresCard({
                   {domain}
                 </Tag>
               ) : (
-                <p className="font-text text-text2-desktop font-light">{domain}</p>
+                <p className="font-text text-text2-desktop">{domain}</p>
               )}
             </div>
           ) : null}
           {amount ? (
             <div className="md:min-w-[140px] md:text-right">
               <p className={labelClass}>{amountLabel}</p>
-              <p className="font-text text-text2-desktop font-light">{amount}</p>
+              <p className="font-text text-text2-desktop">{amount}</p>
             </div>
           ) : null}
         </div>

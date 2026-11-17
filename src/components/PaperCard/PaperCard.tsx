@@ -59,7 +59,7 @@ export function PaperCard({
             <p className="mt-4 font-text text-text1-desktop">{description}</p>
           ) : null}
           {usefulFor ? (
-            <p className="mt-3 font-text text-text2-mobile font-light md:text-text2-desktop">
+            <p className="mt-3 font-text text-text2-mobile md:text-text2-desktop">
               <span className="font-ui text-breadcrumbs text-brand-muted">Useful for: </span>
               {usefulFor}
             </p>
@@ -69,7 +69,7 @@ export function PaperCard({
           ) : null}
         </div>
         <div className="flex items-start gap-4 md:w-3/12 md:justify-end">
-          <p className="font-text text-text2-desktop font-light">{fileType}</p>
+          <p className="font-text text-text2-desktop">{fileType}</p>
         </div>
       </div>
       <div className="absolute bottom-[26px] right-0 z-20 hidden gap-3 opacity-0 transition-opacity group-hover:opacity-100 md:flex">

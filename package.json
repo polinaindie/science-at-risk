@@ -14,6 +14,7 @@
     "handoff": "node scripts/build-handoff.mjs",
     "handoff:check": "node scripts/build-handoff.mjs --check && node scripts/verify-hugo-partials.mjs",
     "sync": "node scripts/sync.mjs",
+    "check:pages": "node scripts/check-pages.mjs",
     "publish:pages": "bash scripts/publish-pages.sh",
     "prepare": "git config core.hooksPath .githooks || true"
   },

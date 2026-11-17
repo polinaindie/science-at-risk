@@ -42,7 +42,7 @@
     --step-text1: clamp(0.875rem, 0.7714rem + 0.4420vw, 1.125rem);
     --step-text1-lh: clamp(1.25rem, 1.0428rem + 0.8840vw, 1.75rem);
     --step-text1-ls: -0.03em;
-    --step-text2: clamp(0.875rem, 0.7714rem + 0.4420vw, 1.125rem);
+    --step-text2: clamp(0.875rem, 0.8232rem + 0.2210vw, 1rem);
     --step-text2-lh: clamp(1.375rem, 1.2714rem + 0.4420vw, 1.625rem);
     --step-text2-ls: 0;
     --step-tab: clamp(1.25rem, 1.1464rem + 0.4420vw, 1.5rem);

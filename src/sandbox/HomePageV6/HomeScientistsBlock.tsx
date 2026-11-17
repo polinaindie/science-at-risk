@@ -257,7 +257,7 @@ export function HomeScientistsBlock({
               name="search"
               type="search"
               placeholder=" "
-              className="w-full appearance-none border-0 bg-transparent font-text text-[length:clamp(16px,4.8vw,22px)] font-light leading-[1.75rem] text-brand-black outline-none lg:text-[1.125rem]"
+              className="w-full appearance-none border-0 bg-transparent font-text text-[length:clamp(16px,4.8vw,22px)] leading-[1.75rem] text-brand-black outline-none lg:text-[1.125rem]"
             />
             {/* Wraps rather than truncates: a reader who widens the letter
                 spacing still gets the whole label, not an ellipsis. */}

@@ -11,7 +11,7 @@
   position: relative;
   display: inline-block;
   isolation: isolate;
-  padding: 5px 14px;
+  padding: 7px 14px;
   color: var(--link-ink);
   font-family: var(--font-ui, 'IBM Plex Mono', monospace);
   font-size: 15px;

@@ -59,9 +59,10 @@
 .expert__tags + .aside__mobile + .expertTitle,
 .expert__tags + .expertTitle { margin-top: var(--s3); }
 
-/* The left column stays in view: on short screens the photo shrinks to the screen height
-   and, as a last resort, the column scrolls on its own. */
-@media (min-width: 768px) {
+/* The left column (photo, links, Write to ...) stays in view only on screens tall enough to show all of it.
+   On shorter ones it scrolls with the page: the photo is as wide as the column, so it can be tall, and a
+   sticky column taller than the screen would hide its button and links. */
+@media (min-width: 768px) and (min-height: 900px) {
     .expert-profile > .col-lg-4 > .aside {
         position: sticky;
         top: var(--s3);
@@ -71,9 +72,12 @@
         overflow-x: hidden;
         scrollbar-width: thin;
     }
+}
+@media (min-width: 768px) {
     .expert-profile > .col-lg-4 > .aside > picture.aside__img {
-        width: min(100%, clamp(180px, 32vh, 360px));
-        padding-top: min(100%, clamp(180px, 32vh, 360px));
+        /* like the live site: a square as wide as the column, so the photo grows and shrinks with the screen */
+        width: 100%;
+        padding-top: 100%;
         margin-inline: 0;
     }
 }
@@ -141,7 +145,7 @@
     font-weight: 400;
 }
 
-/* e-Ukraine ships Light (300) and Bold (700) only; its 400 file does not load, so 400 renders heavy. */
+/* IBM Plex Mono ships Light (300) and Bold (700) only; its 400 file does not load, so 400 renders heavy. */
 .project-card__text {
     font-size: 0.8333rem;
     font-weight: 300;
@@ -206,7 +210,9 @@
     /* the left column's own languages, Connect and links repeat in the sheet on phones */
     .expert-profile .aside.aside { display: block !important; }
     .aside > .aside__title, .aside > .aside__lang-text, .aside > .aside__contact, .aside > .aside__links { display: none; }
-    .aside > picture.aside__img { width: 160px; padding-top: 160px; margin: 0; }
+    /* like the live site: the photo is a square across the screen (50px side margins from 480px) */
+    .aside > picture.aside__img { width: auto; padding-top: 0; aspect-ratio: 1 / 1; margin: 0 0 var(--s2); }
+    @media (min-width: 480px) { .aside > picture.aside__img { margin-inline: 2.77778rem; } }
     .aside > picture.aside__img img { object-fit: cover; border-radius: var(--r); }
     .expert-id { margin: 0; }
     .expert-id .expert__header { font-size: var(--t-xl); line-height: 1.15; }
@@ -262,7 +268,6 @@
 }
 
 /* ---- Contact modal: languages line, icon-only close, fields in the order Name, Email, Text ---- */
-.help-form__langs { margin-top: var(--s1); margin-bottom: var(--s4); }
 
 /* Close: a bare white X, 2px strokes, no button shape */
 .expertHelp .help-form__btn-close {
@@ -342,7 +347,7 @@
     /* who (name, degree, institution), then the links 24px below */
     .aside-mini__name { font-family: var(--font-heading, "Noto Serif", serif); font-weight: 400; font-size: var(--t-xl); line-height: 1.15; letter-spacing: -0.02em; }
     .aside-mini__line { font-size: var(--t-sm); line-height: 1.5; margin-top: var(--s2); }
-    .aside-mini__name + .aside-mini__line { font-family: var(--font-text, "e-Ukraine", sans-serif); font-weight: 300; line-height: 1.3333rem; }
+    .aside-mini__name + .aside-mini__line { font-family: var(--font-text, "IBM Plex Mono", monospace); font-weight: var(--font-weight-text); line-height: 1.3333rem; }
     .aside-mini__place { font-family: var(--font-ui, "IBM Plex Mono", monospace); font-weight: 400; font-size: var(--t-xs); line-height: 1.2222rem; margin-top: 4px; color: #4a5459; }
 }
 
@@ -354,7 +359,7 @@
 .exp-list { order: 5; list-style: none; margin: var(--s1) 0 0; padding: 0; display: grid; gap: var(--s3); max-width: 62ch; }
 .exp-item { display: grid; grid-template-columns: var(--exp-year-w, 6ch) minmax(0, 1fr); column-gap: var(--s2); }
 .exp-year { font-family: var(--font-ui, "IBM Plex Mono", monospace); font-size: var(--t-sm); line-height: 1.2222rem; padding-top: 2px; }
-.exp-pos { display: block; font-family: var(--font-text, "e-Ukraine", sans-serif); font-weight: 300; font-size: var(--t-sm); line-height: 1.3333rem; }
+.exp-pos { display: block; font-family: var(--font-text, "IBM Plex Mono", monospace); font-weight: var(--font-weight-text); font-size: var(--t-sm); line-height: 1.3333rem; }
 .exp-place { display: block; margin-top: 4px; font-family: var(--font-ui, "IBM Plex Mono", monospace); font-size: var(--t-xs); line-height: 1.2222rem; }
 
 @media (min-width: 768px) {
@@ -406,7 +411,6 @@
 }
 
 /* Languages in the contact form: each one on the cabinet's alert yellow, separated by commas */
-.help-form__lang { background: #f0eebe; color: #000; padding: 1px 6px; }
 
 /* The last item of a list has no rule under it, and no padding below, so the next heading's own space is the only gap */
 .projects__item:last-child .project-card { border-bottom: 0; padding-bottom: 0; }

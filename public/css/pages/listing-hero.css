@@ -166,7 +166,7 @@
 @media (min-width: 768px) { .search-hero { padding-bottom: 56px; } }
 
 /* ---- Suggestions under the search field (js/scientists-filter.js): the fields and specialities that match the text.
-   A white card with square corners (2px black rule), e-Ukraine Light for the names, mono for the numbers. ---- */
+   A white card with square corners (2px black rule), IBM Plex Mono for the names, mono for the numbers. ---- */
 .search-hero .search-field { position: relative; }
 
 .suggest {
@@ -191,9 +191,9 @@
     gap: 16px;
     padding: 8px 14px;
     border-radius: 0;
-    font-family: var(--font-text, "e-Ukraine", sans-serif);
+    font-family: var(--font-text, "IBM Plex Mono", monospace);
     font-size: 0.8889rem;
-    font-weight: 300;
+    font-weight: var(--font-weight-text);
     line-height: 1.3333rem;
     color: #000;
     cursor: pointer;

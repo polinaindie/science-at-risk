@@ -79,7 +79,7 @@ export function Select({
             <li key={opt.value} role="option" aria-selected={opt.value === value}>
               <button
                 type="button"
-                className="w-full border-0 bg-transparent py-2 text-left font-text text-text2-desktop font-light text-brand-black hover:opacity-70"
+                className="w-full border-0 bg-transparent py-2 text-left font-text text-text2-desktop text-brand-black hover:opacity-70"
                 onClick={() => setValue(opt.value)}
               >
                 {opt.label}

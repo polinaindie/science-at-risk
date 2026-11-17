@@ -39,7 +39,7 @@ export function Quote({
               className="size-[60px] rounded-full object-cover"
             />
             <div>
-              <cite className="not-italic font-text text-text2-desktop font-light text-brand-black">
+              <cite className="not-italic font-text text-text2-desktop text-brand-black">
                 {author}
               </cite>
               {role ? (

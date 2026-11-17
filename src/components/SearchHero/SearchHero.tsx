@@ -180,7 +180,7 @@ export function SearchHero({
               defaultValue={defaultQuery}
               key={defaultQuery}
               aria-describedby={exampleQuery ? exampleId : undefined}
-              className="w-full border-0 bg-transparent font-text text-[1rem] font-light text-brand-black outline-none focus-visible:ring-2 focus-visible:ring-brand-black focus-visible:ring-offset-2"
+              className="w-full border-0 bg-transparent font-text text-[1rem] text-brand-black outline-none focus-visible:ring-2 focus-visible:ring-brand-black focus-visible:ring-offset-2"
               placeholder={placeholder}
             />
           </label>
@@ -191,12 +191,12 @@ export function SearchHero({
       </form>
 
       {exampleQuery ? (
-        <p id={exampleId} className="mt-4 font-text text-text2-mobile font-light md:text-text2-desktop">
+        <p id={exampleId} className="mt-4 font-text text-text2-mobile md:text-text2-desktop">
           <span className="font-ui text-breadcrumbs text-brand-muted">{exampleLabel}: </span>
           <button
             type="button"
             onClick={useExample}
-            className="satr-hover-underline border-0 bg-transparent p-0 text-left font-text text-text2-mobile font-light text-brand-black md:text-text2-desktop"
+            className="satr-hover-underline border-0 bg-transparent p-0 text-left font-text text-text2-mobile text-brand-black md:text-text2-desktop"
           >
             “{exampleQuery}”
           </button>
@@ -206,7 +206,7 @@ export function SearchHero({
       {note ? (
         <div className="mt-8 grid gap-8 md:grid-cols-12 md:items-end">
           <div className="md:col-span-4">
-            <p className="font-text text-text2-mobile font-light md:text-text2-desktop">{note}</p>
+            <p className="font-text text-text2-mobile md:text-text2-desktop">{note}</p>
             {noteHref && noteLinkLabel ? (
               <a
                 href={noteHref}

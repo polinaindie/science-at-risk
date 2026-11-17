@@ -22,7 +22,7 @@ function Block({ title, text, last = false, children }: { title: string; text?: 
     <section className={`border-t-2 border-brand-black pt-8 md:pt-10 ${last ? '' : 'pb-8 md:pb-10'}`}>
       <h2 className="font-heading text-h2-mobile md:text-h2-desktop">{title}</h2>
       {text ? (
-        <p className="mt-3 max-w-[620px] font-text text-text2-mobile font-light md:text-text2-desktop">{text}</p>
+        <p className="mt-3 max-w-[620px] font-text text-text2-mobile md:text-text2-desktop">{text}</p>
       ) : null}
       <div className="mt-6">{children}</div>
     </section>
@@ -153,7 +153,7 @@ export function SettingsScreen({ locale, email, onChangePassword, onChangeEmail,
       <Block title={t.email.title} text={t.email.text}>
         <p className="m-0 font-ui text-text1-mobile md:text-text1-desktop">{email}</p>
         {emailSent ? (
-          <p role="status" className="mt-4 max-w-[620px] bg-brand-accent-yellow px-4 py-3 font-text text-text2-mobile font-light">
+          <p role="status" className="mt-4 max-w-[620px] bg-brand-accent-yellow px-4 py-3 font-text text-text2-mobile">
             {t.email.sent(emailSent)}
           </p>
         ) : null}
@@ -219,7 +219,7 @@ export function SettingsScreen({ locale, email, onChangePassword, onChangeEmail,
         <ul className="m-0 flex list-none flex-col gap-4 p-0">
           {(['requests', 'team', 'opportunities'] as const).map((k) => (
             <li key={k}>
-              <label className="flex cursor-pointer items-start gap-3 font-text text-text2-mobile font-light md:text-text2-desktop">
+              <label className="flex cursor-pointer items-start gap-3 font-text text-text2-mobile md:text-text2-desktop">
                 <input
                   type="checkbox"
                   checked={letters[k]}
@@ -233,10 +233,10 @@ export function SettingsScreen({ locale, email, onChangePassword, onChangeEmail,
         </ul>
         <fieldset className="mt-8 border-0 p-0">
           <legend className="font-ui text-text1-mobile md:text-text1-desktop">{cabinetCopy[locale].settings.language.title}</legend>
-          <p className="mt-2 font-text text-text2-mobile font-light md:text-text2-desktop">{t.language.text}</p>
+          <p className="mt-2 font-text text-text2-mobile md:text-text2-desktop">{t.language.text}</p>
           <div className="mt-4 flex flex-wrap gap-6">
             {(['uk', 'en'] as const).map((k) => (
-              <label key={k} className="flex cursor-pointer items-center gap-3 font-text text-text2-mobile font-light md:text-text2-desktop">
+              <label key={k} className="flex cursor-pointer items-center gap-3 font-text text-text2-mobile md:text-text2-desktop">
                 <input type="radio" name="letter-lang" checked={lang === k} onChange={() => setLang(k)} className="size-5 accent-black" />
                 {t.language[k]}
               </label>
@@ -247,7 +247,7 @@ export function SettingsScreen({ locale, email, onChangePassword, onChangeEmail,
 
       <Block title={t.delete.title} text={t.delete.text} last>
         {deleted ? (
-          <p role="status" className="max-w-[620px] bg-brand-accent-yellow px-4 py-3 font-text text-text2-mobile font-light">
+          <p role="status" className="max-w-[620px] bg-brand-accent-yellow px-4 py-3 font-text text-text2-mobile">
             <strong className="font-medium">{t.delete.doneTitle}.</strong> {t.delete.doneText}
           </p>
         ) : (
