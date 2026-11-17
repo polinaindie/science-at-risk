@@ -25,3 +25,6 @@ npm-debug.log*
 !.env.example
 
 *storybook.log
+
+# also ignore a symlinked node_modules (the trailing-slash rule above matches only directories)
+node_modules
