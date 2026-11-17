@@ -6,7 +6,7 @@
 
 .scope-tabs {
     display: flex;
-    gap: 32px;
+    gap: 2rem;
     margin-top: 24px;
     font-family: var(--font-ui, "IBM Plex Mono", monospace);
 }
@@ -17,26 +17,28 @@
 
 .scope-tabs__link {
     display: block;
-    padding: 8px 0;
+    padding: 0.5rem 0;
     color: inherit;
     text-decoration: none;
 }
 
 .scope-tabs__word {
     display: block;
-    padding-bottom: 4px;
+    padding-bottom: 0.25rem;
     border-bottom: 3px solid transparent;
-    font-size: var(--step-tab);
-    font-weight: 400;
-    line-height: var(--step-tab-lh);
+    /* The same numbers as src/components/ScopeTabs (the one component): 1.25rem/1.75rem, 1.5rem/2rem from md, medium. */
+    font-size: 1.25rem;
+    font-weight: 500;
+    line-height: 1.75rem;
     letter-spacing: normal;
     color: #4d4d4d;
     transition: color 0.15s, border-color 0.15s;
 }
 
+@media (min-width: 768px) { .scope-tabs__word { font-size: 1.5rem; line-height: 2rem; } }
 
 .scope-tabs__link:hover .scope-tabs__word { color: #000; border-bottom-color: rgba(0, 0, 0, 0.25); }
-.scope-tabs__link[aria-current="page"] .scope-tabs__word { color: #000; border-bottom-color: #000; font-weight: 500; }
+.scope-tabs__link[aria-current="page"] .scope-tabs__word { color: #000; border-bottom-color: #000; }
 .scope-tabs__link:focus-visible { outline: 2px solid #000; outline-offset: 4px; }
 
 /* Societies: the note when a search or a tag finds nothing */

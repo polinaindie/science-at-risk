@@ -156,17 +156,29 @@
     }
 }
 
-.scientific-societies .aside h2 {
+.scientific-societies .aside.aside h2:not(#_) {
+    /* A label, not a heading: the value under it is what the reader came for. */
     margin-top: 1.778rem;
-    margin-bottom: 0.444rem;
+    margin-bottom: 0.222rem;
+    font-family: var(--font-ui, "IBM Plex Mono", monospace);
+    font-size: 0.8333rem;
+    font-weight: 400;
+    line-height: 1.5;
+    letter-spacing: 0;
+    color: #4d4d4d;
 }
 
-.scientific-societies .aside h2:first-child {
+.scientific-societies .aside.aside h2:first-child:not(#_) {
     margin-top: 0;
 }
 
-.scientific-societies .aside p {
+.scientific-societies .aside p:not(#_),
+.scientific-societies .aside > a:not(#_) {
+    display: block;
     margin-bottom: 0.444rem;
+    font-size: 1.111rem;
+    line-height: 1.5;
+    color: #000;
 }
 
 .scientific-societies__links {

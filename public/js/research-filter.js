@@ -30,11 +30,22 @@
         var THEMES = data.themes;
         /* the file is in newest-first order, and that is the order on the page */
         var DOCS = data.docs;
+        var PEOPLE = data.people || {};
         var isNew = function (d) { return d['new'] === true; };
         var chosen = readUrl();
 
         var esc = function (s) { var d = document.createElement('div'); d.textContent = s; return d.innerHTML; };
         var fmt = function (s, v) { return s.replace(/\{(\w+)\}/g, function (_, k) { return v[k]; }); };
+        /* 2026-07-30 -> 30.07.26, the way the stories list writes a date */
+        var fmtDate = function (iso) { var m = /^(\d{4})-(\d\d)-(\d\d)$/.exec(iso || ''); return m ? m[3] + '.' + m[2] + '.' + m[1].slice(2) : ''; };
+        /* "A, B and C": a name that is a scientist on the site becomes a link to the profile */
+        var authorsHtml = function (text) {
+            return text.split(/(,\s*|\s+and\s+)/).map(function (part, i) {
+                if (i % 2) return esc(part);
+                var slug = PEOPLE[part.trim()];
+                return slug ? '<a class="research-card__author hover hover--underline" href="' + base + 'expert/' + slug + '.html">' + esc(part) + '</a>' : esc(part);
+            }).join('');
+        };
         var count = function (theme) { return DOCS.filter(function (d) { return d.theme === theme; }).length; };
 
         /* the page is no longer paged: all documents are on it */
@@ -109,9 +120,14 @@
             var href = base + 'research/' + d.slug + '.html', pdf = base + d.pdf;
             return '<div class="paper-card"><article class="paper-card__wrap"><div class="row align-items-start justify-content-between">' +
                 '<div class="col-xl-6 col-md-7"><div class="paper-card__info">' +
-                (isNew(d) ? '<span class="tag research-card__new">' + esc(t['new']) + '</span>' : '') +
+                (d.date || isNew(d)
+                    ? '<div class="research-card__meta">' +
+                      (d.date ? '<time class="research-card__date" datetime="' + esc(d.date) + '">' + esc(fmtDate(d.date)) + '</time>' : '') +
+                      (isNew(d) ? '<span class="tag research-card__new">' + esc(t['new']) + '</span>' : '') +
+                      '</div>'
+                    : '') +
                 '<h2 class="paper-card__title"><span>' + esc(d.title) + '</span></h2>' +
-                (d.authors ? '<p class="paper-card__text">' + esc(t.authors + ' ' + d.authors) + '</p>' : '') +
+                (d.authors ? '<p class="paper-card__text">' + esc(t.authors) + ' ' + authorsHtml(d.authors) + '</p>' : '') +
                 '</div></div>' +
                 '<div class="offset-xl-3 offset-md-2 col-md-3"><div class="paper-card__right"><p class="paper-card__right-text">' + esc(t.pdf) + '</p></div></div>' +
                 '</div></article>' +

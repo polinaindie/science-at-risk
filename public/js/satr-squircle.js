@@ -87,6 +87,36 @@
 
   const run = () => document.querySelectorAll('[data-satr-squircle="outline"]').forEach(init);
   document.readyState === 'loading' ? document.addEventListener('DOMContentLoaded', run) : run();
+
+  /* The site's chips (.tag) are squircles too, drawn here from the same geometry as <Tag> (radius 16, smoothing 0.9) as
+     a clip-path on the chip itself. They used to wait for a paint worklet fetched from unpkg, and until it arrived (or
+     if it never did) the chip was blank or only a rounded rectangle. Chips the page adds later (filters redraw lists)
+     are picked up as they appear. */
+  const TAG_RADIUS = 16;
+  const sized = new ResizeObserver((entries) => entries.forEach((e) => drawTag(e.target)));
+  function drawTag(el) {
+    const w = el.offsetWidth;
+    const h = el.offsetHeight;
+    if (!w || !h) return;
+    el.style.clipPath = `path('${path(w, h, TAG_RADIUS, 0)}')`;
+  }
+  function initTag(el) {
+    if (el.hasAttribute('data-satr-sq')) return;
+    el.setAttribute('data-satr-sq', '');
+    sized.observe(el);
+    drawTag(el);
+  }
+  const scanTags = (root) => {
+    if (root.matches && root.matches('.tag')) initTag(root);
+    if (root.querySelectorAll) root.querySelectorAll('.tag').forEach(initTag);
+  };
+  const startTags = () => {
+    scanTags(document);
+    new MutationObserver((list) =>
+      list.forEach((m) => m.addedNodes.forEach((node) => node.nodeType === 1 && scanTags(node))),
+    ).observe(document.body, { childList: true, subtree: true });
+  };
+  document.readyState === 'loading' ? document.addEventListener('DOMContentLoaded', startTags) : startTags();
 })();
 
 /* The header stays at the top of every static page (see css/satr-squircle.css). Over the top of the page it is

@@ -278,6 +278,21 @@ export function SiteHeader({
   const focusRing =
     'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-current';
 
+  /* The menu fades in and out (0.3s, as on scienceatrisk.org): it is kept in the page while it fades — `shown` — and
+     `open` turns on one frame after it appears so the transition has something to run from. */
+  const [menuShown, setMenuShown] = useState(false);
+  const [menuVisible, setMenuVisible] = useState(false);
+  useEffect(() => {
+    if (menuOpen) {
+      setMenuShown(true);
+      const id = requestAnimationFrame(() => requestAnimationFrame(() => setMenuVisible(true)));
+      return () => cancelAnimationFrame(id);
+    }
+    setMenuVisible(false);
+    const t = window.setTimeout(() => setMenuShown(false), 300);
+    return () => window.clearTimeout(t);
+  }, [menuOpen]);
+
   useEffect(() => {
     if (!menuOpen) return;
     const onKey = (e: KeyboardEvent) => {
@@ -382,50 +397,49 @@ export function SiteHeader({
               </SquircleLink>
             )}
           </div>
-          <button
-            ref={menuButtonRef}
-            type="button"
-            onClick={() => setMenuOpen((open) => !open)}
-            aria-label={`${menuOpen ? (isUa ? 'Закрити меню' : 'Close menu') : isUa ? 'Відкрити меню' : 'Open menu'}${member && unread ? (isUa ? `, нових сповіщень: ${unread}` : `, ${unread} new notifications`) : ''}`}
-            aria-expanded={menuOpen}
-            aria-controls={menuId}
-            data-satr-menu-button=""
-            className={`satr-dim flex min-h-11 min-w-11 items-center justify-center border-0 bg-transparent p-0 -mr-[10px] ${focusRing}`}
-          >
-            <span className="relative flex">
-            <CountBadge count={member ? unread ?? 0 : 0} className="absolute -right-3 -top-3 md:hidden" />
-            <img
-              src={`${base}assets/ui/hamburger-dark.svg`}
-              alt=""
-              width={30}
-              height={22}
-              className={`h-[22px] w-[30px] ${inverted ? 'brightness-0 invert' : ''}`}
-            />
-            </span>
-          </button>
-        </div>
-      </div>
+          {/* The burger and the menu share one anchor: the panel drops from the burger's corner and the burger, drawn
+              in CSS, turns into its X above it (css/satr-squircle.css, `.satr-burger`). */}
+          <div className="relative">
+            <button
+              ref={menuButtonRef}
+              type="button"
+              onClick={() => setMenuOpen((open) => !open)}
+              aria-label={`${menuOpen ? (isUa ? 'Закрити меню' : 'Close menu') : isUa ? 'Відкрити меню' : 'Open menu'}${member && unread ? (isUa ? `, нових сповіщень: ${unread}` : `, ${unread} new notifications`) : ''}`}
+              aria-expanded={menuOpen}
+              aria-controls={menuId}
+              data-satr-menu-button=""
+              data-tone={inverted ? 'dark' : 'light'}
+              className={`satr-dim relative z-[65] flex min-h-11 min-w-11 items-center justify-center border-0 bg-transparent p-0 -mr-[10px] ${focusRing}`}
+            >
+              <span className="relative flex">
+                <CountBadge count={member ? unread ?? 0 : 0} className="absolute -right-3 -top-3 md:hidden" />
+                <span className="satr-burger" aria-hidden>
+                  <i />
+                  <i />
+                  <i />
+                </span>
+              </span>
+            </button>
 
-      {/* Always in the markup, hidden until opened: the static pages are this
-          component rendered to HTML, and their script finds the menu by these
-          hooks. */}
-      <div
-        id={menuId}
-        data-satr-menu=""
-        hidden={!menuOpen}
-        className="fixed inset-0 z-[60] flex justify-end"
-      >
-        <div
-          data-satr-menu-backdrop=""
-          className="absolute inset-0 bg-black/40"
-          aria-hidden
-          onClick={() => setMenuOpen(false)}
-        />
-        {/* A fixed width: the panel must not size itself to its widest line
-            (the address, which a script fills in on static pages), or the same
-            menu is a different width on every page. */}
-        <div className="relative h-full w-full max-w-[420px]">
-          <MobileNav
+            {/* Always in the markup, hidden until opened: the static pages are this component rendered to HTML, and
+                their script finds the menu by these hooks. It fades (0.3s): `hidden` goes on once it has faded out,
+                `data-open` comes on a frame after it appears. */}
+            <div id={menuId} data-satr-menu="" hidden={!menuShown} data-open={menuVisible ? '' : undefined}>
+              <div
+                data-satr-menu-backdrop=""
+                className="fixed inset-0 z-[60]"
+                aria-hidden
+                onClick={() => setMenuOpen(false)}
+              />
+              {/* A fixed width: the panel must not size itself to its widest line (the address, which a script fills in
+                  on static pages), or the same menu is a different width on every page. A phone gets the whole
+                  screen; from `md` up it is a card hanging from the burger's corner, as far from the top edge of the screen as from
+                  the right one (6px on a tablet, 12px from 1280px). */}
+              <div
+                data-satr-menu-panel=""
+                className="fixed inset-0 z-[60] md:absolute md:inset-auto md:right-[-10px] md:top-[-16px] md:h-auto md:w-[330px] md:max-w-[calc(100vw-2rem)] min-[1280px]:right-[-28px] min-[1280px]:top-[-10px] min-[1753px]:right-[-33px]"
+              >
+                <MobileNav
             items={items}
             tone={inverted ? 'dark' : 'light'}
             locale={isUa ? 'UA' : 'EN'}
@@ -455,6 +469,9 @@ export function SiteHeader({
               menuButtonRef.current?.focus();
             }}
           />
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </header>

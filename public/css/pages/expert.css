@@ -188,12 +188,11 @@
 .aside__links-item { padding: 4px var(--s3) 4px 0; }
 
 .expert-profile .btn,
-.expert-cta .btn,
-.tag { border-radius: var(--r); }
+.expert-cta .btn { border-radius: var(--r); }
+/* the chips (.tag) are the site's one squircle chip, drawn by style.min.css exactly as on the lists: no radius or fill of their own here */
 
 /* ---- Minimum 14px: captions, chips, errors (breadcrumbs: css/breadcrumbs.css) ---- */
 .tag, .tag *, .help-form small, .help-form [class*="error"] { font-size: var(--t-xs); line-height: 1.4; }
-.tags .tag { background: #fff; }
 
 /* ---- Pause and coda before the footer ---- */
 .page { padding-bottom: var(--s7); }
@@ -248,11 +247,13 @@
     position: fixed;
     z-index: 60;
     transition: transform 0.25s ease, background-color 0.2s ease;
-    will-change: transform;
+    /* no `will-change: transform` here: it would make the header the container of the fixed full-screen menu inside it, and the menu opened as a 68px strip */
 }
 
 .satr-chrome.satr-chrome--header.is-stuck { background-color: var(--ground); }
 .satr-chrome.satr-chrome--header.is-hidden { transform: translateY(-100%); }
+/* an open menu keeps the header in place (a transform on it would cut the fixed menu down to the header's size) */
+.satr-chrome.satr-chrome--header:has([data-satr-menu]:not([hidden])) { transform: none; }
 
 @media (prefers-reduced-motion: reduce) {
     .satr-chrome.satr-chrome--header { transition: none; }

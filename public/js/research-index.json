@@ -1,5 +1,5 @@
 {
-  "_note": "One entry per research document. 'theme' is its single primary tag: one of the ids in 'themes' (labels live in research-i18n.json). 'slug' = file name in research/, 'pdf' = path from the site root. The order here is the order on the page: newest first, so put a new document at the top. \"new\": true gives a document the blue \"New\" chip; remove it when it is no longer new.",
+  "_note": "One entry per research document. 'theme' is its single primary tag: one of the ids in 'themes' (labels live in research-i18n.json). 'slug' = file name in research/, 'pdf' = path from the site root. The order here is the order on the page: newest first, so put a new document at the top. \"new\": true gives a document the blue \"New\" chip; remove it when it is no longer new. \"date\" (YYYY-MM-DD) is shown on the card before the \"New\" chip; taken from each PDF's creation date, edit it to the publication date. \"people\" maps an author's name, as written in \"authors\", to the file name (without .html) of that scientist in expert/; such a name is a link to the profile on the card and on the document page. Add a name there when the author is on the site.",
   "themes": [
     "scientists",
     "collections",
@@ -13,6 +13,7 @@
       "theme": "scientists",
       "pdf": "storage/lp/232/b581142239792c5efada46ef777498298292dedb.pdf",
       "authors": "Olena Kozak, Lidia Kuzemska, Yevheniia Polishchuk, Kateryna Chuyeva",
+      "date": "2026-07-30",
       "new": true
     },
     {
@@ -20,105 +21,144 @@
       "title": "Support Mechanisms for Researchers at Risk: Historical Development, Survey Evidence, and Policy Lessons from Wartime Ukraine",
       "theme": "scientists",
       "pdf": "storage/lp/229/fb3dde2ac7a6c070b67fe76ea4bb1dd934809229.pdf",
-      "authors": "Ilona Sviezhentseva, Igor Lyman"
+      "authors": "Ilona Sviezhentseva, Igor Lyman",
+      "date": "2026-07-30"
     },
     {
       "slug": "strategic-priority-setting-in-research-in-times-of-crisis-how-to-optimise-decision-making-for-societal-resilience",
       "title": "Strategic priority-setting in research in times of crisis: how to optimise decision-making for societal resilience",
       "theme": "policy",
       "pdf": "storage/lp/227/8c409791c970691d49483e6efbb45696dce5205f.pdf",
-      "authors": "Pavel Gol’din, Oleksiy Kolezhuk, Vitaliy Omelyanenko, Anna Vorontsova, Svitlana Tarasenko"
+      "authors": "Pavel Gol’din, Oleksiy Kolezhuk, Vitaliy Omelyanenko, Anna Vorontsova, Svitlana Tarasenko",
+      "date": "2026-07-21"
     },
     {
       "slug": "systematization-of-practices-and-recommendations-of-ukrainian-institutions-with-damaged-and-destroyed-research-infrastructure",
       "title": "Systematization of practices and recommendations of Ukrainian institutions with damaged and destroyed research infrastructure",
       "theme": "collections",
       "pdf": "storage/lp/130/2102f61a383500f47105bd0f58cff7c83f57f6e9.pdf",
-      "authors": "Igor Lyman and Maria Moskovko"
+      "authors": "Igor Lyman and Maria Moskovko",
+      "date": "2024-04-03"
     },
     {
       "slug": "the-scientific-diaspora-is-a-unique-capital-for-ukraines-postwar-recovery",
       "title": "Scientific diaspora — a unique asset for post-war recovery of Ukraine",
       "theme": "scientists",
       "pdf": "storage/lp/129/220145c61b3f8d27b543e87677a81f7f5206b535.pdf",
-      "authors": "Oleksandr Skorokhod"
+      "authors": "Oleksandr Skorokhod",
+      "date": "2024-04-11"
     },
     {
       "slug": "science-advocacy-at-risk",
       "title": "Science Advocacy in Danger",
       "theme": "society",
       "pdf": "storage/lp/128/2d7c95287b9cfd84c339dd44cfbccfd32fe8076f.pdf",
-      "authors": "Olena Zinenko, Nadezhda Korytnikova, Bohdan Hrushetskyi, Oleh Feia, Svitlana Galata"
+      "authors": "Olena Zinenko, Nadezhda Korytnikova, Bohdan Hrushetskyi, Oleh Feia, Svitlana Galata",
+      "date": "2024-04-01"
     },
     {
       "slug": "transforming-the-research-and-innovation-system-for-post-war-recovery",
       "title": "Transforming the research and innovation system for post-war recovery",
       "theme": "policy",
       "pdf": "storage/lp/125/28ae32642520ad8022db551636b69c6de3bc0d4e.pdf",
-      "authors": "Nataliia Haraschenko, Oleksandra Pravdyva, Oleksandr Skorokhod, Nadiia Vasylieva, Olena Pareniuk, Maryna Horokhovatska, Vitalii Omelianenko, Olena Tsyplitska"
+      "authors": "Nataliia Haraschenko, Oleksandra Pravdyva, Oleksandr Skorokhod, Nadiia Vasylieva, Olena Pareniuk, Maryna Horokhovatska, Vitalii Omelianenko, Olena Tsyplitska",
+      "date": "2024-04-01"
     },
     {
       "slug": "doslidnytska-infrastruktura-v-umovakh-povoiennoho-vidnovlennia-vid-poriatunku-do-zrostannia",
       "title": "Research Infrastructure in the Post-War Recovery: From Rescue to Growth",
       "theme": "collections",
       "pdf": "storage/lp/122/bf3358a83842ba39dc853162fc753854991f72e2.pdf",
-      "authors": "Vitalii Omelianenko, Maryna Horokhovatska, Serhii Radio, Nadiia Vasylieva, Oleksandra Pravdyva"
+      "authors": "Vitalii Omelianenko, Maryna Horokhovatska, Serhii Radio, Nadiia Vasylieva, Oleksandra Pravdyva",
+      "date": "2024-04-01"
     },
     {
       "slug": "preserving-museum-archival-library-and-scientific-collections-during-the-war",
       "title": "Preserving Museum, Archival, Library, and Scientific Collections During the War",
       "theme": "collections",
       "pdf": "storage/lp/119/4d633138fa82c99d48f77d45494d5f13ae29f056.pdf",
-      "authors": "Pavlo Gol’din, Olena Zhukova, Olha Klymenko, Leonid Horobets, Tetiana Nykyrsa, Viktoria Konstantinova, Yevhen Nikolaiev"
+      "authors": "Pavlo Gol’din, Olena Zhukova, Olha Klymenko, Leonid Horobets, Tetiana Nykyrsa, Viktoria Konstantinova, Yevhen Nikolaiev",
+      "date": "2024-03-11"
     },
     {
       "slug": "preserving-scientists-during-wars-and-emergencies",
       "title": "Preserving Scientists During Wars and Emergencies",
       "theme": "scientists",
       "pdf": "storage/lp/117/576ea4d1b83b394425759adde0cf9df35ddffa97.pdf",
-      "authors": "Liudmyla Halahan, Nina Chala, Viktoria Konstantinova, Anastasia Lutsenko"
+      "authors": "Liudmyla Halahan, Nina Chala, Viktoria Konstantinova, Anastasia Lutsenko",
+      "date": "2024-10-30"
     },
     {
       "slug": "science-popularization-during-wars-and-crises-challenges-and-opportunities",
       "title": "Science Popularization During Wars and Crises: Challenges and Opportunities",
       "theme": "society",
       "pdf": "storage/lp/114/cbb882ff33698f749c262b4e83799a10364be84f.pdf",
-      "authors": "Oleksii Boldyriev, Bohdan Hrushetsky, Hryhorii Rii, Ilona Sviezhentseva, Kateryna Shavanova"
+      "authors": "Oleksii Boldyriev, Bohdan Hrushetsky, Hryhorii Rii, Ilona Sviezhentseva, Kateryna Shavanova",
+      "date": "2024-07-12"
     },
     {
       "slug": "utilization-of-citizen-science-in-times-of-war-crises-and-catastrophes",
       "title": "Citizen Science Application in Times of War, Crises, and Catastrophes",
       "theme": "society",
       "pdf": "storage/lp/112/4920a016aa55fc7cde7fd785ba3be8f5b456fbd8.pdf",
-      "authors": "Olena Kozak, Ilona Sviezhentseva, Oleksiy Boldyriev, Kateryna Shavanova"
+      "authors": "Olena Kozak, Ilona Sviezhentseva, Oleksiy Boldyriev, Kateryna Shavanova",
+      "date": "2024-03-29"
     },
     {
       "slug": "scientific-reboot-after-the-war",
       "title": "Scientific reboot after the war",
       "theme": "policy",
       "pdf": "storage/lp/64/3eda0fec54cdc76a63524a2c7890177f5c55e153.pdf",
-      "authors": ""
+      "authors": "",
+      "date": "2023-04-11"
     },
     {
       "slug": "communicating-science-at-risk",
       "title": "Communicating Science at Risk",
       "theme": "society",
       "pdf": "storage/lp/62/ccde81ae929d6d97cb35e540f3130ef328f58736.pdf",
-      "authors": ""
+      "authors": "",
+      "date": "2023-04-10"
     },
     {
       "slug": "preserving-science-during-wartime",
       "title": "Preserving Science during Wartime",
       "theme": "policy",
       "pdf": "storage/lp/61/aefda0ce50f3b13890bf7a69c3fb90ce5022b14b.pdf",
-      "authors": ""
+      "authors": "",
+      "date": "2023-04-21"
     },
     {
       "slug": "forming-a-database-of-damaged-and-destroyed-research-infrastructure-in-ukraine",
       "title": "Forming a Database of Damaged and Destroyed Research Infrastructure in Ukraine",
       "theme": "collections",
       "pdf": "storage/lp/44/679536ba99bd7ce0b34b8c47efb517a3f8e72a20.pdf",
-      "authors": ""
+      "authors": "",
+      "date": "2023-04-21"
     }
-  ]
+  ],
+  "people": {
+    "Anastasia Lutsenko": "lutsenko-anastasiia-oleksandrivna",
+    "Anna Vorontsova": "vorontsova-anna-serhiivna",
+    "Bohdan Hrushetsky": "hrushetskyi-bohdan-pavlovych",
+    "Bohdan Hrushetskyi": "hrushetskyi-bohdan-pavlovych",
+    "Igor Lyman": "lyman-ihor-ihorovych",
+    "Ilona Sviezhentseva": "sviezhentseva-ilona-oleksandrivna",
+    "Leonid Horobets": "horobets-leonid-viktorovych",
+    "Maryna Horokhovatska": "horokhovatska-maryna-yaroslavna",
+    "Nadiia Vasylieva": "vasylieva-nadiia-borysivna",
+    "Nina Chala": "chala-nina-dmytrivna",
+    "Oleksandr Skorokhod": "skorokhod-oleksandr-mykolaiovych",
+    "Oleksii Boldyriev": "boldyriev-oleksii-ihorovych",
+    "Oleksiy Boldyriev": "boldyriev-oleksii-ihorovych",
+    "Olena Kozak": "kozak-olena-milanivna",
+    "Olena Pareniuk": "pareniuk-olena-yuriivna",
+    "Olena Tsyplitska": "tsyplitska-olena-oleksandrivna",
+    "Olena Zhukova": "zhukova-olena-viktorivna",
+    "Olena Zinenko": "zinenko-olena-dmytrivna",
+    "Pavel Gol’din": "holdin-pavlo-yevhenovych",
+    "Pavlo Gol’din": "holdin-pavlo-yevhenovych",
+    "Serhii Radio": "radio-serhii-viktorovych",
+    "Svitlana Tarasenko": "tarasenko-svitlana-viktorivna"
+  }
 }

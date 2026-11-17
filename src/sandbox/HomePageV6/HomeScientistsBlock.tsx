@@ -1,4 +1,4 @@
-import { useId, useLayoutEffect, useRef, useState, type FormEvent, type ReactNode } from 'react';
+import { useEffect, useId, useLayoutEffect, useRef, useState, type FormEvent, type ReactNode } from 'react';
 import { Button } from '@/components/Button';
 import { Wrapper, Row, Col, fitTextClass } from '@/components/Layout';
 import { Link } from '@/components/Link';
@@ -75,11 +75,11 @@ export const defaultSocietiesMode: HomeScientistsMode = {
   noteLinkLabel: 'To all scientific societies',
   noteHref: live('societies.html'),
   tags: [
-    { label: 'Medicine', count: 6, href: '/societies?tag=medicine' },
-    { label: 'Psychology', count: 3, href: '/societies?tag=psychology' },
-    { label: 'Ecology', count: 3, href: '/societies?tag=ecology' },
-    { label: 'Economics', count: 2, href: '/societies?tag=economics' },
-    { label: 'Technology', count: 2, href: '/societies?tag=technology' },
+    { label: 'Natural sciences', count: 8, href: '/societies?tag=natural-sciences' },
+    { label: 'Health care', count: 7, href: '/societies?tag=health-care' },
+    { label: 'Biology', count: 5, href: '/societies?tag=biology' },
+    { label: 'Social and behavioural sciences', count: 5, href: '/societies?tag=social-and-behavioural-sciences' },
+    { label: 'Humanities', count: 3, href: '/societies?tag=humanities' },
   ],
   action: live('societies.html'),
 };
@@ -210,6 +210,61 @@ export function HomeScientistsBlock({
   const id = useId();
   const [scope, setScope] = useState<HomeScientistsScope>(defaultScope);
   const mode = modes[scope];
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  /* The caret goes into the field as soon as the reader can use it, and again each time the scope is switched. On the
+     home page the block waits `inert` behind the others until it is its turn, and an inert field cannot take focus, so
+     this also waits for that to lift. Only while nothing else has the focus, so it is never taken from a reader who has
+     moved on; not on a touch screen, where it would raise the keyboard unasked; and without scrolling the first time. */
+  const focusedScope = useRef<HomeScientistsScope | null>(null);
+  const usedPointer = useRef(false);
+  useEffect(() => {
+    const down = () => { usedPointer.current = true; };
+    const key = () => { usedPointer.current = false; };
+    window.addEventListener('pointerdown', down, true);
+    window.addEventListener('keydown', key, true);
+    return () => {
+      window.removeEventListener('pointerdown', down, true);
+      window.removeEventListener('keydown', key, true);
+    };
+  }, []);
+  useEffect(() => {
+    const fine = typeof window.matchMedia === 'function' && window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+    const input = inputRef.current;
+    if (!fine || !input) return;
+    let keepScroll = true;
+    const hold = input.closest('[inert]') ? input.closest('[inert]') : null;
+    const put = () => {
+      if (!input.isConnected || input.closest('[inert]')) return false;
+      /* A click on a scope word leaves the focus on that word's radio: the field takes it from there. A keyboard reader
+         arrowing through the words keeps theirs. */
+      const onScope = document.activeElement instanceof HTMLInputElement && document.activeElement.type === 'radio';
+      if (document.activeElement !== document.body && document.activeElement !== input && !(onScope && usedPointer.current)) return true;
+      input.focus({ preventScroll: keepScroll });
+      focusedScope.current = scope;
+      return true;
+    };
+    put();
+    /* The block arrives: its turn comes in the deck (the inert lifts), or it scrolls into view on the plain page. Each
+       time it does, and nothing else holds the focus, the caret goes back into the field. */
+    const watcher = hold ? new MutationObserver(() => { put(); }) : null;
+    watcher?.observe(hold!, { attributes: true, attributeFilter: ['inert'] });
+    const section = input.closest('section');
+    const seen =
+      section && typeof IntersectionObserver === 'function'
+        ? new IntersectionObserver((entries) => {
+            if (entries.some((entry) => entry.isIntersecting)) {
+              keepScroll = true;
+              put();
+            }
+          }, { threshold: 0.5 })
+        : null;
+    if (section) seen?.observe(section);
+    return () => {
+      watcher?.disconnect();
+      seen?.disconnect();
+    };
+  }, [scope]);
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     if (!onSearch) return;
@@ -240,7 +295,7 @@ export function HomeScientistsBlock({
           action={mode.action}
           method="get"
           onSubmit={handleSubmit}
-          className="mt-4 flex flex-col gap-6 md:mt-6 md:max-w-[720px] md:flex-row md:items-end md:justify-between md:gap-6 md:border-b-2 md:border-brand-black md:pb-3"
+          className="mt-4 flex flex-col gap-6 md:mt-6 md:flex-row md:items-end md:justify-between md:gap-6 md:border-b-2 md:border-brand-black md:pb-3"
         >
           {/* The label rides up off the line and shrinks as soon as the field
               has focus or text in it, and stays there to be read. The
@@ -254,6 +309,7 @@ export function HomeScientistsBlock({
           >
             <input
               id={id}
+              ref={inputRef}
               name="search"
               type="search"
               placeholder=" "

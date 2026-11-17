@@ -66,7 +66,6 @@ const defaultSocial: NavItem[] = [
  */
 export function MobileNav({
   open = true,
-  onClose,
   items = defaultItems,
   social = defaultSocial,
   tone = 'light',
@@ -92,34 +91,15 @@ export function MobileNav({
   const underline = onDark ? 'satr-hover-underline' : 'satr-hover-underline satr-hover-underline--white';
   const linkClass = `${underline} font-ui text-h3-desktop ${linkColor} no-underline ${focusRing}`;
   const menuLabel = isUa ? 'Меню' : 'Menu';
-  const closeLabel = isUa ? 'Закрити меню' : 'Close menu';
-  const navLabel = isUa ? 'Основна навігація' : 'Primary';
+    const navLabel = isUa ? 'Основна навігація' : 'Primary';
 
   return (
     <div
-      className={`flex h-full w-full max-w-[420px] flex-col overflow-y-auto ${surface} px-8 py-7 ${className}`.trim()}
+      className={`flex h-full w-full flex-col overflow-y-auto ${surface} px-6 pb-10 pt-[4.5rem] md:h-auto md:max-h-[calc(100svh-2rem)] md:px-[1.78rem] md:pb-[1.78rem] md:pt-[2.72rem] ${className}`.trim()}
       role="dialog"
       aria-modal="true"
       aria-label={menuLabel}
     >
-      <div className="mb-4 flex justify-end">
-        <button
-          type="button"
-          className={`flex min-h-11 min-w-11 items-center justify-center border-0 bg-transparent p-0 ${focusRing}`}
-          aria-label={closeLabel}
-          onClick={onClose}
-          data-satr-menu-close=""
-        >
-          <svg width="22" height="22" viewBox="0 0 22 22" aria-hidden focusable="false">
-            <path
-              d="M1 1 L21 21 M21 1 L1 21"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-            />
-          </svg>
-        </button>
-      </div>
       <nav aria-label={navLabel}>
         <ul className="m-0 flex list-none flex-col gap-5 p-0">
           {items.map((item) => (
@@ -143,18 +123,18 @@ export function MobileNav({
             </li>
           ))}
       </ul>
-      {/* Addresses stand apart, under their own rule; from `md` up (no cabinet block here) they sit at the foot. */}
+      {/* Addresses stand apart, under their own rule, right after the social links. */}
       {social
         .filter((item) => item.email)
         .map((item) => (
-          <div key={item.label} className="md:mt-auto">
+          <div key={item.label}>
             <hr className={`my-5 border-0 border-t ${divider}`} />
             {item.note && (
               <p className="m-0 mb-1 font-ui text-text1-mobile opacity-70">{isUa ? item.note[1] : item.note[0]}</p>
             )}
             <a
               href={item.href}
-              className={`${linkClass} break-all text-[17px] min-[420px]:text-h3-desktop`}
+              className={`${linkClass} break-all text-[17px] min-[420px]:text-h3-desktop md:min-[420px]:text-[17px]`}
               data-satr-email={item.email}
               data-satr-email-text=""
             >

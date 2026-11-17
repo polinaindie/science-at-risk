@@ -52,7 +52,13 @@
 .isDefault .research-filter__tag:hover { opacity: 1; }
 .isDefault .research-filter__tag:not([aria-pressed="true"]):hover { --squircle-outline: 0px; --squircle-fill: #000; --squircle-color: #000; color: #fff; }
 
+/* date, then "New", on one line above the title */
+.research-card__meta { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; margin-bottom: 12px; }
+.research-card__date { font-family: var(--font-ui, "IBM Plex Mono", monospace); font-size: 0.8333rem; line-height: 1.3; letter-spacing: 0; color: #4d4d4d; }
 /* "New": the site's blue chip above the title of a document marked new (data: "new": true) */
-.research-card__new { display: inline-flex; margin-bottom: 12px; padding: 3px 12px; font-family: var(--font-ui, "IBM Plex Mono", monospace); font-size: 0.7778rem; line-height: 1.3; }
+.research-card__new { display: inline-flex; padding: 3px 12px; font-family: var(--font-ui, "IBM Plex Mono", monospace); font-size: 0.7778rem; line-height: 1.3; }
 .isDefault .research-card__new { --squircle-fill: #B5C6CD; --squircle-color: #B5C6CD; background: #B5C6CD paint(squircle); }
 @supports not (background: paint(squircle)) { .isDefault .research-card__new { background: #B5C6CD; border-radius: 15px; } }
+
+/* an author who is a scientist on the site: a link above the card's whole-card link */
+.research-card__author { position: relative; z-index: 2; }
