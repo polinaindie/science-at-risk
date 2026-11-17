@@ -1,5 +1,6 @@
 @import './fonts.css';
 @import 'tailwindcss';
+@import '../../public/css/tokens.css';
 @import '../../public/css/type-scale.css';
 @import '../../public/css/satr-auth.css';
 @import '../../public/css/satr-squircle.css';
@@ -9,23 +10,23 @@
   --font-mono: 'IBM Plex Mono', monospace;
   --font-ukraine: 'e-Ukraine', sans-serif;
 
-  --color-brand-black: #000000;
-  --color-brand-white: #ffffff;
+  --color-brand-black: var(--color-black);
+  --color-brand-white: var(--color-white);
   /* WCAG AA normal text on white ≈ 7:1 (Figma 50% black fails AA) */
   /* #595959 was 3.98:1 on the accent blue — under AA's 4.5. This is the
      lightest grey that clears it there (4.8:1); on white it is 8.4:1. */
-  --color-brand-muted: #4d4d4d;
+  --color-brand-muted: var(--color-grey-700);
   /* Accents — Figma node 292:1481 */
-  --color-brand-accent-blue: #b5c6cd;
-  --color-brand-accent-yellow: #f0eebe;
+  --color-brand-accent-blue: var(--color-blue);
+  --color-brand-accent-yellow: var(--color-yellow);
   /* A clear mid green, darker and more saturated than the blue ground so it never melts into it; black text on it is ≈7:1. */
-  --color-brand-accent-green: #37b066;
+  --color-brand-accent-green: var(--color-green);
   /* Input / disabled states */
-  --color-brand-disabled: #c8c8c8;
-  --color-brand-line: #000000;
-  --color-brand-line-muted: rgba(0, 0, 0, 0.25);
+  --color-brand-disabled: var(--color-grey-300);
+  --color-brand-line: var(--color-black);
+  --color-brand-line-muted: var(--color-black-a25);
   /* Paragraph links in article body (mirror) */
-  --color-brand-link: #fdbe0d;
+  --color-brand-link: var(--color-gold);
 
   --text-h1-desktop: var(--step-h1);
   --text-h1-desktop--line-height: var(--step-h1-lh);
