@@ -12,7 +12,10 @@
     "chrome": "node scripts/build-chrome.mjs",
     "auth": "node scripts/build-auth.mjs && node scripts/build-chrome-css.mjs && node scripts/build-chrome.mjs",
     "handoff": "node scripts/build-handoff.mjs",
-    "handoff:check": "node scripts/build-handoff.mjs --check && node scripts/verify-hugo-partials.mjs"
+    "handoff:check": "node scripts/build-handoff.mjs --check && node scripts/verify-hugo-partials.mjs",
+    "sync": "node scripts/sync.mjs",
+    "publish:pages": "bash scripts/publish-pages.sh",
+    "prepare": "git config core.hooksPath .githooks || true"
   },
   "dependencies": {
     "react": "^19.3.0",

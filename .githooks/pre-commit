@@ -1,0 +1,6 @@
+#!/bin/sh
+# Refuse a commit that changes a component, a style or a script while the hand-off built from them is stale.
+# Fix with:  npm run sync   (then add the files it changed and commit again).
+if git diff --cached --name-only | grep -Eq '^(src/|public/css/|public/js/|scripts/)'; then
+  node scripts/sync.mjs --check || exit 1
+fi
