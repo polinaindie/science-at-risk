@@ -28,7 +28,7 @@ const vite = await createServer({ root, appType: 'custom', server: { middlewareM
 
 try {
   const load = (p) => vite.ssrLoadModule(p);
-  const [{ Button }, { Link }, { Tag }, { TextField }, { ScopeTabs }, { SquircleLink }, { SiteHeader }] = await Promise.all([
+  const [{ Button }, { Link }, { Tag }, { TextField }, { ScopeTabs }, { SquircleLink }, { SiteHeader }, { Footer }] = await Promise.all([
     load('/src/components/Button/index.ts'),
     load('/src/components/Link/index.ts'),
     load('/src/components/Tag/index.ts'),
@@ -36,6 +36,7 @@ try {
     load('/src/components/ScopeTabs/index.ts'),
     load('/src/components/SquircleLink/index.ts'),
     load('/src/components/SiteHeader/index.ts'),
+    load('/src/components/Footer/index.ts'),
   ]);
 
   const md = (el) => renderToStaticMarkup(el).replace(/<link rel="preload"[^>]*>/g, '');
@@ -112,6 +113,12 @@ try {
         item('Header, Ukrainian, guest', h('div', { 'data-satr-chrome': 'header' }, h(SiteHeader, { base: '../', progress: 1, menuId: 'hf-menu-ua', locale: 'UA', localeHref: '#en', loginHref: '#login', cabinetHref: '#cabinet', logoutHref: '#logout' }))),
       ],
     ),
+    group(
+      's-footer',
+      'Footer (live component)',
+      'Rendered from <code>src/components/Footer</code>, the footer of every page: the ask, the form (with its count and over-limit message), the supporters and the implementer, then the base line with the copyright and the OpenTech wordmark. Ukrainian below.',
+      [item('Footer, English', h(Footer, { logoSrc: '../images/opentech-logo-white.svg' })), item('Footer, Ukrainian', h(Footer, { locale: 'uk', logoSrc: '../images/opentech-logo-white.svg' }))],
+    ),
     group('g-tabs', 'Scope switch (live component)', 'Rendered from <code>src/components/ScopeTabs</code>, links form.', [
       item(
         'Scientists open',
@@ -140,6 +147,8 @@ try {
     await writeFile(target, next);
     console.log('states.html rewritten.');
   }
+  const { buildStatic } = await import('./build-handoff-static.mjs');
+  if (!(await buildStatic({ check }))) process.exitCode = 1;
 } finally {
   await vite.close();
 }
