@@ -17,7 +17,7 @@ Data fields: `content-model/<type>.md`. UI strings: `i18n/`.
 | Stories list (All / Stories / Blogs / News) | `/stories`, `/stories/type/<t>` | `layouts/stories/list.html` | `public/stories*.html` | type chips, story-card, pagination |
 | Story | `/stories/<slug>` | `layouts/stories/single.html` | `public/story/*.html`, `public/css/pages/story-text.css`, `story-footnotes.css`; `prose.html` | breadcrumbs, prose (+4 shortcodes), footnotes, share line |
 | Work card | not a page | partial inside scientist | `public/expert/*.html` (work list) | as on the expert page |
-| Forms (Connect, Want to help) | modal/section | partial `form-connect.html`, `form-help.html` | `static-components.html` (Connect); footer form in `states.html` | text-field, captcha, button; posts to Forms API |
+| Forms (Connect, Want to help) | modal/section | partial `form-connect.html`, `form-help.html` | `static-connect.html` (Connect); footer form in `states.html` | text-field, captcha, button; posts to Forms API |
 | Search | `/search` | `layouts/search/list.html` + static index (`public/js/*-index.json`) | `static-components.html` (search block, empty state) | search field, results, pagination |
 | 404 | `/404.html` | `layouts/404.html` | proposal in `states.html` (not on the live site) | 404 block |
 | Cabinet (`/login`, `/account`, `/account/requests`) | Go portal, not Hugo | Go html/template | `cabinet/index.html` (map of 50+ screens), `cabinet/README.md` | cabinet.css on `tokens.css`; letters in `cabinet/email/` |
