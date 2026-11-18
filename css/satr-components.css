@@ -545,3 +545,19 @@
     }
   }
 }
+
+/* ---- Field in error ----
+   The underline turns to the error red (yellow on black, where red has no contrast) and the message stands under the
+   field on the attention yellow. The text of the message is what says it: the colour only helps. */
+.satr-float > :is(input, textarea)[aria-invalid="true"] { border-color: var(--color-error); }
+.satr-float > :is(input, textarea)[aria-invalid="true"].border-white { border-color: var(--color-attention); }
+.satr-field-error {
+    margin: 8px 0 0;
+    padding: 8px 12px;
+    background: var(--color-attention);
+    color: var(--color-black);
+    font-family: var(--font-ui);
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: -0.03em;
+}
