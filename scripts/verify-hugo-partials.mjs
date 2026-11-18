@@ -134,6 +134,7 @@ try {
     ['satr-field', { id: 'f1', name: 'n', label: 'L', tone: 'light', value: 'v', disabled: true }, h(TextField, { id: 'f1', label: 'L', name: 'n', defaultValue: 'v', disabled: true })],
     ['satr-field', { id: 'f1', type: 'email', label: 'L', tone: 'dark', required: true }, h(TextField, { id: 'f1', label: 'L', tone: 'dark', type: 'email', required: true })],
     ['satr-field', { id: 'f1', label: 'L', tone: 'light', multiline: true }, h(TextField, { id: 'f1', label: 'L', multiline: true })],
+    ['satr-field', { id: 'f1', label: 'L', tone: 'light', error: 'Wrong' }, h(TextField, { id: 'f1', label: 'L', error: 'Wrong' })],
     ['satr-scope-tabs', { label: 'S', current: 'a', tabs }, h(ScopeTabs, { label: 'S', value: 'a', tabs })],
     ['satr-squircle-link', { href: '/l', label: 'Log in' }, h(SquircleLink, { href: '/l' }, 'Log in')],
     ['satr-squircle-link', { href: '/l', label: 'Log in', inverted: true }, h(SquircleLink, { href: '/l', inverted: true }, 'Log in')],

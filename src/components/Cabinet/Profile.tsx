@@ -798,7 +798,7 @@ export function ProfileEditForm({
 
   const err = (text?: string | false) =>
     text ? (
-      <p role="alert" className="mt-2 bg-brand-accent-yellow px-3 py-2 font-ui text-text1-mobile">
+      <p role="alert" className="satr-field-error">
         {text}
       </p>
     ) : null;

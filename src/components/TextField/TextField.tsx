@@ -17,6 +17,8 @@ interface FieldBase {
   maxRows?: number;
   tone?: FieldTone;
   className?: string;
+  /** The one thing that is wrong with the value. Marks the field invalid (underline) and says it under the field. */
+  error?: string;
 }
 
 export type TextFieldProps = FieldBase &
@@ -37,6 +39,7 @@ export function TextField({
   multiline,
   autoGrow,
   maxRows,
+  error,
   ...rest
 }: TextFieldProps) {
   const autoId = useId();
@@ -82,8 +85,9 @@ export function TextField({
   // wants a real placeholder still gets one — it simply sits under a label that
   // has already moved out of the way.
   const placeholder = rest.placeholder ?? ' ';
+  const errorProps = error ? ({ 'aria-invalid': true, 'aria-describedby': `${fieldId}-err` } as const) : {};
 
-  return (
+  const field = (
     <div className={shell}>
       {multiline ? (
         <textarea
@@ -93,6 +97,7 @@ export function TextField({
           rows={autoGrow ? 1 : 3}
           className={`min-h-[71px] pb-2 ${autoGrow ? 'resize-none overflow-hidden' : 'resize-y'} ${controlClass}`}
           {...(rest as TextareaHTMLAttributes<HTMLTextAreaElement>)}
+          {...errorProps}
           placeholder={placeholder}
         />
       ) : (
@@ -101,6 +106,7 @@ export function TextField({
           disabled={disabled}
           className={`pb-2 ${controlClass}`}
           {...(rest as InputHTMLAttributes<HTMLInputElement>)}
+          {...errorProps}
           placeholder={placeholder}
         />
       )}
@@ -111,6 +117,15 @@ export function TextField({
         {label}
       </label>
     </div>
+  );
+  if (!error) return field;
+  return (
+    <>
+      {field}
+      <p id={`${fieldId}-err`} role="alert" className="satr-field-error">
+        {error}
+      </p>
+    </>
   );
 }
 

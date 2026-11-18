@@ -95,13 +95,16 @@ try {
     group(
       'g-fields',
       'Fields (live component)',
-      'Rendered from <code>src/components/TextField</code>: floating label. The label rides up on focus or when the field has text.',
+      'Rendered from <code>src/components/TextField</code>: floating label. The label rides up on focus or when the field has text. A field has no focus ring of its own: the label and the caret show where you are. With <code>error</code> the underline turns red (yellow on black) and the message stands under the field.',
       [
         item('Empty', h(TextField, { label: 'Your name' })),
         item('Filled', h(TextField, { label: 'Your name', defaultValue: 'Olena Kozak' })),
         item('Disabled', h(TextField, { label: 'E-mail', defaultValue: 'olena@example.org', disabled: true })),
         item('Multiline', h(TextField, { label: 'Message', multiline: true })),
+        item('Error: empty required field', h(TextField, { label: 'Your name *', error: 'Enter your name.' })),
+        item('Error: wrong format', h(TextField, { label: 'E-mail', type: 'email', defaultValue: 'olena@', error: 'Enter an address like name@example.org.' })),
         item('On black', h(TextField, { label: 'Your name', tone: 'dark' }), { ground: '#000', dark: true }),
+        item('Error, on black', h(TextField, { label: 'Your name *', tone: 'dark', error: 'Enter your name.' }), { ground: '#000', dark: true }),
       ],
     ),
     group(
