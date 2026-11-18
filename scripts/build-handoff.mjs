@@ -95,7 +95,7 @@ try {
     group(
       'g-fields',
       'Fields (live component)',
-      'Rendered from <code>src/components/TextField</code>: floating label. The label rides up on focus or when the field has text. A field has no focus ring of its own: the label and the caret show where you are. With <code>error</code> the underline turns red (yellow on black) and the message stands under the field.',
+      'Rendered from <code>src/components/TextField</code>: floating label. The label rides up on focus or when the field has text. A field has no focus ring of its own: the label and the caret show where you are. With <code>error</code> the underline stays as it is and the message stands under the field on the attention yellow; the field is marked <code>aria-invalid</code>.',
       [
         item('Empty', h(TextField, { label: 'Your name' })),
         item('Filled', h(TextField, { label: 'Your name', defaultValue: 'Olena Kozak' })),
