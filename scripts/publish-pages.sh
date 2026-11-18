@@ -30,8 +30,10 @@ git worktree add -q -b gp-pub "$TMP/gp" origin/gh-pages
 
 cd "$TMP/gp"
 rm -f assets/index-*
-rsync -a --exclude storybook --exclude handoff "$TMP/build/" ./
-rsync -a --delete "$TMP/build/handoff/" handoff/
+# --checksum: the build and the worktree can agree on size and time (index.html differs only by the asset hashes), and a skipped
+# index.html points at assets that no longer exist.
+rsync -a --checksum --exclude storybook --exclude handoff "$TMP/build/" ./
+rsync -a --checksum --delete "$TMP/build/handoff/" handoff/
 cp index.html 404.html
 git add -A
 if git diff --cached --quiet; then echo "Nothing to publish: gh-pages already matches."; exit 0; fi
