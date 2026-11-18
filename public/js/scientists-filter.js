@@ -11,6 +11,9 @@
      js/scientists-taxonomy.json   the fields and their specialities, with how many scientists each has
      js/scientists-index.json      one row per scientist: the card, its text, its fields and specialities */
 (function () {
+    /* The mirrored bundle sets window.onload to focus ._risk-label, a field this page no longer has (see the submit handler below). */
+    window.onload = null;
+    document.addEventListener('DOMContentLoaded', function () { window.onload = null; }); /* the bundle sets it once the page is parsed */
     var PAGE = 12;
     var base = (document.currentScript && document.currentScript.getAttribute('data-base')) || '';
     var params = new URLSearchParams(location.search);
@@ -69,12 +72,16 @@
     };
 
     /* ---- the text: searched on Enter or the button, not while typing (the suggestions below do answer the typing) */
+    /* The mirrored bundle (js/client.bundle.js, pages/getSearch.js) also listens here, and on load, for a field of the live site's
+       own markup (._risk-label) that this field no longer carries: it would throw. This page's search is this file, so ours
+       goes first (capture) and the bundle's submit handler is not reached; its autofocus on load is dropped (top of this file). */
     if (form) form.addEventListener('submit', function (e) {
         e.preventDefault();
+        e.stopImmediatePropagation();
         clearTimeout(timer);
         state.q = input.value.trim(); state.page = 1;
         apply();
-    });
+    }, true);
 
 
     /* the scientists' index (one row per person): loaded once, with each name and institution picked out of the card */

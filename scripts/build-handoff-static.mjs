@@ -192,7 +192,7 @@ export async function buildStatic({ check = false } = {}) {
   .hf-code pre { margin: 0; padding: 12px; overflow: auto; max-height: 320px; background: #f4f4f4; font-size: 12px; line-height: 18px; }
   </style>
   </head>
-  <body class="isDefault">
+  <body class="isDefault" data-page="">
   <main class="hf-doc">
   <nav class="hf-crumbs" aria-label="Breadcrumb"><ol><li><a href="../">Science at Risk</a></li><li><a href="index.html">Hand-off</a></li><li aria-current="page">${meta.title}</li></ol></nav>
   <h1 class="hf-title">${meta.title}</h1>
@@ -200,7 +200,9 @@ export async function buildStatic({ check = false } = {}) {
   <ul class="hf-toc">${specs.map((s) => `<li><a href="#${s.id}">${s.title}</a></li>`).join('')}</ul>
   ${sections.join('\n')}
   </main>
-  <script src="../js/client.bundle.js"></script>
+  <!-- The site's bundle (client.bundle.js) looks for the old menu's hooks on every page and stops at the first it cannot find: stand-ins, hidden. -->
+<div data-nav hidden><button type="button" data-nav-toggle hidden aria-hidden="true" tabindex="-1"></button></div>
+<script src="../js/client.bundle.js"></script>
   <script src="../js/jquery.min.js"></script>
   <script src="../js/common.js"></script>
   <script src="../js/satr-squircle.js" defer></script>

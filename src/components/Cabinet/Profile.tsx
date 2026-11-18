@@ -468,9 +468,12 @@ export function ProfileView({
               </div>
               <div className="order-3 basis-full md:basis-auto">{linksBlock}</div>
             </aside>
-            <div className="order-2 min-w-[260px] flex-1 md:col-start-2 md:row-start-1 md:min-w-0">
-              {statusLine}
-              <ProfileName locale={locale} profile={profile} action={change('name', t.parts.name)} />
+            {/* On a phone the identity is taken apart: the status stands above the photo, the name, position and institution under it. */}
+            <div className="order-2 min-w-[260px] flex-1 max-md:contents md:col-start-2 md:row-start-1 md:min-w-0">
+              <div className="max-md:basis-full">{statusLine}</div>
+              <div className="max-md:order-2 max-md:basis-full">
+                <ProfileName locale={locale} profile={profile} action={change('name', t.parts.name)} />
+              </div>
             </div>
           </>
         ) : null}
