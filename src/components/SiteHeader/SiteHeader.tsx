@@ -170,14 +170,14 @@ function AccountMenu({
         aria-expanded={open}
         aria-controls={menuId}
         aria-label={`${name ? `${label}: ${name}` : label}${unread > 0 ? (isUa ? `, нових сповіщень: ${unread}` : `, ${unread} new notifications`) : ''}`}
-        className={`satr-dim flex min-h-11 items-center ${inPanel ? 'w-full gap-3' : 'gap-1'} border-0 bg-transparent p-0 ${ink} ${focusRing}`}
+        className={`satr-dim flex min-h-11 items-center ${inPanel ? 'w-full gap-3' : 'gap-1 max-md:min-w-11 max-md:justify-center'} border-0 bg-transparent p-0 ${ink} ${focusRing}`}
       >
         <Avatar src={avatarSrc} name={name} unread={unread} />
         {inPanel && name ? <span className="min-w-0 flex-1 text-left font-ui text-[1.125rem] leading-[1.5rem]">{name}</span> : null}
         <svg
           aria-hidden
           viewBox="0 0 9.06066 5.59099"
-          className={`h-2 w-3 shrink-0 overflow-visible transition-transform ${open ? 'rotate-180' : ''}`}
+          className={`h-2 w-3 shrink-0 overflow-visible transition-transform ${inPanel ? '' : 'max-md:hidden'} ${open ? 'rotate-180' : ''}`}
           fill="none"
           stroke="currentColor"
           strokeWidth="1.5"
@@ -368,7 +368,7 @@ export function SiteHeader({
         <div className="flex shrink-0 items-center gap-4 xl:gap-5">
           {/* From `md` up the language switch stands in the middle of the bar; on a phone there is no room beside the wordmark, so it keeps to the right. */}
           <p
-            className="m-0 whitespace-nowrap font-ui text-text1-mobile md:absolute md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:text-[1.125rem] md:leading-[1.5rem] md:tracking-normal"
+            className={`m-0 whitespace-nowrap font-ui text-text1-mobile ${member ? 'max-[399px]:hidden' : 'max-[359px]:hidden'} md:absolute md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:text-[1.125rem] md:leading-[1.5rem] md:tracking-normal`}
             style={{ top: PAD_TOP + ROW_H / 2 }}
           >
             {isUa ? other : current}
@@ -376,9 +376,9 @@ export function SiteHeader({
             {isUa ? current : other}
           </p>
           {/* The way in, from `md` up. Outlined squircle, not filled: it must be easy
-              to find without outranking the sections. Below `md` it lives at
-              the foot of the menu. */}
-          <div className="hidden items-center gap-4 md:flex" data-satr-account={account}>
+              to find without outranking the sections. Below `md` a guest finds it at the foot of the menu; a member's
+              photo (with the count of what is new) stays in the bar on a phone too: the cabinet is one tap away. */}
+          <div className={member ? 'flex items-center gap-4' : 'hidden items-center gap-4 md:flex'} data-satr-account={account}>
             {member ? (
               <AccountMenu
                 isUa={isUa}
@@ -404,7 +404,7 @@ export function SiteHeader({
               ref={menuButtonRef}
               type="button"
               onClick={() => setMenuOpen((open) => !open)}
-              aria-label={`${menuOpen ? (isUa ? 'Закрити меню' : 'Close menu') : isUa ? 'Відкрити меню' : 'Open menu'}${member && unread ? (isUa ? `, нових сповіщень: ${unread}` : `, ${unread} new notifications`) : ''}`}
+              aria-label={`${menuOpen ? (isUa ? 'Закрити меню' : 'Close menu') : isUa ? 'Відкрити меню' : 'Open menu'}`}
               aria-expanded={menuOpen}
               aria-controls={menuId}
               data-satr-menu-button=""
@@ -412,7 +412,6 @@ export function SiteHeader({
               className={`satr-dim relative z-[65] flex min-h-11 min-w-11 items-center justify-center border-0 bg-transparent p-0 -mr-[10px] ${focusRing}`}
             >
               <span className="relative flex">
-                <CountBadge count={member ? unread ?? 0 : 0} className="absolute -right-3 -top-3 md:hidden" />
                 <span className="satr-burger" aria-hidden>
                   <i />
                   <i />
@@ -444,21 +443,14 @@ export function SiteHeader({
             tone={inverted ? 'dark' : 'light'}
             locale={isUa ? 'UA' : 'EN'}
             account={account}
-            accountMenu={
-              member ? (
-                <AccountMenu
-                  inPanel
-                  isUa={isUa}
-                  avatarSrc={avatarSrc}
-                  name={accountName}
-                  unread={unread}
-                  cabinetHref={cabinetHref}
-                  settingsHref={settingsHref}
-                  logoutHref={logoutHref}
-                  ink={inverted ? 'text-brand-black' : 'text-white'}
-                  focusRing={focusRing}
-                />
-              ) : undefined
+            memberInBar
+            langHideFrom={member ? 400 : 360}
+            langSlot={
+              <p className="m-0 whitespace-nowrap font-ui text-text1-mobile">
+                {isUa ? other : current}
+                <span aria-hidden>/</span>
+                {isUa ? current : other}
+              </p>
             }
             loginHref={loginHref}
             cabinetHref={cabinetHref}

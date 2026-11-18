@@ -19,6 +19,12 @@ export interface MobileNavProps {
   logoutHref?: string;
   /** The member's account menu (photo, name, dropdown), drawn by the header. Without it the menu lists the cabinet links. */
   accountMenu?: ReactNode;
+  /** The header carries the member's photo (and the cabinet links behind it), so the menu does not repeat them. */
+  memberInBar?: boolean;
+  /** The EN/UK switch for a screen too narrow to carry it in the bar (under 360px): shown at the foot of the menu there. */
+  langSlot?: ReactNode;
+  /** The width from which the bar carries the language switch itself (360, or 400 where a member's photo shares the bar). */
+  langHideFrom?: 360 | 400;
   open?: boolean;
   onClose?: () => void;
   items?: NavItem[];
@@ -77,6 +83,9 @@ export function MobileNav({
   settingsHref = '/cabinet/settings',
   logoutHref = '/logout',
   accountMenu,
+  memberInBar = false,
+  langSlot,
+  langHideFrom = 360,
   className = '',
 }: MobileNavProps) {
   if (!open) return null;
@@ -92,6 +101,7 @@ export function MobileNav({
   const underline = onDark ? 'satr-hover-underline' : 'satr-hover-underline satr-hover-underline--white';
   const linkClass = `${underline} font-ui text-h3-desktop ${linkColor} no-underline ${focusRing}`;
   const menuLabel = isUa ? 'Меню' : 'Menu';
+  const langBelow = langHideFrom === 400 ? 'min-[400px]:hidden' : 'min-[360px]:hidden';
     const navLabel = isUa ? 'Основна навігація' : 'Primary';
 
   return (
@@ -145,8 +155,18 @@ export function MobileNav({
           </div>
         ))}
       {/* The way into the cabinet, last under its own rule. From `md` up the bar carries it, so the menu does not repeat it. */}
+      {account === 'member' && memberInBar ? (
+        /* The photo and the cabinet links are in the bar; only a screen too narrow for the language switch has anything down here. */
+        langSlot ? (
+          <div className={`sticky bottom-0 pb-[40px] pt-[18px] ${langBelow} ${surface}`}>
+            <hr className={`mb-5 border-0 border-t ${divider}`} />
+            {langSlot}
+          </div>
+        ) : null
+      ) : (
       <div className={`md:hidden sticky bottom-0 pb-[40px] pt-[18px] ${surface}`}>
       <hr className={`mb-5 border-0 border-t ${divider}`} />
+      {langSlot ? <div className={`mb-5 ${langBelow}`}>{langSlot}</div> : null}
       <ul className="m-0 flex list-none flex-col gap-5 p-0" data-satr-account={account}>
         {account === 'member' && accountMenu ? (
           <li>{accountMenu}</li>
@@ -178,6 +198,7 @@ export function MobileNav({
         )}
       </ul>
       </div>
+      )}
     </div>
   );
 }
