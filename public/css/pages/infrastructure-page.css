@@ -20,9 +20,9 @@
 .infrastructure__header { margin-bottom: 0.5rem; }
 
 /* ---- the gallery: bigger Back / Next, the counter as 1 / 4, a caption ---- */
-.infrastructure__nav-btn { min-height: 3rem; padding: 0.5rem 0.25rem; font-size: 1.125rem; line-height: 1.5rem; }
-.infrastructure__navigation .counter { font-family: var(--font-ui, "IBM Plex Mono", monospace); font-size: 1.125rem; }
-.infra-caption { margin: 0.5rem 0 0; font-size: 0.9444rem; line-height: 1.5; color: var(--color-grey-900); min-height: 1.5em; }
+.infrastructure__nav-btn { min-height: 3rem; padding: 0.5rem 0.25rem; font-size: var(--step-lg); line-height: 1.5rem; }
+.infrastructure__navigation .counter { font-family: var(--font-ui, "IBM Plex Mono", monospace); font-size: var(--step-lg); }
+.infra-caption { margin: 0.5rem 0 0; font-size: var(--text-ui); line-height: 1.5; color: var(--color-grey-900); min-height: 1.5em; }
 .infra-caption:empty { display: none; }
 
 /* ---- the facts: one list, labels in one column, no name (it is the heading), no stray commas ---- */
@@ -61,7 +61,7 @@
 .infra-contact__box .person-card .wrapper { padding: 0; max-width: none; }
 .infra-plate { margin: 0 0 1.5rem; padding: 0 0 1.5rem; border-bottom: 2px solid var(--color-black); }
 .infra-plate__amount { margin: 0 0 0.5rem; font-family: var(--font-heading, "Noto Serif", serif); font-size: 2.125rem; line-height: 1.15; letter-spacing: -0.02em; }
-.infra-plate__label { display: block; margin-bottom: 0.25rem; font-family: var(--font-ui, "IBM Plex Mono", monospace); font-size: 0.9444rem; letter-spacing: 0; line-height: 1.3; }
+.infra-plate__label { display: block; margin-bottom: 0.25rem; font-family: var(--font-ui, "IBM Plex Mono", monospace); font-size: var(--text-ui); letter-spacing: 0; line-height: 1.3; }
 .infra-plate__purpose { margin: 0; font-size: 1rem; line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; }
 .infra-help-note { margin: 0 0 1.25rem; }
 .infra-contact__box .person-card__right { margin-top: 1.5rem; }
@@ -79,7 +79,7 @@
 .infra-contact__box .person-card__left { display: flex; gap: 1rem; align-items: center; }
 .infra-contact__box .person-card__img { flex: none; width: 6rem; height: 6rem; }
 .infra-contact__box .person-card__img img { width: 100%; height: 100%; object-fit: cover; }
-.infra-contact__box .person-card__title { margin-bottom: 0.25rem; font-size: 1.5rem; line-height: 1.2; }
+.infra-contact__box .person-card__title { margin-bottom: 0.25rem; font-size: var(--step-xl); line-height: 1.2; }
 .infra-contact__box .person-card__position { margin-bottom: 0; }
 .infra-contact__box .person-card__info { margin: 0; }
 
@@ -111,7 +111,7 @@
   .infra-contact__box { padding: 1.5rem; }
   .infra-plate__amount { font-size: 1.75rem; }
   .infra-contact__box .person-card__left { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
-  .infra-contact__box .person-card__title { font-size: 1.375rem; }
+  .infra-contact__box .person-card__title { font-size: var(--step-xl); }
 }
 .infra-contact__alt { overflow-wrap: anywhere; }
 

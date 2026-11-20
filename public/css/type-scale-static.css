@@ -15,6 +15,9 @@
     --step-md: clamp(0.8889rem, 0.8428rem + 0.2210vw, 1rem);
     --step-md-lh: clamp(1.3333rem, 1.2413rem + 0.4420vw, 1.5556rem);
     --step-md-ls: 0;
+    --step-read: clamp(1rem, 0.954rem + 0.2210vw, 1.1111rem);
+    --step-read-lh: clamp(1.5556rem, 1.5095rem + 0.2210vw, 1.6667rem);
+    --step-read-ls: 0;
     --step-lg: clamp(1.1111rem, 1.0651rem + 0.2210vw, 1.2222rem);
     --step-lg-lh: 1.5556rem;
     --step-lg-ls: -0.03em;

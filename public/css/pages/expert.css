@@ -147,7 +147,7 @@
 
 /* IBM Plex Mono ships Light (300) and Bold (700) only; its 400 file does not load, so 400 renders heavy. */
 .project-card__text {
-    font-size: 0.8333rem;
+    font-size: var(--text-ui);
     font-weight: 300;
     line-height: 1.65;
 }

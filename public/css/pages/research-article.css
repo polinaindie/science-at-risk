@@ -3,11 +3,11 @@
    the author line over a 2px black rule, the numbered findings with their title in bold, and percentages in bold. (The classes paper-lead / paper-point / paper-point__title are set in the HTML.) */
 .paper .paragraph {
     margin: 0 0 1.25rem;
-    font-size: 1.0625rem;
+    font-size: var(--step-read);
     line-height: 1.65;
     letter-spacing: 0;
 }
-@media (min-width: 768px) { .paper .paragraph { font-size: 1.125rem; } }
+@media (min-width: 768px) { .paper .paragraph { font-size: var(--step-read); } }
 .paper .paragraph strong { font-weight: 700; }
 .paper .paragraph a { text-decoration: underline; text-underline-offset: 3px; }
 

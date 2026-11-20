@@ -10,7 +10,7 @@
 
 @media (max-width: 768px) {
     .scientific-societies .content h2 {
-        font-size: 0.722rem;
+        font-size: var(--step-text2);
         letter-spacing: -0.022rem;
     }
 }
@@ -22,7 +22,7 @@
     font-family: var(--font-text, "IBM Plex Mono", monospace);
     color: var(--color-black);
     font-weight: var(--font-weight-text);
-    font-size: .9rem;
+    font-size: var(--text-ui);
     line-height: 1.44444rem;
 }
 
@@ -46,7 +46,7 @@
 
 @media (max-width: 768px) {
     .scientific-societies .content a {
-        font-size: 0.722rem;
+        font-size: var(--step-text2);
         line-height: 1rem;
         letter-spacing: 0.022rem;
     }
@@ -161,7 +161,7 @@
     margin-top: 1.778rem;
     margin-bottom: 0.222rem;
     font-family: var(--font-ui, "IBM Plex Mono", monospace);
-    font-size: 0.8333rem;
+    font-size: var(--text-ui);
     font-weight: 400;
     line-height: 1.5;
     letter-spacing: 0;
@@ -176,7 +176,7 @@
 .scientific-societies .aside > a:not(#_) {
     display: block;
     margin-bottom: 0.444rem;
-    font-size: 1.111rem;
+    font-size: var(--step-lg);
     line-height: 1.5;
     color: var(--color-black);
 }

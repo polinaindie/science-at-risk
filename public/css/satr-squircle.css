@@ -14,7 +14,7 @@
   padding: 7px 14px;
   color: var(--link-ink);
   font-family: var(--font-ui, 'IBM Plex Mono', monospace);
-  font-size: 15px;
+  font-size: var(--text-ui);
   line-height: 22px;
   white-space: nowrap;
   text-decoration: none;
@@ -31,7 +31,7 @@
   inset: 0;
   z-index: -1;
   border: 1.5px solid var(--link-ink);
-  border-radius: 14px;
+  border-radius: var(--radius-squircle, 15px);
   background: transparent;
 }
 
