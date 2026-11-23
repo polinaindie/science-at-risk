@@ -884,7 +884,7 @@ const uk: CabinetCopy = {
     youAccepted: 'Ви прийняли запит.',
     youDeclined: 'Ви відхилили запит.',
     writeTo: 'Пошта для листування:',
-    markRead: 'Позначити прочитаним',
+    markRead: 'Позначити як прочитане',
     declinedNote: 'Ви відхилили запит. Якщо передумали, можете його прийняти.',
     acceptAgain: 'Прийняти запит',
     profileOf: (name) => `Профіль: ${name}`,
