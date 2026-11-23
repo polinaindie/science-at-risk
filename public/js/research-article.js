@@ -1,6 +1,6 @@
 (function () {
-  /* The date of the document under the rule below the authors, as on its card in the list (research-index.json, the same "date" field). */
-  var title = document.querySelector('.paper .mb-5');
+  /* The date of the document above the title, as on its card in the list (research-index.json, the same "date" field). */
+  var title = document.querySelector('.paper__main-title');
   var slug = location.pathname.split('/').pop().replace(/\.html$/, '');
   if (!title || !slug || !window.fetch) return;
   fetch('../js/research-index.json').then(function (r) { return r.json(); }).then(function (data) {
@@ -11,7 +11,7 @@
     t.className = 'paper__date';
     t.setAttribute('datetime', doc.date);
     t.textContent = m[3] + '.' + m[2] + '.' + m[1].slice(2);
-    title.parentNode.insertBefore(t, title.nextSibling);
+    title.parentNode.insertBefore(t, title);
   }).catch(function () {});
 })();
 /* Research article: the download button sits level with the rule under the author line (its bottom edge on the rule).
