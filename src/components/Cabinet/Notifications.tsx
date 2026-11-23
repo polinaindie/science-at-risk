@@ -251,7 +251,21 @@ export function NotificationCard({
                       </div>
                     ) : null}
                     {n.mutualContacts?.length ? (
-                      <p className="mt-4 mb-0 text-brand-muted">{t.mutual(n.mutualContacts)}</p>
+                      <p className="mt-4 mb-0 text-brand-muted">
+                        {t.mutual}{' '}
+                        {n.mutualContacts.map((c, i) => (
+                          <span key={c.href}>
+                            {i > 0 ? ', ' : ''}
+                            <Link
+                              href={`${import.meta.env.BASE_URL}${c.href.replace(/^\//, '')}`}
+                              onClick={(e) => e.stopPropagation()}
+                              className="text-[length:inherit]! leading-[inherit]!"
+                            >
+                              {c.name}
+                            </Link>
+                          </span>
+                        ))}
+                      </p>
                     ) : null}
                     {n.stale ? (
                       <p className="mt-5 mb-0 text-brand-muted">

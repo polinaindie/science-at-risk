@@ -220,9 +220,9 @@ export function Col({
   );
 }
 
-/** The h3 body size (16/24px, 20/30px from `md`: mono running text needs line-height ≥ 1.5) held constant on screen whatever
+/** The h3 body size (16/24px, 20/30px from `md`, 24/36px from 1920 like the body text of the other pages: mono running text needs line-height ≥ 1.5) held constant on screen whatever
  *  scale a home-page block has been shrunk by to fit — divided by the same
  *  `--satr-fit` as the gutters. Text and links that sit side by side in
  *  different blocks use this so they measure the same. */
 export const fitTextClass =
-  'satr-fit-text text-[length:calc(16px/var(--satr-fit,1))] leading-[calc(24px/var(--satr-fit,1))] tracking-[-0.01em] md:text-[length:calc(20px/var(--satr-fit,1))] md:leading-[calc(30px/var(--satr-fit,1))]';
+  'satr-fit-text text-[length:calc(16px/var(--satr-fit,1))] leading-[calc(24px/var(--satr-fit,1))] tracking-[-0.01em] md:text-[length:calc(20px/var(--satr-fit,1))] md:leading-[calc(30px/var(--satr-fit,1))] min-[1920px]:text-[length:calc(24px/var(--satr-fit,1))] min-[1920px]:leading-[calc(36px/var(--satr-fit,1))]';

@@ -219,7 +219,7 @@ export interface CabinetCopy {
     deletedToast: string;
     deletedSaid: string;
     tabs: { label: string; all: string; unread: string };
-    mutual: (names: string[]) => string;
+    mutual: string;
     declinedToast: string;
     undo: string;
     closeToast: string;
@@ -512,7 +512,7 @@ const en: CabinetCopy = {
     deletedToast: 'Notification deleted.',
     deletedSaid: 'Notification deleted',
     tabs: { label: 'Show', all: 'All', unread: 'Unread' },
-    mutual: (names) => `Mutual contacts: ${names.join(', ')}`,
+    mutual: 'Mutual contacts:',
     declinedToast: 'Request declined.',
     undo: 'Undo',
     closeToast: 'Close',
@@ -899,7 +899,7 @@ const uk: CabinetCopy = {
     deletedToast: 'Сповіщення видалено.',
     deletedSaid: 'Сповіщення видалено',
     tabs: { label: 'Показати', all: 'Усі', unread: 'Непрочитані' },
-    mutual: (names) => `Спільні контакти: ${names.join(', ')}`,
+    mutual: 'Спільні контакти:',
     declinedToast: 'Запит відхилено.',
     undo: 'Скасувати',
     closeToast: 'Закрити',

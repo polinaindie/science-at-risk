@@ -425,12 +425,12 @@ a.research-card__author.research-card__author.research-card__author:not(.satr-ch
 /* Infrastructure page: labels and small lines at 16px / the scale, nothing between the steps. */
 .infrastructure__sec-title.infrastructure__sec-title:not(#_), .person-card__position.person-card__position:not(#_) { font-size: var(--text-ui); line-height: 1.3; }
 .help-form__text.help-form__text:not(#_) { font-size: var(--step-read); line-height: 1.55; }
-.infra-plate__purpose.infra-plate__purpose:not(#_), .infra-help-note.infra-help-note:not(#_) { font-size: var(--step-md); line-height: 1.55; }
+.infra-plate__purpose.infra-plate__purpose:not(#_):not(#__), .infra-help-note.infra-help-note:not(#_):not(#__) { font-size: var(--text-ui); line-height: 1.55; } /* the plate's purpose and the help note: small text, 16px like the label */
 .column__err-text.column__err-text:not(#_), .column__counter.column__counter:not(#_) { font-size: max(14px, 0.7778rem); line-height: 1.4; }
 .page.infrastructure { padding-bottom: 45px; } /* 51px of its own below the last line + 45 = the 96px gap before the footer, as on the lists */
 
 /* Infrastructure page: every running text is the story's body text (reading size, 1.55, a one-em gap between paragraphs). */
-:is(.infrastructure__text, .infra-fullname, .infrastructure__sec-text, .infra-plate__purpose, .infra-help-note):is(*, *):not(#_):not(#__) { font-size: var(--step-read); line-height: 1.55; }
+:is(.infrastructure__text, .infra-fullname, .infrastructure__sec-text):is(*, *):not(#_):not(#__) { font-size: var(--step-read); line-height: 1.55; }
 .infrastructure__text.infrastructure__text:not(#_) { margin-bottom: 1em; }
 
 /* 1920px and up: the infrastructure page and its list step up like the stories (same values as the block above). */
@@ -472,4 +472,10 @@ a.research-card__author.research-card__author.research-card__author:not(.satr-ch
     --step-xs-lh: 1.4667rem; --step-sm-lh: 1.7333rem; --step-md-lh: 1.8667rem; --step-read-lh: 2rem; --step-lg-lh: 1.8667rem;
     --step-xl-lh: 2.2667rem; --step-2xl-lh: 2.8rem; --step-3xl-lh: 3.6rem; --step-name-lh: 2.5333rem; --step-text2-lh: 1.7333rem;
   }
+}
+
+/* The contact and help-form buttons are 48px tall on every desktop width: the type and the padding change with the width (the
+   border and a 28px line gave 49px from 1440px), the height does not. */
+.person-card__btn.btn:not(#_):not(#__), .help-form__submit.btn:not(#_):not(#__) {
+  box-sizing: border-box; height: 48px; min-height: 48px; padding-top: 0; padding-bottom: 0; line-height: 1.2;
 }

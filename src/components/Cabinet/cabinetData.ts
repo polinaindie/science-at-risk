@@ -526,7 +526,8 @@ export interface Notification {
   /** Where the photo leads: the scientist's public profile. */
   senderHref?: string;
   /** Colleague requests only: names of people both of you are connected with. */
-  mutualContacts?: string[];
+  /** People both know: each name leads to the scientist's profile. */
+  mutualContacts?: { name: string; href: string }[];
 }
 
 /** Times are counted back from now, so "today" and "yesterday" always have a case to show. */
@@ -566,7 +567,10 @@ export const sampleNotifications: Record<CabinetLocale, Notification[]> = {
       senderHref: '/expert/arbuzova-svitlana-borysivna.html',
       senderPosition: 'Candidate of Sciences, Associate Professor',
       senderEmail: 'svitlana.arbuzova@university.example',
-      mutualContacts: ['Andrii Achasov', 'Oleksandra Antoniouk'],
+      mutualContacts: [
+        { name: 'Andrii Achasov', href: '/expert/achasov-andrii-borysovych.html' },
+        { name: 'Oleksandra Antoniouk', href: '/expert/antoniuk-oleksandra-viktorivna.html' },
+      ],
       body: 'Hello! I study soil degradation in the Kherson region and saw that you work with remote sensing. I would like to discuss a joint article: do you have time for a short talk?',
     },
     {
@@ -692,7 +696,10 @@ export const sampleNotifications: Record<CabinetLocale, Notification[]> = {
       senderHref: '/expert/arbuzova-svitlana-borysivna.html',
       senderPosition: 'Кандидат наук, доцент',
       senderEmail: 'svitlana.arbuzova@university.example',
-      mutualContacts: ['Ачасов Андрій Борисович', 'Антонюк Олександра Вікторівна'],
+      mutualContacts: [
+        { name: 'Ачасов Андрій Борисович', href: '/expert/achasov-andrii-borysovych.html' },
+        { name: 'Антонюк Олександра Вікторівна', href: '/expert/antoniuk-oleksandra-viktorivna.html' },
+      ],
       body: 'Доброго дня! Я вивчаю деградацію ґрунтів на Херсонщині й побачила, що ви працюєте з дистанційним зондуванням. Хотіла б обговорити спільну статтю: чи є у вас час на коротку розмову?',
     },
     {
