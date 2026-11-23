@@ -1,5 +1,5 @@
 {{/* Scientists | Societies switch, links form. Source of truth: src/components/ScopeTabs. Needs satr-chrome.css.
      Params: label (spoken name of the group), current (value of the open tab), tabs (list of dicts: value, label, href). */}}
 {{ $a := "group py-2 no-underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-black" }}
-{{ $s := "block border-b-[3px] border-transparent pb-1 font-ui text-[1.25rem] font-medium leading-[1.75rem] text-brand-muted transition-colors md:text-[1.5rem] md:leading-[2rem] group-hover:border-brand-line-muted group-hover:text-brand-black group-aria-[current=page]:border-brand-black group-aria-[current=page]:text-brand-black" }}
+{{ $s := "block border-b-[3px] border-transparent pb-1 font-ui text-(length:--step-lg) font-medium leading-[1.75rem] text-brand-muted transition-colors md:text-(length:--step-lg) md:leading-[2rem] group-hover:border-brand-line-muted group-hover:text-brand-black group-aria-[current=page]:border-brand-black group-aria-[current=page]:text-brand-black" }}
 <nav aria-label="{{ .label }}" class="flex gap-8">{{ range .tabs }}<a href="{{ .href }}"{{ if eq .value $.current }} aria-current="page"{{ end }} class="{{ $a }}"><span class="{{ $s }}">{{ .label }}</span></a>{{ end }}</nav>

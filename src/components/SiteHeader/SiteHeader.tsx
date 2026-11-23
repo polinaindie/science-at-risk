@@ -339,7 +339,7 @@ export function SiteHeader({
           <a
             href={homeHref}
             aria-label="Science At Risk"
-            className={`satr-dim absolute left-0 top-1/2 -translate-y-1/2 font-heading text-[1.75rem] leading-[2.625rem] tracking-[-0.02em] no-underline transition-opacity duration-200 ${ink} ${focusRing}`}
+            className={`satr-dim absolute left-0 top-1/2 -translate-y-1/2 font-heading text-[24px] md:text-[36px] leading-[2.625rem] tracking-[-0.02em] no-underline transition-opacity duration-200 ${ink} ${focusRing}`}
             style={{ opacity: landed ? 0 : 1, pointerEvents: landed ? 'none' : undefined }}
             tabIndex={landed ? -1 : undefined}
             aria-hidden={landed ? true : undefined}
@@ -358,7 +358,7 @@ export function SiteHeader({
                 18px on a phone, which is what leaves room on a 320px screen
                 for the language switch and the menu beside it. */}
             <span
-              className={`block whitespace-nowrap font-heading text-[1.125rem] font-normal leading-[1.125rem] tracking-[-0.27px] md:text-[1.5rem] md:leading-[1.5rem] md:tracking-[-0.36px] ${ink}`}
+              className={`block whitespace-nowrap font-heading text-[1.125rem] font-normal leading-[1.125rem] tracking-[-0.27px] md:text-(length:--step-2xl) md:leading-[1.5rem] md:tracking-[-0.36px] ${ink}`}
             >
               SC!ENCE AT R!SK!
             </span>
