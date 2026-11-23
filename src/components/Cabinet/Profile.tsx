@@ -279,7 +279,7 @@ function ProfileName({
               </p>
             ) : null}
             {profile.institution ? (
-              <p className={`m-0 mt-1 text-brand-muted ${PLACE}`}>{profile.institution}</p>
+              <p className={`m-0 mt-1 text-brand-black ${PLACE}`}>{profile.institution}</p>
             ) : null}
           </>
         ) : null}

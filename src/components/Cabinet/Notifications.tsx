@@ -10,9 +10,13 @@ import { EmptyState, PageTitle, tabClass, Toast } from './parts';
 
 const WRAP = '[overflow-wrap:anywhere]';
 
-/** Unread is shown by the yellow card; the word is only for screen readers. */
+/** Unread is the yellow background of the row; the word is for screen readers. */
 function UnreadMark({ label }: { label: string }) {
-  return <span className="sr-only">{label}</span>;
+  return (
+    <>
+      <span className="sr-only">{label}</span>
+    </>
+  );
 }
 
 /** The sender's photo, or their initials when there is none; it leads to the scientist's profile when there is one. */
@@ -24,7 +28,7 @@ function Avatar({ name, src, href, label }: { name: string; src?: string; href?:
     .join('');
   const squircle = useSquircleClipPath({ radius: 22, smoothing: 0.9 });
   const picture = src ? (
-    <img ref={squircle.ref} style={squircle.style} src={src} alt="" className="size-16 shrink-0 object-cover" />
+    <img ref={squircle.ref} style={squircle.style} src={src.startsWith('/') ? `${import.meta.env.BASE_URL}${src.slice(1)}` : src} alt="" className="size-16 shrink-0 object-cover" />
   ) : (
     <span
       ref={squircle.ref}
@@ -122,10 +126,7 @@ export function NotificationCard({
     </Link>
   ) : null;
 
-  // The card is one squircle fill behind the content: yellow when unread, a very pale blue once read. No outline.
-  const fill = useSquircleClipPath({ radius: 24, smoothing: 0.9 });
 
-  const hasLeft = answerable || (unread && !n.stale);
   const menuNode = (
     <div ref={menuRef} className="relative">
               <button
@@ -167,19 +168,12 @@ export function NotificationCard({
       data-read={n.read}
       data-stale={n.stale}
       onClick={() => unread && onRead?.(n.id)}
-      className={`relative px-5 py-4 transition-opacity md:px-6 md:py-5 ${n.stale ? 'opacity-70' : n.read ? 'opacity-70 hover:opacity-100 focus-within:opacity-100' : ''}`}
+      className={`relative border-b-2 border-brand-black px-5 py-6 transition-opacity md:px-6 md:py-8 ${unread ? 'bg-brand-accent-yellow' : ''} ${n.stale ? 'opacity-70' : n.read ? 'text-brand-muted' : ''}`}
     >
-      <span
-        ref={fill.ref}
-        style={fill.style}
-        aria-hidden
-        className={`absolute inset-0 ${unread ? 'bg-brand-accent-yellow' : 'bg-brand-accent-blue/25'}`}
-      />
-      <SquircleDefs clipId={fill.clipId} pathD={fill.pathD} />
       <div className="relative flex items-start gap-4">
-        {unread ? <UnreadMark label={t.unreadMark} /> : null}
         <div className="min-w-0 flex-1">
           <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
+            {unread ? <UnreadMark label={t.unreadMark} /> : null}
             {isLetter ? null : (
               <h3
                 className={`m-0 font-ui text-text1-mobile font-bold md:text-text1-desktop ${WRAP}`}
@@ -189,7 +183,7 @@ export function NotificationCard({
             )}
             <time
               dateTime={n.date}
-              className="whitespace-nowrap font-ui text-breadcrumbs text-brand-muted"
+              className="whitespace-nowrap font-ui text-[length:var(--step-xs)] leading-[var(--step-xs-lh)] text-brand-muted"
             >
               {formatNotificationDate(n.date, locale, 'full')}
             </time>
@@ -201,10 +195,10 @@ export function NotificationCard({
               <h3 className={`m-0 mt-4 font-heading text-heading-3 ${WRAP}`}>
                 {n.subject}
               </h3>
-              <p className={`m-0 mt-2 font-ui text-breadcrumbs text-brand-muted ${WRAP}`}>
+              <p className={`m-0 mt-2 font-ui text-breadcrumbs text-brand-black ${WRAP}`}>
                 {isRequest ? n.senderEmail : t.teamName}
               </p>
-              <div className="mt-5 border-t-2 border-brand-line-muted pt-5">
+              <div className="mt-5">
                 <div className={`flex flex-col gap-4 font-text text-text1-mobile md:text-text1-desktop ${WRAP}`}>
                   {(n.body || (isRequest ? t.requestText : ''))
                     .split(/\s*\n\s*/)
@@ -225,14 +219,14 @@ export function NotificationCard({
                 </h3>
               ) : null}
               <div className="mt-4 flex items-center gap-4">
-                <Avatar name={n.senderName ?? ''} src={n.senderImage} href={n.senderHref} label={t.profileOf(n.senderName ?? '')} />
+                {n.senderHref || n.senderImage ? (
+                  <Avatar name={n.senderName ?? ''} src={n.senderImage} href={n.senderHref} label={t.profileOf(n.senderName ?? '')} />
+                ) : null}
                 <div className={`min-w-0 ${WRAP}`}>
                   {n.subject ? (
-                    <p className="m-0 font-ui text-text1-mobile font-bold md:text-text1-desktop">{n.senderName}</p>
+                    <p className="m-0 font-ui text-text1-mobile md:text-text1-desktop">{n.senderName}</p>
                   ) : (
-                    <h3 className="m-0 font-heading text-heading-3">
-                      {n.senderName}
-                    </h3>
+                    <h3 className="m-0 font-heading text-heading-3">{n.senderName}</h3>
                   )}
                   {n.senderPosition ? (
                     <p className="m-0 mt-1 font-ui text-breadcrumbs text-brand-muted">{n.senderPosition}</p>
@@ -240,7 +234,7 @@ export function NotificationCard({
                 </div>
               </div>
               <div
-                className={`mt-5 border-t-2 border-brand-line-muted pt-5 font-text text-text1-mobile md:text-text1-desktop ${WRAP}`}
+                className={`mt-4 font-text text-text1-mobile md:text-text1-desktop ${WRAP}`}
               >
                 {n.kind === 'colleague' ? (
                   <>
@@ -293,31 +287,14 @@ export function NotificationCard({
               </div>
             </>
           )}
-          {hasLeft ? (
-            <div className="mt-5 mb-2 flex items-center gap-4 border-t-2 border-brand-line-muted pt-4 md:mb-3">
-            {answerable ? (
-              <div className="flex flex-wrap gap-3">
-                <Button variant="black" type="button" onClick={(e) => { e.stopPropagation(); onAccept?.(n.id); }}>
-                  {t.accept}
-                </Button>
-                <Button variant="white" type="button" onClick={(e) => { e.stopPropagation(); onDecline?.(n.id); }}>
-                  {t.decline}
-                </Button>
-              </div>
-            ) : unread && !n.stale ? (
-              <Link
-                as="button"
-                className="text-[length:inherit]! leading-[inherit]!"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  onRead?.(n.id);
-                }}
-              >
-                {t.markRead}
-              </Link>
-            ) : (
-              <span />
-            )}
+          {answerable ? (
+            <div className="mt-6 flex flex-wrap gap-3">
+              <Button variant="black" type="button" onClick={(e) => { e.stopPropagation(); onAccept?.(n.id); }}>
+                {t.accept}
+              </Button>
+              <Button variant="white" type="button" onClick={(e) => { e.stopPropagation(); onDecline?.(n.id); }}>
+                {t.decline}
+              </Button>
             </div>
           ) : null}
         </div>
@@ -505,7 +482,7 @@ export function NotificationsScreen({
         <>
           {visible.length === 0 ? <EmptyState title={t.unreadEmpty} text={t.emptyTab} /> : null}
           {visible.length > 0 ? (
-            <ul aria-label={t.listLabel} className="m-0 mb-8 flex list-none flex-col gap-4 p-0">
+            <ul aria-label={t.listLabel} className="m-0 mb-8 flex list-none flex-col border-t-2 border-brand-black p-0">
               {shown.map((n) => (
                 <NotificationCard
                   key={n.id}
