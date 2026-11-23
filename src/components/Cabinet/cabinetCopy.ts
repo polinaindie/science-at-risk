@@ -299,7 +299,7 @@ const en: CabinetCopy = {
     editLocked: 'Editing is paused while the team reviews your changes.',
     withdraw: 'Withdraw and keep editing',
     openOnSite: 'Open on the site',
-    change: 'Change',
+    change: 'Edit',
     add: 'Add',
     parts: { photo: 'photo', links: 'links', name: 'name and position' },
     pendingNote: 'This is the version you sent. It is not on the site yet.',
@@ -319,7 +319,7 @@ const en: CabinetCopy = {
   },
   edit: {
     title: 'Edit profile',
-    partTitle: 'Change',
+    partTitle: 'Edit',
     lede: 'Everything you filled in at registration is here. Change what has moved on and add what is new. Save as you go, then send all the changes together. The team checks them at once, and they appear on the site only after the check.',
     required: '* required',
     example: 'For example:',
