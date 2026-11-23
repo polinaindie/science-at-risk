@@ -1,4 +1,5 @@
 @import url("expert-entities.css");
+@import url("contact-modal.css");
 
 /* A scientist's profile on the mirrored static pages: layout, sections, lists. The entities' type, the scale and the tokens are in expert-entities.css. */
 
@@ -51,7 +52,7 @@
     flex-wrap: wrap;
     margin: 11px 0 0 -5px;
     padding-left: 0;
-    max-width: calc(62ch + 10px); /* chips stay inside the 62ch measure (their own 5px side padding is outside it) */
+    max-width: none; /* the chips use the whole column: on a wide screen the last one comes up into the first row instead of waiting at the 62ch measure of the text */
 }
 .expert__tags:not(:has(li)) { display: none; }
 
@@ -63,6 +64,7 @@
    On shorter ones it scrolls with the page: the photo is as wide as the column, so it can be tall, and a
    sticky column taller than the screen would hide its button and links. */
 @media (min-width: 768px) and (min-height: 900px) {
+    .expert-profile > .col-lg-4 > .aside::-webkit-scrollbar { display: none; }
     .expert-profile > .col-lg-4 > .aside {
         position: sticky;
         top: var(--s3);
@@ -70,7 +72,7 @@
         transition: top 0.25s ease;
         overflow-y: auto;
         overflow-x: hidden;
-        scrollbar-width: thin;
+        scrollbar-width: none; /* it still scrolls when the screen is too short, but draws no bar */
     }
 }
 @media (min-width: 768px) {
@@ -140,14 +142,14 @@
     grid-column: 1 !important;
     grid-row: 1 / span 4;
     font-family: var(--font-ui, "IBM Plex Mono", monospace);
-    font-size: var(--t-sm);
-    line-height: 1.5556rem;
+    font-size: var(--step-read);
+    line-height: 1.5;
     font-weight: 400;
 }
 
 /* IBM Plex Mono ships Light (300) and Bold (700) only; its 400 file does not load, so 400 renders heavy. */
 .project-card__text {
-    font-size: 0.8333rem;
+    font-size: var(--text-ui);
     font-weight: 300;
     line-height: 1.65;
 }
@@ -173,14 +175,15 @@
     color: var(--color-black);
     text-wrap: balance;
 }
-.aside__lang-text, .aside__item-link { font-size: var(--t-sm); line-height: 1.5; }
+.aside__lang-text { font-size: var(--t-sm); line-height: 1.5; }
+.aside__links-item .aside__item-link.aside__item-link.hover--underline:not(#_) { font-size: var(--step-read); line-height: 1.5; } /* profile links: same size as the descriptions on the right */
 
 .aside__links + .aside__contact { margin-top: var(--s2); }
 .aside > .aside__contact { min-height: 48px; padding-inline: var(--s4); }
 
 /* On wide screens the button is exactly as wide as the photo above it. */
 @media (min-width: 768px) {
-    .expert-profile > .col-lg-4 > .aside > .aside__contact { display: flex; width: min(100%, clamp(180px, 32vh, 360px)); }
+    .expert-profile > .col-lg-4 > .aside > .aside__contact { display: flex; width: 100%; }
 }
 
 /* The links row had negative side margins that pushed it past the column: keep it inside, text on the photo's edge. */
@@ -269,66 +272,6 @@
     body:has(.satr-chrome--header.is-stuck:not(.is-hidden)) .expert-profile > .col-lg-4 > .aside { top: 80px; }
 }
 
-/* ---- Contact modal: languages line, icon-only close, fields in the order Name, Email, Text ---- */
-
-/* Close: a bare white X, 2px strokes, no button shape */
-.expertHelp .help-form__btn-close {
-    justify-content: center;
-    align-items: center;
-    width: 44px; /* a 44 x 44 touch area around a smaller cross */
-    min-width: 44px;
-    height: 44px;
-    padding: 0;
-    background: transparent;
-    border: 0;
-    border-radius: 0;
-    -webkit-clip-path: none;
-    clip-path: none;
-    box-shadow: none;
-}
-.expertHelp .help-form__btn-close svg { width: 20px; height: 20px; }
-.expertHelp .help-form__btn-close svg path {
-    stroke: var(--color-white);
-    stroke-width: 2px;
-    vector-effect: non-scaling-stroke; /* always exactly 2px, whatever the icon size */
-    stroke-linecap: butt; /* flat ends, nothing rounded */
-}
-
-/* In the top right corner, its edge on the page's content edge (16px, 40px from 1280px) */
-@media (min-width: 768px) {
-    .expertHelp .help-form__btn-close { top: -36px; right: 4px; } /* the cross stays 16px from the black panel's top and right edges (44px area, 20px cross) */
-}
-@media (min-width: 1280px) {
-    .expertHelp .help-form__btn-close { top: -22px; right: 28px; } /* 40px from both edges, like the header */
-}
-
-.expertHelp .wrapper > .row {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr);
-    gap: var(--s4) var(--s5);
-    align-items: end;
-    margin: 0;
-}
-
-.expertHelp .wrapper > .row .help-form__input { margin-bottom: 0; }
-
-.expertHelp .wrapper > .row > * {
-    order: 0 !important;
-    width: auto;
-    max-width: none;
-    padding: 0;
-    margin: 0;
-}
-
-.expertHelp .wrapper > .row > .contacts-page__form-captcha,
-.expertHelp .wrapper > .row > :last-child { grid-column: 1 / -1; }
-
-@media (min-width: 768px) {
-    .expertHelp .wrapper > .row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    /* Name and Email side by side; Text under them across the full width */
-    .expertHelp .wrapper > .row > :nth-child(3) { grid-column: 1 / -1; }
-}
-
 /* ---- Identity repeated under the photo once the big one has scrolled away (wide screens) ---- */
 .aside-mini { display: none; }
 
@@ -337,7 +280,7 @@
         display: grid;
         grid-template-rows: 0fr;
         opacity: 0;
-        width: min(100%, clamp(180px, 32vh, 360px));
+        width: 100%;
         transition: grid-template-rows 0.25s ease, opacity 0.2s ease, margin-top 0.25s ease;
     }
     .aside-mini.is-on { grid-template-rows: 1fr; opacity: 1; }
@@ -350,7 +293,7 @@
     .aside-mini__name { font-family: var(--font-heading, "Noto Serif", serif); font-weight: 400; font-size: var(--t-xl); line-height: 1.15; letter-spacing: -0.02em; }
     .aside-mini__line { font-size: var(--t-sm); line-height: 1.5; margin-top: var(--s2); }
     .aside-mini__name + .aside-mini__line { font-family: var(--font-text, "IBM Plex Mono", monospace); font-weight: var(--font-weight-text); line-height: 1.3333rem; }
-    .aside-mini__place { font-family: var(--font-ui, "IBM Plex Mono", monospace); font-weight: 400; font-size: var(--t-xs); line-height: 1.2222rem; margin-top: 4px; color: var(--color-grey-700); }
+    .aside-mini__place { font-family: var(--font-ui, "IBM Plex Mono", monospace); font-weight: 400; font-size: var(--t-xs); line-height: 1.2222rem; margin-top: 4px; color: var(--color-black); }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -360,9 +303,9 @@
 /* ---- Experience as a timeline, the way the cabinet prints it: year column, the post, then the place ---- */
 .exp-list { order: 5; list-style: none; margin: var(--s1) 0 0; padding: 0; display: grid; gap: var(--s3); max-width: 62ch; }
 .exp-item { display: grid; grid-template-columns: var(--exp-year-w, 6ch) minmax(0, 1fr); column-gap: var(--s2); }
-.exp-year { font-family: var(--font-ui, "IBM Plex Mono", monospace); font-size: var(--t-sm); line-height: 1.2222rem; padding-top: 2px; }
-.exp-pos { display: block; font-family: var(--font-text, "IBM Plex Mono", monospace); font-weight: var(--font-weight-text); font-size: var(--t-sm); line-height: 1.3333rem; }
-.exp-place { display: block; margin-top: 4px; font-family: var(--font-ui, "IBM Plex Mono", monospace); font-size: var(--t-xs); line-height: 1.2222rem; }
+.exp-year { font-family: var(--font-ui, "IBM Plex Mono", monospace); font-size: var(--step-read); line-height: 1.5; padding-top: 2px; }
+.exp-pos { display: block; font-family: var(--font-text, "IBM Plex Mono", monospace); font-weight: var(--font-weight-text); font-size: var(--step-read); line-height: 1.5; }
+.exp-place { display: block; margin-top: 4px; font-family: var(--font-ui, "IBM Plex Mono", monospace); font-size: var(--text-ui); line-height: 1.55; color: var(--color-black); }
 
 @media (min-width: 768px) {
     .exp-item { column-gap: var(--s3); }
@@ -378,7 +321,7 @@
 .aside__mobile .aside__lang-text {
     font-family: var(--font-ui, "IBM Plex Mono", monospace);
     font-weight: 400;
-    font-size: var(--t-md);
+    font-size: var(--step-read);
     line-height: 1.65;
     font-variant-ligatures: none;
 }
@@ -386,8 +329,8 @@
 /* ---- Hint under the Write button: the languages to write in, in the cabinet's alert style (yellow, square) ---- */
 .contact-tip { display: none; }
 @media (min-width: 768px) {
-    /* room under the button for the note, so the column's own scroll does not clip it */
-    .expert-profile > .col-lg-4 > .aside { padding-bottom: 56px; }
+    /* room under the button for the note, so the column's own scroll does not clip it; the negative margin hands that room back, so that at the end of the page the button stands level with the last line on the right */
+    .expert-profile > .col-lg-4 > .aside { padding-bottom: 56px; margin-bottom: -71px; }
     .contact-tip {
         display: block;
         position: absolute;

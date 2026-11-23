@@ -160,7 +160,7 @@
     background: transparent;
     cursor: pointer;
     font-family: var(--font-ui);
-    font-size: 18px;
+    font-size: var(--step-md);
     line-height: 28px;
     letter-spacing: -0.03em;
     color: inherit;
@@ -172,7 +172,7 @@
        (`paint(squircle)`, matching the mirror exactly) was tried first but
        measurably failed to paint for elements already in the React tree
        at registration time in this environment. */
-    border-radius: 15px;
+    border-radius: var(--radius-squircle, 15px);
   }
 
   /* Select trigger uses a visibly smaller, non-pill radius (mirror:
@@ -180,7 +180,7 @@
      to a full pill at these heights. Passed to useSquircleClipPath's
      `radius` — this class only covers the pre-measurement fallback. */
   .satr-squircle--select {
-    border-radius: 12px;
+    border-radius: var(--radius-md, 12px);
   }
 
   /* Decorative shape layer — a real element (not ::before), so
@@ -258,7 +258,7 @@
   .satr-link {
     display: inline;
     font-family: var(--font-ui);
-    font-size: 18px;
+    font-size: var(--step-md);
     line-height: 28px;
     letter-spacing: -0.03em;
     color: var(--color-black);
@@ -293,7 +293,7 @@
     border: none;
     cursor: pointer;
     font-family: var(--font-ui);
-    font-size: 14px;
+    font-size: var(--step-text2);
     line-height: 20px;
     letter-spacing: -0.03em;
     color: var(--color-black);
@@ -314,7 +314,7 @@
   @media (min-width: 768px) {
     .satr-tag {
       padding: 8px 12px;
-      font-size: 18px;
+      font-size: var(--step-md);
       line-height: 28px;
     }
   }
@@ -420,7 +420,7 @@
     border-radius: 50%;
     background: var(--color-black);
     color: var(--color-white);
-    font-size: 14px;
+    font-size: var(--step-text2);
     line-height: 1;
     letter-spacing: -0.03em;
   }
@@ -555,7 +555,7 @@
     background: var(--color-attention);
     color: var(--color-black);
     font-family: var(--font-ui);
-    font-size: 14px;
+    font-size: var(--step-text2);
     line-height: 20px;
     letter-spacing: -0.03em;
 }

@@ -49,7 +49,7 @@
 
 .satr-auth .satr-auth__lede {
   margin: 0 0 40px;
-  font-size: 16px;
+  font-size: var(--text-ui);
   line-height: 26px;
 }
 
@@ -78,7 +78,7 @@
 .satr-auth .satr-auth__under {
   min-height: 24px;
   margin: 6px 0 16px;
-  font-size: 14px;
+  font-size: var(--step-text2);
   line-height: 20px;
   letter-spacing: -0.03em;
   color: var(--auth-muted);
@@ -108,7 +108,7 @@
   margin: 0 0 24px;
   padding: 14px 16px;
   background: var(--auth-attention);
-  font-size: 16px;
+  font-size: var(--text-ui);
   line-height: 24px;
 }
 
@@ -133,7 +133,7 @@
   background: transparent;
   color: var(--auth-ink);
   font: inherit;
-  font-size: 14px;
+  font-size: var(--step-text2);
   letter-spacing: -0.03em;
   text-decoration: underline;
   text-underline-offset: 4px;
@@ -155,11 +155,11 @@
   margin-top: 8px;
   padding: 0.5rem 1.25rem;
   border: 0;
-  border-radius: 15px;
+  border-radius: var(--radius-squircle, 15px);
   background: #000;
   color: #fff;
   font-family: var(--font-ui, 'IBM Plex Mono', monospace);
-  font-size: 18px;
+  font-size: var(--step-md);
   line-height: 28px;
   letter-spacing: -0.03em;
   text-decoration: none;
@@ -168,7 +168,7 @@
 }
 
 .satr-auth .satr-auth__btn:hover:not(:disabled):not([aria-busy='true']) {
-  background: #333;
+  background: var(--color-grey-900, #333333);
 }
 
 .satr-auth .satr-auth__btn:focus-visible,
@@ -187,7 +187,7 @@
    still. */
 .satr-auth .satr-auth__btn[aria-busy='true'] {
   cursor: progress;
-  background: #333;
+  background: var(--color-grey-900, #333333);
 }
 
 .satr-auth .satr-auth__btn[aria-busy='true']::before {
@@ -214,7 +214,7 @@
 
 .satr-auth .satr-auth__link {
   color: var(--auth-ink);
-  font-size: 16px;
+  font-size: var(--text-ui);
   line-height: 24px;
   text-decoration: underline;
   text-underline-offset: 4px;
@@ -248,7 +248,7 @@
   padding: 20px 24px 22px;
   background: var(--auth-blue);
   color: var(--auth-ink);
-  font-size: 16px;
+  font-size: var(--text-ui);
   line-height: 24px;
 }
 
@@ -258,7 +258,7 @@
 
 .satr-auth .satr-auth__aside .satr-auth__aside-title {
   margin-bottom: 8px;
-  font-size: 18px;
+  font-size: var(--step-md);
   font-weight: 700;
   line-height: 26px;
 }
@@ -279,14 +279,14 @@
   margin: 0 0 16px;
   padding: 0;
   list-style: none;
-  font-size: 14px;
+  font-size: var(--step-text2);
   line-height: 22px;
   color: var(--auth-muted);
 }
 
 .satr-auth .satr-auth__rules-title {
   margin: 0 0 4px;
-  font-size: 14px;
+  font-size: var(--step-text2);
   line-height: 22px;
   color: var(--auth-ink);
 }
@@ -310,7 +310,7 @@
   align-items: center;
   gap: 12px;
   margin: 0 0 24px;
-  font-size: 14px;
+  font-size: var(--step-text2);
   line-height: 20px;
 }
 
@@ -358,7 +358,7 @@
   }
 
   .satr-auth .satr-auth__lede {
-    font-size: 18px;
+    font-size: var(--step-md);
     line-height: 28px;
   }
 }

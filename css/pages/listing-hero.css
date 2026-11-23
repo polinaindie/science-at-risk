@@ -27,7 +27,7 @@
     padding-bottom: 0.25rem;
     border-bottom: 3px solid transparent;
     /* The same numbers as src/components/ScopeTabs (the one component): 1.25rem/1.75rem, 1.5rem/2rem from md, medium. */
-    font-size: 1.25rem;
+    font-size: var(--step-lg);
     font-weight: 500;
     line-height: 1.75rem;
     letter-spacing: normal;
@@ -35,7 +35,7 @@
     transition: color 0.15s, border-color 0.15s;
 }
 
-@media (min-width: 768px) { .scope-tabs__word { font-size: 1.5rem; line-height: 2rem; } }
+@media (min-width: 768px) { .scope-tabs__word { font-size: var(--step-xl); line-height: 2rem; } }
 
 .scope-tabs__link:hover .scope-tabs__word { color: var(--color-black); border-bottom-color: rgba(0, 0, 0, 0.25); }
 .scope-tabs__link[aria-current="page"] .scope-tabs__word { color: var(--color-black); border-bottom-color: #000; }
@@ -204,5 +204,5 @@
 .suggest li[aria-selected="true"] { background: var(--color-blue-wash); }
 
 .suggest__name { display: flex; flex-direction: column; min-width: 0; }
-.suggest__name small { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-family: var(--font-ui, "IBM Plex Mono", monospace); font-size: 0.7222rem; line-height: 1.1111rem; color: var(--color-grey-700); }
+.suggest__name small { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-family: var(--font-ui, "IBM Plex Mono", monospace); font-size: var(--step-text2); line-height: 1.1111rem; color: var(--color-grey-700); }
 .suggest li em { flex-shrink: 0; font-family: var(--font-ui, "IBM Plex Mono", monospace); font-size: 0.7778rem; font-style: normal; color: var(--color-grey-700); }

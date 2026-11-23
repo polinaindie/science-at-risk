@@ -10,7 +10,9 @@
     var caption = document.createElement('p');
     caption.className = 'infra-caption';
     caption.setAttribute('aria-live', 'polite');
-    wrap.appendChild(caption);
+    /* in an article the order is: the photo, its caption, a rule, then Back / counter / Next under it */
+    var nav = wrap.closest('.story') && root.querySelector('.infrastructure__navigation');
+    if (nav) nav.parentNode.insertBefore(caption, nav); else wrap.appendChild(caption);
     function sync() {
       var i = swiper.realIndex != null ? swiper.realIndex : swiper.activeIndex;
       var alt = (slides[i] && slides[i].getAttribute('alt')) || '';

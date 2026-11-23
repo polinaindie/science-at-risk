@@ -34,7 +34,7 @@ body { font-family: var(--font-ui); }
 :is(.paragraph, .story-lead, .paper-lead, .main-text, .project-card__text):not(#_) :is(strong, b) { font-weight: 700; }
 
 /* One outlier: this element is a control, so it fell back to the browser's 13.33px, under the 14px floor. */
-.project-card__text:not(#_) { font-size: 16px; line-height: 25px; }
+.project-card__text:not(#_) { font-size: var(--text-ui); line-height: 1.55; }
 
 /* Headings: family is the `heading` role wherever the page draws them (header, menu and footer are components with their own
    classes and are left alone); the SIZE comes from the heading scale in tokens.css, by role, not by page. */
@@ -56,6 +56,14 @@ body { font-family: var(--font-ui); }
 :is(h3.heading, .expert-card__title, .paper-card__title, .infrastructures-card__title, .story-card__title, .project-card__title,
     .person-card__title, .aside__title):not(#_) {
   font-size: var(--heading-3); line-height: var(--heading-3-lh); letter-spacing: var(--heading-3-ls);
+}
+/* The name on an expert's card and the title of a society or infrastructure card are one step above the other card titles. */
+.expert-card__title.expert-card__title:not(#_),
+.infrastructures-card__title.infrastructures-card__title:not(#_) { font-size: var(--step-2xl); line-height: var(--step-2xl-lh); letter-spacing: var(--step-2xl-ls); }
+
+/* The languages label in the expert's right column is a section title, like Research field: heading-2 (expert.css says the same). */
+.aside__mobile .aside__title:not(#_) {
+  font-size: var(--heading-2); line-height: var(--heading-2-lh); letter-spacing: var(--heading-2-ls);
 }
 
 /* Controls do not inherit the page font by default (the browser uses Arial/system-ui): make them follow the role. */
@@ -129,3 +137,339 @@ button, input, select, textarea { font-family: inherit; }
   :is(.scientific-societies__link, .scientific-societies .content a, .hero__list-link, .hover--underline):not(.satr-chrome *):not(#_) { font-size: max(14px, 0.7778rem); }
 }
 .scientific-societies { overflow-wrap: anywhere; }
+
+/* Running text takes its size from the --step-read scale (18px on a phone, 20px from 1280px). The line length is set by --satr-measure below, not by the type size. */
+/* The width of the article text: 65% of the screen from a tablet up (never wider than its column); the whole column on a phone. */
+:root { --satr-measure: 100%; }
+@media (min-width: 768px) { :root { --satr-measure: min(65vw, 100%); } }
+
+/* One body size for running text across the site: 20px on desktop, 18px on a phone (was 18px / 16px and different per page).
+   Only long-form text is here; card captions, labels and controls keep their own sizes. */
+:is(.paragraph, .story-lead, .paper-lead, .main-text, .expertParagraph, .expertParagraph--lead,
+    .infrastructure__text, .infrastructure__sec-text, .paper__section-text):not(#_) {
+  font-size: var(--step-read); line-height: 1.55;
+}
+
+/* A line of running text holds no more than ten words: in this mono at 20px, 52 characters (about 8-10 words). */
+:is(.paragraph, .story-lead, .paper-lead, .main-text, .expertParagraph, .expertParagraph--lead,
+    .infrastructure__text, .infrastructure__sec-text, .paper__section-text):not(#_) {
+  max-width: var(--satr-measure);
+}
+
+/* The second text style: a short note set apart from the running text — a disclaimer, a credit line, a footnote.
+   Smaller (16px), italic, in the muted ink, the same measure as the body. Use `.satr-note` in new markup; on the
+   mirrored pages the italic closing line of a story ("The reportage is published with the support of…") and the
+   footnotes are picked up below. */
+:is(.satr-note, .paragraph:has(> i:only-child), .footnotes li):not(#_) {
+  font-family: var(--font-text);
+  font-size: var(--step-text2); line-height: 1.5; font-style: italic;
+  color: var(--color-text-muted, #4d4d4d);
+  max-width: var(--satr-measure);
+}
+
+/* ---- Article type (stories, research): the quote, the lists. The opening paragraph (.story-lead) is set as running text. Headings are set in pages/story-text.css. ---- */
+/* The quote: a pull quote in the heading face, with the bar the pages already have. */
+.story .quote:not(#_) { margin: 2.5rem 0; padding-left: 1.5rem; max-width: 36em; }
+.story .quote .quote__name:not(#_) {
+  font-family: var(--font-heading); font-weight: 400; font-size: var(--step-2xl); line-height: 1.35; letter-spacing: 0;
+}
+.story .quote .quote__position:not(#_) { font-size: var(--text-ui); line-height: 1.5; color: var(--color-text-muted, #4d4d4d); }
+
+/* Lists: running-text size, a marker that reads in black, the same measure as a paragraph. */
+.story .col-md-9 :is(ul, ol):not(.footnotes):not(.link__wrap):not(#_) {
+  margin: 0 0 1.25rem; padding-left: 1.75rem; max-width: var(--satr-measure);
+  font-family: var(--font-text); font-size: var(--step-read); line-height: 1.55;
+}
+.story .col-md-9 ul:not(.footnotes):not(.link__wrap):not(#_) { list-style: disc; }
+.story .col-md-9 ol:not(.footnotes):not(#_) { list-style: decimal; }
+.story .col-md-9 :is(ul, ol):not(.footnotes):not(.link__wrap) li:not(#_) { margin: 0 0 0.5rem; padding-left: 0.25rem; }
+.story .col-md-9 :is(ul, ol):not(.footnotes):not(.link__wrap) li::marker { font-family: var(--font-ui); color: var(--color-black, #000); }
+
+/* A numbered list is indented from the text column (a tab, 3rem), the numbers hang in that indent and wrapped lines align with the first. */
+.story .col-md-9 ol:not(.footnotes):not(.link__wrap):not(#_):not(#__) { padding-left: 3rem; max-width: var(--satr-measure); }
+.story .col-md-9 ol:not(.footnotes) li:not(#_) { padding-left: 0; }
+
+/* The credits beside a story (Author, Photographer) are set like the side block of a society page: a small muted label,
+   the value under it at running-text size in black. */
+.storyAside .storyAside__title:not(#_) {
+  margin: 0 0 0.222rem;
+  font-family: var(--font-ui); font-size: var(--text-ui); font-weight: 400; line-height: 1.5; letter-spacing: 0;
+  color: var(--color-grey-700, #4d4d4d);
+}
+.storyAside .storyAside__text:not(#_) {
+  margin: 0 0 0.444rem; max-width: none; overflow-wrap: break-word;
+  font-size: var(--step-read); line-height: 1.5; color: var(--color-black, #000);
+}
+.storyAside .storyAside__text-wrap:not(#_) { margin-bottom: 1.778rem; }
+
+/* The date stands on the line of the story's type, after a dot: "Stories · 12.08.26", then the title below. The markup keeps
+   its order (type, title, date); the header column is a wrapping flex row and the title takes a line of its own. */
+.story .col-md-9:has(> .story__main-title):not(#_) { display: flex; flex-wrap: wrap; align-items: baseline; }
+.story .col-md-9 > .story__type:not(#_) { order: 1; margin-bottom: 1rem; }
+.story .col-md-9 > .story__main-title:not(#_) { order: 3; flex: 0 0 100%; margin-bottom: 2rem; }
+.story .col-md-9 > .story__main-title ~ .data:not(#_) { order: 2; margin: 0 0 1rem; }
+.story .col-md-9 > .story__main-title ~ .data::before { content: "\00b7"; margin: 0 0.6em; color: var(--color-black, #000); }
+
+/* ---- The top of a story: the page is the header's own height below the bar, the picture is a band, not a wall ---- */
+/* The original reserved 125px under a fixed header; the bar here is 68px tall, so that left a 57px hole above the breadcrumbs: now the bar's 68px plus 1.5rem. */
+.story.indentHeader:not(#_) { padding-top: calc(68px + 1.5rem) !important; }
+.story .breadcrumbs:not(#_) { margin-bottom: 1rem; }
+/* The cover was 46% of the screen width tall (520px at 1130, 880px at 1920): the title was below the fold. It is now the width of the
+   content, 12:5 and never above 460px, cropped to fill, so the title and the opening show on a big screen too. */
+.full-image:not(#_) { margin-left: 0; margin-right: 0; } /* the width of the content, not of the screen */
+.full-image__bg:not(#_) { padding-top: 0; aspect-ratio: 12 / 5; max-height: 460px; min-height: 200px; }
+.full-image img:not(#_) { object-fit: cover; }
+
+/* ---- Reading quality of a story (sizes come from the --step-* scale) ---- */
+/* Rhythm: a taller line for mono at reading size; the gap between paragraphs is one line of type. */
+.story :is(.paragraph, .story-lead):not(#_) { line-height: 1.65; }
+.story .col-md-9 .paragraph:not(#_) { margin-bottom: 1em; }
+.story .col-md-9 :is(ul, ol):not(.footnotes):not(.link__wrap):not(#_) { line-height: 1.65; }
+
+/* Headings keep their proportion to the text instead of staying a fixed size on a big screen. */
+.story .col-md-9 .heading--h2:not(#_) { font-size: var(--step-2xl); line-height: 1.25; margin: 2.2em 0 0.5em; max-width: 24em; }
+.story .col-md-9 .heading--h3:not(#_) { font-size: var(--step-xl); line-height: 1.3; margin: 1.8em 0 0.5em; max-width: 28em; }
+
+/* Line breaks: no one-word last line in text, even lines in the big type. */
+.story :is(.paragraph, li, .satr-note):not(#_) { text-wrap: pretty; }
+.story :is(.story__main-title, .quote__name, .heading--h2, .heading--h3):not(#_) { text-wrap: balance; }
+
+/* Pictures in the text take the whole content column (wider than the 52-character text), caption under in the note size. */
+.story .col-md-9 figure.image:not(#_) { margin: 2em 0; max-width: none; }
+/* the picture box keeps its own ratio and the img fills it (absolute), so the img must keep height: 100% or it overflows onto the text */
+.story .col-md-9 figure.image img:not(#_) { display: block; width: 100%; height: 100%; object-fit: cover; }
+.story .col-md-9 figure.image figcaption:not(#_) {
+  margin-top: 0.6em; max-width: var(--satr-measure);
+  font-size: var(--step-text2); line-height: 1.5; color: var(--color-text-muted, #4d4d4d);
+}
+.story .col-md-9 figure.image figcaption:empty { display: none; }
+
+/* Links in the text: a thin underline set off the letters, thicker on hover; visited ones keep the ink. */
+.story .col-md-9 :is(.paragraph, li) a:not(#_) {
+  color: inherit; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.18em;
+}
+.story .col-md-9 :is(.paragraph, li) a:hover:not(#_) { text-decoration-thickness: 2px; }
+
+/* The credits stay beside a long read on a desktop. */
+@media (min-width: 768px) {
+  .story .storyAside:not(#_) { position: sticky; top: calc(68px + 1.5rem); }
+}
+
+/* ---- Footnotes: the ¹ ² ³ in the text link to the note, the note links back ---- */
+.footnote-ref { font-size: inherit; line-height: 1; }
+.story .col-md-9 .footnote-ref a:not(#_) {
+  display: inline; padding: 0 0.12em; text-decoration: none; line-height: 1; color: inherit; font-weight: 700;
+}
+.story .col-md-9 .footnote-ref a:hover:not(#_), .story .col-md-9 .footnote-ref a:focus-visible:not(#_) { background: var(--color-yellow); }
+/* the page has a bar on top: the target must not hide under it */
+:is(.footnotes li, .footnote-ref a)[id] { scroll-margin-top: calc(68px + 2rem); }
+.footnotes li:target:not(#_) { background: var(--color-yellow); }
+.footnotes .footnote-back:not(#_) { margin-left: 0.4em; text-decoration: none; font-style: normal; color: inherit; }
+.footnotes .footnote-back:hover:not(#_) { text-decoration: underline; }
+
+/* ---- Article entities: a picture with a caption, a gallery, a video. Same classes as the hand-off spec (handoff/prose.html):
+   .figure, .gallery, .embed. Pictures and video use the whole content column; their captions use the note size and measure. ---- */
+.story .col-md-9 :is(.figure, .embed):not(#_) { margin: 2em 0; }
+.story .col-md-9 .figure__img:not(#_) { display: block; width: 100%; height: auto; }
+.story .col-md-9 :is(.figure__caption, .embed__fallback):not(#_) {
+  margin: 0.6em 0 0; max-width: var(--satr-measure);
+  font-size: var(--step-text2); line-height: 1.5; color: var(--color-text-muted, #4d4d4d);
+}
+.story .col-md-9 .figure__caption:empty { display: none; }
+
+/* Gallery: the one the infrastructure pages use (Swiper, started by js/client.bundle.js; js/infrastructure-page.js adds the caption from
+   the picture's alt text and writes the counter as "1 / 4"). In an article it takes the whole content column, without the side
+   indent the infrastructure page gives it next to its text. */
+.story .col-md-9 .infrastructure__slider-wrap:not(#_) { margin: 2em 0; padding-left: 0; }
+.story .col-md-9 .infrastructure__navigation:not(#_) { font-family: var(--font-ui); font-size: var(--step-text2); }
+.story .col-md-9 .infra-caption:not(#_) {
+  margin: 0.6em 0 0; max-width: var(--satr-measure);
+  font-size: var(--step-text2); line-height: 1.5; color: var(--color-text-muted, #4d4d4d);
+}
+.story .col-md-9 .infra-caption:empty { display: none; }
+
+/* Video: a 16:9 frame. A third-party video loads only after the visitor presses play (the poster carries the notice and the
+   button); without script the button is a plain link to the video. A self-hosted file goes in the same frame as <video controls>. */
+.story .col-md-9 .embed__frame:not(#_) { position: relative; aspect-ratio: 16 / 9; background: var(--color-black, #000); color: var(--color-white, #fff); }
+.story .col-md-9 .embed__frame :is(iframe, video):not(#_) { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.story .col-md-9 .embed__poster:not(#_) {
+  position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1rem;
+  padding: 1.5rem; text-align: center; font-family: var(--font-ui);
+}
+.story .col-md-9 .embed__consent:not(#_) { margin: 0; max-width: 34em; font-size: var(--text-ui); line-height: 1.5; color: inherit; }
+.story .col-md-9 a.embed__play:not(#_) {
+  display: inline-flex; align-items: center; min-height: 44px; padding: 0.5rem 1.5rem; border: 2px solid var(--color-white, #fff);
+  background: var(--color-white, #fff); color: var(--color-black, #000); font: inherit; text-decoration: none; cursor: pointer;
+}
+.story .col-md-9 a.embed__play:hover:not(#_) { background: var(--color-blue); }
+.story .col-md-9 a.embed__play:focus-visible:not(#_) { outline: 3px solid var(--color-white, #fff); outline-offset: 3px; }
+.story .col-md-9 .embed__fallback a:not(#_) { color: inherit; }
+
+/* The ¹ ² ³ are already superscript characters: the <sup> must not raise them a second time. */
+.story .col-md-9 sup.footnote-ref:not(#_) { vertical-align: baseline; }
+
+/* The tag over a story is set in the size of the date beside it (15px, same line), so the pair reads as one line. */
+.story .col-md-9 > .story__type:not(#_), .story .col-md-9 > .story__main-title ~ .data:not(#_) {
+  font-size: var(--text-ui); line-height: 1.5; letter-spacing: 0;
+}
+
+/* Pictures, the gallery and the video are exactly as wide as the text above and below them. */
+.story .col-md-9 :is(figure.image, .figure, .infrastructure__slider-wrap, .embed):not(#_):not(#__) { max-width: var(--satr-measure); }
+.story .col-md-9 .gallery .figure:not(#_):not(#__) { max-width: none; }
+
+/* Footer small print on the static pages: the chrome stylesheet carries no value for this role, so it takes the scale's caption step (same as React's text-text2-mobile). */
+.satr-chrome {
+  --text-text2-mobile: var(--step-text2);
+  --text-text2-mobile--line-height: var(--step-text2-lh);
+  --text-text2-mobile--letter-spacing: 0;
+}
+
+/* Footer title on the static pages: the chrome stylesheet carries the old stepped ramp (32/48/64/72px); React's .text-h1 follows --step-h1, and so does this. */
+.satr-chrome .text-h1 {
+  font-size: var(--step-h1);
+  line-height: var(--step-h1-lh);
+  letter-spacing: var(--step-h1-ls);
+}
+
+/* The institution under the post on an expert's page: one step under the running text, black. */
+.expert-id .expert__affiliation:not(#_) { font-size: var(--text-ui); color: var(--color-black); }
+
+/* The description on a society / infrastructure card is running text, the same size as the one on an expert's card. */
+.infrastructures-card__text:not(#_) { font-size: var(--step-read); line-height: 1.55; }
+
+/* The label over the popular chips ("Popular requests") is one size on the scientists and the societies lists. */
+.popular-requests__text:not(#_) { font-size: var(--step-md); line-height: 1.5; }
+
+/* Society page: body text and links at reading size, same as the expert page. */
+.scientific-societies .content p:not(#_),
+.scientific-societies .content li:not(#_),
+.scientific-societies p.mt-3:not(#_) { font-size: var(--step-read); line-height: 1.55; }
+.scientific-societies .scientific-societies__link.scientific-societies__link.hover:not(.satr-chrome *):not(#_),
+.scientific-societies .hero__list-link.hero__list-link.hover:not(.satr-chrome *):not(#_) { font-size: var(--step-read); line-height: 1.5; }
+
+/* Buttons (.btn, black and white): one size everywhere, a step of the type scale. */
+.btn.btn.btn:not(.satr-chrome *):not(#_) { font-size: var(--step-md); }
+
+/* Research page: the lede and the card's author line follow the other pages (lede and links at reading size, text at md). */
+.papers-hero__text.papers-hero__text:not(#_) { font-size: var(--step-read); line-height: 1.55; }
+a.research-card__author.research-card__author.research-card__author:not(.satr-chrome *):not(#_) { font-size: var(--step-read); line-height: 1.5; }
+.paper-card__text.paper-card__text:not(#_) { font-size: var(--step-md); line-height: 1.55; }
+
+/* Stories list: the card text at md (as on the research cards), the date at the fixed UI size (as the research card's date),
+   the page numbers on the scale (they were 22px, 1.22rem) and the same 96px gap before the footer as the other lists. */
+.story-card__text.story-card__text:not(#_) { font-size: var(--step-md); line-height: 1.55; }
+.story-card__data.story-card__data:not(#_) { font-size: var(--text-ui); line-height: 1.3; }
+.pagination .pagination__numbers:not(#_), .pagination .pagination__prev span:not(#_), .pagination .pagination__next span:not(#_) { font-size: var(--step-lg); }
+.pageStories.pageStories:not(#_) { padding-bottom: var(--space-7, 96px); }
+
+/* Story page: the opening paragraph is the lead: the serif of the headings, a step larger than the text under it. */
+.story .col-md-9 > :is(.paragraph, .story-lead):first-child:not(#_):not(#__),
+.story .col-md-9 > h2:first-child + :is(.paragraph, .story-lead):not(#_):not(#__) {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  font-size: var(--step-lg);
+  line-height: 1.5;
+  margin-bottom: 1.5em;
+}
+/* The share line at the foot of a story: its label and the links at md, like the other small text of the page. */
+.story .link .link__title.link__title:not(#_), .story .link .link__item.link__item a.hover:not(#_) { font-size: var(--step-md); line-height: 1.5; }
+
+/* Story headings run the width of the text and wrap only when they are longer than it (they were capped at 24em / 28em and balanced). */
+.story .col-md-9 :is(.heading--h2, .heading--h3):not(#_):not(#__) { max-width: var(--satr-measure); text-wrap: wrap; }
+
+/* Wide desktops (1920px and up): the type of the stories, research (list and articles) and the scientists list grows by a fifth, because the
+   scale stops at 1280px and the text looked small in a 1744px column. The values are the 1280px ones of the scale times 1.2 (1rem = 18px
+   here); they are set on the page, so the header and footer are not touched. */
+@media (min-width: 1920px) {
+  :is(.page.story, .page.paper, .page.papers, .page:has(.expert-card)) {
+    --step-xs: 1rem;        /* 18   (was 15) */
+    --step-sm: 1.0667rem;   /* 19.2 (16) */
+    --step-md: 1.2rem;      /* 21.6 (18) */
+    --step-read: 1.3333rem; /* 24   (20) */
+    --step-lg: 1.4667rem;   /* 26.4 (22) */
+    --step-xl: 1.8667rem;   /* 33.6 (28) */
+    --step-2xl: 2.4rem;     /* 43.2 (36) */
+    --step-3xl: 3.2rem;     /* 57.6 (48) */
+    --step-name: 2.1333rem; /* 38.4 (32) */
+    --step-text2: 1.0667rem;/* 19.2 (16) */
+    --text-ui: 19.2px;      /* (16) */
+  }
+}
+
+/* ...and the pieces that had a fixed size in the main stylesheet follow the same step up on a wide desktop. */
+@media (min-width: 1920px) {
+  :is(.page.story, .page.paper, .page.papers, .page:has(.expert-card)) .tag:not(.satr-chrome *):not(#_) { font-size: var(--step-md); }
+  :is(.page.story, .page.paper, .page.papers, .page:has(.expert-card)) .tag .tag__number:not(#_) { font-size: var(--text-ui); }
+  :is(.page.story, .page.paper, .page.papers, .page:has(.expert-card)) .expert-card__subtitle:not(#_) { font-size: var(--step-md); }
+  :is(.page.story, .page.paper, .page.papers, .page:has(.expert-card)) .expert-card__text:not(#_) { font-size: var(--step-xs); }
+  :is(.page.story, .page.paper, .page.papers, .page:has(.expert-card)) .expert-card__tag:not(.satr-chrome *):not(#_) { font-size: var(--step-md); }
+  :is(.page.story, .page.paper, .page.papers, .page:has(.expert-card)) .satr-float__label:not(.satr-chrome *):not(#_) { font-size: var(--step-lg); }
+}
+
+/* Gallery in an article: the photo, its caption, a rule, and Back / counter / Next under the rule. */
+.story .col-md-9 .infrastructure__slider-wrap .infra-caption:not(#_) { margin: 0.75em 0 1.25rem; }
+.story .col-md-9 .infrastructure__slider-wrap .infrastructure__navigation:not(#_) { margin-top: 0; padding-top: 0.75rem; border-top: 2px solid var(--color-black); }
+
+@media (min-width: 1920px) {
+  .page.papers .research-filter__tip:not(#_) { font-size: var(--text-ui); }
+  .page.papers .research-filter__status:not(#_), .page.paper .paper-aside__text:not(#_) { font-size: var(--step-md); }
+  .page.paper .mb-5:not(#_) { font-size: var(--text-ui); }
+}
+
+/* Infrastructures list: the lede at reading size, as on the research and societies lists. */
+.infrastructures-hero__text.infrastructures-hero__text:not(#_) { font-size: var(--step-read); line-height: 1.55; }
+/* The column labels ("Science domain", "Required amount") are 16px, as on the societies list. */
+.infrastructures__text-left.infrastructures__text-left:not(#_), .infrastructures__text-right.infrastructures__text-right:not(#_) { font-size: var(--text-ui); line-height: 1.3; }
+.page.infrastructures { padding-bottom: var(--space-7, 96px); } /* gap before the footer, as on the other lists */
+
+/* Infrastructure page: labels and small lines at 16px / the scale, nothing between the steps. */
+.infrastructure__sec-title.infrastructure__sec-title:not(#_), .person-card__position.person-card__position:not(#_) { font-size: var(--text-ui); line-height: 1.3; }
+.help-form__text.help-form__text:not(#_) { font-size: var(--step-read); line-height: 1.55; }
+.infra-plate__purpose.infra-plate__purpose:not(#_), .infra-help-note.infra-help-note:not(#_) { font-size: var(--step-md); line-height: 1.55; }
+.column__err-text.column__err-text:not(#_), .column__counter.column__counter:not(#_) { font-size: max(14px, 0.7778rem); line-height: 1.4; }
+.page.infrastructure { padding-bottom: 45px; } /* 51px of its own below the last line + 45 = the 96px gap before the footer, as on the lists */
+
+/* Infrastructure page: every running text is the story's body text (reading size, 1.55, a one-em gap between paragraphs). */
+:is(.infrastructure__text, .infra-fullname, .infrastructure__sec-text, .infra-plate__purpose, .infra-help-note):is(*, *):not(#_):not(#__) { font-size: var(--step-read); line-height: 1.55; }
+.infrastructure__text.infrastructure__text:not(#_) { margin-bottom: 1em; }
+
+/* 1920px and up: the infrastructure page and its list step up like the stories (same values as the block above). */
+@media (min-width: 1920px) {
+  :is(.page.infrastructure, .page.infrastructures) {
+    --step-xs: 1rem; --step-sm: 1.0667rem; --step-md: 1.2rem; --step-read: 1.3333rem; --step-lg: 1.4667rem;
+    --step-xl: 1.8667rem; --step-2xl: 2.4rem; --step-3xl: 3.2rem; --step-name: 2.1333rem; --step-text2: 1.0667rem; --text-ui: 19.2px;
+  }
+  :is(.page.infrastructure, .page.infrastructures) :is(.tag, .expert-card__tag):not(.satr-chrome *):not(#_) { font-size: var(--step-md); }
+  .page.infrastructure :is(.column__err-text, .column__counter):not(#_) { font-size: var(--step-xs); }
+}
+
+/* The full name under the infrastructure title: a softer grey and closer to the title. */
+.infra-fullname.infra-fullname:not(#_) { color: var(--color-grey-700); margin-top: 0; }
+.infrastructure__header.infrastructure__header:not(#_) { margin-bottom: 0; }
+
+/* Buttons: one height everywhere, 48px (the search buttons on the scientists and societies lists were already). The close cross, the filter chips and the gallery arrows are not buttons of this kind. */
+.btn:not(.help-form__btn-close):not(.research-filter__tag):not(.satr-chrome *):not(#_), .paper-card__link-btn:not(#_) { min-height: 48px; box-sizing: border-box; }
+.paper-card__btn.paper-card__btn:not(#_) { height: 48px; }
+/* The full name under the title is the line of an expert's institution: 16px, black. */
+.infra-fullname.infra-fullname:not(#_):not(#__) { font-size: var(--text-ui); line-height: 1.4; color: var(--color-black); }
+.infra-fullname.infra-fullname:not(#_):not(#__) { margin-top: 12px; }
+
+/* The facts list: the label column grows with the label type (the longest label, "Type of infrastructure", is 22 characters of mono), so the value never runs into it on a wide screen. */
+@media (min-width: 768px) {
+  .infrastructure__info .row > div:not(#_) { grid-template-columns: max(12.5rem, calc(var(--text-ui) * 13.5)) 1fr; column-gap: 1.5rem; }
+}
+
+/* The amount is a heading in a paragraph tag: the general paragraph rule (1.55) made its line 54px for 35px type. */
+.infra-plate__amount.infra-plate__amount:not(#_):not(#__) { line-height: 1.15; }
+
+/* List page: the card's labels and amount sit in <p>, where the general paragraph rule (1.55) won over 1.3. */
+.infrastructures__text-left.infrastructures__text-left:not(#_):not(#__):not(#___), .infrastructures__text-right.infrastructures__text-right:not(#_):not(#__):not(#___), .infrastructures-card__text-right p:not(#_):not(#__):not(#___) { line-height: 1.3; }
+
+/* 1920px and up: the line heights of the scale grow with the sizes above. Without this the card titles (43px) kept the 1280px line of 42px,
+   the lines overlapped and the hover underline (drawn at the bottom of the text box) fell onto the next line. Values: the 1280px ones times 1.2. */
+@media (min-width: 1920px) {
+  :is(.page.story, .page.paper, .page.papers, .page:has(.expert-card), .page.infrastructure, .page.infrastructures) {
+    --step-xs-lh: 1.4667rem; --step-sm-lh: 1.7333rem; --step-md-lh: 1.8667rem; --step-read-lh: 2rem; --step-lg-lh: 1.8667rem;
+    --step-xl-lh: 2.2667rem; --step-2xl-lh: 2.8rem; --step-3xl-lh: 3.6rem; --step-name-lh: 2.5333rem; --step-text2-lh: 1.7333rem;
+  }
+}
