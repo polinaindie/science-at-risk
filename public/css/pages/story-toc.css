@@ -11,6 +11,6 @@
   .story-toc a { font-size: var(--text-ui); line-height: 1.3; color: var(--color-grey-700); text-decoration: none; }
   .story-toc a:hover, .story-toc a:focus-visible, .story-toc a[aria-current] { color: var(--color-black); }
   .story-toc a:hover, .story-toc a:focus-visible { text-decoration: underline; text-underline-offset: 0.18em; }
-  .story-toc a[aria-current] { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 0.18em; }
+  .story-toc a[aria-current] { font-weight: 700; }
 }
 .story .col-md-9 :is(h2, h3).heading { scroll-margin-top: 120px; }

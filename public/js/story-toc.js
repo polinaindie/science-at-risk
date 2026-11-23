@@ -48,6 +48,7 @@
     for (var i = 0; i < links.length; i++) {
       if (links[i].h.getBoundingClientRect().top <= 160) current = links[i]; else break;
     }
+    if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) current = links[links.length - 1];
     links.forEach(function (l) {
       if (l === current) l.a.setAttribute('aria-current', 'true'); else l.a.removeAttribute('aria-current');
     });
