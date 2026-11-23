@@ -366,10 +366,9 @@ export function SiteHeader({
         </div>
 
         <div className="flex shrink-0 items-center gap-4 xl:gap-5">
-          {/* From `md` up the language switch stands in the middle of the bar; on a phone there is no room beside the wordmark, so it keeps to the right. */}
+          {/* The language switch keeps to the right, beside the way in and the menu, at every width. */}
           <p
-            className={`m-0 whitespace-nowrap font-ui text-text1-mobile ${member ? 'max-[399px]:hidden' : 'max-[359px]:hidden'} md:absolute md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:text-[1.125rem] md:leading-[1.5rem] md:tracking-normal`}
-            style={{ top: PAD_TOP + ROW_H / 2 }}
+            className={`m-0 whitespace-nowrap font-ui text-text1-mobile ${member ? 'max-[399px]:hidden' : 'max-[359px]:hidden'} md:text-(length:--text-ui) md:leading-[1.5rem] md:tracking-normal`}
           >
             {isUa ? other : current}
             <span aria-hidden>/</span>
