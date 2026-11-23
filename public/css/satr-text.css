@@ -336,6 +336,7 @@ button, input, select, textarea { font-family: inherit; }
 
 /* The description on a society / infrastructure card is running text, the same size as the one on an expert's card. */
 .infrastructures-card__text:not(#_) { font-size: var(--step-read); line-height: 1.55; }
+.infrastructures-card__text-right p:not(.d-md-none):not(#_):not(#__):not(#___) { font-size: var(--step-read); line-height: 1.55; }
 
 /* The label over the popular chips ("Popular requests") is one size on the scientists and the societies lists. */
 .popular-requests__text:not(#_) { font-size: var(--step-md); line-height: 1.5; }
