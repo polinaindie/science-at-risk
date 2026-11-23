@@ -358,7 +358,7 @@ export function SiteHeader({
                 18px on a phone, which is what leaves room on a 320px screen
                 for the language switch and the menu beside it. */}
             <span
-              className={`block whitespace-nowrap font-heading text-[1.125rem] font-normal leading-[1.125rem] tracking-[-0.27px] md:text-(length:--step-2xl) md:leading-[1.5rem] md:tracking-[-0.36px] ${ink}`}
+              className={`block whitespace-nowrap font-heading text-[18px] font-normal leading-[1.125rem] tracking-[-0.27px] md:text-[24px] md:leading-[1.5rem] md:tracking-[-0.36px] ${ink}`}
             >
               SC!ENCE AT R!SK!
             </span>

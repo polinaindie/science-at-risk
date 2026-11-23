@@ -308,3 +308,17 @@ button, input, select, textarea { font-family: inherit; }
 /* Pictures, the gallery and the video are exactly as wide as the text above and below them. */
 .story .col-md-9 :is(figure.image, .figure, .infrastructure__slider-wrap, .embed):not(#_):not(#__) { max-width: var(--satr-measure); }
 .story .col-md-9 .gallery .figure:not(#_):not(#__) { max-width: none; }
+
+/* Footer small print on the static pages: the chrome stylesheet carries no value for this role, so it takes the scale's caption step (same as React's text-text2-mobile). */
+.satr-chrome {
+  --text-text2-mobile: var(--step-text2);
+  --text-text2-mobile--line-height: var(--step-text2-lh);
+  --text-text2-mobile--letter-spacing: 0;
+}
+
+/* Footer title on the static pages: the chrome stylesheet carries the old stepped ramp (32/48/64/72px); React's .text-h1 follows --step-h1, and so does this. */
+.satr-chrome .text-h1 {
+  font-size: var(--step-h1);
+  line-height: var(--step-h1-lh);
+  letter-spacing: var(--step-h1-ls);
+}
