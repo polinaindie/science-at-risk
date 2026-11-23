@@ -90,7 +90,7 @@
             return '<button type="button" data-popular="' + esc(slug) + '" aria-pressed="' + on + '" aria-label="' + esc(name) + '" class="popular-requests__tags tag">' +
                 esc(name) + (n ? '<span class="tag__number">' + esc(n) + '</span>' : '') + '</button>';
         };
-        requests.innerHTML = '<p class="popular-requests__text">Popular domains</p><div class="popular-requests__wrapper">' +
+        requests.innerHTML = '<p class="popular-requests__text">Popular requests</p><div class="popular-requests__wrapper">' +
             TAGS.map(function (x) { return chip(x[0], x[1], x[2], state.tag === x[0]); }).join('') + '</div>';
     };
 

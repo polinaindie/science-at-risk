@@ -225,4 +225,4 @@ export function Col({
  *  `--satr-fit` as the gutters. Text and links that sit side by side in
  *  different blocks use this so they measure the same. */
 export const fitTextClass =
-  'text-[length:calc(16px/var(--satr-fit,1))] leading-[calc(24px/var(--satr-fit,1))] tracking-[-0.01em] md:text-[length:calc(20px/var(--satr-fit,1))] md:leading-[calc(30px/var(--satr-fit,1))]';
+  'satr-fit-text text-[length:calc(16px/var(--satr-fit,1))] leading-[calc(24px/var(--satr-fit,1))] tracking-[-0.01em] md:text-[length:calc(20px/var(--satr-fit,1))] md:leading-[calc(30px/var(--satr-fit,1))]';

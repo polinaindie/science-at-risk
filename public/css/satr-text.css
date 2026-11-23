@@ -57,6 +57,10 @@ body { font-family: var(--font-ui); }
     .person-card__title, .aside__title):not(#_) {
   font-size: var(--heading-3); line-height: var(--heading-3-lh); letter-spacing: var(--heading-3-ls);
 }
+/* The name on an expert's card and the title of a society or infrastructure card are one step above the other card titles. */
+.expert-card__title.expert-card__title:not(#_),
+.infrastructures-card__title.infrastructures-card__title:not(#_) { font-size: var(--step-2xl); line-height: var(--step-2xl-lh); letter-spacing: var(--step-2xl-ls); }
+
 /* The languages label in the expert's right column is a section title, like Research field: heading-2 (expert.css says the same). */
 .aside__mobile .aside__title:not(#_) {
   font-size: var(--heading-2); line-height: var(--heading-2-lh); letter-spacing: var(--heading-2-ls);
@@ -329,3 +333,19 @@ button, input, select, textarea { font-family: inherit; }
 
 /* The institution under the post on an expert's page: one step under the running text, black. */
 .expert-id .expert__affiliation:not(#_) { font-size: var(--text-ui); color: var(--color-black); }
+
+/* The description on a society / infrastructure card is running text, the same size as the one on an expert's card. */
+.infrastructures-card__text:not(#_) { font-size: var(--step-read); line-height: 1.55; }
+
+/* The label over the popular chips ("Popular requests") is one size on the scientists and the societies lists. */
+.popular-requests__text:not(#_) { font-size: var(--step-md); line-height: 1.5; }
+
+/* Society page: body text and links at reading size, same as the expert page. */
+.scientific-societies .content p:not(#_),
+.scientific-societies .content li:not(#_),
+.scientific-societies p.mt-3:not(#_) { font-size: var(--step-read); line-height: 1.55; }
+.scientific-societies .scientific-societies__link.scientific-societies__link.hover:not(.satr-chrome *):not(#_),
+.scientific-societies .hero__list-link.hero__list-link.hover:not(.satr-chrome *):not(#_) { font-size: var(--step-read); line-height: 1.5; }
+
+/* Buttons (.btn, black and white): one size everywhere, a step of the type scale. */
+.btn.btn.btn:not(.satr-chrome *):not(#_) { font-size: var(--step-md); }

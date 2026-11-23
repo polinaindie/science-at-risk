@@ -174,7 +174,8 @@
     color: var(--color-black);
     text-wrap: balance;
 }
-.aside__lang-text, .aside__item-link { font-size: var(--t-sm); line-height: 1.5; }
+.aside__lang-text { font-size: var(--t-sm); line-height: 1.5; }
+.aside__links-item .aside__item-link.aside__item-link.hover--underline:not(#_) { font-size: var(--step-read); line-height: 1.5; } /* profile links: same size as the descriptions on the right */
 
 .aside__links + .aside__contact { margin-top: var(--s2); }
 .aside > .aside__contact { min-height: 48px; padding-inline: var(--s4); }

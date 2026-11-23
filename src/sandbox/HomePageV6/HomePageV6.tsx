@@ -177,7 +177,7 @@ const FLOW_PAD_FOOTER = 'max-lg:[&>footer>div]:pb-20 max-lg:[&>footer>div]:pt-[1
  *  is their usual 18px. The fit then solves for the taller block; the
  *  headings, which have size to spare, give up the difference. */
 const FIT_FLOOR =
-  'lg:[&_p.font-text]:text-[length:max(18px,calc(16px/var(--satr-fit,1)))] lg:[&_p.font-text]:leading-[max(26px,calc(23px/var(--satr-fit,1)))] lg:[&_p[class*=text1-desktop]]:text-[length:max(18px,calc(16px/var(--satr-fit,1)))] lg:[&_p[class*=text1-desktop]]:leading-[max(28px,calc(25px/var(--satr-fit,1)))]';
+  'lg:[&_p.font-text:not(.satr-fit-text)]:text-[length:max(18px,calc(16px/var(--satr-fit,1)))] lg:[&_p.font-text:not(.satr-fit-text)]:leading-[max(26px,calc(23px/var(--satr-fit,1)))] lg:[&_p[class*=text1-desktop]]:text-[length:max(18px,calc(16px/var(--satr-fit,1)))] lg:[&_p[class*=text1-desktop]]:leading-[max(28px,calc(25px/var(--satr-fit,1)))]';
 
 /** These blocks stand on the foot of the screen rather than in the middle of
  *  it: the title sits at the bottom of its column and the list's last rule is
