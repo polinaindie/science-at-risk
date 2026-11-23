@@ -299,3 +299,18 @@
   font-size: var(--step-read);
   line-height: var(--step-read-lh);
 }
+
+/* From 1920px the text of the cabinet grows by a fifth, as on the site's pages (the values are the ones of the 1280px scale times 1.2). */
+@media (min-width: 1920px) {
+  .satr-cabinet-scale, .satr-static-scale {
+    --step-xs: 18px; --step-sm: 19.2px; --step-md: 21.6px; --step-read: 24px; --step-lg: 26.4px; --step-xl: 33.6px; --step-2xl: 43.2px;
+    --step-3xl: 57.6px; --step-name: 38.4px; --step-text2: 19.2px; --text-ui: 19.2px;
+    --step-xs-lh: 26.4px; --step-sm-lh: 31.2px; --step-md-lh: 33.6px; --step-read-lh: 36px; --step-lg-lh: 33.6px; --step-xl-lh: 40.8px;
+    --step-2xl-lh: 50.4px; --step-3xl-lh: 64.8px; --step-name-lh: 45.6px; --step-text2-lh: 31.2px;
+    --st-xs: 18px; --st-sm: 19.2px; --st-md: 21.6px; --st-read: 24px; --st-lg: 26.4px; --st-xl: 33.6px; --st-2xl: 43.2px; --st-3xl: 57.6px;
+    --st-name: 38.4px; --st-text2: 19.2px;
+    --st-xs-lh: 26.4px; --st-sm-lh: 31.2px; --st-md-lh: 33.6px; --st-read-lh: 36px; --st-lg-lh: 33.6px; --st-xl-lh: 40.8px;
+    --st-2xl-lh: 50.4px; --st-3xl-lh: 64.8px; --st-name-lh: 45.6px; --st-text2-lh: 31.2px;
+    --step-h1: 86.4px; --step-h1-lh: 91.2px; --step-h2: 43.2px; --step-h2-lh: 50.4px; --step-h3: 26.4px; --step-h3-lh: 33.6px;
+  }
+}

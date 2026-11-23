@@ -479,3 +479,62 @@ a.research-card__author.research-card__author.research-card__author:not(.satr-ch
 .person-card__btn.btn:not(#_):not(#__), .help-form__submit.btn:not(#_):not(#__) {
   box-sizing: border-box; height: 48px; min-height: 48px; padding-top: 0; padding-bottom: 0; line-height: 1.2;
 }
+
+/* Every page, not only the stories, research and infrastructure ones: from 1920px the text of the scale grows by a fifth (the scale stops
+   at 1280px and the type looks small in a 1744px column). The values are the ones of the blocks above; they are set on the page, so the
+   header and footer are not touched. Page titles (h1-h3) keep their own scale, which is large already. */
+@media (min-width: 1920px) {
+  .page {
+    --step-xs: 1rem; --step-sm: 1.0667rem; --step-md: 1.2rem; --step-read: 1.3333rem; --step-lg: 1.4667rem;
+    --step-xl: 1.8667rem; --step-2xl: 2.4rem; --step-3xl: 3.2rem; --step-name: 2.1333rem; --step-text2: 1.0667rem; --text-ui: 19.2px;
+    --step-xs-lh: 1.4667rem; --step-sm-lh: 1.7333rem; --step-md-lh: 1.8667rem; --step-read-lh: 2rem; --step-lg-lh: 1.8667rem;
+    --step-xl-lh: 2.2667rem; --step-2xl-lh: 2.8rem; --step-3xl-lh: 3.6rem; --step-name-lh: 2.5333rem; --step-text2-lh: 1.7333rem;
+  }
+}
+
+/* The headings too: from 1920px the page's h1-h3 grow by a fifth with the rest (the 1440px+ values of the scale times 1.2). The roles that point at
+   the steps are declared again on the page, because a custom property is resolved where it is declared. */
+@media (min-width: 1920px) {
+  .page {
+    --step-h1: 4.8rem; --step-h1-lh: 5.0667rem; --step-h2: 2.4rem; --step-h2-lh: 2.8rem; --step-h3: 1.4667rem; --step-h3-lh: 1.8667rem;
+    --heading-1: var(--step-h1);
+    --heading-1-lh: var(--step-h1-lh);
+    --heading-1-ls: var(--step-h1-ls);
+    --heading-entity: var(--step-3xl);
+    --heading-entity-lh: var(--step-3xl-lh);
+    --heading-entity-ls: var(--step-3xl-ls);
+    --heading-2: var(--step-h2);
+    --heading-2-lh: var(--step-h2-lh);
+    --heading-2-ls: var(--step-h2-ls);
+    --heading-3: var(--step-xl);
+    --heading-3-lh: var(--step-xl-lh);
+    --heading-3-ls: var(--step-xl-ls);
+    --text-h1: var(--step-h1);
+    --text-h1-lh: var(--step-h1-lh);
+    --text-h1-ls: var(--step-h1-ls);
+    --text-h2: var(--step-h2);
+    --text-h2-lh: var(--step-h2-lh);
+    --text-h2-ls: var(--step-h2-ls);
+    --text-h3: var(--step-h3);
+    --text-h3-lh: var(--step-h3-lh);
+    --text-h3-ls: var(--step-h3-ls);
+    --text-name: var(--step-name);
+    --text-name-lh: var(--step-name-lh);
+    --text-name-ls: var(--step-name-ls);
+    --text-body: var(--step-md);
+    --text-body-lh: var(--step-md-lh);
+    --text-body-ls: var(--step-md-ls);
+    --text-small: var(--step-xs);
+    --text-small-lh: var(--step-xs-lh);
+    --text-small-ls: var(--step-xs-ls);
+    --text-label: var(--step-text1);
+    --text-label-lh: var(--step-text1-lh);
+    --text-label-ls: var(--step-text1-ls);
+    --text-breadcrumbs: var(--step-text2);
+    --text-button: var(--step-md);
+    --text-button-lh: var(--step-md-lh);
+    --text-button-ls: var(--step-md-ls);
+    --text-field: var(--step-md);
+    --text-field-lh: var(--step-md-lh);
+  }
+}
