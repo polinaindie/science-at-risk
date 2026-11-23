@@ -176,7 +176,7 @@ export function NotificationCard({
             {unread ? <UnreadMark label={t.unreadMark} /> : null}
             {isLetter ? null : (
               <h3
-                className={`m-0 font-ui text-text1-mobile font-bold md:text-text1-desktop ${WRAP}`}
+                className={`m-0 font-ui text-[length:var(--step-md)] leading-[var(--step-md-lh)] font-bold ${WRAP}`}
               >
                 {title}
               </h3>
@@ -195,11 +195,11 @@ export function NotificationCard({
               <h3 className={`m-0 mt-4 font-heading text-heading-3 ${WRAP}`}>
                 {n.subject}
               </h3>
-              <p className={`m-0 mt-2 font-ui text-breadcrumbs text-brand-black ${WRAP}`}>
+              <p className={`m-0 mt-2 font-ui text-[length:var(--step-md)] leading-[var(--step-md-lh)] text-brand-black ${WRAP}`}>
                 {isRequest ? n.senderEmail : t.teamName}
               </p>
               <div className="mt-5">
-                <div className={`flex flex-col gap-4 font-text text-text1-mobile md:text-text1-desktop ${WRAP}`}>
+                <div className={`flex flex-col gap-4 font-text text-[length:var(--step-md)] leading-[var(--step-md-lh)] ${WRAP}`}>
                   {(n.body || (isRequest ? t.requestText : ''))
                     .split(/\s*\n\s*/)
                     .filter(Boolean)
@@ -224,17 +224,17 @@ export function NotificationCard({
                 ) : null}
                 <div className={`min-w-0 ${WRAP}`}>
                   {n.subject ? (
-                    <p className="m-0 font-ui text-text1-mobile md:text-text1-desktop">{n.senderName}</p>
+                    <p className="m-0 font-ui text-[length:var(--step-md)] leading-[var(--step-md-lh)]">{n.senderName}</p>
                   ) : (
                     <h3 className="m-0 font-heading text-heading-3">{n.senderName}</h3>
                   )}
                   {n.senderPosition ? (
-                    <p className="m-0 mt-1 font-ui text-breadcrumbs text-brand-muted">{n.senderPosition}</p>
+                    <p className="m-0 mt-1 font-ui text-[length:var(--step-md)] leading-[var(--step-md-lh)] text-brand-muted">{n.senderPosition}</p>
                   ) : null}
                 </div>
               </div>
               <div
-                className={`mt-4 font-text text-text1-mobile md:text-text1-desktop ${WRAP}`}
+                className={`mt-4 font-text text-[length:var(--step-md)] leading-[var(--step-md-lh)] ${WRAP}`}
               >
                 {n.kind === 'colleague' ? (
                   <>

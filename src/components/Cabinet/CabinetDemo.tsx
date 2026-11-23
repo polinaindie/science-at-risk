@@ -289,13 +289,13 @@ export function CabinetDemo({
         <div className="border-y-2 border-dashed border-brand-black bg-brand-accent-yellow/40 px-4 py-3 xl:px-10">
           <div className="mx-auto flex max-w-[1744px] flex-wrap items-center gap-x-6 gap-y-2 font-ui text-breadcrumbs">
             <strong>{t.demo.label}</strong>
-            <span className="flex items-center gap-2">
+            <span className="flex flex-wrap items-center gap-2">
               {t.demo.status}:
               {(['draft', 'pending', 'approved'] as const).map((s) =>
                 chip(status === s, cabinetCopy[locale].status[s].label, () => changeStatus(s)),
               )}
             </span>
-            <span className="flex items-center gap-2">
+            <span className="flex flex-wrap items-center gap-2">
               {t.demo.state}:
               {chip(noMatches, locale === 'uk' ? 'Немає збігів' : 'No matches', () => setNoMatches((v) => !v))}
               {chip(noGrants, locale === 'uk' ? 'Немає грантів' : 'No grants', () => setNoGrants((v) => !v))}
@@ -327,7 +327,7 @@ export function CabinetDemo({
                 setNotes(next === 'none' ? [] : sampleNotifications[locale]);
               })}
             </span>
-            <span className="flex items-center gap-2">
+            <span className="flex flex-wrap items-center gap-2">
               {chip(onboarding, locale === 'uk' ? 'Перший вхід' : 'First sign-in', () => {
                 try {
                   localStorage.removeItem(WIZARD_KEY);
@@ -339,7 +339,7 @@ export function CabinetDemo({
                 setSectionState('profile');
               })}
             </span>
-            <span className="flex items-center gap-2">
+            <span className="flex flex-wrap items-center gap-2">
               {chip(locale === 'uk', 'УКР', () => setLocale('uk'))}
               {chip(locale === 'en', 'ENG', () => setLocale('en'))}
             </span>
