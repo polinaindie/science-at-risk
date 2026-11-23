@@ -349,3 +349,8 @@ button, input, select, textarea { font-family: inherit; }
 
 /* Buttons (.btn, black and white): one size everywhere, a step of the type scale. */
 .btn.btn.btn:not(.satr-chrome *):not(#_) { font-size: var(--step-md); }
+
+/* Research page: the lede and the card's author line follow the other pages (lede and links at reading size, text at md). */
+.papers-hero__text.papers-hero__text:not(#_) { font-size: var(--step-read); line-height: 1.55; }
+a.research-card__author.research-card__author.research-card__author:not(.satr-chrome *):not(#_) { font-size: var(--step-read); line-height: 1.5; }
+.paper-card__text.paper-card__text:not(#_) { font-size: var(--step-md); line-height: 1.55; }

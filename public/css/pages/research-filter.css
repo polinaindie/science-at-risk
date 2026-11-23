@@ -104,3 +104,6 @@
 @media (min-width: 768px) {
   .research-card__meta--pdf-only { display: none; }
 }
+
+/* The gap between the last card (or the pagination) and the footer is the large section gap, 96px (--space-7). */
+.page.papers { padding-bottom: var(--space-7, 96px); }

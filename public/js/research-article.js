@@ -1,3 +1,19 @@
+(function () {
+  /* The date of the document under the rule below the authors, as on its card in the list (research-index.json, the same "date" field). */
+  var title = document.querySelector('.paper .mb-5');
+  var slug = location.pathname.split('/').pop().replace(/\.html$/, '');
+  if (!title || !slug || !window.fetch) return;
+  fetch('../js/research-index.json').then(function (r) { return r.json(); }).then(function (data) {
+    var doc = (data.docs || []).filter(function (d) { return d.slug === slug; })[0];
+    var m = doc && /^(\d{4})-(\d\d)-(\d\d)$/.exec(doc.date || '');
+    if (!m) return;
+    var t = document.createElement('time');
+    t.className = 'paper__date';
+    t.setAttribute('datetime', doc.date);
+    t.textContent = m[3] + '.' + m[2] + '.' + m[1].slice(2);
+    title.parentNode.insertBefore(t, title.nextSibling);
+  }).catch(function () {});
+})();
 /* Research article: the download button sits level with the rule under the author line (its bottom edge on the rule).
    The author block is as tall as the names need, so the offset is measured. Pure addition: without the script the
    button is at the top of its column. Phones have it as the bar below instead. */

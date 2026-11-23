@@ -103,7 +103,7 @@ export function Footer({
       {/* The site's one container, and the reference's own steps down from 60px
           of air to 30px as the screen gets wider and shorter on its hands. */}
       <div
-        className={`${wrapperClass} py-[60px] md:py-[50px] lg:py-[40px] xl:py-[30px] min-[1440px]:py-[40px]`}
+        className={`${wrapperClass} pt-[72px] pb-[60px] md:pt-[96px] md:pb-[50px] lg:pb-[40px] xl:pb-[30px] min-[1440px]:pb-[40px]`}
       >
         <h2 className="mb-4 font-heading text-h1 whitespace-pre-line text-white">{title}</h2>
 
