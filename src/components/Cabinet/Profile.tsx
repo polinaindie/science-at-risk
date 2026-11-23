@@ -845,7 +845,7 @@ export function ProfileEditForm({
         onBlur={() => touch(key)}
         {...extra}
       />
-      {note || hint ? <p className="mt-2 font-ui text-breadcrumbs text-brand-muted">{note ?? `${t.example} ${hint}`}</p> : null}
+      {note || hint ? <p className="mt-2 font-ui text-[14px] leading-[1.45] text-brand-muted">{note ?? `${t.example} ${hint}`}</p> : null}
       {err(missing(key) ? t.errors.required : shown(key) && formatIssue(key))}
     </div>
   );
@@ -880,7 +880,7 @@ export function ProfileEditForm({
         className="max-w-none"
         {...extra}
       />
-      {hint ? <p className="mt-2 mb-0 font-ui text-breadcrumbs text-brand-muted">{hint}</p> : null}
+      {hint ? <p className="mt-2 mb-0 font-ui text-[14px] leading-[1.45] text-brand-muted">{hint}</p> : null}
       {err(missing(key) && t.errors.required)}
     </div>
   );
@@ -924,7 +924,7 @@ export function ProfileEditForm({
                 ))}
               </div>
               {i === 0 ? (
-                <p className="mt-2 font-ui text-breadcrumbs text-brand-muted">
+                <p className="mt-2 font-ui text-[14px] leading-[1.45] text-brand-muted">
                   {t.example} {t.experience.yearHint} · {t.experience.positionHint} · {t.experience.placeHint}
                 </p>
               ) : null}
@@ -989,7 +989,7 @@ export function ProfileEditForm({
                 />
               )}
               {part !== 'url' ? (
-                <p className="mt-2 font-ui text-breadcrumbs text-brand-muted">{t.example} {pr.hints[part]}</p>
+                <p className="mt-2 font-ui text-[14px] leading-[1.45] text-brand-muted">{t.example} {pr.hints[part]}</p>
               ) : null}
               {err(shown(k(part)) && issue[part])}
             </div>
@@ -1144,7 +1144,7 @@ export function ProfileEditForm({
                   }}
                 />
               ) : null}
-              <p className="mt-2 max-w-[420px] font-ui text-breadcrumbs text-brand-muted">
+              <p className="mt-2 max-w-[420px] font-ui text-[14px] leading-[1.45] text-brand-muted">
                 {t.hints.photo}
               </p>
               {err(tried && !draft.imageSrc && t.errors.required)}
@@ -1161,7 +1161,7 @@ export function ProfileEditForm({
             {!step && initial.nameUk.trim() ? (
               <div>
                 <TextField label={f.nameUk} value={draft.nameUk} readOnly disabled className="max-w-none" />
-                <p className="mt-2 font-ui text-breadcrumbs text-brand-muted">{t.hints.nameUk}</p>
+                <p className="mt-2 font-ui text-[14px] leading-[1.45] text-brand-muted">{t.hints.nameUk}</p>
               </div>
             ) : (
               text('nameUk', f.nameUk, undefined, undefined, { autoComplete: 'name' })
@@ -1185,7 +1185,7 @@ export function ProfileEditForm({
           <div className={PAIR}>
             <div>
               <TextField label={f.email} value={draft.email} readOnly disabled className="max-w-none" />
-              <p className="mt-2 font-ui text-breadcrumbs text-brand-muted">{t.hints.email}</p>
+              <p className="mt-2 font-ui text-[14px] leading-[1.45] text-brand-muted">{t.hints.email}</p>
             </div>
             {text('phone', f.phone, undefined, t.hints.phone, { type: 'tel', autoComplete: 'tel' })}
           </div>
@@ -1260,7 +1260,7 @@ export function ProfileEditForm({
                   type={k === 'url' ? 'url' : undefined}
                   className="max-w-none"
                 />
-                {note ? <p className="mt-2 font-ui text-breadcrumbs text-brand-muted">{note}</p> : null}
+                {note ? <p className="mt-2 font-ui text-[14px] leading-[1.45] text-brand-muted">{note}</p> : null}
                 {err(shown(key(k)) && issues[k])}
               </div>
             );

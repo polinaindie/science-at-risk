@@ -45,7 +45,7 @@ export function FieldSelect({
 
   return (
     <div ref={root} className={`relative w-full ${className}`.trim()} onBlur={onBlur} onKeyDown={onKey}>
-      <span id={`${id}-label`} className="block font-text text-breadcrumbs text-brand-muted">
+      <span id={`${id}-label`} className="block font-text text-[length:calc(var(--step-read)*0.7778)] leading-[var(--step-read-lh)] text-brand-muted">
         {label}
       </span>
       <button
@@ -57,7 +57,7 @@ export function FieldSelect({
         aria-labelledby={`${id}-label`}
         aria-invalid={invalid || undefined}
         onClick={() => setOpen((v) => !v)}
-        className={`mt-1 flex w-full items-center justify-between gap-3 border-0 border-b-2 border-brand-black bg-transparent pb-2 text-left font-text text-text2-desktop text-brand-black ${
+        className={`mt-1 flex w-full items-center justify-between gap-3 border-0 border-b-2 border-brand-black bg-transparent pb-2 text-left font-text text-[length:var(--step-read)] leading-[var(--step-read-lh)] text-brand-black ${
           open ? 'shadow-[0_2px_0_0_#000]' : ''
         } disabled:border-brand-disabled disabled:text-brand-muted`}
       >
@@ -85,7 +85,7 @@ export function FieldSelect({
                   onChange?.(o.value);
                   close();
                 }}
-                className={`w-full border-0 bg-transparent px-2 py-2 text-left font-text text-text2-desktop text-brand-black hover:bg-brand-accent-blue ${
+                className={`w-full border-0 bg-transparent px-2 py-2 text-left font-text text-[length:var(--step-read)] leading-[var(--step-read-lh)] text-brand-black hover:bg-brand-accent-blue ${
                   o.value === value ? 'font-bold' : ''
                 }`}
               >
