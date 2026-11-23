@@ -8,7 +8,7 @@
   }
   function run() {
     document.querySelectorAll('[data-satr-email]').forEach(function (a) {
-      var m = decode(a.getAttribute('data-satr-email'));
+      var m = a.getAttribute('data-satr-email').split(',').map(decode).join(',');
       a.setAttribute('href', 'mailto:' + m);
       if (a.hasAttribute('data-satr-email-text')) a.textContent = m;
       a.removeAttribute('data-satr-email');

@@ -1,3 +1,5 @@
+@import url("contact-modal.css");
+
 .scientific-societies .content h2 {
     margin-bottom: 12px;
     font-family: var(--font-ui, "IBM Plex Mono", sans-serif);
@@ -173,7 +175,7 @@
 }
 
 .scientific-societies .aside p:not(#_),
-.scientific-societies .aside > a:not(#_) {
+.scientific-societies .aside > a:not(.btn):not(#_) {
     display: block;
     margin-bottom: 0.444rem;
     font-size: var(--step-lg);
@@ -202,4 +204,50 @@
 .scientific-societies .search-hero__info-wrap {
     max-width: 50rem;
     margin-bottom: 0;
+}
+
+/* Contact person: a "Write to …" button instead of a bare address, same as on the expert page. */
+.scientific-societies .aside .aside__contact.aside__contact:not(#_) {
+    display: block;
+    width: 100%;
+    height: auto;
+    min-height: 3rem;
+    margin-top: 1.111rem;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    line-height: 1.3;
+    text-align: center;
+    white-space: normal;
+    color: var(--color-white, #fff);
+    /* cut to a squircle by js/satr-squircle.js (clip-path), not by the paint worklet: that one is fetched from outside and leaves the button blank until it arrives */
+    -webkit-mask-image: none;
+    mask-image: none;
+    background: var(--color-black);
+}
+
+/* Spacing in the main text follows the expert page: heading → text 16px, paragraph → paragraph 1.1em, section → section 48px
+   (plus the paragraph's own 1.1em, ~70px between the last line and the next heading). */
+.scientific-societies .main h2:not(#_) { margin-bottom: 16px; }
+.scientific-societies .main p:not(#_) { margin-bottom: 1.1em; }
+.scientific-societies .main .indent-top:not(#_) { margin-top: calc(48px + 1.1 * var(--step-read)); } /* margins collapse here, so the paragraph's 1.1em is added to get the expert page's ~70px */
+
+/* The right column (head of the organization, Write to …, links) stays in view while the long text scrolls, like the
+   left column on the expert page. The header is sticky too, so it sits below it. */
+@media (min-width: 768px) {
+    .scientific-societies .content > .aside {
+        align-self: flex-start;
+        position: sticky;
+        top: 104px;
+    }
+}
+
+/* A large gap between the last text and the footer, as on the expert page (.page { padding-bottom: var(--s7) }). */
+.scientific-societies.page { padding-bottom: var(--space-7, 96px); }
+
+/* The lede under the title is as wide as the text column below it: the page width minus the right column and the column's own right padding. */
+@media (min-width: 561px) {
+    .scientific-societies .infrastructures-hero p.mt-3 { max-width: calc(100% - 15.556rem - 2.444rem); }
+}
+@media (min-width: 769px) {
+    .scientific-societies .infrastructures-hero p.mt-3 { max-width: calc(100% - 23.167rem - 2.444rem); }
 }

@@ -1,4 +1,5 @@
 @import url("expert-entities.css");
+@import url("contact-modal.css");
 
 /* A scientist's profile on the mirrored static pages: layout, sections, lists. The entities' type, the scale and the tokens are in expert-entities.css. */
 
@@ -51,7 +52,7 @@
     flex-wrap: wrap;
     margin: 11px 0 0 -5px;
     padding-left: 0;
-    max-width: calc(62ch + 10px); /* chips stay inside the 62ch measure (their own 5px side padding is outside it) */
+    max-width: none; /* the chips use the whole column: on a wide screen the last one comes up into the first row instead of waiting at the 62ch measure of the text */
 }
 .expert__tags:not(:has(li)) { display: none; }
 
@@ -269,66 +270,6 @@
 /* While the header is showing (scrolling up), the column steps below it. */
 @media (min-width: 768px) {
     body:has(.satr-chrome--header.is-stuck:not(.is-hidden)) .expert-profile > .col-lg-4 > .aside { top: 80px; }
-}
-
-/* ---- Contact modal: languages line, icon-only close, fields in the order Name, Email, Text ---- */
-
-/* Close: a bare white X, 2px strokes, no button shape */
-.expertHelp .help-form__btn-close {
-    justify-content: center;
-    align-items: center;
-    width: 44px; /* a 44 x 44 touch area around a smaller cross */
-    min-width: 44px;
-    height: 44px;
-    padding: 0;
-    background: transparent;
-    border: 0;
-    border-radius: 0;
-    -webkit-clip-path: none;
-    clip-path: none;
-    box-shadow: none;
-}
-.expertHelp .help-form__btn-close svg { width: 20px; height: 20px; }
-.expertHelp .help-form__btn-close svg path {
-    stroke: var(--color-white);
-    stroke-width: 2px;
-    vector-effect: non-scaling-stroke; /* always exactly 2px, whatever the icon size */
-    stroke-linecap: butt; /* flat ends, nothing rounded */
-}
-
-/* In the top right corner, its edge on the page's content edge (16px, 40px from 1280px) */
-@media (min-width: 768px) {
-    .expertHelp .help-form__btn-close { top: -36px; right: 4px; } /* the cross stays 16px from the black panel's top and right edges (44px area, 20px cross) */
-}
-@media (min-width: 1280px) {
-    .expertHelp .help-form__btn-close { top: -22px; right: 28px; } /* 40px from both edges, like the header */
-}
-
-.expertHelp .wrapper > .row {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr);
-    gap: var(--s4) var(--s5);
-    align-items: end;
-    margin: 0;
-}
-
-.expertHelp .wrapper > .row .help-form__input { margin-bottom: 0; }
-
-.expertHelp .wrapper > .row > * {
-    order: 0 !important;
-    width: auto;
-    max-width: none;
-    padding: 0;
-    margin: 0;
-}
-
-.expertHelp .wrapper > .row > .contacts-page__form-captcha,
-.expertHelp .wrapper > .row > :last-child { grid-column: 1 / -1; }
-
-@media (min-width: 768px) {
-    .expertHelp .wrapper > .row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    /* Name and Email side by side; Text under them across the full width */
-    .expertHelp .wrapper > .row > :nth-child(3) { grid-column: 1 / -1; }
 }
 
 /* ---- Identity repeated under the photo once the big one has scrolled away (wide screens) ---- */
