@@ -34,7 +34,7 @@ body { font-family: var(--font-ui); }
 :is(.paragraph, .story-lead, .paper-lead, .main-text, .project-card__text):not(#_) :is(strong, b) { font-weight: 700; }
 
 /* One outlier: this element is a control, so it fell back to the browser's 13.33px, under the 14px floor. */
-.project-card__text:not(#_) { font-size: var(--text-ui); line-height: 25px; }
+.project-card__text:not(#_) { font-size: var(--text-ui); line-height: 1.55; }
 
 /* Headings: family is the `heading` role wherever the page draws them (header, menu and footer are components with their own
    classes and are left alone); the SIZE comes from the heading scale in tokens.css, by role, not by page. */
@@ -56,6 +56,10 @@ body { font-family: var(--font-ui); }
 :is(h3.heading, .expert-card__title, .paper-card__title, .infrastructures-card__title, .story-card__title, .project-card__title,
     .person-card__title, .aside__title):not(#_) {
   font-size: var(--heading-3); line-height: var(--heading-3-lh); letter-spacing: var(--heading-3-ls);
+}
+/* The languages label in the expert's right column is a section title, like Research field: heading-2 (expert.css says the same). */
+.aside__mobile .aside__title:not(#_) {
+  font-size: var(--heading-2); line-height: var(--heading-2-lh); letter-spacing: var(--heading-2-ls);
 }
 
 /* Controls do not inherit the page font by default (the browser uses Arial/system-ui): make them follow the role. */
@@ -322,3 +326,6 @@ button, input, select, textarea { font-family: inherit; }
   line-height: var(--step-h1-lh);
   letter-spacing: var(--step-h1-ls);
 }
+
+/* The institution under the post on an expert's page: one step under the running text, black. */
+.expert-id .expert__affiliation:not(#_) { font-size: var(--text-ui); color: var(--color-black); }

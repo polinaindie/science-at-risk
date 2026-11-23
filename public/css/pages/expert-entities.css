@@ -48,7 +48,7 @@
 .expert-id .paragraph { margin: var(--s2) 0 0; }
 .expert-card__content .expert-card__subtitle { margin: var(--s1) 0 0; }
 
-/* ---- institution: lighter than the post ---- */
+/* ---- institution: smaller than the post, same black ---- */
 .expert-id .expert__affiliation,
 .expert-card__content .expert-card__subtitle + .expert-card__text {
     font-family: var(--font-ui, "IBM Plex Mono", monospace);
@@ -57,7 +57,7 @@
     line-height: 1.2222rem;
     letter-spacing: 0;
     margin: var(--space-0) 0 0;
-    color: var(--color-grey-700); /* 4.8:1 on the blue ground, 8.5:1 on white */
+    color: var(--color-black);
     overflow-wrap: break-word;
 }
 
