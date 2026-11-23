@@ -193,6 +193,8 @@ export interface Grant {
   /** One field of knowledge, or several: each shows as its own tag. */
   field: string | string[];
   href: string;
+  /** One or two sentences: what it gives and who can apply. */
+  description?: string;
   /** ISO date, YYYY-MM-DD. */
   deadline?: string;
 }
@@ -434,6 +436,7 @@ export const sampleGrants: Record<CabinetLocale, Grant[]> = {
     {
       id: 'g1',
       title: 'Support for researchers in environmental science',
+      description: 'Funding for early-career researchers studying the effects of war on ecosystems. Covers salary, fieldwork and open-access fees.',
       field: 'Environmental management',
       href: '#',
       deadline: inDays(6),
@@ -441,12 +444,14 @@ export const sampleGrants: Record<CabinetLocale, Grant[]> = {
     {
       id: 'g2',
       title: 'Short research stay at a European partner university',
+      description: 'A two- to three-month stay at a partner university, with travel and living costs covered. Open to researchers with a PhD.',
       field: 'Soil science',
       href: '#',
     },
     {
       id: 'g3',
       title: 'Equipment grant for field monitoring',
+      description: 'Money for sensors, drones and sampling kits for field monitoring. Up to EUR 15,000 per team.',
       field: ['Remote sensing', 'Soil science', 'Environmental management'],
       href: '#',
       deadline: inDays(40),
@@ -456,6 +461,7 @@ export const sampleGrants: Record<CabinetLocale, Grant[]> = {
     {
       id: 'g1',
       title: 'Підтримка дослідників у сфері наук про довкілля',
+      description: 'Фінансування для молодих науковців, які вивчають вплив війни на екосистеми: зарплата, польові роботи, відкритий доступ до публікацій.',
       field: 'Екологічний менеджмент',
       href: '#',
       deadline: inDays(6),
@@ -463,12 +469,14 @@ export const sampleGrants: Record<CabinetLocale, Grant[]> = {
     {
       id: 'g2',
       title: 'Коротке дослідницьке стажування в європейському університеті-партнері',
+      description: 'Стажування на два-три місяці в університеті-партнері з покриттям дороги та проживання. Для науковців зі ступенем PhD.',
       field: 'Ґрунтознавство',
       href: '#',
     },
     {
       id: 'g3',
       title: 'Грант на обладнання для польового моніторингу',
+      description: 'Кошти на сенсори, дрони й набори для відбору проб. До 15 000 євро на команду.',
       field: ['Дистанційне зондування', 'Ґрунтознавство', 'Екологічний менеджмент'],
       href: '#',
       deadline: inDays(40),

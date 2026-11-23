@@ -121,8 +121,8 @@ export function PhotoDialog({
         {error}
       </p>
 
-      <h3 className="mt-4 mb-2 font-ui text-[1rem] font-bold">{t.tipsTitle}</h3>
-      <ul className="m-0 list-disc space-y-1 pl-5 text-[1rem] leading-[1.375rem]">
+      <h3 className="mt-4 mb-2 font-ui text-[length:var(--text-ui)] font-bold">{t.tipsTitle}</h3>
+      <ul className="m-0 list-disc space-y-1 pl-5 text-[length:var(--text-ui)] leading-[1.5]">
         {t.tips.map((x) => (
           <li key={x}>{x}</li>
         ))}

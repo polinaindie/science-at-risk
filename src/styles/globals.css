@@ -160,3 +160,135 @@
 .rich-text a { text-decoration: underline; text-underline-offset: 3px; }
 .rich-text strong { font-weight: 700; }
 .rich-text > :first-child { margin-top: 8px; }
+
+/* The profile view reads like the site's expert page: the static page's type scale (type-scale-static.css, 1rem = 18px there) in px,
+   so it does not depend on the root size of the app. Used by Profile.tsx as var(--st-*). */
+.satr-static-scale {
+  --st-xs: clamp(14px, 13.59px + 0.1105vw, 15px);
+  --st-xs-lh: 22px;
+  --st-sm: clamp(15px, 14.59px + 0.1105vw, 16px);
+  --st-sm-lh: clamp(24px, 23.17px + 0.2210vw, 26px);
+  --st-md: clamp(16px, 15.17px + 0.2210vw, 18px);
+  --st-md-lh: clamp(24px, 22.34px + 0.4420vw, 28px);
+  --st-read: clamp(18px, 17.17px + 0.2210vw, 20px);
+  --st-read-lh: clamp(28px, 27.17px + 0.2210vw, 30px);
+  --st-lg: clamp(20px, 19.17px + 0.2210vw, 22px);
+  --st-lg-lh: 28px;
+  --st-xl: clamp(24px, 22.34px + 0.4420vw, 28px);
+  --st-xl-lh: clamp(30px, 28.34px + 0.4420vw, 34px);
+  --st-2xl: clamp(28px, 24.69px + 0.8840vw, 36px);
+  --st-2xl-lh: clamp(34px, 30.68px + 0.8840vw, 42px);
+  --st-3xl: clamp(36px, 31.03px + 1.3260vw, 48px);
+  --st-3xl-lh: clamp(42px, 37.03px + 1.3260vw, 54px);
+  --st-name: clamp(26px, 23.51px + 0.6630vw, 32px);
+  --st-name-lh: clamp(32px, 29.51px + 0.6630vw, 38px);
+  --st-h1: clamp(32px, 17.92px + 3.7559vw, 72px);
+  --st-h1-lh: clamp(38px, 24.62px + 3.5681vw, 76px);
+  --st-h2: clamp(20px, 13.37px + 1.7680vw, 36px);
+  --st-h2-lh: clamp(28px, 22.2px + 1.5470vw, 42px);
+  --st-h3: clamp(15px, 12.1px + 0.7735vw, 22px);
+  --st-h3-lh: clamp(20px, 16.68px + 0.8840vw, 28px);
+  --st-text1: clamp(14px, 12.34px + 0.4420vw, 18px);
+  --st-text1-lh: clamp(20px, 16.68px + 0.8840vw, 28px);
+  --st-text2: clamp(14px, 13.17px + 0.2210vw, 16px);
+  --st-text2-lh: clamp(22px, 20.34px + 0.4420vw, 26px);
+  --st-tab: clamp(20px, 18.34px + 0.4420vw, 24px);
+  --st-tab-lh: clamp(28px, 26.34px + 0.4420vw, 32px);
+}
+
+/* The cabinet's pages read like the site: inside this scope the type scale is the static site's (type-scale-static.css, 1rem = 18px
+   there) in px, so the app's 18px root does not make the text 12% bigger. Every alias the app's utilities use is declared here too,
+   because a custom property is resolved where it is declared. Put on the <main> of each cabinet page. */
+.satr-cabinet-scale {
+  /* Tailwind spacing steps on a 4px grid (as the site's --space-*), not on the app's 18px root. */
+  --spacing: 4px;
+  --step-xs: clamp(14px, 13.59px + 0.1105vw, 15px);
+  --step-xs-lh: 22px;
+  --step-xs-ls: 0;
+  --step-sm: clamp(15px, 14.59px + 0.1105vw, 16px);
+  --step-sm-lh: clamp(24px, 23.17px + 0.2210vw, 26px);
+  --step-sm-ls: 0;
+  --step-md: clamp(16px, 15.17px + 0.2210vw, 18px);
+  --step-md-lh: clamp(24px, 22.34px + 0.4420vw, 28px);
+  --step-md-ls: 0;
+  --step-read: clamp(18px, 17.17px + 0.2210vw, 20px);
+  --step-read-lh: clamp(28px, 27.17px + 0.2210vw, 30px);
+  --step-read-ls: 0;
+  --step-lg: clamp(20px, 19.17px + 0.2210vw, 22px);
+  --step-lg-lh: 28px;
+  --step-lg-ls: -0.03em;
+  --step-xl: clamp(24px, 22.34px + 0.4420vw, 28px);
+  --step-xl-lh: clamp(30px, 28.34px + 0.4420vw, 34px);
+  --step-xl-ls: -0.02em;
+  --step-2xl: clamp(28px, 24.69px + 0.8840vw, 36px);
+  --step-2xl-lh: clamp(34px, 30.68px + 0.8840vw, 42px);
+  --step-2xl-ls: -0.02em;
+  --step-3xl: clamp(36px, 31.03px + 1.3260vw, 48px);
+  --step-3xl-lh: clamp(42px, 37.03px + 1.3260vw, 54px);
+  --step-3xl-ls: -0.02em;
+  --step-name: clamp(26px, 23.51px + 0.6630vw, 32px);
+  --step-name-lh: clamp(32px, 29.51px + 0.6630vw, 38px);
+  --step-name-ls: -0.02em;
+  --step-h1: clamp(32px, 17.92px + 3.7559vw, 72px);
+  --step-h1-lh: clamp(38px, 24.62px + 3.5681vw, 76px);
+  --step-h1-ls: -0.02em;
+  --step-h2: clamp(20px, 13.37px + 1.7680vw, 36px);
+  --step-h2-lh: clamp(28px, 22.2px + 1.5470vw, 42px);
+  --step-h2-ls: -0.02em;
+  --step-h3: clamp(15px, 12.1px + 0.7735vw, 22px);
+  --step-h3-lh: clamp(20px, 16.68px + 0.8840vw, 28px);
+  --step-h3-ls: -0.03em;
+  --step-text1: clamp(14px, 12.34px + 0.4420vw, 18px);
+  --step-text1-lh: clamp(20px, 16.68px + 0.8840vw, 28px);
+  --step-text1-ls: -0.03em;
+  --step-text2: clamp(14px, 13.17px + 0.2210vw, 16px);
+  --step-text2-lh: clamp(22px, 20.34px + 0.4420vw, 26px);
+  --step-text2-ls: 0;
+  --step-tab: clamp(20px, 18.34px + 0.4420vw, 24px);
+  --step-tab-lh: clamp(28px, 26.34px + 0.4420vw, 32px);
+  --step-tab-ls: normal;
+  --heading-1: var(--step-h1);
+  --heading-1-lh: var(--step-h1-lh);
+  --heading-1-ls: var(--step-h1-ls);
+  --heading-entity: var(--step-3xl);
+  --heading-entity-lh: var(--step-3xl-lh);
+  --heading-entity-ls: var(--step-3xl-ls);
+  --heading-2: var(--step-h2);
+  --heading-2-lh: var(--step-h2-lh);
+  --heading-2-ls: var(--step-h2-ls);
+  --heading-3: var(--step-xl);
+  --heading-3-lh: var(--step-xl-lh);
+  --heading-3-ls: var(--step-xl-ls);
+  --text-h1-desktop: var(--step-h1);
+  --text-h1-desktop--line-height: var(--step-h1-lh);
+  --text-h1-mobile: var(--step-h1);
+  --text-h1-mobile--line-height: var(--step-h1-lh);
+  --text-h2-desktop: var(--step-h2);
+  --text-h2-desktop--line-height: var(--step-h2-lh);
+  --text-h2-mobile: var(--step-h2);
+  --text-h2-mobile--line-height: var(--step-h2-lh);
+  --text-h3-desktop: var(--step-h3);
+  --text-h3-desktop--line-height: var(--step-h3-lh);
+  --text-h3-mobile: var(--step-h3);
+  --text-h3-mobile--line-height: var(--step-h3-lh);
+  --text-text1-desktop: var(--step-text1);
+  --text-text1-desktop--line-height: var(--step-text1-lh);
+  --text-text1-mobile: var(--step-text1);
+  --text-text1-mobile--line-height: var(--step-text1-lh);
+  --text-text2-desktop: var(--step-text2);
+  --text-text2-desktop--line-height: var(--step-text2-lh);
+  --text-text2-mobile: var(--step-text2);
+  --text-text2-mobile--line-height: var(--step-text2-lh);
+  --text-heading-1: var(--heading-1);
+  --text-heading-1--line-height: var(--heading-1-lh);
+  --text-heading-1--letter-spacing: var(--heading-1-ls);
+  --text-heading-entity: var(--heading-entity);
+  --text-heading-entity--line-height: var(--heading-entity-lh);
+  --text-heading-entity--letter-spacing: var(--heading-entity-ls);
+  --text-heading-2: var(--heading-2);
+  --text-heading-2--line-height: var(--heading-2-lh);
+  --text-heading-2--letter-spacing: var(--heading-2-ls);
+  --text-heading-3: var(--heading-3);
+  --text-heading-3--line-height: var(--heading-3-lh);
+  --text-heading-3--letter-spacing: var(--heading-3-ls);
+}

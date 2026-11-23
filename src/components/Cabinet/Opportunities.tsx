@@ -13,7 +13,7 @@ export function CourseCard({ locale, course }: { locale: CabinetLocale; course: 
         <p className="mt-3 font-text text-text1-mobile text-brand-muted">
           {t.provider}: <span className="text-brand-black">{course.provider}</span>
         </p>
-        <p className="mt-3 font-text text-[1rem] leading-[1.375rem] md:text-[1.125rem] md:leading-[1.625rem]">{course.description}</p>
+        <p className="mt-3 font-text text-text1-mobile md:text-text1-desktop">{course.description}</p>
       </div>
       <div className="flex justify-end md:shrink-0">
         <a href={course.href} target="_blank" rel="noopener noreferrer" className="shrink-0 no-underline">
@@ -46,13 +46,8 @@ export function GrantCard({
   const t = cabinetCopy[locale].opp.grants;
   const left = grant.deadline ? daysLeft(grant.deadline, today) : null;
   const soon = left !== null && left <= SOON_DAYS;
-  const date = grant.deadline
-    ? new Date(`${grant.deadline}T12:00:00`).toLocaleDateString(locale === 'uk' ? 'uk-UA' : 'en-GB', {
-        day: 'numeric',
-        month: 'long',
-        year: 'numeric',
-      })
-    : null;
+  // dd.mm.yy, as the date on the research pages
+  const date = grant.deadline ? grant.deadline.replace(/^\d{2}(\d{2})-(\d{2})-(\d{2})$/, '$3.$2.$1') : null;
 
   const fields = Array.isArray(grant.field) ? grant.field : [grant.field];
   return (
@@ -63,13 +58,13 @@ export function GrantCard({
             <p className="mb-3 flex flex-wrap items-center gap-x-4 gap-y-2 font-ui text-text1-mobile">
               {date ? (
                 <span>
-                  {t.deadline}: <strong className="font-bold">{date}</strong>
+                  {t.deadline}: {date}
                 </span>
               ) : null}
               {soon ? (
                 <span
                   role="status"
-                  className="inline-flex items-center gap-2 bg-brand-accent-yellow px-3 py-1 font-bold"
+                  className="inline-flex items-center gap-2 bg-brand-accent-yellow px-3 py-1"
                 >
                   <span aria-hidden>!</span>
                   {t.soon(left)}
@@ -78,13 +73,14 @@ export function GrantCard({
             </p>
           ) : null}
           <h3 className="font-heading text-h2-mobile md:text-h2-desktop">{grant.title}</h3>
-          {/* The label stands over the tags, so a grant with several fields has room for all of them. */}
+          {grant.description ? (
+            <p className="m-0 mt-3 font-text text-text1-mobile md:text-text1-desktop">{grant.description}</p>
+          ) : null}
           <div className="mt-4">
-            <p className="m-0 mb-2 font-ui text-breadcrumbs text-brand-muted">{fields.length > 1 ? t.fields : t.field}</p>
-            <ul className="m-0 flex list-none flex-wrap gap-2 p-0">
+            <ul aria-label={fields.length > 1 ? t.fields : t.field} className="m-0 flex list-none flex-wrap gap-2 p-0">
               {fields.map((f) => (
                 <li key={f}>
-                  <Tag as="span" variant="accent">
+                  <Tag as="span" variant="accent" className="text-text1-mobile! md:text-text1-desktop!">
                     {f}
                   </Tag>
                 </li>

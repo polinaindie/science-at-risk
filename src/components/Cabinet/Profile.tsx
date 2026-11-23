@@ -37,16 +37,16 @@ import { Modal, StatusBadge } from './parts';
 import { societies, societyBySlug, societyName } from './societies';
 
 /** Every heading inside the profile, left column and right: 24px. */
-const H4 = 'font-heading text-heading-2 font-normal';
+const H4 = 'font-heading font-normal text-[length:var(--st-h2)] leading-[var(--st-h2-lh)] tracking-[-0.02em]';
 /** The site's running text on an expert's page: IBM Plex Mono, 16 on a phone and 18 above. */
-const SITE_P = 'font-text text-[1rem] leading-[1.625rem] md:text-[1.125rem] md:leading-[1.875rem]';
+const SITE_P = 'font-text text-[length:var(--st-read)] leading-[var(--st-read-lh)]';
 /** The small text in the site's project and publication cards: IBM Plex Mono, 15. */
-const SITE_SMALL = 'font-text text-[0.9375rem] leading-[1.5625rem]';
+const SITE_SMALL = 'font-text text-[length:var(--text-ui)] leading-[1.55]';
 /** A project's or publication's title: serif, 20 on a phone and 22 above. */
-const CARD_TITLE = 'm-0 font-heading text-heading-3 font-normal';
+const CARD_TITLE = 'm-0 font-heading font-normal text-[length:var(--st-xl)] leading-[var(--st-xl-lh)]';
 /** The post is IBM Plex Mono 16, the place it belongs to is IBM Plex Mono: the same on every profile. */
-const POST = 'font-text text-[1rem] leading-[1.5rem]';
-const PLACE = 'font-ui text-[0.875rem] leading-[1.375rem] md:text-[0.9375rem]';
+const POST = 'font-text text-[length:var(--st-read)] leading-[var(--st-read-lh)]';
+const PLACE = 'font-ui text-[length:var(--text-ui)] leading-[1.55]';
 const PARA = 'font-text text-text2-mobile md:text-text2-desktop';
 
 /* ------------------------------------------------------------------ view */
@@ -127,7 +127,7 @@ const ExperienceList = ({ items }: { items: ExperienceItem[] }) => (
       .filter((x) => !isExperienceEmpty(x))
       .map((x, i) => (
         <li key={i} className="grid grid-cols-[3.5rem_1fr] gap-x-2 md:grid-cols-[5rem_1fr] md:gap-x-3">
-          <span className="pt-[2px] text-[0.875rem] leading-[1.375rem] md:pt-[3px] md:text-[1rem]">{x.year}</span>
+          <span className="pt-[2px] text-[length:var(--st-read)] leading-[var(--st-read-lh)] md:pt-[3px]">{x.year}</span>
           <span>
             <span className={`block ${POST}`}>{x.position.charAt(0).toUpperCase() + x.position.slice(1)}</span>
             {x.place ? <span className={`mt-1 block ${PLACE}`}>{x.place}</span> : null}
@@ -148,15 +148,39 @@ function changeButton(
 ) {
   const t = cabinetCopy[locale].profile;
   if (locked || !onEdit) return null;
+  if (!filled) {
+    return (
+      <button
+        type="button"
+        onClick={() => onEdit(id)}
+        aria-label={`${t.add}: ${part}`}
+        className="satr-underlined-box inline-flex shrink-0 cursor-pointer items-center border-0 bg-transparent p-0 font-ui text-[length:var(--step-xs)] leading-[var(--step-xs-lh)] tracking-[-0.03em] text-brand-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-black"
+      >
+        <span className="satr-underlined">{t.add}</span>
+      </button>
+    );
+  }
+  /* A pencil with a tooltip ("Edit"); the tooltip shows on hover and keyboard focus. */
   return (
-    <button
-      type="button"
-      onClick={() => onEdit(id)}
-      aria-label={`${filled ? t.change : t.add}: ${part}`}
-      className="satr-underlined-box inline-flex shrink-0 cursor-pointer items-center border-0 bg-transparent p-0 font-ui text-[0.875rem] leading-[1.25rem] tracking-[-0.03em] text-brand-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-black"
-    >
-      <span className="satr-underlined">{filled ? t.change : t.add}</span>
-    </button>
+    <span className="group relative inline-flex shrink-0">
+      <button
+        type="button"
+        onClick={() => onEdit(id)}
+        aria-label={`${t.change}: ${part}`}
+        className="inline-grid size-[32px] cursor-pointer place-items-center border-0 bg-transparent p-0 text-brand-black hover:bg-brand-black hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-black"
+      >
+        <svg aria-hidden width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="square" strokeLinejoin="miter">
+          <path d="M4 20h4L19 9l-4-4L4 16v4Z" />
+          <path d="M13 7l4 4" />
+        </svg>
+      </button>
+      <span
+        role="tooltip"
+        className="pointer-events-none absolute right-0 top-full z-20 mt-1 hidden whitespace-nowrap bg-brand-black px-2 py-1 font-ui text-breadcrumbs text-white group-focus-within:block group-hover:block"
+      >
+        {t.change}
+      </span>
+    </span>
   );
 }
 
@@ -189,7 +213,7 @@ function ProfilePhoto({
           className="group relative block w-full cursor-pointer p-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-black"
         >
           {photo}
-          <span className="absolute inset-0 flex items-end justify-center bg-brand-black/45 p-4 font-ui text-[1rem] leading-[1.5rem] text-white opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100 [@media(hover:none)]:bg-transparent [@media(hover:none)]:opacity-100">
+          <span className="absolute inset-0 flex items-end justify-center bg-brand-black/45 p-4 font-ui text-[length:var(--text-ui)] leading-[1.5] text-white opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100 [@media(hover:none)]:bg-transparent [@media(hover:none)]:opacity-100">
             <span className="[@media(hover:none)]:bg-brand-black/70 [@media(hover:none)]:px-2">
               {cabinetCopy[locale].photoDialog.title}
             </span>
@@ -240,8 +264,8 @@ function ProfileName({
           <h1
             className={`m-0 font-heading tracking-[-0.02em] ${
               compact
-                ? 'text-[1.75rem] leading-[2.125rem]'
-                : 'text-heading-entity'
+                ? 'text-[length:var(--st-xl)] leading-[var(--st-xl-lh)]'
+                : 'text-[length:var(--st-3xl)] leading-[var(--st-3xl-lh)] tracking-[-0.02em]'
             }`}
           >
             {name}
@@ -250,7 +274,7 @@ function ProfileName({
         {show !== 'name' ? (
           <>
             {position ? (
-              <p className={`m-0 ${POST} md:text-[1.125rem] md:leading-[1.625rem] ${show === 'both' ? 'mt-4' : ''}`}>
+              <p className={`m-0 ${POST} ${show === 'both' ? 'mt-4' : ''}`}>
                 {position.charAt(0).toUpperCase() + position.slice(1)}
               </p>
             ) : null}
@@ -341,7 +365,7 @@ export function ProfileView({
       <ul className="m-0 flex list-none flex-wrap gap-x-6 gap-y-1 p-0">
         {links.map((l) => (
           <li key={l.href}>
-            <a href={l.href} className="satr-hover-underline font-ui text-[1rem] leading-[1.625rem]">
+            <a href={l.href} className="satr-hover-underline font-ui text-[length:var(--st-read)] leading-[var(--st-read-lh)]">
               {l.label}
             </a>
           </li>
@@ -357,7 +381,7 @@ export function ProfileView({
         <ul className="m-0 flex list-none flex-wrap gap-x-2.5 gap-y-2.5 p-0">
           {keywords.map((k) => (
             <li key={k}>
-              <Tag as="span" className="text-[0.875rem]! leading-[1.375rem]! tracking-[-0.03em]! transition-colors hover:bg-brand-black hover:text-white">{k}</Tag>
+              <Tag as="span" className="text-[14px]! leading-[22px]! tracking-[-0.03em]! transition-colors hover:bg-brand-black hover:text-white">{k}</Tag>
             </li>
           ))}
         </ul>
@@ -370,12 +394,12 @@ export function ProfileView({
     <div className="mb-4 flex flex-wrap items-center gap-x-4 gap-y-2">
       <StatusBadge status={unsentNow ? 'draft' : status} locale={locale}>
         {status === 'approved' && !unsentNow ? (
-          <Link href={siteHref} className="self-center text-[0.875rem]! leading-[1.25rem]!">
+          <Link href={siteHref} className="self-center text-[length:var(--text-ui)]! leading-[1.5]!">
             {t.openOnSite}
           </Link>
         ) : null}
         {status === 'pending' && onWithdraw ? (
-          <Link as="button" onClick={onWithdraw} className="self-center text-[0.875rem]! leading-[1.25rem]!">
+          <Link as="button" onClick={onWithdraw} className="self-center text-[length:var(--text-ui)]! leading-[1.5]!">
             {t.withdraw}
           </Link>
         ) : null}
@@ -384,7 +408,7 @@ export function ProfileView({
   );
 
   return (
-    <div className={unsentNow ? 'pb-28' : undefined}>
+    <div className={`satr-static-scale${unsentNow ? ' pb-28' : ''}`}>
       {discardOpen ? (
         <Modal
           title={t.unsent.discardTitle}
@@ -541,7 +565,7 @@ export function ProfileView({
                 .filter((x) => !isPublicationEmpty(x))
                 .map((x) => (
                   <li key={formatPublication(x)} className={`${CARD} grid grid-cols-[4.5rem_minmax(0,1fr)] gap-x-6`}>
-                    <span className="font-ui text-[1rem] leading-[1.75rem]">{x.year}</span>
+                    <span className="font-ui text-[length:var(--st-read)] leading-[var(--st-read-lh)]">{x.year}</span>
                     <div className="col-start-2">
                       <h3 className={CARD_TITLE}>{x.title}</h3>
                       {x.authors || x.journal || x.year || x.pages ? (
@@ -909,7 +933,7 @@ export function ProfileEditForm({
                   <Link
                     as="button"
                     onClick={() => set(key, rows.filter((_, n) => n !== i))}
-                    className="text-[1rem]! leading-[1.5rem]!"
+                    className="text-[length:var(--text-ui)]! leading-[1.5]!"
                   >
                     {pub.remove}
                   </Link>
@@ -979,7 +1003,7 @@ export function ProfileEditForm({
               <Link
                 as="button"
                 onClick={() => set(key, rows.filter((_, n) => n !== i))}
-                className="text-[1rem]! leading-[1.5rem]!"
+                className="text-[length:var(--text-ui)]! leading-[1.5]!"
               >
                 {pub.remove}
               </Link>
@@ -1104,7 +1128,7 @@ export function ProfileEditForm({
                   {draft.imageSrc ? f.photoChange : f.photoAdd}
                 </Button>
                 {draft.imageSrc ? (
-                  <Link as="button" onClick={() => set('imageSrc', '')} className="text-[1rem]! leading-[1.5rem]!">
+                  <Link as="button" onClick={() => set('imageSrc', '')} className="text-[length:var(--text-ui)]! leading-[1.5]!">
                     {t.photoRemove}
                   </Link>
                 ) : null}
@@ -1245,7 +1269,7 @@ export function ProfileEditForm({
                 <div className="flex items-baseline justify-between gap-4">
                   <h3 className="font-heading text-h2-mobile font-normal md:text-h2-desktop">{pub.titles[i]}</h3>
                   {i > 0 ? (
-                    <Link as="button" onClick={() => removePub(i)} className="text-[1rem]! leading-[1.5rem]!">
+                    <Link as="button" onClick={() => removePub(i)} className="text-[length:var(--text-ui)]! leading-[1.5]!">
                       {pub.remove}
                     </Link>
                   ) : null}
@@ -1313,7 +1337,7 @@ export function ProfileEditForm({
                 <Link
                   as="button"
                   onClick={() => set('extraKnowledge', draft.extraKnowledge.filter((_, n) => n !== i))}
-                  className="text-[1rem]! leading-[1.5rem]!"
+                  className="text-[length:var(--text-ui)]! leading-[1.5]!"
                 >
                   {t.picker.removeField}
                 </Link>
@@ -1366,7 +1390,7 @@ export function ProfileEditForm({
                         set('activities', draft.activities.filter((_, n) => n !== i));
                         setActCount((n) => Math.max(1, n - 1));
                       }}
-                      className="text-[1rem]! leading-[1.5rem]!"
+                      className="text-[length:var(--text-ui)]! leading-[1.5]!"
                     >
                       {pub.remove}
                     </Link>
@@ -1507,7 +1531,7 @@ export function ProfileEditForm({
         <div className="fixed inset-x-0 bottom-0 z-40 border-t-2 border-brand-black bg-brand-white">
           <div className="mx-auto flex max-w-[1744px] flex-wrap items-center justify-between gap-x-6 gap-y-3 px-4 py-3 xl:px-10">
             <div className="flex flex-wrap items-center gap-x-5 gap-y-1">
-              <Link as="button" onClick={() => step.onExit?.(draft)} className="text-[1rem]! leading-[1.5rem]!">
+              <Link as="button" onClick={() => step.onExit?.(draft)} className="text-[length:var(--text-ui)]! leading-[1.5]!">
                 {step.exitLabel}
               </Link>
             </div>
@@ -1701,7 +1725,7 @@ function SocietyPicker({
             {shown.length ? (
               shown.map((x) => (
                 <li key={x.slug} role="option" aria-selected={value.includes(x.slug)}>
-                  <label className="flex cursor-pointer items-start gap-3 px-4 py-2.5 font-text text-[1rem] leading-[1.375rem] hover:bg-brand-black/5">
+                  <label className="flex cursor-pointer items-start gap-3 px-4 py-2.5 font-text text-[length:var(--text-ui)] leading-[1.5] hover:bg-brand-black/5">
                     <input
                       type="checkbox"
                       checked={value.includes(x.slug)}
@@ -1730,7 +1754,7 @@ function SocietyPicker({
                 variant="accent"
                 onClick={() => toggle(x.slug)}
                 aria-label={`${societyName(x, locale)} ✕`}
-                className="min-h-[36px]! py-1.5! text-[0.875rem]! leading-[1.25rem]! tracking-[-0.03em]!"
+                className="min-h-[36px]! py-1.5! text-[length:var(--step-xs)]! leading-[var(--step-xs-lh)]! tracking-[-0.03em]!"
               >
                 {x.name} ✕
               </Tag>

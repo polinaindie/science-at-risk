@@ -424,7 +424,7 @@ const en: CabinetCopy = {
   },
   collab: {
     title: 'Find a colleague to collaborate with',
-    lede: 'Colleagues who work in the same fields as you. Write first. If the colleague agrees to talk, you will see their email and can continue by email.',
+    lede: 'We picked these people for you: they work in your specialty and the same fields as you. Write first. If the colleague agrees to talk, you will see their email and can continue by email.',
     search: 'Search by name, university, topic or field',
     find: 'Search',
     shared: 'Fields and topics',
@@ -795,7 +795,7 @@ const uk: CabinetCopy = {
   },
   collab: {
     title: 'Знайдіть колегу для співпраці',
-    lede: 'Колеги, які працюють у тих самих галузях, що й ви. Напишіть першими. Якщо колега погодиться поспілкуватися, ви побачите пошту колеги й продовжите розмову листами.',
+    lede: 'Ми підібрали цих людей саме для вас: вони працюють у вашій спеціальності й тих самих галузях. Напишіть першими. Якщо колега погодиться поспілкуватися, ви побачите пошту колеги й продовжите розмову листами.',
     search: 'Пошук за іменем, університетом, темою або галуззю',
     find: 'Знайти',
     shared: 'Галузі та теми',
