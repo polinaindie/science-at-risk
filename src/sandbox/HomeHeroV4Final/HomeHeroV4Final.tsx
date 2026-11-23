@@ -180,7 +180,7 @@ export function HomeHeroV4Final({
   localeHref = live('uk'),
   tagline = 'Centre of Excellence on Science at Risk, Ukraine',
   stories = defaultHomeHeroV4FinalStories,
-  storiesLabel = 'Stories',
+  storiesLabel = 'Feature',
   storiesTagHref = live('stories-theme-stories.html'),
   readLabel = 'Read Story',
   otherLabel = 'Other stories',

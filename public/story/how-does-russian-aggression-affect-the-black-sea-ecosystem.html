@@ -124,7 +124,7 @@
             
             <div class="row">
                 <div class="col-md-9 col-12">
-                    <a class="story__type" href="../stories-theme-stories.html">Stories</a>
+                    <a class="story__type" href="../stories-theme-stories.html">Feature</a>
                     <h1 class="story__main-title">How does Russian aggression affect the Black Sea ecosystem?</h1>
                     <p class="data">21.06.23</p>
                 </div>
@@ -132,6 +132,54 @@
             <div class="row flex-md-row flex-column-reverse">
                 <div class="col-md-9 col-12">
                                                                         <p  class="paragraph mt-0">Long before the explosion of the Kakhovska HPP, Russia caused major damage to the environment, including the Black Sea. Since the beginning of the full-scale invasion, dolphins have massively died, and we cannot even estimate the consequences for other marine animals and plants.</p>
+                    <h3 class="heading heading--h3">Photo gallery</h3>
+                    <p class="paragraph">Several pictures that belong together are shown one at a time, as on the infrastructure pages: swipe or use Back and Next. The caption is the picture's alt text:</p>
+                    <div class="infrastructure__slider-wrap">
+                        <div class="swiper-gallery">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <div class="infrastructure__slide">
+                                        <picture class="infrastructure__img">
+                                            <img src="../storage/posts/attaches/09a80f6cfae798387c2bfdb6124d6afa47ef046e.webp" alt="The first lamp" loading="lazy">
+                                            <div class="infrastructure__bg-img"></div>
+                                        </picture>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="infrastructure__slide">
+                                        <picture class="infrastructure__img">
+                                            <img src="../storage/posts/attaches/bedc5e46aa793b5fce583fd32623ed96e96c91ac.jpg" alt="The route" loading="lazy">
+                                            <div class="infrastructure__bg-img"></div>
+                                        </picture>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="infrastructure__slide">
+                                        <picture class="infrastructure__img">
+                                            <img src="../storage/posts/attaches/45e12dba1cccb61f77a81b8be2b0b5b3370043c8.webp" alt="The researchers at work" loading="lazy">
+                                            <div class="infrastructure__bg-img"></div>
+                                        </picture>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="infrastructure__navigation">
+                                <button class="_swiper_prev prev infrastructure__nav-btn" type="button">&lt; <span class="hover hover--black">Back</span></button>
+                                <button class="_swiper_next next infrastructure__nav-btn" type="button"><span class="hover hover--black">Next</span> &gt;</button>
+                                <div class="counter"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <h3 class="heading heading--h3">Video</h3>
+                    <p class="paragraph">Video sits in a 16:9 frame. A third-party player loads only after the reader presses play:</p>
+                    <div class="embed">
+                        <div class="embed__frame">
+                            <div class="embed__poster">
+                                <p class="embed__consent">This video is hosted on YouTube. It loads only after you press play, and YouTube may then set cookies.</p>
+                                <a class="embed__play" href="https://www.youtube.com/watch?v=jNQXAC9IVRw" data-embed-src="https://www.youtube-nocookie.com/embed/jNQXAC9IVRw" data-embed-title="Sample video">Play video</a>
+                            </div>
+                        </div>
+                        <p class="embed__fallback">Sample video. <a href="https://www.youtube.com/watch?v=jNQXAC9IVRw">Watch on YouTube</a></p>
+                    </div>
                                                     <p  class="paragraph">How does the Russian war in Ukraine destroy marine ecosystems?</p>
                                                     <section class="embed">
                     <section class="figcaption">
@@ -206,7 +254,7 @@
             </picture>
         </header>
                 <main class="story-card__main">
-            <span class="story-card__type">Stories</span>
+            <span class="story-card__type">Feature</span>
             <h2 class="story-card__title"><span class="hover hover--black">Uncovered Graves. How Lviv restores its memory about the school of mathematics</span></h2>
             <p class="story-card__text"></p>
         </main>
@@ -244,7 +292,7 @@
             </picture>
         </header>
                 <main class="story-card__main">
-            <span class="story-card__type">Stories</span>
+            <span class="story-card__type">Feature</span>
             <h2 class="story-card__title"><span class="hover hover--black">“Lost Worlds.” How the Russian strike ruined the Chornobyl Museum in Kyiv</span></h2>
             <p class="story-card__text"></p>
         </main>
@@ -285,6 +333,7 @@ gtag('config', 'G-9BH3YJZYRB');
 <script src="../js/client.bundle.js"></script>
 <script src="../js/jquery.min.js"></script>
 <script src="../js/common.js"></script>
+<script src="../js/story-lead.js"></script>
 <script>
     (async function () {
         if (!("paintWorklet" in CSS)) {
@@ -328,5 +377,7 @@ gtag('config', 'G-9BH3YJZYRB');
           "description": "Long before the explosion of the Kakhovska HPP, Russia caused major damage to the environment, including the Black Sea."
         }
     </script>
+<script src="../js/satr-embed.js" defer></script>
+<script src="../js/infrastructure-page.js" defer></script>
 </body>
 </html>

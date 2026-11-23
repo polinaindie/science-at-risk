@@ -60,7 +60,7 @@ const storiesUk: { title: string; description: string; imageAlt: string }[] = [
 const heroEn: HomeHeroV4FinalProps = {
   locale: 'en',
   tagline: 'Centre of Excellence on Science at Risk, Ukraine',
-  storiesLabel: 'Stories',
+  storiesLabel: 'Feature',
   readLabel: 'Read Story',
   otherLabel: 'Other Stories',
   backLabel: '< Previous',
