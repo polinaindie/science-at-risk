@@ -19,3 +19,6 @@
 .breadcrumbs__item, .breadcrumbs__divider { flex: 0 0 auto; }
 .breadcrumbs__item:last-child { flex: 0 1 auto; min-width: 0; }
 .breadcrumbs__item:last-child span { display: block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+/* A trail of two steps (Main / Page) is not shown; it appears from three. Items and dividers alternate, so fewer than 4 children = 2 steps. */
+.breadcrumbs:not(:has(> .breadcrumbs__list > :nth-child(4))) { display: none; }

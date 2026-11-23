@@ -354,3 +354,113 @@ button, input, select, textarea { font-family: inherit; }
 .papers-hero__text.papers-hero__text:not(#_) { font-size: var(--step-read); line-height: 1.55; }
 a.research-card__author.research-card__author.research-card__author:not(.satr-chrome *):not(#_) { font-size: var(--step-read); line-height: 1.5; }
 .paper-card__text.paper-card__text:not(#_) { font-size: var(--step-md); line-height: 1.55; }
+
+/* Stories list: the card text at md (as on the research cards), the date at the fixed UI size (as the research card's date),
+   the page numbers on the scale (they were 22px, 1.22rem) and the same 96px gap before the footer as the other lists. */
+.story-card__text.story-card__text:not(#_) { font-size: var(--step-md); line-height: 1.55; }
+.story-card__data.story-card__data:not(#_) { font-size: var(--text-ui); line-height: 1.3; }
+.pagination .pagination__numbers:not(#_), .pagination .pagination__prev span:not(#_), .pagination .pagination__next span:not(#_) { font-size: var(--step-lg); }
+.pageStories.pageStories:not(#_) { padding-bottom: var(--space-7, 96px); }
+
+/* Story page: the opening paragraph is the lead: the serif of the headings, a step larger than the text under it. */
+.story .col-md-9 > :is(.paragraph, .story-lead):first-child:not(#_):not(#__),
+.story .col-md-9 > h2:first-child + :is(.paragraph, .story-lead):not(#_):not(#__) {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  font-size: var(--step-lg);
+  line-height: 1.5;
+  margin-bottom: 1.5em;
+}
+/* The share line at the foot of a story: its label and the links at md, like the other small text of the page. */
+.story .link .link__title.link__title:not(#_), .story .link .link__item.link__item a.hover:not(#_) { font-size: var(--step-md); line-height: 1.5; }
+
+/* Story headings run the width of the text and wrap only when they are longer than it (they were capped at 24em / 28em and balanced). */
+.story .col-md-9 :is(.heading--h2, .heading--h3):not(#_):not(#__) { max-width: var(--satr-measure); text-wrap: wrap; }
+
+/* Wide desktops (1920px and up): the type of the stories, research (list and articles) and the scientists list grows by a fifth, because the
+   scale stops at 1280px and the text looked small in a 1744px column. The values are the 1280px ones of the scale times 1.2 (1rem = 18px
+   here); they are set on the page, so the header and footer are not touched. */
+@media (min-width: 1920px) {
+  :is(.page.story, .page.paper, .page.papers, .page:has(.expert-card)) {
+    --step-xs: 1rem;        /* 18   (was 15) */
+    --step-sm: 1.0667rem;   /* 19.2 (16) */
+    --step-md: 1.2rem;      /* 21.6 (18) */
+    --step-read: 1.3333rem; /* 24   (20) */
+    --step-lg: 1.4667rem;   /* 26.4 (22) */
+    --step-xl: 1.8667rem;   /* 33.6 (28) */
+    --step-2xl: 2.4rem;     /* 43.2 (36) */
+    --step-3xl: 3.2rem;     /* 57.6 (48) */
+    --step-name: 2.1333rem; /* 38.4 (32) */
+    --step-text2: 1.0667rem;/* 19.2 (16) */
+    --text-ui: 19.2px;      /* (16) */
+  }
+}
+
+/* ...and the pieces that had a fixed size in the main stylesheet follow the same step up on a wide desktop. */
+@media (min-width: 1920px) {
+  :is(.page.story, .page.paper, .page.papers, .page:has(.expert-card)) .tag:not(.satr-chrome *):not(#_) { font-size: var(--step-md); }
+  :is(.page.story, .page.paper, .page.papers, .page:has(.expert-card)) .tag .tag__number:not(#_) { font-size: var(--text-ui); }
+  :is(.page.story, .page.paper, .page.papers, .page:has(.expert-card)) .expert-card__subtitle:not(#_) { font-size: var(--step-md); }
+  :is(.page.story, .page.paper, .page.papers, .page:has(.expert-card)) .expert-card__text:not(#_) { font-size: var(--step-xs); }
+  :is(.page.story, .page.paper, .page.papers, .page:has(.expert-card)) .expert-card__tag:not(.satr-chrome *):not(#_) { font-size: var(--step-md); }
+  :is(.page.story, .page.paper, .page.papers, .page:has(.expert-card)) .satr-float__label:not(.satr-chrome *):not(#_) { font-size: var(--step-lg); }
+}
+
+/* Gallery in an article: the photo, its caption, a rule, and Back / counter / Next under the rule. */
+.story .col-md-9 .infrastructure__slider-wrap .infra-caption:not(#_) { margin: 0.75em 0 1.25rem; }
+.story .col-md-9 .infrastructure__slider-wrap .infrastructure__navigation:not(#_) { margin-top: 0; padding-top: 0.75rem; border-top: 2px solid var(--color-black); }
+
+@media (min-width: 1920px) {
+  .page.papers .research-filter__tip:not(#_) { font-size: var(--text-ui); }
+  .page.papers .research-filter__status:not(#_), .page.paper .paper-aside__text:not(#_) { font-size: var(--step-md); }
+  .page.paper .mb-5:not(#_) { font-size: var(--text-ui); }
+}
+
+/* Infrastructures list: the lede at reading size, as on the research and societies lists. */
+.infrastructures-hero__text.infrastructures-hero__text:not(#_) { font-size: var(--step-read); line-height: 1.55; }
+/* The column labels ("Science domain", "Required amount") are 16px, as on the societies list. */
+.infrastructures__text-left.infrastructures__text-left:not(#_), .infrastructures__text-right.infrastructures__text-right:not(#_) { font-size: var(--text-ui); line-height: 1.3; }
+.page.infrastructures { padding-bottom: var(--space-7, 96px); } /* gap before the footer, as on the other lists */
+
+/* Infrastructure page: labels and small lines at 16px / the scale, nothing between the steps. */
+.infrastructure__sec-title.infrastructure__sec-title:not(#_), .person-card__position.person-card__position:not(#_) { font-size: var(--text-ui); line-height: 1.3; }
+.help-form__text.help-form__text:not(#_) { font-size: var(--step-read); line-height: 1.55; }
+.infra-plate__purpose.infra-plate__purpose:not(#_), .infra-help-note.infra-help-note:not(#_) { font-size: var(--step-md); line-height: 1.55; }
+.column__err-text.column__err-text:not(#_), .column__counter.column__counter:not(#_) { font-size: max(14px, 0.7778rem); line-height: 1.4; }
+.page.infrastructure { padding-bottom: 45px; } /* 51px of its own below the last line + 45 = the 96px gap before the footer, as on the lists */
+
+/* Infrastructure page: every running text is the story's body text (reading size, 1.55, a one-em gap between paragraphs). */
+:is(.infrastructure__text, .infra-fullname, .infrastructure__sec-text, .infra-plate__purpose, .infra-help-note):is(*, *):not(#_):not(#__) { font-size: var(--step-read); line-height: 1.55; }
+.infrastructure__text.infrastructure__text:not(#_) { margin-bottom: 1em; }
+
+/* 1920px and up: the infrastructure page and its list step up like the stories (same values as the block above). */
+@media (min-width: 1920px) {
+  :is(.page.infrastructure, .page.infrastructures) {
+    --step-xs: 1rem; --step-sm: 1.0667rem; --step-md: 1.2rem; --step-read: 1.3333rem; --step-lg: 1.4667rem;
+    --step-xl: 1.8667rem; --step-2xl: 2.4rem; --step-3xl: 3.2rem; --step-name: 2.1333rem; --step-text2: 1.0667rem; --text-ui: 19.2px;
+  }
+  :is(.page.infrastructure, .page.infrastructures) :is(.tag, .expert-card__tag):not(.satr-chrome *):not(#_) { font-size: var(--step-md); }
+  .page.infrastructure :is(.column__err-text, .column__counter):not(#_) { font-size: var(--step-xs); }
+}
+
+/* The full name under the infrastructure title: a softer grey and closer to the title. */
+.infra-fullname.infra-fullname:not(#_) { color: var(--color-grey-700); margin-top: 0; }
+.infrastructure__header.infrastructure__header:not(#_) { margin-bottom: 0; }
+
+/* Buttons: one height everywhere, 48px (the search buttons on the scientists and societies lists were already). The close cross, the filter chips and the gallery arrows are not buttons of this kind. */
+.btn:not(.help-form__btn-close):not(.research-filter__tag):not(.satr-chrome *):not(#_), .paper-card__link-btn:not(#_) { min-height: 48px; box-sizing: border-box; }
+.paper-card__btn.paper-card__btn:not(#_) { height: 48px; }
+/* The full name under the title is the line of an expert's institution: 16px, black. */
+.infra-fullname.infra-fullname:not(#_):not(#__) { font-size: var(--text-ui); line-height: 1.4; color: var(--color-black); }
+.infra-fullname.infra-fullname:not(#_):not(#__) { margin-top: 12px; }
+
+/* The facts list: the label column grows with the label type (the longest label, "Type of infrastructure", is 22 characters of mono), so the value never runs into it on a wide screen. */
+@media (min-width: 768px) {
+  .infrastructure__info .row > div:not(#_) { grid-template-columns: max(12.5rem, calc(var(--text-ui) * 13.5)) 1fr; column-gap: 1.5rem; }
+}
+
+/* The amount is a heading in a paragraph tag: the general paragraph rule (1.55) made its line 54px for 35px type. */
+.infra-plate__amount.infra-plate__amount:not(#_):not(#__) { line-height: 1.15; }
+
+/* List page: the card's labels and amount sit in <p>, where the general paragraph rule (1.55) won over 1.3. */
+.infrastructures__text-left.infrastructures__text-left:not(#_):not(#__):not(#___), .infrastructures__text-right.infrastructures__text-right:not(#_):not(#__):not(#___), .infrastructures-card__text-right p:not(#_):not(#__):not(#___) { line-height: 1.3; }
