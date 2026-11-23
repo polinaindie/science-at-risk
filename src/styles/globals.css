@@ -292,3 +292,10 @@
   --text-heading-3--line-height: var(--heading-3-lh);
   --text-heading-3--letter-spacing: var(--heading-3-ls);
 }
+
+/* What a person types in a cabinet field is set at the site's reading size (the label rests on the same line and shrinks from it). */
+.satr-cabinet-scale .satr-float > :is(input, textarea):not(#_),
+.satr-cabinet-scale .satr-float > .satr-float__label:not(#_) {
+  font-size: var(--step-read);
+  line-height: var(--step-read-lh);
+}
