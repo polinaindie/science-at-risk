@@ -464,3 +464,12 @@ a.research-card__author.research-card__author.research-card__author:not(.satr-ch
 
 /* List page: the card's labels and amount sit in <p>, where the general paragraph rule (1.55) won over 1.3. */
 .infrastructures__text-left.infrastructures__text-left:not(#_):not(#__):not(#___), .infrastructures__text-right.infrastructures__text-right:not(#_):not(#__):not(#___), .infrastructures-card__text-right p:not(#_):not(#__):not(#___) { line-height: 1.3; }
+
+/* 1920px and up: the line heights of the scale grow with the sizes above. Without this the card titles (43px) kept the 1280px line of 42px,
+   the lines overlapped and the hover underline (drawn at the bottom of the text box) fell onto the next line. Values: the 1280px ones times 1.2. */
+@media (min-width: 1920px) {
+  :is(.page.story, .page.paper, .page.papers, .page:has(.expert-card), .page.infrastructure, .page.infrastructures) {
+    --step-xs-lh: 1.4667rem; --step-sm-lh: 1.7333rem; --step-md-lh: 1.8667rem; --step-read-lh: 2rem; --step-lg-lh: 1.8667rem;
+    --step-xl-lh: 2.2667rem; --step-2xl-lh: 2.8rem; --step-3xl-lh: 3.6rem; --step-name-lh: 2.5333rem; --step-text2-lh: 1.7333rem;
+  }
+}

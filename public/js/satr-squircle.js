@@ -138,6 +138,8 @@
   const groundUnder = () => {
     let el = document.elementFromPoint(Math.round(window.innerWidth / 2), header.offsetHeight + 2);
     while (el && el !== document.documentElement) {
+      /* a photo frame or tile with its own fill is content, not the page's ground: look past it */
+      if (el.hasAttribute('data-satr-ground-skip')) { el = el.parentElement; continue; }
       const c = getComputedStyle(el).backgroundColor;
       if (opaque(c)) return c;
       el = el.parentElement;

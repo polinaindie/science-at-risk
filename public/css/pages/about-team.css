@@ -1,0 +1,38 @@
+/* About us: the team as cards, four to a row only on a big desktop (two below that, one on a phone), each with a photo (a square, cut to fit) over the name and the role. Until a photo is added the square holds the initials. */
+.team { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-5, 56px) var(--space-4, 40px); margin: 0 0 var(--space-5, 56px); padding: 0; list-style: none; }
+@media (min-width: 1440px) { .team { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+@media (max-width: 479px) { .team { grid-template-columns: minmax(0, 1fr); } }
+.team__photo { aspect-ratio: 1 / 1; margin: 0 0 var(--space-2, 16px); background: var(--color-blue); overflow: hidden; display: flex; align-items: center; justify-content: center; }
+.team__photo img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 20%; } /* portraits are tall: keep the face, cut the lower part */
+.team__initials { font-family: var(--font-heading, "Noto Serif", serif); font-size: var(--step-3xl); line-height: 1; color: var(--color-black); }
+.team__name:not(#_) { margin: 0 0 var(--space-1, 12px); font-family: var(--font-heading, "Noto Serif", serif); font-size: var(--step-lg); line-height: 1.2; font-weight: 400; }
+.team__role:not(#_) { margin: 0; font-size: var(--step-xs); line-height: 1.4; color: var(--color-grey-700); }
+.team .team__card:not(#_):not(#__) { list-style: none; margin: 0; padding: 0; }
+.team .team__card::marker { content: none; }
+.team.team:not(#_):not(#__) { list-style: none; padding: 0; margin-left: 0; margin-top: 0; }
+
+/* About us: the figures under the intro. Three big numbers in a row (one under another on a phone), the survey named under them. */
+.stats.stats:not(#_):not(#__) { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-3, 24px); margin: var(--space-3, 24px) 0 var(--space-1, 12px); padding: 0; list-style: none; }
+@media (max-width: 767px) { .stats.stats:not(#_):not(#__) { grid-template-columns: minmax(0, 1fr); gap: var(--space-2, 16px); } }
+.stats .stats__item:not(#_):not(#__) { margin: 0; padding: var(--space-2, 16px) 0 0; border-top: 2px solid var(--color-black); list-style: none; }
+.stats__num { display: block; margin: 0 0 8px; font-family: var(--font-heading, "Noto Serif", serif); font-size: var(--step-3xl); line-height: 1.1; letter-spacing: -0.02em; }
+.stats__label { display: block; font-size: var(--text-ui); line-height: 1.4; color: var(--color-grey-700); }
+.stats__source:not(#_):not(#__) { margin: 0 0 var(--space-4, 40px); font-size: var(--step-xs); line-height: 1.4; color: var(--color-grey-700); }
+
+/* Directions of work: a number, then the sentence with its link; a thin rule between the rows. */
+.directions.directions:not(#_):not(#__):not(#___) { margin: 0 0 var(--space-4, 40px); padding: 0; list-style: none; }
+.directions .directions__item:not(#_):not(#__):not(#___) { display: grid; grid-template-columns: 3.5rem minmax(0, 1fr); gap: var(--space-2, 16px); margin: 0; padding: var(--space-2, 16px) 0; border-top: 1px solid var(--color-black); list-style: none; }
+.directions .directions__item:last-child:not(#_):not(#__):not(#___) { border-bottom: 1px solid var(--color-black); }
+.directions__num { font-family: var(--font-heading, "Noto Serif", serif); font-size: var(--step-xl); line-height: 1.2; }
+.directions__text:not(#_):not(#__) { margin: 0; }
+
+/* In-page menu in the right column of a wide screen; it stays in view while the page scrolls. */
+.about-nav { display: none; }
+@media (min-width: 992px) {
+  .about-nav { display: block; position: sticky; top: 120px; }
+  .about-nav ul:not(#_):not(#__) { margin: 0; padding: 0; list-style: none; }
+  .about-nav li:not(#_):not(#__) { margin: 0 0 var(--space-1, 12px); padding: 0; list-style: none; }
+  .about-nav a { font-size: var(--text-ui); line-height: 1.3; color: var(--color-grey-700); text-decoration: none; }
+  .about-nav a:hover, .about-nav a:focus-visible { color: var(--color-black); text-decoration: underline; text-underline-offset: 0.18em; }
+}
+.about-page-anchor, #mission, #directions, #vision, #team, #contacts { scroll-margin-top: 120px; }
