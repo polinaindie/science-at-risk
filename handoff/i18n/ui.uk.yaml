@@ -296,7 +296,7 @@ date.short: "02.01.06"
 date.long: "2 January 2006"  # DRAFT-UK
 date.published: "Опубліковано {{ .Date }}"  # DRAFT-UK
 number.thousands_separator: " "  # DRAFT-UK
-number.currency: "{{ .Amount }} грн"
+number.currency: "{{ .Amount }} USD"
 
 # ----------------------------------------------------------------------
 # Auth pages (public/login.html etc.; src/components/Auth/authCopy.ts, both languages exist there)

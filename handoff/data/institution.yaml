@@ -16,7 +16,7 @@ normal:
     infrastructure_type: "Equipment and facilities, has the status of a national treasure"
     property_type: "state-owned"
     website: "https://www.cryo.org.ua/"
-    needed_uah: 500000
+    needed_usd: 11111
     purpose: "The funds are needed to repair the building"
     gallery: []
     coordinator:
@@ -26,7 +26,7 @@ normal:
       email: "coordinator@example.org"
     updated: ""
     date: "2024-01-31"
-    # Real content from public/infrastructure/instytut-problem-kriobiolohii-i-kriomedytsyny.html. The coordinator e-mail on the page is encoded; an example address is used here. This page has no separate full name (the long name is the h1): short_name must be written for it. Real UK strings that exist (src/sandbox/HomePageV6/homeCopy.ts): title "Інститут проблем кріобіології і кріомедицини", amount "~ 500 000 грн", domain label "Галузь науки".
+    # Real content from public/infrastructure/instytut-problem-kriobiolohii-i-kriomedytsyny.html. The coordinator e-mail on the page is encoded; an example address is used here. This page has no separate full name (the long name is the h1): short_name must be written for it. Real UK strings that exist (src/sandbox/HomePageV6/homeCopy.ts): title "Інститут проблем кріобіології і кріомедицини", amount "~ 11 000 USD", domain label "Галузь науки".
 
 too_long:
   en:
@@ -59,7 +59,7 @@ too_long:
     infrastructure_type: "restoration recovery wartime analysis laboratory funding partnership infrastructure equipment institute research collection data heritage archive resilience instrument university evidence collaboration scientists community restoration recovery wartim"
     property_type: "scientists community restoration recover"
     website: "https://example.org/path/segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-seg"
-    needed_uah: 9999999999
+    needed_usd: 222222222
     needed_note: "evidence collaboration scientists community restoration recovery wartime analysis laboratory funding partnership infrast"
     purpose: "Instrument. university evidence collaboration scientists community restoration recovery wartime analysis. laboratory funding partnership infrastructure equipment institute research collection data. heritage archive resilience instrument university evidence collaboration scientists community. restoration recovery wartime analysis laboratory funding partnership infrastructure equipment. institute re"
     gallery:
@@ -127,7 +127,7 @@ too_long:
     infrastructure_type: "відбудова відновлення воєнний аналіз лабораторія фінансування партнерство інфраструктура обладнання інститут науковці колекція дані спадщина архів стійкість інструмент університет докази співпраця дослідження спільнота відбудова відновлення воєнний а"
     property_type: "дослідження спільнота відбудова відновле"
     website: "https://example.org/path/segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-segment-seg"
-    needed_uah: 9999999999
+    needed_usd: 222222222
     needed_note: "докази співпраця дослідження спільнота відбудова відновлення воєнний аналіз лабораторія фінансування партнерство інфраст"
     purpose: "Інструмент. університет докази співпраця дослідження спільнота відбудова відновлення воєнний аналіз. лабораторія фінансування партнерство інфраструктура обладнання інститут науковці колекція дані. спадщина архів стійкість інструмент університет докази співпраця дослідження спільнота. відбудова відновлення воєнний аналіз лабораторія фінансування партнерство інфраструктура обладнання. інститут науко"
     gallery:
