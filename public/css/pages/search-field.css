@@ -139,3 +139,12 @@
     /* the button is 48px and stands on the bottom of the row, the × is 32px: 8px up puts its centre on the button's */
     .search-field__clear { margin-bottom: 8px; }
 }
+
+/* 1920px and up: the typed text and the hint grow by a fifth with the rest of the page's text (rem is the root's 18px and does not follow the scale). */
+@media (min-width: 1920px) {
+    .search-field .satr-float > input { font-size: 1.4667rem; line-height: 1.7333rem; }
+    .search-field .satr-float > .satr-float__label { font-size: 1.4667rem; line-height: 1.7333rem; }
+    .search-field .satr-float > input:focus + .satr-float__label,
+    .search-field .satr-float > input:not(:placeholder-shown) + .satr-float__label { font-size: 1.2rem; line-height: 1.7333rem; }
+    .search-field .btn { font-size: 1.2rem; }
+}

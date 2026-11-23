@@ -539,3 +539,10 @@ a.research-card__author.research-card__author.research-card__author:not(.satr-ch
     --text-field-lh: var(--step-md-lh);
   }
 }
+
+/* Fields of the forms (login, contact, help): the typed text and the resting hint are 18px and grow by a fifth from 1920px, with the rest of the text.
+   The search fields have their own sizes (css/pages/search-field.css). */
+@media (min-width: 1920px) {
+  .satr-float > :is(input, textarea):not(.search-field *):not(#_):not(#__) { font-size: 1.2rem; line-height: 1.7333rem; }
+  .satr-float > :is(input, textarea):placeholder-shown:not(:focus) + .satr-float__label:not(.search-field *):not(#_):not(#__) { font-size: 1.2rem; line-height: 1.7333rem; }
+}
