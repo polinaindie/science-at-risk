@@ -66,20 +66,20 @@ export const defaultInfrastructureV6: InfrastructuresSectionProps = {
   cards: [
     {
       title: 'Institute for Problems of Cryobiology and Cryomedicine',
-      amount: '~ 500 000 UAH',
+      amount: '~ 11 000 USD',
       href: live('infrastructure/instytut-problem-kriobiolohii-i-kriomedytsyny.html'),
       showMetaLabels: true,
     },
     {
       title:
         'Danilevsky Institute for Endocrine Pathology Problems of the National Academy of Medical Sciences of Ukraine',
-      amount: '~ 3 478 972 UAH',
+      amount: '~ 77 000 USD',
       href: live('infrastructure/instytut-problem-endokrynnoi-patolohii-im-vya-danylevskoho-namn-ukrainy.html'),
       showMetaLabels: true,
     },
     {
       title: 'Institute for Safety Problems of Nuclear Power Plants',
-      amount: '~ 366 627 780 UAH',
+      amount: '~ 8 100 000 USD',
       href: live('infrastructure/instytut-problem-bezpeky-atomnykh-elektrostantsii.html'),
       showMetaLabels: true,
     },

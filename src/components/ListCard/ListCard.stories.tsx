@@ -15,7 +15,7 @@ export const Default: Story = {
     title: 'Will restore cryopreservation of cell cultures and biological collections',
     entity: 'Institute for Problems of Cryobiology and Cryomedicine',
     text: 'Low-temperature equipment and storage lines for living research materials.',
-    price: '~ 500000 UAH',
+    price: '~ 11 000 USD',
   },
 };
 
@@ -24,7 +24,7 @@ export const NeedFraming: Story = {
   args: {
     title: 'Institute for Problems of Cryobiology and Cryomedicine',
     text: 'Institute for Problems of Cryobiology and Cryomedicine',
-    price: '~ 500000 UAH',
+    price: '~ 11 000 USD',
     amountLabel: 'Required amount',
   },
 };

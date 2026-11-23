@@ -167,17 +167,17 @@ const infrastructureUk: InfrastructuresSectionProps = {
   cards: [
     {
       title: 'Інститут проблем кріобіології і кріомедицини',
-      amount: '~ 500 000 грн',
+      amount: '~ 11 000 USD',
       href: live('infrastructure/instytut-problem-kriobiolohii-i-kriomedytsyny.html'),
     },
     {
       title: 'Інститут проблем ендокринної патології імені В. Я. Данилевського НАМН України',
-      amount: '~ 3 478 972 грн',
+      amount: '~ 77 000 USD',
       href: live('infrastructure/instytut-problem-endokrynnoi-patolohii-im-vya-danylevskoho-namn-ukrainy.html'),
     },
     {
       title: 'Інститут проблем безпеки атомних електростанцій',
-      amount: '~ 366 627 780 грн',
+      amount: '~ 8 100 000 USD',
       href: live('infrastructure/instytut-problem-bezpeky-atomnykh-elektrostantsii.html'),
     },
   ].map((c) => ({

@@ -291,8 +291,8 @@ cookies.decline: "Decline"
 date.short: "02.01.06"  # stories/cards: 20.03.23 (DD.MM.YY); same in both languages
 date.long: "2 January 2006"  # infrastructure "Need updated": EN 12 November 2026; UK is "2 January 2006" too, Hugo prints the month in Ukrainian (genitive)
 date.published: "Published {{ .Date }}"
-number.thousands_separator: " "  # amounts on pages: "~ 3 478 972 UAH" (space); UK "~ 3 478 972 грн"
-number.currency: "{{ .Amount }} UAH"  # ~ prefix is part of the data, not of the string
+number.thousands_separator: " "  # amounts on pages: "~ 77 000 USD" (space); UK "~ 77 000 USD"
+number.currency: "{{ .Amount }} USD"  # ~ prefix is part of the data, not of the string
 
 # ----------------------------------------------------------------------
 # Auth pages (public/login.html etc.; src/components/Auth/authCopy.ts, both languages exist there)

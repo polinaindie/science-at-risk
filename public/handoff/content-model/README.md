@@ -127,7 +127,7 @@ Why: the person edits the Ukrainian text in the cabinet; English is translated b
 ## 8. Dates and numbers
 
 - `date` (publication) ISO `YYYY-MM-DD` in data; shown `DD.MM.YY` on stories (observed `20.03.23`, the mirror has dates in 2026), `H` format see `../i18n`. `lastmod` is automatic from the CMS, not typed.
-- Amount (infrastructure): stored as an integer in UAH (`needed_uah: 500000`), shown "~ 500 000 UAH" / "~ 500 000 грн" (space thousands separator, the tilde is part of the display). Today it is a string and spacing varies (`~ 500000 UAH` in the facts list, `~ 500 000 UAH` on the plate).
+- Amount (infrastructure): stored as an integer in USD (converted from UAH at 45) (`needed_usd: 500000`), shown "~ 11 100 USD" / "~ 11 100 USD" (space thousands separator, the tilde is part of the display). Today it is a string and spacing varies (`~ 11100 USD` in the facts list, `~ 11 100 USD` on the plate).
 - Phone and e-mail: never in the HTML as plain text; the mirror encodes e-mails (`data-satr-email`, filled in by script; the old site used Cloudflare e-mail protection). Contact is through the form; the coordinator's address is shown only on institution pages (and note in `docs/infrastructure-page.md`: personal gmail addresses; `kushtmagazine@gmail.com` on all 23 pages).
 
 ## 9. Things the existing pages disagree on (cross-type)

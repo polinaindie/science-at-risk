@@ -30,7 +30,7 @@ Content (profiles, stories, ...) is not here: that lives in each page's front ma
 - `{{ .Name }}` style placeholders must be identical in both files (the script checks).
 - A missing key in Hugo renders the key name in the page: build with `--printI18nWarnings` and fail CI on any warning.
 - Dates: `date.short` = `02.01.06` (stories, cards: 20.03.23). `date.long` is a Go layout; with `time.Format` Hugo prints the month name in the page language (UK genitive: "12 листопада 2026"). Check the output once for UK.
-- Amounts are data, not strings: `"~ 3 478 972"` with a space as thousands separator; the currency word comes from `number.currency` (`UAH` / `грн`).
+- Amounts are data, not strings: `"~ 77 300"` with a space as thousands separator; the currency word comes from `number.currency` (`USD`).
 - Footer text has a line break in the source (`Want\nto help?`); the current markup puts `<br>` after "Want" on mobile only. Put the break in the template, not in the string (the key `footer.title` is one line).
 - Nothing in HTML: no tags inside strings. Emphasis and links are template markup around `i18n` calls.
 
