@@ -25,11 +25,12 @@ cd public && python3 -m http.server 8080
 | `content-model/` | One file per type: scientist, institution, society, research, story, work, page, home-map. Tables: field, required, max length, format, place on page, if empty. | **Source of truth** for fields |
 | `data/` | Example data in YAML, three variants each: `normal`, `too_long`, `empty` (+ `en_outdated` for scientist). Hugo front-matter style. | **Reference** |
 | `i18n/` | `ui.en.yaml`, `ui.uk.yaml`: 312 identical keys, Hugo `i18n` format with plurals. | **Source of truth** for UI text, UK needs a native editor |
-| `cabinet/` | Scientist cabinet (`/login`, `/account`): 54 HTML pages in EN and `uk/`, 6 letters (HTML + TXT), `microcopy.*.yaml`, its own `README.md`. | **Reference** |
+| `cabinet/` | Scientist cabinet (`/login`, `/account`): 54 HTML pages in EN and `uk/`, 6 letters (HTML + TXT), `microcopy.*.yaml`, its own `README.md` (which also describes notifications, collaboration and opportunities of the React cabinet). | **Reference** |
 | `markdown-for-editors.md` | What editors may write in Markdown: allowed syntax, six shortcodes, what is forbidden, two languages. | **Reference** |
 | `hugo/` | Hugo partials for the live components (button, link, tag, field, scope tabs, Log in), plus `link` and `tag` shortcodes for Markdown, verified against the React markup. | **Reference** |
 | `how-it-stays-in-sync.md` | What follows the site automatically, what needs `npm run sync`, the pre-commit check and the publish command. | **Read** |
-| `typography.md` | The three font roles (heading, text, ui): what each is for, where applied, how to change one. | **Reference** |
+| `typography.md` | The three font roles (heading, text, ui) and the one size scale (`--step-*`, wide screens, cabinet scope): what each is for, where applied, how to change one. | **Reference** |
+| `changelog.md` | What changed since the first hand-off (2026-11-17 to 2026-11-25): type scale, stories, About, infrastructure in USD, cabinet. | **Read** |
 | `template-map.md` | Content type → template → components. | Read first |
 | `open-questions.md` | Everything that needs a developer or editor decision. | Read second |
 | `hugo-migration-checklist.md` | The 8-step "vibe-code → Hugo" list, with the real findings from this repo. | Work list |
@@ -69,7 +70,7 @@ content model, UI dictionary keys, cabinet screens, letter structure, accessibil
 
 1. Ukrainian copy is a draft in places: 105 keys in `i18n/ui.uk.yaml` are marked `# DRAFT-UK`, and the cabinet texts need a native read.
 2. Only the cabinet exists in UK as drawn pages. Other page templates are reviewed in EN; UK is covered by long-string rules and `data/*too_long*`, not by drawn pages.
-4. The cabinet profile form is a subset of fields (see `cabinet/README.md`).
+4. The cabinet profile form is a subset of fields (see `cabinet/README.md`); notifications, collaboration and opportunities are described there but not drawn as static pages.
 5. Page templates were checked at three widths only for the handoff pages above; the mirrored pages in `public/` still fail the checks listed in `hugo-migration-checklist.md`.
 6. Fonts: Noto Serif and IBM Plex Mono are loaded from Google Fonts in the drafts and are not in the repo; IBM Plex Mono has no licence text in the files and is only the Light cut. See `open-questions.md`.
 

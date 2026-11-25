@@ -44,3 +44,7 @@ Layout: header (crumbs, name h1, lead paragraph, "Keywords" chip), then two colu
 - Duplicates: `tovarystvo-mikrobiolohiv-ukrainy-im-sm-vynohradskoho` and `...-tmu` describe the same society (EN titles "Serhii Vynohradskyi society of microbiologists of Ukraine" and "Society of Microbiologists of Ukraine named after S.M. Vinogradsky").
 - `societies-index.json` has `ho-ukrainska-asotsiatsiia-doslidzhen-zhinochoi-istorii`, the page file is `...-uadzhi.html`.
 - The list on the home block shows popular domain counts (Medicine 6, Psychology 3, Ecology 3, Economics 2, Technology 2): computed from `domains`, not typed.
+
+## Updated 2026-11-25 (society and expert contact)
+
+The head's e-mail link in the aside is replaced by a **button "Write to <name>"** (`button.aside__contact`, `data-popup-open="helpSociety"`) that opens the contact modal (`.expertHelp`, `css/pages/contact-modal.css`): Name, Email, Text, languages line, icon-only close. The e-mail address is still never printed; the form goes through the Forms API. The same modal serves the scientist page ("Write to …"). The button is 48px high at every desktop width. Chips (domains) use the whole column. The modal fields follow the form-field sizes in `../typography.md`.

@@ -48,3 +48,9 @@ Layout: text column (left, 74 percent from 1200 px): short name h1, full name, t
 - Domain strings: "Life Science and Biomedicine" vs "Life sciences and biomedicine" vs "life sciences and biomedicine" vs "biomedicine"; `arts and humanities` lowercase; one Ukrainian chip (`Мистецтво та гуманітарні науки`).
 - Section naming (docs/infrastructure-page.md): menu "Infrastructure"; list page "Damaged infrastructure".
 - The e-mails on the pages are personal gmail addresses; `kushtmagazine@gmail.com` appears on all 23 (docs/infrastructure-page.md): use an organisation address or the form only.
+
+## Updated 2026-11-25 (infrastructure)
+
+- **Amount in USD.** `needed_usd` (integer) replaces `needed_uah`; shown `~ 2 200 USD` in both languages (UK too, the word is `USD`), non-breaking spaces as thousands separator. The 22 existing amounts were converted from UAH at a rate of **45** and rounded to two significant digits (100 000 UAH becomes 2 200 USD). The conversion is a one-off; the rate and the rounding rule are open question 42. Four institutions have no amount; the plate then shows no figure.
+- **Plate** (`.infra-plate`): label "Needed", the amount in serif (`--step-2xl`), the purpose text at 16px (`--text-ui`); the help note at 16px. In lists the amount is read size, as the description text beside it.
+- **Page.** Body at reading size, full name 16px, buttons 48px, the facts as a grid; breadcrumbs are hidden below three steps; the coordinator's e-mail line is removed from the page (the Contact and help button opens the modal). 1920px and up: type grows by a fifth.

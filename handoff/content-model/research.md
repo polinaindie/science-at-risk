@@ -41,3 +41,7 @@ Layout: crumbs, h1, authors (rule under them), then two columns: reading column 
 - Summary is called "lead" in markup (`paper-lead`); the task word "key finding" maps to the numbered `paper-point` items (5 of 16 papers have them).
 - `research-index.json` repeats title, authors and pdf of each page: generate it from front matter, do not keep two copies.
 - Home card shows `Author(-s): ...` as the card description in EN and `Автор(и): ...` in UK; the Ukrainian authors are transliterated again (UK names differ from EN: "Павло Гольдін" vs "Pavel Gol’din"), so authors need a UK variant.
+
+## Updated 2026-11-25 (research)
+
+Article page: the **date sits above the title** (48px under the breadcrumbs, the same gap as title to authors). The lede, the authors and the card text follow the type scale (`../typography.md`); links have a thin animated underline; the footer has a larger top padding. The date format is `dd.mm.yy`.

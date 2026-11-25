@@ -32,3 +32,9 @@ Other page types that use this template: 404 (strings in `../i18n`), privacy / d
 
 - The "Contacts" menu item and page were folded into About; the home hero data (`HomeHeroV4Final.tsx`) still lists "Contacts" in its own link array.
 - The text has inline `u.cdx-underline`, `&nbsp;` and `<b>` for a pseudo-heading ("Directions of work" is a bold paragraph, should be an H3), and manual numbering "1. 2. 3. 4." in paragraphs (should be an ordered list).
+
+## Updated 2026-11-25 (About)
+
+The About page is no longer one text column. Its blocks, in order: intro (one underline only; the editor's `<u>` was removed), **key figures** (`ul.stats`: `stats__num`, `stats__label`, `stats__source`: 15%, 88.2%, 72.9%, source "UA Science Reload survey"), **directions** (`ol.directions`, four items with a number and a text, each text may hold links), **team** (`ul.team`: `team__card` with a photo or initials, name, role; photo files in `img/team/`), contacts. Fields to add: `stats[]` (`number`, `label`), `stats_source`, `directions[]` (`text` in Markdown), `team[]` (`name`, `role`, `photo`, optional).
+
+It also has an **in-page menu** on the right ("On this page", `about-nav.js`, `about-team.css`): same behaviour as the stories menu (rules between items, the section being read black and bold, sticky), so the earlier note "a table of contents is not built" no longer holds for About. The numbered pseudo-list in the old text is now a real list. Sizes follow `../typography.md`. The header ignores photo frames (`data-satr-ground-skip`) when it picks its colour.
