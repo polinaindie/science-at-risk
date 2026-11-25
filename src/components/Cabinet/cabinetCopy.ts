@@ -219,7 +219,7 @@ export interface CabinetCopy {
     deletedToast: string;
     deletedSaid: string;
     tabs: { label: string; all: string; unread: string };
-    mutual: (names: string[]) => string;
+    mutual: string;
     declinedToast: string;
     undo: string;
     closeToast: string;
@@ -299,7 +299,7 @@ const en: CabinetCopy = {
     editLocked: 'Editing is paused while the team reviews your changes.',
     withdraw: 'Withdraw and keep editing',
     openOnSite: 'Open on the site',
-    change: 'Change',
+    change: 'Edit',
     add: 'Add',
     parts: { photo: 'photo', links: 'links', name: 'name and position' },
     pendingNote: 'This is the version you sent. It is not on the site yet.',
@@ -319,7 +319,7 @@ const en: CabinetCopy = {
   },
   edit: {
     title: 'Edit profile',
-    partTitle: 'Change',
+    partTitle: 'Edit',
     lede: 'Everything you filled in at registration is here. Change what has moved on and add what is new. Save as you go, then send all the changes together. The team checks them at once, and they appear on the site only after the check.',
     required: '* required',
     example: 'For example:',
@@ -424,7 +424,7 @@ const en: CabinetCopy = {
   },
   collab: {
     title: 'Find a colleague to collaborate with',
-    lede: 'Colleagues who work in the same fields as you. Write first. If the colleague agrees to talk, you will see their email and can continue by email.',
+    lede: 'We picked these people for you: they work in your specialty and the same fields as you. Write first. If the colleague agrees to talk, you will see their email and can continue by email.',
     search: 'Search by name, university, topic or field',
     find: 'Search',
     shared: 'Fields and topics',
@@ -512,7 +512,7 @@ const en: CabinetCopy = {
     deletedToast: 'Notification deleted.',
     deletedSaid: 'Notification deleted',
     tabs: { label: 'Show', all: 'All', unread: 'Unread' },
-    mutual: (names) => `Mutual contacts: ${names.join(', ')}`,
+    mutual: 'Mutual contacts:',
     declinedToast: 'Request declined.',
     undo: 'Undo',
     closeToast: 'Close',
@@ -795,7 +795,7 @@ const uk: CabinetCopy = {
   },
   collab: {
     title: 'Знайдіть колегу для співпраці',
-    lede: 'Колеги, які працюють у тих самих галузях, що й ви. Напишіть першими. Якщо колега погодиться поспілкуватися, ви побачите пошту колеги й продовжите розмову листами.',
+    lede: 'Ми підібрали цих людей саме для вас: вони працюють у вашій спеціальності й тих самих галузях. Напишіть першими. Якщо колега погодиться поспілкуватися, ви побачите пошту колеги й продовжите розмову листами.',
     search: 'Пошук за іменем, університетом, темою або галуззю',
     find: 'Знайти',
     shared: 'Галузі та теми',
@@ -884,7 +884,7 @@ const uk: CabinetCopy = {
     youAccepted: 'Ви прийняли запит.',
     youDeclined: 'Ви відхилили запит.',
     writeTo: 'Пошта для листування:',
-    markRead: 'Позначити прочитаним',
+    markRead: 'Позначити як прочитане',
     declinedNote: 'Ви відхилили запит. Якщо передумали, можете його прийняти.',
     acceptAgain: 'Прийняти запит',
     profileOf: (name) => `Профіль: ${name}`,
@@ -899,7 +899,7 @@ const uk: CabinetCopy = {
     deletedToast: 'Сповіщення видалено.',
     deletedSaid: 'Сповіщення видалено',
     tabs: { label: 'Показати', all: 'Усі', unread: 'Непрочитані' },
-    mutual: (names) => `Спільні контакти: ${names.join(', ')}`,
+    mutual: 'Спільні контакти:',
     declinedToast: 'Запит відхилено.',
     undo: 'Скасувати',
     closeToast: 'Закрити',

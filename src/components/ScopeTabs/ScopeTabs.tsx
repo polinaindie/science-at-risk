@@ -33,7 +33,7 @@ export function ScopeTabs<V extends string = string>({
 }: ScopeTabsProps<V>) {
   const name = useId();
   const word =
-    'block border-b-[3px] border-transparent pb-1 font-ui text-[1.25rem] font-medium leading-[1.75rem] text-brand-muted transition-colors md:text-[1.5rem] md:leading-[2rem]';
+    'block border-b-[3px] border-transparent pb-1 font-ui text-(length:--step-lg) font-medium leading-[1.75rem] text-brand-muted transition-colors md:text-(length:--step-lg) md:leading-[2rem]';
 
   if (tabs.every((tab) => tab.href)) {
     return (

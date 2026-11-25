@@ -13,6 +13,8 @@ export interface BreadcrumbsProps {
 /** Site breadcrumbs (`.breadcrumbs`) — IBM Plex Mono 14/1.4, the last crumb dimmed.
  * The static pages draw the same thing from `public/css/breadcrumbs.css`; change both together. */
 export function Breadcrumbs({ items, className = '' }: BreadcrumbsProps) {
+  // Two steps (Main / Page) say nothing the header does not; the trail shows from three.
+  if (items.length < 3) return null;
   return (
     <nav className={`mb-2.5 md:mb-4 ${className}`.trim()} aria-label="Breadcrumb">
       <ol className="m-0 flex list-none flex-nowrap items-center gap-0 overflow-x-auto p-0 font-ui text-breadcrumbs text-brand-black">

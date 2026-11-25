@@ -116,7 +116,7 @@ export function MobileNav({
           {items.map((item) => (
             <li key={item.label}>
               {/* on a phone the menu is the whole screen, so the sections are set larger */}
-              <a href={item.href} className={`${linkClass} max-md:text-[22px] max-md:leading-[1.3]`}>
+              <a href={item.href} className={`${linkClass} max-md:text-(length:--step-xl) max-md:leading-[1.3]`}>
                 {item.label}
               </a>
             </li>
@@ -129,7 +129,7 @@ export function MobileNav({
           .filter((item) => !item.email)
           .map((item) => (
             <li key={item.label}>
-              <a href={item.href} className={`${linkClass} max-md:text-[22px] max-md:leading-[1.3]`}>
+              <a href={item.href} className={`${linkClass} max-md:text-(length:--step-xl) max-md:leading-[1.3]`}>
                 {item.label}
               </a>
             </li>
@@ -146,7 +146,7 @@ export function MobileNav({
             )}
             <a
               href={item.href}
-              className={`${linkClass} break-all md:text-[17px] max-md:text-[22px] max-md:leading-[1.3]`}
+              className={`${linkClass} break-all md:text-(length:--text-ui) max-md:text-(length:--step-xl) max-md:leading-[1.3]`}
               data-satr-email={item.email}
               data-satr-email-text=""
             >

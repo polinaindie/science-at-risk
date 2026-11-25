@@ -201,7 +201,7 @@ function PopularTags({ label, tags }: { label: string; tags: HomeScientistsTag[]
 export function HomeScientistsBlock({
   title = 'Find partners in Ukrainian science',
   scopeLabel = 'Search in',
-  popularLabel = 'Popular domains',
+  popularLabel = 'Popular requests',
   modes = defaultModes,
   defaultScope = 'scientists',
   onSearch,

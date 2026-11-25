@@ -103,7 +103,7 @@ export function Footer({
       {/* The site's one container, and the reference's own steps down from 60px
           of air to 30px as the screen gets wider and shorter on its hands. */}
       <div
-        className={`${wrapperClass} py-[60px] md:py-[50px] lg:py-[40px] xl:py-[30px] min-[1440px]:py-[40px]`}
+        className={`${wrapperClass} pt-[72px] pb-[60px] md:pt-[96px] md:pb-[50px] lg:pb-[40px] xl:pb-[30px] min-[1440px]:pb-[40px]`}
       >
         <h2 className="mb-4 font-heading text-h1 whitespace-pre-line text-white">{title}</h2>
 
@@ -150,7 +150,7 @@ export function Footer({
               {/* The count, and the one thing that can be wrong with it, on the
                   same line — the reference puts the warning on the left and the
                   tally on the right under the field. */}
-              <div className="mt-2 flex items-baseline justify-between gap-4 font-ui text-text1-mobile">
+              <div className="mt-2 flex items-baseline justify-between gap-4 font-ui text-text2-mobile">
                 <p
                   className={over ? 'text-brand-accent-yellow' : 'sr-only'}
                   role={over ? 'alert' : undefined}
@@ -168,7 +168,7 @@ export function Footer({
               </Button>
 
               {status ? (
-                <p role="status" className="mt-4 font-ui text-text1-mobile text-white/85">
+                <p role="status" className="mt-4 font-ui text-text2-mobile text-white/85">
                   {status}
                 </p>
               ) : null}
@@ -210,7 +210,7 @@ export function Footer({
         {/* The base line: a rule, the copyright on the left, OpenTech's wordmark on the right
             (stacked on a phone). */}
         <div className="mt-[48px] flex flex-col gap-6 border-t border-solid border-white pt-6 md:mt-[56px] md:flex-row md:items-center md:justify-between md:gap-8">
-          <p className="font-ui text-text1-mobile text-white/70">
+          <p className="font-ui text-text2-mobile text-white/70">
             © {new Date().getFullYear()} Science at Risk
           </p>
           <img

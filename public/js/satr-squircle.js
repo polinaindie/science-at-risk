@@ -94,7 +94,7 @@
      are picked up as they appear. */
   const TAG_RADIUS = 16;
   /* the chips, the panel that says what a research topic covers and the download bar of an article (phones): the same shape */
-  const SQUIRCLE_BOXES = '.tag, .research-filter__explain, .paper-cta .btn';
+  const SQUIRCLE_BOXES = '.tag, .research-filter__explain, .paper-cta .btn, .scientific-societies .aside__contact';
   const sized = new ResizeObserver((entries) => entries.forEach((e) => drawTag(e.target)));
   function drawTag(el) {
     const w = el.offsetWidth;
@@ -138,6 +138,8 @@
   const groundUnder = () => {
     let el = document.elementFromPoint(Math.round(window.innerWidth / 2), header.offsetHeight + 2);
     while (el && el !== document.documentElement) {
+      /* a photo frame or tile with its own fill is content, not the page's ground: look past it */
+      if (el.hasAttribute('data-satr-ground-skip')) { el = el.parentElement; continue; }
       const c = getComputedStyle(el).backgroundColor;
       if (opaque(c)) return c;
       el = el.parentElement;

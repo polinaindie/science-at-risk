@@ -63,3 +63,7 @@ Never published and not part of this model: phone, e-mail (the account's), recom
 - The cabinet collects publications as 1 to 3 key items; 284 mirrored profiles list up to 6.
 - The mirror has no "Expert experience", "Other projects" or "Scientific societies" sections although the cabinet collects them: decide whether they publish (open question).
 - Role strings in publications are free text: "Author" 760, "Co-author" 18, "Project manager" 13, "Project Leader" 11, empty "Role:" 18 (the cabinet uses three values: `author`, `lead`, `coauthor`).
+
+## Updated 2026-11-25 (expert page)
+
+Fonts under the headings follow the scale: experience and projects at reading size, institution and authors at 16px in black. Left column: the name and the Connect / "Write to …" button are full width, no scrollbar in the column, the button level with the last line of the right column. 1920px and up: the profile type and line heights grow by a fifth. The cabinet profile (`../cabinet/README.md`) mirrors this page with the same sizes.

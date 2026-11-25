@@ -17,7 +17,7 @@ export const Default: Story = {
     description:
       'Research and technology complex "Institute of Single Crystals" of the National Academy of Sciences of Ukraine',
     domain: 'Materials science, chemistry, physics, biomedicine, pharmacy, technologies',
-    amount: '~ 100000 UAH',
+    amount: '~ 2 200 USD',
     borderedTop: true,
   },
 };

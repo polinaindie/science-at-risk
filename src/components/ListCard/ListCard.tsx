@@ -15,14 +15,14 @@ export interface ListCardProps {
   className?: string;
 }
 
-/** Format raw UAH amounts for display (~ 500,000 UAH / ~ 366.6 million UAH). */
+/** Format raw USD amounts for display (~ 11,000 USD / ~ 8.1 million USD). */
 export function formatUahAmount(raw: string | number, locale: 'en' | 'uk' = 'en'): string {
   const text = String(raw ?? '').trim();
   const match = text.match(/([\d\s.,]+)/);
   if (!match) return text;
   const n = parseInt(match[1].replace(/[\s.,]/g, ''), 10);
   if (!Number.isFinite(n) || n <= 0) return text;
-  const suffix = locale === 'uk' ? 'грн' : 'UAH';
+  const suffix = 'USD';
   if (n >= 1_000_000) {
     const millions = n / 1_000_000;
     const rounded =
@@ -49,7 +49,7 @@ export function ListCard({
 }: ListCardProps) {
   const Heading = headingLevel === 3 ? 'h3' : 'h2';
   const displayPrice =
-    price && /^\s*~?\s*[\d\s.,]+\s*(UAH|грн)?\s*$/i.test(price)
+    price && /^\s*~?\s*[\d\s.,]+\s*(USD|UAH|грн)?\s*$/i.test(price)
       ? formatUahAmount(price)
       : price;
 

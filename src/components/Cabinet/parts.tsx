@@ -254,7 +254,7 @@ export function PageTitle({ title, lede, wide = false }: { title: string; lede?:
     <header className="mb-8">
       <h1 className={`font-heading text-h1-mobile ${wide ? 'md:text-h1-desktop' : 'md:text-h2-desktop lg:text-h1-desktop'}`}>{title}</h1>
       {lede ? (
-        <p className="mt-4 max-w-[760px] font-text text-text2-mobile md:text-text2-desktop">
+        <p className="satr-static-scale mt-4 max-w-[760px] font-text text-[length:var(--st-read)] leading-[1.55]">
           {lede}
         </p>
       ) : null}

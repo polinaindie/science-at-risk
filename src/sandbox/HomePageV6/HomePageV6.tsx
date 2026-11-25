@@ -66,20 +66,20 @@ export const defaultInfrastructureV6: InfrastructuresSectionProps = {
   cards: [
     {
       title: 'Institute for Problems of Cryobiology and Cryomedicine',
-      amount: '~ 500 000 UAH',
+      amount: '~ 11 000 USD',
       href: live('infrastructure/instytut-problem-kriobiolohii-i-kriomedytsyny.html'),
       showMetaLabels: true,
     },
     {
       title:
         'Danilevsky Institute for Endocrine Pathology Problems of the National Academy of Medical Sciences of Ukraine',
-      amount: '~ 3 478 972 UAH',
+      amount: '~ 77 000 USD',
       href: live('infrastructure/instytut-problem-endokrynnoi-patolohii-im-vya-danylevskoho-namn-ukrainy.html'),
       showMetaLabels: true,
     },
     {
       title: 'Institute for Safety Problems of Nuclear Power Plants',
-      amount: '~ 366 627 780 UAH',
+      amount: '~ 8 100 000 USD',
       href: live('infrastructure/instytut-problem-bezpeky-atomnykh-elektrostantsii.html'),
       showMetaLabels: true,
     },
@@ -177,7 +177,7 @@ const FLOW_PAD_FOOTER = 'max-lg:[&>footer>div]:pb-20 max-lg:[&>footer>div]:pt-[1
  *  is their usual 18px. The fit then solves for the taller block; the
  *  headings, which have size to spare, give up the difference. */
 const FIT_FLOOR =
-  'lg:[&_p.font-text]:text-[length:max(18px,calc(16px/var(--satr-fit,1)))] lg:[&_p.font-text]:leading-[max(26px,calc(23px/var(--satr-fit,1)))] lg:[&_p[class*=text1-desktop]]:text-[length:max(18px,calc(16px/var(--satr-fit,1)))] lg:[&_p[class*=text1-desktop]]:leading-[max(28px,calc(25px/var(--satr-fit,1)))]';
+  'lg:[&_p.font-text:not(.satr-fit-text)]:text-[length:max(18px,calc(16px/var(--satr-fit,1)))] lg:[&_p.font-text:not(.satr-fit-text)]:leading-[max(26px,calc(23px/var(--satr-fit,1)))] lg:[&_p[class*=text1-desktop]]:text-[length:max(18px,calc(16px/var(--satr-fit,1)))] lg:[&_p[class*=text1-desktop]]:leading-[max(28px,calc(25px/var(--satr-fit,1)))] min-[1920px]:[&_p.font-text:not(.satr-fit-text)]:text-[length:max(21.6px,calc(19.2px/var(--satr-fit,1)))] min-[1920px]:[&_p.font-text:not(.satr-fit-text)]:leading-[max(31px,calc(27.6px/var(--satr-fit,1)))] min-[1920px]:[&_p[class*=text1-desktop]]:text-[length:max(21.6px,calc(19.2px/var(--satr-fit,1)))] min-[1920px]:[&_p[class*=text1-desktop]]:leading-[max(33.6px,calc(30px/var(--satr-fit,1)))]';
 
 /** These blocks stand on the foot of the screen rather than in the middle of
  *  it: the title sits at the bottom of its column and the list's last rule is

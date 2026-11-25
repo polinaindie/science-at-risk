@@ -19,7 +19,7 @@ Layout: text column (left, 74 percent from 1200 px): short name h1, full name, t
 | `infrastructure_type` | O | 250 (obs 209) | plain, comma-separated words ("Equipment and facilities, has the status of a national treasure") | facts row "Type of infrastructure" | row omitted | T | |
 | `property_type` | O | 40 | one of: State-owned (20), Communal institution (1), Self-governing organization (1); (one page says "Medicine": wrong data) | facts row "Type of property" | row omitted | T (list) | |
 | `website` | O | 300 | URL | facts row "Website" as the link "Visit website" (`rel=nofollow noopener`, title = URL) | row omitted (1 page) | S | `infra-link` |
-| `needed_uah` | O | integer up to 10^10 | integer, UAH (obs `~ 4500000000`); `~` is shown, not stored; today a string with `~ 500000 UAH` or spaced variants | plate "Needed ~ 500 000 UAH" (`.infra-plate__amount`), facts row "Fundraising amount", list card "Required amount", home card | the amount line and row are omitted; the plate shows only the purpose (4 pages have no amount) | S (format by language) | `infra-plate__amount`, 19 of 23 |
+| `needed_usd` | O | integer up to 10^10 | integer, USD (obs `~ 4500000000`); `~` is shown, not stored; today a string with `~ 11100 USD` or spaced variants | plate "Needed ~ 11 100 USD" (`.infra-plate__amount`), facts row "Fundraising amount", list card "Required amount", home card | the amount line and row are omitted; the plate shows only the purpose (4 pages have no amount) | S (format by language) | `infra-plate__amount`, 19 of 23 |
 | `needed_note` | O | 120 | plain, replaces the number when it cannot be given ("Cannot be determined now") | in place of the amount | | T | proposed: Kherson State University says it in the text |
 | `purpose` | R | 400 (obs 946 in the longest "For what"); the plate shows the **first sentence, up to 3 lines**, so write it first | plain | plate `.infra-plate__purpose`, facts row "For what" (full) | blocks | T | `infra-plate__purpose`, `For what` |
 | `gallery` | O | 12 images (obs 0 to 8) | list of `{src, alt}`; `alt` is **also the visible caption**; rules README 4 (1200 x 670 min, shown 56 percent frame, cover) | slider with Back/Next, counter "1 / 4", caption `p.infra-caption` (`aria-live=polite`) | block omitted (7 pages have none); with one image: no controls | T alt | `infra-caption`, `infrastructure__img`; all 80 images have `alt="#"` today so no caption ever shows |
@@ -44,7 +44,13 @@ Layout: text column (left, 74 percent from 1200 px): short name h1, full name, t
 ## Disagreements between the pages
 
 - 13 pages have short name + full name, 10 have only a long name in h1 (docs/infrastructure-page.md says to delete `infra-fullname` when the names are equal; those 10 need a short name written).
-- Amount: 19 pages have `Fundraising amount`; 4 have none; the plate has `~ 500 000 UAH` (spaced) and the facts row `~ 500000 UAH` (not spaced).
+- Amount: 19 pages have `Fundraising amount`; 4 have none; the plate has `~ 11 100 USD` (spaced) and the facts row `~ 11100 USD` (not spaced).
 - Domain strings: "Life Science and Biomedicine" vs "Life sciences and biomedicine" vs "life sciences and biomedicine" vs "biomedicine"; `arts and humanities` lowercase; one Ukrainian chip (`Мистецтво та гуманітарні науки`).
 - Section naming (docs/infrastructure-page.md): menu "Infrastructure"; list page "Damaged infrastructure".
 - The e-mails on the pages are personal gmail addresses; `kushtmagazine@gmail.com` appears on all 23 (docs/infrastructure-page.md): use an organisation address or the form only.
+
+## Updated 2026-11-25 (infrastructure)
+
+- **Amount in USD.** `needed_usd` (integer) replaces `needed_uah`; shown `~ 2 200 USD` in both languages (UK too, the word is `USD`), non-breaking spaces as thousands separator. The 22 existing amounts were converted from UAH at a rate of **45** and rounded to two significant digits (100 000 UAH becomes 2 200 USD). The conversion is a one-off; the rate and the rounding rule are open question 42. Four institutions have no amount; the plate then shows no figure.
+- **Plate** (`.infra-plate`): label "Needed", the amount in serif (`--step-2xl`), the purpose text at 16px (`--text-ui`); the help note at 16px. In lists the amount is read size, as the description text beside it.
+- **Page.** Body at reading size, full name 16px, buttons 48px, the facts as a grid; breadcrumbs are hidden below three steps; the coordinator's e-mail line is removed from the page (the Contact and help button opens the modal). 1920px and up: type grows by a fifth.

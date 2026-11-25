@@ -47,8 +47,7 @@ export function MatchCard({
               {scientist.organization}
             </p>
 
-            <p className="mt-5 mb-2 font-ui text-breadcrumbs text-brand-muted">{t.shared}</p>
-            <ul className="m-0 flex list-none flex-wrap gap-2.5 p-0">
+            <ul aria-label={t.shared} className="m-0 mt-5 flex list-none flex-wrap gap-2.5 p-0">
               {scientist.sharedTags.map((tag) => (
                 <li key={tag}>
                   <Tag as="span" variant="accent">
@@ -72,11 +71,11 @@ export function MatchCard({
               /* Once the colleague agrees, the button gives way to their email, in the button's own type. */
               <p
                 role="status"
-                className="m-0 font-ui text-[18px] leading-[28px] [overflow-wrap:anywhere]"
+                className="m-0 font-ui text-[length:var(--step-read)] leading-[var(--step-read-lh)] [overflow-wrap:anywhere]"
               >
                 {t.acceptedText}{' '}
                 {scientist.email ? (
-                  <Link href={`mailto:${scientist.email}`} className="text-[18px]! leading-[28px]! [--satr-ul:2px]">
+                  <Link href={`mailto:${scientist.email}`} className="text-[length:var(--step-read)]! leading-[var(--step-read-lh)]! [--satr-ul:2px]">
                     {scientist.email}
                   </Link>
                 ) : null}

@@ -61,10 +61,20 @@ Collected from all parts of the package. Details and the assumption made in the 
 | # | Question | Owner |
 |---|---|---|
 | 35 | The live components use Tailwind utility classes, so partial markup carries them and pages need `satr-chrome.css` (compiled Tailwind subset). Accept, or rewrite the 7 components as named BEM rules? | Dev + Des |
-| 36 | Fluid type renders 12.5% larger than the numbers in the generator (html is 18px, scale written for 16px). The hand-off follows the site. Confirm this is the intended size, or correct both. | Des |
+| 36 | **Partly resolved 2026-11-25.** The static pages render the scale exactly (html 18px). The React app still renders 12.5% larger (root 18px, scale written for 16px); the cabinet and the profile are corrected by scoped classes, the Home by `--satr-fit`. Confirm the numbers in `typography.md` are the intended ones; then the React root can be fixed once instead of per scope. | Des |
 | 37 | `cabinet/cabinet.css` has its own sizes (16px base, own buttons and fields) and is **not** the look of the React cabinet (`satr-auth.css`, Tailwind). Which is the reference for the Go cabinet? | Des + Dev |
 | 38 | `satr-shape.js` leaves a plain rounded rectangle until it runs. Is a flash of the rectangle on slow connections acceptable? | Des |
-| 39 | Running-text sizes differ by component (card text 15px, article 18px, profile page 16px, search field 22px). Define two body sizes (text 18, text-small 15) and map every component to one? | Des |
-| 40 | Scientist profile pages run on a 16px root and the rest of the site on 18px. Bring them to 18px (changes their layout) or keep? | Des + Dev |
-| 41 | Heading scale: h1 content 72, h1 detail 48, h2 36, h3/card 28 (design numbers; React renders them 12.5% larger, question 36). Card and person names went from 32 to 28 on list pages. Accept, or keep names at 32 as a separate role? | Des |
+| 39 | **Resolved 2026-11-25.** Running text now comes from one scale (reading 18 phone / 20 desktop, small 14 / 16, fixed UI text 16); every component maps to a step (`typography.md`, font audit in `docs/font-audit/`). Confirm the two body sizes. | Des |
+| 40 | Scientist profile pages still run on a 16px root and the rest of the site on 18px; their sizes were moved onto the scale (reading size under headings, 16px institution and authors), the root was not changed. Bring them to 18px? | Des + Dev |
+| 41 | Heading scale: h1 content 72, h1 detail 48, h2 36, h3/card 28 (numbers at desktop; from 1920px a fifth more). Card and person names went from 32 to 28 on list pages. Accept, or keep names at 32 as a separate role (`--step-name` exists, 26 to 32)? | Des |
 
+## Added 2026-11-25
+| # | Question | Owner |
+|---|---|---|
+| 42 | **Amounts are in USD now** (`~ 2 200 USD`, both languages). The 22 infrastructure amounts were converted once from UAH at rate 45, rounded to two significant digits. Store `needed_usd` only, or keep the UAH figure and the rate as fields and compute? Who updates the rate? Does the donor-facing text need "about" or a date for the rate? | Ed + Dev |
+| 43 | Wide screens: from 1920px all type grows by a fifth (and the cabinet with it). Is 1920 the right threshold, and should 2560+ grow again? | Des |
+| 44 | The right-column menu of stories and the About page is built by two small scripts from the headings. In Hugo: build it at render time from the headings (every heading needs a stable `id`, also across the two languages) and keep the scroll-spy script, or drop the scroll-spy? | Dev |
+| 45 | The lead of a story (first three sentences set larger) is made by `story-lead.js`. Move to build time or a `lead` field? | Dev + Ed |
+| 46 | Society and scientist contact button opens a modal that posts to the Forms API; the address is never printed. Confirm the endpoint and that the same form serves both. | Dev |
+| 47 | Cabinet notifications and collaboration: sender photo shows only for scientists in the database; mutual contacts link to profiles. Which of these exist in the Go portal's data? Is the "Science at Risk does not read these messages" promise a product rule? | Dev + Ed |
+| 48 | The type `story` is labelled **Feature** on the live site; the Ukrainian label and the URL (`/stories`) are unchanged. Confirm the name in both languages. | Ed |

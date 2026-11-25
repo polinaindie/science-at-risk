@@ -11,7 +11,7 @@ Layout: crumbs, full-width hero image (2.17:1 box), type chip (link to the type 
 | Field | R/O | Max | Type / format | Where on page | If empty | EN/UK | Derived from |
 |---|---|---|---|---|---|---|---|
 | `slug`, `translationKey` | R | 160 | README 2 | URL, card, home hero link | blocks | S | |
-| `type` | R | 1 | `story` \| `blog` \| `news` (labels Stories / Blogs / News) | `a.story__type` above the title, card label `story-card__type`, list chips with counts (All 72, Stories 46, Blogs 16, News 10) | blocks | S slug; label T | `story__type`, `stories-tags` |
+| `type` | R | 1 | `story` \| `blog` \| `news` (labels Feature / Blogs / News) | `a.story__type` above the title, card label `story-card__type`, list chips with counts (All 72, Feature 46, Blogs 16, News 10) | blocks | S slug; label T | `story__type`, `stories-tags` |
 | `title` | R | 170 (obs 166) | plain; typographic quotes “ ” in EN, « » in UK | h1 `.story__main-title` (48 px, scale 1 / 2.7), card title, breadcrumb (truncates), hero slide, `<title>`, alt of card image | blocks | T | |
 | `date` | R | | ISO `YYYY-MM-DD`; shown `DD.MM.YY` (`20.03.23`) | `p.data` under the title, card footer | blocks | S, format per language | `p.data` |
 | `excerpt` | O | 200 (obs 184) | plain, one sentence | card text `story-card__text`, home hero subtitle, `meta description`, og:description | falls back to the first 160 characters of the body; the card shows no text line (2 cards empty today; the "Other stories" cards on every story page render it empty, a bug) | T | meta description on 61 of 72; card text on 142 of 144 |
@@ -50,3 +50,12 @@ Share line: "Share with help:" Facebook, Twitter, WhatsApp (mirror's share links
 - The type chip text on a card equals the type of the story (checked on the "Other stories" row and the list); the type is only text in the markup, so it needs a real field.
 - Images in text carry a generated alt (`Title №N`) and an empty caption.
 - The Ukrainian story slug pattern is transliterated (`ukraini-neobkhidno-rozvyvaty-...`), the English ones are the title; a story in both languages needs two files with one slug.
+
+## Updated 2026-11-25 (stories)
+
+- **Sizes.** Body is `--step-read` (18 phone, 20 desktop; 24 from 1920px), line 1.55; no private size multipliers any more (`--satr-read` is gone). See `../typography.md`.
+- **Lead.** `story-lead.js` sets only the first three sentences of the opening paragraph as the lead (serif, larger); the rest of that paragraph moves into its own running paragraph. A paragraph of three sentences or fewer stays whole. Without JS the whole paragraph is the lead. In Hugo do it at build time: `lead` = first three sentences (or a `lead` field).
+- **Type label "Feature".** The type `story` is now labelled **Feature** (chip above the title `a.story__type`, card label `story-card__type`, list chip); the URL slug and the type value stay `story`. The UK label is for an editor.
+- **Captions and gallery.** `figure.caption` is now filled on the live stories and shown under the photo. A `gallery` is ordered: photo, caption, a rule, then the controls (arrows, counter). Video: the `embed` shortcode shows a poster and a play link; `satr-embed.js` creates the third-party iframe only on press (link works without JS).
+- **In-page menu (right column).** From **three** sections up the article gets a sticky "In this article" menu under the author and photographer rows (`story-toc.js`, `css/pages/story-toc.css`): sections are the `h2`, or the `h3` when the article has fewer than three `h2`; rules between items; the item of the section being read is black and bold (`aria-current`). The author and photographer rows scroll with the page, the menu sticks (top 120px). Hidden below 768px, where the credits sit above the text. Without JS there is no menu. Hugo: build it from the headings (`.TableOfContents` at the right depth) and keep the same behaviour script; every heading needs a stable `id`.
+- Fixed: Cyrillic letters typed by mistake inside English words in three stories.

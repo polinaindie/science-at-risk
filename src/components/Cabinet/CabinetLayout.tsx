@@ -106,7 +106,7 @@ export function CabinetLayout({
     return (
       <div className={ground === 'blue' ? 'bg-brand-accent-blue' : ''}>
         <div className={`${wrapperClass} pt-8 pb-8 lg:pb-12`}>
-          <main className="min-w-0">{children}</main>
+          <main className="satr-cabinet-scale min-w-0">{children}</main>
         </div>
       </div>
     );
@@ -166,7 +166,7 @@ export function CabinetLayout({
       </>
       )}
       </div>
-      <main className="mt-8 min-w-0 lg:mt-0">{children}</main>
+      <main className="satr-cabinet-scale mt-8 min-w-0 lg:mt-0">{children}</main>
       </div>
     </div>
     </div>

@@ -1,0 +1,120 @@
+{
+ "_comment": "Ordered rules: the first regex that matches the element selector (tag.class.class from the audit) decides the role. Edit freely; then run scripts/font-audit-roles.py.",
+ "roles": [
+  {
+   "id": "hidden",
+   "label": "Невидимий текст для скрінрідерів (не рахуємо)",
+   "re": "sr-only"
+  },
+  {
+   "id": "logo",
+   "label": "Логотип SCIENCE AT RISK",
+   "re": "whitespace-nowrap\\.font-heading"
+  },
+  {
+   "id": "h1-page",
+   "label": "Заголовок сторінки (h1 списків, статей, hero)",
+   "re": "^h1\\.(story__main-title|search-hero__title|paper__main-title|papers-hero|infrastructures-hero|pageStories)|h1\\.info__title|text-h1|hyphens-auto|h2\\.m-0\\.max-w-\\[18ch\\]"
+  },
+  {
+   "id": "h1-entity",
+   "label": "Заголовок профілю / інфраструктури / логіну",
+   "re": "expert__header|infrastructure__header|satr-auth__title|^h1\\.m-0\\.font-heading|^h1$|text-h1-mobile|text-h2-desktop"
+  },
+  {
+   "id": "h2-section",
+   "label": "Заголовок секції (h2)",
+   "re": "expertTitle|indent-top|heading--h2|help-form__title|^h2$|^h2\\.|text-heading-2|h4\\.font-heading"
+  },
+  {
+   "id": "title-card",
+   "label": "Назва картки / підсекції (h3, імена)",
+   "re": "aside__title|aside-mini__name|person-card__title|heading--h3|^h3|expert-card__title|story-card__title|project-card__title|paper-card__title|infrastructures-card__title|text-h3|text-heading-3"
+  },
+  {
+   "id": "lead-serif",
+   "label": "Лід історії, цитата (серифний великий)",
+   "re": "story-lead|quote__name|quote__title|h4\\.quote"
+  },
+  {
+   "id": "amount",
+   "label": "Суми в плашках інфраструктури",
+   "re": "infra-plate__amount"
+  },
+  {
+   "id": "text-article",
+   "label": "Основний текст (стаття, профіль, інфраструктура)",
+   "re": "^p\\.paragraph|expertParagraph|infrastructure__text|infrastructure__sec-text|paper-point|paper-lead|^i$|^b$|^u\\.|^strong|^a\\.hover\\.hover--underline$|infra-link|expert__affiliation"
+  },
+  {
+   "id": "text-card",
+   "label": "Текст у картках, описи",
+   "re": "expert-card__text|expert-card__subtitle|story-card__text|stories__text|stories__suptitle|infrastructures-card__text|paper-card|project-card__text|popular-requests__text|person-card__position|infra-plate__purpose|infra-help-note|aside__lang-text|infrastructures__text|hero__text|info__info-text|search__text|nothing__text|list-card|research-card__author|research-filter__status|^p\\.mt-[0-9]\\b|text-text2|font-text"
+  },
+  {
+   "id": "meta-line",
+   "label": "Метарядок: місце, посада, рік, поле",
+   "re": "exp-place|exp-pos|exp-year|aside-mini__line|project-card__year|infra-fullname|infra-contact|expert-card__societies-label|storyAside__title|storyAside__text|story__type|^p\\.data$|story-card__data|story-card__type|link__title|infra-plate__label|paper-aside__text|quote__position|infrastructure__sec-title|help__text|^div\\.mb-5"
+  },
+  {
+   "id": "tag",
+   "label": "Тег / чип",
+   "re": "\\.tag|popular-requests__tags|stories-tags|research-filter|expert-card__tag|tag__number"
+  },
+  {
+   "id": "button",
+   "label": "Кнопка",
+   "re": "btn|satr-squircle(?!-link)|aside__contact|person-card__btn|_mailto|stories__btn|^button"
+  },
+  {
+   "id": "link",
+   "label": "Посилання (підкреслене, навігація, соцмережі)",
+   "re": "satr-hover-underline|satr-squircle-link|hover--underline|hover--black|hover--white|scientific-societies__link|hero__list-link|aside__item-link|_sharer|satr-underlined|satr-dim|footnote|satr-auth__link"
+  },
+  {
+   "id": "breadcrumb",
+   "label": "Хлібні крихти",
+   "re": "breadcrumbs|text-breadcrumbs|time\\."
+  },
+  {
+   "id": "field-label",
+   "label": "Лейбл поля форми / плейсхолдер",
+   "re": "satr-float__label|^label|cursor-pointer"
+  },
+  {
+   "id": "caption",
+   "label": "Підпис під фото, виноска",
+   "re": "figcaption|image__caption|figure__caption|satr-note|infra-caption|footnote-back|embed__"
+  },
+  {
+   "id": "pagination",
+   "label": "Пагінація і лічильники",
+   "re": "pagination|counter|count|min-w-6|_swiper|infrastructure__nav"
+  },
+  {
+   "id": "tab",
+   "label": "Таби (Scientists / Societies)",
+   "re": "scope-tabs|border-b-\\[3px\\]"
+  },
+  {
+   "id": "footer-small",
+   "label": "Підвал і службові дрібні тексти",
+   "re": "text-white|text-text1-mobile|max-w-\\[280px\\]|ml-auto"
+  },
+  {
+   "id": "auth",
+   "label": "Екрани входу",
+   "re": "satr-auth"
+  },
+  {
+   "id": "cabinet-other",
+   "label": "Кабінет (tailwind-елементи)",
+   "re": "font-ui|font-text|text-\\[|^p\\.m-0|^td$|^span\\.col"
+  },
+  {
+   "id": "generic",
+   "label": "Без класу (span, p, a, li, small…): розібрати за сторінкою",
+   "re": "^(span|p|a|li|small|td|b|i|u|strong)$|^span\\.|^small"
+  }
+ ]
+}
