@@ -147,6 +147,7 @@ society.projects: "Основні проєкти товариства"  # DRAFT-
 society.collaboration: "Яка співпраця була б найцікавішою або пріоритетною?"  # DRAFT-UK
 society.donors: "Основні донори товариства"  # DRAFT-UK
 society.members: "Кількість членів"  # DRAFT-UK
+society.write_to: "Написати: {{ .Name }}"  # DRAFT-UK  # button in the aside that opens the contact modal (also on the scientist page)
 society.website: "Вебсайт"  # DRAFT-UK
 society.facebook: "Facebook"
 
@@ -188,6 +189,7 @@ stories.type_all: "Усі"  # DRAFT-UK
 stories.type_stories: "Історії"
 stories.type_blogs: "Блоги"  # DRAFT-UK
 stories.type_news: "Новини"  # DRAFT-UK
+stories.toc_title: "У цій статті"  # right-column menu of an article, from three sections up
 stories.read: "Читати"
 stories.read_story: "Читати історію"
 stories.other_stories: "Інші історії"

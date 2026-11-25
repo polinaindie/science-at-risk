@@ -143,6 +143,7 @@ society.projects: "Main projects of the society"  # EN page says "of the company
 society.collaboration: "Which collaboration would be the most interesting/priority?"
 society.donors: "The main donors of the society"
 society.members: "Number of members"  # EN page: "The number of members of the society as of filling out the application"
+society.write_to: "Write to {{ .Name }}"  # button in the aside that opens the contact modal (also on the scientist page)
 society.website: "Website"
 society.facebook: "Facebook"
 
@@ -181,9 +182,10 @@ units.kb: "KB"
 stories.title: "Stories"
 stories.type_aria: "Type"
 stories.type_all: "All"
-stories.type_stories: "Stories"
+stories.type_stories: "Feature"  # the type `story` is labelled Feature on the live site
 stories.type_blogs: "Blogs"
 stories.type_news: "News"
+stories.toc_title: "In this article"  # right-column menu of an article, from three sections up
 stories.read: "Read"  # UK home card
 stories.read_story: "Read Story"
 stories.other_stories: "Other stories"
